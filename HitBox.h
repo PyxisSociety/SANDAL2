@@ -3,7 +3,6 @@
 
 #include <math.h>
 #include <stdlib.h>
-#include <stdio.h>
 
 typedef struct LineSDL2{
   struct LineSDL2 * next;
@@ -66,7 +65,9 @@ void freeHitBox(HitBox * hb);
 /* ----------------------------------------------------------
  * ListHitBox
  */
-/* initialise une liste d'hit box vide */
+/* libere la liste de hit box */
+void freeListHitBox(ListHitBox * l);
+/* initialise une liste de hit box vide */
 ListHitBox * initListHitBox();
 /* ajoute un element a la liste */
 int addHitBox(ListHitBox * l,HitBox * hb);
@@ -76,6 +77,8 @@ int removeHitBox(ListHitBox * l,HitBox * hb);
 int initIteratorListHitBox(ListHitBox * l);
 /* retourne l'element courant et passe a l'element suivant */
 HitBox * nextHitBox(ListHitBox * l);
+/* tells if (x,y) touch one of the hitboxes */
+int hitListHitBox(ListHitBox * l,float x,float y);
 /* ---------------------------------------------------------- */
 
 #endif

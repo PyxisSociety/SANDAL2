@@ -1,6 +1,7 @@
 #ifndef _ELEMENTSDL2_SDL2TK_KLEVH_
 #define _ELEMENTSDL2_SDL2TK_KLEVH_
 
+#include "HitBox.h"
 #include "FontSDL2.h"
 #include "FenetreSDL2.h"
 #include "DisplayCode.h"
@@ -53,6 +54,8 @@ typedef struct ElementSDL2{
   EntrySDL2 *entry;
   /* elements entrant en interaction avec cet element */
   struct ListPtrElementSDL2 *interactions;
+  /* hit boxes de l'element, l'element est considerer comme le carre de cote 1 allant de (0,0) a (1,1) */
+  ListHitBox * hitboxes;
   /* paquet de donnees */
   void * data;
 }ElementSDL2;
@@ -145,19 +148,19 @@ int removeElementSDL2(ElementSDL2*);
 /* libere l'element SDL2 passe en parametre */
 void freeElementSDL2(ElementSDL2 *e);
 /* retourne un Element SDL2 de type block */
-ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),void * data);
+ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),HitBox * hb,void * data);
 /* retourne un Element SDL2 de type texte */
-ElementSDL2* createTexte(float x,float y,float width,float height,char * font,char * text,int textColor[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),void * data);
+ElementSDL2* createTexte(float x,float y,float width,float height,char * font,char * text,int textColor[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),HitBox * hb,void * data);
 /* retourne un Element SDL2 de type image */
-ElementSDL2* createImage(float x,float y,float width,float height,char *image,int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),void * data);
+ElementSDL2* createImage(float x,float y,float width,float height,char *image,int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),HitBox * hb,void * data);
 /* retourne un Element SDL2 de type texte+block */
-ElementSDL2* createButton(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int couleurBlock[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),void * data);
+ElementSDL2* createButton(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int couleurBlock[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),HitBox * hb,void * data);
 /* retourne un Element SDL2 de type texte+image */
-ElementSDL2* createButtonImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),void * data);
+ElementSDL2* createButtonImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),HitBox * hb,void * data);
 /* retourne un Element SDL2 de type Entry fond block */
-ElementSDL2* createEntry(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int couleurBlock[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),int min,int max, int isScripted,void * data);
+ElementSDL2* createEntry(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int couleurBlock[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),int min,int max, int isScripted,HitBox * hb,void * data);
 /* retourne un Element SDL2 de type Entry fond image */
-ElementSDL2* createEntryImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),int min,int max,int isScripted,void * data);
+ElementSDL2* createEntryImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),int min,int max,int isScripted,HitBox * hb,void * data);
 /* retourne 1 si l'element passe en parametre peut etre affiche sur la fenetre passe en parametre, 0 sinon */
 int isDisplaied(ElementSDL2*);
 /* ------------------------------------------------------- */
@@ -205,6 +208,8 @@ void changeUnClickElementSDL2(ElementSDL2 *e,void (*unCLick)(ElementSDL2*));
 void addElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *add);
 /* retire un element dans la liste d'interaction */
 void delElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *del);
+/* ajoute une hit boxe a un element */
+void addHitBoxElementSDL2(ElementSDL2 *e,HitBox *hb);
 /* ------------------------------------------------------- */
 
 

@@ -267,7 +267,7 @@ void clickFenetreSDL2(int x,int y){
 	while(e){
 	  xE=e->element->x*_windows_SDL2TK->current->width/_windows_SDL2TK->current->initWidth;
 	  yE=e->element->y*_windows_SDL2TK->current->height/_windows_SDL2TK->current->initHeight;
-	  if(isDisplaied(e->element) && x>=xE && x<=xE+e->element->width*_windows_SDL2TK->current->width/_windows_SDL2TK->current->initWidth && y>=yE && y<=yE+e->element->height*_windows_SDL2TK->current->height/_windows_SDL2TK->current->initHeight){
+	  if(isDisplaied(e->element) && hitListHitBox(e->element->hitboxes,(x-e->element->x)/(e->element->width*_windows_SDL2TK->current->width/_windows_SDL2TK->current->initWidth),(y-e->element->y)/(e->element->height*_windows_SDL2TK->current->height/_windows_SDL2TK->current->initHeight))){
 	    if(e->element->entry){
 	      e->element->entry->isSelect=1;
 	    }
@@ -309,7 +309,7 @@ void unclickFenetreSDL2(int x,int y){
 	while(e){
 	  xE=e->element->x*_windows_SDL2TK->current->width/_windows_SDL2TK->current->initWidth;
 	  yE=e->element->y*_windows_SDL2TK->current->height/_windows_SDL2TK->current->initHeight;
-	  if(isDisplaied(e->element) && x>=xE && x<=xE+e->element->width*_windows_SDL2TK->current->width/_windows_SDL2TK->current->initWidth && y>=yE && y<=yE+e->element->height*_windows_SDL2TK->current->height/_windows_SDL2TK->current->initHeight){
+	  if(isDisplaied(e->element) && hitListHitBox(e->element->hitboxes,(x-e->element->x)/(e->element->width*_windows_SDL2TK->current->width/_windows_SDL2TK->current->initWidth),(y-e->element->y)/(e->element->height*_windows_SDL2TK->current->height/_windows_SDL2TK->current->initHeight))){
 	    if(e->element->entry){
 	      e->element->entry->isSelect=1;
 	    }
@@ -446,7 +446,7 @@ void closeFenetreSDL2(){
   if(_windows_SDL2TK && _windows_SDL2TK->current){
     f=_windows_SDL2TK->current;
     if(f == _windows_SDL2TK->first){
-      _windows_SDL2TK->first = _windows_SDL2TK->next;
+      _windows_SDL2TK->first = _windows_SDL2TK->first->next;
     }
     _windows_SDL2TK->current=_windows_SDL2TK->current->next;
     freeFenetreSDL2(f);

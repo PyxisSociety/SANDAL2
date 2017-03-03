@@ -298,11 +298,14 @@ void freeElementSDL2(ElementSDL2 *e){
     if(e->interactions){
       freeListPtrElementSDL2(e->interactions);
     }
+    if(e->hitboxes){
+      freeListHitBox(e->hitboxes);
+    }
     free(e);
   }    
 }
 
-ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)( ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),void * data){
+ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)( ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),HitBox * hb,void * data){
   ElementSDL2 *e;
 
   if(_windows_SDL2TK && _windows_SDL2TK->current){
@@ -324,6 +327,8 @@ ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4]
       e->police=NULL;
       e->entry=NULL;
       e->interactions=NULL;
+      e->hitboxes = initListHitBox();
+      addHitBox(e->hitboxes,hb);
       e->data=data;
       addElementSDL2(e);
     }
@@ -332,7 +337,7 @@ ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4]
   return e;
 }
 
-ElementSDL2* createTexte(float x,float y,float width,float height,char * font,char * text,int textColor[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),void * data){
+ElementSDL2* createTexte(float x,float y,float width,float height,char * font,char * text,int textColor[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),HitBox * hb,void * data){
   ElementSDL2 *e=malloc(sizeof(*e));
   FontSDL2 * f;
 
@@ -347,6 +352,8 @@ ElementSDL2* createTexte(float x,float y,float width,float height,char * font,ch
       e->image=NULL;
       e->entry=NULL;
       e->interactions=NULL;
+      e->hitboxes = initListHitBox();
+      addHitBox(e->hitboxes,hb);
       e->data=NULL;
       e->codes=NULL;
       f=createFontSDL2(font,text,textColor);
@@ -372,7 +379,7 @@ ElementSDL2* createTexte(float x,float y,float width,float height,char * font,ch
   return e;
 }
 
-ElementSDL2* createImage(float x,float y,float width,float height,char *image,int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),void * data){
+ElementSDL2* createImage(float x,float y,float width,float height,char *image,int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),HitBox * hb,void * data){
   ElementSDL2 *e=NULL;
   SDL_Surface *s;
 
@@ -398,6 +405,8 @@ ElementSDL2* createImage(float x,float y,float width,float height,char *image,in
 	e->police=NULL;
 	e->entry=NULL;
 	e->interactions=NULL;
+	e->hitboxes = initListHitBox();
+	addHitBox(e->hitboxes,hb);
 	e->data=data;
 	addElementSDL2(e);
       }
@@ -408,12 +417,12 @@ ElementSDL2* createImage(float x,float y,float width,float height,char *image,in
   return e;
 }
 
-ElementSDL2* createButton(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int couleurBlock[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),void * data){
+ElementSDL2* createButton(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int couleurBlock[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),HitBox * hb,void * data){
   ElementSDL2 *e;
   FontSDL2 * f;
 
   if(_windows_SDL2TK && _windows_SDL2TK->current){
-    e=createBlock(x,y,width,height,couleurBlock,displayCode,plan,onClick,unClick,keyPress,keyReleased,action,data);
+    e=createBlock(x,y,width,height,couleurBlock,displayCode,plan,onClick,unClick,keyPress,keyReleased,action,hb,data);
     if(e){
       e->textSize=texteSize/100.0f;
       f=createFontSDL2(font,e->police->text,textColor);
@@ -430,12 +439,12 @@ ElementSDL2* createButton(float x,float y,float width,float height,float texteSi
   return e;
 }
 
-ElementSDL2* createButtonImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),void * data){
+ElementSDL2* createButtonImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),HitBox * hb,void * data){
   ElementSDL2 *e;
   FontSDL2 * f;
 
   if(_windows_SDL2TK && _windows_SDL2TK->current){
-    e=createImage(x,y,width,height,image,displayCode,plan,onClick,unClick,keyPress,keyReleased,action,data);
+    e=createImage(x,y,width,height,image,displayCode,plan,onClick,unClick,keyPress,keyReleased,action,hb,data);
     if(e){
       e->textSize=texteSize/100.0f;
       f=createFontSDL2(font,e->police->text,textColor);
@@ -452,13 +461,13 @@ ElementSDL2* createButtonImage(float x,float y,float width,float height,float te
   return e;
 }
 
-ElementSDL2* createEntry(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int couleurBlock[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),int min,int max,int isScripted,void * data){
+ElementSDL2* createEntry(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int couleurBlock[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),int min,int max,int isScripted,HitBox * hb,void * data){
   ElementSDL2 *e;
   EntrySDL2 *ent;
   int i;
 
   if(_windows_SDL2TK && _windows_SDL2TK->current){
-    e=createButton(x,y,width,height,texteSize,font,text,textColor,couleurBlock,displayCode,plan,onClick,unClick,keyPress,keyReleased,action,data);
+    e=createButton(x,y,width,height,texteSize,font,text,textColor,couleurBlock,displayCode,plan,onClick,unClick,keyPress,keyReleased,action,hb,data);
     if(e){
       ent=malloc(sizeof(*ent));
       if(ent){
@@ -491,13 +500,13 @@ ElementSDL2* createEntry(float x,float y,float width,float height,float texteSiz
   return e;  
 }
 
-ElementSDL2* createEntryImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),int min,int max,int isScripted,void * data){
+ElementSDL2* createEntryImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),int min,int max,int isScripted,HitBox * hb,void * data){
   ElementSDL2 *e;
   EntrySDL2 *ent;
   int i;
 
   if(_windows_SDL2TK && _windows_SDL2TK->current){
-    e=createButtonImage(x,y,width,height,texteSize,font,text,textColor,image,displayCode,plan,onClick,unClick,keyPress,keyReleased,action,data);
+    e=createButtonImage(x,y,width,height,texteSize,font,text,textColor,image,displayCode,plan,onClick,unClick,keyPress,keyReleased,action,hb,data);
     if(e){
       ent=malloc(sizeof(*ent));
       if(ent){
@@ -887,8 +896,13 @@ void delElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *del){
       *pe=(*pe)->next;
       free(tmp);
     }
+  }   
+}
+
+void addHitBoxElementSDL2(ElementSDL2 *e,HitBox *hb){
+  if(e && hb){
+    addHitBox(e->hitboxes,hb);
   }
-      
 }
 /* ------------------------------------------------------- */
 

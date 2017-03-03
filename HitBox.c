@@ -121,8 +121,6 @@ int hitHitBox(HitBox * hb,float x,float y){
 	    cs=1.f;
 	    sn=0.f;
 	  }
-	  printf("%f - %f\n",cs,sn);
-	  printf("%f - %f\n",((x*cs-y*sn-c->x)*(x*cs-y*sn-c->x))/(c->rX*c->rX),((x*sn+y*cs-c->y)*(x*sn+y*cs-c->y))/(c->rY*c->rY));
 	  h = (((x*cs-y*sn-c->x)*(x*cs-y*sn-c->x))/(c->rX*c->rX) + ((x*sn+y*cs-c->y)*(x*sn+y*cs-c->y))/(c->rY*c->rY) <= 1);
 	  c=c->next;
 	}while(c && h);
@@ -211,6 +209,20 @@ void freeHitBox(HitBox * hb){
 /* ----------------------------------------------------------
  * ListHitBox
  */
+void freeListHitBox(ListHitBox * l){
+  HitBox * hb, * tmp;
+
+  if(l){
+    hb=l->first;
+    while(hb){
+      tmp=hb->next;
+      free(hb);
+      hb=tmp;
+    }
+    free(l);
+  }
+}
+
 ListHitBox * initListHitBox(){
   ListHitBox * l = malloc(sizeof(*l));
 
@@ -274,5 +286,20 @@ HitBox * nextHitBox(ListHitBox * l){
   }
 
   return hb;
+}
+
+int hitListHitBox(ListHitBox * l,float x,float y){
+  HitBox * hb;
+  int hit = 0;
+
+  if(l && l->first){
+    hb=l->first;
+    do{
+      hit = hitHitBox(hb,x,y);
+      hb=hb->next;
+    }while(hb && !hit);
+  }
+
+  return hit;
 }
 /* ---------------------------------------------------------- */

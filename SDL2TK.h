@@ -43,7 +43,7 @@ void clickFenetreSDL2(int x,int y);
 /* activation des evenements au relachement de clique de souris */
 void unclickFenetreSDL2(int x,int y);
 /* activation des evenements d'appuie sur une touche du clavier */
-void keyPressFenetreSDL2(char c);
+void keyPressedFenetreSDL2(char c);
 /* activation des evenements au relachement d'une touche du clavier */
 void keyReleasedFenetreSDL2(char c);
 /* update les elements des fenetres */
