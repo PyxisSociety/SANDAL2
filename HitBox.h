@@ -28,13 +28,19 @@ typedef struct CircleSDL2{
   float theta;
 }CircleSDL2;
 
-typedef struct{
+typedef struct HitBox{
   LineSDL2 * firstL;
   CircleSDL2 * firstC;
+  struct HitBox * next;
 }HitBox;
 
+typedef struct{
+  HitBox * first;
+  HitBox * current;
+}ListHitBox;
+
 /* ----------------------------------------------------------
- * HitBoxs
+ * HitBox
  */
 /* return an empty hitbox */
 HitBox * initHitBox();
@@ -54,6 +60,22 @@ HitBox * rectangleHitBox(float x1,float y1,float x2,float y2);
 HitBox * ellipseHitBox(float x,float y,float rX,float rY,float theta);
 /* libere une hit box */
 void freeHitBox(HitBox * hb);
+/* ---------------------------------------------------------- */
+
+
+/* ----------------------------------------------------------
+ * ListHitBox
+ */
+/* initialise une liste d'hit box vide */
+ListHitBox * initListHitBox();
+/* ajoute un element a la liste */
+int addHitBox(ListHitBox * l,HitBox * hb);
+/* supprime un element de la liste */
+int removeHitBox(ListHitBox * l,HitBox * hb);
+/* initialise l'iterateur de la liste */
+int initIteratorListHitBox(ListHitBox * l);
+/* retourne l'element courant et passe a l'element suivant */
+HitBox * nextHitBox(ListHitBox * l);
 /* ---------------------------------------------------------- */
 
 #endif

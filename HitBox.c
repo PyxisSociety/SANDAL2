@@ -11,6 +11,7 @@ HitBox * initHitBox(){
   if(hb){
     hb->firstC = NULL;
     hb->firstL = NULL;
+    hb->next = NULL;
   }
 
   return hb;
@@ -202,5 +203,76 @@ void freeHitBox(HitBox * hb){
     }
     free(hb);
   }
+}
+/* ---------------------------------------------------------- */
+
+
+
+/* ----------------------------------------------------------
+ * ListHitBox
+ */
+ListHitBox * initListHitBox(){
+  ListHitBox * l = malloc(sizeof(*l));
+
+  if(l){
+    l->first=NULL;
+    l->current=NULL;
+  }
+
+  return l;
+}
+
+int addHitBox(ListHitBox * l,HitBox * hb){
+  int error = 1;
+
+  if(l && hb){
+    hb->next=l->first;
+    l->first=hb;
+    error = 0;
+  }
+
+  return error;
+}
+
+int removeHitBox(ListHitBox * l,HitBox * hb){
+  int error = 1;
+  HitBox ** h, *tmp;
+  
+  if(l && hb){
+    h=&(l->first);
+    while(*h && *h!=hb){
+      h=&((*h)->next);
+    }
+    if(*h){
+      tmp=*h;
+      *h=(*h)->next;
+      freeHitBox(tmp);
+      error = 0;
+    }
+  }
+
+  return error;
+}
+
+int initIteratorListHitBox(ListHitBox * l){
+  int succes = 0;
+
+  if(l && l->first){
+    l->current=l->first;
+    succes = 1;
+  }
+
+  return succes;
+}
+
+HitBox * nextHitBox(ListHitBox * l){
+  HitBox * hb=NULL;
+
+  if(l && l->current){
+    hb=l->current;
+    l->current=l->current->next;
+  }
+
+  return hb;
 }
 /* ---------------------------------------------------------- */
