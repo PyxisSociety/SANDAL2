@@ -18,7 +18,7 @@
 struct ListElementSDL2;
 
 /* fenetre SDL2 */
-typedef struct{
+typedef struct FenetreSDL2{
   /* dimensions de la fenetre */
   int height;
   int width;
@@ -35,15 +35,36 @@ typedef struct{
   SDL_Renderer *renderer;
   /* liste d'element associe a la fenetre */
   struct ListElementSDL2 * liste;
+  /* fenetre suivante */
+  struct FenetreSDL2 * next;
 }FenetreSDL2;
+
+typedef struct{
+  FenetreSDL2 * first;
+  FenetreSDL2 * current;
+}ListFenetreSDL2;
+
+extern ListFenetreSDL2 * _windows_SDL2TK;
 
 /* -------------------------------------------------------
  * Fenetre SDL2
  */
 /* redimensionnement de la fenetre si nescessaire */
-void resizeFenetreSDL2(FenetreSDL2*,unsigned width,unsigned height);
+void resizeFenetreSDL2(unsigned width,unsigned height);
 /* change le code d'affichage de la fenetre passe en parametre */
-void changeDisplayFenetreSDL2(FenetreSDL2*,int);
+void changeDisplayFenetreSDL2(int);
+/* initialise l'iterateur de structure sur les Fenetres */
+int initIteratorFenetreSDL2();
+/* passe a la fenetre suivante */
+int nextFenetreSDL2();
+/* recupere les dimensions de la fenetre courante */
+int getDimensionFenetreSDL2(int * w,int * h);
+/* recupere le code d'affichage de la fenetre courante */
+int getDisplayCodeFenetreSDL2(int * d);
+/* recupere la couleur de fond de la fenetre courante */
+int getColorFenetreSDL2(int color[4]);
+/* change la couleur de fond de la fenetre courante */
+int setColorFenetreSDL2(int color[4]);
 /* ------------------------------------------------------- */
 
 int cmpCoul(int c1[4],int c2[4]);

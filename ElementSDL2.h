@@ -5,6 +5,8 @@
 #include "FenetreSDL2.h"
 #include "DisplayCode.h"
 
+extern ListFenetreSDL2 * _windows_SDL2TK;
+
 /* Informations supplementaires d'une Entry SDL2 */
 typedef struct{
   /* taille minimum et maximum du texte */
@@ -34,13 +36,15 @@ typedef struct ElementSDL2{
   /* liste des codes d'affichage */
   ListDisplayCode *codes;
   /* fonction d'action continue */
-  void (*action)(FenetreSDL2 *,struct ElementSDL2*);
+  void (*action)(struct ElementSDL2*);
   /* fonction d'interaction au click */
-  void (*onClick)(FenetreSDL2 *,struct ElementSDL2*);
+  void (*onClick)(struct ElementSDL2*);
+  /* fonction d'interaction au relachement du click */
+  void (*unClick)(struct ElementSDL2*);
   /* fonction d'interaction avec une touche du clavier */
-  void (*keyPress)(FenetreSDL2 *,struct ElementSDL2*,SDL_Keycode c);
+  void (*keyPress)(struct ElementSDL2*,SDL_Keycode c);
   /* fonction d'interaction au relachement d'une touche du clavier */
-  void (*keyReleased)(FenetreSDL2 *,struct ElementSDL2*,SDL_Keycode c);
+  void (*keyReleased)(struct ElementSDL2*,SDL_Keycode c);
   /* texture de l'image (si image) */
   SDL_Texture *image;
   /* texture et surface du texte (si texte) */
@@ -128,9 +132,9 @@ ListElementSDL2* initListElementSDL2();
 /* libere la liste passe en parametre */
 void freeListElementSDL2(ListElementSDL2*);
 /* ajout d'un element SDL2 a la liste passe en parametre */
-void addElementSDL2(FenetreSDL2*,ElementSDL2*);
+int addElementSDL2(ElementSDL2*);
 /* retire un element SDL2 a la liste passe en parametre */
-void removeElementSDL2(FenetreSDL2*,ElementSDL2*);
+int removeElementSDL2(ElementSDL2*);
 /* ------------------------------------------------------- */
 
 
@@ -141,21 +145,21 @@ void removeElementSDL2(FenetreSDL2*,ElementSDL2*);
 /* libere l'element SDL2 passe en parametre */
 void freeElementSDL2(ElementSDL2 *e);
 /* retourne un Element SDL2 de type block */
-ElementSDL2* createBlock(FenetreSDL2 *window,float x,float y,float width,float height,int couleur[4],int displayCode,int plan,void (*onClick)(FenetreSDL2 *,ElementSDL2*),void (*keyPress)(FenetreSDL2 *,ElementSDL2*,SDL_Keycode),void (*keyReleased)(FenetreSDL2*,ElementSDL2*,SDL_Keycode),void (*action)(FenetreSDL2 *,ElementSDL2*),void * data);
+ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),void * data);
 /* retourne un Element SDL2 de type texte */
-ElementSDL2* createTexte(FenetreSDL2 *window,float x,float y,float width,float height,char * font,char * text,int textColor[4],int displayCode,int plan,void (*onClick)(FenetreSDL2 *,ElementSDL2*),void (*keyPress)(FenetreSDL2 *,ElementSDL2*,SDL_Keycode),void (*keyReleased)(FenetreSDL2*,ElementSDL2*,SDL_Keycode),void (*action)(FenetreSDL2 *, ElementSDL2*),void * data);
+ElementSDL2* createTexte(float x,float y,float width,float height,char * font,char * text,int textColor[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),void * data);
 /* retourne un Element SDL2 de type image */
-ElementSDL2* createImage(FenetreSDL2 *window,float x,float y,float width,float height,char *image,int displayCode,int plan,void (*onClick)(FenetreSDL2 *,ElementSDL2*),void (*keyPress)(FenetreSDL2 *,ElementSDL2*,SDL_Keycode),void (*keyReleased)(FenetreSDL2 *, ElementSDL2*,SDL_Keycode),void (*action)(FenetreSDL2*,ElementSDL2*),void * data);
+ElementSDL2* createImage(float x,float y,float width,float height,char *image,int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),void * data);
 /* retourne un Element SDL2 de type texte+block */
-ElementSDL2* createButton(FenetreSDL2 *window,float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int couleurBlock[4],int displayCode,int plan,void (*onClick)(FenetreSDL2 *,ElementSDL2*),void (*keyPress)(FenetreSDL2 *,ElementSDL2*,SDL_Keycode),void (*keyReleased)(FenetreSDL2 *, ElementSDL2*,SDL_Keycode),void (*action)(FenetreSDL2 *, ElementSDL2*),void * data);
+ElementSDL2* createButton(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int couleurBlock[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),void * data);
 /* retourne un Element SDL2 de type texte+image */
-ElementSDL2* createButtonImage(FenetreSDL2 *window,float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan,void (*onClick)(FenetreSDL2 *,ElementSDL2*),void (*keyPress)(FenetreSDL2 *,ElementSDL2*,SDL_Keycode),void (*keyReleased)(FenetreSDL2 *, ElementSDL2*,SDL_Keycode),void (*action)(FenetreSDL2 *, ElementSDL2*),void * data);
+ElementSDL2* createButtonImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),void * data);
 /* retourne un Element SDL2 de type Entry fond block */
-ElementSDL2* createEntry(FenetreSDL2 *window,float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int couleurBlock[4],int displayCode,int plan,void (*onClick)(FenetreSDL2 *,ElementSDL2*),void (*keyPress)(FenetreSDL2 *,ElementSDL2*,SDL_Keycode),void (*keyReleased)(FenetreSDL2 *,ElementSDL2*,SDL_Keycode),void (*action)(FenetreSDL2 *, ElementSDL2*),int min,int max, int isScripted,void * data);
+ElementSDL2* createEntry(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int couleurBlock[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),int min,int max, int isScripted,void * data);
 /* retourne un Element SDL2 de type Entry fond image */
-ElementSDL2* createEntryImage(FenetreSDL2 *window,float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan,void (*onClick)(FenetreSDL2 *,ElementSDL2*),void (*keyPress)(FenetreSDL2 *,ElementSDL2*,SDL_Keycode),void (*keyReleased)(FenetreSDL2 *,ElementSDL2*,SDL_Keycode),void (*action)(FenetreSDL2 *,ElementSDL2*),int min,int max,int isScripted,void * data);
+ElementSDL2* createEntryImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),int min,int max,int isScripted,void * data);
 /* retourne 1 si l'element passe en parametre peut etre affiche sur la fenetre passe en parametre, 0 sinon */
-int isDisplaied(FenetreSDL2*,ElementSDL2*);
+int isDisplaied(ElementSDL2*);
 /* ------------------------------------------------------- */
 
 
@@ -164,37 +168,39 @@ int isDisplaied(FenetreSDL2*,ElementSDL2*);
  * modification d'un Element SDL2
  */
 /* change la police */
-void changeFontElementSDL2(FenetreSDL2 * fen,ElementSDL2 *e,char * font);
+void changeFontElementSDL2(ElementSDL2 *e,char * font);
 /* change le texte */
-void changeTextElementSDL2(FenetreSDL2 * fen,ElementSDL2 *e,char * text);
+void changeTextElementSDL2(ElementSDL2 *e,char * text);
 /* change la couleur du block */
 void changeColorElementSDL2(ElementSDL2 *e,int color[4]);
 /* change l'image */
-int changeImageElementSDL2(FenetreSDL2 *f,ElementSDL2 *e,char *image);
+int changeImageElementSDL2(ElementSDL2 *e,char *image);
 /* change les coordonnees*/
-void replaceElementSDL2(FenetreSDL2 *window,ElementSDL2 *e,float x,float y);
+void replaceElementSDL2(ElementSDL2 *e,float x,float y);
 /*deplace un element*/
-void moveElementSDL2(FenetreSDL2 *window,ElementSDL2 *e,float x,float y);
+void moveElementSDL2(ElementSDL2 *e,float x,float y);
 /* change la taille */
 void resizeElementSDL2(ElementSDL2 *e,float width,float height);
 /* change la taille du texte */
 void changeTextSize(ElementSDL2 *e,float textSize);
 /* ajoute un code de display (si pas deja present) */
-void addDisplayCodeElementSDL2(FenetreSDL2 *f,ElementSDL2 *e,int displayCode,int plan);
+void addDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode,int plan);
 /* supprime un code de display */
-void removeDisplayCodeElementSDL2(FenetreSDL2 *f,ElementSDL2 *e,int displayCode);
+void removeDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode);
 /* change l'option isDisplaied d'un code de display */
 void setDisplayElementSDL2(ElementSDL2 *e,int displayCode,int isDisplaied);
 /* change le plan d'un element pour un code de display */
-void setPlanElementSDL2(FenetreSDL2 *f,ElementSDL2 *e,int DisplayCode,int plan);
+void setPlanElementSDL2(ElementSDL2 *e,int DisplayCode,int plan);
 /* change l'interaction continue */
-void changeActionElementSDL2(ElementSDL2 *e,void (*action)(FenetreSDL2 *,ElementSDL2*));
+void changeActionElementSDL2(ElementSDL2 *e,void (*action)(ElementSDL2*));
 /* change l'interaction a l'appuie d'une touche du clavier */
-void changeKeyPressElementSDL2(ElementSDL2 *e,void (*keyPress)(FenetreSDL2 *,ElementSDL2*,SDL_Keycode c));
+void changeKeyPressElementSDL2(ElementSDL2 *e,void (*keyPress)(ElementSDL2*,SDL_Keycode c));
 /* change l'interaction au relachement d'une touche du clavier */
-void changeKeyReleasedElementSDL2(ElementSDL2 *e,void (*keyReleased)(FenetreSDL2 *,ElementSDL2*,SDL_Keycode c));
+void changeKeyReleasedElementSDL2(ElementSDL2 *e,void (*keyReleased)(ElementSDL2*,SDL_Keycode c));
 /* change l'interaction au clique de souris */
-void changeOnClickElementSDL2(ElementSDL2 *e,void (*onCLick)(FenetreSDL2 *,ElementSDL2*));
+void changeOnClickElementSDL2(ElementSDL2 *e,void (*onCLick)(ElementSDL2*));
+/* change l'interaction au relachement d'un clique de souris */
+void changeUnClickElementSDL2(ElementSDL2 *e,void (*unCLick)(ElementSDL2*));
 /* ajoute un element dans la liste d'interaction a la fin */
 void addElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *add);
 /* retire un element dans la liste d'interaction */
@@ -218,9 +224,9 @@ ElementSDL2* nextIterateurElementSDL2(ElementSDL2 *e);
  * Iterateur de structure sur la liste d'ElementSDL2
  */
 /* initialise l'iterateur de structure sur les elements ayant le display code*/
-int initIterateur(FenetreSDL2 *l, int displayCode);
+int initIterateur(int displayCode);
 /* donne l'element actuel et prepare le prochain */
-ElementSDL2* nextElementSDL2(FenetreSDL2 *l);
+ElementSDL2* nextElementSDL2();
 /* ------------------------------------------------------- */
 
 
@@ -229,13 +235,13 @@ ElementSDL2* nextElementSDL2(FenetreSDL2 *l);
  * modification d'un Element SDL2 spécifique aux Entry
  */
 /* change la taille min et taille max du texte (si une valeur <0, pas de changement sur cette valeur) */
-void changeSizeEntrySDL2(FenetreSDL2 *f,ElementSDL2 *e,int size_min,int size_max);
+void changeSizeEntrySDL2(ElementSDL2 *e,int size_min,int size_max);
 /* met l'option crypté de l'entry à la valeur isScripted */
-void setScriptedEntrySDL2(FenetreSDL2 *f,ElementSDL2 *e,int isScripted);
+void setScriptedEntrySDL2(ElementSDL2 *e,int isScripted);
 /* ajoute un caractere a une entry */
-void addCharEntrySDL2(FenetreSDL2 *f,ElementSDL2 *e,char c);
+void addCharEntrySDL2(ElementSDL2 *e,char c);
 /* supprime un caractere a une entry */
-void removeCharEntrySDL2(FenetreSDL2 *f,ElementSDL2 *e);
+void removeCharEntrySDL2(ElementSDL2 *e);
 /* ------------------------------------------------------- */
 
 #endif

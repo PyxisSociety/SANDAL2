@@ -88,7 +88,7 @@ void freeFenetreSDL2(FenetreSDL2 *fen){
   }
 }
 
-FenetreSDL2* initFenetreSDL2(int width,int height,char *title,int SDLFlags,int background[4],int displayCode){
+void initFenetreSDL2(int width,int height,char *title,int SDLFlags,int background[4],int displayCode){
   FenetreSDL2 *fen=malloc(sizeof(*fen));
   int erreur = 0;
 
@@ -109,53 +109,67 @@ FenetreSDL2* initFenetreSDL2(int width,int height,char *title,int SDLFlags,int b
       fen->initHeight=height;
       fen->initWidth=width;
       fen->displayCode=displayCode;
+      fen->next = NULL;
       copyColor(fen->background,background);
       fen->liste = initListElementSDL2();
       if(!fen->liste){
 	SDL_DestroyWindow(fen->window);
 	SDL_DestroyRenderer(fen->renderer);
 	free(fen);
-	fen=NULL;
+      }else{
+	if(!_windows_SDL2TK){
+	  _windows_SDL2TK = malloc(sizeof(*_windows_SDL2TK));
+	  if(_windows_SDL2TK){
+	    _windows_SDL2TK->first = fen;
+	    _windows_SDL2TK->current = fen;
+	  }else{
+	    SDL_DestroyWindow(fen->window);
+	    SDL_DestroyRenderer(fen->renderer);
+	    free(fen);
+	  }
+	}else{
+	  fen->next=_windows_SDL2TK->first;
+	  _windows_SDL2TK->first=fen;
+	  if(!fen->next){
+	    _windows_SDL2TK->current=fen;
+	  }
+	}
       }
     }else{
       SDL_DestroyWindow(fen->window);
       free(fen);
-      fen=NULL;
     }
   }else{
     free(fen);
-    fen=NULL;
   }
-
-  return fen;
 }
 
-void updateFenetreSDL2(FenetreSDL2* fen){
+void updateFenetreSDL2(){
   PtrElementSDL2 *ele;
   ListPtrElementSDL2 *lp;
   ListDCElementSDL2 *ldc;
 
-  if(fen && fen->liste){
+  if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste){
     /* update de la taille de la fenetre */
-    SDL_GetWindowSize(fen->window,&(fen->width),&(fen->height));
+    SDL_GetWindowSize(_windows_SDL2TK->current->window,&(_windows_SDL2TK->current->width),&(_windows_SDL2TK->current->height));
     
     /* recherche de la liste d'element ayant le bon code de display */
-    if(fen->liste->currentDCIterator && fen->liste->currentDCIterator->code<=fen->displayCode){
-      ldc=fen->liste->currentDCIterator;
+    if(_windows_SDL2TK->current->liste->currentDCIterator && _windows_SDL2TK->current->liste->currentDCIterator->code<=_windows_SDL2TK->current->displayCode){
+      ldc=_windows_SDL2TK->current->liste->currentDCIterator;
     }else{
-      ldc=fen->liste->first;
+      ldc=_windows_SDL2TK->current->liste->first;
     }
-    while(ldc && ldc->code<fen->displayCode){
+    while(ldc && ldc->code<_windows_SDL2TK->current->displayCode){
       ldc=ldc->next;
     }
-    if(ldc && ldc->code==fen->displayCode){
+    if(ldc && ldc->code==_windows_SDL2TK->current->displayCode){
       lp=ldc->first;
       while(lp){
 	ele=lp->first;
 	while(ele){
-	  if(isDisplaied(fen,ele->element)){
+	  if(isDisplaied(ele->element)){
 	    if(ele->element->action){
-	      ele->element->action(fen,ele->element);
+	      ele->element->action(ele->element);
 	    }
 	  }
 	  ele=ele->next;
@@ -166,49 +180,49 @@ void updateFenetreSDL2(FenetreSDL2* fen){
   }
 }
 
-void displayFenetreSDL2(FenetreSDL2* fen){
+void displayFenetreSDL2(){
   PtrElementSDL2 *ele;
   ListPtrElementSDL2 * lp;
   ListDCElementSDL2 * ldc;
   SDL_Rect r;
   int coul[4],iH,iW;
 
-  if(fen && fen->liste){
+  if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste){
     /* fond de la fenetre */
-    copyColor(coul,fen->background);
-    SDL_SetRenderDrawColor(fen->renderer,coul[0],coul[1],coul[2],coul[3]);
-    SDL_RenderClear(fen->renderer);
+    copyColor(coul,_windows_SDL2TK->current->background);
+    SDL_SetRenderDrawColor(_windows_SDL2TK->current->renderer,coul[0],coul[1],coul[2],coul[3]);
+    SDL_RenderClear(_windows_SDL2TK->current->renderer);
     /* recherche de la liste d'element ayant le bon code de display */
-    if(fen->liste->currentDCIterator && fen->liste->currentDCIterator->code<=fen->displayCode){
-      ldc=fen->liste->currentDCIterator;
+    if(_windows_SDL2TK->current->liste->currentDCIterator && _windows_SDL2TK->current->liste->currentDCIterator->code<=_windows_SDL2TK->current->displayCode){
+      ldc=_windows_SDL2TK->current->liste->currentDCIterator;
     }else{
-      ldc=fen->liste->first;
+      ldc=_windows_SDL2TK->current->liste->first;
     }
-    while(ldc && ldc->code<fen->displayCode){
+    while(ldc && ldc->code<_windows_SDL2TK->current->displayCode){
       ldc=ldc->next;
     }
 
-    if(ldc && ldc->code==fen->displayCode){
+    if(ldc && ldc->code==_windows_SDL2TK->current->displayCode){
       lp=ldc->first;
       while(lp){
 	/* affichage des elements */
 	ele=lp->first;
 	while(ele){
-	  if(isDisplaied(fen,ele->element)){
-	    r.x=ele->element->x*fen->width/fen->initWidth;
-	    r.y=ele->element->y*fen->height/fen->initHeight;
-	    r.w=ele->element->width*fen->width/fen->initWidth;
-	    r.h=ele->element->height*fen->height/fen->initHeight;
+	  if(isDisplaied(ele->element)){
+	    r.x=ele->element->x*_windows_SDL2TK->current->width/_windows_SDL2TK->current->initWidth;
+	    r.y=ele->element->y*_windows_SDL2TK->current->height/_windows_SDL2TK->current->initHeight;
+	    r.w=ele->element->width*_windows_SDL2TK->current->width/_windows_SDL2TK->current->initWidth;
+	    r.h=ele->element->height*_windows_SDL2TK->current->height/_windows_SDL2TK->current->initHeight;
 	    /* affichage du block */
 	    if(ele->element->coulBlock[0]!=-1){
 	      if(!cmpCoul(coul,ele->element->coulBlock)){
-		SDL_SetRenderDrawColor(fen->renderer,coul[0],coul[1],coul[2],coul[3]);
+		SDL_SetRenderDrawColor(_windows_SDL2TK->current->renderer,coul[0],coul[1],coul[2],coul[3]);
 	      }
-	      SDL_RenderFillRect(fen->renderer,&r);
+	      SDL_RenderFillRect(_windows_SDL2TK->current->renderer,&r);
 	    }
 	    /* affichage de l'image */
 	    if(ele->element->image){
-	      SDL_RenderCopy(fen->renderer,ele->element->image,NULL,&r);
+	      SDL_RenderCopy(_windows_SDL2TK->current->renderer,ele->element->image,NULL,&r);
 	    }
 	    /* affichage du texte */
 	    if(ele->element->police){
@@ -217,7 +231,7 @@ void displayFenetreSDL2(FenetreSDL2* fen){
 	      r.w*=ele->element->textSize;
 	      r.h*=ele->element->textSize;
 	      SDL_QueryTexture(ele->element->police->texture,NULL,NULL,&iW,&iH);
-	      SDL_RenderCopy(fen->renderer,ele->element->police->texture,NULL,&r);
+	      SDL_RenderCopy(_windows_SDL2TK->current->renderer,ele->element->police->texture,NULL,&r);
 	    }
 	  }
 	  ele=ele->next;
@@ -225,40 +239,40 @@ void displayFenetreSDL2(FenetreSDL2* fen){
 	lp=lp->next;
       }
     }
-    SDL_RenderPresent(fen->renderer);
+    SDL_RenderPresent(_windows_SDL2TK->current->renderer);
   }
 }
 
-void clickFenetreSDL2(FenetreSDL2* f,int x,int y){
+void clickFenetreSDL2(int x,int y){
   PtrElementSDL2 *e;
   ListPtrElementSDL2 *lp;
   ListDCElementSDL2 *ldc;
   int xE,yE;
 
-  if(f && f->liste){
+  if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste){
     /* recherche de la liste d'element ayant le bon code de display */
-    if(f->liste->currentDCIterator && f->liste->currentDCIterator->code<=f->displayCode){
-      ldc=f->liste->currentDCIterator;
+    if(_windows_SDL2TK->current->liste->currentDCIterator && _windows_SDL2TK->current->liste->currentDCIterator->code<=_windows_SDL2TK->current->displayCode){
+      ldc=_windows_SDL2TK->current->liste->currentDCIterator;
     }else{
-      ldc=f->liste->first;
+      ldc=_windows_SDL2TK->current->liste->first;
     }
-    while(ldc && ldc->code<f->displayCode){
+    while(ldc && ldc->code<_windows_SDL2TK->current->displayCode){
       ldc=ldc->next;
     }
 
-    if(ldc && ldc->code==f->displayCode){
+    if(ldc && ldc->code==_windows_SDL2TK->current->displayCode){
       lp=ldc->first;
       while(lp){
 	e=lp->first;
 	while(e){
-	  xE=e->element->x*f->width/f->initWidth;
-	  yE=e->element->y*f->height/f->initHeight;
-	  if(isDisplaied(f,e->element) && x>=xE && x<=xE+e->element->width*f->width/f->initWidth && y>=yE && y<=yE+e->element->height*f->height/f->initHeight){
+	  xE=e->element->x*_windows_SDL2TK->current->width/_windows_SDL2TK->current->initWidth;
+	  yE=e->element->y*_windows_SDL2TK->current->height/_windows_SDL2TK->current->initHeight;
+	  if(isDisplaied(e->element) && x>=xE && x<=xE+e->element->width*_windows_SDL2TK->current->width/_windows_SDL2TK->current->initWidth && y>=yE && y<=yE+e->element->height*_windows_SDL2TK->current->height/_windows_SDL2TK->current->initHeight){
 	    if(e->element->entry){
 	      e->element->entry->isSelect=1;
 	    }
 	    if(e->element->onClick){
-	      e->element->onClick(f,e->element);
+	      e->element->onClick(e->element);
 	    }
 	  }else if(e->element->entry){
 	    e->element->entry->isSelect=0;
@@ -271,29 +285,39 @@ void clickFenetreSDL2(FenetreSDL2* f,int x,int y){
   }
 }
 
-void keyPressFenetreSDL2(FenetreSDL2* f,char c){
+void unclickFenetreSDL2(int x,int y){
   PtrElementSDL2 *e;
   ListPtrElementSDL2 *lp;
   ListDCElementSDL2 *ldc;
+  int xE,yE;
 
-  if(f && f->liste){
+  if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste){
     /* recherche de la liste d'element ayant le bon code de display */
-    if(f->liste->currentDCIterator && f->liste->currentDCIterator->code<=f->displayCode){
-      ldc=f->liste->currentDCIterator;
+    if(_windows_SDL2TK->current->liste->currentDCIterator && _windows_SDL2TK->current->liste->currentDCIterator->code<=_windows_SDL2TK->current->displayCode){
+      ldc=_windows_SDL2TK->current->liste->currentDCIterator;
     }else{
-      ldc=f->liste->first;
+      ldc=_windows_SDL2TK->current->liste->first;
     }
-    while(ldc && ldc->code<f->displayCode){
-      lp=lp->next;
+    while(ldc && ldc->code<_windows_SDL2TK->current->displayCode){
+      ldc=ldc->next;
     }
 
-    if(ldc && ldc->code==f->displayCode){
+    if(ldc && ldc->code==_windows_SDL2TK->current->displayCode){
       lp=ldc->first;
       while(lp){
 	e=lp->first;
 	while(e){
-	  if(e->element->keyPress && (!e->element->entry || e->element->entry->isSelect)){
-	    e->element->keyPress(f,e->element,c);
+	  xE=e->element->x*_windows_SDL2TK->current->width/_windows_SDL2TK->current->initWidth;
+	  yE=e->element->y*_windows_SDL2TK->current->height/_windows_SDL2TK->current->initHeight;
+	  if(isDisplaied(e->element) && x>=xE && x<=xE+e->element->width*_windows_SDL2TK->current->width/_windows_SDL2TK->current->initWidth && y>=yE && y<=yE+e->element->height*_windows_SDL2TK->current->height/_windows_SDL2TK->current->initHeight){
+	    if(e->element->entry){
+	      e->element->entry->isSelect=1;
+	    }
+	    if(e->element->unClick){
+	      e->element->unClick(e->element);
+	    }
+	  }else if(e->element->entry){
+	    e->element->entry->isSelect=0;
 	  }
 	  e=e->next;
 	}
@@ -303,35 +327,148 @@ void keyPressFenetreSDL2(FenetreSDL2* f,char c){
   }
 }
 
-void keyReleasedFenetreSDL2(FenetreSDL2* f,char c){
-    PtrElementSDL2 *e;
+void keyPressedFenetreSDL2(char c){
+  PtrElementSDL2 *e;
   ListPtrElementSDL2 *lp;
   ListDCElementSDL2 *ldc;
 
-  if(f && f->liste){
+  if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste){
     /* recherche de la liste d'element ayant le bon code de display */
-    if(f->liste->currentDCIterator && f->liste->currentDCIterator->code<=f->displayCode){
-      ldc=f->liste->currentDCIterator;
+    if(_windows_SDL2TK->current->liste->currentDCIterator && _windows_SDL2TK->current->liste->currentDCIterator->code<=_windows_SDL2TK->current->displayCode){
+      ldc=_windows_SDL2TK->current->liste->currentDCIterator;
     }else{
-      ldc=f->liste->first;
+      ldc=_windows_SDL2TK->current->liste->first;
     }
-    while(ldc && ldc->code<f->displayCode){
+    while(ldc && ldc->code<_windows_SDL2TK->current->displayCode){
       lp=lp->next;
     }
 
-    if(ldc && ldc->code==f->displayCode){
+    if(ldc && ldc->code==_windows_SDL2TK->current->displayCode){
       lp=ldc->first;
       while(lp){
 	e=lp->first;
 	while(e){
-	  if(e->element->keyReleased && (!e->element->entry || e->element->entry->isSelect)){
-	    e->element->keyReleased(f,e->element,c);
+	  if(e->element->keyPress && (!e->element->entry || e->element->entry->isSelect)){
+	    e->element->keyPress(e->element,c);
 	  }
 	  e=e->next;
 	}
 	lp=lp->next;
       }
     }
+  }
+}
+
+void keyReleasedFenetreSDL2(char c){
+  PtrElementSDL2 *e;
+  ListPtrElementSDL2 *lp;
+  ListDCElementSDL2 *ldc;
+
+  if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste){
+    /* recherche de la liste d'element ayant le bon code de display */
+    if(_windows_SDL2TK->current->liste->currentDCIterator && _windows_SDL2TK->current->liste->currentDCIterator->code<=_windows_SDL2TK->current->displayCode){
+      ldc=_windows_SDL2TK->current->liste->currentDCIterator;
+    }else{
+      ldc=_windows_SDL2TK->current->liste->first;
+    }
+    while(ldc && ldc->code<_windows_SDL2TK->current->displayCode){
+      lp=lp->next;
+    }
+
+    if(ldc && ldc->code==_windows_SDL2TK->current->displayCode){
+      lp=ldc->first;
+      while(lp){
+	e=lp->first;
+	while(e){
+	  if(e->element->keyReleased && (!e->element->entry || e->element->entry->isSelect)){
+	    e->element->keyReleased(e->element,c);
+	  }
+	  e=e->next;
+	}
+	lp=lp->next;
+      }
+    }
+  }
+}
+
+
+void updateAllFenetreSDL2(){
+  if(initIteratorFenetreSDL2()){
+    do{
+      updateFenetreSDL2();
+    }while(nextFenetreSDL2());
+  }
+}
+
+void displayAllFenetreSDL2(){
+  if(initIteratorFenetreSDL2()){
+    do{
+      displayFenetreSDL2();
+    }while(nextFenetreSDL2());
+  }
+}
+
+void clickAllFenetreSDL2(int x,int y){
+  if(initIteratorFenetreSDL2()){
+    do{
+      clickFenetreSDL2(x,y);
+    }while(nextFenetreSDL2());
+  }
+}
+
+void unclickAllFenetreSDL2(int x,int y){
+  if(initIteratorFenetreSDL2()){
+    do{
+      unclickFenetreSDL2(x,y);
+    }while(nextFenetreSDL2());
+  }
+}
+
+void keyPressedAllFenetreSDL2(char c){
+  if(initIteratorFenetreSDL2()){
+    do{
+      keyPressedFenetreSDL2(c);
+    }while(nextFenetreSDL2());
+  }
+}
+
+void keyReleasedAllFenetreSDL2(char c){
+  if(initIteratorFenetreSDL2()){
+    do{
+      keyReleasedFenetreSDL2(c);
+    }while(nextFenetreSDL2());
+  }
+}
+
+void closeFenetreSDL2(){
+  FenetreSDL2 * f;
+  
+  if(_windows_SDL2TK && _windows_SDL2TK->current){
+    f=_windows_SDL2TK->current;
+    if(f == _windows_SDL2TK->first){
+      _windows_SDL2TK->first = _windows_SDL2TK->next;
+    }
+    _windows_SDL2TK->current=_windows_SDL2TK->current->next;
+    freeFenetreSDL2(f);
+    if(!_windows_SDL2TK->first){
+      free(_windows_SDL2TK);
+      _windows_SDL2TK = NULL;
+    }
+  }
+}
+
+void closeAllFenetreSDL2(){
+  FenetreSDL2 *f, *tmp;
+
+  if(_windows_SDL2TK && _windows_SDL2TK->first){
+    f=_windows_SDL2TK->first;
+    while(f){
+      tmp=f;
+      f=f->next;
+      freeFenetreSDL2(tmp);
+    }
+    free(_windows_SDL2TK);
+    _windows_SDL2TK=NULL;
   }
 }
 /* ------------------------------------------------------- */

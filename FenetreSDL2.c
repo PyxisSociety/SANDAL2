@@ -1,20 +1,94 @@
 #include "FenetreSDL2.h"
+ListFenetreSDL2 * _windows_SDL2TK = NULL;
 
 /* -------------------------------------------------------
  * Fenetre SDL2
  */
-void resizeFenetreSDL2(FenetreSDL2 *f,unsigned width,unsigned height){
-  if(f && f->window){
-    SDL_SetWindowSize(f->window,width,height);
-    f->width=width;
-    f->height=height;
+void resizeFenetreSDL2(unsigned width,unsigned height){
+  if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->window){
+    SDL_SetWindowSize(_windows_SDL2TK->current->window,width,height);
+    _windows_SDL2TK->current->width=width;
+    _windows_SDL2TK->current->height=height;
   }
 }
 
-void changeDisplayFenetreSDL2(FenetreSDL2 *f,int displayCode){
-  if(f){
-    f->displayCode=displayCode;
+void changeDisplayFenetreSDL2(int displayCode){
+  if(_windows_SDL2TK && _windows_SDL2TK->current){
+    _windows_SDL2TK->current->displayCode=displayCode;
   }
+}
+
+int initIteratorFenetreSDL2(){
+  int error = 1;
+
+  if(_windows_SDL2TK){
+    _windows_SDL2TK->current = _windows_SDL2TK->first;
+    error = 0;
+  }
+
+  return error;
+}
+
+int nextFenetreSDL2(){
+  int error = 1;
+
+  if(_windows_SDL2TK && _windows_SDL2TK->current){
+    _windows_SDL2TK->current = _windows_SDL2TK->current->next;
+    error = 0;
+  }
+  
+  return error;
+}
+
+int getDimensionFenetreSDL2(int * w,int * h){
+  int error = 1;
+
+  if(_windows_SDL2TK && _windows_SDL2TK->current){
+    if(w){
+      *w=_windows_SDL2TK->current->initWidth;
+    }
+    if(h){
+      *h=_windows_SDL2TK->current->initHeight;
+    }
+    error =0;
+  }
+
+  return error;
+}
+
+int getDisplayCodeFenetreSDL2(int * d){
+  int error = 1;
+
+  if(_windows_SDL2TK && _windows_SDL2TK->current){
+    if(d){
+      *d=_windows_SDL2TK->current->displayCode;
+    }
+    error=0;
+  }
+
+  return error;
+}
+
+int getColorFenetreSDL2(int color[4]){
+  int error = 1;
+
+  if(_windows_SDL2TK && _windows_SDL2TK->current){
+    copyColor(color,_windows_SDL2TK->current->background);
+    error = 0;
+  }
+
+  return error;
+}
+
+int setColorFenetreSDL2(int color[4]){
+  int error = 1;
+
+  if(_windows_SDL2TK && _windows_SDL2TK->current){
+    copyColor(_windows_SDL2TK->current->background,color);
+    error = 0;
+  }
+
+  return error;
 }
 /* ------------------------------------------------------- */
 

@@ -4,6 +4,8 @@
 #include "ElementSDL2.h"
 #include "FenetreSDL2.h"
 
+extern ListFenetreSDL2 * _windows_SDL2TK;
+
 /* -------------------------------------------------------
  * Initialisation et fermeture des outils SDL2
  */
@@ -31,17 +33,35 @@ void closeTexte();
 /* libere la fenetre */
 void freeFenetreSDL2(FenetreSDL2 *fen);
 /* initialise la fenetre */
-FenetreSDL2* initFenetreSDL2(int width,int height,char *title,int SDLFlags,int background[4],int displayCode);
+void initFenetreSDL2(int width,int height,char *title,int SDLFlags,int background[4],int displayCode);
 /* update les elements de la fenetre */
-void updateFenetreSDL2(FenetreSDL2* fen);
-/* actualise l'affichage de la fenetre passe en parametre */
-void displayFenetreSDL2(FenetreSDL2*);
+void updateFenetreSDL2();
+/* actualise l'affichage de la fenetre */
+void displayFenetreSDL2();
 /* activation des evenements de clique de souris */
-void clickFenetreSDL2(FenetreSDL2*,int x,int y);
+void clickFenetreSDL2(int x,int y);
+/* activation des evenements au relachement de clique de souris */
+void unclickFenetreSDL2(int x,int y);
 /* activation des evenements d'appuie sur une touche du clavier */
-void keyPressFenetreSDL2(FenetreSDL2*,char c);
+void keyPressFenetreSDL2(char c);
 /* activation des evenements au relachement d'une touche du clavier */
-void keyReleasedFenetreSDL2(FenetreSDL2*,char c);
+void keyReleasedFenetreSDL2(char c);
+/* update les elements des fenetres */
+void updateAllFenetreSDL2();
+/* actualise l'affichage des fenetres passe en parametre */
+void displayAllFenetreSDL2();
+/* activation des evenements de clique de souris */
+void clickAllFenetreSDL2(int x,int y);
+/* activation des evenements au relachement de clique de souris */
+void unclickAllFenetreSDL2(int x,int y);
+/* activation des evenements d'appuie sur une touche du clavier */
+void keyPressedAllFenetreSDL2(char c);
+/* activation des evenements au relachement d'une touche du clavier */
+void keyReleasedAllFenetreSDL2(char c);
+/* ferme la fenetre courante et passe a la suivante */
+void closeFenetreSDL2();
+/* ferme toutes les fenetres */
+void closeAllFenetreSDL2();
 /* ------------------------------------------------------- */
 
 #endif

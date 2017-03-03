@@ -178,14 +178,16 @@ void freeListElementSDL2(ListElementSDL2 *l){
   }
 }
 
-void addElementSDL2(FenetreSDL2* f,ElementSDL2* e){
+int addElementSDL2(ElementSDL2* e){
   DisplayCode *d;
   ListDCElementSDL2 ** ldc, *dctmp;
   ListPtrElementSDL2 ** lp, *ptmp;
+  int error = 1;
   
-  if(f && f->liste && e && e->codes){
+  if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste && e && e->codes){
+    error = 0;
     d=e->codes->first;
-    ldc=&(f->liste->first);
+    ldc=&(_windows_SDL2TK->current->liste->first);
     while(d){
       while(*ldc && (*ldc)->code < d->code){
 	ldc=&((*ldc)->next);
@@ -218,16 +220,20 @@ void addElementSDL2(FenetreSDL2* f,ElementSDL2* e){
       d=d->next;
     }
   }
+
+  return error;
 }
 
-void removeElementSDL2(FenetreSDL2* f,ElementSDL2* e){
+int removeElementSDL2(ElementSDL2* e){
   DisplayCode ** d, *tmp;
   ListPtrElementSDL2 ** lp, *ptmp;
   ListDCElementSDL2 ** ldc, *dctmp;
+  int error;
   
-  if(f && f->liste && e && e->codes){
+  if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste && e && e->codes){
+    error = 0;
     d=&(e->codes->first);
-    ldc=&(f->liste->first);
+    ldc=&(_windows_SDL2TK->current->liste->first);
     while(*d && *ldc){
       while(*ldc && (*ldc)->code<(*d)->code){
 	ldc=&((*ldc)->next);
@@ -263,6 +269,8 @@ void removeElementSDL2(FenetreSDL2* f,ElementSDL2* e){
       }
     }
   }
+
+  return error;
 }
 /* ------------------------------------------------------- */
 
@@ -294,201 +302,244 @@ void freeElementSDL2(ElementSDL2 *e){
   }    
 }
 
-ElementSDL2* createBlock(FenetreSDL2 *window,float x,float y,float width,float height,int couleur[4],int displayCode,int plan,void (*onClick)(FenetreSDL2 *,ElementSDL2*),void (*keyPress)(FenetreSDL2 *,ElementSDL2*,SDL_Keycode),void (*keyReleased)(FenetreSDL2 *, ElementSDL2*,SDL_Keycode),void (*action)(FenetreSDL2 *,ElementSDL2*),void * data){
-  ElementSDL2 *e=malloc(sizeof(*e));
-  if(e){
-    e->x=x;
-    e->y=y;
-    e->width=width;
-    e->height=height;
-    copyColor(e->coulBlock,couleur);
-    e->codes=initListDisplayCode();
-    addDisplayCode(e->codes,displayCode,1,plan);
-    e->action=action;
-    e->onClick=onClick;
-    e->keyPress=keyPress;
-    e->keyReleased=keyReleased;
-    e->image=NULL;
-    e->police=NULL;
-    e->entry=NULL;
-    e->interactions=NULL;
-    e->data=data;
-  }
+ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)( ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),void * data){
+  ElementSDL2 *e;
 
-  return e;
-}
-
-ElementSDL2* createTexte(FenetreSDL2 *window,float x,float y,float width,float height,char * font,char * text,int textColor[4],int displayCode,int plan,void (*onClick)(FenetreSDL2 *,ElementSDL2*),void (*keyPress)(FenetreSDL2 *,ElementSDL2*,SDL_Keycode),void (*keyReleased)(FenetreSDL2 *,ElementSDL2*,SDL_Keycode),void (*action)(FenetreSDL2 *,ElementSDL2*),void * data){
-  ElementSDL2 *e=malloc(sizeof(*e));
-  FontSDL2 * f;
-
-  if(e && window){
-    e->x=x;
-    e->y=y;
-    e->width=width;
-    e->height=height;
-    e->textSize=1.0f;
-    e->image=NULL;
-    e->entry=NULL;
-    e->interactions=NULL;
-    e->data=NULL;
-    e->codes=NULL;
-    f=createFontSDL2(window,font,text,textColor);
-    if(f){
-      e->police=f;
-      e->codes=initListDisplayCode();
-      addDisplayCode(e->codes,displayCode,1,plan);
-      e->coulBlock[0]=-1;
-      e->action=action;
-      e->onClick=onClick;
-      e->keyPress=keyPress;
-      e->keyReleased=keyReleased;
-      e->data=data;
-    }else{
-      freeElementSDL2(e);
-      e=NULL;
-    }
-  }
-
-  return e;
-}
-
-ElementSDL2* createImage(FenetreSDL2 *window,float x,float y,float width,float height,char *image,int displayCode,int plan,void (*onClick)(FenetreSDL2 *,ElementSDL2*),void (*keyPress)(FenetreSDL2 *,ElementSDL2*,SDL_Keycode),void (*keyReleased)(FenetreSDL2 *, ElementSDL2*,SDL_Keycode),void (*action)(FenetreSDL2 *,ElementSDL2*),void * data){
-  ElementSDL2 *e=NULL;
-  SDL_Surface *s;
-
-  s=IMG_Load(image);
-  
-  if(s){
+  if(_windows_SDL2TK && _windows_SDL2TK->current){
     e=malloc(sizeof(*e));
-    if(e && window){
+    if(e){
       e->x=x;
       e->y=y;
       e->width=width;
       e->height=height;
-      e->image=SDL_CreateTextureFromSurface(window->renderer,s);
+      copyColor(e->coulBlock,couleur);
       e->codes=initListDisplayCode();
       addDisplayCode(e->codes,displayCode,1,plan);
-      e->coulBlock[0]=-1;
       e->action=action;
       e->onClick=onClick;
+      e->unClick=unClick;
       e->keyPress=keyPress;
       e->keyReleased=keyReleased;
+      e->image=NULL;
       e->police=NULL;
       e->entry=NULL;
       e->interactions=NULL;
       e->data=data;
+      addElementSDL2(e);
     }
-    SDL_FreeSurface(s);
   }
 
   return e;
 }
 
-ElementSDL2* createButton(FenetreSDL2 *window,float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int couleurBlock[4],int displayCode,int plan,void (*onClick)(FenetreSDL2 *,ElementSDL2*),void (*keyPress)(FenetreSDL2 *,ElementSDL2*,SDL_Keycode),void (*keyReleased)(FenetreSDL2 *, ElementSDL2*,SDL_Keycode),void (*action)(FenetreSDL2 *,ElementSDL2*),void * data){
-  ElementSDL2 *e=createBlock(window,x,y,width,height,couleurBlock,displayCode,plan,onClick,keyPress,keyReleased,action,data);
+ElementSDL2* createTexte(float x,float y,float width,float height,char * font,char * text,int textColor[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),void * data){
+  ElementSDL2 *e=malloc(sizeof(*e));
   FontSDL2 * f;
 
-  if(e){
-    e->textSize=texteSize/100.0f;
-    f=createFontSDL2(window,font,e->police->text,textColor);
-    if(f){
-      e->police=f;
-    }else{
-      freeElementSDL2(e);
-      e=NULL;
+  if(_windows_SDL2TK && _windows_SDL2TK->current){
+    e=malloc(sizeof(*e));
+    if(e){
+      e->x=x;
+      e->y=y;
+      e->width=width;
+      e->height=height;
+      e->textSize=1.0f;
+      e->image=NULL;
+      e->entry=NULL;
+      e->interactions=NULL;
+      e->data=NULL;
+      e->codes=NULL;
+      f=createFontSDL2(font,text,textColor);
+      if(f){
+	e->police=f;
+	e->codes=initListDisplayCode();
+	addDisplayCode(e->codes,displayCode,1,plan);
+	e->coulBlock[0]=-1;
+	e->action=action;
+	e->onClick=onClick;
+	e->unClick=unClick;
+	e->keyPress=keyPress;
+	e->keyReleased=keyReleased;
+	e->data=data;
+	addElementSDL2(e);
+      }else{
+	freeElementSDL2(e);
+	e=NULL;
+      }
     }
   }
 
   return e;
 }
 
-ElementSDL2* createButtonImage(FenetreSDL2 *window,float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan,void (*onClick)(FenetreSDL2 *,ElementSDL2*),void (*keyPress)(FenetreSDL2 *,ElementSDL2*,SDL_Keycode),void (*keyReleased)(FenetreSDL2 *,ElementSDL2*,SDL_Keycode),void (*action)(FenetreSDL2 *,ElementSDL2*),void * data){
-  ElementSDL2 *e=createImage(window,x,y,width,height,image,displayCode,plan,onClick,keyPress,keyReleased,action,data);
+ElementSDL2* createImage(float x,float y,float width,float height,char *image,int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),void * data){
+  ElementSDL2 *e=NULL;
+  SDL_Surface *s;
+
+  if(_windows_SDL2TK && _windows_SDL2TK->current){
+    s=IMG_Load(image);
+  
+    if(s){
+      e=malloc(sizeof(*e));
+      if(e){
+	e->x=x;
+	e->y=y;
+	e->width=width;
+	e->height=height;
+	e->image=SDL_CreateTextureFromSurface(_windows_SDL2TK->current->renderer,s);
+	e->codes=initListDisplayCode();
+	addDisplayCode(e->codes,displayCode,1,plan);
+	e->coulBlock[0]=-1;
+	e->action=action;
+	e->onClick=onClick;
+	e->unClick=unClick;
+	e->keyPress=keyPress;
+	e->keyReleased=keyReleased;
+	e->police=NULL;
+	e->entry=NULL;
+	e->interactions=NULL;
+	e->data=data;
+	addElementSDL2(e);
+      }
+      SDL_FreeSurface(s);
+    }
+  }
+
+  return e;
+}
+
+ElementSDL2* createButton(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int couleurBlock[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),void * data){
+  ElementSDL2 *e;
   FontSDL2 * f;
 
-  if(e){
-    e->textSize=texteSize/100.0f;
-    f=createFontSDL2(window,font,e->police->text,textColor);
-    if(f){
-      e->police=f;
-    }else{
-      freeElementSDL2(e);
-      e=NULL;
+  if(_windows_SDL2TK && _windows_SDL2TK->current){
+    e=createBlock(x,y,width,height,couleurBlock,displayCode,plan,onClick,unClick,keyPress,keyReleased,action,data);
+    if(e){
+      e->textSize=texteSize/100.0f;
+      f=createFontSDL2(font,e->police->text,textColor);
+      if(f){
+	e->police=f;
+      }else{
+	removeElementSDL2(e);
+	freeElementSDL2(e);
+	e=NULL;
+      }
     }
   }
 
   return e;
 }
 
-ElementSDL2* createEntry(FenetreSDL2 *window,float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int couleurBlock[4],int displayCode,int plan,void (*onClick)(FenetreSDL2 *,ElementSDL2*),void (*keyPress)(FenetreSDL2 *,ElementSDL2*,SDL_Keycode),void (*keyReleased)(FenetreSDL2 *,ElementSDL2*,SDL_Keycode),void (*action)(FenetreSDL2 *,ElementSDL2*),int min,int max,int isScripted,void * data){
-  ElementSDL2 *e=createButton(window,x,y,width,height,texteSize,font,text,textColor,couleurBlock,displayCode,plan,onClick,keyPress,keyReleased,action,data);
+ElementSDL2* createButtonImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),void * data){
+  ElementSDL2 *e;
+  FontSDL2 * f;
+
+  if(_windows_SDL2TK && _windows_SDL2TK->current){
+    e=createImage(x,y,width,height,image,displayCode,plan,onClick,unClick,keyPress,keyReleased,action,data);
+    if(e){
+      e->textSize=texteSize/100.0f;
+      f=createFontSDL2(font,e->police->text,textColor);
+      if(f){
+	e->police=f;
+      }else{
+	removeElementSDL2(e);
+	freeElementSDL2(e);
+	e=NULL;
+      }
+    }
+  }
+
+  return e;
+}
+
+ElementSDL2* createEntry(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int couleurBlock[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),int min,int max,int isScripted,void * data){
+  ElementSDL2 *e;
   EntrySDL2 *ent;
   int i;
 
-  if(e){
-    ent=malloc(sizeof(*ent));
-    if(ent){
-      ent->size_min=min;
-      ent->size_max=max;
-      ent->isSelect=0;
-      ent->isScripted=isScripted;
-      PFREE(e->police->text);
-      e->police->text=malloc((max+1)*sizeof(*(e->police->text)));
-      for(i=0;i<max;++i){
-	e->police->text[i]=' ';
+  if(_windows_SDL2TK && _windows_SDL2TK->current){
+    e=createButton(x,y,width,height,texteSize,font,text,textColor,couleurBlock,displayCode,plan,onClick,unClick,keyPress,keyReleased,action,data);
+    if(e){
+      ent=malloc(sizeof(*ent));
+      if(ent){
+	ent->size_min=min;
+	ent->size_max=max;
+	ent->isSelect=0;
+	ent->isScripted=isScripted;
+	PFREE(e->police->text);
+	e->police->text=malloc((max+1)*sizeof(*(e->police->text)));
+	if(e->police->text){
+	  for(i=0;i<max;++i){
+	    e->police->text[i]=' ';
+	  }
+	  e->police->text[max]='\0';
+	  e->entry=ent;
+	  ent->size=0;
+	}else{
+	  removeElementSDL2(e);
+	  freeElementSDL2(e);
+	  e=NULL;
+	}
+      }else{
+	removeElementSDL2(e);
+	freeElementSDL2(e);
+	e=NULL;
       }
-      e->police->text[max]='\0';
-      e->entry=ent;
-      ent->size=0;
-    }else{
-      freeElementSDL2(e);
-      e=NULL;
     }
   }
   
   return e;  
 }
 
-ElementSDL2* createEntryImage(FenetreSDL2 *window,float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan,void (*onClick)(FenetreSDL2 *,ElementSDL2*),void (*keyPress)(FenetreSDL2 *,ElementSDL2*,SDL_Keycode),void (*keyReleased)(FenetreSDL2 *, ElementSDL2*,SDL_Keycode),void (*action)(FenetreSDL2 *,ElementSDL2*),int min,int max,int isScripted,void * data){
-  ElementSDL2 *e=createButtonImage(window,x,y,width,height,texteSize,font,text,textColor,image,displayCode,plan,onClick,keyPress,keyReleased,action,data);
+ElementSDL2* createEntryImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),int min,int max,int isScripted,void * data){
+  ElementSDL2 *e;
   EntrySDL2 *ent;
   int i;
 
-  if(e){
-    ent=malloc(sizeof(*ent));
-    if(ent){
-      ent->size_min=min;
-      ent->size_max=max;
-      ent->isSelect=0;
-      ent->isScripted=isScripted;
-      PFREE(e->police->text);
-      e->police->text=malloc((max+1)*sizeof(*(e->police->text)));
-      for(i=0;i<max;++i){
-	e->police->text[i]=' ';
+  if(_windows_SDL2TK && _windows_SDL2TK->current){
+    e=createButtonImage(x,y,width,height,texteSize,font,text,textColor,image,displayCode,plan,onClick,unClick,keyPress,keyReleased,action,data);
+    if(e){
+      ent=malloc(sizeof(*ent));
+      if(ent){
+	ent->size_min=min;
+	ent->size_max=max;
+	ent->isSelect=0;
+	ent->isScripted=isScripted;
+	PFREE(e->police->text);
+	e->police->text=malloc((max+1)*sizeof(*(e->police->text)));
+	if(e->police->text){
+	  for(i=0;i<max;++i){
+	    e->police->text[i]=' ';
+	  }
+	  e->police->text[max]='\0';
+	  e->entry=ent;
+	  ent->size=0;
+	}else{
+	  removeElementSDL2(e);
+	  freeElementSDL2(e);
+	  e=NULL;
+	}
+      }else{
+	removeElementSDL2(e);
+	freeElementSDL2(e);
+	e=NULL;
       }
-      e->police->text[max]='\0';
-      e->entry=ent;
-      ent->size=0;
-    }else{
-      freeElementSDL2(e);
-      e=NULL;
     }
   }
   
   return e;  
 }
 
-int isDisplaied(FenetreSDL2 *f,ElementSDL2 *e){
+int isDisplaied(ElementSDL2 *e){
   DisplayCode *d;
   int resultat = 0;
 
-  if(e && f){
+  if(e && _windows_SDL2TK && _windows_SDL2TK->current){
     d=e->codes->first;
-    while(d && d->code<f->displayCode){
+    while(d && d->code<_windows_SDL2TK->current->displayCode){
       d=d->next;
     }
-    resultat = d && d->code==f->displayCode;
+    resultat = d && d->code==_windows_SDL2TK->current->displayCode;
   }
 
   return resultat;
@@ -500,24 +551,28 @@ int isDisplaied(FenetreSDL2 *f,ElementSDL2 *e){
 /* -------------------------------------------------------
  * modification d'un Element SDL2
  */
-void changeFontElementSDL2(FenetreSDL2 * fen,ElementSDL2 *e,char * font){
+void changeFontElementSDL2(ElementSDL2 *e,char * font){
   FontSDL2 *f;
   int color[4];
 
-  if(e && font && e->police){
-    color[0]=e->police->color.r;
-    color[1]=e->police->color.g;
-    color[2]=e->police->color.b;
-    color[3]=e->police->color.a;
-    f=createFontSDL2(fen,font,e->police->text,color);
-    freeFontSDL2(e->police);
-    e->police=f;
+  if(_windows_SDL2TK && _windows_SDL2TK->current){
+    if(e && font && e->police){
+      color[0]=e->police->color.r;
+      color[1]=e->police->color.g;
+      color[2]=e->police->color.b;
+      color[3]=e->police->color.a;
+      f=createFontSDL2(font,e->police->text,color);
+      if(f){
+	freeFontSDL2(e->police);
+	e->police=f;
+      }
+    }
   }
 }
 
-void changeTextElementSDL2(FenetreSDL2 * fen,ElementSDL2 *e,char * text){
-  if(fen && e && text && e->police){
-    changeTextFontSDL2(fen,e->police,text);
+void changeTextElementSDL2(ElementSDL2 *e,char * text){
+  if(_windows_SDL2TK && _windows_SDL2TK->current && e && text && e->police){
+    changeTextFontSDL2(e->police,text);
   }
 }
 
@@ -527,15 +582,15 @@ void changeColorElementSDL2(ElementSDL2 *e,int color[4]){
   }
 }
 
-int changeImageElementSDL2(FenetreSDL2 *f,ElementSDL2 *e,char *image){
+int changeImageElementSDL2(ElementSDL2 *e,char *image){
   SDL_Surface *s;
   int changed=0;
   
-  if(e && f){
+  if(e && _windows_SDL2TK && _windows_SDL2TK->current){
     if(image){
       s=IMG_Load(image);
       if(s){
-	e->image=SDL_CreateTextureFromSurface(f->renderer,s);
+	e->image=SDL_CreateTextureFromSurface(_windows_SDL2TK->current->renderer,s);
 	SDL_FreeSurface(s);
 	changed=1;
       }
@@ -551,15 +606,15 @@ int changeImageElementSDL2(FenetreSDL2 *f,ElementSDL2 *e,char *image){
   return changed;
 }
 
-void replaceElementSDL2(FenetreSDL2 *window,ElementSDL2 *e,float x,float y){
-  if(e && window){
+void replaceElementSDL2(ElementSDL2 *e,float x,float y){
+  if(e && _windows_SDL2TK && _windows_SDL2TK->current){
     e->x=x;
     e->y=y;
   }
 }
 
-void moveElementSDL2(FenetreSDL2 *window,ElementSDL2 *e,float x,float y){
-  if(e && window){
+void moveElementSDL2(ElementSDL2 *e,float x,float y){
+  if(e && _windows_SDL2TK && _windows_SDL2TK->current){
     e->x+=x;
     e->y+=y;
   }
@@ -574,18 +629,18 @@ void resizeElementSDL2(ElementSDL2 *e,float width,float height){
 
 void changeTextSize(ElementSDL2 *e,float textSize){
   if(e){
-    e->textSize=textSize/100.0;
+    e->textSize=textSize/100.0f;
   }
 }
 
-void addDisplayCodeElementSDL2(FenetreSDL2 *f,ElementSDL2 *e,int displayCode, int plan){
+void addDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode, int plan){
   int suppr = 0, was;
   DisplayCode **d, *tmp;
   ListDCElementSDL2 **ldc, *dctmp;
   ListPtrElementSDL2 **lp, *ptmp,**lpDel = NULL;
   PtrElementSDL2 **cour, *el;
 
-  if(f && f->liste && e && e->codes){
+  if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste && e && e->codes){
     d=&(e->codes->first);
     while(*d && (*d)->code<displayCode){
       d=&((*d)->next);
@@ -602,7 +657,7 @@ void addDisplayCodeElementSDL2(FenetreSDL2 *f,ElementSDL2 *e,int displayCode, in
 	tmp->next=*d;
 	*d=tmp;
       }
-      ldc=&(f->liste->first);
+      ldc=&(_windows_SDL2TK->current->liste->first);
       while(*ldc && (*ldc)->code < displayCode){
 	ldc=&((*ldc)->next);
       }
@@ -655,19 +710,19 @@ void addDisplayCodeElementSDL2(FenetreSDL2 *f,ElementSDL2 *e,int displayCode, in
   }
 }
 
-void removeDisplayCodeElementSDL2(FenetreSDL2 *f,ElementSDL2 *e,int displayCode){
+void removeDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode){
   DisplayCode **d, *tmp;
   ListDCElementSDL2 **ldc, *dctmp;
   ListPtrElementSDL2 **lp, *ptmp;
   PtrElementSDL2 **cour, *etmp;
 
-  if(f && f->liste && e && e->codes){
+  if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste && e && e->codes){
     d=&(e->codes->first);
     while(*d && (*d)->code < displayCode){
       d=&((*d)->next);
     }
     if(*d && (*d)->code==displayCode){
-      ldc=&(f->liste->first);
+      ldc=&(_windows_SDL2TK->current->liste->first);
       while(*ldc && (*ldc)->code < displayCode){
 	ldc=&((*ldc)->next);
       }
@@ -712,14 +767,14 @@ void setDisplayElementSDL2(ElementSDL2 *e,int displayCode,int isDisplaied){
   }
 }
 
-void setPlanElementSDL2(FenetreSDL2 * f,ElementSDL2 *e,int displayCode,int plan){
+void setPlanElementSDL2(ElementSDL2 *e,int displayCode,int plan){
   int found = 0, old;
   DisplayCode *d;
   ListDCElementSDL2 *ldc;
   ListPtrElementSDL2 **lp, *ptmp, **lpNew = NULL;
   PtrElementSDL2 **cour,*tmp;
 
-  if(e){
+  if(e && _windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste){
     d=e->codes->first;
     while(d && d->code<displayCode){
       d=d->next;
@@ -727,68 +782,72 @@ void setPlanElementSDL2(FenetreSDL2 * f,ElementSDL2 *e,int displayCode,int plan)
     if(d && d->code==displayCode && d->plan != plan){
       old = d->plan;
       d->plan = plan;
-      if(f && f->liste){
-	ldc=f->liste->first;
-	while(ldc && ldc->code < displayCode){
-	  ldc=ldc->next;
-	}
-	if(ldc && ldc->code == displayCode){
-	  lp=&(ldc->first);
-	  while(*lp && (*lp)->code > old){
-	    if((*lp)->code ==plan){
-	      lpNew=lp;
-	    }
-	    lp=&((*lp)->next);
-	  }
-	  cour=&((*lp)->first);
-	  while(*cour && (*cour)->element!=e){
-	    cour=&((*cour)->next);
-	  }
-	  if(*cour && (*cour)->element==e){
-	    tmp=(*cour)->next;
-	    free(*cour);
-	    *cour=tmp;
-	  }
-	  if(!lpNew){
+      ldc=_windows_SDL2TK->current->liste->first;
+      while(ldc && ldc->code < displayCode){
+	ldc=ldc->next;
+      }
+      if(ldc && ldc->code == displayCode){
+	lp=&(ldc->first);
+	while(*lp && (*lp)->code > old){
+	  if((*lp)->code ==plan){
 	    lpNew=lp;
-	    while(*lpNew && (*lpNew)->code > plan){
-	      lpNew=&((*lpNew)->next);
-	    }
-	    if(!*lpNew || (*lpNew)->code != plan){
-	      ptmp=initListPtrElementSDL2(plan);
-	      ptmp->next=*lpNew;
-	      *lpNew=ptmp;
-	    }
 	  }
-	  tmp=malloc(sizeof(*tmp));
-	  tmp->element=e;
-	  tmp->next=(*lpNew)->last;
-	  (*lpNew)->last=tmp;
+	  lp=&((*lp)->next);
 	}
+	cour=&((*lp)->first);
+	while(*cour && (*cour)->element!=e){
+	  cour=&((*cour)->next);
+	}
+	if(*cour && (*cour)->element==e){
+	  tmp=(*cour)->next;
+	  free(*cour);
+	  *cour=tmp;
+	}
+	if(!lpNew){
+	  lpNew=lp;
+	  while(*lpNew && (*lpNew)->code > plan){
+	    lpNew=&((*lpNew)->next);
+	  }
+	  if(!*lpNew || (*lpNew)->code != plan){
+	    ptmp=initListPtrElementSDL2(plan);
+	    ptmp->next=*lpNew;
+	    *lpNew=ptmp;
+	  }
+	}
+	tmp=malloc(sizeof(*tmp));
+	tmp->element=e;
+	tmp->next=(*lpNew)->last;
+	(*lpNew)->last=tmp;
       }
     }
   }
 }
 
-void changeActionElementSDL2(ElementSDL2 *e,void (*action)(FenetreSDL2 *,ElementSDL2*)){
+void changeActionElementSDL2(ElementSDL2 *e,void (*action)(ElementSDL2*)){
   if(e){
     e->action=action;
   }
 }
 
-void changeKeyPressElementSDL2(ElementSDL2 *e,void (*keyPress)(FenetreSDL2 *,ElementSDL2*,SDL_Keycode c)){
+void changeKeyPressElementSDL2(ElementSDL2 *e,void (*keyPress)(ElementSDL2*,SDL_Keycode c)){
   if(e){
     e->keyPress=keyPress;
   }
 }
 
-void changeKeyReleasedElementSDL2(ElementSDL2 *e,void (*keyReleased)(FenetreSDL2 *,ElementSDL2*,SDL_Keycode c)){
+void changeKeyReleasedElementSDL2(ElementSDL2 *e,void (*keyReleased)(ElementSDL2*,SDL_Keycode c)){
   if(e){
     e->keyReleased=keyReleased;
   }
 }
 
-void changeOnClickElementSDL2(ElementSDL2 *e,void (*onCLick)(FenetreSDL2 *,ElementSDL2*)){
+void changeUnClickElementSDL2(ElementSDL2 *e,void (*unCLick)(ElementSDL2*)){
+  if(e){
+    e->unClick=unCLick;
+  }
+}
+
+void changeOnClickElementSDL2(ElementSDL2 *e,void (*onCLick)(ElementSDL2*)){
   if(e){
     e->onClick=onCLick;
   }
@@ -866,26 +925,26 @@ ElementSDL2* nextIterateurElementSDL2(ElementSDL2 *e){
 /* ------------------------------------------------------- 
  * Iterateur de structure sur la liste d'ElementSDL2
  */
-int initIterateur(FenetreSDL2 *f, int displayCode){
+int initIterateur(int displayCode){
   int succes = 0;
   ListDCElementSDL2 *lp;
   
-  if(f && f->liste){
-    if(f->liste->currentDCIterator && f->liste->currentDCIterator->code == displayCode){
-      f->liste->currentPIterator=f->liste->currentDCIterator->first;
-      f->liste->currentPIterator->current=f->liste->currentPIterator->first;
+  if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste){
+    if(_windows_SDL2TK->current->liste->currentDCIterator && _windows_SDL2TK->current->liste->currentDCIterator->code == displayCode){
+      _windows_SDL2TK->current->liste->currentPIterator=_windows_SDL2TK->current->liste->currentDCIterator->first;
+      _windows_SDL2TK->current->liste->currentPIterator->current=_windows_SDL2TK->current->liste->currentPIterator->first;
     }else{
-      if(f->liste->currentDCIterator && f->liste->currentDCIterator->code < displayCode){
-	lp=f->liste->currentDCIterator;
+      if(_windows_SDL2TK->current->liste->currentDCIterator && _windows_SDL2TK->current->liste->currentDCIterator->code < displayCode){
+	lp=_windows_SDL2TK->current->liste->currentDCIterator;
       }else{
-	lp=f->liste->first;
+	lp=_windows_SDL2TK->current->liste->first;
       }
       while(lp->code < displayCode){
 	lp=lp->next;
       }
       if(lp && lp->code==displayCode){
-	f->liste->currentDCIterator=lp;
-	f->liste->currentPIterator=lp->first;
+	_windows_SDL2TK->current->liste->currentDCIterator=lp;
+	_windows_SDL2TK->current->liste->currentPIterator=lp->first;
 	lp->first->current=lp->first->first;
 	succes=1;
       }
@@ -895,22 +954,22 @@ int initIterateur(FenetreSDL2 *f, int displayCode){
   return succes;
 }
 
-ElementSDL2* nextElementSDL2(FenetreSDL2 *f){
+ElementSDL2* nextElementSDL2(){
   ListPtrElementSDL2 *lp;
   ElementSDL2 *res = NULL;
   PtrElementSDL2 *pres;
   
-  if(f && f->liste && f->liste->currentDCIterator){
-    if(f->liste->currentPIterator){
-      pres=f->liste->currentPIterator->current;
+  if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste && _windows_SDL2TK->current->liste->currentDCIterator){
+    if(_windows_SDL2TK->current->liste->currentPIterator){
+      pres=_windows_SDL2TK->current->liste->currentPIterator->current;
       if(pres){
-	f->liste->currentPIterator->current = f->liste->currentPIterator->current->next;
+	_windows_SDL2TK->current->liste->currentPIterator->current = _windows_SDL2TK->current->liste->currentPIterator->current->next;
 	res=pres->element;
       }else{
-	f->liste->currentPIterator = f->liste->currentPIterator->next;
-	if(f->liste->currentPIterator){
-	  f->liste->currentPIterator->current=f->liste->currentPIterator->first->next;
-	  res=f->liste->currentPIterator->first->element;
+	_windows_SDL2TK->current->liste->currentPIterator = _windows_SDL2TK->current->liste->currentPIterator->next;
+	if(_windows_SDL2TK->current->liste->currentPIterator){
+	  _windows_SDL2TK->current->liste->currentPIterator->current=_windows_SDL2TK->current->liste->currentPIterator->first->next;
+	  res=_windows_SDL2TK->current->liste->currentPIterator->first->element;
 	}
       }
     }
@@ -925,9 +984,9 @@ ElementSDL2* nextElementSDL2(FenetreSDL2 *f){
 /* -------------------------------------------------------
  * modification d'un Element SDL2 spécifique aux Entry
  */
-void changeSizeEntrySDL2(FenetreSDL2 *f,ElementSDL2 *e,int size_min,int size_max){
+void changeSizeEntrySDL2(ElementSDL2 *e,int size_min,int size_max){
   char *s;
-  if(e && e->entry){
+  if(_windows_SDL2TK && _windows_SDL2TK->current && e && e->entry){
     if(size_min>-1 && size_min<=size_max){
       e->entry->size_min=size_min;
     }
@@ -938,31 +997,31 @@ void changeSizeEntrySDL2(FenetreSDL2 *f,ElementSDL2 *e,int size_min,int size_max
       PFREE(e->police->text);
       e->police->text=s;
       e->entry->size_max=size_max;
-      actualizeTextFontSDL2(f,e->police,e->entry->isScripted);
+      actualizeTextFontSDL2(e->police,e->entry->isScripted);
     }
   }
 }
 
-void setScriptedEntrySDL2(FenetreSDL2* f,ElementSDL2 *e,int isScripted){
-  if(e && e->entry && e->entry->isScripted!=isScripted){
+void setScriptedEntrySDL2(ElementSDL2 *e,int isScripted){
+  if(_windows_SDL2TK && _windows_SDL2TK->current && e && e->entry && e->entry->isScripted!=isScripted){
     e->entry->isScripted=isScripted;
-    actualizeTextFontSDL2(f,e->police,e->entry->isScripted);
+    actualizeTextFontSDL2(e->police,e->entry->isScripted);
   }
 }
 
-void addCharEntrySDL2(FenetreSDL2 *f,ElementSDL2 *e,char c){
-  if(e && e->entry && e->police && e->police->text && e->entry->size < e->entry->size_max){
+void addCharEntrySDL2(ElementSDL2 *e,char c){
+  if(_windows_SDL2TK && _windows_SDL2TK->current && e && e->entry && e->police && e->police->text && e->entry->size < e->entry->size_max){
     *(e->police->text+e->entry->size)=c;
     ++e->entry->size;
-    actualizeTextFontSDL2(f,e->police,e->entry->isScripted);
+    actualizeTextFontSDL2(e->police,e->entry->isScripted);
   }
 }
 
-void removeCharEntrySDL2(FenetreSDL2 *f,ElementSDL2 *e){
-  if(e && e->entry && e->police && e->police->text && e->entry->size){
+void removeCharEntrySDL2(ElementSDL2 *e){
+  if(_windows_SDL2TK && _windows_SDL2TK->current && e && e->entry && e->police && e->police->text && e->entry->size){
     --e->entry->size;
     *(e->police->text+e->entry->size)=' ';
-    actualizeTextFontSDL2(f,e->police,e->entry->isScripted);
+    actualizeTextFontSDL2(e->police,e->entry->isScripted);
   }
 }
 /* ------------------------------------------------------- */
