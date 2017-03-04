@@ -121,6 +121,7 @@ void initFenetreSDL2(int width,int height,char *title,int SDLFlags,int backgroun
 	  _windows_SDL2TK = malloc(sizeof(*_windows_SDL2TK));
 	  if(_windows_SDL2TK){
 	    _windows_SDL2TK->first = fen;
+	    _windows_SDL2TK->last = fen;
 	    _windows_SDL2TK->current = fen;
 	  }else{
 	    SDL_DestroyWindow(fen->window);
@@ -128,11 +129,8 @@ void initFenetreSDL2(int width,int height,char *title,int SDLFlags,int backgroun
 	    free(fen);
 	  }
 	}else{
-	  fen->next=_windows_SDL2TK->first;
-	  _windows_SDL2TK->first=fen;
-	  if(!fen->next){
-	    _windows_SDL2TK->current=fen;
-	  }
+	  _windows_SDL2TK->last->next=fen;
+	  _windows_SDL2TK->last=fen;
 	}
       }
     }else{
@@ -441,12 +439,20 @@ void keyReleasedAllFenetreSDL2(char c){
 }
 
 void closeFenetreSDL2(){
-  FenetreSDL2 * f;
+  FenetreSDL2 * f, * tmp;
   
   if(_windows_SDL2TK && _windows_SDL2TK->current){
     f=_windows_SDL2TK->current;
     if(f == _windows_SDL2TK->first){
       _windows_SDL2TK->first = _windows_SDL2TK->first->next;
+    }else{
+      tmp=_windows_SDL2TK->first;
+      while(tmp && tmp->next!=f){
+	tmp=tmp->next;
+      }
+      if(tmp){
+	tmp->next=f->next;
+      }
     }
     _windows_SDL2TK->current=_windows_SDL2TK->current->next;
     freeFenetreSDL2(f);

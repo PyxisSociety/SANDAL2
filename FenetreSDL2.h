@@ -41,6 +41,7 @@ typedef struct FenetreSDL2{
 
 typedef struct{
   FenetreSDL2 * first;
+  FenetreSDL2 * last;
   FenetreSDL2 * current;
 }ListFenetreSDL2;
 
