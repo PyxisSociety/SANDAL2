@@ -30,6 +30,13 @@ typedef struct ElementSDL2{
   /* taille relative de l'elements (compris entre 0 et 1) */
   float width;
   float height;
+  /* point de rotation de l'objet (relatif a lui meme)*/
+  float prX;
+  float prY;
+  /* angle de rotation de l'objet en degree */
+  float rotation;
+  /* pas de rotation continue de l'objet */
+  float rotSpeed;
   /* couleurs du texte et du block (la premiere case vaut -1 si la partie a colorie n'est pas dans l'element) */
   int coulBlock[4];
   /* proportion du texte dans le block (si texte) */
@@ -163,6 +170,16 @@ ElementSDL2* createEntry(float x,float y,float width,float height,float texteSiz
 ElementSDL2* createEntryImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),int min,int max,int isScripted,HitBox * hb,void * data);
 /* retourne 1 si l'element passe en parametre peut etre affiche sur la fenetre passe en parametre, 0 sinon */
 int isDisplaied(ElementSDL2*);
+/* getter for the Element's coordinates */
+int getCoordElementSDL2(ElementSDL2*,float* x,float* y);
+/* getter for the Element's angle */
+int getAngleElementSDL2(ElementSDL2*,float*);
+/* getter for the Element's dimensions */
+int getDimensionElementSDL2(ElementSDL2*,int* w,int * h);
+/* getter for the Element's rotation point */
+int getRotationPointElementSDL2(ElementSDL2*,float *x,float *y);
+/* getter pour la vitesse de rotation par update */
+int getRotationSpeedElementSDL2(ElementSDL2*,float*);
 /* ------------------------------------------------------- */
 
 
@@ -210,6 +227,16 @@ void addElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *add);
 void delElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *del);
 /* ajoute une hit boxe a un element */
 void addHitBoxElementSDL2(ElementSDL2 *e,HitBox *hb);
+/* augmente la vitesse de rotation de l'element de s */
+void addRotationSpeedElementSDL2(ElementSDL2 *e,float s);
+/* definie la vitesse de rotation de l'element */
+void setRotationSpeedElementSDL2(ElementSDL2 *e,float s);
+/* augmente l'angle de l'element de a */
+void addAngleElementSDL2(ElementSDL2 *e,float a);
+/* defini l'angle de l'elemant a a */
+void setAngleElementSDL2(ElementSDL2 *e,float a);
+/* defini le point de rotation de l'element */
+void setRotationPointElementSDL2(ElementSDL2 *e,float x,float y);
 /* ------------------------------------------------------- */
 
 

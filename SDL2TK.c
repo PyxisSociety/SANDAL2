@@ -184,6 +184,7 @@ void displayFenetreSDL2(){
   ListDCElementSDL2 * ldc;
   SDL_Rect r;
   int coul[4],iH,iW;
+  SDL_Point p;
 
   if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste){
     /* fond de la fenetre */
@@ -220,7 +221,13 @@ void displayFenetreSDL2(){
 	    }
 	    /* affichage de l'image */
 	    if(ele->element->image){
-	      SDL_RenderCopy(_windows_SDL2TK->current->renderer,ele->element->image,NULL,&r);
+	      if(ele->element->rotation == 0.f){
+		SDL_RenderCopy(_windows_SDL2TK->current->renderer,ele->element->image,NULL,&r);
+	      }else{
+		p.x=(int)(ele->element->prX*ele->element->width+ele->element->x);
+		p.y=(int)(ele->element->prY*ele->element->height+ele->element->y);
+		SDL_RenderCopyEx(_windows_SDL2TK->current->renderer,ele->element->image,NULL,&r,(double)ele->element->rotation,&p,SDL_FLIP_NONE);
+	      }
 	    }
 	    /* affichage du texte */
 	    if(ele->element->police){

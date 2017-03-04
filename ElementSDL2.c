@@ -315,6 +315,10 @@ ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4]
       e->y=y;
       e->width=width;
       e->height=height;
+      e->prX=.5f;
+      e->prY=.5f;
+      e->rotation=0.f;
+      e->rotSpeed=0.f;
       copyColor(e->coulBlock,couleur);
       e->codes=initListDisplayCode();
       addDisplayCode(e->codes,displayCode,1,plan);
@@ -348,6 +352,10 @@ ElementSDL2* createTexte(float x,float y,float width,float height,char * font,ch
       e->y=y;
       e->width=width;
       e->height=height;
+      e->prX=.5f;
+      e->prY=.5f;
+      e->rotation=0.f;
+      e->rotSpeed=0.f;
       e->textSize=1.0f;
       e->image=NULL;
       e->entry=NULL;
@@ -393,6 +401,10 @@ ElementSDL2* createImage(float x,float y,float width,float height,char *image,in
 	e->y=y;
 	e->width=width;
 	e->height=height;
+	e->prX=.5f;
+	e->prY=.5f;
+	e->rotation=0.f;
+	e->rotSpeed=0.f;
 	e->image=SDL_CreateTextureFromSurface(_windows_SDL2TK->current->renderer,s);
 	e->codes=initListDisplayCode();
 	addDisplayCode(e->codes,displayCode,1,plan);
@@ -552,6 +564,80 @@ int isDisplaied(ElementSDL2 *e){
   }
 
   return resultat;
+}
+
+int getCoordElementSDL2(ElementSDL2* e,float* x,float* y){
+  int error = 1;
+
+  if(e){
+    if(x){
+      *x=e->x;
+    }
+    if(y){
+      *y=e->y;
+    }
+    error = 0;
+  }
+
+  return error;
+}
+
+int getAngleElementSDL2(ElementSDL2* e,float* a){
+  int error = 1;
+
+  if(e){
+    if(a){
+      *a=e->rotation;
+    }
+    error=0;
+  }
+
+  return error;
+}
+
+int getDimensionElementSDL2(ElementSDL2* e,int* w,int * h){
+  int error = 1;
+
+  if(e){
+    if(w){
+      *w=e->width;
+    }
+    if(h){
+      *h=e->height;
+    }
+    error=0;
+  }
+
+  return 0;
+}
+
+int getRotationPointElementSDL2(ElementSDL2* e,float *x,float *y){
+  int error = 1;
+
+  if(e){
+    if(x){
+      *x=e->prX;
+    }
+    if(y){
+      *y=e->prY;
+    }
+    error = 0;
+  }
+
+  return error;
+}
+
+int getRotationSpeedElementSDL2(ElementSDL2* e,float* s){
+  int error = 1;
+
+  if(e){
+    if(s){
+      *s=e->rotSpeed;
+    }
+    error = 0;
+  }
+
+  return error;
 }
 /* ------------------------------------------------------- */
 
@@ -902,6 +988,37 @@ void delElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *del){
 void addHitBoxElementSDL2(ElementSDL2 *e,HitBox *hb){
   if(e && hb){
     addHitBox(e->hitboxes,hb);
+  }
+}
+
+void addRotationSpeedElementSDL2(ElementSDL2 *e,float s){
+  if(e){
+    e->rotSpeed+=s;
+  }
+}
+
+void setRotationSpeedElementSDL2(ElementSDL2 *e,float s){
+  if(e){
+    e->rotSpeed=s;
+  }
+}
+
+void addAngleElementSDL2(ElementSDL2 *e,float a){
+  if(e){
+    e->rotation+=a;
+  }
+}
+
+void setAngleElementSDL2(ElementSDL2 *e,float a){
+  if(e){
+    e->rotation=a;
+  }
+}
+
+void setRotationPointElementSDL2(ElementSDL2 *e,float x,float y){
+  if(e){
+    e->prX=x;
+    e->prY=y;
   }
 }
 /* ------------------------------------------------------- */
