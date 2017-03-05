@@ -436,8 +436,8 @@ ElementSDL2* createButton(float x,float y,float width,float height,float texteSi
   if(_windows_SDL2TK && _windows_SDL2TK->current){
     e=createBlock(x,y,width,height,couleurBlock,displayCode,plan,onClick,unClick,keyPress,keyReleased,action,hb,data);
     if(e){
-      e->textSize=texteSize/100.0f;
-      f=createFontSDL2(font,e->police->text,textColor);
+      e->textSize=texteSize;
+      f=createFontSDL2(font,text,textColor);
       if(f){
 	e->police=f;
       }else{
@@ -454,12 +454,12 @@ ElementSDL2* createButton(float x,float y,float width,float height,float texteSi
 ElementSDL2* createButtonImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),HitBox * hb,void * data){
   ElementSDL2 *e;
   FontSDL2 * f;
-
+  
   if(_windows_SDL2TK && _windows_SDL2TK->current){
     e=createImage(x,y,width,height,image,displayCode,plan,onClick,unClick,keyPress,keyReleased,action,hb,data);
     if(e){
-      e->textSize=texteSize/100.0f;
-      f=createFontSDL2(font,e->police->text,textColor);
+      e->textSize=texteSize;
+      f=createFontSDL2(font,text,textColor);
       if(f){
 	e->police=f;
       }else{

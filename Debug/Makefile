@@ -10,10 +10,11 @@ DEBUG=-g
 
 $(PROG):$(SDL2TK) $(OFILE)
 	gcc $(SDL2TK) $(OFILE) -o $(PROG) $(OFLAG) $(DEBUG) $(SDL2TKFLAG)
+	rm ../*.o
+
 
 .o:.c
 	gcc -c $< $(CFLAG)
 
 clear:
-	rm ../*.o
 	rm *.o *~

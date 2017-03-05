@@ -7,14 +7,15 @@
 
 void click(ElementSDL2 * this){
   static int i=0;
-  printf("%d\n",++i);
+  //printf("%d\n",++i);
 }
 
 int main(){
   ElementSDL2 * objet;
   int run = 1;
   int tps = 0, ticks = 0;
-  int blanc[4] = {0,0,0,0};
+  int noir[4] = {0,0,0,0};
+  int blanc[4] = {255,255,255,0};
   SDL_Event event;
   
   if(initAllSDL2(IMG_INIT_JPG)){
@@ -23,17 +24,16 @@ int main(){
   }
 
   /* initialisation de la fenetre */
-  initFenetreSDL2(400,400,"teste rotation continue",SDL_WINDOW_RESIZABLE,blanc,1);
+  initFenetreSDL2(800,800,"teste rotation continue",SDL_WINDOW_RESIZABLE,noir,1);
   if(initIteratorFenetreSDL2()){
     closeAllSDL2();
     fprintf(stderr,"Erreur d'ouverture de la fenetre.\n");
     exit(-1);
   }
 
-  objet = createImage(100.f,100.f,200.f,200.f,"noel.jpg",1,1,click,NULL,NULL,NULL,NULL,rectangleHitBox(0.f,0.f,1.f,1.f),NULL);
+  objet = createButtonImage(300.f,200.f,200.f,300.f,0.8f,"arial.ttf","NSFW",blanc,"lion.jpg",1,1,click,NULL,NULL,NULL,NULL,rectangleHitBox(0.f,0.f,1.f,1.f),NULL);
   if(objet){
-    addRotationSpeedElementSDL2(objet,1.f);
-    setRotationPointElementSDL2(objet,.5f,.5f);
+    addAngleElementSDL2(objet,45.f);
   }else{
     run = 0;
   }
