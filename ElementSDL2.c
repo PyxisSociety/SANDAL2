@@ -327,10 +327,10 @@ ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4]
       e->unClick=unClick;
       e->keyPress=keyPress;
       e->keyReleased=keyReleased;
-      e->image=NULL;
       e->police=NULL;
       e->entry=NULL;
       e->interactions=NULL;
+      e->image=NULL;
       e->hitboxes = initListHitBox();
       addHitBox(e->hitboxes,hb);
       e->data=data;
@@ -992,31 +992,31 @@ void addHitBoxElementSDL2(ElementSDL2 *e,HitBox *hb){
 }
 
 void addRotationSpeedElementSDL2(ElementSDL2 *e,float s){
-  if(e){
+  if(e && e->coulBlock[0]==-1){
     e->rotSpeed+=s;
   }
 }
 
 void setRotationSpeedElementSDL2(ElementSDL2 *e,float s){
-  if(e){
+  if(e && e->coulBlock[0]==-1){
     e->rotSpeed=s;
   }
 }
 
 void addAngleElementSDL2(ElementSDL2 *e,float a){
-  if(e){
+  if(e && e->coulBlock[0]==-1){
     e->rotation+=a;
   }
 }
 
 void setAngleElementSDL2(ElementSDL2 *e,float a){
-  if(e){
+  if(e && e->coulBlock[0]==-1){
     e->rotation=a;
   }
 }
 
 void setRotationPointElementSDL2(ElementSDL2 *e,float x,float y){
-  if(e){
+  if(e && e->coulBlock[0]==-1){
     e->prX=x;
     e->prY=y;
   }

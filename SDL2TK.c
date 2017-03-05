@@ -169,6 +169,9 @@ void updateFenetreSDL2(){
 	    if(ele->element->action){
 	      ele->element->action(ele->element);
 	    }
+	    if(ele->element->rotSpeed != 0.f){
+	      ele->element->rotation = (ele->element->rotation + ele->element->rotSpeed > 360.f ? ele->element->rotation + ele->element->rotSpeed - 360.f : ele->element->rotation + ele->element->rotSpeed);
+	    }
 	  }
 	  ele=ele->next;
 	}
@@ -213,7 +216,7 @@ void displayFenetreSDL2(){
 	    r.w=ele->element->width*_windows_SDL2TK->current->width/_windows_SDL2TK->current->initWidth;
 	    r.h=ele->element->height*_windows_SDL2TK->current->height/_windows_SDL2TK->current->initHeight;
 	    /* affichage du block */
-	    if(ele->element->coulBlock[0]!=-1){
+	    if(ele->element->coulBlock[0]!=-1 && !ele->element->image){
 	      if(!cmpCoul(coul,ele->element->coulBlock)){
 		SDL_SetRenderDrawColor(_windows_SDL2TK->current->renderer,coul[0],coul[1],coul[2],coul[3]);
 	      }
@@ -224,8 +227,8 @@ void displayFenetreSDL2(){
 	      if(ele->element->rotation == 0.f){
 		SDL_RenderCopy(_windows_SDL2TK->current->renderer,ele->element->image,NULL,&r);
 	      }else{
-		p.x=(int)(ele->element->prX*ele->element->width+ele->element->x);
-		p.y=(int)(ele->element->prY*ele->element->height+ele->element->y);
+		p.x=(int)(ele->element->prX*ele->element->width*_windows_SDL2TK->current->width/_windows_SDL2TK->current->initWidth);
+		p.y=(int)(ele->element->prY*ele->element->height*_windows_SDL2TK->current->height/_windows_SDL2TK->current->initHeight);
 		SDL_RenderCopyEx(_windows_SDL2TK->current->renderer,ele->element->image,NULL,&r,(double)ele->element->rotation,&p,SDL_FLIP_NONE);
 	      }
 	    }
@@ -236,7 +239,13 @@ void displayFenetreSDL2(){
 	      r.w*=ele->element->textSize;
 	      r.h*=ele->element->textSize;
 	      SDL_QueryTexture(ele->element->police->texture,NULL,NULL,&iW,&iH);
-	      SDL_RenderCopy(_windows_SDL2TK->current->renderer,ele->element->police->texture,NULL,&r);
+	      if(ele->element->rotation == 0.f || ele->element->coulBlock[0]!=-1){
+		SDL_RenderCopy(_windows_SDL2TK->current->renderer,ele->element->police->texture,NULL,&r);
+	      }else{
+		p.x=(int)(ele->element->prX*ele->element->width*_windows_SDL2TK->current->width/_windows_SDL2TK->current->initWidth);
+		p.y=(int)(ele->element->prY*ele->element->height*_windows_SDL2TK->current->height/_windows_SDL2TK->current->initHeight);
+		SDL_RenderCopyEx(_windows_SDL2TK->current->renderer,ele->element->police->texture,NULL,&r,(double)ele->element->rotation,&p,SDL_FLIP_NONE);
+	      }
 	    }
 	  }
 	  ele=ele->next;
@@ -252,7 +261,7 @@ void clickFenetreSDL2(int x,int y){
   PtrElementSDL2 *e;
   ListPtrElementSDL2 *lp;
   ListDCElementSDL2 *ldc;
-  int xE,yE;
+  float newX,newY,c,s,xtmp;
 
   if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste){
     /* recherche de la liste d'element ayant le bon code de display */
@@ -270,9 +279,16 @@ void clickFenetreSDL2(int x,int y){
       while(lp){
 	e=lp->first;
 	while(e){
-	  xE=e->element->x*_windows_SDL2TK->current->width/_windows_SDL2TK->current->initWidth;
-	  yE=e->element->y*_windows_SDL2TK->current->height/_windows_SDL2TK->current->initHeight;
-	  if(isDisplaied(e->element) && hitListHitBox(e->element->hitboxes,(x-e->element->x)/(e->element->width*_windows_SDL2TK->current->width/_windows_SDL2TK->current->initWidth),(y-e->element->y)/(e->element->height*_windows_SDL2TK->current->height/_windows_SDL2TK->current->initHeight))){
+	  newX=(x-e->element->x)/(e->element->width*_windows_SDL2TK->current->width/_windows_SDL2TK->current->initWidth);
+	  newY=(y-e->element->y)/(e->element->height*_windows_SDL2TK->current->height/_windows_SDL2TK->current->initHeight);
+	  if(e->element->rotation != 0.f && e->element->coulBlock[0]==-1){
+	    c=cosf(-M_PI*e->element->rotation/180.f);
+	    s=sinf(-M_PI*e->element->rotation/180.f);
+	    xtmp=e->element->prX+(newX-e->element->prX)*c-(newY-e->element->prY)*s;
+	    newY=e->element->prY+(newX-e->element->prX)*s+(newY-e->element->prY)*c;
+	    newX=xtmp;
+	  }
+	  if(isDisplaied(e->element) && hitListHitBox(e->element->hitboxes,newX,newY)){
 	    if(e->element->entry){
 	      e->element->entry->isSelect=1;
 	    }
@@ -294,7 +310,7 @@ void unclickFenetreSDL2(int x,int y){
   PtrElementSDL2 *e;
   ListPtrElementSDL2 *lp;
   ListDCElementSDL2 *ldc;
-  int xE,yE;
+  float newX,newY,c,s,xtmp;
 
   if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste){
     /* recherche de la liste d'element ayant le bon code de display */
@@ -312,9 +328,16 @@ void unclickFenetreSDL2(int x,int y){
       while(lp){
 	e=lp->first;
 	while(e){
-	  xE=e->element->x*_windows_SDL2TK->current->width/_windows_SDL2TK->current->initWidth;
-	  yE=e->element->y*_windows_SDL2TK->current->height/_windows_SDL2TK->current->initHeight;
-	  if(isDisplaied(e->element) && hitListHitBox(e->element->hitboxes,(x-e->element->x)/(e->element->width*_windows_SDL2TK->current->width/_windows_SDL2TK->current->initWidth),(y-e->element->y)/(e->element->height*_windows_SDL2TK->current->height/_windows_SDL2TK->current->initHeight))){
+	  newX=(x-e->element->x)/(e->element->width*_windows_SDL2TK->current->width/_windows_SDL2TK->current->initWidth);
+	  newY=(y-e->element->y)/(e->element->height*_windows_SDL2TK->current->height/_windows_SDL2TK->current->initHeight);
+	  if(e->element->rotation != 0.f && e->element->coulBlock[0]==-1){
+	    c=cosf(-M_PI*e->element->rotation/180);
+	    s=sinf(-M_PI*e->element->rotation/18);
+	    xtmp=e->element->prX+(newX-e->element->prX)*c-(newY-e->element->prY)*s;
+	    newY=e->element->prY+(newX-e->element->prX)*s+(newY-e->element->prY)*c;
+	    newX=xtmp;
+	  }
+	  if(isDisplaied(e->element) && hitListHitBox(e->element->hitboxes,newX,newY)){
 	    if(e->element->entry){
 	      e->element->entry->isSelect=1;
 	    }

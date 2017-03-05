@@ -49,7 +49,7 @@ int addCircleSDL2(HitBox * hb,float x,float y,float rX,float rY,float theta){
       c->y=y;
       c->rX=rX;
       c->rY=rY;
-      c->theta=theta;
+      c->theta=theta*(x!=y);
       hb->firstC=c;
       error=0;
     }
