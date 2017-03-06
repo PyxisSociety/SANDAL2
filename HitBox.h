@@ -137,14 +137,18 @@ int hitHitBox(HitBox * hb,float x,float y);
 HitBox * rectangleHitBox(float x1,float y1,float x2,float y2);
 /**
  * @brief generate an ellipse shapped HitBox 
- * @param 
- * @param
- * @param
- * @param
- * @return
+ * @param x : abscissa coordinate of the center of the ellipse
+ * @param y : ordinate coordinate of the center of the ellipse
+ * @param rX : size of the radius parallel to the abscissa axis
+ * @param rY : size of the radius parallel to the ordinate axis
+ * @param theta : rotation of the ellipse (in degree)
+ * @return An elliptical hit boxe
  */
 HitBox * ellipseHitBox(float x,float y,float rX,float rY,float theta);
-/* libere une hit box */
+/**
+ * @brief free a hit boxe's memory
+ * @param hb : hit boxe to be freed
+ */
 void freeHitBox(HitBox * hb);
 /* ---------------------------------------------------------- */
 
@@ -152,19 +156,48 @@ void freeHitBox(HitBox * hb);
 /* ----------------------------------------------------------
  * ListHitBox
  */
-/* libere la liste de hit box */
+/**
+ * @brief free the memory of a list of hit boxe
+ * @param l : list of hit boxe to be freed
+ */
 void freeListHitBox(ListHitBox * l);
-/* initialise une liste de hit box vide */
+/**
+ * @brief initialise an empty list of hit boxes
+ * @return an empty list of hit boxes
+ */
 ListHitBox * initListHitBox();
-/* ajoute un element a la liste */
+/**
+ * @brief add a hit boxe to a list of hit boxes
+ * @param l : list of hit boxes
+ * @param hb : hit boxe
+ * @return 0 if the hit boxe was succesfully added, 1 if not
+ */
 int addHitBox(ListHitBox * l,HitBox * hb);
-/* supprime un element de la liste */
+/**
+ * @brief remove a hit boxe to a list of hit boxes
+ * @param l : list of hit boxes
+ * @param hb : hit boxe
+ * @return 0 if the hit boxe was succesfully removed, 1 if not
+ */
 int removeHitBox(ListHitBox * l,HitBox * hb);
-/* initialise l'iterateur de la liste */
+/**
+ * @brief initialise the iterator of the list of hit boxes
+ * @param l : list of hit boxes
+ * @return 1 if the iterator was succesfully initialised, 0 if not
+ */
 int initIteratorListHitBox(ListHitBox * l);
-/* retourne l'element courant et passe a l'element suivant */
+/**
+ * @brief getter of the current element of the iterator and setter of the next element
+ * @return the current hit boxes
+ */
 HitBox * nextHitBox(ListHitBox * l);
-/* tells if (x,y) touch one of the hitboxes */
+/**
+ * @brief tells if (x,y) touch one of the hitboxes 
+ * @param l : list of hit boxes
+ * @param x : abscissa coordinate of the point trying to touch the hit boxe
+ * @param y : ordinate coordinate of the point trying to touch the hit boxe
+ * @return 1 if one of the hit boxes was hit, 0 if not
+ */
 int hitListHitBox(ListHitBox * l,float x,float y);
 /* ---------------------------------------------------------- */
 
