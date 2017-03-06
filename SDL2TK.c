@@ -186,7 +186,7 @@ void displayFenetreSDL2(){
   ListPtrElementSDL2 * lp;
   ListDCElementSDL2 * ldc;
   SDL_Rect r;
-  int coul[4],iH,iW;
+  int coul[4],iH,iW,i,j;
   SDL_Point p;
 
   if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste){
@@ -261,7 +261,7 @@ void clickFenetreSDL2(int x,int y){
   PtrElementSDL2 *e;
   ListPtrElementSDL2 *lp;
   ListDCElementSDL2 *ldc;
-  float newX,newY,c,s,xtmp;
+  float newX,newY,c,s,xtmp,prX,prY;
   float rot = 0.f;
   int red[4] = {255,0,0,0};
 
@@ -282,21 +282,25 @@ void clickFenetreSDL2(int x,int y){
 	e=lp->first;
 	while(e){
 	  if(isDisplaied(e->element)){
-	    newX=(x*_windows_SDL2TK->current->initWidth/_windows_SDL2TK->current->width-e->element->x)/(e->element->width);
-	    newY=(y*_windows_SDL2TK->current->initHeight/_windows_SDL2TK->current->height-e->element->y)/(e->element->height);
+	    newX=x*_windows_SDL2TK->current->initWidth/_windows_SDL2TK->current->width;
+	    newY=y*_windows_SDL2TK->current->initHeight/_windows_SDL2TK->current->height;
 	    if(e->element->rotation != 0.f && e->element->coulBlock[0]==-1){
 	      if(e->element->rotation != rot){
 		c=cosf(-M_PI*e->element->rotation/180.f);
 		s=sinf(-M_PI*e->element->rotation/180.f);
 		rot=e->element->rotation;
 	      }
-	      xtmp=e->element->prX+(newX-e->element->prX)*c-(newY-e->element->prY)*s;
-	      newY=e->element->prY+(newX-e->element->prX)*s+(newY-e->element->prY)*c;
+	      prX=e->element->prX*e->element->width+e->element->x;
+	      prY=e->element->prY*e->element->height+e->element->y;
+	      xtmp=prX+(newX-prX)*c-(newY-prY)*s;
+	      newY=prY+(newX-prX)*s+(newY-prY)*c;
 	      newX=xtmp;
 	    }
+	    newX=(newX-e->element->x)/(e->element->width);
+	    newY=(newY-e->element->y)/(e->element->height);
 	    //printf("%f - %f\n",newX,newY);
 	    if(hitListHitBox(e->element->hitboxes,newX,newY)){
-	      createBlock((float)x,(float)y,5.f,5.f,red,1,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+	      //createBlock((float)x,(float)y,5.f,5.f,red,1,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 	      if(e->element->entry){
 		e->element->entry->isSelect=1;
 	      }

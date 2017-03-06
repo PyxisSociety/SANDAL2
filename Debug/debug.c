@@ -7,7 +7,7 @@
 
 void click(ElementSDL2 * this){
   static int i=0;
-  //printf("%d\n",++i);
+  printf("%d\n",++i);
 }
 
 int main(){
@@ -33,7 +33,7 @@ int main(){
 
   objet = createButtonImage(300.f,200.f,200.f,300.f,0.8f,"arial.ttf","NSFW",blanc,"lion.jpg",1,1,click,NULL,NULL,NULL,NULL,rectangleHitBox(0.f,0.f,1.f,1.f),NULL);
   if(objet){
-    addAngleElementSDL2(objet,45.f);
+    addRotationSpeedElementSDL2(objet,1.f);
   }else{
     run = 0;
   }
