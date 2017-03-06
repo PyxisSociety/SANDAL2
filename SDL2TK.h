@@ -2,65 +2,147 @@
 #define _MAIN_SDL2TK_KLEVH_
 
 #include "ElementSDL2.h"
-#include "FenetreSDL2.h"
 
+/**
+ * @file SDL2TK.h
+ * @brief File to include, include everything else.
+ *  Compilation flags to use :
+ *    -lSDL2 -lSDL2_ttf -lSDL2_image -lm
+ */
+
+/**
+ * @brief list of windows
+ *   WARNING : do not touch this variable, never ... trust me
+ */
 extern ListFenetreSDL2 * _windows_SDL2TK;
 
 /* -------------------------------------------------------
  * Initialisation et fermeture des outils SDL2
  */
-/* initialise la SDL2 (retourne 1 si erreur d'init SDL, 2 si erreur d'init image, 3 si erreur d'init TTF, 0 sinon) a partir des formats d'images passe en parametre */
+/**
+ * @brief Initialisation of SDL2, its image and fonts (return 1 if SDL2 initialisation error, 2 if image initialisation error, 3 if font initialisation error, 0 if not) using SDL2's image flags
+ * @param imageFlags : SDL2's image flags
+ * @return error code
+ */
 int initAllSDL2(int imageFlags);
-/* ferme la SDL2, image et texte */
+/**
+ * @brief Close SDL2, images and font
+ */
 void closeAllSDL2();
-/* initialisation de la SDL2 (seule)*/
+/**
+ * @brief Initialisation of SDL2 alone
+ * @return 0 if success, 1 if failed
+ */
 int initSDL2();
-/* initialisation du texte SDL2 */
+/**
+ * @brief Initialisation of images alone
+ * @param imageFlags : SDL2's image flags
+ * @return 0 if success, 1 if failed
+ */
 int initImage(int imageFlags);
-/* initialisation de l'image SDL2 */
+/**
+ * @brief Initialisation of text alone
+ * @return 0 if success, 1 if failed
+ */
 int initTexte();
-/* ferme ma SDL2 seule */
+/**
+ * @brief Close SDL2
+ */
 void closeSDL2();
-/* ferme image */
+/**
+ * @brief Close images
+ */
 void closeImage();
-/* ferme texte */
+/**
+ * @brief Close font
+ */
 void closeTexte();
 /* ------------------------------------------------------- */
 
 /* -------------------------------------------------------
  * Fenetre SDL2
  */
-/* libere la fenetre */
+/**
+ * @brief Free a window's memory
+ */
 void freeFenetreSDL2(FenetreSDL2 *fen);
-/* initialise la fenetre */
+/**
+ * @brief Add a window to the list of windows
+ * @param width : width of the window
+ * @param height : height of the window
+ * @param title : title of the window
+ * @param SDLFlags : flags of SDL2
+ * @param background : color of the background
+ * @param displayCode : display code of the window
+ */
 void initFenetreSDL2(int width,int height,char *title,int SDLFlags,int background[4],int displayCode);
-/* update les elements de la fenetre */
+/**
+ * @brief update all the elements of the current window
+ */
 void updateFenetreSDL2();
-/* actualise l'affichage de la fenetre */
+/**
+ * @brief actualise the display of the current window 
+ */
 void displayFenetreSDL2();
-/* activation des evenements de clique de souris */
+/**
+ * @brief activation of click events on the current window
+ * @param x : abscissa coordinate of the mouse during the click
+ * @param y : ordinate coordinate of the mouse during the click
+ */
 void clickFenetreSDL2(int x,int y);
-/* activation des evenements au relachement de clique de souris */
+/**
+ * @brief activation of unclick events on the current window
+ * @param x : abscissa coordinate of the mouse during the unclick
+ * @param y : ordinate coordinate of the mouse during the unclick
+ */
 void unclickFenetreSDL2(int x,int y);
-/* activation des evenements d'appuie sur une touche du clavier */
+/**
+ * @brief activation of the key pressed events on the current window
+ * @param c : key which was pressed
+ */
 void keyPressedFenetreSDL2(char c);
-/* activation des evenements au relachement d'une touche du clavier */
+/**
+ * @brief activation of the key released events on the current window
+ * @param c : key which was released
+ */
 void keyReleasedFenetreSDL2(char c);
-/* update les elements des fenetres */
+/**
+ * @brief update all the elements of all the windows
+ */
 void updateAllFenetreSDL2();
-/* actualise l'affichage des fenetres passe en parametre */
+/**
+ * @brief actualise the display of all the windows 
+ */
 void displayAllFenetreSDL2();
-/* activation des evenements de clique de souris */
+/**
+ * @brief activation of click events on all the windows
+ * @param x : abscissa coordinate of the mouse during the click
+ * @param y : ordinate coordinate of the mouse during the click
+ */
 void clickAllFenetreSDL2(int x,int y);
-/* activation des evenements au relachement de clique de souris */
+/**
+ * @brief activation of unclick events on all the windows
+ * @param x : abscissa coordinate of the mouse during the unclick
+ * @param y : ordinate coordinate of the mouse during the unclick
+ */
 void unclickAllFenetreSDL2(int x,int y);
-/* activation des evenements d'appuie sur une touche du clavier */
+/**
+ * @brief activation of the key pressed events on all windows
+ * @param c : key which was pressed
+ */
 void keyPressedAllFenetreSDL2(char c);
-/* activation des evenements au relachement d'une touche du clavier */
+/**
+ * @brief activation of the key released events on all windows
+ * @param c : key which was released
+ */
 void keyReleasedAllFenetreSDL2(char c);
-/* ferme la fenetre courante et passe a la suivante */
+/**
+ * @brief close the current windows and go to the next
+ */
 void closeFenetreSDL2();
-/* ferme toutes les fenetres */
+/**
+ * @brief close all windows
+ */
 void closeAllFenetreSDL2();
 /* ------------------------------------------------------- */
 

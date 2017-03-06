@@ -4,33 +4,57 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* code d'affichage */
+/**
+ * @file DisplayCode.h
+ * @author Baptiste Prunier
+ * @brief Contains display code and list of display codes
+ */
+
+/**
+ * @struct DisplayCode
+ * @brief Display code containing the plan and a flag to indicate if it is displaied
+ */
 typedef struct DisplayCode{
-  /* element suivant */
   struct DisplayCode *next;
-  /* code d'affichage */
+  ///< next DisplayCode
   int code;
-  /* flag vallant 1 si l'element doit etre affiche, 0 sinon */
+  ///< display code
   int isDisplaied;
-  /* plan relie au code d'affichage */
+  ///< flag to tell whether or not the element should be displaied
   int plan;
+  ///< plan linked to the display code
 }DisplayCode;
 
-/* liste de code d'affichage */
+/**
+ * @struct ListDisplayCode
+ * @brief List of display codes
+ */
 typedef struct{
-  /* premier element de la liste */
   DisplayCode *first;
+  ///< first element of the list
 }ListDisplayCode;
 
 /* -------------------------------------------------------
  * Liste de code d'affichage
  */
-/* renvoi une liste de code d'affichage vide */
+/**
+ * @brief Initialise an empty list of display codes
+ * @return an empty list of display codes
+ */
 ListDisplayCode* initListDisplayCode();
-/* libere la liste passe en parametre */
-void freeListDisplayCode(ListDisplayCode*);
-/* ajout d'un code d'affichage a la liste passe en parametre */
-void addDisplayCode(ListDisplayCode*,int,int,int);
+/**
+ * @brief Free the memory of a list of display codes
+ * @param l : list of display codes 
+ */
+void freeListDisplayCode(ListDisplayCode* l);
+/**
+ * @brief Add of a display code to a list of display code
+ * @param l : list of display codes
+ * @param code : display code of the DisplayCode
+ * @param isDisplaied : flag to tell if the element is displaied or not
+ * @param plan : plan linked to the display code 
+ */
+void addDisplayCode(ListDisplayCode* l,int code,int isDisplaied,int plan);
 /* ------------------------------------------------------- */
 
 #endif
