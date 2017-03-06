@@ -31,7 +31,10 @@ int main(){
     exit(-1);
   }
 
-  objet = createButtonImage(300.f,200.f,200.f,300.f,0.8f,"arial.ttf","NSFW",blanc,"lion.jpg",1,1,click,NULL,NULL,NULL,NULL,rectangleHitBox(0.f,0.f,1.f,1.f),NULL);
+  objet = createButtonImage(300.f,200.f,200.f,300.f,0.8f,"arial.ttf","NSFW",blanc,"lion.jpg",1,1);
+  setOnClickElementSDL2(objet,click);
+  addHitBoxElementSDL2(objet,rectangleHitBox(0.f,0.f,1.f,1.f));
+  
   if(objet){
     addRotationSpeedElementSDL2(objet,1.f);
   }else{

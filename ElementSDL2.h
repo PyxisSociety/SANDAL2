@@ -155,19 +155,19 @@ int removeElementSDL2(ElementSDL2*);
 /* libere l'element SDL2 passe en parametre */
 void freeElementSDL2(ElementSDL2 *e);
 /* retourne un Element SDL2 de type block */
-ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),HitBox * hb,void * data);
+ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4],int displayCode,int plan);
 /* retourne un Element SDL2 de type texte */
-ElementSDL2* createTexte(float x,float y,float width,float height,char * font,char * text,int textColor[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),HitBox * hb,void * data);
+ElementSDL2* createTexte(float x,float y,float width,float height,char * font,char * text,int textColor[4],int displayCode,int plan);
 /* retourne un Element SDL2 de type image */
-ElementSDL2* createImage(float x,float y,float width,float height,char *image,int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),HitBox * hb,void * data);
+ElementSDL2* createImage(float x,float y,float width,float height,char *image,int displayCode,int plan);
 /* retourne un Element SDL2 de type texte+block */
-ElementSDL2* createButton(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int couleurBlock[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),HitBox * hb,void * data);
+ElementSDL2* createButton(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int couleurBlock[4],int displayCode,int plan);
 /* retourne un Element SDL2 de type texte+image */
-ElementSDL2* createButtonImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),HitBox * hb,void * data);
+ElementSDL2* createButtonImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan);
 /* retourne un Element SDL2 de type Entry fond block */
-ElementSDL2* createEntry(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int couleurBlock[4],int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),int min,int max, int isScripted,HitBox * hb,void * data);
+ElementSDL2* createEntry(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int couleurBlock[4],int displayCode,int plan,int min,int max, int isScripted);
 /* retourne un Element SDL2 de type Entry fond image */
-ElementSDL2* createEntryImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan,void (*onClick)(ElementSDL2*),void (*unClick)(ElementSDL2*),void (*keyPress)(ElementSDL2*,SDL_Keycode),void (*keyReleased)(ElementSDL2*,SDL_Keycode),void (*action)(ElementSDL2*),int min,int max,int isScripted,HitBox * hb,void * data);
+ElementSDL2* createEntryImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan,int min,int max,int isScripted);
 /* retourne 1 si l'element passe en parametre peut etre affiche sur la fenetre passe en parametre, 0 sinon */
 int isDisplaied(ElementSDL2*);
 /* getter for the Element's coordinates */
@@ -180,6 +180,8 @@ int getDimensionElementSDL2(ElementSDL2*,int* w,int * h);
 int getRotationPointElementSDL2(ElementSDL2*,float *x,float *y);
 /* getter pour la vitesse de rotation par update */
 int getRotationSpeedElementSDL2(ElementSDL2*,float*);
+/* getter for data */
+void * getDataElementSDL2(ElementSDL2* e);
 /* ------------------------------------------------------- */
 
 
@@ -188,13 +190,13 @@ int getRotationSpeedElementSDL2(ElementSDL2*,float*);
  * modification d'un Element SDL2
  */
 /* change la police */
-void changeFontElementSDL2(ElementSDL2 *e,char * font);
+void setFontElementSDL2(ElementSDL2 *e,char * font);
 /* change le texte */
-void changeTextElementSDL2(ElementSDL2 *e,char * text);
+void setTextElementSDL2(ElementSDL2 *e,char * text);
 /* change la couleur du block */
-void changeColorElementSDL2(ElementSDL2 *e,int color[4]);
+void setColorElementSDL2(ElementSDL2 *e,int color[4]);
 /* change l'image */
-int changeImageElementSDL2(ElementSDL2 *e,char *image);
+int setImageElementSDL2(ElementSDL2 *e,char *image);
 /* change les coordonnees*/
 void replaceElementSDL2(ElementSDL2 *e,float x,float y);
 /*deplace un element*/
@@ -202,7 +204,7 @@ void moveElementSDL2(ElementSDL2 *e,float x,float y);
 /* change la taille */
 void resizeElementSDL2(ElementSDL2 *e,float width,float height);
 /* change la taille du texte */
-void changeTextSize(ElementSDL2 *e,float textSize);
+void setTextSize(ElementSDL2 *e,float textSize);
 /* ajoute un code de display (si pas deja present) */
 void addDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode,int plan);
 /* supprime un code de display */
@@ -212,15 +214,15 @@ void setDisplayElementSDL2(ElementSDL2 *e,int displayCode,int isDisplaied);
 /* change le plan d'un element pour un code de display */
 void setPlanElementSDL2(ElementSDL2 *e,int DisplayCode,int plan);
 /* change l'interaction continue */
-void changeActionElementSDL2(ElementSDL2 *e,void (*action)(ElementSDL2*));
+void setActionElementSDL2(ElementSDL2 *e,void (*action)(ElementSDL2*));
 /* change l'interaction a l'appuie d'une touche du clavier */
-void changeKeyPressElementSDL2(ElementSDL2 *e,void (*keyPress)(ElementSDL2*,SDL_Keycode c));
+void setKeyPressElementSDL2(ElementSDL2 *e,void (*keyPress)(ElementSDL2*,SDL_Keycode c));
 /* change l'interaction au relachement d'une touche du clavier */
-void changeKeyReleasedElementSDL2(ElementSDL2 *e,void (*keyReleased)(ElementSDL2*,SDL_Keycode c));
+void setKeyReleasedElementSDL2(ElementSDL2 *e,void (*keyReleased)(ElementSDL2*,SDL_Keycode c));
 /* change l'interaction au clique de souris */
-void changeOnClickElementSDL2(ElementSDL2 *e,void (*onCLick)(ElementSDL2*));
+void setOnClickElementSDL2(ElementSDL2 *e,void (*onCLick)(ElementSDL2*));
 /* change l'interaction au relachement d'un clique de souris */
-void changeUnClickElementSDL2(ElementSDL2 *e,void (*unCLick)(ElementSDL2*));
+void setUnClickElementSDL2(ElementSDL2 *e,void (*unCLick)(ElementSDL2*));
 /* ajoute un element dans la liste d'interaction a la fin */
 void addElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *add);
 /* retire un element dans la liste d'interaction */
@@ -237,6 +239,8 @@ void addAngleElementSDL2(ElementSDL2 *e,float a);
 void setAngleElementSDL2(ElementSDL2 *e,float a);
 /* defini le point de rotation de l'element */
 void setRotationPointElementSDL2(ElementSDL2 *e,float x,float y);
+/* defini le paquet de donnée */
+void setDataElementSDL2(ElementSDL2 *e,void *data);
 /* ------------------------------------------------------- */
 
 
