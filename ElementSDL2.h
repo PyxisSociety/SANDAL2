@@ -6,98 +6,143 @@
 #include "FenetreSDL2.h"
 #include "DisplayCode.h"
 
+/**
+ * @file ElementSDL2.h
+ * @brief Contains all structures related to Elements
+ */
+
+/**
+ * @brief List of windows
+ *   WARNING : Do not touch this list ... trust me
+ */
 extern ListFenetreSDL2 * _windows_SDL2TK;
 
-/* Informations supplementaires d'une Entry SDL2 */
+/**
+ * @struct EntrySDL2
+ * @brief More informations about entry 
+ */
 typedef struct{
-  /* taille minimum et maximum du texte */
   int size_min;
+  ///< minimum size of the text of the entry
   int size_max;
+  ///< maximum size of the text of the entry
   int size;
+  ///< actual size of the text of the entry
   /* vaut 1 si l'Entry est selectionnee, 0 sinon */
   int isSelect;
-  /* vaut 1 si le texte doit etre remplacee par des '*', 0 sinon */
+  ///< tells whether or not the Entry is selected (1 for yes, 0 for no)
   int isScripted;
+  ///< tells whether or not the Entry is crypted (1 for yes, 0 for no)
 }EntrySDL2;
 
 struct ListPtrElementSDL2;
 
-/* element SDL2 */
+/**
+ * @struct ElementSDL2
+ * @brief All the informations of an element
+ */
 typedef struct ElementSDL2{
-  /* coord relatives de l'elements (compris entre 0 et 1) */
   float x;
+  ///< abscissa coordinate of the top left of the element
   float y;
-  /* taille relative de l'elements (compris entre 0 et 1) */
+  ///< ordinate coordinate of the top left of the element
   float width;
+  ///< width of the element
   float height;
-  /* point de rotation de l'objet (relatif a lui meme)*/
+  ///< height of the element
   float prX;
+  ///< abscissa coordinate of the rotation point (if from 0 to 1, in the element)
   float prY;
-  /* angle de rotation de l'objet en degree */
+  ///< ordinate coordinate of the rotation point (if from 0 to 1, in the element)
   float rotation;
-  /* pas de rotation continue de l'objet */
+  ///< rotation angle of the element
   float rotSpeed;
+  ///< speed rotation (degree / update) of the element
   /* couleurs du texte et du block (la premiere case vaut -1 si la partie a colorie n'est pas dans l'element) */
   int coulBlock[4];
-  /* proportion du texte dans le block (si texte) */
+  ///< color of the block of the element (if first value -1, there is no block)
   float textSize;
-  /* liste des codes d'affichage */
+  ///< text proportion in the block
   ListDisplayCode *codes;
-  /* fonction d'action continue */
+  ///< list of display code of the element
   void (*action)(struct ElementSDL2*);
-  /* fonction d'interaction au click */
+  ///< function called when update
   void (*onClick)(struct ElementSDL2*);
-  /* fonction d'interaction au relachement du click */
+  ///< function called when the element is clicked
   void (*unClick)(struct ElementSDL2*);
-  /* fonction d'interaction avec une touche du clavier */
+  ///< function called when the element is unclicked
   void (*keyPress)(struct ElementSDL2*,SDL_Keycode c);
-  /* fonction d'interaction au relachement d'une touche du clavier */
+  ///< function called when a key is pressed
   void (*keyReleased)(struct ElementSDL2*,SDL_Keycode c);
-  /* texture de l'image (si image) */
+  ///< function called when a key is released
   SDL_Texture *image;
-  /* texture et surface du texte (si texte) */
+  ///< texture of the image (NULL if no image)
   FontSDL2 *police;
-  /* donnees suplementaires si l'element est une Entry */
+  ///< informations about the text (NULL if no text)
   EntrySDL2 *entry;
-  /* elements entrant en interaction avec cet element */
+  ///< informations about the entry (NULL if no entry)
   struct ListPtrElementSDL2 *interactions;
-  /* hit boxes de l'element, l'element est considerer comme le carre de cote 1 allant de (0,0) a (1,1) */
+  ///< list of elements that this element can modifie
   ListHitBox * hitboxes;
-  /* paquet de donnees */
+  ///< list of clickable zones
   void * data;
+  ///< data available for the user
 }ElementSDL2;
 
-/* pointeur d'un element (liste pour permettre a un element d'en modifier un autre) */
+/**
+ * @struct PtrElementSDL2
+ * @brief Structure used to store elements' pointers in a list of element
+ */
 typedef struct PtrElement{
   ElementSDL2 *element;
+  ///< pointer of the element
   struct PtrElement *next;
+  ///< next PtrElement in the list
 }PtrElementSDL2;
 
-/* Liste de pointeur d'element avec numero du plan */
+/**
+ * @struct ListPtrElementSDL2
+ * @brief List of PtrElementSDL2
+ */
 typedef struct ListPtrElementSDL2{
   PtrElementSDL2 *first;
+  ///< first PtrElementSDL2 of the list
   PtrElementSDL2 *last;
+  ///< last PtrElementSDL2 of the list
   PtrElementSDL2 *current;
+  ///< current PtrElementSDL2 of the list (used for iterator)
   struct ListPtrElementSDL2 * next;
+  ///< next List of PtrElementSDL2
   int code;
+  ///< plan of the list
 }ListPtrElementSDL2;
 
-/* Liste de liste (plan) d'element, contenant le code d'affichage */
+/**
+ * @struct ListDCElementSDL2
+ * @brief List (display code) of list (plan) of element
+ */
 typedef struct ListDCElementSDL2{
   ListPtrElementSDL2 * first;
+  ///< first list (plan) of element
   ListPtrElementSDL2 * current;
+  ///< current list (plan) of element (used for iterator)
   struct ListDCElementSDL2 * next;
+  ///< next list (display code) of list (plan) of element
   int code;
+  ///< display code of this list
 }ListDCElementSDL2;
 
-/* Liste de liste (code d'affichage) de liste (plan) d'element */
+/**
+ * @struct ListElementSDL2
+ * @brief List of list (display code) of list (plan) of elements
+ */
 typedef struct ListElementSDL2{
-  /* premier element de la liste */
   ListDCElementSDL2 *first;
-  /* element de la liste contenant le display code courant */
+  ///< first list (display code) of list (plan) of elements
   ListDCElementSDL2 * currentDCIterator;
-  /* element de la liste contenant le plan courant */
+  ///< current list (display code) of list (plan) of elements (used for iterator)
   ListPtrElementSDL2 *currentPIterator;
+  ///< current list (plan) of elements (used for iterator)
 }ListElementSDL2;
 
 
@@ -105,14 +150,29 @@ typedef struct ListElementSDL2{
 /* -------------------------------------------------------
  * Liste d'elements SDL2 avec plan commun
  */
-/* renvoi une liste d'element SDL2 vide avec un plan commun */
+/**
+ * @brief Initialise a list (plan) of elements
+ * @param plan : plan of the list to be initialised
+ * @return An empty list (plan) of elements
+ */
 ListPtrElementSDL2* initListPtrElementSDL2(int plan);
-/* libere la liste passe en parametre */
-void freeListPtrElementSDL2(ListPtrElementSDL2*);
-/* ajout d'un element SDL2 a la liste passe en parametre */
-void addPtrElementSDL2(ListPtrElementSDL2*,ElementSDL2*);
-/* retire un element SDL2 a la liste passe en parametre */
-void removePtrElementSDL2(ListPtrElementSDL2*,ElementSDL2*);
+/**
+ * @brief free the memory of a list (plan) of elements
+ * @param l : list to be freed
+ */
+void freeListPtrElementSDL2(ListPtrElementSDL2* l);
+/**
+ * @brief add an element to a list (plan) of elements
+ * @param l : list (plan) of elements which to add an element
+ * @param e : element to add
+ */
+void addPtrElementSDL2(ListPtrElementSDL2* l,ElementSDL2* e);
+/**
+ * @brief remove an element to a list (plan) of elements
+ * @param l : list (plan) of elements which to remove an element
+ * @param e : element to remove
+ */
+void removePtrElementSDL2(ListPtrElementSDL2* l,ElementSDL2* e);
 /* ------------------------------------------------------- */
 
 
@@ -121,13 +181,28 @@ void removePtrElementSDL2(ListPtrElementSDL2*,ElementSDL2*);
  * Liste de liste (plan) d'element, contenant le code 
  * d'affichage
  */
-/* renvoi une liste de liste (plan) d'element contenant un code d'affichage commun */
+/**
+ * @brief Initialise a list (display code) of lists (plan) of elements
+ * @param displayCode : display code of the list to be initialised
+ * @return An empty list (display code) of lists (plan) of elements
+ */
 ListDCElementSDL2* initListDCElementSDL2(int displayCode);
-/* libere une liste de ce genre */
+/**
+ * @brief free the memory of a list (display code) of lists (plan) of elements
+ * @param l : list to be freed
+ */
 void freeListDCElementSDL2(ListDCElementSDL2* l);
-/* ajoute une liste (plan) dans cette liste */
+/**
+ * @brief add a list (plan) to a list (display code) of lists (plan) of elements
+ * @param l : list (display code) of lists (plan) of elements which to add a list (plan)
+ * @param lp : list (plan) to add
+ */
 void addListPtrElementSDL2(ListDCElementSDL2* l, ListPtrElementSDL2 *lp);
-/* retire une liste (plan) dans cette liste */
+/**
+ * @brief remove a list (plan) to a list (display code) of lists (plan) of elements
+ * @param l : list (display code) of lists (plan) of elements which to remove an element
+ * @param lp : list (plan) to remove
+ */
 void removeListPtrElementSDL2(ListDCElementSDL2* l,ListPtrElementSDL2 *lp);
 /* ------------------------------------------------------- */
 
@@ -137,14 +212,28 @@ void removeListPtrElementSDL2(ListDCElementSDL2* l,ListPtrElementSDL2 *lp);
  * Liste de liste (code d'affichage) de liste (plan) 
  * d'element
  */
-/* renvoi une liste d'element SDL2 vide */
+/**
+ * @brief Initialise a list of lists (display code) of lists (plan) of elements
+ * @return An empty list  of lists (display code) of lists (plan) of elements
+ */
 ListElementSDL2* initListElementSDL2();
-/* libere la liste passe en parametre */
-void freeListElementSDL2(ListElementSDL2*);
-/* ajout d'un element SDL2 a la liste passe en parametre */
-int addElementSDL2(ElementSDL2*);
-/* retire un element SDL2 a la liste passe en parametre */
-int removeElementSDL2(ElementSDL2*);
+/**
+ * @brief free the memory of a list of lists (display code) of lists (plan) of elements
+ * @param l : list to be freed
+ */
+void freeListElementSDL2(ListElementSDL2* l);
+/**
+ * @brief add an element to a list of lists (display code) of lists (plan) of elements
+ * @param l : list of lists (display code) of lists (plan) of elements which to add a list (plan)
+ * @param e : element to be add
+ */
+int addElementSDL2(ElementSDL2* e);
+/**
+ * @brief remove an element to a list of lists (display code) of lists (plan) of elements
+ * @param l : list of lists (display code) of lists (plan) of elements which to remove an element
+ * @param e : element to remove
+ */
+int removeElementSDL2(ElementSDL2* e);
 /* ------------------------------------------------------- */
 
 
@@ -169,17 +258,17 @@ ElementSDL2* createEntry(float x,float y,float width,float height,float texteSiz
 /* retourne un Element SDL2 de type Entry fond image */
 ElementSDL2* createEntryImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan,int min,int max,int isScripted);
 /* retourne 1 si l'element passe en parametre peut etre affiche sur la fenetre passe en parametre, 0 sinon */
-int isDisplaied(ElementSDL2*);
+int isDisplaied(ElementSDL2* e);
 /* getter for the Element's coordinates */
-int getCoordElementSDL2(ElementSDL2*,float* x,float* y);
+int getCoordElementSDL2(ElementSDL2* e,float* x,float* y);
 /* getter for the Element's angle */
-int getAngleElementSDL2(ElementSDL2*,float*);
+int getAngleElementSDL2(ElementSDL2* e,float*);
 /* getter for the Element's dimensions */
-int getDimensionElementSDL2(ElementSDL2*,int* w,int * h);
+int getDimensionElementSDL2(ElementSDL2* e,int* w,int * h);
 /* getter for the Element's rotation point */
-int getRotationPointElementSDL2(ElementSDL2*,float *x,float *y);
+int getRotationPointElementSDL2(ElementSDL2* e,float *x,float *y);
 /* getter pour la vitesse de rotation par update */
-int getRotationSpeedElementSDL2(ElementSDL2*,float*);
+int getRotationSpeedElementSDL2(ElementSDL2* e,float*);
 /* getter for data */
 void * getDataElementSDL2(ElementSDL2* e);
 /* ------------------------------------------------------- */
