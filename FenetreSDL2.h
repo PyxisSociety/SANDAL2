@@ -60,8 +60,10 @@ typedef struct{
   FenetreSDL2 * current;
 }ListFenetreSDL2;
 
+
 /**
- * @brief list of the user's windows
+ * @brief list of windows
+ *   WARNING : do not touch this variable, never ... trust me
  */
 extern ListFenetreSDL2 * _windows_SDL2TK;
 
