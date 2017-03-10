@@ -31,7 +31,7 @@ graphic display easier.
 
 ### III. FontSDL2.h
 
-  1. <u>FontSDL2 : </u>
+  1. <u>FontSDL2 : </u><br/>
     A package of information about a text. It contains its font, its text, its color and its SDL2 texture.
 
 ### IV. FenetreSDL2.h
