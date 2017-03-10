@@ -241,21 +241,111 @@ int removeElementSDL2(ElementSDL2* e);
 /* -------------------------------------------------------
  * Creation, liberation et information sur un Element SDL2
  */
-/* libere l'element SDL2 passe en parametre */
+/**
+ * @brief Free the memory used by an element
+ * @param e : element to be freed
+ */
 void freeElementSDL2(ElementSDL2 *e);
-/* retourne un Element SDL2 de type block */
+/**
+ * @brief Generate a rectangle like element
+ * @param x : abscissa coordinate of its top left corner
+ * @param y : ordinate coordinate of its top left corner
+ * @param width : width of the element
+ * @param height : height of the element
+ * @param couleur : color of the rectangle (RGBA)
+ * @param displayCode : display code of the rectangle
+ * @param plan : plan of the rectangle
+ */
 ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4],int displayCode,int plan);
-/* retourne un Element SDL2 de type texte */
+/**
+ * @brief Generate a text like element
+ * @param x : abscissa coordinate of its top left corner
+ * @param y : ordinate coordinate of its top left corner
+ * @param width : width of the element
+ * @param height : height of the element
+ * @param font : path to load the font to be used by the element
+ * @param text : text of the element
+ * @param textColor : color of the text (RGBA)
+ * @param displayCode : display code of the text
+ * @param plan : plan of the text
+ */
 ElementSDL2* createTexte(float x,float y,float width,float height,char * font,char * text,int textColor[4],int displayCode,int plan);
-/* retourne un Element SDL2 de type image */
+/**
+ * @brief Generate an image like element
+ * @param x : abscissa coordinate of its top left corner
+ * @param y : ordinate coordinate of its top left corner
+ * @param width : width of the element
+ * @param height : height of the element
+ * @param image : path to load the image to be used by the element
+ * @param displayCode : display code of the image
+ * @param plan : plan of the image
+ */
 ElementSDL2* createImage(float x,float y,float width,float height,char *image,int displayCode,int plan);
-/* retourne un Element SDL2 de type texte+block */
+/**
+ * @brief Generate a button like element
+ * @param x : abscissa coordinate of its top left corner
+ * @param y : ordinate coordinate of its top left corner
+ * @param width : width of the element
+ * @param height : height of the element
+ * @param texteSize : proportion of the text in the rectangle (it is centered)
+ * @param font : path to load the font to be used by the element
+ * @param text : text of the element
+ * @param textColor : color of the text (RGBA)
+ * @param colorBlock : color of the rectangle (RGBA)
+ * @param displayCode : display code of the button
+ * @param plan : plan of the button
+ */
 ElementSDL2* createButton(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int couleurBlock[4],int displayCode,int plan);
-/* retourne un Element SDL2 de type texte+image */
+/**
+ * @brief Generate a button like element with an image
+ * @param x : abscissa coordinate of its top left corner
+ * @param y : ordinate coordinate of its top left corner
+ * @param width : width of the element
+ * @param height : height of the element
+ * @param texteSize : proportion of the text in the rectangle (it is centered)
+ * @param font : path to load the font to be used by the element
+ * @param text : text of the element
+ * @param textColor : color of the text (RGBA)
+ * @param image : path to load the image to be used by the element
+ * @param displayCode : display code of the button
+ * @param plan : plan of the button
+ */
 ElementSDL2* createButtonImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan);
-/* retourne un Element SDL2 de type Entry fond block */
+/**
+ * @brief Generate a prompt like element
+ * @param x : abscissa coordinate of its top left corner
+ * @param y : ordinate coordinate of its top left corner
+ * @param width : width of the element
+ * @param height : height of the element
+ * @param texteSize : proportion of the text in the rectangle (it is centered)
+ * @param font : path to load the font to be used by the element
+ * @param text : text of the element
+ * @param textColor : color of the text (RGBA)
+ * @param colorBlock : color of the rectangle (RGBA)
+ * @param displayCode : display code of the button
+ * @param plan : plan of the button
+ * @param min : minimum number of character for the prompt to be validate
+ * @param max : maximum number of character for the prompt to be validate
+ * @param isScripted : flag which tells whether or not the prompt is cripted
+ */
 ElementSDL2* createEntry(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int couleurBlock[4],int displayCode,int plan,int min,int max, int isScripted);
-/* retourne un Element SDL2 de type Entry fond image */
+/**
+ * @brief Generate a prompt like element with an image
+ * @param x : abscissa coordinate of its top left corner
+ * @param y : ordinate coordinate of its top left corner
+ * @param width : width of the element
+ * @param height : height of the element
+ * @param texteSize : proportion of the text in the rectangle (it is centered)
+ * @param font : path to load the font to be used by the element
+ * @param text : text of the element
+ * @param textColor : color of the text (RGBA)
+ * @param image : path to load the image to be used by the element
+ * @param displayCode : display code of the button
+ * @param plan : plan of the button
+ * @param min : minimum number of character for the prompt to be validate
+ * @param max : maximum number of character for the prompt to be validate
+ * @param isScripted : flag which tells whether or not the prompt is cripted
+ */
 ElementSDL2* createEntryImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan,int min,int max,int isScripted);
 /* retourne 1 si l'element passe en parametre peut etre affiche sur la fenetre passe en parametre, 0 sinon */
 int isDisplaied(ElementSDL2* e);
