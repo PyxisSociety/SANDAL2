@@ -229,17 +229,24 @@ ListHitBox * initListHitBox(){
   if(l){
     l->first=NULL;
     l->current=NULL;
+    l->firstBlock=NULL;
+    l->currentBlock=NULL;
   }
 
   return l;
 }
 
-int addHitBox(ListHitBox * l,HitBox * hb){
+int addHitBox(ListHitBox * l,HitBox * hb,int blocking){
   int error = 1;
 
   if(l && hb){
-    hb->next=l->first;
-    l->first=hb;
+    if(blocking){
+      hb->next=l->firstBlock;
+      l->firstBlock=hb;
+    }else{
+      hb->next=l->first;
+      l->first=hb;
+    }
     error = 0;
   }
 
@@ -298,6 +305,13 @@ int hitListHitBox(ListHitBox * l,float x,float y){
       hit = hitHitBox(hb,x,y);
       hb=hb->next;
     }while(hb && !hit);
+    if(l->firstBlock){
+      hb=l->firstBlock;
+      do{
+	hit = !hitHitBox(hb,x,y);
+	hb=hb->next;
+      }while(hb && hit);
+    }
   }
 
   return hit;

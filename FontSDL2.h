@@ -3,27 +3,65 @@
 
 #include "FenetreSDL2.h"
 
+/**
+ * @file FontSDL2.h
+ * @brief Information about TTF objects
+ */
+
+/**
+ * @brief List of the windows
+ *   WARNING : do not touch it ... trust me
+ */
 extern ListFenetreSDL2 * _windows_SDL2TK;
-/* police de caractere SDL2 */
+
+/**
+ * @struct FontSDL2
+ * @brief Informations about SDL2 font
+ */
 typedef struct{
   TTF_Font *font;
+  ///< SDL font object
   char *text;
+  ///< text
   SDL_Color color;
+  ///< color of the text
   SDL_Texture *texture;
+  ///< SDL texture
 }FontSDL2;
 
 /* -------------------------------------------------------
  * Police de caractere SDL2
  */
-/* creer et renvoi l'objet FontSDL2 genere a partir de la police dont l'adresse est passe en parametre (renvoi NULL en cas d'erreur)*/
+/**
+ * @brief generate a FontSDL2 using the path to the font, the text and the color of the text
+ * @param fontPath : path of the font
+ * @param texte : text of the object
+ * @param couleur : color of the text
+ * @return NULL if the object was not initialised, if not, the object
+ */
 FontSDL2* createFontSDL2(char *fontPath,char *texte,int couleur[4]);
-/* libere la police passe en parametre */
+/**
+ * @brief free the memory of a FontSDL2
+ * @param font : the FontSDL2 to be freed
+ */
 void freeFontSDL2(FontSDL2 *font);
-/* actualise le texte */
+/**
+ * @brief actualize the text to cript it or uncript it
+ * @param font : the font to be actualize
+ * @param isScripted : 0 if the text should be uncripted, 1 for cripted
+ */
 void actualizeTextFontSDL2(FontSDL2 *font,int isScripted);
-/* change le texte */
+/**
+ * @brief actualize the text of a FontSDL2
+ * @param font : the font to be actualize
+ * @param text : the new text
+ */
 void changeTextFontSDL2(FontSDL2 *font,char *text);
-/* change la couleur du texte */
+/**
+ * @brief actualize the color of the FontSDL2
+ * @param font : the font to be actualize
+ * @param color : new color
+ */
 void changeColorFontSDL2(FontSDL2 *font,int color[4]);
 /* ------------------------------------------------------- */
 

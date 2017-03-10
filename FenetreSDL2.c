@@ -41,7 +41,7 @@ int nextFenetreSDL2(){
 }
 
 int getDimensionFenetreSDL2(int * w,int * h){
-  int error = 1;
+  int error = 0;
 
   if(_windows_SDL2TK && _windows_SDL2TK->current){
     if(w){
@@ -50,7 +50,7 @@ int getDimensionFenetreSDL2(int * w,int * h){
     if(h){
       *h=_windows_SDL2TK->current->initHeight;
     }
-    error =0;
+    error =1;
   }
 
   return error;
@@ -92,6 +92,11 @@ int setColorFenetreSDL2(int color[4]){
 }
 /* ------------------------------------------------------- */
 
+
+
+/* -------------------------------------------------------
+ * Other functions
+ */
 int cmpCoul(int c1[4],int c2[4]){
   int res=1,i;
 
@@ -107,3 +112,4 @@ void copyColor(int to[4],int from[4]){
   to[2]=from[2];
   to[3]=from[3];
 }
+/* ------------------------------------------------------- */

@@ -66,6 +66,8 @@ typedef struct HitBox{
 typedef struct{
   HitBox * first;
   HitBox * current;
+  HitBox * firstBlock;
+  HitBox * currentBlock;
 }ListHitBox;
 
 /* ----------------------------------------------------------
@@ -172,11 +174,12 @@ ListHitBox * initListHitBox();
  * @param hb : hit boxe
  * @return 0 if the hit boxe was succesfully added, 1 if not
  */
-int addHitBox(ListHitBox * l,HitBox * hb);
+int addHitBox(ListHitBox * l,HitBox * hb,int blocking);
 /**
  * @brief remove a hit boxe to a list of hit boxes
  * @param l : list of hit boxes
  * @param hb : hit boxe
+ * @param blocking : 0 if the hit boxe is hittable, 1 if it block other hit boxes
  * @return 0 if the hit boxe was succesfully removed, 1 if not
  */
 int removeHitBox(ListHitBox * l,HitBox * hb);
