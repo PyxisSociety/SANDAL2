@@ -1,4 +1,4 @@
-#include "SDL2TK.h"
+#include "SANDAL2.h"
 
 /* -------------------------------------------------------
  * Initialisation et fermeture des outils SDL2

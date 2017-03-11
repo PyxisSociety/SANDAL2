@@ -683,6 +683,12 @@ void setColorElementSDL2(ElementSDL2 *e,int color[4]){
   }
 }
 
+void setTextColorElementSDL2(ElementSDL2 *e, int color[4]){
+  if(e && e->police){
+    changeColorFontSDL2(e->police,color);
+  }
+}
+
 int setImageElementSDL2(ElementSDL2 *e,char *image){
   SDL_Surface *s;
   int changed=0;
@@ -991,9 +997,9 @@ void delElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *del){
   }   
 }
 
-void addHitBoxElementSDL2(ElementSDL2 *e,HitBox *hb){
+void addHitBoxElementSDL2(ElementSDL2 *e,HitBox *hb,int blocking){
   if(e && hb){
-    addHitBox(e->hitboxes,hb);
+    addHitBox(e->hitboxes,hb,blocking);
   }
 }
 

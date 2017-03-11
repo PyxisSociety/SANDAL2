@@ -347,19 +347,55 @@ ElementSDL2* createEntry(float x,float y,float width,float height,float texteSiz
  * @param isScripted : flag which tells whether or not the prompt is cripted
  */
 ElementSDL2* createEntryImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan,int min,int max,int isScripted);
-/* retourne 1 si l'element passe en parametre peut etre affiche sur la fenetre passe en parametre, 0 sinon */
+/**
+ * @brief tell whether or not the element can be displaied
+ * @param e : element
+ * @return 1 if the element is displaied, 0 if not
+ */
 int isDisplaied(ElementSDL2* e);
-/* getter for the Element's coordinates */
+/**
+ * @brief getter for the Element's coordinates
+ * @param e : element to get the coordinates
+ * @param x : where the abscissa coordinate will be store
+ * @param y : where the ordinate coordinate will be store
+ * @return 1 if there was an error, 0 if not
+ */
 int getCoordElementSDL2(ElementSDL2* e,float* x,float* y);
-/* getter for the Element's angle */
-int getAngleElementSDL2(ElementSDL2* e,float*);
-/* getter for the Element's dimensions */
+/**
+ * @brief getter for the Element's angle
+ * @param e : element to get the angle
+ * @param a : where the angle will be store
+ * @return 1 if there was an error, 0 if not
+ */
+int getAngleElementSDL2(ElementSDL2* e,float* a);
+/**
+ * @brief getter for the Element's dimensions
+ * @param e : element to get the dimensions
+ * @param w : where the width will be store
+ * @param h : where the height will be store
+ * @return 1 if there was an error, 0 if not
+ */
 int getDimensionElementSDL2(ElementSDL2* e,int* w,int * h);
-/* getter for the Element's rotation point */
+/**
+ * @brief getter for the Element's rotation point
+ * @param e : element to get the rotation point's coordinate
+ * @param x : where the abscissa coordinate of the rotation point will be store 
+ * @param y : where the ordinate coordinate of the rotation point will be store 
+ * @return 1 if there was an error, 0 if not
+ */
 int getRotationPointElementSDL2(ElementSDL2* e,float *x,float *y);
-/* getter pour la vitesse de rotation par update */
-int getRotationSpeedElementSDL2(ElementSDL2* e,float*);
-/* getter for data */
+/**
+ * @brief getter for the element's rotation speed
+ * @param e : element to get the rotation speed
+ * @param s : where the rotation speed will be store
+ * @return 1 if there was an error, 0 if not
+ */
+int getRotationSpeedElementSDL2(ElementSDL2* e,float* s);
+/**
+ * @brief getter for the element's data
+ * @param e : element to get its data
+ * @return the data of the element
+ */
 void * getDataElementSDL2(ElementSDL2* e);
 /* ------------------------------------------------------- */
 
@@ -368,57 +404,175 @@ void * getDataElementSDL2(ElementSDL2* e);
 /* -------------------------------------------------------
  * modification d'un Element SDL2
  */
-/* change la police */
+/**
+ * @brief set the element's font
+ * @param e : element to be modified
+ * @param font : path of the new font
+ */
 void setFontElementSDL2(ElementSDL2 *e,char * font);
-/* change le texte */
+/**
+ * @brief set the element's text
+ * @param e : element to be modified
+ * @param text : the new text
+ */
 void setTextElementSDL2(ElementSDL2 *e,char * text);
-/* change la couleur du block */
+/**
+ * @brief set the element's block color
+ * @param e : element to be modified
+ * @param color : new block color
+ */
 void setColorElementSDL2(ElementSDL2 *e,int color[4]);
-/* change l'image */
+/**
+ * @brief set the element's text color
+ * @param e : element to be modified
+ * @param color : new text color
+ */
+void setTextColorElementSDL2(ElementSDL2 *e, int color[4]);
+/**
+ * @brief set the element's image
+ * @param e : element to be modified
+ * @param image : path of the new image
+ */
 int setImageElementSDL2(ElementSDL2 *e,char *image);
-/* change les coordonnees*/
+/**
+ * @brief set the element's coordinates
+ * @param e : element to be modified
+ * @param x : new abscissa coordinate
+ * @param y : new ordinate coordinate
+ */
 void replaceElementSDL2(ElementSDL2 *e,float x,float y);
-/*deplace un element*/
+/**
+ * @brief move an element
+ * @param e : element to be modified
+ * @param x : abscissa increment
+ * @param y : ordinate increment
+ */
 void moveElementSDL2(ElementSDL2 *e,float x,float y);
-/* change la taille */
+/**
+ * @brief resize an element
+ * @param e : element to be modified
+ * @param width : new width
+ * @param height : new height
+ */
 void resizeElementSDL2(ElementSDL2 *e,float width,float height);
-/* change la taille du texte */
+/**
+ * @brief set the text size of the text of an element in this element
+ * @param e : element to be modified
+ * @param textSize : new size of the text (in percent)
+ */
 void setTextSize(ElementSDL2 *e,float textSize);
-/* ajoute un code de display (si pas deja present) */
+/**
+ * @brief add a display code to an element (if it did not already had it)
+ * @param e : element to be modified
+ * @param displayCode : new display code
+ * @param plan : plan linked to the new display code
+ */
 void addDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode,int plan);
-/* supprime un code de display */
+/**
+ * @brief remove a display code to an element (if it has it)
+ * @param e : element to be modified
+ * @param displayCode : display code to be removed
+ */
 void removeDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode);
-/* change l'option isDisplaied d'un code de display */
+/**
+ * @brief set the isDisplaied option of a display code (if the element has it)
+ * @param e : element to be modified
+ * @param displayCode : display code to be modified
+ * @param isDisplaied : new isDisplaied option
+ */
 void setDisplayElementSDL2(ElementSDL2 *e,int displayCode,int isDisplaied);
-/* change le plan d'un element pour un code de display */
+/**
+ * @brief set the plan of a display code (if the element has it)
+ * @param e : element to be modified
+ * @param displayCode : display code to be modified
+ * @param plan : new plan linked to the display code
+ */
 void setPlanElementSDL2(ElementSDL2 *e,int DisplayCode,int plan);
-/* change l'interaction continue */
+/**
+ * @brief set the continuous behaviour of an element
+ * @param e : element to be modified
+ * @param action : function to be called on each update call
+ */
 void setActionElementSDL2(ElementSDL2 *e,void (*action)(ElementSDL2*));
-/* change l'interaction a l'appuie d'une touche du clavier */
+/**
+ * @brief set the behaviour of an element when a key is pressed
+ * @param e : element to be modified
+ * @param keyPress : function to be called when a key is pressed
+ */
 void setKeyPressElementSDL2(ElementSDL2 *e,void (*keyPress)(ElementSDL2*,SDL_Keycode c));
-/* change l'interaction au relachement d'une touche du clavier */
+/**
+ * @brief set the behaviour of an element when a key is released
+ * @param e : element to be modified
+ * @param keyReleased : function to be called when a key is released
+ */
 void setKeyReleasedElementSDL2(ElementSDL2 *e,void (*keyReleased)(ElementSDL2*,SDL_Keycode c));
-/* change l'interaction au clique de souris */
+/**
+ * @brief set the behaviour of an element when it is clicked
+ * @param e : element to be modified
+ * @param onCLick : function to be called when it is clicked
+ */
 void setOnClickElementSDL2(ElementSDL2 *e,void (*onCLick)(ElementSDL2*));
-/* change l'interaction au relachement d'un clique de souris */
+/**
+ * @brief set the behaviour of an element when it is unclicked
+ * @param e : element to be modified
+ * @param unCLick : function to be called when it is unclicked
+ */
 void setUnClickElementSDL2(ElementSDL2 *e,void (*unCLick)(ElementSDL2*));
-/* ajoute un element dans la liste d'interaction a la fin */
+/**
+ * @brief add an element to another so that this other can modifie the first one
+ * @param e : element to be modified
+ * @param add : element to be add
+ */
 void addElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *add);
-/* retire un element dans la liste d'interaction */
+/**
+ * @brief remove an element to another so that this other can not modifie the first one
+ * @param e : element to be modified
+ * @param add : element to be removed
+ */
 void delElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *del);
-/* ajoute une hit boxe a un element */
-void addHitBoxElementSDL2(ElementSDL2 *e,HitBox *hb);
-/* augmente la vitesse de rotation de l'element de s */
+/**
+ * @brief add a clickable zone to the element (or a blocking one)
+ * @param e : element to be modified
+ * @param hb : clickable zone to be add
+ * @param blocking : tells whether or not the clickable zone is a blocking one
+ */
+void addHitBoxElementSDL2(ElementSDL2 *e,HitBox *hb,int blocking);
+/**
+ * @brief increase the rotation speed of an element
+ * @param e : element to be modified
+ * @param s : rotation speed increment
+ */
 void addRotationSpeedElementSDL2(ElementSDL2 *e,float s);
-/* definie la vitesse de rotation de l'element */
+/**
+ * @brief set the rotation speed of an element
+ * @param e : element to be modified
+ * @param s : new rotation speed of the element
+ */
 void setRotationSpeedElementSDL2(ElementSDL2 *e,float s);
-/* augmente l'angle de l'element de a */
+/**
+ * @brief increase the angle of an element
+ * @param e : element to be modified
+ * @param a : angle increment
+ */
 void addAngleElementSDL2(ElementSDL2 *e,float a);
-/* defini l'angle de l'elemant a a */
+/**
+ * @brief set the angle of an element
+ * @param e : element to be modified
+ * @param a : new angle of the element
+ */
 void setAngleElementSDL2(ElementSDL2 *e,float a);
-/* defini le point de rotation de l'element */
+/**
+ * @brief set the rotation point's coordinates of an element
+ * @param e : element to be modified
+ * @param x : new abscissa coordinate of the rotation point
+ * @param y : new ordinate coordinate of the rotation point
+ */
 void setRotationPointElementSDL2(ElementSDL2 *e,float x,float y);
-/* defini le paquet de donnée */
+/**
+ * @brief set the element's data
+ * @param e : element to be modified
+ * @param data : new data of the element
+ */
 void setDataElementSDL2(ElementSDL2 *e,void *data);
 /* ------------------------------------------------------- */
 
@@ -427,9 +581,15 @@ void setDataElementSDL2(ElementSDL2 *e,void *data);
 /* -------------------------------------------------------
  * Iterateur de structure sur la liste d'ElementSDL2 lié a un autre ElementSL2
  */
-/* initialisation de l'iterateur de structure d'un element */
+/**
+ * @brief initialise the element's iterator on all the elements it can modifie
+ * @param e : element from which to initialise the iterator
+ */
 int initIterateurElementSDL2(ElementSDL2 *e);
-/* donne l'element actuel et prepare le prochain */
+/**
+ * @brief gives the current element's iterator's value and go to the next one
+ * @param e : element to be modified
+ */
 ElementSDL2* nextIterateurElementSDL2(ElementSDL2 *e);
 /* ------------------------------------------------------- */
 
@@ -438,9 +598,14 @@ ElementSDL2* nextIterateurElementSDL2(ElementSDL2 *e);
 /* ------------------------------------------------------- 
  * Iterateur de structure sur la liste d'ElementSDL2
  */
-/* initialise l'iterateur de structure sur les elements ayant le display code*/
+/**
+ * @brief initialise the iterator of all elements having a common display code
+ * @param displayCode : common display code of the elements
+ */
 int initIterateur(int displayCode);
-/* donne l'element actuel et prepare le prochain */
+/**
+ * @brief gives the current iterator's value and go to the next one
+ */
 ElementSDL2* nextElementSDL2();
 /* ------------------------------------------------------- */
 
@@ -449,13 +614,29 @@ ElementSDL2* nextElementSDL2();
 /* -------------------------------------------------------
  * modification d'un Element SDL2 spécifique aux Entry
  */
-/* change la taille min et taille max du texte (si une valeur <0, pas de changement sur cette valeur) */
+/**
+ * @brief change the minimum and maximum size of a prompt (if a value is negative, it is not modified)
+ * @param e : element to be modified
+ * @param size_min : new minimum size of the prompt
+ * @param size_max : new maximum size of the prompt
+ */
 void changeSizeEntrySDL2(ElementSDL2 *e,int size_min,int size_max);
-/* met l'option crypté de l'entry à la valeur isScripted */
+/**
+ * @brief set an element to crypted or uncrypted
+ * @param e : element to be modified
+ * @param isScripted : crypted option
+ */
 void setScriptedEntrySDL2(ElementSDL2 *e,int isScripted);
-/* ajoute un caractere a une entry */
+/**
+ * @brief add a character to a prompt
+ * @param e : element to be modified
+ * @param c : character to be added
+ */
 void addCharEntrySDL2(ElementSDL2 *e,char c);
-/* supprime un caractere a une entry */
+/**
+ * @brief remove a character to a prompt
+ * @param e : element to be modified
+ */
 void removeCharEntrySDL2(ElementSDL2 *e);
 /* ------------------------------------------------------- */
 
