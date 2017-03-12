@@ -3,11 +3,58 @@
 #include <SDL2/SDL_image.h>
 #include <stdio.h>
 
-#include "../SDL2TK.h"
+#include "../SANDAL2.h"
 
-void click(ElementSDL2 * this){
+void block(ElementSDL2 * this){
+  printf("Block\n");
+}
+
+void action(ElementSDL2 * this){
   static int i=0;
-  printf("%d\n",++i);
+  static int j = 10;
+  static int colors[7][4]={{255,255,255,0},
+			   {255,0,0,0},
+			   {0,255,0,0},
+			   {0,0,255,0},
+			   {255,255,0,0},
+			   {255,0,255,0},
+			   {0,255,255,0}};
+  ElementSDL2 *cour, *tmp;
+  float x;
+  int nb = 0;
+
+  initIterateurElementSDL2(this);
+
+  cour=nextIterateurElementSDL2(this);
+  while(cour){
+    tmp=nextIterateurElementSDL2(this);
+    moveElementSDL2(cour,10.f,0.f);
+    getCoordElementSDL2(cour,&x,NULL);
+    if(x>800.f){
+      delElementToElementSDL2(this,cour);
+      removeElementSDL2(cour);
+    }
+    cour=tmp;
+  }
+
+  /*initIterateur(1);
+  cour=nextElementSDL2();
+  while((cour=nextElementSDL2())){
+    ++nb;
+    printf("(%f,%f)\n",cour->x,cour->y);
+  }
+  printf("total : %d\n",nb);
+  */
+  if(j){
+    --j;
+  }else{
+    cour=createBlock(0.f,(float)((i*50)%750),50.f,50.f,colors[i%7],1,1);
+    printf("New block\n");
+    ++i;
+    setActionElementSDL2(cour,block);
+    addElementToElementSDL2(this,cour);
+    j=100;
+  }
 }
 
 int main(){
@@ -24,22 +71,15 @@ int main(){
   }
 
   /* initialisation de la fenetre */
-  initFenetreSDL2(800,800,"teste rotation continue",SDL_WINDOW_RESIZABLE,noir,1);
+  initFenetreSDL2(800,800,"test",SDL_WINDOW_RESIZABLE,noir,1);
   if(initIteratorFenetreSDL2()){
     closeAllSDL2();
     fprintf(stderr,"Erreur d'ouverture de la fenetre.\n");
     exit(-1);
   }
 
-  objet = createButtonImage(300.f,200.f,200.f,300.f,0.8f,"arial.ttf","NSFW",blanc,"lion.jpg",1,1);
-  setOnClickElementSDL2(objet,click);
-  addHitBoxElementSDL2(objet,rectangleHitBox(0.f,0.f,1.f,1.f));
-  
-  if(objet){
-    addRotationSpeedElementSDL2(objet,1.f);
-  }else{
-    run = 0;
-  }
+  objet = createButtonImage(-300.f,200.f,200.f,300.f,0.8f,"arial.ttf","NSFW",blanc,"lion.jpg",1,1);
+  setActionElementSDL2(objet,action);
   
   /* display de la fenetre */
   while(run){

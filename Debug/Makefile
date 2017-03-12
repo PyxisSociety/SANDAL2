@@ -1,6 +1,6 @@
 #!/bin/makefile
 
-SDL2TK=../SDL2TK.o ../FenetreSDL2.o ../ElementSDL2.o ../FontSDL2.o ../DisplayCode.o ../HitBox.o
+SDL2TK=../SANDAL2.o ../FenetreSDL2.o ../ElementSDL2.o ../FontSDL2.o ../DisplayCode.o ../HitBox.o
 SDL2TKFLAG=-lSDL2 -lSDL2_ttf -lSDL2_image -lm
 OFILE=debug.o
 OFLAG=-Wall -ansi -Wextra -pedantic

@@ -143,7 +143,7 @@ void initFenetreSDL2(int width,int height,char *title,int SDLFlags,int backgroun
 }
 
 void updateFenetreSDL2(){
-  PtrElementSDL2 *ele;
+  PtrElementSDL2 **ele;
   ListPtrElementSDL2 *lp;
   ListDCElementSDL2 *ldc;
 
@@ -163,20 +163,21 @@ void updateFenetreSDL2(){
     if(ldc && ldc->code==_windows_SDL2TK->current->displayCode){
       lp=ldc->first;
       while(lp){
-	ele=lp->first;
-	while(ele){
-	  if(isDisplaied(ele->element)){
-	    if(ele->element->action){
-	      ele->element->action(ele->element);
+	ele=&(lp->first);
+	while(*ele){
+	  if(isDisplaied((*ele)->element)){
+	    if((*ele)->element->action){
+	      (*ele)->element->action((*ele)->element);
 	    }
-	    if(ele->element->rotSpeed != 0.f){
-	      ele->element->rotation = (ele->element->rotation + ele->element->rotSpeed > 360.f ? ele->element->rotation + ele->element->rotSpeed - 360.f : ele->element->rotation + ele->element->rotSpeed);
+	    if((*ele)->element->rotSpeed != 0.f){
+	      (*ele)->element->rotation = ((*ele)->element->rotation + (*ele)->element->rotSpeed > 360.f ? (*ele)->element->rotation + (*ele)->element->rotSpeed - 360.f : (*ele)->element->rotation + (*ele)->element->rotSpeed);
 	    }
 	  }
-	  ele=ele->next;
+	  ele=&((*ele)->next);
 	}
 	lp=lp->next;
       }
+      cleanElementSDL2();
     }
   }
 }
@@ -239,7 +240,7 @@ void displayFenetreSDL2(){
 	      r.w*=ele->element->textSize;
 	      r.h*=ele->element->textSize;
 	      SDL_QueryTexture(ele->element->police->texture,NULL,NULL,&iW,&iH);
-	      if(ele->element->rotation == 0.f || ele->element->coulBlock[0]!=-1){
+	      if(ele->element->rotation == 0.f || (ele->element->coulBlock[0]!=-1 && !ele->element->image)){
 		SDL_RenderCopy(_windows_SDL2TK->current->renderer,ele->element->police->texture,NULL,&r);
 	      }else{
 		p.x=(int)(ele->element->textSize*ele->element->prX*ele->element->width*_windows_SDL2TK->current->width/_windows_SDL2TK->current->initWidth);
@@ -387,7 +388,7 @@ void keyPressedFenetreSDL2(char c){
       ldc=_windows_SDL2TK->current->liste->first;
     }
     while(ldc && ldc->code<_windows_SDL2TK->current->displayCode){
-      lp=lp->next;
+      ldc=ldc->next;
     }
 
     if(ldc && ldc->code==_windows_SDL2TK->current->displayCode){
@@ -419,7 +420,7 @@ void keyReleasedFenetreSDL2(char c){
       ldc=_windows_SDL2TK->current->liste->first;
     }
     while(ldc && ldc->code<_windows_SDL2TK->current->displayCode){
-      lp=lp->next;
+      ldc=ldc->next;
     }
 
     if(ldc && ldc->code==_windows_SDL2TK->current->displayCode){

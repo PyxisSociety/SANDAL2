@@ -87,6 +87,8 @@ typedef struct ElementSDL2{
   ///< list of clickable zones
   void * data;
   ///< data available for the user
+  int delete;
+  ///< tells whether or not the element should be deleted
 }ElementSDL2;
 
 /**
@@ -199,11 +201,17 @@ void freeListDCElementSDL2(ListDCElementSDL2* l);
  */
 void addListPtrElementSDL2(ListDCElementSDL2* l, ListPtrElementSDL2 *lp);
 /**
- * @brief remove a list (plan) to a list (display code) of lists (plan) of elements
+ * @brief remove a list (plan) from a list (display code) of lists (plan) of elements
  * @param l : list (display code) of lists (plan) of elements which to remove an element
  * @param lp : list (plan) to remove
  */
 void removeListPtrElementSDL2(ListDCElementSDL2* l,ListPtrElementSDL2 *lp);
+/**
+ * @brief remove an element all lists (display code) starting from a list (display code) of lists (plan) of elements 
+ * @param l : list (display code) of lists (plan) of elements which to remove an element
+ * @param e : element to be removed
+ */
+void removeDCElementSDL2(ListDCElementSDL2** l,ElementSDL2 *e);
 /* ------------------------------------------------------- */
 
 
@@ -224,16 +232,18 @@ ListElementSDL2* initListElementSDL2();
 void freeListElementSDL2(ListElementSDL2* l);
 /**
  * @brief add an element to a list of lists (display code) of lists (plan) of elements
- * @param l : list of lists (display code) of lists (plan) of elements which to add a list (plan)
  * @param e : element to be add
  */
 int addElementSDL2(ElementSDL2* e);
 /**
- * @brief remove an element to a list of lists (display code) of lists (plan) of elements
- * @param l : list of lists (display code) of lists (plan) of elements which to remove an element
- * @param e : element to remove
+ * @brief remove all elements that are marked as deletable (do not use it yourself, used in update)
  */
-int removeElementSDL2(ElementSDL2* e);
+void cleanElementSDL2();
+/**
+ * @brief mark an element as removable
+ * @param e : element to be removed
+ */
+void removeElementSDL2(ElementSDL2 *e);
 /* ------------------------------------------------------- */
 
 
