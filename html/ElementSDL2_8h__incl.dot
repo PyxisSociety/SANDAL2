@@ -12,7 +12,7 @@ digraph "ElementSDL2.h"
   Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node5 [label="FontSDL2.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$FontSDL2_8h.html",tooltip="Information about TTF objects. "];
   Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node6 [label="FenetreSDL2.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$FenetreSDL2_8h_source.html"];
+  Node6 [label="FenetreSDL2.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$FenetreSDL2_8h.html",tooltip="Contains all structures related to windows but only those unrelated to Elements. "];
   Node6 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node7 [label="string.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node6 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];

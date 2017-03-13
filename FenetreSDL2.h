@@ -9,6 +9,11 @@
 #include <SDL2/SDL_image.h>
 
 /**
+ * @file FenetreSDL2.h
+ * @brief Contains all structures related to windows but only those unrelated to Elements.
+ */
+
+/**
  * @brief Get the absolute value of a variable
  */
 #define absolu(a) ((a>0)?a:-a)
@@ -25,7 +30,7 @@ struct ListElementSDL2;
 
 /**
  * @struct FenetreSDL2
- * @brief SDL2TK window 
+ * @brief SANDAL2 window 
  */
 typedef struct FenetreSDL2{
   int height;

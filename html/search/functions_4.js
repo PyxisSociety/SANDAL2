@@ -1,6 +1,7 @@
 var searchData=
 [
   ['freeelementsdl2',['freeElementSDL2',['../ElementSDL2_8h.html#acc0973450b49d909d03dacc6c7312c2b',1,'ElementSDL2.c']]],
+  ['freefenetresdl2',['freeFenetreSDL2',['../SANDAL2_8h.html#a0989bb6918f4525b221e184c4568537a',1,'SANDAL2.c']]],
   ['freefontsdl2',['freeFontSDL2',['../FontSDL2_8h.html#aeb528bdaab9f5659d167d9da09a41e4c',1,'FontSDL2.c']]],
   ['freehitbox',['freeHitBox',['../HitBox_8h.html#a0def7ba8b84923bc5dd5ae5d5c7715a4',1,'HitBox.c']]],
   ['freelistdcelementsdl2',['freeListDCElementSDL2',['../ElementSDL2_8h.html#aca3e2afd13846e75fe7922c2b8f322f0',1,'ElementSDL2.c']]],

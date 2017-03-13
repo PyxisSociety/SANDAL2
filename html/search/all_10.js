@@ -13,6 +13,7 @@ var searchData=
   ['renderer',['renderer',['../structFenetreSDL2.html#a0e062f2e34853fc0f3c7f41c8f664409',1,'FenetreSDL2']]],
   ['replaceelementsdl2',['replaceElementSDL2',['../ElementSDL2_8h.html#a5d4edc71868ecf9b647fdd53ea1468a0',1,'ElementSDL2.c']]],
   ['resizeelementsdl2',['resizeElementSDL2',['../ElementSDL2_8h.html#ae3d1e448447f0ec180ab6a115e3ec160',1,'ElementSDL2.c']]],
+  ['resizefenetresdl2',['resizeFenetreSDL2',['../FenetreSDL2_8h.html#a9e10c54c89763604259c631e9f1b3362',1,'FenetreSDL2.c']]],
   ['rotation',['rotation',['../structElementSDL2.html#a8bbd5c157ceaba03f33b77e71daa7a79',1,'ElementSDL2']]],
   ['rotspeed',['rotSpeed',['../structElementSDL2.html#a46a53dcb3d0d119e5df7cd276de2c4ae',1,'ElementSDL2']]],
   ['rx',['rX',['../structCircleSDL2.html#a3e1bbbd4b8e28aaa64d556b5d44c38c7',1,'CircleSDL2']]],

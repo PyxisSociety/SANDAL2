@@ -4,7 +4,7 @@
 #include "ElementSDL2.h"
 
 /**
- * @file SDL2TK.h
+ * @file SANDAL2.h
  * @brief File to include, include everything else.
  *  Compilation flags to use :
  *    -lSDL2 -lSDL2_ttf -lSDL2_image -lm

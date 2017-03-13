@@ -1,0 +1,335 @@
+\hypertarget{SANDAL2_8h}{}\section{S\+A\+N\+D\+A\+L2.\+h File Reference}
+\label{SANDAL2_8h}\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+
+
+File to include, include everything else. Compilation flags to use \+: -\/l\+S\+D\+L2 -\/l\+S\+D\+L2\+\_\+ttf -\/l\+S\+D\+L2\+\_\+image -\/lm.  
+
+
+{\ttfamily \#include \char`\"{}Element\+S\+D\+L2.\+h\char`\"{}}\\*
+Include dependency graph for S\+A\+N\+D\+A\+L2.\+h\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{SANDAL2_8h_ad537ef8fe4a84d613f1e38c05e771c94}{init\+All\+S\+D\+L2} (int image\+Flags)
+\begin{DoxyCompactList}\small\item\em Initialisation of S\+D\+L2, its image and fonts (return 1 if S\+D\+L2 initialisation error, 2 if image initialisation error, 3 if font initialisation error, 0 if not) using S\+D\+L2\textquotesingle{}s image flags. \end{DoxyCompactList}\item 
+void \hyperlink{SANDAL2_8h_a66c4e05613569e4f7943ac9edb57dbf7}{close\+All\+S\+D\+L2} ()\hypertarget{SANDAL2_8h_a66c4e05613569e4f7943ac9edb57dbf7}{}\label{SANDAL2_8h_a66c4e05613569e4f7943ac9edb57dbf7}
+
+\begin{DoxyCompactList}\small\item\em Close S\+D\+L2, images and font. \end{DoxyCompactList}\item 
+int \hyperlink{SANDAL2_8h_a01bf8251dec7ff78e84c0128658c51b3}{init\+S\+D\+L2} ()
+\begin{DoxyCompactList}\small\item\em Initialisation of S\+D\+L2 alone. \end{DoxyCompactList}\item 
+int \hyperlink{SANDAL2_8h_a5f3f01c6686a767dce94cf37e9017ba7}{init\+Image} (int image\+Flags)
+\begin{DoxyCompactList}\small\item\em Initialisation of images alone. \end{DoxyCompactList}\item 
+int \hyperlink{SANDAL2_8h_ae77b49097e2b9c9ad4b1f4a09abd4eff}{init\+Texte} ()
+\begin{DoxyCompactList}\small\item\em Initialisation of text alone. \end{DoxyCompactList}\item 
+void \hyperlink{SANDAL2_8h_a13e455075c9cf7e333194e280095c2b2}{close\+S\+D\+L2} ()\hypertarget{SANDAL2_8h_a13e455075c9cf7e333194e280095c2b2}{}\label{SANDAL2_8h_a13e455075c9cf7e333194e280095c2b2}
+
+\begin{DoxyCompactList}\small\item\em Close S\+D\+L2. \end{DoxyCompactList}\item 
+void \hyperlink{SANDAL2_8h_a4413fc24f9f51cd13c6be8d28a9eac17}{close\+Image} ()\hypertarget{SANDAL2_8h_a4413fc24f9f51cd13c6be8d28a9eac17}{}\label{SANDAL2_8h_a4413fc24f9f51cd13c6be8d28a9eac17}
+
+\begin{DoxyCompactList}\small\item\em Close images. \end{DoxyCompactList}\item 
+void \hyperlink{SANDAL2_8h_a68e9d4a4b36d4fff7b60781d5c01473f}{close\+Texte} ()\hypertarget{SANDAL2_8h_a68e9d4a4b36d4fff7b60781d5c01473f}{}\label{SANDAL2_8h_a68e9d4a4b36d4fff7b60781d5c01473f}
+
+\begin{DoxyCompactList}\small\item\em Close font. \end{DoxyCompactList}\item 
+void \hyperlink{SANDAL2_8h_a0989bb6918f4525b221e184c4568537a}{free\+Fenetre\+S\+D\+L2} (\hyperlink{structFenetreSDL2}{Fenetre\+S\+D\+L2} $\ast$fen)\hypertarget{SANDAL2_8h_a0989bb6918f4525b221e184c4568537a}{}\label{SANDAL2_8h_a0989bb6918f4525b221e184c4568537a}
+
+\begin{DoxyCompactList}\small\item\em Free a window\textquotesingle{}s memory. \end{DoxyCompactList}\item 
+void \hyperlink{SANDAL2_8h_a8eca1719eacdcf9a0c44bacdc6baf138}{init\+Fenetre\+S\+D\+L2} (int width, int height, char $\ast$title, int S\+D\+L\+Flags, int background\mbox{[}4\mbox{]}, int display\+Code)
+\begin{DoxyCompactList}\small\item\em Add a window to the list of windows. \end{DoxyCompactList}\item 
+void \hyperlink{SANDAL2_8h_addc21e90237a1cefe5ecdb60b6bf862b}{update\+Fenetre\+S\+D\+L2} ()\hypertarget{SANDAL2_8h_addc21e90237a1cefe5ecdb60b6bf862b}{}\label{SANDAL2_8h_addc21e90237a1cefe5ecdb60b6bf862b}
+
+\begin{DoxyCompactList}\small\item\em update all the elements of the current window \end{DoxyCompactList}\item 
+void \hyperlink{SANDAL2_8h_a8e237da3be4f5561db27baf3ed609973}{display\+Fenetre\+S\+D\+L2} ()\hypertarget{SANDAL2_8h_a8e237da3be4f5561db27baf3ed609973}{}\label{SANDAL2_8h_a8e237da3be4f5561db27baf3ed609973}
+
+\begin{DoxyCompactList}\small\item\em actualise the display of the current window \end{DoxyCompactList}\item 
+void \hyperlink{SANDAL2_8h_ae07deede3e01641b9497402a16bf9d81}{click\+Fenetre\+S\+D\+L2} (int x, int y)
+\begin{DoxyCompactList}\small\item\em activation of click events on the current window \end{DoxyCompactList}\item 
+void \hyperlink{SANDAL2_8h_a78c307896d23a509390c9e28cdaa2bfd}{unclick\+Fenetre\+S\+D\+L2} (int x, int y)
+\begin{DoxyCompactList}\small\item\em activation of unclick events on the current window \end{DoxyCompactList}\item 
+void \hyperlink{SANDAL2_8h_a9d0eebedf71635e474564949d731042c}{key\+Pressed\+Fenetre\+S\+D\+L2} (char c)
+\begin{DoxyCompactList}\small\item\em activation of the key pressed events on the current window \end{DoxyCompactList}\item 
+void \hyperlink{SANDAL2_8h_a7caa31815f5e48bf2ffa2d2b41eefd2b}{key\+Released\+Fenetre\+S\+D\+L2} (char c)
+\begin{DoxyCompactList}\small\item\em activation of the key released events on the current window \end{DoxyCompactList}\item 
+void \hyperlink{SANDAL2_8h_a0b8ee008f996e198c37e300fafcf27ee}{update\+All\+Fenetre\+S\+D\+L2} ()\hypertarget{SANDAL2_8h_a0b8ee008f996e198c37e300fafcf27ee}{}\label{SANDAL2_8h_a0b8ee008f996e198c37e300fafcf27ee}
+
+\begin{DoxyCompactList}\small\item\em update all the elements of all the windows \end{DoxyCompactList}\item 
+void \hyperlink{SANDAL2_8h_acb1872c7ec3455620626af316f354573}{display\+All\+Fenetre\+S\+D\+L2} ()\hypertarget{SANDAL2_8h_acb1872c7ec3455620626af316f354573}{}\label{SANDAL2_8h_acb1872c7ec3455620626af316f354573}
+
+\begin{DoxyCompactList}\small\item\em actualise the display of all the windows \end{DoxyCompactList}\item 
+void \hyperlink{SANDAL2_8h_a1b62984a7fd1ad30b6f5288a8037f19a}{click\+All\+Fenetre\+S\+D\+L2} (int x, int y)
+\begin{DoxyCompactList}\small\item\em activation of click events on all the windows \end{DoxyCompactList}\item 
+void \hyperlink{SANDAL2_8h_a260421423837977fc7d919a4f86a4851}{unclick\+All\+Fenetre\+S\+D\+L2} (int x, int y)
+\begin{DoxyCompactList}\small\item\em activation of unclick events on all the windows \end{DoxyCompactList}\item 
+void \hyperlink{SANDAL2_8h_a59378fb1c8950570b14890f6e1ade854}{key\+Pressed\+All\+Fenetre\+S\+D\+L2} (char c)
+\begin{DoxyCompactList}\small\item\em activation of the key pressed events on all windows \end{DoxyCompactList}\item 
+void \hyperlink{SANDAL2_8h_aaaf8ac6e1c3c5ca289645ec13803a755}{key\+Released\+All\+Fenetre\+S\+D\+L2} (char c)
+\begin{DoxyCompactList}\small\item\em activation of the key released events on all windows \end{DoxyCompactList}\item 
+void \hyperlink{SANDAL2_8h_a4dc3cb5c4129b9270e3c6939ed7d7cc2}{close\+Fenetre\+S\+D\+L2} ()\hypertarget{SANDAL2_8h_a4dc3cb5c4129b9270e3c6939ed7d7cc2}{}\label{SANDAL2_8h_a4dc3cb5c4129b9270e3c6939ed7d7cc2}
+
+\begin{DoxyCompactList}\small\item\em close the current windows and go to the next \end{DoxyCompactList}\item 
+void \hyperlink{SANDAL2_8h_a3b168d842f201a6007993579411b2fa2}{close\+All\+Fenetre\+S\+D\+L2} ()\hypertarget{SANDAL2_8h_a3b168d842f201a6007993579411b2fa2}{}\label{SANDAL2_8h_a3b168d842f201a6007993579411b2fa2}
+
+\begin{DoxyCompactList}\small\item\em close all windows \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structListFenetreSDL2}{List\+Fenetre\+S\+D\+L2} $\ast$ \hyperlink{SANDAL2_8h_a1e089eac67154b191d8945ba155cf1bd}{\+\_\+windows\+\_\+\+S\+D\+L2\+TK}
+\begin{DoxyCompactList}\small\item\em list of windows W\+A\+R\+N\+I\+NG \+: do not touch this variable, never ... trust me \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File to include, include everything else. Compilation flags to use \+: -\/l\+S\+D\+L2 -\/l\+S\+D\+L2\+\_\+ttf -\/l\+S\+D\+L2\+\_\+image -\/lm. 
+
+
+
+\subsection{Function Documentation}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!click\+All\+Fenetre\+S\+D\+L2@{click\+All\+Fenetre\+S\+D\+L2}}
+\index{click\+All\+Fenetre\+S\+D\+L2@{click\+All\+Fenetre\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{click\+All\+Fenetre\+S\+D\+L2(int x, int y)}{clickAllFenetreSDL2(int x, int y)}}]{\setlength{\rightskip}{0pt plus 5cm}void click\+All\+Fenetre\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_a1b62984a7fd1ad30b6f5288a8037f19a}{}\label{SANDAL2_8h_a1b62984a7fd1ad30b6f5288a8037f19a}
+
+
+activation of click events on all the windows 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \+: abscissa coordinate of the mouse during the click \\
+\hline
+{\em y} & \+: ordinate coordinate of the mouse during the click \\
+\hline
+\end{DoxyParams}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!click\+Fenetre\+S\+D\+L2@{click\+Fenetre\+S\+D\+L2}}
+\index{click\+Fenetre\+S\+D\+L2@{click\+Fenetre\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{click\+Fenetre\+S\+D\+L2(int x, int y)}{clickFenetreSDL2(int x, int y)}}]{\setlength{\rightskip}{0pt plus 5cm}void click\+Fenetre\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_ae07deede3e01641b9497402a16bf9d81}{}\label{SANDAL2_8h_ae07deede3e01641b9497402a16bf9d81}
+
+
+activation of click events on the current window 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \+: abscissa coordinate of the mouse during the click \\
+\hline
+{\em y} & \+: ordinate coordinate of the mouse during the click \\
+\hline
+\end{DoxyParams}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!init\+All\+S\+D\+L2@{init\+All\+S\+D\+L2}}
+\index{init\+All\+S\+D\+L2@{init\+All\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{init\+All\+S\+D\+L2(int image\+Flags)}{initAllSDL2(int imageFlags)}}]{\setlength{\rightskip}{0pt plus 5cm}int init\+All\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{int}]{image\+Flags}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_ad537ef8fe4a84d613f1e38c05e771c94}{}\label{SANDAL2_8h_ad537ef8fe4a84d613f1e38c05e771c94}
+
+
+Initialisation of S\+D\+L2, its image and fonts (return 1 if S\+D\+L2 initialisation error, 2 if image initialisation error, 3 if font initialisation error, 0 if not) using S\+D\+L2\textquotesingle{}s image flags. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image\+Flags} & \+: S\+D\+L2\textquotesingle{}s image flags \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+error code 
+\end{DoxyReturn}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!init\+Fenetre\+S\+D\+L2@{init\+Fenetre\+S\+D\+L2}}
+\index{init\+Fenetre\+S\+D\+L2@{init\+Fenetre\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{init\+Fenetre\+S\+D\+L2(int width, int height, char $\ast$title, int S\+D\+L\+Flags, int background[4], int display\+Code)}{initFenetreSDL2(int width, int height, char *title, int SDLFlags, int background[4], int displayCode)}}]{\setlength{\rightskip}{0pt plus 5cm}void init\+Fenetre\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{int}]{width, }
+\item[{int}]{height, }
+\item[{char $\ast$}]{title, }
+\item[{int}]{S\+D\+L\+Flags, }
+\item[{int}]{background\mbox{[}4\mbox{]}, }
+\item[{int}]{display\+Code}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_a8eca1719eacdcf9a0c44bacdc6baf138}{}\label{SANDAL2_8h_a8eca1719eacdcf9a0c44bacdc6baf138}
+
+
+Add a window to the list of windows. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & \+: width of the window \\
+\hline
+{\em height} & \+: height of the window \\
+\hline
+{\em title} & \+: title of the window \\
+\hline
+{\em S\+D\+L\+Flags} & \+: flags of S\+D\+L2 \\
+\hline
+{\em background} & \+: color of the background \\
+\hline
+{\em display\+Code} & \+: display code of the window \\
+\hline
+\end{DoxyParams}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!init\+Image@{init\+Image}}
+\index{init\+Image@{init\+Image}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{init\+Image(int image\+Flags)}{initImage(int imageFlags)}}]{\setlength{\rightskip}{0pt plus 5cm}int init\+Image (
+\begin{DoxyParamCaption}
+\item[{int}]{image\+Flags}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_a5f3f01c6686a767dce94cf37e9017ba7}{}\label{SANDAL2_8h_a5f3f01c6686a767dce94cf37e9017ba7}
+
+
+Initialisation of images alone. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image\+Flags} & \+: S\+D\+L2\textquotesingle{}s image flags \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if success, 1 if failed 
+\end{DoxyReturn}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!init\+S\+D\+L2@{init\+S\+D\+L2}}
+\index{init\+S\+D\+L2@{init\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{init\+S\+D\+L2()}{initSDL2()}}]{\setlength{\rightskip}{0pt plus 5cm}int init\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_a01bf8251dec7ff78e84c0128658c51b3}{}\label{SANDAL2_8h_a01bf8251dec7ff78e84c0128658c51b3}
+
+
+Initialisation of S\+D\+L2 alone. 
+
+\begin{DoxyReturn}{Returns}
+0 if success, 1 if failed 
+\end{DoxyReturn}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!init\+Texte@{init\+Texte}}
+\index{init\+Texte@{init\+Texte}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{init\+Texte()}{initTexte()}}]{\setlength{\rightskip}{0pt plus 5cm}int init\+Texte (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_ae77b49097e2b9c9ad4b1f4a09abd4eff}{}\label{SANDAL2_8h_ae77b49097e2b9c9ad4b1f4a09abd4eff}
+
+
+Initialisation of text alone. 
+
+\begin{DoxyReturn}{Returns}
+0 if success, 1 if failed 
+\end{DoxyReturn}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!key\+Pressed\+All\+Fenetre\+S\+D\+L2@{key\+Pressed\+All\+Fenetre\+S\+D\+L2}}
+\index{key\+Pressed\+All\+Fenetre\+S\+D\+L2@{key\+Pressed\+All\+Fenetre\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{key\+Pressed\+All\+Fenetre\+S\+D\+L2(char c)}{keyPressedAllFenetreSDL2(char c)}}]{\setlength{\rightskip}{0pt plus 5cm}void key\+Pressed\+All\+Fenetre\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{char}]{c}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_a59378fb1c8950570b14890f6e1ade854}{}\label{SANDAL2_8h_a59378fb1c8950570b14890f6e1ade854}
+
+
+activation of the key pressed events on all windows 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & \+: key which was pressed \\
+\hline
+\end{DoxyParams}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!key\+Pressed\+Fenetre\+S\+D\+L2@{key\+Pressed\+Fenetre\+S\+D\+L2}}
+\index{key\+Pressed\+Fenetre\+S\+D\+L2@{key\+Pressed\+Fenetre\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{key\+Pressed\+Fenetre\+S\+D\+L2(char c)}{keyPressedFenetreSDL2(char c)}}]{\setlength{\rightskip}{0pt plus 5cm}void key\+Pressed\+Fenetre\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{char}]{c}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_a9d0eebedf71635e474564949d731042c}{}\label{SANDAL2_8h_a9d0eebedf71635e474564949d731042c}
+
+
+activation of the key pressed events on the current window 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & \+: key which was pressed \\
+\hline
+\end{DoxyParams}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!key\+Released\+All\+Fenetre\+S\+D\+L2@{key\+Released\+All\+Fenetre\+S\+D\+L2}}
+\index{key\+Released\+All\+Fenetre\+S\+D\+L2@{key\+Released\+All\+Fenetre\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{key\+Released\+All\+Fenetre\+S\+D\+L2(char c)}{keyReleasedAllFenetreSDL2(char c)}}]{\setlength{\rightskip}{0pt plus 5cm}void key\+Released\+All\+Fenetre\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{char}]{c}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_aaaf8ac6e1c3c5ca289645ec13803a755}{}\label{SANDAL2_8h_aaaf8ac6e1c3c5ca289645ec13803a755}
+
+
+activation of the key released events on all windows 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & \+: key which was released \\
+\hline
+\end{DoxyParams}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!key\+Released\+Fenetre\+S\+D\+L2@{key\+Released\+Fenetre\+S\+D\+L2}}
+\index{key\+Released\+Fenetre\+S\+D\+L2@{key\+Released\+Fenetre\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{key\+Released\+Fenetre\+S\+D\+L2(char c)}{keyReleasedFenetreSDL2(char c)}}]{\setlength{\rightskip}{0pt plus 5cm}void key\+Released\+Fenetre\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{char}]{c}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_a7caa31815f5e48bf2ffa2d2b41eefd2b}{}\label{SANDAL2_8h_a7caa31815f5e48bf2ffa2d2b41eefd2b}
+
+
+activation of the key released events on the current window 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & \+: key which was released \\
+\hline
+\end{DoxyParams}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!unclick\+All\+Fenetre\+S\+D\+L2@{unclick\+All\+Fenetre\+S\+D\+L2}}
+\index{unclick\+All\+Fenetre\+S\+D\+L2@{unclick\+All\+Fenetre\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{unclick\+All\+Fenetre\+S\+D\+L2(int x, int y)}{unclickAllFenetreSDL2(int x, int y)}}]{\setlength{\rightskip}{0pt plus 5cm}void unclick\+All\+Fenetre\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_a260421423837977fc7d919a4f86a4851}{}\label{SANDAL2_8h_a260421423837977fc7d919a4f86a4851}
+
+
+activation of unclick events on all the windows 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \+: abscissa coordinate of the mouse during the unclick \\
+\hline
+{\em y} & \+: ordinate coordinate of the mouse during the unclick \\
+\hline
+\end{DoxyParams}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!unclick\+Fenetre\+S\+D\+L2@{unclick\+Fenetre\+S\+D\+L2}}
+\index{unclick\+Fenetre\+S\+D\+L2@{unclick\+Fenetre\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{unclick\+Fenetre\+S\+D\+L2(int x, int y)}{unclickFenetreSDL2(int x, int y)}}]{\setlength{\rightskip}{0pt plus 5cm}void unclick\+Fenetre\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_a78c307896d23a509390c9e28cdaa2bfd}{}\label{SANDAL2_8h_a78c307896d23a509390c9e28cdaa2bfd}
+
+
+activation of unclick events on the current window 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \+: abscissa coordinate of the mouse during the unclick \\
+\hline
+{\em y} & \+: ordinate coordinate of the mouse during the unclick \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Variable Documentation}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!\+\_\+windows\+\_\+\+S\+D\+L2\+TK@{\+\_\+windows\+\_\+\+S\+D\+L2\+TK}}
+\index{\+\_\+windows\+\_\+\+S\+D\+L2\+TK@{\+\_\+windows\+\_\+\+S\+D\+L2\+TK}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{\+\_\+windows\+\_\+\+S\+D\+L2\+TK}{_windows_SDL2TK}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf List\+Fenetre\+S\+D\+L2}$\ast$ \+\_\+windows\+\_\+\+S\+D\+L2\+TK}\hypertarget{SANDAL2_8h_a1e089eac67154b191d8945ba155cf1bd}{}\label{SANDAL2_8h_a1e089eac67154b191d8945ba155cf1bd}
+
+
+list of windows W\+A\+R\+N\+I\+NG \+: do not touch this variable, never ... trust me 
+
+List of the windows W\+A\+R\+N\+I\+NG \+: do not touch it ... trust me.
+
+list of windows W\+A\+R\+N\+I\+NG \+: do not touch this variable, never ... trust me 

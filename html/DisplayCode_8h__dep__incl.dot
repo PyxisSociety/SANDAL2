@@ -6,5 +6,5 @@ digraph "DisplayCode.h"
   Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 [label="ElementSDL2.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ElementSDL2_8h.html",tooltip="Contains all structures related to Elements. "];
   Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 [label="SANDAL2.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SANDAL2_8h_source.html"];
+  Node3 [label="SANDAL2.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SANDAL2_8h.html",tooltip="File to include, include everything else. Compilation flags to use : -lSDL2 -lSDL2_ttf -lSDL2_image -..."];
 }

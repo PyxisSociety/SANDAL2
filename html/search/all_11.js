@@ -1,10 +1,12 @@
 var searchData=
 [
   ['sandal2',['SANDAL2',['../md_README.html',1,'']]],
+  ['sandal2_2eh',['SANDAL2.h',['../SANDAL2_8h.html',1,'']]],
   ['sens',['sens',['../structLineSDL2.html#af3899a41b666d9aa2281ae1bc833d5e7',1,'LineSDL2']]],
   ['setactionelementsdl2',['setActionElementSDL2',['../ElementSDL2_8h.html#adc55495e7fd38c24182c666f5e27cf68',1,'ElementSDL2.c']]],
   ['setangleelementsdl2',['setAngleElementSDL2',['../ElementSDL2_8h.html#ad0c26c9ec304f41938f36734ba689c36',1,'ElementSDL2.c']]],
   ['setcolorelementsdl2',['setColorElementSDL2',['../ElementSDL2_8h.html#af702b89bddffe64eb1353d2883bfb593',1,'ElementSDL2.c']]],
+  ['setcolorfenetresdl2',['setColorFenetreSDL2',['../FenetreSDL2_8h.html#a8f431ff0a889126841c662c161b32a73',1,'FenetreSDL2.c']]],
   ['setdataelementsdl2',['setDataElementSDL2',['../ElementSDL2_8h.html#a8335fb6c08b9256c244bff44f4fb5500',1,'ElementSDL2.c']]],
   ['setdisplayelementsdl2',['setDisplayElementSDL2',['../ElementSDL2_8h.html#a09ef66460ba6aa4211a679dd859edc8b',1,'ElementSDL2.c']]],
   ['setfontelementsdl2',['setFontElementSDL2',['../ElementSDL2_8h.html#a190c8bd60db107b6cc5db8c27e57690d',1,'ElementSDL2.c']]],
