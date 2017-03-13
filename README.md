@@ -64,7 +64,7 @@ graphic display easier.
 
 ### I. To begin with
 
-To begin with, you'll have to initialise SDL2 with initAllSDL2 for image, ttf and SDL2, or one of the
+   <dd>To begin with, you'll have to initialise SDL2 with initAllSDL2 for image, ttf and SDL2, or one of the
 specific function in SANDAL2.h. Do not forget to close the SDL2 with either closeAllSDL2 or one or more functions
 in SANDAL2.h.<br/>
    Then you'll want to create a window (or more). For that, use the initFenetreSDL2 function. Then you can had
