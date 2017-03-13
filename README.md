@@ -75,6 +75,6 @@ about right now when specific conditions are met. You will not have to look when
 function to call when a key is pressed. For that, use the functions like clickFenetreSDL2 or keyPressedFenetreSDL2.
 When you want to update all your elements and the current window, use updateFenetreSDL2. For displaying, use displayFenetreSDL2. If you want to do that for every single window, use the 'all' version like displayAllFenetreSDL2 or unclickAllFenetreSDL2. Then again, do not forget to close your windows with closeFenetreSDL2 or closeAllFenetreSDL2.
 Those functions are in SANDAL2.h.<br/><br/>
-   If you want to iterate through all the windows, you can use initIteratorFenetreSDL2 and nextFenetreSDL2. You can also get and set informations about the window with all the functions in FenetreSDL2.h.<br/><br/>
+   If you want to iterate through all the windows, you can use initIteratorFenetreSDL2 and nextFenetreSDL2. You can also get and set informations about the window with all the functions in FenetreSDL2.h.<br/>
 
 ### II. Element manipulations
