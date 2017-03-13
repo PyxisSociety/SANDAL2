@@ -50,4 +50,13 @@ S\+A\+N\+D\+A\+L2 is a S\+D\+L2 wrapper which purpose is to make objects managme
 
 \subsubsection*{I. To begin with}
 
+To begin with, you\textquotesingle{}ll have to initialise S\+D\+L2 with init\+All\+S\+D\+L2 for image, ttf and S\+D\+L2, or one of the specific function in \hyperlink{SANDAL2_8h}{S\+A\+N\+D\+A\+L2.\+h}. Do not forget to close the S\+D\+L2 with either close\+All\+S\+D\+L2 or one or more functions in \hyperlink{SANDAL2_8h}{S\+A\+N\+D\+A\+L2.\+h}.~\newline
+~\newline
+ Then you\textquotesingle{}ll want to create a window (or more). For that, use the init\+Fenetre\+S\+D\+L2 function. Then you can had elements in it with all the create functions in \hyperlink{ElementSDL2_8h}{Element\+S\+D\+L2.\+h} like create\+Block or create\+Entry\+Image for example. We will see later what you can do with all those elements more in details.~\newline
+~\newline
+ For the event management, you can bind functions to elements which will be called in the functions we will speak about right now when specific conditions are met. You will not have to look when you touch an elements or what function to call when a key is pressed. For that, use the functions like click\+Fenetre\+S\+D\+L2 or key\+Pressed\+Fenetre\+S\+D\+L2. When you want to update all your elements and the current window, use update\+Fenetre\+S\+D\+L2. For displaying, use display\+Fenetre\+S\+D\+L2. If you want to do that for every single window, use the \textquotesingle{}all\textquotesingle{} version like display\+All\+Fenetre\+S\+D\+L2 or unclick\+All\+Fenetre\+S\+D\+L2. Then again, do not forget to close your windows with close\+Fenetre\+S\+D\+L2 or close\+All\+Fenetre\+S\+D\+L2. Those functions are in \hyperlink{SANDAL2_8h}{S\+A\+N\+D\+A\+L2.\+h}.~\newline
+~\newline
+ If you want to iterate through all the windows, you can use init\+Iterator\+Fenetre\+S\+D\+L2 and next\+Fenetre\+S\+D\+L2. You can also get and set informations about the window with all the functions in \hyperlink{FenetreSDL2_8h}{Fenetre\+S\+D\+L2.\+h}.~\newline
+
+
 \subsubsection*{II. Element manipulations}

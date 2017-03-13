@@ -18,5 +18,6 @@ var searchData=
   ['settextcolorelementsdl2',['setTextColorElementSDL2',['../ElementSDL2_8h.html#aa3ca69091e359651d361fb2bbecfb232',1,'ElementSDL2.c']]],
   ['settextelementsdl2',['setTextElementSDL2',['../ElementSDL2_8h.html#aae08d971a53f9cb5eceff1d9c4d12ad4',1,'ElementSDL2.c']]],
   ['settextsize',['setTextSize',['../ElementSDL2_8h.html#ae537b628085316fc17acc2abe3cee7f7',1,'ElementSDL2.c']]],
-  ['setunclickelementsdl2',['setUnClickElementSDL2',['../ElementSDL2_8h.html#a3a1479f67838a34df58e6ad06f782347',1,'ElementSDL2.c']]]
+  ['setunclickelementsdl2',['setUnClickElementSDL2',['../ElementSDL2_8h.html#a3a1479f67838a34df58e6ad06f782347',1,'ElementSDL2.c']]],
+  ['setunselectelementsdl2',['setUnSelectElementSDL2',['../ElementSDL2_8h.html#aa930b6acc358145b20f4f88f808521a8',1,'ElementSDL2.c']]]
 ];

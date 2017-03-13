@@ -108,6 +108,8 @@ int \hyperlink{ElementSDL2_8h_a0078977afdf7b6911fcf7531b2e2f109}{get\+Rotation\+
 \begin{DoxyCompactList}\small\item\em getter for the element\textquotesingle{}s rotation speed \end{DoxyCompactList}\item 
 void $\ast$ \hyperlink{ElementSDL2_8h_a16b5a090adbd595af3a753bb73d2b527}{get\+Data\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e)
 \begin{DoxyCompactList}\small\item\em getter for the element\textquotesingle{}s data \end{DoxyCompactList}\item 
+int \hyperlink{ElementSDL2_8h_a92a02f9368dcba350197a618189d3fcd}{is\+Selected\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e, int $\ast$select)
+\begin{DoxyCompactList}\small\item\em tells whether or not the element is selected \end{DoxyCompactList}\item 
 void \hyperlink{ElementSDL2_8h_a190c8bd60db107b6cc5db8c27e57690d}{set\+Font\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e, char $\ast$font)
 \begin{DoxyCompactList}\small\item\em set the element\textquotesingle{}s font \end{DoxyCompactList}\item 
 void \hyperlink{ElementSDL2_8h_aae08d971a53f9cb5eceff1d9c4d12ad4}{set\+Text\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e, char $\ast$text)
@@ -144,6 +146,8 @@ void \hyperlink{ElementSDL2_8h_abd06d06aca3fa3777d70196c116740e7}{set\+On\+Click
 \begin{DoxyCompactList}\small\item\em set the behaviour of an element when it is clicked \end{DoxyCompactList}\item 
 void \hyperlink{ElementSDL2_8h_a3a1479f67838a34df58e6ad06f782347}{set\+Un\+Click\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e, void($\ast$un\+C\+Lick)(\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$))
 \begin{DoxyCompactList}\small\item\em set the behaviour of an element when it is unclicked \end{DoxyCompactList}\item 
+void \hyperlink{ElementSDL2_8h_aa930b6acc358145b20f4f88f808521a8}{set\+Un\+Select\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e, void($\ast$un\+Select)(\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$))
+\begin{DoxyCompactList}\small\item\em set the behaiour of an element when it is unselect \end{DoxyCompactList}\item 
 void \hyperlink{ElementSDL2_8h_abfce8c15cf8be2c86af2821f259629ef}{add\+Element\+To\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e, \hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$add)
 \begin{DoxyCompactList}\small\item\em add an element to another so that this other can modifie the first one \end{DoxyCompactList}\item 
 void \hyperlink{ElementSDL2_8h_a4ec060fcc67d49c8fcbf78ec1b82decb}{del\+Element\+To\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e, \hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$del)
@@ -1023,6 +1027,28 @@ tell whether or not the element can be displaied
 \begin{DoxyReturn}{Returns}
 1 if the element is displaied, 0 if not 
 \end{DoxyReturn}
+\index{Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}!is\+Selected\+Element\+S\+D\+L2@{is\+Selected\+Element\+S\+D\+L2}}
+\index{is\+Selected\+Element\+S\+D\+L2@{is\+Selected\+Element\+S\+D\+L2}!Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{is\+Selected\+Element\+S\+D\+L2(\+Element\+S\+D\+L2 $\ast$e, int $\ast$select)}{isSelectedElementSDL2(ElementSDL2 *e, int *select)}}]{\setlength{\rightskip}{0pt plus 5cm}int is\+Selected\+Element\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{{\bf Element\+S\+D\+L2} $\ast$}]{e, }
+\item[{int $\ast$}]{select}
+\end{DoxyParamCaption}
+)}\hypertarget{ElementSDL2_8h_a92a02f9368dcba350197a618189d3fcd}{}\label{ElementSDL2_8h_a92a02f9368dcba350197a618189d3fcd}
+
+
+tells whether or not the element is selected 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & \+: element to get the information from \\
+\hline
+{\em select} & \+: where to store the information \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if there was an error, 0 if not 
+\end{DoxyReturn}
 \index{Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}!move\+Element\+S\+D\+L2@{move\+Element\+S\+D\+L2}}
 \index{move\+Element\+S\+D\+L2@{move\+Element\+S\+D\+L2}!Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}}
 \subsubsection[{\texorpdfstring{move\+Element\+S\+D\+L2(\+Element\+S\+D\+L2 $\ast$e, float x, float y)}{moveElementSDL2(ElementSDL2 *e, float x, float y)}}]{\setlength{\rightskip}{0pt plus 5cm}void move\+Element\+S\+D\+L2 (
@@ -1562,5 +1588,24 @@ set the behaviour of an element when it is unclicked
 {\em e} & \+: element to be modified \\
 \hline
 {\em un\+C\+Lick} & \+: function to be called when it is unclicked \\
+\hline
+\end{DoxyParams}
+\index{Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}!set\+Un\+Select\+Element\+S\+D\+L2@{set\+Un\+Select\+Element\+S\+D\+L2}}
+\index{set\+Un\+Select\+Element\+S\+D\+L2@{set\+Un\+Select\+Element\+S\+D\+L2}!Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{set\+Un\+Select\+Element\+S\+D\+L2(\+Element\+S\+D\+L2 $\ast$e, void($\ast$un\+Select)(\+Element\+S\+D\+L2 $\ast$))}{setUnSelectElementSDL2(ElementSDL2 *e, void(*unSelect)(ElementSDL2 *))}}]{\setlength{\rightskip}{0pt plus 5cm}void set\+Un\+Select\+Element\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{{\bf Element\+S\+D\+L2} $\ast$}]{e, }
+\item[{void($\ast$)({\bf Element\+S\+D\+L2} $\ast$)}]{un\+Select}
+\end{DoxyParamCaption}
+)}\hypertarget{ElementSDL2_8h_aa930b6acc358145b20f4f88f808521a8}{}\label{ElementSDL2_8h_aa930b6acc358145b20f4f88f808521a8}
+
+
+set the behaiour of an element when it is unselect 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & \+: element to be modified \\
+\hline
+{\em un\+Select} & \+: new behaviour \\
 \hline
 \end{DoxyParams}

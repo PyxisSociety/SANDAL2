@@ -240,6 +240,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Elem
 <tr class="memitem:a16b5a090adbd595af3a753bb73d2b527"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ElementSDL2_8h.html#a16b5a090adbd595af3a753bb73d2b527">getDataElementSDL2</a> (<a class="el" href="structElementSDL2.html">ElementSDL2</a> *e)</td></tr>
 <tr class="memdesc:a16b5a090adbd595af3a753bb73d2b527"><td class="mdescLeft">&#160;</td><td class="mdescRight">getter for the element's data  <a href="#a16b5a090adbd595af3a753bb73d2b527">More...</a><br /></td></tr>
 <tr class="separator:a16b5a090adbd595af3a753bb73d2b527"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92a02f9368dcba350197a618189d3fcd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ElementSDL2_8h.html#a92a02f9368dcba350197a618189d3fcd">isSelectedElementSDL2</a> (<a class="el" href="structElementSDL2.html">ElementSDL2</a> *e, int *select)</td></tr>
+<tr class="memdesc:a92a02f9368dcba350197a618189d3fcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">tells whether or not the element is selected  <a href="#a92a02f9368dcba350197a618189d3fcd">More...</a><br /></td></tr>
+<tr class="separator:a92a02f9368dcba350197a618189d3fcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a190c8bd60db107b6cc5db8c27e57690d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ElementSDL2_8h.html#a190c8bd60db107b6cc5db8c27e57690d">setFontElementSDL2</a> (<a class="el" href="structElementSDL2.html">ElementSDL2</a> *e, char *font)</td></tr>
 <tr class="memdesc:a190c8bd60db107b6cc5db8c27e57690d"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the element's font  <a href="#a190c8bd60db107b6cc5db8c27e57690d">More...</a><br /></td></tr>
 <tr class="separator:a190c8bd60db107b6cc5db8c27e57690d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -294,6 +297,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Elem
 <tr class="memitem:a3a1479f67838a34df58e6ad06f782347"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ElementSDL2_8h.html#a3a1479f67838a34df58e6ad06f782347">setUnClickElementSDL2</a> (<a class="el" href="structElementSDL2.html">ElementSDL2</a> *e, void(*unCLick)(<a class="el" href="structElementSDL2.html">ElementSDL2</a> *))</td></tr>
 <tr class="memdesc:a3a1479f67838a34df58e6ad06f782347"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the behaviour of an element when it is unclicked  <a href="#a3a1479f67838a34df58e6ad06f782347">More...</a><br /></td></tr>
 <tr class="separator:a3a1479f67838a34df58e6ad06f782347"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa930b6acc358145b20f4f88f808521a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ElementSDL2_8h.html#aa930b6acc358145b20f4f88f808521a8">setUnSelectElementSDL2</a> (<a class="el" href="structElementSDL2.html">ElementSDL2</a> *e, void(*unSelect)(<a class="el" href="structElementSDL2.html">ElementSDL2</a> *))</td></tr>
+<tr class="memdesc:aa930b6acc358145b20f4f88f808521a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the behaiour of an element when it is unselect  <a href="#aa930b6acc358145b20f4f88f808521a8">More...</a><br /></td></tr>
+<tr class="separator:aa930b6acc358145b20f4f88f808521a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abfce8c15cf8be2c86af2821f259629ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ElementSDL2_8h.html#abfce8c15cf8be2c86af2821f259629ef">addElementToElementSDL2</a> (<a class="el" href="structElementSDL2.html">ElementSDL2</a> *e, <a class="el" href="structElementSDL2.html">ElementSDL2</a> *add)</td></tr>
 <tr class="memdesc:abfce8c15cf8be2c86af2821f259629ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">add an element to another so that this other can modifie the first one  <a href="#abfce8c15cf8be2c86af2821f259629ef">More...</a><br /></td></tr>
 <tr class="separator:abfce8c15cf8be2c86af2821f259629ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1873,6 +1879,42 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a92a02f9368dcba350197a618189d3fcd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int isSelectedElementSDL2 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structElementSDL2.html">ElementSDL2</a> *&#160;</td>
+          <td class="paramname"><em>e</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>select</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>tells whether or not the element is selected </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">e</td><td>: element to get the information from </td></tr>
+    <tr><td class="paramname">select</td><td>: where to store the information </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if there was an error, 0 if not </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a02f7c7066562374a2ab1b8c779b8dc20"></a>
 <div class="memitem">
 <div class="memproto">
@@ -2856,6 +2898,41 @@ Variables</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">e</td><td>: element to be modified </td></tr>
     <tr><td class="paramname">unCLick</td><td>: function to be called when it is unclicked </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aa930b6acc358145b20f4f88f808521a8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setUnSelectElementSDL2 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structElementSDL2.html">ElementSDL2</a> *&#160;</td>
+          <td class="paramname"><em>e</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void(*)(<a class="el" href="structElementSDL2.html">ElementSDL2</a> *)&#160;</td>
+          <td class="paramname"><em>unSelect</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>set the behaiour of an element when it is unselect </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">e</td><td>: element to be modified </td></tr>
+    <tr><td class="paramname">unSelect</td><td>: new behaviour </td></tr>
   </table>
   </dd>
 </dl>

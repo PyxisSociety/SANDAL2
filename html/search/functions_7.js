@@ -15,5 +15,6 @@ var searchData=
   ['initlistptrelementsdl2',['initListPtrElementSDL2',['../ElementSDL2_8h.html#afdcbcd7ee82d1455d690c378d2cb3517',1,'ElementSDL2.c']]],
   ['initsdl2',['initSDL2',['../SANDAL2_8h.html#a01bf8251dec7ff78e84c0128658c51b3',1,'SANDAL2.c']]],
   ['inittexte',['initTexte',['../SANDAL2_8h.html#ae77b49097e2b9c9ad4b1f4a09abd4eff',1,'SANDAL2.c']]],
-  ['isdisplaied',['isDisplaied',['../ElementSDL2_8h.html#ade52f46cef352da9d226a1a1d9e01b19',1,'ElementSDL2.c']]]
+  ['isdisplaied',['isDisplaied',['../ElementSDL2_8h.html#ade52f46cef352da9d226a1a1d9e01b19',1,'ElementSDL2.c']]],
+  ['isselectedelementsdl2',['isSelectedElementSDL2',['../ElementSDL2_8h.html#a92a02f9368dcba350197a618189d3fcd',1,'ElementSDL2.c']]]
 ];

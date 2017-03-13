@@ -112,6 +112,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ol>
 <h2>Functionnality</h2>
 <h3>I. To begin with</h3>
+<p>To begin with, you'll have to initialise SDL2 with initAllSDL2 for image, ttf and SDL2, or one of the specific function in <a class="el" href="SANDAL2_8h.html" title="File to include, include everything else. Compilation flags to use : -lSDL2 -lSDL2_ttf -lSDL2_image -...">SANDAL2.h</a>. Do not forget to close the SDL2 with either closeAllSDL2 or one or more functions in <a class="el" href="SANDAL2_8h.html" title="File to include, include everything else. Compilation flags to use : -lSDL2 -lSDL2_ttf -lSDL2_image -...">SANDAL2.h</a>.<br />
+<br />
+ Then you'll want to create a window (or more). For that, use the initFenetreSDL2 function. Then you can had elements in it with all the create functions in <a class="el" href="ElementSDL2_8h.html" title="Contains all structures related to Elements. ">ElementSDL2.h</a> like createBlock or createEntryImage for example. We will see later what you can do with all those elements more in details.<br />
+<br />
+ For the event management, you can bind functions to elements which will be called in the functions we will speak about right now when specific conditions are met. You will not have to look when you touch an elements or what function to call when a key is pressed. For that, use the functions like clickFenetreSDL2 or keyPressedFenetreSDL2. When you want to update all your elements and the current window, use updateFenetreSDL2. For displaying, use displayFenetreSDL2. If you want to do that for every single window, use the 'all' version like displayAllFenetreSDL2 or unclickAllFenetreSDL2. Then again, do not forget to close your windows with closeFenetreSDL2 or closeAllFenetreSDL2. Those functions are in <a class="el" href="SANDAL2_8h.html" title="File to include, include everything else. Compilation flags to use : -lSDL2 -lSDL2_ttf -lSDL2_image -...">SANDAL2.h</a>.<br />
+<br />
+ If you want to iterate through all the windows, you can use initIteratorFenetreSDL2 and nextFenetreSDL2. You can also get and set informations about the window with all the functions in <a class="el" href="FenetreSDL2_8h.html" title="Contains all structures related to windows but only those unrelated to Elements. ">FenetreSDL2.h</a>.<br />
+</p>
 <h3>II. Element manipulations</h3>
 </div></div><!-- contents -->
 <!-- start footer part -->

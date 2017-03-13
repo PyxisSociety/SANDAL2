@@ -2,6 +2,7 @@ var searchData=
 [
   ['sandal2',['SANDAL2',['../md_README.html',1,'']]],
   ['sandal2_2eh',['SANDAL2.h',['../SANDAL2_8h.html',1,'']]],
+  ['selected',['selected',['../structElementSDL2.html#a2cae92fe5dd207db485261128b82bc02',1,'ElementSDL2']]],
   ['sens',['sens',['../structLineSDL2.html#af3899a41b666d9aa2281ae1bc833d5e7',1,'LineSDL2']]],
   ['setactionelementsdl2',['setActionElementSDL2',['../ElementSDL2_8h.html#adc55495e7fd38c24182c666f5e27cf68',1,'ElementSDL2.c']]],
   ['setangleelementsdl2',['setAngleElementSDL2',['../ElementSDL2_8h.html#ad0c26c9ec304f41938f36734ba689c36',1,'ElementSDL2.c']]],
@@ -22,6 +23,7 @@ var searchData=
   ['settextelementsdl2',['setTextElementSDL2',['../ElementSDL2_8h.html#aae08d971a53f9cb5eceff1d9c4d12ad4',1,'ElementSDL2.c']]],
   ['settextsize',['setTextSize',['../ElementSDL2_8h.html#ae537b628085316fc17acc2abe3cee7f7',1,'ElementSDL2.c']]],
   ['setunclickelementsdl2',['setUnClickElementSDL2',['../ElementSDL2_8h.html#a3a1479f67838a34df58e6ad06f782347',1,'ElementSDL2.c']]],
+  ['setunselectelementsdl2',['setUnSelectElementSDL2',['../ElementSDL2_8h.html#aa930b6acc358145b20f4f88f808521a8',1,'ElementSDL2.c']]],
   ['size',['size',['../structEntrySDL2.html#adad4bfa55d814798c0198b3dc1b17514',1,'EntrySDL2']]],
   ['size_5fmax',['size_max',['../structEntrySDL2.html#a527d25625060a6f0770873b1c3039f73',1,'EntrySDL2']]],
   ['size_5fmin',['size_min',['../structEntrySDL2.html#a6713933ba31b9a8f3436dbc93f205340',1,'EntrySDL2']]]
