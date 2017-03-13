@@ -74,6 +74,8 @@ int removeLineSDL2(HitBox * hb,float a,float b,float c,int sens){
       error=0;
     }
   }
+
+  return error;
 }
 
 int removeCircleSDL2(HitBox * hb,float x,float y,float rX,float rY,float theta){

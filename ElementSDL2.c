@@ -148,8 +148,7 @@ void removeListPtrElementSDL2(ListDCElementSDL2* l,ListPtrElementSDL2 *lp){
 }
 
 void removeDCElementSDL2(ListDCElementSDL2** l,ElementSDL2 *e){
-  ListDCElementSDL2 *ltmp;
-  ListPtrElementSDL2 **lp, *ptmp;
+  ListPtrElementSDL2 **lp;
   PtrElementSDL2 **pe, *etmp, **pte;
   
   if(e && l){
@@ -265,7 +264,7 @@ int addElementSDL2(ElementSDL2* e){
 
 void cleanElementSDL2(){
   FenetreSDL2 *curr;
-  PtrElementSDL2 **e, *etmp;
+  PtrElementSDL2 **e;
   ListPtrElementSDL2 **lp, *ptmp;
   ListDCElementSDL2 **ldc, *dctmp;
   ElementSDL2 *ee;
@@ -668,7 +667,7 @@ int getDimensionElementSDL2(ElementSDL2* e,int* w,int * h){
     error=0;
   }
 
-  return 0;
+  return error;
 }
 
 int getRotationPointElementSDL2(ElementSDL2* e,float *x,float *y){
@@ -896,8 +895,8 @@ void addDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode, int plan){
 
 void removeDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode){
   DisplayCode **d, *tmp;
-  ListDCElementSDL2 **ldc, *dctmp;
-  ListPtrElementSDL2 **lp, *ptmp;
+  ListDCElementSDL2 **ldc;
+  ListPtrElementSDL2 **lp;
   PtrElementSDL2 **cour, *etmp;
 
   if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste && e && e->codes){
@@ -952,7 +951,7 @@ void setDisplayElementSDL2(ElementSDL2 *e,int displayCode,int isDisplaied){
 }
 
 void setPlanElementSDL2(ElementSDL2 *e,int displayCode,int plan){
-  int found = 0, old;
+  int old;
   DisplayCode *d;
   ListDCElementSDL2 *ldc;
   ListPtrElementSDL2 **lp, *ptmp, **lpNew = NULL;
@@ -1068,13 +1067,12 @@ void addElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *add){
 }
 
 void delElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *del){
-  PtrElementSDL2 **pe, **tmp = NULL, *rm, *rmtmp;
+  PtrElementSDL2 **pe, *rm;
 
   if(e && e->interactions && del){
     pe=&(e->interactions->first);
 
     while(*pe && (*pe)->element!=del){
-      tmp=pe;
       pe=&((*pe)->next);
     }
 
@@ -1200,7 +1198,6 @@ int initIterateur(int displayCode){
 }
 
 ElementSDL2* nextElementSDL2(){
-  ListPtrElementSDL2 *lp;
   ElementSDL2 *res = NULL;
   PtrElementSDL2 *pres;
 

@@ -79,18 +79,17 @@ void freeFenetreSDL2(FenetreSDL2 *fen){
     if(fen->liste){
       freeListElementSDL2(fen->liste);
     }
-    if(fen->window){
-      SDL_DestroyWindow(fen->window);
-    }
     if(fen->renderer){
       SDL_DestroyRenderer(fen->renderer);
+    }
+    if(fen->window){
+      SDL_DestroyWindow(fen->window);
     }
   }
 }
 
 void initFenetreSDL2(int width,int height,char *title,int SDLFlags,int background[4],int displayCode){
   FenetreSDL2 *fen=malloc(sizeof(*fen));
-  int erreur = 0;
 
   fen->window=SDL_CreateWindow(title,
 			      SDL_WINDOWPOS_CENTERED,
@@ -187,7 +186,7 @@ void displayFenetreSDL2(){
   ListPtrElementSDL2 * lp;
   ListDCElementSDL2 * ldc;
   SDL_Rect r;
-  int coul[4],iH,iW,i,j;
+  int coul[4],iH,iW;
   SDL_Point p;
 
   if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste){
@@ -264,7 +263,6 @@ void clickFenetreSDL2(int x,int y){
   ListDCElementSDL2 *ldc;
   float newX,newY,c,s,xtmp,prX,prY;
   float rot = 0.f;
-  int red[4] = {255,0,0,0};
 
   if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste){
     /* recherche de la liste d'element ayant le bon code de display */

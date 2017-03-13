@@ -104,6 +104,8 @@ int cmpCoul(int c1[4],int c2[4]){
     res=res && c1[i]==c2[i];
     c1[i]=c2[i];
   }
+
+  return res;
 }
 
 void copyColor(int to[4],int from[4]){

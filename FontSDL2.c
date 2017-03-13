@@ -18,7 +18,7 @@ FontSDL2* createFontSDL2(char *fontPath,char *texte,int couleur[4]){
 	c.b=couleur[2];
 	c.a=couleur[3];
 	f->color=c;
-	f->text=malloc(strlen(texte)*sizeof(*(f->text)));
+	f->text=malloc((strlen(texte)+1)*sizeof(*(f->text)));
 	if(f->text){
 	  strcpy(f->text,texte);
 	  s=TTF_RenderText_Solid(f->font,texte,c);
