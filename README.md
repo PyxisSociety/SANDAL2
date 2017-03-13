@@ -7,26 +7,26 @@ graphic display easier.
 
 ### I. HitBox.h
 
-  1. <u>LineSDL2 : </u>
+  1. LineSDL2 : 
     A clickable zone delimited by a line (only one side of the line is clickable).
 
-  2. <u>CircleSDL2 : </u>
+  2. CircleSDL2 :
     An elliptic shaped clickable zone.
 
-  3. <u>HitBox : </u>
+  3. HitBox :
     A clickable zone made of a collection of lines and ellipses.
     This is one of the only structure you'll be manipulating (even though not directly accessing to its values).
 
-  4. <u>ListHitBox : </u>
+  4. ListHitBox : 
     A clickable zone defined by a collection of clickable HitBox and blocking HitBox.
     
 ### II. DisplayCode.h
 
-  1. <u>DisplayCode : </u>
+  1. DisplayCode : 
     A package of information about a display code. It contains the display code, the plan and a flag to tell whether or not
     the object should be displaied.
 
-  2. <u>ListDisplayCode : </u>
+  2. ListDisplayCode : 
     A list of display codes.
 
 ### III. FontSDL2.h
