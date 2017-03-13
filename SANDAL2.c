@@ -302,6 +302,7 @@ void clickFenetreSDL2(int x,int y){
 	    //printf("%f - %f\n",newX,newY);
 	    if(hitListHitBox(e->element->hitboxes,newX,newY)){
 	      //createBlock((float)x,(float)y,5.f,5.f,red,1,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+	      e->element->selected=1;
 	      if(e->element->entry){
 		e->element->entry->isSelect=1;
 	      }
@@ -309,8 +310,14 @@ void clickFenetreSDL2(int x,int y){
 		e->element->onClick(e->element);
 	      }
 	    }
-	  }else if(e->element->entry){
-	    e->element->entry->isSelect=0;
+	  }else{
+	    if(e->element->selected && e->element->unSelect){
+	      e->element->unSelect(e->element);
+	    }
+	    e->element->selected=0;
+	    if(e->element->entry){
+	      e->element->entry->isSelect=0;
+	    }
 	  }
 	  e=e->next;
 	}
@@ -357,14 +364,15 @@ void unclickFenetreSDL2(int x,int y){
 	      newX=xtmp;
 	    }
 	    if(hitListHitBox(e->element->hitboxes,newX,newY)){
-	      if(e->element->entry){
-		e->element->entry->isSelect=1;
-	      }
 	      if(e->element->unClick){
 		e->element->unClick(e->element);
 	      }
 	    }
 	  }else if(e->element->entry){
+	    if(e->element->selected && e->element->unSelect){
+	      e->element->unSelect(e->element);
+	    }
+	    e->element->selected=0;
 	    e->element->entry->isSelect=0;
 	  }
 	  e=e->next;

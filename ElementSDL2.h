@@ -28,7 +28,6 @@ typedef struct{
   ///< maximum size of the text of the entry
   int size;
   ///< actual size of the text of the entry
-  /* vaut 1 si l'Entry est selectionnee, 0 sinon */
   int isSelect;
   ///< tells whether or not the Entry is selected (1 for yes, 0 for no)
   int isScripted;
@@ -75,6 +74,8 @@ typedef struct ElementSDL2{
   ///< function called when a key is pressed
   void (*keyReleased)(struct ElementSDL2*,SDL_Keycode c);
   ///< function called when a key is released
+  void (*unSelect)(struct ElementSDL2*);
+  ///< function called when the element is unselected
   SDL_Texture *image;
   ///< texture of the image (NULL if no image)
   FontSDL2 *police;
@@ -89,6 +90,8 @@ typedef struct ElementSDL2{
   ///< data available for the user
   int delete;
   ///< tells whether or not the element should be deleted
+  int selected;
+  ///< tells whether or not the element is selected
 }ElementSDL2;
 
 /**
@@ -407,6 +410,13 @@ int getRotationSpeedElementSDL2(ElementSDL2* e,float* s);
  * @return the data of the element
  */
 void * getDataElementSDL2(ElementSDL2* e);
+/**
+ * @brief tells whether or not the element is selected
+ * @param e : element to get the information from
+ * @param select : where to store the information
+ * @return 1 if there was an error, 0 if not
+ */
+int isSelectedElementSDL2(ElementSDL2 *e, int * select);
 /* ------------------------------------------------------- */
 
 
@@ -528,6 +538,12 @@ void setOnClickElementSDL2(ElementSDL2 *e,void (*onCLick)(ElementSDL2*));
  * @param unCLick : function to be called when it is unclicked
  */
 void setUnClickElementSDL2(ElementSDL2 *e,void (*unCLick)(ElementSDL2*));
+/**
+ * @brief set the behaiour of an element when it is unselect
+ * @param e : element to be modified
+ * @param unSelect : new behaviour
+ */
+void setUnSelectElementSDL2(ElementSDL2 *e,void (*unSelect)(ElementSDL2*));
 /**
  * @brief add an element to another so that this other can modifie the first one
  * @param e : element to be modified

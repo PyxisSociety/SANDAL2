@@ -358,6 +358,7 @@ ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4]
     e=malloc(sizeof(*e));
     if(e){
       e->delete=0;
+      e->selected=0;
       e->x=x;
       e->y=y;
       e->width=width;
@@ -374,6 +375,7 @@ ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4]
       e->unClick=NULL;
       e->keyPress=NULL;
       e->keyReleased=NULL;
+      e->unSelect=NULL;
       e->police=NULL;
       e->entry=NULL;
       e->interactions=NULL;
@@ -398,6 +400,7 @@ ElementSDL2* createTexte(float x,float y,float width,float height,char * font,ch
     e=malloc(sizeof(*e));
     if(e){
       e->delete=0;
+      e->selected=0;
       e->x=x;
       e->y=y;
       e->width=width;
@@ -423,6 +426,7 @@ ElementSDL2* createTexte(float x,float y,float width,float height,char * font,ch
 	e->unClick=NULL;
 	e->keyPress=NULL;
 	e->keyReleased=NULL;
+	e->unSelect=NULL;
 	e->data=NULL;
 	if(addElementSDL2(e)){
 	  freeElementSDL2(e);
@@ -449,6 +453,7 @@ ElementSDL2* createImage(float x,float y,float width,float height,char *image,in
       e=malloc(sizeof(*e));
       if(e){
 	e->delete=0;
+	e->selected=0;
 	e->x=x;
 	e->y=y;
 	e->width=width;
@@ -466,6 +471,7 @@ ElementSDL2* createImage(float x,float y,float width,float height,char *image,in
 	e->unClick=NULL;
 	e->keyPress=NULL;
 	e->keyReleased=NULL;
+	e->unSelect=NULL;
 	e->police=NULL;
 	e->entry=NULL;
 	e->interactions=NULL;
@@ -702,6 +708,19 @@ void * getDataElementSDL2(ElementSDL2* e){
   }
 
   return res;
+}
+
+int isSelectedElementSDL2(ElementSDL2 *e, int * select){
+  int error = 1;
+
+  if(e){
+    error = 0;
+    if(select){
+      *select = e->selected;
+    }
+  }
+
+  return error;
 }
 /* ------------------------------------------------------- */
 
@@ -1015,6 +1034,12 @@ void setUnClickElementSDL2(ElementSDL2 *e,void (*unCLick)(ElementSDL2*)){
 void setOnClickElementSDL2(ElementSDL2 *e,void (*onCLick)(ElementSDL2*)){
   if(e){
     e->onClick=onCLick;
+  }
+}
+
+void setUnSelectElementSDL2(ElementSDL2 *e,void (*unSelect)(ElementSDL2*)){
+  if(e){
+    e->unSelect=unSelect;
   }
 }
 
