@@ -1,0 +1,95 @@
+\hypertarget{structElementSDL2}{}\section{Element\+S\+D\+L2 Struct Reference}
+\label{structElementSDL2}\index{Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+
+
+All the informations of an element.  
+
+
+
+
+{\ttfamily \#include $<$Element\+S\+D\+L2.\+h$>$}
+
+
+
+Collaboration diagram for Element\+S\+D\+L2\+:
+% FIG 0
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{structElementSDL2_a85c4f16793909cb2ab4fc3d1da0ad788}{x}\hypertarget{structElementSDL2_a85c4f16793909cb2ab4fc3d1da0ad788}{}\label{structElementSDL2_a85c4f16793909cb2ab4fc3d1da0ad788}
+
+\begin{DoxyCompactList}\small\item\em abscissa coordinate of the top left of the element \end{DoxyCompactList}\item 
+float \hyperlink{structElementSDL2_a07636d9e6dc09c88aaff9062b2db5278}{y}\hypertarget{structElementSDL2_a07636d9e6dc09c88aaff9062b2db5278}{}\label{structElementSDL2_a07636d9e6dc09c88aaff9062b2db5278}
+
+\begin{DoxyCompactList}\small\item\em ordinate coordinate of the top left of the element \end{DoxyCompactList}\item 
+float \hyperlink{structElementSDL2_a1dc0d58f7dfad658560111bd8d37a114}{width}\hypertarget{structElementSDL2_a1dc0d58f7dfad658560111bd8d37a114}{}\label{structElementSDL2_a1dc0d58f7dfad658560111bd8d37a114}
+
+\begin{DoxyCompactList}\small\item\em width of the element \end{DoxyCompactList}\item 
+float \hyperlink{structElementSDL2_aa85848e696ee9420c7993d395ed883be}{height}\hypertarget{structElementSDL2_aa85848e696ee9420c7993d395ed883be}{}\label{structElementSDL2_aa85848e696ee9420c7993d395ed883be}
+
+\begin{DoxyCompactList}\small\item\em height of the element \end{DoxyCompactList}\item 
+float \hyperlink{structElementSDL2_a9b522d7b8bf6b476d142fd0058aff66c}{prX}\hypertarget{structElementSDL2_a9b522d7b8bf6b476d142fd0058aff66c}{}\label{structElementSDL2_a9b522d7b8bf6b476d142fd0058aff66c}
+
+\begin{DoxyCompactList}\small\item\em abscissa coordinate of the rotation point (if from 0 to 1, in the element) \end{DoxyCompactList}\item 
+float \hyperlink{structElementSDL2_a23b79d2468ca18e33071cd137f6961c6}{prY}\hypertarget{structElementSDL2_a23b79d2468ca18e33071cd137f6961c6}{}\label{structElementSDL2_a23b79d2468ca18e33071cd137f6961c6}
+
+\begin{DoxyCompactList}\small\item\em ordinate coordinate of the rotation point (if from 0 to 1, in the element) \end{DoxyCompactList}\item 
+float \hyperlink{structElementSDL2_a8bbd5c157ceaba03f33b77e71daa7a79}{rotation}\hypertarget{structElementSDL2_a8bbd5c157ceaba03f33b77e71daa7a79}{}\label{structElementSDL2_a8bbd5c157ceaba03f33b77e71daa7a79}
+
+\begin{DoxyCompactList}\small\item\em rotation angle of the element \end{DoxyCompactList}\item 
+float \hyperlink{structElementSDL2_a46a53dcb3d0d119e5df7cd276de2c4ae}{rot\+Speed}\hypertarget{structElementSDL2_a46a53dcb3d0d119e5df7cd276de2c4ae}{}\label{structElementSDL2_a46a53dcb3d0d119e5df7cd276de2c4ae}
+
+\begin{DoxyCompactList}\small\item\em speed rotation (degree / update) of the element \end{DoxyCompactList}\item 
+int \hyperlink{structElementSDL2_a527fdb85c7fa55880dfcd9ddfdd4e0b9}{coul\+Block} \mbox{[}4\mbox{]}\hypertarget{structElementSDL2_a527fdb85c7fa55880dfcd9ddfdd4e0b9}{}\label{structElementSDL2_a527fdb85c7fa55880dfcd9ddfdd4e0b9}
+
+\begin{DoxyCompactList}\small\item\em color of the block of the element (if first value -\/1, there is no block) \end{DoxyCompactList}\item 
+float \hyperlink{structElementSDL2_a49a55a004e56ad15b5b0f0cb0045c83f}{text\+Size}\hypertarget{structElementSDL2_a49a55a004e56ad15b5b0f0cb0045c83f}{}\label{structElementSDL2_a49a55a004e56ad15b5b0f0cb0045c83f}
+
+\begin{DoxyCompactList}\small\item\em text proportion in the block \end{DoxyCompactList}\item 
+\hyperlink{structListDisplayCode}{List\+Display\+Code} $\ast$ \hyperlink{structElementSDL2_a60652c6e4cf3d38aadbc650a624d2999}{codes}\hypertarget{structElementSDL2_a60652c6e4cf3d38aadbc650a624d2999}{}\label{structElementSDL2_a60652c6e4cf3d38aadbc650a624d2999}
+
+\begin{DoxyCompactList}\small\item\em list of display code of the element \end{DoxyCompactList}\item 
+void($\ast$ \hyperlink{structElementSDL2_a86441847b7f6595e3405d6d9bbf1b8d9}{action} )(struct \hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$)\hypertarget{structElementSDL2_a86441847b7f6595e3405d6d9bbf1b8d9}{}\label{structElementSDL2_a86441847b7f6595e3405d6d9bbf1b8d9}
+
+\begin{DoxyCompactList}\small\item\em function called when update \end{DoxyCompactList}\item 
+void($\ast$ \hyperlink{structElementSDL2_ae56c022599e2e8acdda29fbb8af44942}{on\+Click} )(struct \hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$)\hypertarget{structElementSDL2_ae56c022599e2e8acdda29fbb8af44942}{}\label{structElementSDL2_ae56c022599e2e8acdda29fbb8af44942}
+
+\begin{DoxyCompactList}\small\item\em function called when the element is clicked \end{DoxyCompactList}\item 
+void($\ast$ \hyperlink{structElementSDL2_a0ad4094686063db36244b474fe42a336}{un\+Click} )(struct \hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$)\hypertarget{structElementSDL2_a0ad4094686063db36244b474fe42a336}{}\label{structElementSDL2_a0ad4094686063db36244b474fe42a336}
+
+\begin{DoxyCompactList}\small\item\em function called when the element is unclicked \end{DoxyCompactList}\item 
+void($\ast$ \hyperlink{structElementSDL2_aff1dc935700d44a0ef0d53de7cca9d41}{key\+Press} )(struct \hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$, S\+D\+L\+\_\+\+Keycode c)\hypertarget{structElementSDL2_aff1dc935700d44a0ef0d53de7cca9d41}{}\label{structElementSDL2_aff1dc935700d44a0ef0d53de7cca9d41}
+
+\begin{DoxyCompactList}\small\item\em function called when a key is pressed \end{DoxyCompactList}\item 
+void($\ast$ \hyperlink{structElementSDL2_a76ecf85adcb072db772a8351ea7e04ee}{key\+Released} )(struct \hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$, S\+D\+L\+\_\+\+Keycode c)\hypertarget{structElementSDL2_a76ecf85adcb072db772a8351ea7e04ee}{}\label{structElementSDL2_a76ecf85adcb072db772a8351ea7e04ee}
+
+\begin{DoxyCompactList}\small\item\em function called when a key is released \end{DoxyCompactList}\item 
+S\+D\+L\+\_\+\+Texture $\ast$ \hyperlink{structElementSDL2_aab2ff0fd3a1c4370d7f1f9cdd250d056}{image}\hypertarget{structElementSDL2_aab2ff0fd3a1c4370d7f1f9cdd250d056}{}\label{structElementSDL2_aab2ff0fd3a1c4370d7f1f9cdd250d056}
+
+\begin{DoxyCompactList}\small\item\em texture of the image (N\+U\+LL if no image) \end{DoxyCompactList}\item 
+\hyperlink{structFontSDL2}{Font\+S\+D\+L2} $\ast$ \hyperlink{structElementSDL2_a785d4fada0ba0ac6b5ce7a53c379f8cd}{police}\hypertarget{structElementSDL2_a785d4fada0ba0ac6b5ce7a53c379f8cd}{}\label{structElementSDL2_a785d4fada0ba0ac6b5ce7a53c379f8cd}
+
+\begin{DoxyCompactList}\small\item\em informations about the text (N\+U\+LL if no text) \end{DoxyCompactList}\item 
+\hyperlink{structEntrySDL2}{Entry\+S\+D\+L2} $\ast$ \hyperlink{structElementSDL2_a9c99c1c34dcf0e52baaca7a64598bd8a}{entry}\hypertarget{structElementSDL2_a9c99c1c34dcf0e52baaca7a64598bd8a}{}\label{structElementSDL2_a9c99c1c34dcf0e52baaca7a64598bd8a}
+
+\begin{DoxyCompactList}\small\item\em informations about the entry (N\+U\+LL if no entry) \end{DoxyCompactList}\item 
+struct \hyperlink{structListPtrElementSDL2}{List\+Ptr\+Element\+S\+D\+L2} $\ast$ \hyperlink{structElementSDL2_aca39f22199862196fc52dfcecafeca4a}{interactions}\hypertarget{structElementSDL2_aca39f22199862196fc52dfcecafeca4a}{}\label{structElementSDL2_aca39f22199862196fc52dfcecafeca4a}
+
+\begin{DoxyCompactList}\small\item\em list of elements that this element can modifie \end{DoxyCompactList}\item 
+\hyperlink{structListHitBox}{List\+Hit\+Box} $\ast$ \hyperlink{structElementSDL2_aa4af7ab8949d93544da609659a4011c0}{hitboxes}\hypertarget{structElementSDL2_aa4af7ab8949d93544da609659a4011c0}{}\label{structElementSDL2_aa4af7ab8949d93544da609659a4011c0}
+
+\begin{DoxyCompactList}\small\item\em list of clickable zones \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{structElementSDL2_abca7de78cc7e420d98d24a955563c7cc}{data}\hypertarget{structElementSDL2_abca7de78cc7e420d98d24a955563c7cc}{}\label{structElementSDL2_abca7de78cc7e420d98d24a955563c7cc}
+
+\begin{DoxyCompactList}\small\item\em data available for the user \end{DoxyCompactList}\item 
+int \hyperlink{structElementSDL2_a59d6b7086533d8d7da883bc882c4ef6d}{delete}\hypertarget{structElementSDL2_a59d6b7086533d8d7da883bc882c4ef6d}{}\label{structElementSDL2_a59d6b7086533d8d7da883bc882c4ef6d}
+
+\begin{DoxyCompactList}\small\item\em tells whether or not the element should be deleted \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+All the informations of an element. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ElementSDL2_8h}{Element\+S\+D\+L2.\+h}\end{DoxyCompactItemize}

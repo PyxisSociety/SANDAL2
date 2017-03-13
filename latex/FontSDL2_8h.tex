@@ -1,0 +1,154 @@
+\hypertarget{FontSDL2_8h}{}\section{Font\+S\+D\+L2.\+h File Reference}
+\label{FontSDL2_8h}\index{Font\+S\+D\+L2.\+h@{Font\+S\+D\+L2.\+h}}
+
+
+Information about T\+TF objects.  
+
+
+{\ttfamily \#include \char`\"{}Fenetre\+S\+D\+L2.\+h\char`\"{}}\\*
+Include dependency graph for Font\+S\+D\+L2.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structFontSDL2}{Font\+S\+D\+L2}
+\begin{DoxyCompactList}\small\item\em Informations about S\+D\+L2 font. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structFontSDL2}{Font\+S\+D\+L2} $\ast$ \hyperlink{FontSDL2_8h_a4f982c478d0c8ca1f40f0529522ea6f0}{create\+Font\+S\+D\+L2} (char $\ast$font\+Path, char $\ast$texte, int couleur\mbox{[}4\mbox{]})
+\begin{DoxyCompactList}\small\item\em generate a \hyperlink{structFontSDL2}{Font\+S\+D\+L2} using the path to the font, the text and the color of the text \end{DoxyCompactList}\item 
+void \hyperlink{FontSDL2_8h_aeb528bdaab9f5659d167d9da09a41e4c}{free\+Font\+S\+D\+L2} (\hyperlink{structFontSDL2}{Font\+S\+D\+L2} $\ast$font)
+\begin{DoxyCompactList}\small\item\em free the memory of a \hyperlink{structFontSDL2}{Font\+S\+D\+L2} \end{DoxyCompactList}\item 
+void \hyperlink{FontSDL2_8h_abfdfc8ce3220e94f81525fe6f2aaf64b}{actualize\+Text\+Font\+S\+D\+L2} (\hyperlink{structFontSDL2}{Font\+S\+D\+L2} $\ast$font, int is\+Scripted)
+\begin{DoxyCompactList}\small\item\em actualize the text to cript it or uncript it \end{DoxyCompactList}\item 
+void \hyperlink{FontSDL2_8h_aa5dfa93e24f458785bc3ddd59bee6171}{change\+Text\+Font\+S\+D\+L2} (\hyperlink{structFontSDL2}{Font\+S\+D\+L2} $\ast$font, char $\ast$text)
+\begin{DoxyCompactList}\small\item\em actualize the text of a \hyperlink{structFontSDL2}{Font\+S\+D\+L2} \end{DoxyCompactList}\item 
+void \hyperlink{FontSDL2_8h_ab79e89cdea6eefa2df078573990dd27d}{change\+Color\+Font\+S\+D\+L2} (\hyperlink{structFontSDL2}{Font\+S\+D\+L2} $\ast$font, int color\mbox{[}4\mbox{]})
+\begin{DoxyCompactList}\small\item\em actualize the color of the \hyperlink{structFontSDL2}{Font\+S\+D\+L2} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structListFenetreSDL2}{List\+Fenetre\+S\+D\+L2} $\ast$ \hyperlink{FontSDL2_8h_a1e089eac67154b191d8945ba155cf1bd}{\+\_\+windows\+\_\+\+S\+D\+L2\+TK}
+\begin{DoxyCompactList}\small\item\em List of the windows W\+A\+R\+N\+I\+NG \+: do not touch it ... trust me. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Information about T\+TF objects. 
+
+
+
+\subsection{Function Documentation}
+\index{Font\+S\+D\+L2.\+h@{Font\+S\+D\+L2.\+h}!actualize\+Text\+Font\+S\+D\+L2@{actualize\+Text\+Font\+S\+D\+L2}}
+\index{actualize\+Text\+Font\+S\+D\+L2@{actualize\+Text\+Font\+S\+D\+L2}!Font\+S\+D\+L2.\+h@{Font\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{actualize\+Text\+Font\+S\+D\+L2(\+Font\+S\+D\+L2 $\ast$font, int is\+Scripted)}{actualizeTextFontSDL2(FontSDL2 *font, int isScripted)}}]{\setlength{\rightskip}{0pt plus 5cm}void actualize\+Text\+Font\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{{\bf Font\+S\+D\+L2} $\ast$}]{font, }
+\item[{int}]{is\+Scripted}
+\end{DoxyParamCaption}
+)}\hypertarget{FontSDL2_8h_abfdfc8ce3220e94f81525fe6f2aaf64b}{}\label{FontSDL2_8h_abfdfc8ce3220e94f81525fe6f2aaf64b}
+
+
+actualize the text to cript it or uncript it 
+
+
+\begin{DoxyParams}{Parameters}
+{\em font} & \+: the font to be actualize \\
+\hline
+{\em is\+Scripted} & \+: 0 if the text should be uncripted, 1 for cripted \\
+\hline
+\end{DoxyParams}
+\index{Font\+S\+D\+L2.\+h@{Font\+S\+D\+L2.\+h}!change\+Color\+Font\+S\+D\+L2@{change\+Color\+Font\+S\+D\+L2}}
+\index{change\+Color\+Font\+S\+D\+L2@{change\+Color\+Font\+S\+D\+L2}!Font\+S\+D\+L2.\+h@{Font\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{change\+Color\+Font\+S\+D\+L2(\+Font\+S\+D\+L2 $\ast$font, int color[4])}{changeColorFontSDL2(FontSDL2 *font, int color[4])}}]{\setlength{\rightskip}{0pt plus 5cm}void change\+Color\+Font\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{{\bf Font\+S\+D\+L2} $\ast$}]{font, }
+\item[{int}]{color\mbox{[}4\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{FontSDL2_8h_ab79e89cdea6eefa2df078573990dd27d}{}\label{FontSDL2_8h_ab79e89cdea6eefa2df078573990dd27d}
+
+
+actualize the color of the \hyperlink{structFontSDL2}{Font\+S\+D\+L2} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em font} & \+: the font to be actualize \\
+\hline
+{\em color} & \+: new color \\
+\hline
+\end{DoxyParams}
+\index{Font\+S\+D\+L2.\+h@{Font\+S\+D\+L2.\+h}!change\+Text\+Font\+S\+D\+L2@{change\+Text\+Font\+S\+D\+L2}}
+\index{change\+Text\+Font\+S\+D\+L2@{change\+Text\+Font\+S\+D\+L2}!Font\+S\+D\+L2.\+h@{Font\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{change\+Text\+Font\+S\+D\+L2(\+Font\+S\+D\+L2 $\ast$font, char $\ast$text)}{changeTextFontSDL2(FontSDL2 *font, char *text)}}]{\setlength{\rightskip}{0pt plus 5cm}void change\+Text\+Font\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{{\bf Font\+S\+D\+L2} $\ast$}]{font, }
+\item[{char $\ast$}]{text}
+\end{DoxyParamCaption}
+)}\hypertarget{FontSDL2_8h_aa5dfa93e24f458785bc3ddd59bee6171}{}\label{FontSDL2_8h_aa5dfa93e24f458785bc3ddd59bee6171}
+
+
+actualize the text of a \hyperlink{structFontSDL2}{Font\+S\+D\+L2} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em font} & \+: the font to be actualize \\
+\hline
+{\em text} & \+: the new text \\
+\hline
+\end{DoxyParams}
+\index{Font\+S\+D\+L2.\+h@{Font\+S\+D\+L2.\+h}!create\+Font\+S\+D\+L2@{create\+Font\+S\+D\+L2}}
+\index{create\+Font\+S\+D\+L2@{create\+Font\+S\+D\+L2}!Font\+S\+D\+L2.\+h@{Font\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{create\+Font\+S\+D\+L2(char $\ast$font\+Path, char $\ast$texte, int couleur[4])}{createFontSDL2(char *fontPath, char *texte, int couleur[4])}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Font\+S\+D\+L2}$\ast$ create\+Font\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{font\+Path, }
+\item[{char $\ast$}]{texte, }
+\item[{int}]{couleur\mbox{[}4\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{FontSDL2_8h_a4f982c478d0c8ca1f40f0529522ea6f0}{}\label{FontSDL2_8h_a4f982c478d0c8ca1f40f0529522ea6f0}
+
+
+generate a \hyperlink{structFontSDL2}{Font\+S\+D\+L2} using the path to the font, the text and the color of the text 
+
+
+\begin{DoxyParams}{Parameters}
+{\em font\+Path} & \+: path of the font \\
+\hline
+{\em texte} & \+: text of the object \\
+\hline
+{\em couleur} & \+: color of the text \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+N\+U\+LL if the object was not initialised, if not, the object 
+\end{DoxyReturn}
+\index{Font\+S\+D\+L2.\+h@{Font\+S\+D\+L2.\+h}!free\+Font\+S\+D\+L2@{free\+Font\+S\+D\+L2}}
+\index{free\+Font\+S\+D\+L2@{free\+Font\+S\+D\+L2}!Font\+S\+D\+L2.\+h@{Font\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{free\+Font\+S\+D\+L2(\+Font\+S\+D\+L2 $\ast$font)}{freeFontSDL2(FontSDL2 *font)}}]{\setlength{\rightskip}{0pt plus 5cm}void free\+Font\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{{\bf Font\+S\+D\+L2} $\ast$}]{font}
+\end{DoxyParamCaption}
+)}\hypertarget{FontSDL2_8h_aeb528bdaab9f5659d167d9da09a41e4c}{}\label{FontSDL2_8h_aeb528bdaab9f5659d167d9da09a41e4c}
+
+
+free the memory of a \hyperlink{structFontSDL2}{Font\+S\+D\+L2} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em font} & \+: the \hyperlink{structFontSDL2}{Font\+S\+D\+L2} to be freed \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Variable Documentation}
+\index{Font\+S\+D\+L2.\+h@{Font\+S\+D\+L2.\+h}!\+\_\+windows\+\_\+\+S\+D\+L2\+TK@{\+\_\+windows\+\_\+\+S\+D\+L2\+TK}}
+\index{\+\_\+windows\+\_\+\+S\+D\+L2\+TK@{\+\_\+windows\+\_\+\+S\+D\+L2\+TK}!Font\+S\+D\+L2.\+h@{Font\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{\+\_\+windows\+\_\+\+S\+D\+L2\+TK}{_windows_SDL2TK}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf List\+Fenetre\+S\+D\+L2}$\ast$ \+\_\+windows\+\_\+\+S\+D\+L2\+TK}\hypertarget{FontSDL2_8h_a1e089eac67154b191d8945ba155cf1bd}{}\label{FontSDL2_8h_a1e089eac67154b191d8945ba155cf1bd}
+
+
+List of the windows W\+A\+R\+N\+I\+NG \+: do not touch it ... trust me. 
+
+List of the windows W\+A\+R\+N\+I\+NG \+: do not touch it ... trust me.
+
+list of windows W\+A\+R\+N\+I\+NG \+: do not touch this variable, never ... trust me 

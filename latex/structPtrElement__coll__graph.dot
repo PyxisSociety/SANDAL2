@@ -1,0 +1,34 @@
+digraph "PtrElement"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="PtrElement",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" element" ];
+  Node2 [label="ElementSDL2",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structElementSDL2.html",tooltip="All the informations of an element. "];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" codes" ];
+  Node3 [label="ListDisplayCode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structListDisplayCode.html",tooltip="List of display codes. "];
+  Node4 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" first" ];
+  Node4 [label="DisplayCode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structDisplayCode.html",tooltip="Display code containing the plan and a flag to indicate if it is displaied. "];
+  Node4 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" next" ];
+  Node5 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" hitboxes" ];
+  Node5 [label="ListHitBox",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structListHitBox.html",tooltip="Collection of hit boxes. "];
+  Node6 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" firstBlock\nfirst\ncurrent\ncurrentBlock" ];
+  Node6 [label="HitBox",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structHitBox.html",tooltip="Represente a hit boxe which is a collection of LineSDL2 (defining a convexe polygon) and CircleSDL2..."];
+  Node7 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" firstL" ];
+  Node7 [label="LineSDL2",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structLineSDL2.html",tooltip="Represente a line which delimitate a hittable surface from a none hittable one. "];
+  Node7 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" next" ];
+  Node6 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" next" ];
+  Node8 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" firstC" ];
+  Node8 [label="CircleSDL2",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structCircleSDL2.html",tooltip="Represente a hittable ellipse. "];
+  Node8 -> Node8 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" next" ];
+  Node9 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" entry" ];
+  Node9 [label="EntrySDL2",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structEntrySDL2.html",tooltip="More informations about entry. "];
+  Node10 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" interactions" ];
+  Node10 [label="ListPtrElementSDL2",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structListPtrElementSDL2.html",tooltip="List of PtrElementSDL2. "];
+  Node11 -> Node10 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" last\nfirst\ncurrent" ];
+  Node11 [label="PtrElementSDL2",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structPtrElementSDL2.html",tooltip="Structure used to store elements&#39; pointers in a list of element. "];
+  Node10 -> Node10 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" next" ];
+  Node12 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" police" ];
+  Node12 [label="FontSDL2",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structFontSDL2.html",tooltip="Informations about SDL2 font. "];
+  Node1 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" next" ];
+}

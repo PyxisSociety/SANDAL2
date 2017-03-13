@@ -1,0 +1,53 @@
+S\+A\+N\+D\+A\+L2 is a S\+D\+L2 wrapper which purpose is to make objects managment and graphic display easier.
+
+\subsection*{Structures}
+
+\subsubsection*{I. \hyperlink{HitBox_8h}{Hit\+Box.\+h}}
+
+
+\begin{DoxyEnumerate}
+\item $<$u$>$\hyperlink{structLineSDL2}{Line\+S\+D\+L2} \+: $<$/u$>$ A clickable zone delimited by a line (only one side of the line is clickable).
+\item $<$u$>$\hyperlink{structCircleSDL2}{Circle\+S\+D\+L2} \+: $<$/u$>$ An elliptic shaped clickable zone.
+\item $<$u$>$\hyperlink{structHitBox}{Hit\+Box} \+: $<$/u$>$ A clickable zone made of a collection of lines and ellipses. This is one of the only structure you\textquotesingle{}ll be manipulating (even though not directly accessing to its values).
+\item $<$u$>$\hyperlink{structListHitBox}{List\+Hit\+Box} \+: $<$/u$>$ A clickable zone defined by a collection of clickable \hyperlink{structHitBox}{Hit\+Box} and blocking \hyperlink{structHitBox}{Hit\+Box}.
+\end{DoxyEnumerate}
+
+\subsubsection*{II. \hyperlink{DisplayCode_8h}{Display\+Code.\+h}}
+
+
+\begin{DoxyEnumerate}
+\item $<$u$>$\hyperlink{structDisplayCode}{Display\+Code} \+: $<$/u$>$ A package of information about a display code. It contains the display code, the plan and a flag to tell whether or not the object should be displaied.
+\item $<$u$>$\hyperlink{structListDisplayCode}{List\+Display\+Code} \+: $<$/u$>$ A list of display codes.
+\end{DoxyEnumerate}
+
+\subsubsection*{I\+II. \hyperlink{FontSDL2_8h}{Font\+S\+D\+L2.\+h}}
+
+
+\begin{DoxyEnumerate}
+\item \hyperlink{structFontSDL2}{Font\+S\+D\+L2} \+: A package of information about a text. It contains its font, its text, its color and its S\+D\+L2 texture.
+\end{DoxyEnumerate}
+
+\subsubsection*{IV. \hyperlink{FenetreSDL2_8h_source}{Fenetre\+S\+D\+L2.\+h}}
+
+
+\begin{DoxyEnumerate}
+\item \hyperlink{structFenetreSDL2}{Fenetre\+S\+D\+L2} \+: Representation of a window. It contains all informations (such as the dimension, the display code, ...) about a window.
+\item \hyperlink{structListFenetreSDL2}{List\+Fenetre\+S\+D\+L2} \+: A list of \hyperlink{structFenetreSDL2}{Fenetre\+S\+D\+L2}.
+\end{DoxyEnumerate}
+
+\subsubsection*{V. \hyperlink{ElementSDL2_8h}{Element\+S\+D\+L2.\+h}}
+
+
+\begin{DoxyEnumerate}
+\item \hyperlink{structElementSDL2}{Element\+S\+D\+L2} \+: A package of information about objects. It contains its coordinates (top left corner), its size, its color and so on. This is one of the only structure you\textquotesingle{}ll be manipulating (even though not directly accessing to its values).
+\item \hyperlink{structPtrElementSDL2}{Ptr\+Element\+S\+D\+L2} \+: A structure mean to store an \hyperlink{structElementSDL2}{Element\+S\+D\+L2}\textquotesingle{}s pointer
+\item \hyperlink{structListPtrElementSDL2}{List\+Ptr\+Element\+S\+D\+L2} \+: A list of \hyperlink{structPtrElementSDL2}{Ptr\+Element\+S\+D\+L2}. Either used as a list of elements with a common plan or so that an element can change another.
+\item \hyperlink{structListDCElementSDL2}{List\+D\+C\+Element\+S\+D\+L2} \+: A list of lists of elements with a common plan, every lists in this list has a common display code.
+\item \hyperlink{structListElementSDL2}{List\+Element\+S\+D\+L2} \+: A list of \hyperlink{structListDCElementSDL2}{List\+D\+C\+Element\+S\+D\+L2}.
+\end{DoxyEnumerate}
+
+\subsection*{Functionnality}
+
+\subsubsection*{I. To begin with}
+
+\subsubsection*{II. Element manipulations}
