@@ -32,6 +32,8 @@ typedef struct DisplayCode{
 typedef struct{
   DisplayCode *first;
   ///< first element of the list
+  unsigned size;
+  ///< size of the list
 }ListDisplayCode;
 
 /* -------------------------------------------------------

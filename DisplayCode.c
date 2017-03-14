@@ -5,7 +5,12 @@
  */
 ListDisplayCode* initListDisplayCode(){
   ListDisplayCode *l=malloc(sizeof(*l));
-  l->first=NULL;
+
+  if(l){
+    l->first=NULL;
+    l->size=0;
+  }
+  
   return l;
 }
 
@@ -42,6 +47,7 @@ void addDisplayCode(ListDisplayCode* l,int code,int isDisplaied,int plan){
 	new->isDisplaied=isDisplaied;
 	new->plan=plan;
 	*d=new;
+	l->size++;
       }
     }
   }

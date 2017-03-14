@@ -53,6 +53,8 @@ typedef struct FenetreSDL2{
   ///< elements in the window
   struct FenetreSDL2 * next;
   ///< next window
+  unsigned toDelete;
+  ///< number of element to be deleted by the cleaner
 }FenetreSDL2;
 
 /**

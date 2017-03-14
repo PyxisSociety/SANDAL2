@@ -109,6 +109,7 @@ void initFenetreSDL2(int width,int height,char *title,int SDLFlags,int backgroun
       fen->initWidth=width;
       fen->displayCode=displayCode;
       fen->next = NULL;
+      fen->toDelete=0;
       copyColor(fen->background,background);
       fen->liste = initListElementSDL2();
       if(!fen->liste){
@@ -186,7 +187,7 @@ void displayFenetreSDL2(){
   ListPtrElementSDL2 * lp;
   ListDCElementSDL2 * ldc;
   SDL_Rect r;
-  int coul[4],iH,iW;
+  int coul[4];
   SDL_Point p;
 
   if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste){
@@ -238,7 +239,6 @@ void displayFenetreSDL2(){
 	      r.y+=r.h*(1.0-ele->element->textSize)/2;
 	      r.w*=ele->element->textSize;
 	      r.h*=ele->element->textSize;
-	      SDL_QueryTexture(ele->element->police->texture,NULL,NULL,&iW,&iH);
 	      if(ele->element->rotation == 0.f || (ele->element->coulBlock[0]!=-1 && !ele->element->image)){
 		SDL_RenderCopy(_windows_SDL2TK->current->renderer,ele->element->police->texture,NULL,&r);
 	      }else{

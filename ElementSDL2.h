@@ -89,7 +89,9 @@ typedef struct ElementSDL2{
   void * data;
   ///< data available for the user
   int delete;
-  ///< tells whether or not the element should be deleted
+  ///< tells whether or not the element should be deleted (1 for completely deleted, 2 for display remove, 3 for plan change)
+  int deleteCode;
+  ///< plan or display code to be removed from
   int selected;
   ///< tells whether or not the element is selected
 }ElementSDL2;
