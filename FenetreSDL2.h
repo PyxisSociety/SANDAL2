@@ -9,7 +9,7 @@
 #include <SDL2/SDL_image.h>
 
 /**
- * @file FenetreSDL2.h
+ * @file WindowSDL2.h
  * @brief Contains all structures related to windows but only those unrelated to Elements.
  */
 
@@ -29,10 +29,10 @@
 struct ListElementSDL2;
 
 /**
- * @struct FenetreSDL2
+ * @struct WindowSDL2
  * @brief SANDAL2 window 
  */
-typedef struct FenetreSDL2{
+typedef struct WindowSDL2{
   int height;
   ///< current height of the window
   int width;
@@ -51,78 +51,78 @@ typedef struct FenetreSDL2{
   ///< SDL2 renderer
   struct ListElementSDL2 * liste;
   ///< elements in the window
-  struct FenetreSDL2 * next;
+  struct WindowSDL2 * next;
   ///< next window
   unsigned toDelete;
   ///< number of element to be deleted by the cleaner
-}FenetreSDL2;
+}WindowSDL2;
 
 /**
- * @struct ListFenetreSDL2
+ * @struct ListWindowSDL2
  * @brief list of windows
  */
 typedef struct{
-  FenetreSDL2 * first;
-  FenetreSDL2 * last;
-  FenetreSDL2 * current;
-}ListFenetreSDL2;
+  WindowSDL2 * first;
+  WindowSDL2 * last;
+  WindowSDL2 * current;
+}ListWindowSDL2;
 
 
 /**
  * @brief list of windows
  *   WARNING : do not touch this variable, never ... trust me
  */
-extern ListFenetreSDL2 * _windows_SDL2TK;
+extern ListWindowSDL2 * _windows_SDL2TK;
 
 /* -------------------------------------------------------
- * Fenetre SDL2
+ * Window SDL2
  */
 /**
  * @brief Resize the current window
  * @param width : new width of the current window
  * @param height : new height of the current window
  */
-void resizeFenetreSDL2(unsigned width,unsigned height);
+void resizeWindowSDL2(unsigned width,unsigned height);
 /**
  * @brief Change the display code of the current window
  * @param displayCode : new display code of the current window
  */
-void changeDisplayFenetreSDL2(int displayCode);
+void changeDisplayWindowSDL2(int displayCode);
 /**
  * @brief Initialise the iterator of the windows' list
  * @return 0 if the iterator could not be initialised, 1 if it could
  */
-int initIteratorFenetreSDL2();
+int initIteratorWindowSDL2();
 /**
  * @brief Go to the next window
  * @return 1 if it was possible, 0 if not
  */
-int nextFenetreSDL2();
+int nextWindowSDL2();
 /**
  * @brief Put the width of the current window in w (if not NULL) and its height in h (if not NULL)
  * @param w : where the width of the current window should be store
  * @param h : where the height of the current window should be store
  * @return 1 if there was an error, 0 if not
  */
-int getDimensionFenetreSDL2(int * w,int * h);
+int getDimensionWindowSDL2(int * w,int * h);
 /**
  * @brief Put the display code of the current window in d (if not NULL)
  * @param d : where the display code of the current window should be store
  * @return 1 if there was an error, 0 if not
  */
-int getDisplayCodeFenetreSDL2(int * d);
+int getDisplayCodeWindowSDL2(int * d);
 /**
  * @brief Put the background color of the current window in color
  * @param color : where the background color of the current window should be store
  * @return 1 if there was an error, 0 if not
  */
-int getColorFenetreSDL2(int color[4]);
+int getColorWindowSDL2(int color[4]);
 /**
  * @brief Change the background color of the current window
  * @param color : new color of the background of the current window
  * @return 1 if there was an error, 0 if not
  */
-int setColorFenetreSDL2(int color[4]);
+int setColorWindowSDL2(int color[4]);
 /* ------------------------------------------------------- */
 
 /* -------------------------------------------------------

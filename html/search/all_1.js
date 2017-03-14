@@ -1,7 +1,6 @@
 var searchData=
 [
   ['a',['a',['../structLineSDL2.html#acc7ec7d970be00e39766e7bbaf4e6375',1,'LineSDL2']]],
-  ['absolu',['absolu',['../FenetreSDL2_8h.html#a941d18bb013bbf884a4940a8d400f043',1,'FenetreSDL2.h']]],
   ['action',['action',['../structElementSDL2.html#a86441847b7f6595e3405d6d9bbf1b8d9',1,'ElementSDL2']]],
   ['actualizetextfontsdl2',['actualizeTextFontSDL2',['../FontSDL2_8h.html#abfdfc8ce3220e94f81525fe6f2aaf64b',1,'FontSDL2.c']]],
   ['addangleelementsdl2',['addAngleElementSDL2',['../ElementSDL2_8h.html#af7c9ec47fc39f29d048c4fd1be970f69',1,'ElementSDL2.c']]],

@@ -74,7 +74,7 @@ void closeTexte(){
 /* -------------------------------------------------------
  * Fenetre SDL2
  */
-void freeFenetreSDL2(FenetreSDL2 *fen){
+void freeWindowSDL2(WindowSDL2 *fen){
   if(fen){
     if(fen->liste){
       freeListElementSDL2(fen->liste);
@@ -88,8 +88,8 @@ void freeFenetreSDL2(FenetreSDL2 *fen){
   }
 }
 
-void initFenetreSDL2(int width,int height,char *title,int SDLFlags,int background[4],int displayCode){
-  FenetreSDL2 *fen=malloc(sizeof(*fen));
+void initWindowSDL2(int width,int height,char *title,int SDLFlags,int background[4],int displayCode){
+  WindowSDL2 *fen=malloc(sizeof(*fen));
 
   fen->window=SDL_CreateWindow(title,
 			      SDL_WINDOWPOS_CENTERED,
@@ -142,7 +142,7 @@ void initFenetreSDL2(int width,int height,char *title,int SDLFlags,int backgroun
   }
 }
 
-void updateFenetreSDL2(){
+void updateWindowSDL2(){
   PtrElementSDL2 **ele;
   ListPtrElementSDL2 *lp;
   ListDCElementSDL2 *ldc;
@@ -182,7 +182,7 @@ void updateFenetreSDL2(){
   }
 }
 
-void displayFenetreSDL2(){
+void displayWindowSDL2(){
   PtrElementSDL2 *ele;
   ListPtrElementSDL2 * lp;
   ListDCElementSDL2 * ldc;
@@ -257,7 +257,7 @@ void displayFenetreSDL2(){
   }
 }
 
-void clickFenetreSDL2(int x,int y){
+void clickWindowSDL2(int x,int y){
   PtrElementSDL2 *e;
   ListPtrElementSDL2 *lp;
   ListDCElementSDL2 *ldc;
@@ -325,7 +325,7 @@ void clickFenetreSDL2(int x,int y){
   }
 }
 
-void unclickFenetreSDL2(int x,int y){
+void unclickWindowSDL2(int x,int y){
   PtrElementSDL2 *e;
   ListPtrElementSDL2 *lp;
   ListDCElementSDL2 *ldc;
@@ -381,7 +381,7 @@ void unclickFenetreSDL2(int x,int y){
   }
 }
 
-void keyPressedFenetreSDL2(char c){
+void keyPressedWindowSDL2(char c){
   PtrElementSDL2 *e;
   ListPtrElementSDL2 *lp;
   ListDCElementSDL2 *ldc;
@@ -413,7 +413,7 @@ void keyPressedFenetreSDL2(char c){
   }
 }
 
-void keyReleasedFenetreSDL2(char c){
+void keyReleasedWindowSDL2(char c){
   PtrElementSDL2 *e;
   ListPtrElementSDL2 *lp;
   ListDCElementSDL2 *ldc;
@@ -446,56 +446,56 @@ void keyReleasedFenetreSDL2(char c){
 }
 
 
-void updateAllFenetreSDL2(){
-  if(initIteratorFenetreSDL2()){
+void updateAllWindowSDL2(){
+  if(initIteratorWindowSDL2()){
     do{
-      updateFenetreSDL2();
-    }while(nextFenetreSDL2());
+      updateWindowSDL2();
+    }while(nextWindowSDL2());
   }
 }
 
-void displayAllFenetreSDL2(){
-  if(initIteratorFenetreSDL2()){
+void displayAllWindowSDL2(){
+  if(initIteratorWindowSDL2()){
     do{
-      displayFenetreSDL2();
-    }while(nextFenetreSDL2());
+      displayWindowSDL2();
+    }while(nextWindowSDL2());
   }
 }
 
-void clickAllFenetreSDL2(int x,int y){
-  if(initIteratorFenetreSDL2()){
+void clickAllWindowSDL2(int x,int y){
+  if(initIteratorWindowSDL2()){
     do{
-      clickFenetreSDL2(x,y);
-    }while(nextFenetreSDL2());
+      clickWindowSDL2(x,y);
+    }while(nextWindowSDL2());
   }
 }
 
-void unclickAllFenetreSDL2(int x,int y){
-  if(initIteratorFenetreSDL2()){
+void unclickAllWindowSDL2(int x,int y){
+  if(initIteratorWindowSDL2()){
     do{
-      unclickFenetreSDL2(x,y);
-    }while(nextFenetreSDL2());
+      unclickWindowSDL2(x,y);
+    }while(nextWindowSDL2());
   }
 }
 
-void keyPressedAllFenetreSDL2(char c){
-  if(initIteratorFenetreSDL2()){
+void keyPressedAllWindowSDL2(char c){
+  if(initIteratorWindowSDL2()){
     do{
-      keyPressedFenetreSDL2(c);
-    }while(nextFenetreSDL2());
+      keyPressedWindowSDL2(c);
+    }while(nextWindowSDL2());
   }
 }
 
-void keyReleasedAllFenetreSDL2(char c){
-  if(initIteratorFenetreSDL2()){
+void keyReleasedAllWindowSDL2(char c){
+  if(initIteratorWindowSDL2()){
     do{
-      keyReleasedFenetreSDL2(c);
-    }while(nextFenetreSDL2());
+      keyReleasedWindowSDL2(c);
+    }while(nextWindowSDL2());
   }
 }
 
-void closeFenetreSDL2(){
-  FenetreSDL2 * f, * tmp;
+void closeWindowSDL2(){
+  WindowSDL2 * f, * tmp;
   
   if(_windows_SDL2TK && _windows_SDL2TK->current){
     f=_windows_SDL2TK->current;
@@ -511,7 +511,7 @@ void closeFenetreSDL2(){
       }
     }
     _windows_SDL2TK->current=_windows_SDL2TK->current->next;
-    freeFenetreSDL2(f);
+    freeWindowSDL2(f);
     if(!_windows_SDL2TK->first){
       free(_windows_SDL2TK);
       _windows_SDL2TK = NULL;
@@ -519,15 +519,15 @@ void closeFenetreSDL2(){
   }
 }
 
-void closeAllFenetreSDL2(){
-  FenetreSDL2 *f, *tmp;
+void closeAllWindowSDL2(){
+  WindowSDL2 *f, *tmp;
 
   if(_windows_SDL2TK && _windows_SDL2TK->first){
     f=_windows_SDL2TK->first;
     while(f){
       tmp=f;
       f=f->next;
-      freeFenetreSDL2(tmp);
+      freeWindowSDL2(tmp);
     }
     free(_windows_SDL2TK);
     _windows_SDL2TK=NULL;

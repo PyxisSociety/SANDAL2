@@ -3,7 +3,7 @@
 
 #include "HitBox.h"
 #include "FontSDL2.h"
-#include "FenetreSDL2.h"
+#include "WindowSDL2.h"
 #include "DisplayCode.h"
 
 /**
@@ -15,7 +15,7 @@
  * @brief List of windows
  *   WARNING : Do not touch this list ... trust me
  */
-extern ListFenetreSDL2 * _windows_SDL2TK;
+extern ListWindowSDL2 * _windows_SDL2TK;
 
 /**
  * @struct EntrySDL2

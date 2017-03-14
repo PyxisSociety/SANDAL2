@@ -1,12 +1,10 @@
 var searchData=
 [
   ['initallsdl2',['initAllSDL2',['../SANDAL2_8h.html#ad537ef8fe4a84d613f1e38c05e771c94',1,'SANDAL2.c']]],
-  ['initfenetresdl2',['initFenetreSDL2',['../SANDAL2_8h.html#a8eca1719eacdcf9a0c44bacdc6baf138',1,'SANDAL2.c']]],
   ['inithitbox',['initHitBox',['../HitBox_8h.html#a1be18a82249f1704d11a8f0521c7d7f8',1,'HitBox.c']]],
   ['initimage',['initImage',['../SANDAL2_8h.html#a5f3f01c6686a767dce94cf37e9017ba7',1,'SANDAL2.c']]],
   ['inititerateur',['initIterateur',['../ElementSDL2_8h.html#a297d7fd2dc5e08090945fd8dd8511938',1,'ElementSDL2.c']]],
   ['inititerateurelementsdl2',['initIterateurElementSDL2',['../ElementSDL2_8h.html#a1097986909db85af692feaff4d7345bd',1,'ElementSDL2.c']]],
-  ['inititeratorfenetresdl2',['initIteratorFenetreSDL2',['../FenetreSDL2_8h.html#a73ced5e0264fce4c8fe7d74ad5154787',1,'FenetreSDL2.c']]],
   ['inititeratorlisthitbox',['initIteratorListHitBox',['../HitBox_8h.html#ab97462121987d2a6bbd4b52f3a7f4907',1,'HitBox.c']]],
   ['initlistdcelementsdl2',['initListDCElementSDL2',['../ElementSDL2_8h.html#ad71f05b4e04a6dc518cfe8357baf3d09',1,'ElementSDL2.c']]],
   ['initlistdisplaycode',['initListDisplayCode',['../DisplayCode_8h.html#a36c8d05b31541f4527fa4b96a902a1c1',1,'DisplayCode.c']]],
@@ -15,6 +13,7 @@ var searchData=
   ['initlistptrelementsdl2',['initListPtrElementSDL2',['../ElementSDL2_8h.html#afdcbcd7ee82d1455d690c378d2cb3517',1,'ElementSDL2.c']]],
   ['initsdl2',['initSDL2',['../SANDAL2_8h.html#a01bf8251dec7ff78e84c0128658c51b3',1,'SANDAL2.c']]],
   ['inittexte',['initTexte',['../SANDAL2_8h.html#ae77b49097e2b9c9ad4b1f4a09abd4eff',1,'SANDAL2.c']]],
+  ['initwindowsdl2',['initWindowSDL2',['../SANDAL2_8h.html#af76284490ec1c1d276b7c8757bf02a60',1,'SANDAL2.c']]],
   ['isdisplaied',['isDisplaied',['../ElementSDL2_8h.html#ade52f46cef352da9d226a1a1d9e01b19',1,'ElementSDL2.c']]],
   ['isselectedelementsdl2',['isSelectedElementSDL2',['../ElementSDL2_8h.html#a92a02f9368dcba350197a618189d3fcd',1,'ElementSDL2.c']]]
 ];

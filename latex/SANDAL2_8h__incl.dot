@@ -14,7 +14,7 @@ digraph "SANDAL2.h"
   Node2 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
   Node6 [label="FontSDL2.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$FontSDL2_8h.html",tooltip="Information about TTF objects. "];
   Node6 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
-  Node7 [label="FenetreSDL2.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$FenetreSDL2_8h.html",tooltip="Contains all structures related to windows but only those unrelated to Elements. "];
+  Node7 [label="FenetreSDL2.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$FenetreSDL2_8h_source.html"];
   Node7 -> Node8 [color="midnightblue",fontsize="10",style="solid"];
   Node8 [label="string.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node7 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
@@ -24,10 +24,11 @@ digraph "SANDAL2.h"
   Node10 [label="SDL2/SDL_ttf.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node7 -> Node11 [color="midnightblue",fontsize="10",style="solid"];
   Node11 [label="SDL2/SDL_image.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
-  Node2 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
   Node2 -> Node12 [color="midnightblue",fontsize="10",style="solid"];
-  Node12 [label="DisplayCode.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$DisplayCode_8h.html",tooltip="Contains display code and list of display codes. "];
-  Node12 -> Node13 [color="midnightblue",fontsize="10",style="solid"];
-  Node13 [label="stdio.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
-  Node12 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="WindowSDL2.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node2 -> Node13 [color="midnightblue",fontsize="10",style="solid"];
+  Node13 [label="DisplayCode.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$DisplayCode_8h.html",tooltip="Contains display code and list of display codes. "];
+  Node13 -> Node14 [color="midnightblue",fontsize="10",style="solid"];
+  Node14 [label="stdio.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node13 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
 }

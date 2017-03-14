@@ -14,7 +14,7 @@
  * @brief list of windows
  *   WARNING : do not touch this variable, never ... trust me
  */
-extern ListFenetreSDL2 * _windows_SDL2TK;
+extern ListWindowSDL2 * _windows_SDL2TK;
 
 /* -------------------------------------------------------
  * Initialisation et fermeture des outils SDL2
@@ -65,7 +65,7 @@ void closeTexte();
 /**
  * @brief Free a window's memory
  */
-void freeFenetreSDL2(FenetreSDL2 *fen);
+void freeWindowSDL2(WindowSDL2 *fen);
 /**
  * @brief Add a window to the list of windows
  * @param width : width of the window
@@ -75,75 +75,75 @@ void freeFenetreSDL2(FenetreSDL2 *fen);
  * @param background : color of the background
  * @param displayCode : display code of the window
  */
-void initFenetreSDL2(int width,int height,char *title,int SDLFlags,int background[4],int displayCode);
+void initWindowSDL2(int width,int height,char *title,int SDLFlags,int background[4],int displayCode);
 /**
  * @brief update all the elements of the current window
  */
-void updateFenetreSDL2();
+void updateWindowSDL2();
 /**
  * @brief actualise the display of the current window 
  */
-void displayFenetreSDL2();
+void displayWindowSDL2();
 /**
  * @brief activation of click events on the current window
  * @param x : abscissa coordinate of the mouse during the click
  * @param y : ordinate coordinate of the mouse during the click
  */
-void clickFenetreSDL2(int x,int y);
+void clickWindowSDL2(int x,int y);
 /**
  * @brief activation of unclick events on the current window
  * @param x : abscissa coordinate of the mouse during the unclick
  * @param y : ordinate coordinate of the mouse during the unclick
  */
-void unclickFenetreSDL2(int x,int y);
+void unclickWindowSDL2(int x,int y);
 /**
  * @brief activation of the key pressed events on the current window
  * @param c : key which was pressed
  */
-void keyPressedFenetreSDL2(char c);
+void keyPressedWindowSDL2(char c);
 /**
  * @brief activation of the key released events on the current window
  * @param c : key which was released
  */
-void keyReleasedFenetreSDL2(char c);
+void keyReleasedWindowSDL2(char c);
 /**
  * @brief update all the elements of all the windows
  */
-void updateAllFenetreSDL2();
+void updateAllWindowSDL2();
 /**
  * @brief actualise the display of all the windows 
  */
-void displayAllFenetreSDL2();
+void displayAllWindowSDL2();
 /**
  * @brief activation of click events on all the windows
  * @param x : abscissa coordinate of the mouse during the click
  * @param y : ordinate coordinate of the mouse during the click
  */
-void clickAllFenetreSDL2(int x,int y);
+void clickAllWindowSDL2(int x,int y);
 /**
  * @brief activation of unclick events on all the windows
  * @param x : abscissa coordinate of the mouse during the unclick
  * @param y : ordinate coordinate of the mouse during the unclick
  */
-void unclickAllFenetreSDL2(int x,int y);
+void unclickAllWindowSDL2(int x,int y);
 /**
  * @brief activation of the key pressed events on all windows
  * @param c : key which was pressed
  */
-void keyPressedAllFenetreSDL2(char c);
+void keyPressedAllWindowSDL2(char c);
 /**
  * @brief activation of the key released events on all windows
  * @param c : key which was released
  */
-void keyReleasedAllFenetreSDL2(char c);
+void keyReleasedAllWindowSDL2(char c);
 /**
  * @brief close the current windows and go to the next
  */
-void closeFenetreSDL2();
+void closeWindowSDL2();
 /**
  * @brief close all windows
  */
-void closeAllFenetreSDL2();
+void closeAllWindowSDL2();
 /* ------------------------------------------------------- */
 
 #endif

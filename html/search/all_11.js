@@ -7,7 +7,6 @@ var searchData=
   ['setactionelementsdl2',['setActionElementSDL2',['../ElementSDL2_8h.html#adc55495e7fd38c24182c666f5e27cf68',1,'ElementSDL2.c']]],
   ['setangleelementsdl2',['setAngleElementSDL2',['../ElementSDL2_8h.html#ad0c26c9ec304f41938f36734ba689c36',1,'ElementSDL2.c']]],
   ['setcolorelementsdl2',['setColorElementSDL2',['../ElementSDL2_8h.html#af702b89bddffe64eb1353d2883bfb593',1,'ElementSDL2.c']]],
-  ['setcolorfenetresdl2',['setColorFenetreSDL2',['../FenetreSDL2_8h.html#a8f431ff0a889126841c662c161b32a73',1,'FenetreSDL2.c']]],
   ['setdataelementsdl2',['setDataElementSDL2',['../ElementSDL2_8h.html#a8335fb6c08b9256c244bff44f4fb5500',1,'ElementSDL2.c']]],
   ['setdisplayelementsdl2',['setDisplayElementSDL2',['../ElementSDL2_8h.html#a09ef66460ba6aa4211a679dd859edc8b',1,'ElementSDL2.c']]],
   ['setfontelementsdl2',['setFontElementSDL2',['../ElementSDL2_8h.html#a190c8bd60db107b6cc5db8c27e57690d',1,'ElementSDL2.c']]],
@@ -24,7 +23,7 @@ var searchData=
   ['settextsize',['setTextSize',['../ElementSDL2_8h.html#ae537b628085316fc17acc2abe3cee7f7',1,'ElementSDL2.c']]],
   ['setunclickelementsdl2',['setUnClickElementSDL2',['../ElementSDL2_8h.html#a3a1479f67838a34df58e6ad06f782347',1,'ElementSDL2.c']]],
   ['setunselectelementsdl2',['setUnSelectElementSDL2',['../ElementSDL2_8h.html#aa930b6acc358145b20f4f88f808521a8',1,'ElementSDL2.c']]],
-  ['size',['size',['../structEntrySDL2.html#adad4bfa55d814798c0198b3dc1b17514',1,'EntrySDL2']]],
+  ['size',['size',['../structListDisplayCode.html#a996383aabad4d02cd3d9543143b6e72a',1,'ListDisplayCode::size()'],['../structEntrySDL2.html#adad4bfa55d814798c0198b3dc1b17514',1,'EntrySDL2::size()']]],
   ['size_5fmax',['size_max',['../structEntrySDL2.html#a527d25625060a6f0770873b1c3039f73',1,'EntrySDL2']]],
   ['size_5fmin',['size_min',['../structEntrySDL2.html#a6713933ba31b9a8f3436dbc93f205340',1,'EntrySDL2']]]
 ];

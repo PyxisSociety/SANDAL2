@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['unclickallfenetresdl2',['unclickAllFenetreSDL2',['../SANDAL2_8h.html#a260421423837977fc7d919a4f86a4851',1,'SANDAL2.c']]],
-  ['unclickfenetresdl2',['unclickFenetreSDL2',['../SANDAL2_8h.html#a78c307896d23a509390c9e28cdaa2bfd',1,'SANDAL2.c']]],
-  ['updateallfenetresdl2',['updateAllFenetreSDL2',['../SANDAL2_8h.html#a0b8ee008f996e198c37e300fafcf27ee',1,'SANDAL2.c']]],
-  ['updatefenetresdl2',['updateFenetreSDL2',['../SANDAL2_8h.html#addc21e90237a1cefe5ecdb60b6bf862b',1,'SANDAL2.c']]]
+  ['unclickallwindowsdl2',['unclickAllWindowSDL2',['../SANDAL2_8h.html#acd49cda95997b5b0b5430aa0038a86c1',1,'SANDAL2.c']]],
+  ['unclickwindowsdl2',['unclickWindowSDL2',['../SANDAL2_8h.html#a87f7760e015f4d0523073cac6d3ea679',1,'SANDAL2.c']]],
+  ['updateallwindowsdl2',['updateAllWindowSDL2',['../SANDAL2_8h.html#a0e4680b15463b7fdac93c014e15f816c',1,'SANDAL2.c']]],
+  ['updatewindowsdl2',['updateWindowSDL2',['../SANDAL2_8h.html#af46e20162e68746e802b40e606eed513',1,'SANDAL2.c']]]
 ];

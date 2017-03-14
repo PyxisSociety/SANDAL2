@@ -1,10 +1,11 @@
-#include "FenetreSDL2.h"
-ListFenetreSDL2 * _windows_SDL2TK = NULL;
+#include "WindowSDL2.h"
+
+ListWindowSDL2 * _windows_SDL2TK = NULL;
 
 /* -------------------------------------------------------
- * Fenetre SDL2
+ * Window SDL2
  */
-void resizeFenetreSDL2(unsigned width,unsigned height){
+void resizeWindowSDL2(unsigned width,unsigned height){
   if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->window){
     SDL_SetWindowSize(_windows_SDL2TK->current->window,width,height);
     _windows_SDL2TK->current->width=width;
@@ -12,13 +13,13 @@ void resizeFenetreSDL2(unsigned width,unsigned height){
   }
 }
 
-void changeDisplayFenetreSDL2(int displayCode){
+void changeDisplayWindowSDL2(int displayCode){
   if(_windows_SDL2TK && _windows_SDL2TK->current){
     _windows_SDL2TK->current->displayCode=displayCode;
   }
 }
 
-int initIteratorFenetreSDL2(){
+int initIteratorWindowSDL2(){
   int error = 1;
 
   if(_windows_SDL2TK){
@@ -29,7 +30,7 @@ int initIteratorFenetreSDL2(){
   return error;
 }
 
-int nextFenetreSDL2(){
+int nextWindowSDL2(){
   int error = 1;
 
   if(_windows_SDL2TK && _windows_SDL2TK->current){
@@ -40,7 +41,7 @@ int nextFenetreSDL2(){
   return error;
 }
 
-int getDimensionFenetreSDL2(int * w,int * h){
+int getDimensionWindowSDL2(int * w,int * h){
   int error = 0;
 
   if(_windows_SDL2TK && _windows_SDL2TK->current){
@@ -56,7 +57,7 @@ int getDimensionFenetreSDL2(int * w,int * h){
   return error;
 }
 
-int getDisplayCodeFenetreSDL2(int * d){
+int getDisplayCodeWindowSDL2(int * d){
   int error = 1;
 
   if(_windows_SDL2TK && _windows_SDL2TK->current){
@@ -69,7 +70,7 @@ int getDisplayCodeFenetreSDL2(int * d){
   return error;
 }
 
-int getColorFenetreSDL2(int color[4]){
+int getColorWindowSDL2(int color[4]){
   int error = 1;
 
   if(_windows_SDL2TK && _windows_SDL2TK->current){
@@ -80,7 +81,7 @@ int getColorFenetreSDL2(int color[4]){
   return error;
 }
 
-int setColorFenetreSDL2(int color[4]){
+int setColorWindowSDL2(int color[4]){
   int error = 1;
 
   if(_windows_SDL2TK && _windows_SDL2TK->current){
