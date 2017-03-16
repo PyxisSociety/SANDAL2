@@ -77,6 +77,8 @@ typedef struct ElementSDL2{
   ///< function called when a key is released
   void (*unSelect)(struct ElementSDL2*);
   ///< function called when the element is unselected
+  void (*endSprite)(struct ElementSDL2*,int code);
+  ///< function called at the end of a sprite
   SDL_Texture *image;
   ///< texture of the image (NULL if no image)
   ListAnimation* animation;
@@ -558,6 +560,12 @@ void setUnClickElementSDL2(ElementSDL2 *e,void (*unCLick)(ElementSDL2*));
  */
 void setUnSelectElementSDL2(ElementSDL2 *e,void (*unSelect)(ElementSDL2*));
 /**
+ * @brief set the behaiour of an element when it ends a sprite
+ * @param e : element to be modified
+ * @param endSprite : new behaviour
+ */
+void setEndSpriteElementSDL2(ElementSDL2 *e,void (*endSprite)(ElementSDL2*,int));
+/**
  * @brief add an element to another so that this other can modifie the first one
  * @param e : element to be modified
  * @param add : element to be add
@@ -690,6 +698,13 @@ int nextAnimationElementSDL2(ElementSDL2 * e);
  * @return 0 if it was possible, 1 if not
  */
 int previousAnimationElementSDL2(ElementSDL2 * e);
+/**
+ * @brief set the animation of an element
+ * @param e : element to be modifid
+ * @param code : code of the animation to set
+ * @return 0 if the animation is set, 1 if not
+ */
+int setAnimationElementSDL2(ElementSDL2 *e,int code);
 /* ------------------------------------------------------- */
 
 

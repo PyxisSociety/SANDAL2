@@ -6,11 +6,17 @@ void touch(ElementSDL2 *this){
   nextAnimationElementSDL2(this);
 }
 
+void endJump(ElementSDL2 *this,int code){
+  if(code==1){
+    setAnimationElementSDL2(this,0);
+  }
+}
+
 int main(){
   ElementSDL2 * objet;
   int run = 1;
   int tps = 0, ticks = 0;
-  int blanc[4] = {255,255,255,0};
+  int noir[4] = {0,0,0,0};
   int i;
   SDL_Event event;
   
@@ -20,7 +26,7 @@ int main(){
   }
 
   /* initialisation de la fenetre */
-  initWindowSDL2(400,400,"test",SDL_WINDOW_RESIZABLE,blanc,1);
+  initWindowSDL2(400,400,"test",SDL_WINDOW_RESIZABLE,noir,1);
   if(initIteratorWindowSDL2()){
     closeAllSDL2();
     fprintf(stderr,"Erreur d'ouverture de la fenetre.\n");
@@ -45,6 +51,8 @@ int main(){
   addRotationSpeedElementSDL2(objet,1.f);
 
   setOnClickElementSDL2(objet,touch);
+
+  setEndSpriteElementSDL2(objet,endJump);
   
   /* display de la fenetre */
   while(run){

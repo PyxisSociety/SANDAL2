@@ -403,6 +403,7 @@ ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4]
       e->keyPress=NULL;
       e->keyReleased=NULL;
       e->unSelect=NULL;
+      e->endSprite=NULL;
       e->police=NULL;
       e->entry=NULL;
       e->interactions=NULL;
@@ -456,6 +457,7 @@ ElementSDL2* createTexte(float x,float y,float width,float height,char * font,ch
 	e->keyPress=NULL;
 	e->keyReleased=NULL;
 	e->unSelect=NULL;
+	e->endSprite=NULL;
 	e->data=NULL;
 	if(addElementSDL2(e)){
 	  freeElementSDL2(e);
@@ -503,6 +505,7 @@ ElementSDL2* createImage(float x,float y,float width,float height,char *image,in
 	e->keyPress=NULL;
 	e->keyReleased=NULL;
 	e->unSelect=NULL;
+	e->endSprite=NULL;
 	e->police=NULL;
 	e->entry=NULL;
 	e->interactions=NULL;
@@ -1057,6 +1060,12 @@ void setUnSelectElementSDL2(ElementSDL2 *e,void (*unSelect)(ElementSDL2*)){
   }
 }
 
+void setEndSpriteElementSDL2(ElementSDL2 *e,void (*endSprite)(ElementSDL2*,int)){
+  if(e){
+    e->endSprite=endSprite;
+  }
+}
+
 void addElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *add){
   PtrElementSDL2 *pe;
   if(e && add){
@@ -1259,6 +1268,26 @@ int previousAnimationElementSDL2(ElementSDL2 * e){
   if(e && e->animation->size){
     e->animation->current=e->animation->current->prev;
     error = 0;
+  }
+
+  return error;
+}
+
+int setAnimationElementSDL2(ElementSDL2 *e,int code){
+  int error = 1;
+  ListSprite *ls;
+  unsigned i=0;
+
+  if(e && e->animation->size){
+    ls=e->animation->first;
+    while(i<e->animation->size && ls->code != code){
+      ls=ls->next;
+      ++i;
+    }
+    if(i<e->animation->size){
+      e->animation->current=ls;
+      error = 0;
+    }
   }
 
   return error;
