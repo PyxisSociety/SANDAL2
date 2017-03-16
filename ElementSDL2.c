@@ -821,6 +821,17 @@ int setImageElementSDL2(ElementSDL2 *e,char *image){
   return changed;
 }
 
+int setImageTextureElementSDL2(ElementSDL2 *e,SDL_Texture * image){
+  int changed = 0;
+
+  if(e){
+    changed = 1;
+    e->image=image;
+  }
+
+  return changed;
+}
+
 void replaceElementSDL2(ElementSDL2 *e,float x,float y){
   if(e && _windows_SDL2TK && _windows_SDL2TK->current){
     e->x=x;
@@ -1214,7 +1225,7 @@ int previousSpriteElementSDL2(ElementSDL2 * e){
 int setWaySpriteAnimationElementSDL2(ElementSDL2 * e,int code, int sens){
   int error = 1;
   ListSprite *ls;
-  int i=0;
+  unsigned i=0;
 
   if(e && (sens == 1 || !sens || sens == -1) && e->animation->size){
     ls=e->animation->first;

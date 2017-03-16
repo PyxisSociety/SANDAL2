@@ -457,8 +457,16 @@ void setTextColorElementSDL2(ElementSDL2 *e, int color[4]);
  * @brief set the element's image
  * @param e : element to be modified
  * @param image : path of the new image
+ * @return 0 if it failed, 1 if it succeeded
  */
 int setImageElementSDL2(ElementSDL2 *e,char *image);
+/**
+ * @brief set the element's image with a SDL2's texture
+ * @param e : element to be modified
+ * @param image : texture of the new image
+ * @return 0 if it failed, 1 if it succeeded
+ */
+int setImageTextureElementSDL2(ElementSDL2 *e,SDL_Texture * image);
 /**
  * @brief set the element's coordinates
  * @param e : element to be modified

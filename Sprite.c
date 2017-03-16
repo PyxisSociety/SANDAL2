@@ -21,7 +21,7 @@ ListSprite * initListSprite(int code){
 }
 
 void freeListSprite(ListSprite * l){
-  int i;
+  unsigned i;
   Sprite * tmp;
 
   if(l){
@@ -68,7 +68,7 @@ int addSprite(ListSprite * l,int x,int y,int width,int height,unsigned lifespan)
 }
 
 int removeSprite(ListSprite * l,int x,int y,int width,int height){
-  int i = 0;
+  unsigned i = 0;
   int error = 1;
   Sprite * s;
 
@@ -99,7 +99,7 @@ int removeSprite(ListSprite * l,int x,int y,int width,int height){
 }
 
 int setLifeSpanSprite(ListSprite * l,int x,int y,int width,int height,unsigned lifespan){
-  int i = 0;
+  unsigned i = 0;
   int error = 1;
   Sprite * s;
 
@@ -138,7 +138,7 @@ ListAnimation * initListAnimation(){
 
 void freeListAnimation(ListAnimation *l){
   ListSprite *ls;
-  int i;
+  unsigned i;
 
   if(l){
     i=0;
@@ -153,9 +153,8 @@ void freeListAnimation(ListAnimation *l){
 }
 
 int createAnimation(ListAnimation *l,int code){
-  ListSprite *ls,*tmp;
+  ListSprite *ls;
   int error = 1;
-  int i=0;
 
   if(l){
     ls=initListSprite(code);
@@ -182,7 +181,7 @@ int createAnimation(ListAnimation *l,int code){
 int removeAnimation(ListAnimation *l,int code){
   ListSprite *ls;
   int error = 1;
-  int i = 0;
+  unsigned i = 0;
 
   if(l){
     ls=l->first;
@@ -205,7 +204,7 @@ int removeAnimation(ListAnimation *l,int code){
 int addSpriteAnimation(ListAnimation *l,int code,int x,int y,int width,int height,unsigned lifespan){
   ListSprite *ls;
   int error = 1;
-  int i = 0;
+  unsigned i = 0;
 
   if(l){
     ls=l->first;
@@ -224,7 +223,7 @@ int addSpriteAnimation(ListAnimation *l,int code,int x,int y,int width,int heigh
 int removeSpriteAnimation(ListAnimation *l,int code,int x,int y,int width,int height){
   ListSprite *ls;
   int error = 1;
-  int i = 0;
+  unsigned i = 0;
 
   if(l){
     ls=l->first;
@@ -243,7 +242,7 @@ int removeSpriteAnimation(ListAnimation *l,int code,int x,int y,int width,int he
 int setLifeSpanSpriteAnimation(ListAnimation *l,int code,int x,int y,int width,int height,unsigned lifespan){
   ListSprite *ls;
   int error = 1;
-  int i = 0;
+  unsigned i = 0;
 
   if(l){
     ls=l->first;
@@ -262,7 +261,7 @@ int setLifeSpanSpriteAnimation(ListAnimation *l,int code,int x,int y,int width,i
 int setAnimation(ListAnimation *l,int code){
   ListSprite *ls;
   int error = 1;
-  int i = 0;
+  unsigned i = 0;
 
   if(l){
     ls=l->first;

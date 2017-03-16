@@ -189,7 +189,7 @@ void displayWindowSDL2(){
   SDL_Rect r,sr, *srect;
   int coul[4];
   SDL_Point p;
-  int i;
+  unsigned i;
 
   if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste){
     /* fond de la fenetre */
@@ -331,9 +331,7 @@ void clickWindowSDL2(int x,int y){
 	    }
 	    newX=(newX-e->element->x)/(e->element->width);
 	    newY=(newY-e->element->y)/(e->element->height);
-	    //printf("%f - %f\n",newX,newY);
 	    if(hitListHitBox(e->element->hitboxes,newX,newY)){
-	      //createBlock((float)x,(float)y,5.f,5.f,red,1,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 	      e->element->selected=1;
 	      if(e->element->entry){
 		e->element->entry->isSelect=1;
