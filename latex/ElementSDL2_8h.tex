@@ -121,6 +121,8 @@ void \hyperlink{ElementSDL2_8h_aa3ca69091e359651d361fb2bbecfb232}{set\+Text\+Col
 \begin{DoxyCompactList}\small\item\em set the element\textquotesingle{}s text color \end{DoxyCompactList}\item 
 int \hyperlink{ElementSDL2_8h_a85d1a73830b31dfe31488cddfa18e3be}{set\+Image\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e, char $\ast$image)
 \begin{DoxyCompactList}\small\item\em set the element\textquotesingle{}s image \end{DoxyCompactList}\item 
+int \hyperlink{ElementSDL2_8h_a04c4b7b7facd6deb68edf4f21a26ec61}{set\+Image\+Texture\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e, S\+D\+L\+\_\+\+Texture $\ast$image)
+\begin{DoxyCompactList}\small\item\em set the element\textquotesingle{}s image with a S\+D\+L2\textquotesingle{}s texture \end{DoxyCompactList}\item 
 void \hyperlink{ElementSDL2_8h_a5d4edc71868ecf9b647fdd53ea1468a0}{replace\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e, float x, float y)
 \begin{DoxyCompactList}\small\item\em set the element\textquotesingle{}s coordinates \end{DoxyCompactList}\item 
 void \hyperlink{ElementSDL2_8h_a02f7c7066562374a2ab1b8c779b8dc20}{move\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e, float x, float y)
@@ -149,6 +151,8 @@ void \hyperlink{ElementSDL2_8h_a3a1479f67838a34df58e6ad06f782347}{set\+Un\+Click
 \begin{DoxyCompactList}\small\item\em set the behaviour of an element when it is unclicked \end{DoxyCompactList}\item 
 void \hyperlink{ElementSDL2_8h_aa930b6acc358145b20f4f88f808521a8}{set\+Un\+Select\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e, void($\ast$un\+Select)(\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$))
 \begin{DoxyCompactList}\small\item\em set the behaiour of an element when it is unselect \end{DoxyCompactList}\item 
+void \hyperlink{ElementSDL2_8h_a6863b4e87e43fc9d7b2312c84157f3a6}{set\+End\+Sprite\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e, void($\ast$end\+Sprite)(\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$, int))
+\begin{DoxyCompactList}\small\item\em set the behaiour of an element when it ends a sprite \end{DoxyCompactList}\item 
 void \hyperlink{ElementSDL2_8h_abfce8c15cf8be2c86af2821f259629ef}{add\+Element\+To\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e, \hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$add)
 \begin{DoxyCompactList}\small\item\em add an element to another so that this other can modifie the first one \end{DoxyCompactList}\item 
 void \hyperlink{ElementSDL2_8h_a4ec060fcc67d49c8fcbf78ec1b82decb}{del\+Element\+To\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e, \hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$del)
@@ -187,6 +191,8 @@ int \hyperlink{ElementSDL2_8h_aae262742753f407ecdce45b687478744}{next\+Animation
 \begin{DoxyCompactList}\small\item\em go to te next animation of an element \end{DoxyCompactList}\item 
 int \hyperlink{ElementSDL2_8h_acbd73ce7dce811bc841dc4635b875982}{previous\+Animation\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e)
 \begin{DoxyCompactList}\small\item\em go to the previous animation of an element \end{DoxyCompactList}\item 
+int \hyperlink{ElementSDL2_8h_ac380916932e89cc3c7ad5f4694edf3d6}{set\+Animation\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e, int code)
+\begin{DoxyCompactList}\small\item\em set the animation of an element \end{DoxyCompactList}\item 
 int \hyperlink{ElementSDL2_8h_a1097986909db85af692feaff4d7345bd}{init\+Iterateur\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e)
 \begin{DoxyCompactList}\small\item\em initialise the element\textquotesingle{}s iterator on all the elements it can modifie \end{DoxyCompactList}\item 
 \hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$ \hyperlink{ElementSDL2_8h_ab4aea6f68231f9df71c439e59160ebe4}{next\+Iterateur\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e)
@@ -1485,6 +1491,28 @@ set the angle of an element
 {\em a} & \+: new angle of the element \\
 \hline
 \end{DoxyParams}
+\index{Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}!set\+Animation\+Element\+S\+D\+L2@{set\+Animation\+Element\+S\+D\+L2}}
+\index{set\+Animation\+Element\+S\+D\+L2@{set\+Animation\+Element\+S\+D\+L2}!Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{set\+Animation\+Element\+S\+D\+L2(\+Element\+S\+D\+L2 $\ast$e, int code)}{setAnimationElementSDL2(ElementSDL2 *e, int code)}}]{\setlength{\rightskip}{0pt plus 5cm}int set\+Animation\+Element\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{{\bf Element\+S\+D\+L2} $\ast$}]{e, }
+\item[{int}]{code}
+\end{DoxyParamCaption}
+)}\hypertarget{ElementSDL2_8h_ac380916932e89cc3c7ad5f4694edf3d6}{}\label{ElementSDL2_8h_ac380916932e89cc3c7ad5f4694edf3d6}
+
+
+set the animation of an element 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & \+: element to be modifid \\
+\hline
+{\em code} & \+: code of the animation to set \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the animation is set, 1 if not 
+\end{DoxyReturn}
 \index{Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}!set\+Color\+Element\+S\+D\+L2@{set\+Color\+Element\+S\+D\+L2}}
 \index{set\+Color\+Element\+S\+D\+L2@{set\+Color\+Element\+S\+D\+L2}!Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}}
 \subsubsection[{\texorpdfstring{set\+Color\+Element\+S\+D\+L2(\+Element\+S\+D\+L2 $\ast$e, int color[4])}{setColorElementSDL2(ElementSDL2 *e, int color[4])}}]{\setlength{\rightskip}{0pt plus 5cm}void set\+Color\+Element\+S\+D\+L2 (
@@ -1545,6 +1573,25 @@ set the is\+Displaied option of a display code (if the element has it)
 {\em is\+Displaied} & \+: new is\+Displaied option \\
 \hline
 \end{DoxyParams}
+\index{Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}!set\+End\+Sprite\+Element\+S\+D\+L2@{set\+End\+Sprite\+Element\+S\+D\+L2}}
+\index{set\+End\+Sprite\+Element\+S\+D\+L2@{set\+End\+Sprite\+Element\+S\+D\+L2}!Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{set\+End\+Sprite\+Element\+S\+D\+L2(\+Element\+S\+D\+L2 $\ast$e, void($\ast$end\+Sprite)(\+Element\+S\+D\+L2 $\ast$, int))}{setEndSpriteElementSDL2(ElementSDL2 *e, void(*endSprite)(ElementSDL2 *, int))}}]{\setlength{\rightskip}{0pt plus 5cm}void set\+End\+Sprite\+Element\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{{\bf Element\+S\+D\+L2} $\ast$}]{e, }
+\item[{void($\ast$)({\bf Element\+S\+D\+L2} $\ast$, int)}]{end\+Sprite}
+\end{DoxyParamCaption}
+)}\hypertarget{ElementSDL2_8h_a6863b4e87e43fc9d7b2312c84157f3a6}{}\label{ElementSDL2_8h_a6863b4e87e43fc9d7b2312c84157f3a6}
+
+
+set the behaiour of an element when it ends a sprite 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & \+: element to be modified \\
+\hline
+{\em end\+Sprite} & \+: new behaviour \\
+\hline
+\end{DoxyParams}
 \index{Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}!set\+Font\+Element\+S\+D\+L2@{set\+Font\+Element\+S\+D\+L2}}
 \index{set\+Font\+Element\+S\+D\+L2@{set\+Font\+Element\+S\+D\+L2}!Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}}
 \subsubsection[{\texorpdfstring{set\+Font\+Element\+S\+D\+L2(\+Element\+S\+D\+L2 $\ast$e, char $\ast$font)}{setFontElementSDL2(ElementSDL2 *e, char *font)}}]{\setlength{\rightskip}{0pt plus 5cm}void set\+Font\+Element\+S\+D\+L2 (
@@ -1583,6 +1630,31 @@ set the element\textquotesingle{}s image
 {\em image} & \+: path of the new image \\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if it failed, 1 if it succeeded 
+\end{DoxyReturn}
+\index{Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}!set\+Image\+Texture\+Element\+S\+D\+L2@{set\+Image\+Texture\+Element\+S\+D\+L2}}
+\index{set\+Image\+Texture\+Element\+S\+D\+L2@{set\+Image\+Texture\+Element\+S\+D\+L2}!Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{set\+Image\+Texture\+Element\+S\+D\+L2(\+Element\+S\+D\+L2 $\ast$e, S\+D\+L\+\_\+\+Texture $\ast$image)}{setImageTextureElementSDL2(ElementSDL2 *e, SDL_Texture *image)}}]{\setlength{\rightskip}{0pt plus 5cm}int set\+Image\+Texture\+Element\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{{\bf Element\+S\+D\+L2} $\ast$}]{e, }
+\item[{S\+D\+L\+\_\+\+Texture $\ast$}]{image}
+\end{DoxyParamCaption}
+)}\hypertarget{ElementSDL2_8h_a04c4b7b7facd6deb68edf4f21a26ec61}{}\label{ElementSDL2_8h_a04c4b7b7facd6deb68edf4f21a26ec61}
+
+
+set the element\textquotesingle{}s image with a S\+D\+L2\textquotesingle{}s texture 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & \+: element to be modified \\
+\hline
+{\em image} & \+: texture of the new image \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if it failed, 1 if it succeeded 
+\end{DoxyReturn}
 \index{Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}!set\+Key\+Press\+Element\+S\+D\+L2@{set\+Key\+Press\+Element\+S\+D\+L2}}
 \index{set\+Key\+Press\+Element\+S\+D\+L2@{set\+Key\+Press\+Element\+S\+D\+L2}!Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}}
 \subsubsection[{\texorpdfstring{set\+Key\+Press\+Element\+S\+D\+L2(\+Element\+S\+D\+L2 $\ast$e, void($\ast$key\+Press)(\+Element\+S\+D\+L2 $\ast$, S\+D\+L\+\_\+\+Keycode c))}{setKeyPressElementSDL2(ElementSDL2 *e, void(*keyPress)(ElementSDL2 *, SDL_Keycode c))}}]{\setlength{\rightskip}{0pt plus 5cm}void set\+Key\+Press\+Element\+S\+D\+L2 (
