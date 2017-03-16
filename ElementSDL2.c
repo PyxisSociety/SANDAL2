@@ -348,7 +348,9 @@ void removeElementSDL2(ElementSDL2 *e){
  */
 void freeElementSDL2(ElementSDL2 *e){
   if(e){
-    freeListDisplayCode(e->codes);
+    if(e->codes){
+      freeListDisplayCode(e->codes);
+    }
     if(e->image){
       SDL_DestroyTexture(e->image);
     }
@@ -366,6 +368,9 @@ void freeElementSDL2(ElementSDL2 *e){
     }
     if(e->hitboxes){
       freeListHitBox(e->hitboxes);
+    }
+    if(e->animation){
+      freeListSprite(e->animation);
     }
     free(e);
   }    
@@ -391,6 +396,7 @@ ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4]
       copyColor(e->coulBlock,couleur);
       e->codes=initListDisplayCode();
       addDisplayCode(e->codes,displayCode,1,plan);
+      e->animation=initListSprite();
       e->action=NULL;
       e->onClick=NULL;
       e->unClick=NULL;
@@ -432,6 +438,7 @@ ElementSDL2* createTexte(float x,float y,float width,float height,char * font,ch
       e->rotation=0.f;
       e->rotSpeed=0.f;
       e->textSize=1.0f;
+      e->animation=initListSprite();
       e->image=NULL;
       e->entry=NULL;
       e->interactions=NULL;
@@ -485,6 +492,7 @@ ElementSDL2* createImage(float x,float y,float width,float height,char *image,in
 	e->prY=.5f;
 	e->rotation=0.f;
 	e->rotSpeed=0.f;
+	e->animation=initListSprite();
 	e->image=SDL_CreateTextureFromSurface(_windows_SDL2TK->current->renderer,s);
 	e->codes=initListDisplayCode();
 	addDisplayCode(e->codes,displayCode,1,plan);
@@ -1127,6 +1135,71 @@ void setDataElementSDL2(ElementSDL2 *e,void *data){
   if(e){
     e->data=data;
   }
+}
+
+int addSpriteElementSDL2(ElementSDL2 *e,int x,int y,int width,int height,int lifespan){
+  int error = 1;
+
+  if(e){
+    error = addSprite(e->animation,x,y,width,height,lifespan);
+  }
+  
+  return error;
+}
+
+int removeSpriteElementSDL2(ElementSDL2 *e,int x,int y,int width,int height){
+  int error = 1;
+
+  if(e){
+    error = removeSprite(e->animation,x,y,width,height);
+  }
+
+  return error;
+}
+
+int setLifeSpanSpriteElementSDL2(ElementSDL2 * e,int x,int y,int width,int height,unsigned lifespan){
+  int error = 1;
+
+  if(e){
+    error = setLifeSpanSprite(e->animation,x,y,width,height,lifespan);
+  }
+
+  return error;
+}
+
+int nextSpriteElementSDL2(ElementSDL2 * e){
+  int error = 1;
+
+  if(e && e->animation->size){
+    e->animation->current = e->animation->current->next;
+    e->animation->wasChanged=0;
+    error = 0;
+  }
+
+  return error;
+}
+
+int previousSpriteElementSDL2(ElementSDL2 * e){
+  int error = 1;
+
+  if(e && e->animation->size){
+    e->animation->current = e->animation->current->prev;
+    e->animation->wasChanged=0;
+    error = 0;
+  }
+
+  return error;
+}
+
+int setWaySpriteElementSDL2(ElementSDL2 * e, int sens){
+  int error = 1;
+
+  if(e && (sens == 1 || !sens || sens == -1)){
+    e->animation->sens=sens;
+    error = 0;
+  }
+
+  return error;
 }
 /* ------------------------------------------------------- */
 

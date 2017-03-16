@@ -95,8 +95,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="HitBox_8h_source.html">HitBox.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="FontSDL2_8h_source.html">FontSDL2.h</a>&quot;</code><br />
-<code>#include &quot;WindowSDL2.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="WindowSDL2_8h_source.html">WindowSDL2.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="DisplayCode_8h_source.html">DisplayCode.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Sprite_8h_source.html">Sprite.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for ElementSDL2.h:</div>
 <div class="dyncontent">
@@ -327,6 +328,24 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Elem
 <tr class="memitem:a8335fb6c08b9256c244bff44f4fb5500"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ElementSDL2_8h.html#a8335fb6c08b9256c244bff44f4fb5500">setDataElementSDL2</a> (<a class="el" href="structElementSDL2.html">ElementSDL2</a> *e, void *data)</td></tr>
 <tr class="memdesc:a8335fb6c08b9256c244bff44f4fb5500"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the element's data  <a href="#a8335fb6c08b9256c244bff44f4fb5500">More...</a><br /></td></tr>
 <tr class="separator:a8335fb6c08b9256c244bff44f4fb5500"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc379e6de4e33341fd04f426e45eaa09"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ElementSDL2_8h.html#adc379e6de4e33341fd04f426e45eaa09">addSpriteElementSDL2</a> (<a class="el" href="structElementSDL2.html">ElementSDL2</a> *e, int x, int y, int width, int height, int lifespan)</td></tr>
+<tr class="memdesc:adc379e6de4e33341fd04f426e45eaa09"><td class="mdescLeft">&#160;</td><td class="mdescRight">add a <a class="el" href="structSprite.html" title="informations about a step of an animation ">Sprite</a> to the element  <a href="#adc379e6de4e33341fd04f426e45eaa09">More...</a><br /></td></tr>
+<tr class="separator:adc379e6de4e33341fd04f426e45eaa09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf59ce254ea819abdf654cc54505cf2d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ElementSDL2_8h.html#adf59ce254ea819abdf654cc54505cf2d">removeSpriteElementSDL2</a> (<a class="el" href="structElementSDL2.html">ElementSDL2</a> *e, int x, int y, int width, int height)</td></tr>
+<tr class="memdesc:adf59ce254ea819abdf654cc54505cf2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">remove a <a class="el" href="structSprite.html" title="informations about a step of an animation ">Sprite</a> in the element  <a href="#adf59ce254ea819abdf654cc54505cf2d">More...</a><br /></td></tr>
+<tr class="separator:adf59ce254ea819abdf654cc54505cf2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af17f9655df35e43833aca3ec05d336d5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ElementSDL2_8h.html#af17f9655df35e43833aca3ec05d336d5">setLifeSpanSpriteElementSDL2</a> (<a class="el" href="structElementSDL2.html">ElementSDL2</a> *e, int x, int y, int width, int height, unsigned lifespan)</td></tr>
+<tr class="memdesc:af17f9655df35e43833aca3ec05d336d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the lifespan of a sprite  <a href="#af17f9655df35e43833aca3ec05d336d5">More...</a><br /></td></tr>
+<tr class="separator:af17f9655df35e43833aca3ec05d336d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9b1e96e535a3ea2180d31df4ca8e806"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ElementSDL2_8h.html#af9b1e96e535a3ea2180d31df4ca8e806">nextSpriteElementSDL2</a> (<a class="el" href="structElementSDL2.html">ElementSDL2</a> *e)</td></tr>
+<tr class="memdesc:af9b1e96e535a3ea2180d31df4ca8e806"><td class="mdescLeft">&#160;</td><td class="mdescRight">go to te next animation of an element  <a href="#af9b1e96e535a3ea2180d31df4ca8e806">More...</a><br /></td></tr>
+<tr class="separator:af9b1e96e535a3ea2180d31df4ca8e806"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a765efd80ffe2b3f08fed40d1cf3fe33f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ElementSDL2_8h.html#a765efd80ffe2b3f08fed40d1cf3fe33f">previousSpriteElementSDL2</a> (<a class="el" href="structElementSDL2.html">ElementSDL2</a> *e)</td></tr>
+<tr class="memdesc:a765efd80ffe2b3f08fed40d1cf3fe33f"><td class="mdescLeft">&#160;</td><td class="mdescRight">go to the previous animation of an element  <a href="#a765efd80ffe2b3f08fed40d1cf3fe33f">More...</a><br /></td></tr>
+<tr class="separator:a765efd80ffe2b3f08fed40d1cf3fe33f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fd273012ea7922873a8c11c70bf8f62"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ElementSDL2_8h.html#a1fd273012ea7922873a8c11c70bf8f62">setWaySpriteElementSDL2</a> (<a class="el" href="structElementSDL2.html">ElementSDL2</a> *e, int sens)</td></tr>
+<tr class="memdesc:a1fd273012ea7922873a8c11c70bf8f62"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the way to go from a sprite to another (forward (1), backward (-1), no move (0))  <a href="#a1fd273012ea7922873a8c11c70bf8f62">More...</a><br /></td></tr>
+<tr class="separator:a1fd273012ea7922873a8c11c70bf8f62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1097986909db85af692feaff4d7345bd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ElementSDL2_8h.html#a1097986909db85af692feaff4d7345bd">initIterateurElementSDL2</a> (<a class="el" href="structElementSDL2.html">ElementSDL2</a> *e)</td></tr>
 <tr class="memdesc:a1097986909db85af692feaff4d7345bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise the element's iterator on all the elements it can modifie  <a href="#a1097986909db85af692feaff4d7345bd">More...</a><br /></td></tr>
 <tr class="separator:a1097986909db85af692feaff4d7345bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -678,6 +697,70 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="adc379e6de4e33341fd04f426e45eaa09"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int addSpriteElementSDL2 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structElementSDL2.html">ElementSDL2</a> *&#160;</td>
+          <td class="paramname"><em>e</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>lifespan</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>add a <a class="el" href="structSprite.html" title="informations about a step of an animation ">Sprite</a> to the element </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">e</td><td>: element </td></tr>
+    <tr><td class="paramname">x</td><td>: abscissa coordinate of the top left corner of the sprite in its image </td></tr>
+    <tr><td class="paramname">y</td><td>: ordinate coordinate of the top left corner of the sprite in its image </td></tr>
+    <tr><td class="paramname">width</td><td>: width of the sprite in its image </td></tr>
+    <tr><td class="paramname">height</td><td>: height of the sprite in its image </td></tr>
+    <tr><td class="paramname">lifespan</td><td>: number of time the sprite should be displaied before going to the next sprite </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if the sprite was correctly added, 1 if not </dd></dl>
 
 </div>
 </div>
@@ -1981,6 +2064,56 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="af9b1e96e535a3ea2180d31df4ca8e806"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int nextSpriteElementSDL2 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structElementSDL2.html">ElementSDL2</a> *&#160;</td>
+          <td class="paramname"><em>e</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>go to te next animation of an element </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">e</td><td>: element </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if it was possible, 1 if not </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a765efd80ffe2b3f08fed40d1cf3fe33f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int previousSpriteElementSDL2 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structElementSDL2.html">ElementSDL2</a> *&#160;</td>
+          <td class="paramname"><em>e</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>go to the previous animation of an element </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">e</td><td>: element </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if it was possible, 1 if not </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a531702cece7f427adcd095bd5d5ca5d4"></a>
 <div class="memitem">
 <div class="memproto">
@@ -2166,6 +2299,63 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="adf59ce254ea819abdf654cc54505cf2d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int removeSpriteElementSDL2 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structElementSDL2.html">ElementSDL2</a> *&#160;</td>
+          <td class="paramname"><em>e</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>remove a <a class="el" href="structSprite.html" title="informations about a step of an animation ">Sprite</a> in the element </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">e</td><td>: element </td></tr>
+    <tr><td class="paramname">x</td><td>: abscissa coordinate of the top left corner of the sprite in its image </td></tr>
+    <tr><td class="paramname">y</td><td>: ordinate coordinate of the top left corner of the sprite in its image </td></tr>
+    <tr><td class="paramname">width</td><td>: width of the sprite in its image </td></tr>
+    <tr><td class="paramname">height</td><td>: height of the sprite in its image </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if the sprite was correctly removed, 1 if not </dd></dl>
 
 </div>
 </div>
@@ -2575,6 +2765,70 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="af17f9655df35e43833aca3ec05d336d5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int setLifeSpanSpriteElementSDL2 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structElementSDL2.html">ElementSDL2</a> *&#160;</td>
+          <td class="paramname"><em>e</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>lifespan</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>set the lifespan of a sprite </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">e</td><td>: element </td></tr>
+    <tr><td class="paramname">x</td><td>: abscissa coordinate of the top left corner of the sprite in its image </td></tr>
+    <tr><td class="paramname">y</td><td>: ordinate coordinate of the top left corner of the sprite in its image </td></tr>
+    <tr><td class="paramname">width</td><td>: width of the sprite in its image </td></tr>
+    <tr><td class="paramname">height</td><td>: height of the sprite in its image </td></tr>
+    <tr><td class="paramname">lifespan</td><td>: new number of time the sprite should be displaied before going to the next sprite </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if the lifespan could be set, 1 if not </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="abd06d06aca3fa3777d70196c116740e7"></a>
 <div class="memitem">
 <div class="memproto">
@@ -2936,6 +3190,42 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="a1fd273012ea7922873a8c11c70bf8f62"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int setWaySpriteElementSDL2 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structElementSDL2.html">ElementSDL2</a> *&#160;</td>
+          <td class="paramname"><em>e</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>sens</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>set the way to go from a sprite to another (forward (1), backward (-1), no move (0)) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">e</td><td>: element </td></tr>
+    <tr><td class="paramname">sens</td><td>: new way </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if the way could be set, 1 if not </dd></dl>
 
 </div>
 </div>

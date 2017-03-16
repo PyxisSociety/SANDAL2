@@ -2,9 +2,9 @@
 
 SANDAL2PATH=SANDAL2
 
-SANDAL2=$(SANDAL2PATH)/SANDAL2.o $(SANDAL2PATH)/WindowSDL2.o $(SANDAL2PATH)/ElementSDL2.o $(SANDAL2PATH)/FontSDL2.o $(SANDAL2PATH)/DisplayCode.o $(SANDAL2PATH)/HitBox.o
+SANDAL2=$(SANDAL2PATH)/SANDAL2.o $(SANDAL2PATH)/WindowSDL2.o $(SANDAL2PATH)/ElementSDL2.o $(SANDAL2PATH)/FontSDL2.o $(SANDAL2PATH)/DisplayCode.o $(SANDAL2PATH)/HitBox.o $(SANDAL2PATH)/Sprite.o
 SANDAL2FLAG=-lSDL2 -lSDL2_ttf -lSDL2_image -lm
-OFILESANDAL2=SANDAL2.o WindowSDL2.o ElementSDL2.o FontSDL2.o DisplayCode.o HitBox.o
+OFILESANDAL2=SANDAL2.o WindowSDL2.o ElementSDL2.o FontSDL2.o DisplayCode.o HitBox.o Sprite.o
 
 
 OFILE=main.o menu.o jeu.o $(OFILESANDAL2)
@@ -20,4 +20,7 @@ $(PROG):$(SANDAL2) $(OFILE)
 	gcc -c $< $(CFLAG)
 
 clear:
-	rm *.o *~
+	rm *.o
+clean: clear
+cleaner:
+	rm *.o $(PROG)

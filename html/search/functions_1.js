@@ -1,6 +1,7 @@
 var searchData=
 [
   ['changecolorfontsdl2',['changeColorFontSDL2',['../FontSDL2_8h.html#ab79e89cdea6eefa2df078573990dd27d',1,'FontSDL2.c']]],
+  ['changedisplaywindowsdl2',['changeDisplayWindowSDL2',['../WindowSDL2_8h.html#ad956e8892e5a3894a983a0691385f2e2',1,'WindowSDL2.c']]],
   ['changesizeentrysdl2',['changeSizeEntrySDL2',['../ElementSDL2_8h.html#a1f5504b3080610444c9a00a47c1de35f',1,'ElementSDL2.c']]],
   ['changetextfontsdl2',['changeTextFontSDL2',['../FontSDL2_8h.html#aa5dfa93e24f458785bc3ddd59bee6171',1,'FontSDL2.c']]],
   ['cleanelementsdl2',['cleanElementSDL2',['../ElementSDL2_8h.html#ad04ce7cf475dc35109b94db30467e3d9',1,'ElementSDL2.c']]],
@@ -12,6 +13,8 @@ var searchData=
   ['closesdl2',['closeSDL2',['../SANDAL2_8h.html#a13e455075c9cf7e333194e280095c2b2',1,'SANDAL2.c']]],
   ['closetexte',['closeTexte',['../SANDAL2_8h.html#a68e9d4a4b36d4fff7b60781d5c01473f',1,'SANDAL2.c']]],
   ['closewindowsdl2',['closeWindowSDL2',['../SANDAL2_8h.html#ae96226eba4428f386e14132a501d05ee',1,'SANDAL2.c']]],
+  ['cmpcoul',['cmpCoul',['../WindowSDL2_8h.html#a76223ef0eba8f56e0c706f1085f71d64',1,'WindowSDL2.c']]],
+  ['copycolor',['copyColor',['../WindowSDL2_8h.html#af505c56ae14df2c6644964143706953a',1,'WindowSDL2.c']]],
   ['createblock',['createBlock',['../ElementSDL2_8h.html#af43268f632b67a33d80933445e04e23c',1,'ElementSDL2.c']]],
   ['createbutton',['createButton',['../ElementSDL2_8h.html#a204b7747e0308216af0b0cc7587ad9b0',1,'ElementSDL2.c']]],
   ['createbuttonimage',['createButtonImage',['../ElementSDL2_8h.html#a30b368444b28777a2905c854f67f5124',1,'ElementSDL2.c']]],

@@ -1,0 +1,291 @@
+\hypertarget{WindowSDL2_8h}{}\section{Window\+S\+D\+L2.\+h File Reference}
+\label{WindowSDL2_8h}\index{Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}}
+
+
+Contains all structures related to windows but only those unrelated to Elements.  
+
+
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$S\+D\+L2/\+S\+D\+L.\+h$>$}\\*
+{\ttfamily \#include $<$S\+D\+L2/\+S\+D\+L\+\_\+ttf.\+h$>$}\\*
+{\ttfamily \#include $<$S\+D\+L2/\+S\+D\+L\+\_\+image.\+h$>$}\\*
+Include dependency graph for Window\+S\+D\+L2.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structWindowSDL2}{Window\+S\+D\+L2}
+\begin{DoxyCompactList}\small\item\em S\+A\+N\+D\+A\+L2 window. \end{DoxyCompactList}\item 
+struct \hyperlink{structListWindowSDL2}{List\+Window\+S\+D\+L2}
+\begin{DoxyCompactList}\small\item\em list of windows \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{WindowSDL2_8h_a941d18bb013bbf884a4940a8d400f043}{absolu}(a)~((a$>$0)?a\+:-\/a)\hypertarget{WindowSDL2_8h_a941d18bb013bbf884a4940a8d400f043}{}\label{WindowSDL2_8h_a941d18bb013bbf884a4940a8d400f043}
+
+\begin{DoxyCompactList}\small\item\em Get the absolute value of a variable. \end{DoxyCompactList}\item 
+\#define \hyperlink{WindowSDL2_8h_affdaeca57041cde6bebb2d23eea6a6aa}{P\+F\+R\+EE}(p)
+\begin{DoxyCompactList}\small\item\em free p if it is not N\+U\+LL \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structWindowSDL2}{Window\+S\+D\+L2} {\bfseries Window\+S\+D\+L2}\hypertarget{WindowSDL2_8h_a4cb709d874864067ed5505fc08d13399}{}\label{WindowSDL2_8h_a4cb709d874864067ed5505fc08d13399}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{WindowSDL2_8h_a106b04fdccf478803c8a4f6330d754fd}{resize\+Window\+S\+D\+L2} (unsigned width, unsigned height)
+\begin{DoxyCompactList}\small\item\em Resize the current window. \end{DoxyCompactList}\item 
+void \hyperlink{WindowSDL2_8h_ad956e8892e5a3894a983a0691385f2e2}{change\+Display\+Window\+S\+D\+L2} (int display\+Code)
+\begin{DoxyCompactList}\small\item\em Change the display code of the current window. \end{DoxyCompactList}\item 
+int \hyperlink{WindowSDL2_8h_ada19aa5fc64d28abf02c26986d5317a5}{init\+Iterator\+Window\+S\+D\+L2} ()
+\begin{DoxyCompactList}\small\item\em Initialise the iterator of the windows\textquotesingle{} list. \end{DoxyCompactList}\item 
+int \hyperlink{WindowSDL2_8h_aa3c99bf7a275e7252666f6eb7f8a4cd8}{next\+Window\+S\+D\+L2} ()
+\begin{DoxyCompactList}\small\item\em Go to the next window. \end{DoxyCompactList}\item 
+int \hyperlink{WindowSDL2_8h_aa6fa8acffb037a5e73a87e492093fe91}{get\+Dimension\+Window\+S\+D\+L2} (int $\ast$w, int $\ast$h)
+\begin{DoxyCompactList}\small\item\em Put the width of the current window in w (if not N\+U\+LL) and its height in h (if not N\+U\+LL) \end{DoxyCompactList}\item 
+int \hyperlink{WindowSDL2_8h_a58a3aadb28eff979d75e14d3004db4d8}{get\+Display\+Code\+Window\+S\+D\+L2} (int $\ast$d)
+\begin{DoxyCompactList}\small\item\em Put the display code of the current window in d (if not N\+U\+LL) \end{DoxyCompactList}\item 
+int \hyperlink{WindowSDL2_8h_a3aa539842573a7388a3d8421458cbc07}{get\+Color\+Window\+S\+D\+L2} (int color\mbox{[}4\mbox{]})
+\begin{DoxyCompactList}\small\item\em Put the background color of the current window in color. \end{DoxyCompactList}\item 
+int \hyperlink{WindowSDL2_8h_ab2a44a6ecb477ff514889ed501f1dfe9}{set\+Color\+Window\+S\+D\+L2} (int color\mbox{[}4\mbox{]})
+\begin{DoxyCompactList}\small\item\em Change the background color of the current window. \end{DoxyCompactList}\item 
+int \hyperlink{WindowSDL2_8h_a76223ef0eba8f56e0c706f1085f71d64}{cmp\+Coul} (int c1\mbox{[}4\mbox{]}, int c2\mbox{[}4\mbox{]})
+\begin{DoxyCompactList}\small\item\em Compare two static arrays of size 4. \end{DoxyCompactList}\item 
+void \hyperlink{WindowSDL2_8h_af505c56ae14df2c6644964143706953a}{copy\+Color} (int to\mbox{[}4\mbox{]}, int from\mbox{[}4\mbox{]})
+\begin{DoxyCompactList}\small\item\em Copy a static array of size 4 in another. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structListWindowSDL2}{List\+Window\+S\+D\+L2} $\ast$ \hyperlink{WindowSDL2_8h_a8edc1b573a74a91cd3a7acff84954185}{\+\_\+windows\+\_\+\+S\+D\+L2\+TK}
+\begin{DoxyCompactList}\small\item\em list of windows W\+A\+R\+N\+I\+NG \+: do not touch this variable, never ... trust me \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Contains all structures related to windows but only those unrelated to Elements. 
+
+
+
+\subsection{Macro Definition Documentation}
+\index{Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}!P\+F\+R\+EE@{P\+F\+R\+EE}}
+\index{P\+F\+R\+EE@{P\+F\+R\+EE}!Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{P\+F\+R\+EE}{PFREE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+F\+R\+EE(
+\begin{DoxyParamCaption}
+\item[{}]{p}
+\end{DoxyParamCaption}
+)}\hypertarget{WindowSDL2_8h_affdaeca57041cde6bebb2d23eea6a6aa}{}\label{WindowSDL2_8h_affdaeca57041cde6bebb2d23eea6a6aa}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\{               \(\backslash\)
+    if(p)\{                  \(\backslash\)
+      free(p);                  \(\backslash\)
+    \}                       \(\backslash\)
+  \}
+\end{DoxyCode}
+
+
+free p if it is not N\+U\+LL 
+
+
+
+\subsection{Function Documentation}
+\index{Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}!change\+Display\+Window\+S\+D\+L2@{change\+Display\+Window\+S\+D\+L2}}
+\index{change\+Display\+Window\+S\+D\+L2@{change\+Display\+Window\+S\+D\+L2}!Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{change\+Display\+Window\+S\+D\+L2(int display\+Code)}{changeDisplayWindowSDL2(int displayCode)}}]{\setlength{\rightskip}{0pt plus 5cm}void change\+Display\+Window\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{int}]{display\+Code}
+\end{DoxyParamCaption}
+)}\hypertarget{WindowSDL2_8h_ad956e8892e5a3894a983a0691385f2e2}{}\label{WindowSDL2_8h_ad956e8892e5a3894a983a0691385f2e2}
+
+
+Change the display code of the current window. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em display\+Code} & \+: new display code of the current window \\
+\hline
+\end{DoxyParams}
+\index{Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}!cmp\+Coul@{cmp\+Coul}}
+\index{cmp\+Coul@{cmp\+Coul}!Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{cmp\+Coul(int c1[4], int c2[4])}{cmpCoul(int c1[4], int c2[4])}}]{\setlength{\rightskip}{0pt plus 5cm}int cmp\+Coul (
+\begin{DoxyParamCaption}
+\item[{int}]{c1\mbox{[}4\mbox{]}, }
+\item[{int}]{c2\mbox{[}4\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{WindowSDL2_8h_a76223ef0eba8f56e0c706f1085f71d64}{}\label{WindowSDL2_8h_a76223ef0eba8f56e0c706f1085f71d64}
+
+
+Compare two static arrays of size 4. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c1} & \+: first array to be compared \\
+\hline
+{\em c2} & \+: second array to be compared \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if both arrays are equal, 0 if not 
+\end{DoxyReturn}
+\index{Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}!copy\+Color@{copy\+Color}}
+\index{copy\+Color@{copy\+Color}!Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{copy\+Color(int to[4], int from[4])}{copyColor(int to[4], int from[4])}}]{\setlength{\rightskip}{0pt plus 5cm}void copy\+Color (
+\begin{DoxyParamCaption}
+\item[{int}]{to\mbox{[}4\mbox{]}, }
+\item[{int}]{from\mbox{[}4\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{WindowSDL2_8h_af505c56ae14df2c6644964143706953a}{}\label{WindowSDL2_8h_af505c56ae14df2c6644964143706953a}
+
+
+Copy a static array of size 4 in another. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em to} & \+: where the second array will be copied \\
+\hline
+{\em from} & \+: array to copy \\
+\hline
+\end{DoxyParams}
+\index{Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}!get\+Color\+Window\+S\+D\+L2@{get\+Color\+Window\+S\+D\+L2}}
+\index{get\+Color\+Window\+S\+D\+L2@{get\+Color\+Window\+S\+D\+L2}!Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{get\+Color\+Window\+S\+D\+L2(int color[4])}{getColorWindowSDL2(int color[4])}}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Color\+Window\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{int}]{color\mbox{[}4\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{WindowSDL2_8h_a3aa539842573a7388a3d8421458cbc07}{}\label{WindowSDL2_8h_a3aa539842573a7388a3d8421458cbc07}
+
+
+Put the background color of the current window in color. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & \+: where the background color of the current window should be store \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if there was an error, 0 if not 
+\end{DoxyReturn}
+\index{Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}!get\+Dimension\+Window\+S\+D\+L2@{get\+Dimension\+Window\+S\+D\+L2}}
+\index{get\+Dimension\+Window\+S\+D\+L2@{get\+Dimension\+Window\+S\+D\+L2}!Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{get\+Dimension\+Window\+S\+D\+L2(int $\ast$w, int $\ast$h)}{getDimensionWindowSDL2(int *w, int *h)}}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Dimension\+Window\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{w, }
+\item[{int $\ast$}]{h}
+\end{DoxyParamCaption}
+)}\hypertarget{WindowSDL2_8h_aa6fa8acffb037a5e73a87e492093fe91}{}\label{WindowSDL2_8h_aa6fa8acffb037a5e73a87e492093fe91}
+
+
+Put the width of the current window in w (if not N\+U\+LL) and its height in h (if not N\+U\+LL) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em w} & \+: where the width of the current window should be store \\
+\hline
+{\em h} & \+: where the height of the current window should be store \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if there was an error, 0 if not 
+\end{DoxyReturn}
+\index{Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}!get\+Display\+Code\+Window\+S\+D\+L2@{get\+Display\+Code\+Window\+S\+D\+L2}}
+\index{get\+Display\+Code\+Window\+S\+D\+L2@{get\+Display\+Code\+Window\+S\+D\+L2}!Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{get\+Display\+Code\+Window\+S\+D\+L2(int $\ast$d)}{getDisplayCodeWindowSDL2(int *d)}}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Display\+Code\+Window\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{d}
+\end{DoxyParamCaption}
+)}\hypertarget{WindowSDL2_8h_a58a3aadb28eff979d75e14d3004db4d8}{}\label{WindowSDL2_8h_a58a3aadb28eff979d75e14d3004db4d8}
+
+
+Put the display code of the current window in d (if not N\+U\+LL) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & \+: where the display code of the current window should be store \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if there was an error, 0 if not 
+\end{DoxyReturn}
+\index{Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}!init\+Iterator\+Window\+S\+D\+L2@{init\+Iterator\+Window\+S\+D\+L2}}
+\index{init\+Iterator\+Window\+S\+D\+L2@{init\+Iterator\+Window\+S\+D\+L2}!Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{init\+Iterator\+Window\+S\+D\+L2()}{initIteratorWindowSDL2()}}]{\setlength{\rightskip}{0pt plus 5cm}int init\+Iterator\+Window\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{WindowSDL2_8h_ada19aa5fc64d28abf02c26986d5317a5}{}\label{WindowSDL2_8h_ada19aa5fc64d28abf02c26986d5317a5}
+
+
+Initialise the iterator of the windows\textquotesingle{} list. 
+
+\begin{DoxyReturn}{Returns}
+0 if the iterator could not be initialised, 1 if it could 
+\end{DoxyReturn}
+\index{Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}!next\+Window\+S\+D\+L2@{next\+Window\+S\+D\+L2}}
+\index{next\+Window\+S\+D\+L2@{next\+Window\+S\+D\+L2}!Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{next\+Window\+S\+D\+L2()}{nextWindowSDL2()}}]{\setlength{\rightskip}{0pt plus 5cm}int next\+Window\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{WindowSDL2_8h_aa3c99bf7a275e7252666f6eb7f8a4cd8}{}\label{WindowSDL2_8h_aa3c99bf7a275e7252666f6eb7f8a4cd8}
+
+
+Go to the next window. 
+
+\begin{DoxyReturn}{Returns}
+1 if it was possible, 0 if not 
+\end{DoxyReturn}
+\index{Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}!resize\+Window\+S\+D\+L2@{resize\+Window\+S\+D\+L2}}
+\index{resize\+Window\+S\+D\+L2@{resize\+Window\+S\+D\+L2}!Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{resize\+Window\+S\+D\+L2(unsigned width, unsigned height)}{resizeWindowSDL2(unsigned width, unsigned height)}}]{\setlength{\rightskip}{0pt plus 5cm}void resize\+Window\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{unsigned}]{width, }
+\item[{unsigned}]{height}
+\end{DoxyParamCaption}
+)}\hypertarget{WindowSDL2_8h_a106b04fdccf478803c8a4f6330d754fd}{}\label{WindowSDL2_8h_a106b04fdccf478803c8a4f6330d754fd}
+
+
+Resize the current window. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & \+: new width of the current window \\
+\hline
+{\em height} & \+: new height of the current window \\
+\hline
+\end{DoxyParams}
+\index{Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}!set\+Color\+Window\+S\+D\+L2@{set\+Color\+Window\+S\+D\+L2}}
+\index{set\+Color\+Window\+S\+D\+L2@{set\+Color\+Window\+S\+D\+L2}!Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{set\+Color\+Window\+S\+D\+L2(int color[4])}{setColorWindowSDL2(int color[4])}}]{\setlength{\rightskip}{0pt plus 5cm}int set\+Color\+Window\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{int}]{color\mbox{[}4\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{WindowSDL2_8h_ab2a44a6ecb477ff514889ed501f1dfe9}{}\label{WindowSDL2_8h_ab2a44a6ecb477ff514889ed501f1dfe9}
+
+
+Change the background color of the current window. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & \+: new color of the background of the current window \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if there was an error, 0 if not 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\index{Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}!\+\_\+windows\+\_\+\+S\+D\+L2\+TK@{\+\_\+windows\+\_\+\+S\+D\+L2\+TK}}
+\index{\+\_\+windows\+\_\+\+S\+D\+L2\+TK@{\+\_\+windows\+\_\+\+S\+D\+L2\+TK}!Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{\+\_\+windows\+\_\+\+S\+D\+L2\+TK}{_windows_SDL2TK}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf List\+Window\+S\+D\+L2}$\ast$ \+\_\+windows\+\_\+\+S\+D\+L2\+TK}\hypertarget{WindowSDL2_8h_a8edc1b573a74a91cd3a7acff84954185}{}\label{WindowSDL2_8h_a8edc1b573a74a91cd3a7acff84954185}
+
+
+list of windows W\+A\+R\+N\+I\+NG \+: do not touch this variable, never ... trust me 
+
+list of windows W\+A\+R\+N\+I\+NG \+: do not touch this variable, never ... trust me
+
+List of the windows W\+A\+R\+N\+I\+NG \+: do not touch it ... trust me. 

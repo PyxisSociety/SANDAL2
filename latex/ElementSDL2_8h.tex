@@ -9,6 +9,7 @@ Contains all structures related to Elements.
 {\ttfamily \#include \char`\"{}Font\+S\+D\+L2.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}Window\+S\+D\+L2.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}Display\+Code.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Sprite.\+h\char`\"{}}\\*
 Include dependency graph for Element\+S\+D\+L2.\+h\+:
 % FIG 0
 This graph shows which files directly or indirectly include this file\+:
@@ -166,6 +167,18 @@ void \hyperlink{ElementSDL2_8h_ae4be61432ea42e07d5d5a2b790a216bd}{set\+Rotation\
 \begin{DoxyCompactList}\small\item\em set the rotation point\textquotesingle{}s coordinates of an element \end{DoxyCompactList}\item 
 void \hyperlink{ElementSDL2_8h_a8335fb6c08b9256c244bff44f4fb5500}{set\+Data\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e, void $\ast$data)
 \begin{DoxyCompactList}\small\item\em set the element\textquotesingle{}s data \end{DoxyCompactList}\item 
+int \hyperlink{ElementSDL2_8h_adc379e6de4e33341fd04f426e45eaa09}{add\+Sprite\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e, int x, int y, int width, int height, int lifespan)
+\begin{DoxyCompactList}\small\item\em add a \hyperlink{structSprite}{Sprite} to the element \end{DoxyCompactList}\item 
+int \hyperlink{ElementSDL2_8h_adf59ce254ea819abdf654cc54505cf2d}{remove\+Sprite\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e, int x, int y, int width, int height)
+\begin{DoxyCompactList}\small\item\em remove a \hyperlink{structSprite}{Sprite} in the element \end{DoxyCompactList}\item 
+int \hyperlink{ElementSDL2_8h_af17f9655df35e43833aca3ec05d336d5}{set\+Life\+Span\+Sprite\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e, int x, int y, int width, int height, unsigned lifespan)
+\begin{DoxyCompactList}\small\item\em set the lifespan of a sprite \end{DoxyCompactList}\item 
+int \hyperlink{ElementSDL2_8h_af9b1e96e535a3ea2180d31df4ca8e806}{next\+Sprite\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e)
+\begin{DoxyCompactList}\small\item\em go to te next animation of an element \end{DoxyCompactList}\item 
+int \hyperlink{ElementSDL2_8h_a765efd80ffe2b3f08fed40d1cf3fe33f}{previous\+Sprite\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e)
+\begin{DoxyCompactList}\small\item\em go to the previous animation of an element \end{DoxyCompactList}\item 
+int \hyperlink{ElementSDL2_8h_a1fd273012ea7922873a8c11c70bf8f62}{set\+Way\+Sprite\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e, int sens)
+\begin{DoxyCompactList}\small\item\em set the way to go from a sprite to another (forward (1), backward (-\/1), no move (0)) \end{DoxyCompactList}\item 
 int \hyperlink{ElementSDL2_8h_a1097986909db85af692feaff4d7345bd}{init\+Iterateur\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e)
 \begin{DoxyCompactList}\small\item\em initialise the element\textquotesingle{}s iterator on all the elements it can modifie \end{DoxyCompactList}\item 
 \hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$ \hyperlink{ElementSDL2_8h_ab4aea6f68231f9df71c439e59160ebe4}{next\+Iterateur\+Element\+S\+D\+L2} (\hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$e)
@@ -371,6 +384,40 @@ increase the rotation speed of an element
 {\em s} & \+: rotation speed increment \\
 \hline
 \end{DoxyParams}
+\index{Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}!add\+Sprite\+Element\+S\+D\+L2@{add\+Sprite\+Element\+S\+D\+L2}}
+\index{add\+Sprite\+Element\+S\+D\+L2@{add\+Sprite\+Element\+S\+D\+L2}!Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{add\+Sprite\+Element\+S\+D\+L2(\+Element\+S\+D\+L2 $\ast$e, int x, int y, int width, int height, int lifespan)}{addSpriteElementSDL2(ElementSDL2 *e, int x, int y, int width, int height, int lifespan)}}]{\setlength{\rightskip}{0pt plus 5cm}int add\+Sprite\+Element\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{{\bf Element\+S\+D\+L2} $\ast$}]{e, }
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{width, }
+\item[{int}]{height, }
+\item[{int}]{lifespan}
+\end{DoxyParamCaption}
+)}\hypertarget{ElementSDL2_8h_adc379e6de4e33341fd04f426e45eaa09}{}\label{ElementSDL2_8h_adc379e6de4e33341fd04f426e45eaa09}
+
+
+add a \hyperlink{structSprite}{Sprite} to the element 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & \+: element \\
+\hline
+{\em x} & \+: abscissa coordinate of the top left corner of the sprite in its image \\
+\hline
+{\em y} & \+: ordinate coordinate of the top left corner of the sprite in its image \\
+\hline
+{\em width} & \+: width of the sprite in its image \\
+\hline
+{\em height} & \+: height of the sprite in its image \\
+\hline
+{\em lifespan} & \+: number of time the sprite should be displaied before going to the next sprite \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the sprite was correctly added, 1 if not 
+\end{DoxyReturn}
 \index{Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}!change\+Size\+Entry\+S\+D\+L2@{change\+Size\+Entry\+S\+D\+L2}}
 \index{change\+Size\+Entry\+S\+D\+L2@{change\+Size\+Entry\+S\+D\+L2}!Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}}
 \subsubsection[{\texorpdfstring{change\+Size\+Entry\+S\+D\+L2(\+Element\+S\+D\+L2 $\ast$e, int size\+\_\+min, int size\+\_\+max)}{changeSizeEntrySDL2(ElementSDL2 *e, int size_min, int size_max)}}]{\setlength{\rightskip}{0pt plus 5cm}void change\+Size\+Entry\+S\+D\+L2 (
@@ -1087,6 +1134,44 @@ gives the current element\textquotesingle{}s iterator\textquotesingle{}s value a
 {\em e} & \+: element to be modified \\
 \hline
 \end{DoxyParams}
+\index{Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}!next\+Sprite\+Element\+S\+D\+L2@{next\+Sprite\+Element\+S\+D\+L2}}
+\index{next\+Sprite\+Element\+S\+D\+L2@{next\+Sprite\+Element\+S\+D\+L2}!Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{next\+Sprite\+Element\+S\+D\+L2(\+Element\+S\+D\+L2 $\ast$e)}{nextSpriteElementSDL2(ElementSDL2 *e)}}]{\setlength{\rightskip}{0pt plus 5cm}int next\+Sprite\+Element\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{{\bf Element\+S\+D\+L2} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}\hypertarget{ElementSDL2_8h_af9b1e96e535a3ea2180d31df4ca8e806}{}\label{ElementSDL2_8h_af9b1e96e535a3ea2180d31df4ca8e806}
+
+
+go to te next animation of an element 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & \+: element \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if it was possible, 1 if not 
+\end{DoxyReturn}
+\index{Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}!previous\+Sprite\+Element\+S\+D\+L2@{previous\+Sprite\+Element\+S\+D\+L2}}
+\index{previous\+Sprite\+Element\+S\+D\+L2@{previous\+Sprite\+Element\+S\+D\+L2}!Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{previous\+Sprite\+Element\+S\+D\+L2(\+Element\+S\+D\+L2 $\ast$e)}{previousSpriteElementSDL2(ElementSDL2 *e)}}]{\setlength{\rightskip}{0pt plus 5cm}int previous\+Sprite\+Element\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{{\bf Element\+S\+D\+L2} $\ast$}]{e}
+\end{DoxyParamCaption}
+)}\hypertarget{ElementSDL2_8h_a765efd80ffe2b3f08fed40d1cf3fe33f}{}\label{ElementSDL2_8h_a765efd80ffe2b3f08fed40d1cf3fe33f}
+
+
+go to the previous animation of an element 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & \+: element \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if it was possible, 1 if not 
+\end{DoxyReturn}
 \index{Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}!remove\+Char\+Entry\+S\+D\+L2@{remove\+Char\+Entry\+S\+D\+L2}}
 \index{remove\+Char\+Entry\+S\+D\+L2@{remove\+Char\+Entry\+S\+D\+L2}!Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}}
 \subsubsection[{\texorpdfstring{remove\+Char\+Entry\+S\+D\+L2(\+Element\+S\+D\+L2 $\ast$e)}{removeCharEntrySDL2(ElementSDL2 *e)}}]{\setlength{\rightskip}{0pt plus 5cm}void remove\+Char\+Entry\+S\+D\+L2 (
@@ -1195,6 +1280,37 @@ remove an element to a list (plan) of elements
 {\em e} & \+: element to remove \\
 \hline
 \end{DoxyParams}
+\index{Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}!remove\+Sprite\+Element\+S\+D\+L2@{remove\+Sprite\+Element\+S\+D\+L2}}
+\index{remove\+Sprite\+Element\+S\+D\+L2@{remove\+Sprite\+Element\+S\+D\+L2}!Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{remove\+Sprite\+Element\+S\+D\+L2(\+Element\+S\+D\+L2 $\ast$e, int x, int y, int width, int height)}{removeSpriteElementSDL2(ElementSDL2 *e, int x, int y, int width, int height)}}]{\setlength{\rightskip}{0pt plus 5cm}int remove\+Sprite\+Element\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{{\bf Element\+S\+D\+L2} $\ast$}]{e, }
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{width, }
+\item[{int}]{height}
+\end{DoxyParamCaption}
+)}\hypertarget{ElementSDL2_8h_adf59ce254ea819abdf654cc54505cf2d}{}\label{ElementSDL2_8h_adf59ce254ea819abdf654cc54505cf2d}
+
+
+remove a \hyperlink{structSprite}{Sprite} in the element 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & \+: element \\
+\hline
+{\em x} & \+: abscissa coordinate of the top left corner of the sprite in its image \\
+\hline
+{\em y} & \+: ordinate coordinate of the top left corner of the sprite in its image \\
+\hline
+{\em width} & \+: width of the sprite in its image \\
+\hline
+{\em height} & \+: height of the sprite in its image \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the sprite was correctly removed, 1 if not 
+\end{DoxyReturn}
 \index{Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}!replace\+Element\+S\+D\+L2@{replace\+Element\+S\+D\+L2}}
 \index{replace\+Element\+S\+D\+L2@{replace\+Element\+S\+D\+L2}!Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}}
 \subsubsection[{\texorpdfstring{replace\+Element\+S\+D\+L2(\+Element\+S\+D\+L2 $\ast$e, float x, float y)}{replaceElementSDL2(ElementSDL2 *e, float x, float y)}}]{\setlength{\rightskip}{0pt plus 5cm}void replace\+Element\+S\+D\+L2 (
@@ -1413,6 +1529,40 @@ set the behaviour of an element when a key is released
 {\em key\+Released} & \+: function to be called when a key is released \\
 \hline
 \end{DoxyParams}
+\index{Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}!set\+Life\+Span\+Sprite\+Element\+S\+D\+L2@{set\+Life\+Span\+Sprite\+Element\+S\+D\+L2}}
+\index{set\+Life\+Span\+Sprite\+Element\+S\+D\+L2@{set\+Life\+Span\+Sprite\+Element\+S\+D\+L2}!Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{set\+Life\+Span\+Sprite\+Element\+S\+D\+L2(\+Element\+S\+D\+L2 $\ast$e, int x, int y, int width, int height, unsigned lifespan)}{setLifeSpanSpriteElementSDL2(ElementSDL2 *e, int x, int y, int width, int height, unsigned lifespan)}}]{\setlength{\rightskip}{0pt plus 5cm}int set\+Life\+Span\+Sprite\+Element\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{{\bf Element\+S\+D\+L2} $\ast$}]{e, }
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{width, }
+\item[{int}]{height, }
+\item[{unsigned}]{lifespan}
+\end{DoxyParamCaption}
+)}\hypertarget{ElementSDL2_8h_af17f9655df35e43833aca3ec05d336d5}{}\label{ElementSDL2_8h_af17f9655df35e43833aca3ec05d336d5}
+
+
+set the lifespan of a sprite 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & \+: element \\
+\hline
+{\em x} & \+: abscissa coordinate of the top left corner of the sprite in its image \\
+\hline
+{\em y} & \+: ordinate coordinate of the top left corner of the sprite in its image \\
+\hline
+{\em width} & \+: width of the sprite in its image \\
+\hline
+{\em height} & \+: height of the sprite in its image \\
+\hline
+{\em lifespan} & \+: new number of time the sprite should be displaied before going to the next sprite \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the lifespan could be set, 1 if not 
+\end{DoxyReturn}
 \index{Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}!set\+On\+Click\+Element\+S\+D\+L2@{set\+On\+Click\+Element\+S\+D\+L2}}
 \index{set\+On\+Click\+Element\+S\+D\+L2@{set\+On\+Click\+Element\+S\+D\+L2}!Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}}
 \subsubsection[{\texorpdfstring{set\+On\+Click\+Element\+S\+D\+L2(\+Element\+S\+D\+L2 $\ast$e, void($\ast$on\+C\+Lick)(\+Element\+S\+D\+L2 $\ast$))}{setOnClickElementSDL2(ElementSDL2 *e, void(*onCLick)(ElementSDL2 *))}}]{\setlength{\rightskip}{0pt plus 5cm}void set\+On\+Click\+Element\+S\+D\+L2 (
@@ -1609,3 +1759,25 @@ set the behaiour of an element when it is unselect
 {\em un\+Select} & \+: new behaviour \\
 \hline
 \end{DoxyParams}
+\index{Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}!set\+Way\+Sprite\+Element\+S\+D\+L2@{set\+Way\+Sprite\+Element\+S\+D\+L2}}
+\index{set\+Way\+Sprite\+Element\+S\+D\+L2@{set\+Way\+Sprite\+Element\+S\+D\+L2}!Element\+S\+D\+L2.\+h@{Element\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{set\+Way\+Sprite\+Element\+S\+D\+L2(\+Element\+S\+D\+L2 $\ast$e, int sens)}{setWaySpriteElementSDL2(ElementSDL2 *e, int sens)}}]{\setlength{\rightskip}{0pt plus 5cm}int set\+Way\+Sprite\+Element\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{{\bf Element\+S\+D\+L2} $\ast$}]{e, }
+\item[{int}]{sens}
+\end{DoxyParamCaption}
+)}\hypertarget{ElementSDL2_8h_a1fd273012ea7922873a8c11c70bf8f62}{}\label{ElementSDL2_8h_a1fd273012ea7922873a8c11c70bf8f62}
+
+
+set the way to go from a sprite to another (forward (1), backward (-\/1), no move (0)) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & \+: element \\
+\hline
+{\em sens} & \+: new way \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the way could be set, 1 if not 
+\end{DoxyReturn}

@@ -186,9 +186,10 @@ void displayWindowSDL2(){
   PtrElementSDL2 *ele;
   ListPtrElementSDL2 * lp;
   ListDCElementSDL2 * ldc;
-  SDL_Rect r;
+  SDL_Rect r,sr, *srect;
   int coul[4];
   SDL_Point p;
+  int i;
 
   if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste){
     /* fond de la fenetre */
@@ -225,12 +226,45 @@ void displayWindowSDL2(){
 	    }
 	    /* affichage de l'image */
 	    if(ele->element->image){
+	      if(ele->element->animation->size){
+		i=0;
+		if(ele->element->animation->sens){
+		  while(i<ele->element->animation->size && !ele->element->animation->current->lifespan){
+		    if(ele->element->animation->sens==-1){
+		      previousSpriteElementSDL2(ele->element);
+		    }else{
+		      nextSpriteElementSDL2(ele->element);
+		    }
+		    ++i;
+		  }
+		}
+		if(i<ele->element->animation->size){
+		  sr.x=ele->element->animation->current->coords[0];
+		  sr.y=ele->element->animation->current->coords[1];
+		  sr.w=ele->element->animation->current->coords[2];
+		  sr.h=ele->element->animation->current->coords[3];
+		  ele->element->animation->wasChanged++;
+		  if(ele->element->animation->sens && ele->element->animation->wasChanged >= ele->element->animation->current->lifespan){
+		    if(ele->element->animation->sens == -1){
+		      previousSpriteElementSDL2(ele->element);
+		    }else{
+		      nextSpriteElementSDL2(ele->element);
+		    }
+		    ele->element->animation->wasChanged = 0;
+		  }
+		  srect=&sr;
+		}else{
+		  srect=NULL;
+		}
+	      }else{
+		srect=NULL;
+	      }
 	      if(ele->element->rotation == 0.f){
-		SDL_RenderCopy(_windows_SDL2TK->current->renderer,ele->element->image,NULL,&r);
+		SDL_RenderCopy(_windows_SDL2TK->current->renderer,ele->element->image,srect,&r);
 	      }else{
 		p.x=(int)(ele->element->prX*ele->element->width*_windows_SDL2TK->current->width/_windows_SDL2TK->current->initWidth);
 		p.y=(int)(ele->element->prY*ele->element->height*_windows_SDL2TK->current->height/_windows_SDL2TK->current->initHeight);
-		SDL_RenderCopyEx(_windows_SDL2TK->current->renderer,ele->element->image,NULL,&r,(double)ele->element->rotation,&p,SDL_FLIP_NONE);
+		SDL_RenderCopyEx(_windows_SDL2TK->current->renderer,ele->element->image,srect,&r,(double)ele->element->rotation,&p,SDL_FLIP_NONE);
 	      }
 	    }
 	    /* affichage du texte */

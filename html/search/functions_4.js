@@ -8,5 +8,6 @@ var searchData=
   ['freelistelementsdl2',['freeListElementSDL2',['../ElementSDL2_8h.html#ac0bd2f7c4a38a1581cb9384a6cc24280',1,'ElementSDL2.c']]],
   ['freelisthitbox',['freeListHitBox',['../HitBox_8h.html#a8b6c3993c3b41a8cb492d94d492a34c5',1,'HitBox.c']]],
   ['freelistptrelementsdl2',['freeListPtrElementSDL2',['../ElementSDL2_8h.html#a022ec057649bd343a9a14ecb1bbe55ee',1,'ElementSDL2.c']]],
+  ['freelistsprite',['freeListSprite',['../Sprite_8h.html#ac544a89c3a922b8f1f0692e1eb31f702',1,'Sprite.c']]],
   ['freewindowsdl2',['freeWindowSDL2',['../SANDAL2_8h.html#a60aed15125bbd6074a38ed060f409e63',1,'SANDAL2.c']]]
 ];

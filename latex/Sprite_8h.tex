@@ -1,0 +1,178 @@
+\hypertarget{Sprite_8h}{}\section{Sprite.\+h File Reference}
+\label{Sprite_8h}\index{Sprite.\+h@{Sprite.\+h}}
+
+
+\hyperlink{structSprite}{Sprite} manager for S\+A\+N\+D\+A\+L2.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+Include dependency graph for Sprite.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structSprite}{Sprite}
+\begin{DoxyCompactList}\small\item\em informations about a step of an animation \end{DoxyCompactList}\item 
+struct \hyperlink{structListSprite}{List\+Sprite}
+\begin{DoxyCompactList}\small\item\em all steps of an animation \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structSprite}{Sprite} {\bfseries Sprite}\hypertarget{Sprite_8h_abb1060e0b7ecf8b4eba2c1bb55cfe5e2}{}\label{Sprite_8h_abb1060e0b7ecf8b4eba2c1bb55cfe5e2}
+
+\item 
+typedef struct \hyperlink{structListSprite}{List\+Sprite} {\bfseries List\+Sprite}\hypertarget{Sprite_8h_a7f3787721a06fef34489049a6c4b914c}{}\label{Sprite_8h_a7f3787721a06fef34489049a6c4b914c}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structListSprite}{List\+Sprite} $\ast$ \hyperlink{Sprite_8h_ab9a7afa283c4e9aef6cb21457d832e87}{init\+List\+Sprite} ()
+\begin{DoxyCompactList}\small\item\em create an empty list of sprite \end{DoxyCompactList}\item 
+void \hyperlink{Sprite_8h_ac544a89c3a922b8f1f0692e1eb31f702}{free\+List\+Sprite} (\hyperlink{structListSprite}{List\+Sprite} $\ast$l)
+\begin{DoxyCompactList}\small\item\em free the memory of a list of sprite \end{DoxyCompactList}\item 
+int \hyperlink{Sprite_8h_a955745e082c6afbb0350fbc0fcb7ef97}{add\+Sprite} (\hyperlink{structListSprite}{List\+Sprite} $\ast$l, int x, int y, int width, int height, unsigned lifespan)
+\begin{DoxyCompactList}\small\item\em add a \hyperlink{structSprite}{Sprite} to the list \end{DoxyCompactList}\item 
+int \hyperlink{Sprite_8h_a94cd242f94d3f7f1a91cf7359faf6f00}{remove\+Sprite} (\hyperlink{structListSprite}{List\+Sprite} $\ast$l, int x, int y, int width, int height)
+\begin{DoxyCompactList}\small\item\em remove a \hyperlink{structSprite}{Sprite} to the list \end{DoxyCompactList}\item 
+int \hyperlink{Sprite_8h_a7d93b39018964db0eaaeea995666976a}{set\+Life\+Span\+Sprite} (\hyperlink{structListSprite}{List\+Sprite} $\ast$l, int x, int y, int width, int height, unsigned lifespan)
+\begin{DoxyCompactList}\small\item\em set the lifespan of a sprite \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{structSprite}{Sprite} manager for S\+A\+N\+D\+A\+L2. 
+
+
+
+\subsection{Function Documentation}
+\index{Sprite.\+h@{Sprite.\+h}!add\+Sprite@{add\+Sprite}}
+\index{add\+Sprite@{add\+Sprite}!Sprite.\+h@{Sprite.\+h}}
+\subsubsection[{\texorpdfstring{add\+Sprite(\+List\+Sprite $\ast$l, int x, int y, int width, int height, unsigned lifespan)}{addSprite(ListSprite *l, int x, int y, int width, int height, unsigned lifespan)}}]{\setlength{\rightskip}{0pt plus 5cm}int add\+Sprite (
+\begin{DoxyParamCaption}
+\item[{{\bf List\+Sprite} $\ast$}]{l, }
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{width, }
+\item[{int}]{height, }
+\item[{unsigned}]{lifespan}
+\end{DoxyParamCaption}
+)}\hypertarget{Sprite_8h_a955745e082c6afbb0350fbc0fcb7ef97}{}\label{Sprite_8h_a955745e082c6afbb0350fbc0fcb7ef97}
+
+
+add a \hyperlink{structSprite}{Sprite} to the list 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & \+: list of sprite \\
+\hline
+{\em x} & \+: abscissa coordinate of the top left corner of the sprite in its image \\
+\hline
+{\em y} & \+: ordinate coordinate of the top left corner of the sprite in its image \\
+\hline
+{\em width} & \+: width of the sprite in its image \\
+\hline
+{\em height} & \+: height of the sprite in its image \\
+\hline
+{\em lifespan} & \+: number of time the sprite should be displaied before going to the next sprite \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the sprite was correctly added, 1 if not 
+\end{DoxyReturn}
+\index{Sprite.\+h@{Sprite.\+h}!free\+List\+Sprite@{free\+List\+Sprite}}
+\index{free\+List\+Sprite@{free\+List\+Sprite}!Sprite.\+h@{Sprite.\+h}}
+\subsubsection[{\texorpdfstring{free\+List\+Sprite(\+List\+Sprite $\ast$l)}{freeListSprite(ListSprite *l)}}]{\setlength{\rightskip}{0pt plus 5cm}void free\+List\+Sprite (
+\begin{DoxyParamCaption}
+\item[{{\bf List\+Sprite} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}\hypertarget{Sprite_8h_ac544a89c3a922b8f1f0692e1eb31f702}{}\label{Sprite_8h_ac544a89c3a922b8f1f0692e1eb31f702}
+
+
+free the memory of a list of sprite 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & \+: list to be freed \\
+\hline
+\end{DoxyParams}
+\index{Sprite.\+h@{Sprite.\+h}!init\+List\+Sprite@{init\+List\+Sprite}}
+\index{init\+List\+Sprite@{init\+List\+Sprite}!Sprite.\+h@{Sprite.\+h}}
+\subsubsection[{\texorpdfstring{init\+List\+Sprite()}{initListSprite()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf List\+Sprite}$\ast$ init\+List\+Sprite (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{Sprite_8h_ab9a7afa283c4e9aef6cb21457d832e87}{}\label{Sprite_8h_ab9a7afa283c4e9aef6cb21457d832e87}
+
+
+create an empty list of sprite 
+
+\begin{DoxyReturn}{Returns}
+the empty list of sprite 
+\end{DoxyReturn}
+\index{Sprite.\+h@{Sprite.\+h}!remove\+Sprite@{remove\+Sprite}}
+\index{remove\+Sprite@{remove\+Sprite}!Sprite.\+h@{Sprite.\+h}}
+\subsubsection[{\texorpdfstring{remove\+Sprite(\+List\+Sprite $\ast$l, int x, int y, int width, int height)}{removeSprite(ListSprite *l, int x, int y, int width, int height)}}]{\setlength{\rightskip}{0pt plus 5cm}int remove\+Sprite (
+\begin{DoxyParamCaption}
+\item[{{\bf List\+Sprite} $\ast$}]{l, }
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{width, }
+\item[{int}]{height}
+\end{DoxyParamCaption}
+)}\hypertarget{Sprite_8h_a94cd242f94d3f7f1a91cf7359faf6f00}{}\label{Sprite_8h_a94cd242f94d3f7f1a91cf7359faf6f00}
+
+
+remove a \hyperlink{structSprite}{Sprite} to the list 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & \+: list of sprite \\
+\hline
+{\em x} & \+: abscissa coordinate of the top left corner of the sprite in its image \\
+\hline
+{\em y} & \+: ordinate coordinate of the top left corner of the sprite in its image \\
+\hline
+{\em width} & \+: width of the sprite in its image \\
+\hline
+{\em height} & \+: height of the sprite in its image \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the sprite was correctly removed, 1 if not 
+\end{DoxyReturn}
+\index{Sprite.\+h@{Sprite.\+h}!set\+Life\+Span\+Sprite@{set\+Life\+Span\+Sprite}}
+\index{set\+Life\+Span\+Sprite@{set\+Life\+Span\+Sprite}!Sprite.\+h@{Sprite.\+h}}
+\subsubsection[{\texorpdfstring{set\+Life\+Span\+Sprite(\+List\+Sprite $\ast$l, int x, int y, int width, int height, unsigned lifespan)}{setLifeSpanSprite(ListSprite *l, int x, int y, int width, int height, unsigned lifespan)}}]{\setlength{\rightskip}{0pt plus 5cm}int set\+Life\+Span\+Sprite (
+\begin{DoxyParamCaption}
+\item[{{\bf List\+Sprite} $\ast$}]{l, }
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{width, }
+\item[{int}]{height, }
+\item[{unsigned}]{lifespan}
+\end{DoxyParamCaption}
+)}\hypertarget{Sprite_8h_a7d93b39018964db0eaaeea995666976a}{}\label{Sprite_8h_a7d93b39018964db0eaaeea995666976a}
+
+
+set the lifespan of a sprite 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & \+: list of sprite \\
+\hline
+{\em x} & \+: abscissa coordinate of the top left corner of the sprite in its image \\
+\hline
+{\em y} & \+: ordinate coordinate of the top left corner of the sprite in its image \\
+\hline
+{\em width} & \+: width of the sprite in its image \\
+\hline
+{\em height} & \+: height of the sprite in its image \\
+\hline
+{\em lifespan} & \+: new number of time the sprite should be displaied before going to the next sprite \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the lifespan could be set, 1 if not 
+\end{DoxyReturn}
