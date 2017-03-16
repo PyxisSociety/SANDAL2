@@ -370,7 +370,7 @@ void freeElementSDL2(ElementSDL2 *e){
       freeListHitBox(e->hitboxes);
     }
     if(e->animation){
-      freeListSprite(e->animation);
+      freeListAnimation(e->animation);
     }
     free(e);
   }    
@@ -396,7 +396,7 @@ ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4]
       copyColor(e->coulBlock,couleur);
       e->codes=initListDisplayCode();
       addDisplayCode(e->codes,displayCode,1,plan);
-      e->animation=initListSprite();
+      e->animation=initListAnimation();
       e->action=NULL;
       e->onClick=NULL;
       e->unClick=NULL;
@@ -438,7 +438,7 @@ ElementSDL2* createTexte(float x,float y,float width,float height,char * font,ch
       e->rotation=0.f;
       e->rotSpeed=0.f;
       e->textSize=1.0f;
-      e->animation=initListSprite();
+      e->animation=initListAnimation();
       e->image=NULL;
       e->entry=NULL;
       e->interactions=NULL;
@@ -492,7 +492,7 @@ ElementSDL2* createImage(float x,float y,float width,float height,char *image,in
 	e->prY=.5f;
 	e->rotation=0.f;
 	e->rotSpeed=0.f;
-	e->animation=initListSprite();
+	e->animation=initListAnimation();
 	e->image=SDL_CreateTextureFromSurface(_windows_SDL2TK->current->renderer,s);
 	e->codes=initListDisplayCode();
 	addDisplayCode(e->codes,displayCode,1,plan);
@@ -1137,31 +1137,51 @@ void setDataElementSDL2(ElementSDL2 *e,void *data){
   }
 }
 
-int addSpriteElementSDL2(ElementSDL2 *e,int x,int y,int width,int height,int lifespan){
+int createAnimationElementSDL2(ElementSDL2 *e,int code){
   int error = 1;
 
   if(e){
-    error = addSprite(e->animation,x,y,width,height,lifespan);
+    error=createAnimation(e->animation,code);
+  }
+
+  return error;
+}
+
+int removeAnimationElementSDL2(ElementSDL2 *e,int code){
+  int error = 1;
+
+  if(e){
+    error=removeAnimation(e->animation,code);
+  }
+
+  return error;
+}
+
+int addSpriteAnimationElementSDL2(ElementSDL2 *e,int code,int x,int y,int width,int height,int lifespan){
+  int error = 1;
+
+  if(e){
+    error = addSpriteAnimation(e->animation,code,x,y,width,height,lifespan);
   }
   
   return error;
 }
 
-int removeSpriteElementSDL2(ElementSDL2 *e,int x,int y,int width,int height){
+int removeSpriteAnimationElementSDL2(ElementSDL2 *e,int code,int x,int y,int width,int height){
   int error = 1;
 
   if(e){
-    error = removeSprite(e->animation,x,y,width,height);
+    error = removeSpriteAnimation(e->animation,code,x,y,width,height);
   }
 
   return error;
 }
 
-int setLifeSpanSpriteElementSDL2(ElementSDL2 * e,int x,int y,int width,int height,unsigned lifespan){
+int setLifeSpanSpriteAnimationElementSDL2(ElementSDL2 * e,int code,int x,int y,int width,int height,unsigned lifespan){
   int error = 1;
 
   if(e){
-    error = setLifeSpanSprite(e->animation,x,y,width,height,lifespan);
+    error = setLifeSpanSpriteAnimation(e->animation,code,x,y,width,height,lifespan);
   }
 
   return error;
@@ -1170,9 +1190,9 @@ int setLifeSpanSpriteElementSDL2(ElementSDL2 * e,int x,int y,int width,int heigh
 int nextSpriteElementSDL2(ElementSDL2 * e){
   int error = 1;
 
-  if(e && e->animation->size){
-    e->animation->current = e->animation->current->next;
-    e->animation->wasChanged=0;
+  if(e && e->animation->size && e->animation->current->size){
+    e->animation->current->current = e->animation->current->current->next;
+    e->animation->current->wasChanged=0;
     error = 0;
   }
 
@@ -1182,20 +1202,51 @@ int nextSpriteElementSDL2(ElementSDL2 * e){
 int previousSpriteElementSDL2(ElementSDL2 * e){
   int error = 1;
 
-  if(e && e->animation->size){
-    e->animation->current = e->animation->current->prev;
-    e->animation->wasChanged=0;
+  if(e && e->animation->size && e->animation->current->size){
+    e->animation->current->current = e->animation->current->current->prev;
+    e->animation->current->wasChanged=0;
     error = 0;
   }
 
   return error;
 }
 
-int setWaySpriteElementSDL2(ElementSDL2 * e, int sens){
+int setWaySpriteAnimationElementSDL2(ElementSDL2 * e,int code, int sens){
   int error = 1;
+  ListSprite *ls;
+  int i=0;
 
-  if(e && (sens == 1 || !sens || sens == -1)){
-    e->animation->sens=sens;
+  if(e && (sens == 1 || !sens || sens == -1) && e->animation->size){
+    ls=e->animation->first;
+    while(i<e->animation->size && ls->code != code){
+      ls=ls->next;
+      ++i;
+    }
+    if(i<e->animation->size){
+      error = 0;
+      ls->sens=sens;
+    }
+  }
+
+  return error;
+}
+
+int nextAnimationElementSDL2(ElementSDL2 * e){
+  int error=1;
+
+  if(e && e->animation->size){
+    e->animation->current=e->animation->current->next;
+    error = 0;
+  }
+
+  return error;
+}
+
+int previousAnimationElementSDL2(ElementSDL2 * e){
+  int error=1;
+
+  if(e && e->animation->size){
+    e->animation->current=e->animation->current->prev;
     error = 0;
   }
 

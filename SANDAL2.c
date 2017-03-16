@@ -226,11 +226,11 @@ void displayWindowSDL2(){
 	    }
 	    /* affichage de l'image */
 	    if(ele->element->image){
-	      if(ele->element->animation->size){
+	      if(ele->element->animation->size && ele->element->animation->current->size){
 		i=0;
-		if(ele->element->animation->sens){
-		  while(i<ele->element->animation->size && !ele->element->animation->current->lifespan){
-		    if(ele->element->animation->sens==-1){
+		if(ele->element->animation->current->sens){
+		  while(i<ele->element->animation->current->size && !ele->element->animation->current->current->lifespan){
+		    if(ele->element->animation->current->sens==-1){
 		      previousSpriteElementSDL2(ele->element);
 		    }else{
 		      nextSpriteElementSDL2(ele->element);
@@ -238,19 +238,19 @@ void displayWindowSDL2(){
 		    ++i;
 		  }
 		}
-		if(i<ele->element->animation->size){
-		  sr.x=ele->element->animation->current->coords[0];
-		  sr.y=ele->element->animation->current->coords[1];
-		  sr.w=ele->element->animation->current->coords[2];
-		  sr.h=ele->element->animation->current->coords[3];
-		  ele->element->animation->wasChanged++;
-		  if(ele->element->animation->sens && ele->element->animation->wasChanged >= ele->element->animation->current->lifespan){
-		    if(ele->element->animation->sens == -1){
+		if(i<ele->element->animation->current->size){
+		  sr.x=ele->element->animation->current->current->coords[0];
+		  sr.y=ele->element->animation->current->current->coords[1];
+		  sr.w=ele->element->animation->current->current->coords[2];
+		  sr.h=ele->element->animation->current->current->coords[3];
+		  ele->element->animation->current->wasChanged++;
+		  if(ele->element->animation->current->sens && ele->element->animation->current->wasChanged >= ele->element->animation->current->current->lifespan){
+		    if(ele->element->animation->current->sens == -1){
 		      previousSpriteElementSDL2(ele->element);
 		    }else{
 		      nextSpriteElementSDL2(ele->element);
 		    }
-		    ele->element->animation->wasChanged = 0;
+		    ele->element->animation->current->wasChanged = 0;
 		  }
 		  srect=&sr;
 		}else{

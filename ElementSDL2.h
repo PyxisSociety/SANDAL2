@@ -79,7 +79,7 @@ typedef struct ElementSDL2{
   ///< function called when the element is unselected
   SDL_Texture *image;
   ///< texture of the image (NULL if no image)
-  ListSprite * animation;
+  ListAnimation* animation;
   ///< animation of the image
   FontSDL2 *police;
   ///< informations about the text (NULL if no text)
@@ -606,6 +606,20 @@ void setRotationPointElementSDL2(ElementSDL2 *e,float x,float y);
  */
 void setDataElementSDL2(ElementSDL2 *e,void *data);
 /**
+ * @brief add an empty animation to the element
+ * @param e : element
+ * @param code : code of the new animation
+ * @return 0 if the animation could be added, 1 if not
+ */
+int createAnimationElementSDL2(ElementSDL2 *e,int code);
+/**
+ * @brief remove an empty animation from the list
+ * @param l : list of animation
+ * @param code : code of the animation to be removed
+ * @return 0 if the animation could be removed, 1 if not
+ */
+int removeAnimationElementSDL2(ElementSDL2 *e,int code);
+/**
  * @brief add a Sprite to the element
  * @param e : element
  * @param x : abscissa coordinate of the top left corner of the sprite in its image
@@ -615,7 +629,7 @@ void setDataElementSDL2(ElementSDL2 *e,void *data);
  * @param lifespan : number of time the sprite should be displaied before going to the next sprite
  * @return 0 if the sprite was correctly added, 1 if not
  */
-int addSpriteElementSDL2(ElementSDL2 *e,int x,int y,int width,int height,int lifespan);
+int addSpriteAnimationElementSDL2(ElementSDL2 *e,int code,int x,int y,int width,int height,int lifespan);
 /**
  * @brief remove a Sprite in the element
  * @param e : element
@@ -625,7 +639,7 @@ int addSpriteElementSDL2(ElementSDL2 *e,int x,int y,int width,int height,int lif
  * @param height : height of the sprite in its image
  * @return 0 if the sprite was correctly removed, 1 if not
  */
-int removeSpriteElementSDL2(ElementSDL2 *e,int x,int y,int width,int height);
+int removeSpriteAnimationElementSDL2(ElementSDL2 *e,int code,int x,int y,int width,int height);
 /**
  * @brief set the lifespan of a sprite
  * @param e : element
@@ -636,15 +650,15 @@ int removeSpriteElementSDL2(ElementSDL2 *e,int x,int y,int width,int height);
  * @param lifespan : new number of time the sprite should be displaied before going to the next sprite
  * @return 0 if the lifespan could be set, 1 if not
  */
-int setLifeSpanSpriteElementSDL2(ElementSDL2 * e,int x,int y,int width,int height,unsigned lifespan);
+int setLifeSpanSpriteAnimationElementSDL2(ElementSDL2 * e,int code,int x,int y,int width,int height,unsigned lifespan);
 /**
- * @brief go to te next animation of an element
+ * @brief go to te next sprite of the current animation of an element
  * @param e : element
  * @return 0 if it was possible, 1 if not
  */
 int nextSpriteElementSDL2(ElementSDL2 * e);
 /**
- * @brief go to the previous animation of an element
+ * @brief go to the previous sprite of the current animation of an element
  * @param e : element
  * @return 0 if it was possible, 1 if not
  */
@@ -655,7 +669,19 @@ int previousSpriteElementSDL2(ElementSDL2 * e);
  * @param sens : new way
  * @return 0 if the way could be set, 1 if not
  */
-int setWaySpriteElementSDL2(ElementSDL2 * e, int sens);
+int setWaySpriteAnimationElementSDL2(ElementSDL2 * e,int code, int sens);
+/**
+ * @brief go to te next animation of an element
+ * @param e : element
+ * @return 0 if it was possible, 1 if not
+ */
+int nextAnimationElementSDL2(ElementSDL2 * e);
+/**
+ * @brief go to the previous animation of an element
+ * @param e : element
+ * @return 0 if it was possible, 1 if not
+ */
+int previousAnimationElementSDL2(ElementSDL2 * e);
 /* ------------------------------------------------------- */
 
 
