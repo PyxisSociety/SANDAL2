@@ -2,6 +2,7 @@ var searchData=
 [
   ['setactionelementsdl2',['setActionElementSDL2',['../ElementSDL2_8h.html#adc55495e7fd38c24182c666f5e27cf68',1,'ElementSDL2.c']]],
   ['setangleelementsdl2',['setAngleElementSDL2',['../ElementSDL2_8h.html#ad0c26c9ec304f41938f36734ba689c36',1,'ElementSDL2.c']]],
+  ['setanimation',['setAnimation',['../Sprite_8h.html#af64a9b0c41aaedc92ab8f9f2910c58ed',1,'Sprite.c']]],
   ['setcolorelementsdl2',['setColorElementSDL2',['../ElementSDL2_8h.html#af702b89bddffe64eb1353d2883bfb593',1,'ElementSDL2.c']]],
   ['setcolorwindowsdl2',['setColorWindowSDL2',['../WindowSDL2_8h.html#ab2a44a6ecb477ff514889ed501f1dfe9',1,'WindowSDL2.c']]],
   ['setdataelementsdl2',['setDataElementSDL2',['../ElementSDL2_8h.html#a8335fb6c08b9256c244bff44f4fb5500',1,'ElementSDL2.c']]],
@@ -11,7 +12,8 @@ var searchData=
   ['setkeypresselementsdl2',['setKeyPressElementSDL2',['../ElementSDL2_8h.html#a99f7874dc78cdd61f583c4662d148c46',1,'ElementSDL2.c']]],
   ['setkeyreleasedelementsdl2',['setKeyReleasedElementSDL2',['../ElementSDL2_8h.html#ab1fb75a853ec134cb60a2547282699e8',1,'ElementSDL2.c']]],
   ['setlifespansprite',['setLifeSpanSprite',['../Sprite_8h.html#a7d93b39018964db0eaaeea995666976a',1,'Sprite.c']]],
-  ['setlifespanspriteelementsdl2',['setLifeSpanSpriteElementSDL2',['../ElementSDL2_8h.html#af17f9655df35e43833aca3ec05d336d5',1,'ElementSDL2.c']]],
+  ['setlifespanspriteanimation',['setLifeSpanSpriteAnimation',['../Sprite_8h.html#a918bf16983ae47fdd407d9195909d8af',1,'Sprite.c']]],
+  ['setlifespanspriteanimationelementsdl2',['setLifeSpanSpriteAnimationElementSDL2',['../ElementSDL2_8h.html#aa8f2a284f02b3ad0eec34ae15810875d',1,'ElementSDL2.c']]],
   ['setonclickelementsdl2',['setOnClickElementSDL2',['../ElementSDL2_8h.html#abd06d06aca3fa3777d70196c116740e7',1,'ElementSDL2.c']]],
   ['setplanelementsdl2',['setPlanElementSDL2',['../ElementSDL2_8h.html#a9ad4f897e8817749541f58fb7ce923ac',1,'ElementSDL2.c']]],
   ['setrotationpointelementsdl2',['setRotationPointElementSDL2',['../ElementSDL2_8h.html#ae4be61432ea42e07d5d5a2b790a216bd',1,'ElementSDL2.c']]],
@@ -22,5 +24,5 @@ var searchData=
   ['settextsize',['setTextSize',['../ElementSDL2_8h.html#ae537b628085316fc17acc2abe3cee7f7',1,'ElementSDL2.c']]],
   ['setunclickelementsdl2',['setUnClickElementSDL2',['../ElementSDL2_8h.html#a3a1479f67838a34df58e6ad06f782347',1,'ElementSDL2.c']]],
   ['setunselectelementsdl2',['setUnSelectElementSDL2',['../ElementSDL2_8h.html#aa930b6acc358145b20f4f88f808521a8',1,'ElementSDL2.c']]],
-  ['setwayspriteelementsdl2',['setWaySpriteElementSDL2',['../ElementSDL2_8h.html#a1fd273012ea7922873a8c11c70bf8f62',1,'ElementSDL2.c']]]
+  ['setwayspriteanimationelementsdl2',['setWaySpriteAnimationElementSDL2',['../ElementSDL2_8h.html#aff307e62eb69f41d1efbb9ca0b20982f',1,'ElementSDL2.c']]]
 ];

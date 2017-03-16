@@ -3,6 +3,7 @@ var searchData=
   ['last',['last',['../structListPtrElementSDL2.html#a75a0428e9ce2b7ac513817bb7eb14166',1,'ListPtrElementSDL2']]],
   ['lifespan',['lifespan',['../structSprite.html#ac7deb2af6710a22bec013f2214fc0df7',1,'Sprite']]],
   ['linesdl2',['LineSDL2',['../structLineSDL2.html',1,'']]],
+  ['listanimation',['ListAnimation',['../structListAnimation.html',1,'']]],
   ['listdcelementsdl2',['ListDCElementSDL2',['../structListDCElementSDL2.html',1,'']]],
   ['listdisplaycode',['ListDisplayCode',['../structListDisplayCode.html',1,'']]],
   ['liste',['liste',['../structWindowSDL2.html#a0d2c95e19f6936b1487d21317fda92ed',1,'WindowSDL2']]],

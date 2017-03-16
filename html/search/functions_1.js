@@ -15,6 +15,8 @@ var searchData=
   ['closewindowsdl2',['closeWindowSDL2',['../SANDAL2_8h.html#ae96226eba4428f386e14132a501d05ee',1,'SANDAL2.c']]],
   ['cmpcoul',['cmpCoul',['../WindowSDL2_8h.html#a76223ef0eba8f56e0c706f1085f71d64',1,'WindowSDL2.c']]],
   ['copycolor',['copyColor',['../WindowSDL2_8h.html#af505c56ae14df2c6644964143706953a',1,'WindowSDL2.c']]],
+  ['createanimation',['createAnimation',['../Sprite_8h.html#a8a2528930dc78d5b7a3b2739f561cc5c',1,'Sprite.c']]],
+  ['createanimationelementsdl2',['createAnimationElementSDL2',['../ElementSDL2_8h.html#ac51cf912a7e4ea06504bbbe6b930a381',1,'ElementSDL2.c']]],
   ['createblock',['createBlock',['../ElementSDL2_8h.html#af43268f632b67a33d80933445e04e23c',1,'ElementSDL2.c']]],
   ['createbutton',['createButton',['../ElementSDL2_8h.html#a204b7747e0308216af0b0cc7587ad9b0',1,'ElementSDL2.c']]],
   ['createbuttonimage',['createButtonImage',['../ElementSDL2_8h.html#a30b368444b28777a2905c854f67f5124',1,'ElementSDL2.c']]],

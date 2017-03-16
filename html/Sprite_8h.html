@@ -116,6 +116,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structListSprite.html">ListSprite</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">all steps of an animation  <a href="structListSprite.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structListAnimation.html">ListAnimation</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a list of animations  <a href="structListAnimation.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -128,9 +131,9 @@ typedef struct <a class="el" href="structListSprite.html">ListSprite</a>&#160;</
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ab9a7afa283c4e9aef6cb21457d832e87"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structListSprite.html">ListSprite</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Sprite_8h.html#ab9a7afa283c4e9aef6cb21457d832e87">initListSprite</a> ()</td></tr>
-<tr class="memdesc:ab9a7afa283c4e9aef6cb21457d832e87"><td class="mdescLeft">&#160;</td><td class="mdescRight">create an empty list of sprite  <a href="#ab9a7afa283c4e9aef6cb21457d832e87">More...</a><br /></td></tr>
-<tr class="separator:ab9a7afa283c4e9aef6cb21457d832e87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f7ed2be4a84c793d2590b2d64df612d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structListSprite.html">ListSprite</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Sprite_8h.html#a2f7ed2be4a84c793d2590b2d64df612d">initListSprite</a> (int code)</td></tr>
+<tr class="memdesc:a2f7ed2be4a84c793d2590b2d64df612d"><td class="mdescLeft">&#160;</td><td class="mdescRight">create an empty list of sprite  <a href="#a2f7ed2be4a84c793d2590b2d64df612d">More...</a><br /></td></tr>
+<tr class="separator:a2f7ed2be4a84c793d2590b2d64df612d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac544a89c3a922b8f1f0692e1eb31f702"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Sprite_8h.html#ac544a89c3a922b8f1f0692e1eb31f702">freeListSprite</a> (<a class="el" href="structListSprite.html">ListSprite</a> *l)</td></tr>
 <tr class="memdesc:ac544a89c3a922b8f1f0692e1eb31f702"><td class="mdescLeft">&#160;</td><td class="mdescRight">free the memory of a list of sprite  <a href="#ac544a89c3a922b8f1f0692e1eb31f702">More...</a><br /></td></tr>
 <tr class="separator:ac544a89c3a922b8f1f0692e1eb31f702"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,6 +146,30 @@ Functions</h2></td></tr>
 <tr class="memitem:a7d93b39018964db0eaaeea995666976a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Sprite_8h.html#a7d93b39018964db0eaaeea995666976a">setLifeSpanSprite</a> (<a class="el" href="structListSprite.html">ListSprite</a> *l, int x, int y, int width, int height, unsigned lifespan)</td></tr>
 <tr class="memdesc:a7d93b39018964db0eaaeea995666976a"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the lifespan of a sprite  <a href="#a7d93b39018964db0eaaeea995666976a">More...</a><br /></td></tr>
 <tr class="separator:a7d93b39018964db0eaaeea995666976a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85ce3c9adfc2bcb9fc3fd7adc72a83de"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structListAnimation.html">ListAnimation</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Sprite_8h.html#a85ce3c9adfc2bcb9fc3fd7adc72a83de">initListAnimation</a> ()</td></tr>
+<tr class="memdesc:a85ce3c9adfc2bcb9fc3fd7adc72a83de"><td class="mdescLeft">&#160;</td><td class="mdescRight">create an empty list of animation  <a href="#a85ce3c9adfc2bcb9fc3fd7adc72a83de">More...</a><br /></td></tr>
+<tr class="separator:a85ce3c9adfc2bcb9fc3fd7adc72a83de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f76b9a93c62cb852512f851b5584249"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Sprite_8h.html#a8f76b9a93c62cb852512f851b5584249">freeListAnimation</a> (<a class="el" href="structListAnimation.html">ListAnimation</a> *l)</td></tr>
+<tr class="memdesc:a8f76b9a93c62cb852512f851b5584249"><td class="mdescLeft">&#160;</td><td class="mdescRight">free the memory of a list of animation  <a href="#a8f76b9a93c62cb852512f851b5584249">More...</a><br /></td></tr>
+<tr class="separator:a8f76b9a93c62cb852512f851b5584249"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a2528930dc78d5b7a3b2739f561cc5c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Sprite_8h.html#a8a2528930dc78d5b7a3b2739f561cc5c">createAnimation</a> (<a class="el" href="structListAnimation.html">ListAnimation</a> *l, int code)</td></tr>
+<tr class="memdesc:a8a2528930dc78d5b7a3b2739f561cc5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">add an empty animation to the list  <a href="#a8a2528930dc78d5b7a3b2739f561cc5c">More...</a><br /></td></tr>
+<tr class="separator:a8a2528930dc78d5b7a3b2739f561cc5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cf9422fb97f91c8aa80940f95c43b6c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Sprite_8h.html#a4cf9422fb97f91c8aa80940f95c43b6c">removeAnimation</a> (<a class="el" href="structListAnimation.html">ListAnimation</a> *l, int code)</td></tr>
+<tr class="memdesc:a4cf9422fb97f91c8aa80940f95c43b6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">remove an empty animation from the list  <a href="#a4cf9422fb97f91c8aa80940f95c43b6c">More...</a><br /></td></tr>
+<tr class="separator:a4cf9422fb97f91c8aa80940f95c43b6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03900dfb59c595dfabfc8e671f3fdd88"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Sprite_8h.html#a03900dfb59c595dfabfc8e671f3fdd88">addSpriteAnimation</a> (<a class="el" href="structListAnimation.html">ListAnimation</a> *l, int code, int x, int y, int width, int height, unsigned lifespan)</td></tr>
+<tr class="memdesc:a03900dfb59c595dfabfc8e671f3fdd88"><td class="mdescLeft">&#160;</td><td class="mdescRight">add a <a class="el" href="structSprite.html" title="informations about a step of an animation ">Sprite</a> to an animation  <a href="#a03900dfb59c595dfabfc8e671f3fdd88">More...</a><br /></td></tr>
+<tr class="separator:a03900dfb59c595dfabfc8e671f3fdd88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c79e693bf99ef350cc54da7a97b77b8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Sprite_8h.html#a6c79e693bf99ef350cc54da7a97b77b8">removeSpriteAnimation</a> (<a class="el" href="structListAnimation.html">ListAnimation</a> *l, int code, int x, int y, int width, int height)</td></tr>
+<tr class="memdesc:a6c79e693bf99ef350cc54da7a97b77b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">remove a <a class="el" href="structSprite.html" title="informations about a step of an animation ">Sprite</a> to an animation  <a href="#a6c79e693bf99ef350cc54da7a97b77b8">More...</a><br /></td></tr>
+<tr class="separator:a6c79e693bf99ef350cc54da7a97b77b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a918bf16983ae47fdd407d9195909d8af"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Sprite_8h.html#a918bf16983ae47fdd407d9195909d8af">setLifeSpanSpriteAnimation</a> (<a class="el" href="structListAnimation.html">ListAnimation</a> *l, int code, int x, int y, int width, int height, unsigned lifespan)</td></tr>
+<tr class="memdesc:a918bf16983ae47fdd407d9195909d8af"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the lifespan of a sprite  <a href="#a918bf16983ae47fdd407d9195909d8af">More...</a><br /></td></tr>
+<tr class="separator:a918bf16983ae47fdd407d9195909d8af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af64a9b0c41aaedc92ab8f9f2910c58ed"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Sprite_8h.html#af64a9b0c41aaedc92ab8f9f2910c58ed">setAnimation</a> (<a class="el" href="structListAnimation.html">ListAnimation</a> *l, int code)</td></tr>
+<tr class="memdesc:af64a9b0c41aaedc92ab8f9f2910c58ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the current animation of a list of animations  <a href="#af64a9b0c41aaedc92ab8f9f2910c58ed">More...</a><br /></td></tr>
+<tr class="separator:af64a9b0c41aaedc92ab8f9f2910c58ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="structSprite.html" title="informations about a step of an animation ">Sprite</a> manager for SANDAL2. </p>
@@ -211,6 +238,137 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a03900dfb59c595dfabfc8e671f3fdd88"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int addSpriteAnimation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structListAnimation.html">ListAnimation</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>code</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>lifespan</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>add a <a class="el" href="structSprite.html" title="informations about a step of an animation ">Sprite</a> to an animation </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: list of animations </td></tr>
+    <tr><td class="paramname">code</td><td>: code of the animation to add the sprite </td></tr>
+    <tr><td class="paramname">x</td><td>: abscissa coordinate of the top left corner of the sprite in its image </td></tr>
+    <tr><td class="paramname">y</td><td>: ordinate coordinate of the top left corner of the sprite in its image </td></tr>
+    <tr><td class="paramname">width</td><td>: width of the sprite in its image </td></tr>
+    <tr><td class="paramname">height</td><td>: height of the sprite in its image </td></tr>
+    <tr><td class="paramname">lifespan</td><td>: number of time the sprite should be displaied before going to the next sprite </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if the sprite was correctly added, 1 if not </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8a2528930dc78d5b7a3b2739f561cc5c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int createAnimation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structListAnimation.html">ListAnimation</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>code</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>add an empty animation to the list </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: list of animation </td></tr>
+    <tr><td class="paramname">code</td><td>: code of the new animation </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if the animation could be added, 1 if not </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8f76b9a93c62cb852512f851b5584249"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void freeListAnimation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structListAnimation.html">ListAnimation</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>free the memory of a list of animation </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: list to be freed </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="ac544a89c3a922b8f1f0692e1eb31f702"></a>
 <div class="memitem">
 <div class="memproto">
@@ -235,12 +393,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab9a7afa283c4e9aef6cb21457d832e87"></a>
+<a class="anchor" id="a85ce3c9adfc2bcb9fc3fd7adc72a83de"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structListSprite.html">ListSprite</a>* initListSprite </td>
+          <td class="memname"><a class="el" href="structListAnimation.html">ListAnimation</a>* initListAnimation </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -248,8 +406,63 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>create an empty list of animation </p>
+<dl class="section return"><dt>Returns</dt><dd>the empty list of animation </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2f7ed2be4a84c793d2590b2d64df612d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structListSprite.html">ListSprite</a>* initListSprite </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>code</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
 <p>create an empty list of sprite </p>
 <dl class="section return"><dt>Returns</dt><dd>the empty list of sprite </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a4cf9422fb97f91c8aa80940f95c43b6c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int removeAnimation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structListAnimation.html">ListAnimation</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>code</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>remove an empty animation from the list </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: list of animation </td></tr>
+    <tr><td class="paramname">code</td><td>: code of the animation to be removed </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if the animation could be removed, 1 if not </dd></dl>
 
 </div>
 </div>
@@ -310,6 +523,106 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a6c79e693bf99ef350cc54da7a97b77b8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int removeSpriteAnimation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structListAnimation.html">ListAnimation</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>code</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>remove a <a class="el" href="structSprite.html" title="informations about a step of an animation ">Sprite</a> to an animation </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: list of animations </td></tr>
+    <tr><td class="paramname">code</td><td>: code of the animation to remove the sprite </td></tr>
+    <tr><td class="paramname">x</td><td>: abscissa coordinate of the top left corner of the sprite in its image </td></tr>
+    <tr><td class="paramname">y</td><td>: ordinate coordinate of the top left corner of the sprite in its image </td></tr>
+    <tr><td class="paramname">width</td><td>: width of the sprite in its image </td></tr>
+    <tr><td class="paramname">height</td><td>: height of the sprite in its image </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if the sprite was correctly removed, 1 if not </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af64a9b0c41aaedc92ab8f9f2910c58ed"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int setAnimation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structListAnimation.html">ListAnimation</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>code</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>set the current animation of a list of animations </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: list of animations </td></tr>
+    <tr><td class="paramname">code</td><td>: code of the animation to be set as current </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if the animation could be set as current, 1 if not </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a7d93b39018964db0eaaeea995666976a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -362,6 +675,77 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">l</td><td>: list of sprite </td></tr>
+    <tr><td class="paramname">x</td><td>: abscissa coordinate of the top left corner of the sprite in its image </td></tr>
+    <tr><td class="paramname">y</td><td>: ordinate coordinate of the top left corner of the sprite in its image </td></tr>
+    <tr><td class="paramname">width</td><td>: width of the sprite in its image </td></tr>
+    <tr><td class="paramname">height</td><td>: height of the sprite in its image </td></tr>
+    <tr><td class="paramname">lifespan</td><td>: new number of time the sprite should be displaied before going to the next sprite </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if the lifespan could be set, 1 if not </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a918bf16983ae47fdd407d9195909d8af"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int setLifeSpanSpriteAnimation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structListAnimation.html">ListAnimation</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>code</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>lifespan</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>set the lifespan of a sprite </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: list of animations </td></tr>
+    <tr><td class="paramname">code</td><td>: code of the animation to set the sprite </td></tr>
     <tr><td class="paramname">x</td><td>: abscissa coordinate of the top left corner of the sprite in its image </td></tr>
     <tr><td class="paramname">y</td><td>: ordinate coordinate of the top left corner of the sprite in its image </td></tr>
     <tr><td class="paramname">width</td><td>: width of the sprite in its image </td></tr>

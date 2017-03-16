@@ -18,6 +18,7 @@ var searchData=
   ['addptrelementsdl2',['addPtrElementSDL2',['../ElementSDL2_8h.html#add79944b09fa20f3553d77580d4528ac',1,'ElementSDL2.c']]],
   ['addrotationspeedelementsdl2',['addRotationSpeedElementSDL2',['../ElementSDL2_8h.html#a9811613a540528b7a33b1e5c07755dbc',1,'ElementSDL2.c']]],
   ['addsprite',['addSprite',['../Sprite_8h.html#a955745e082c6afbb0350fbc0fcb7ef97',1,'Sprite.c']]],
-  ['addspriteelementsdl2',['addSpriteElementSDL2',['../ElementSDL2_8h.html#adc379e6de4e33341fd04f426e45eaa09',1,'ElementSDL2.c']]],
-  ['animation',['animation',['../structElementSDL2.html#ad0d89fbd4f412cb74c12c3cd49c42dd3',1,'ElementSDL2']]]
+  ['addspriteanimation',['addSpriteAnimation',['../Sprite_8h.html#a03900dfb59c595dfabfc8e671f3fdd88',1,'Sprite.c']]],
+  ['addspriteanimationelementsdl2',['addSpriteAnimationElementSDL2',['../ElementSDL2_8h.html#ae268f31fa2f8e24d27069976f2f614ed',1,'ElementSDL2.c']]],
+  ['animation',['animation',['../structElementSDL2.html#a9b7927abbd7b67f843758ff65436fbb5',1,'ElementSDL2']]]
 ];
