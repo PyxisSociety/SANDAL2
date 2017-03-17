@@ -135,22 +135,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>a rotation speed ;</li>
 <li>a rotation (the current angle of the element) ;</li>
 <li>a package of data (void *);</li>
-<li>a package of informations if the element is a prompt. <br />
+<li><p class="startli">a package of informations if the element is a prompt. <br />
 <br />
- The functions that can be bind to the element are the following ones :<ul>
-<li>action, to be called every update ;</li>
-</ul>
+</p>
+<p class="startli">The functions that can be bind to the element are the following ones :</p>
 </li>
+<li>action, to be called every update ;</li>
 <li>keyPress, to be called when a key is pressed ;</li>
 <li>keyReleased, to be called when a key is released ;</li>
 <li>click, to be called if the element is clicked (be careful, there have to be a clickable zone) ;</li>
 <li>unClick, to be called when the user release the click of the mouse on the clickable zone of the element ;</li>
 <li>unSelect, to be called when the user click elsewhere or unclick elsewhere ;</li>
-<li>endSprite, to be called when an animation reach its end, before starting of again. <br />
+<li><p class="startli">endSprite, to be called when an animation reach its end, before starting of again. <br />
 <br />
- You can add elements to a current element so that the parent element will be able to modifie them in one of the function you binded to it. In those function, you can modifie the element itself or other, even removing them. Each animation of an element has a code so that you can switch from one to another. When you want to add a step to the animation, you will have to define its coordinates in the image of the element (which should be a sprite sheet or something the like). Each sprite has a lifespan, which correspond to the number of update call before going to the next. That is if the animation is on 'automatic' mode. The mode can be set with the function setWayAnimationElementSDL2. If there are no sprite, the entire image will be displaied. <br />
+</p>
+<p class="startli">You can add elements to a current element so that the parent element will be able to modifie them in one of the function you binded to it. In those function, you can modifie the element itself or other, even removing them. Each animation of an element has a code so that you can switch from one to another. When you want to add a step to the animation, you will have to define its coordinates in the image of the element (which should be a sprite sheet or something the like). Each sprite has a lifespan, which correspond to the number of update call before going to the next. That is if the animation is on 'automatic' mode. The mode can be set with the function setWayAnimationElementSDL2. If there are no sprite, the entire image will be displaied. <br />
 <br />
- </li>
+ </p>
+</li>
 </ul>
 </div></div><!-- contents -->
 <!-- start footer part -->
