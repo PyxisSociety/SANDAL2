@@ -103,6 +103,7 @@ modifie all informations about them. They have the following information :
 * a package of data (void *);
 * a package of informations if the element is a prompt.
 <br/><br/>
+
    The functions that can be bind to the element are the following ones :
 * action, to be called every update ;
 * keyPress, to be called when a key is pressed ;
@@ -112,6 +113,7 @@ modifie all informations about them. They have the following information :
 * unSelect, to be called when the user click elsewhere or unclick elsewhere ;
 * endSprite, to be called when an animation reach its end, before starting of again.
 <br/><br/>
+
    You can add elements to a current element so that the parent element will be able to modifie them in one of
 the function you binded to it. In those function, you can modifie the element itself or other, even removing them.
 Each animation of an element has a code so that you can switch from one to another. When you want to add a step
