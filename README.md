@@ -91,26 +91,26 @@ Those functions are in SANDAL2.h.<br/><br/>
    An element is kind of an object with lots of display informations. It can have an image, a text or a color (for rectangles).
 As said higher, they can be created with functions like createBlock or createButton for example. Once created, you can
 modifie all informations about them. They have the following information :
-	* coordinates in the window ;
-	* dimensions ;
-	* a collection of display code, each display code has a plan ;
-	* a collection of clickable zone ;
-	* functions bind on it to be called for certain event (they will be listed later) ;
-	* a collection of animations ;
-	* a collection of elements which can be modified by the parent element ;
-	* a rotation speed ;
-	* a rotation (the current angle of the element) ;
-	* a package of data (void *);
-	* a package of informations if the element is a prompt.
+* coordinates in the window ;
+* dimensions ;
+* a collection of display code, each display code has a plan ;
+* a collection of clickable zone ;
+* functions bind on it to be called for certain event (they will be listed later) ;
+* a collection of animations ;
+* a collection of elements which can be modified by the parent element ;
+* a rotation speed ;
+* a rotation (the current angle of the element) ;
+* a package of data (void *);
+* a package of informations if the element is a prompt.
 <br/><br/>
    The functions that can be bind to the element are the following ones :
-        * action, to be called every update ;
-	* keyPress, to be called when a key is pressed ;
-	* keyReleased, to be called when a key is released ;
-	* click, to be called if the element is clicked (be careful, there have to be a clickable zone) ;
-	* unClick, to be called when the user release the click of the mouse on the clickable zone of the element ;
-	* unSelect, to be called when the user click elsewhere or unclick elsewhere ;
-	* endSprite, to be called when an animation reach its end, before starting of again.
+* action, to be called every update ;
+* keyPress, to be called when a key is pressed ;
+* keyReleased, to be called when a key is released ;
+* click, to be called if the element is clicked (be careful, there have to be a clickable zone) ;
+* unClick, to be called when the user release the click of the mouse on the clickable zone of the element ;
+* unSelect, to be called when the user click elsewhere or unclick elsewhere ;
+* endSprite, to be called when an animation reach its end, before starting of again.
 <br/><br/>
    You can add elements to a current element so that the parent element will be able to modifie them in one of
 the function you binded to it. In those function, you can modifie the element itself or other, even removing them.
