@@ -26,8 +26,19 @@ I will really appreciate it.
 
   4. ListHitBox : 
     A clickable zone defined by a collection of clickable HitBox and blocking HitBox.
+
+### II. Sprite.h
+
+  1. Sprite :
+    A step in an animation defined by the rectangle in the image and its lifespan.
+
+  2. ListSprite :
+    A list of Sprite forming a complete animation.
+
+  3. ListAnimation :
+    A list of animations.
     
-### II. DisplayCode.h
+### III. DisplayCode.h
 
   1. DisplayCode : 
     A package of information about a display code. It contains the display code, the plan and a flag to tell whether or not
@@ -36,20 +47,20 @@ I will really appreciate it.
   2. ListDisplayCode : 
     A list of display codes.
 
-### III. FontSDL2.h
+### IV. FontSDL2.h
 
   1. FontSDL2 :
     A package of information about a text. It contains its font, its text, its color and its SDL2 texture.
 
-### IV. FenetreSDL2.h
+### V. WindowSDL2.h
 
-  1. FenetreSDL2 :
+  1. WindowSDL2 :
     Representation of a window. It contains all informations (such as the dimension, the display code, ...) about a window.
 
-  2. ListFenetreSDL2 :
-    A list of FenetreSDL2.
+  2. ListWindowSDL2 :
+    A list of WindowSDL2.
 
-### V. ElementSDL2.h
+### VI. ElementSDL2.h
 
   1. ElementSDL2 :
     A package of information about objects. It contains its coordinates (top left corner), its size, its color and so on.
@@ -74,17 +85,17 @@ I will really appreciate it.
    To begin with, you'll have to initialise SDL2 with initAllSDL2 for image, ttf and SDL2, or one of the
 specific function in SANDAL2.h. Do not forget to close the SDL2 with either closeAllSDL2 or one or more functions
 in SANDAL2.h.<br/><br/>
-   Then you'll want to create a window (or more). For that, use the initFenetreSDL2 function. Then you can had
+   Then you'll want to create a window (or more). For that, use the initWindowSDL2 function. Then you can had
 elements in it with all the create functions in ElementSDL2.h like createBlock or createEntryImage for example.
 We will see later what you can do with all those elements more in details.<br/><br/>
    For the event management, you can bind functions to elements which will be called in the functions we will speak
 about right now when specific conditions are met. You will not have to look when you touch an elements or what
-function to call when a key is pressed. For that, use the functions like clickFenetreSDL2 or keyPressedFenetreSDL2.
-When you want to update all your elements and the current window, use updateFenetreSDL2. For displaying, use displayFenetreSDL2.
-If you want to do that for every single window, use the 'all' version like displayAllFenetreSDL2 or unclickAllFenetreSDL2.
-Then again, do not forget to close your windows with closeFenetreSDL2 or closeAllFenetreSDL2.
+function to call when a key is pressed. For that, use the functions like clickWindowSDL2 or keyPressedWindowSDL2.
+When you want to update all your elements and the current window, use updateWindowSDL2. For displaying, use displayWindowSDL2.
+If you want to do that for every single window, use the 'all' version like displayAllWindowSDL2 or unclickAllWindowSDL2.
+Then again, do not forget to close your windows with closeWindowSDL2 or closeAllWindowSDL2.
 Those functions are in SANDAL2.h.<br/><br/>
-   If you want to iterate through all the windows, you can use initIteratorFenetreSDL2 and nextFenetreSDL2. You can also get and set informations about the window with all the functions in FenetreSDL2.h.<br/>
+   If you want to iterate through all the windows, you can use initIteratorWindowSDL2 and nextWindowSDL2. You can also get and set informations about the window with all the functions in WindowSDL2.h.<br/>
 
 ### II. Element manipulations
 
