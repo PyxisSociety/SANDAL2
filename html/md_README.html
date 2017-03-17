@@ -81,56 +81,72 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock"><p>SANDAL2 is a SDL2 wrapper which purpose is to make objects managment and graphic display easier.</p>
 <h2>About the author</h2>
-<p>I am a French guy and I am studying computer science engineering. I made this wrapper because I found boresome to have to create a display function for each menu's page, but I ended up going a little more further in it. I hope you will enjoy using it, if you have any comment or advice, do not feel shy and tell me !<br />
- I will really appreciate it.</p>
+<p>&#160;&#160;&#160;I am a French guy and I am studying computer science engineering. I made this wrapper because I found boresome to have to create a display function for each menu's page, but I ended up going a little more further in it. I hope you will enjoy using it, if you have any comment or advice, do not feel shy and tell me ! I will really appreciate it.</p>
 <h2>Structures</h2>
 <h3>I. <a class="el" href="HitBox_8h.html" title="Generic hitboxes either polygonial, elliptic or a mixe of both. ">HitBox.h</a></h3>
 <ol type="1">
-<li><a class="el" href="structLineSDL2.html" title="Represente a line which delimitate a hittable surface from a none hittable one. ">LineSDL2</a> : A clickable zone delimited by a line (only one side of the line is clickable).</li>
-<li><a class="el" href="structCircleSDL2.html" title="Represente a hittable ellipse. ">CircleSDL2</a> : An elliptic shaped clickable zone.</li>
-<li><a class="el" href="structHitBox.html" title="Represente a hit boxe which is a collection of LineSDL2 (defining a convexe polygon) and CircleSDL2...">HitBox</a> : A clickable zone made of a collection of lines and ellipses. This is one of the only structure you'll be manipulating (even though not directly accessing to its values).</li>
-<li><a class="el" href="structListHitBox.html" title="Collection of hit boxes. ">ListHitBox</a> : A clickable zone defined by a collection of clickable <a class="el" href="structHitBox.html" title="Represente a hit boxe which is a collection of LineSDL2 (defining a convexe polygon) and CircleSDL2...">HitBox</a> and blocking <a class="el" href="structHitBox.html" title="Represente a hit boxe which is a collection of LineSDL2 (defining a convexe polygon) and CircleSDL2...">HitBox</a>.</li>
+<li><a class="el" href="structLineSDL2.html" title="Represente a line which delimitate a hittable surface from a none hittable one. ">LineSDL2</a> : <br />
+ A clickable zone delimited by a line (only one side of the line is clickable).</li>
+<li><a class="el" href="structCircleSDL2.html" title="Represente a hittable ellipse. ">CircleSDL2</a> :<br />
+ An elliptic shaped clickable zone.</li>
+<li><a class="el" href="structHitBox.html" title="Represente a hit boxe which is a collection of LineSDL2 (defining a convexe polygon) and CircleSDL2...">HitBox</a> :<br />
+ A clickable zone made of a collection of lines and ellipses. This is one of the only structure you'll be manipulating (even though not directly accessing to its values).</li>
+<li><a class="el" href="structListHitBox.html" title="Collection of hit boxes. ">ListHitBox</a> : <br />
+ A clickable zone defined by a collection of clickable <a class="el" href="structHitBox.html" title="Represente a hit boxe which is a collection of LineSDL2 (defining a convexe polygon) and CircleSDL2...">HitBox</a> and blocking <a class="el" href="structHitBox.html" title="Represente a hit boxe which is a collection of LineSDL2 (defining a convexe polygon) and CircleSDL2...">HitBox</a>.</li>
 </ol>
 <h3>II. <a class="el" href="Sprite_8h.html" title="Sprite manager for SANDAL2. ">Sprite.h</a></h3>
 <ol type="1">
-<li><a class="el" href="structSprite.html" title="informations about a step of an animation ">Sprite</a> : A step in an animation defined by the rectangle in the image and its lifespan.</li>
-<li><a class="el" href="structListSprite.html" title="all steps of an animation ">ListSprite</a> : A list of <a class="el" href="structSprite.html" title="informations about a step of an animation ">Sprite</a> forming a complete animation.</li>
-<li><a class="el" href="structListAnimation.html" title="a list of animations ">ListAnimation</a> : A list of animations.</li>
+<li><a class="el" href="structSprite.html" title="informations about a step of an animation ">Sprite</a> :<br />
+ A step in an animation defined by the rectangle in the image and its lifespan.</li>
+<li><a class="el" href="structListSprite.html" title="all steps of an animation ">ListSprite</a> :<br />
+ A list of <a class="el" href="structSprite.html" title="informations about a step of an animation ">Sprite</a> forming a complete animation.</li>
+<li><a class="el" href="structListAnimation.html" title="a list of animations ">ListAnimation</a> :<br />
+ A list of animations.</li>
 </ol>
 <h3>III. <a class="el" href="DisplayCode_8h.html" title="Contains display code and list of display codes. ">DisplayCode.h</a></h3>
 <ol type="1">
-<li><a class="el" href="structDisplayCode.html" title="Display code containing the plan and a flag to indicate if it is displaied. ">DisplayCode</a> : A package of information about a display code. It contains the display code, the plan and a flag to tell whether or not the object should be displaied.</li>
-<li><a class="el" href="structListDisplayCode.html" title="List of display codes. ">ListDisplayCode</a> : A list of display codes.</li>
+<li><a class="el" href="structDisplayCode.html" title="Display code containing the plan and a flag to indicate if it is displaied. ">DisplayCode</a> : <br />
+ A package of information about a display code. It contains the display code, the plan and a flag to tell whether or not the object should be displaied.</li>
+<li><a class="el" href="structListDisplayCode.html" title="List of display codes. ">ListDisplayCode</a> : <br />
+ A list of display codes.</li>
 </ol>
 <h3>IV. <a class="el" href="FontSDL2_8h.html" title="Information about TTF objects. ">FontSDL2.h</a></h3>
 <ol type="1">
-<li><a class="el" href="structFontSDL2.html" title="Informations about SDL2 font. ">FontSDL2</a> : A package of information about a text. It contains its font, its text, its color and its SDL2 texture.</li>
+<li><a class="el" href="structFontSDL2.html" title="Informations about SDL2 font. ">FontSDL2</a> :<br />
+ A package of information about a text. It contains its font, its text, its color and its SDL2 texture.</li>
 </ol>
 <h3>V. <a class="el" href="WindowSDL2_8h.html" title="Contains all structures related to windows but only those unrelated to Elements. ">WindowSDL2.h</a></h3>
 <ol type="1">
-<li><a class="el" href="structWindowSDL2.html" title="SANDAL2 window. ">WindowSDL2</a> : Representation of a window. It contains all informations (such as the dimension, the display code, ...) about a window.</li>
-<li><a class="el" href="structListWindowSDL2.html" title="list of windows ">ListWindowSDL2</a> : A list of <a class="el" href="structWindowSDL2.html" title="SANDAL2 window. ">WindowSDL2</a>.</li>
+<li><a class="el" href="structWindowSDL2.html" title="SANDAL2 window. ">WindowSDL2</a> :<br />
+ Representation of a window. It contains all informations (such as the dimension, the display code, ...) about a window.</li>
+<li><a class="el" href="structListWindowSDL2.html" title="list of windows ">ListWindowSDL2</a> :<br />
+ A list of <a class="el" href="structWindowSDL2.html" title="SANDAL2 window. ">WindowSDL2</a>.</li>
 </ol>
 <h3>VI. <a class="el" href="ElementSDL2_8h.html" title="Contains all structures related to Elements. ">ElementSDL2.h</a></h3>
 <ol type="1">
-<li><a class="el" href="structElementSDL2.html" title="All the informations of an element. ">ElementSDL2</a> : A package of information about objects. It contains its coordinates (top left corner), its size, its color and so on. This is one of the only structure you'll be manipulating (even though not directly accessing to its values).</li>
-<li><a class="el" href="structPtrElementSDL2.html" title="Structure used to store elements&#39; pointers in a list of element. ">PtrElementSDL2</a> : A structure mean to store an <a class="el" href="structElementSDL2.html" title="All the informations of an element. ">ElementSDL2</a>'s pointer</li>
-<li><a class="el" href="structListPtrElementSDL2.html" title="List of PtrElementSDL2. ">ListPtrElementSDL2</a> : A list of <a class="el" href="structPtrElementSDL2.html" title="Structure used to store elements&#39; pointers in a list of element. ">PtrElementSDL2</a>. Either used as a list of elements with a common plan or so that an element can change another.</li>
-<li><a class="el" href="structListDCElementSDL2.html" title="List (display code) of list (plan) of element. ">ListDCElementSDL2</a> : A list of lists of elements with a common plan, every lists in this list has a common display code.</li>
-<li><a class="el" href="structListElementSDL2.html" title="List of list (display code) of list (plan) of elements. ">ListElementSDL2</a> : A list of <a class="el" href="structListDCElementSDL2.html" title="List (display code) of list (plan) of element. ">ListDCElementSDL2</a>.</li>
+<li><a class="el" href="structElementSDL2.html" title="All the informations of an element. ">ElementSDL2</a> :<br />
+ A package of information about objects. It contains its coordinates (top left corner), its size, its color and so on. This is one of the only structure you'll be manipulating (even though not directly accessing to its values).</li>
+<li><a class="el" href="structPtrElementSDL2.html" title="Structure used to store elements&#39; pointers in a list of element. ">PtrElementSDL2</a> :<br />
+ A structure mean to store an <a class="el" href="structElementSDL2.html" title="All the informations of an element. ">ElementSDL2</a>'s pointer</li>
+<li><a class="el" href="structListPtrElementSDL2.html" title="List of PtrElementSDL2. ">ListPtrElementSDL2</a> :<br />
+ A list of <a class="el" href="structPtrElementSDL2.html" title="Structure used to store elements&#39; pointers in a list of element. ">PtrElementSDL2</a>. Either used as a list of elements with a common plan or so that an element can change another.</li>
+<li><a class="el" href="structListDCElementSDL2.html" title="List (display code) of list (plan) of element. ">ListDCElementSDL2</a> :<br />
+ A list of lists of elements with a common plan, every lists in this list has a common display code.</li>
+<li><a class="el" href="structListElementSDL2.html" title="List of list (display code) of list (plan) of elements. ">ListElementSDL2</a> :<br />
+ A list of <a class="el" href="structListDCElementSDL2.html" title="List (display code) of list (plan) of element. ">ListDCElementSDL2</a>.</li>
 </ol>
 <h2>Functionnality</h2>
 <h3>I. To begin with</h3>
-<p>To begin with, you'll have to initialise SDL2 with initAllSDL2 for image, ttf and SDL2, or one of the specific function in <a class="el" href="SANDAL2_8h.html" title="File to include, include everything else. Compilation flags to use : -lSDL2 -lSDL2_ttf -lSDL2_image -...">SANDAL2.h</a>. Do not forget to close the SDL2 with either closeAllSDL2 or one or more functions in <a class="el" href="SANDAL2_8h.html" title="File to include, include everything else. Compilation flags to use : -lSDL2 -lSDL2_ttf -lSDL2_image -...">SANDAL2.h</a>.<br />
+<p>&#160;&#160;&#160;To begin with, you'll have to initialise SDL2 with initAllSDL2 for image, ttf and SDL2, or one of the specific function in <a class="el" href="SANDAL2_8h.html" title="File to include which includes everything else. Compilation flags to use : -lSDL2 -lSDL2_ttf -lSDL2_i...">SANDAL2.h</a>. Do not forget to close the SDL2 with either closeAllSDL2 or one or more functions in <a class="el" href="SANDAL2_8h.html" title="File to include which includes everything else. Compilation flags to use : -lSDL2 -lSDL2_ttf -lSDL2_i...">SANDAL2.h</a>.<br />
 <br />
- Then you'll want to create a window (or more). For that, use the initWindowSDL2 function. Then you can had elements in it with all the create functions in <a class="el" href="ElementSDL2_8h.html" title="Contains all structures related to Elements. ">ElementSDL2.h</a> like createBlock or createEntryImage for example. We will see later what you can do with all those elements more in details.<br />
+ &#160;&#160;&#160;Then you'll want to create a window (or more). For that, use the initWindowSDL2 function. Then you can had elements in it with all the create functions in <a class="el" href="ElementSDL2_8h.html" title="Contains all structures related to Elements. ">ElementSDL2.h</a> like createBlock or createEntryImage for example. We will see later what you can do with all those elements more in details.<br />
 <br />
- For the event management, you can bind functions to elements which will be called in the functions we will speak about right now when specific conditions are met. You will not have to look when you touch an elements or what function to call when a key is pressed. For that, use the functions like clickWindowSDL2 or keyPressedWindowSDL2. When you want to update all your elements and the current window, use updateWindowSDL2. For displaying, use displayWindowSDL2. If you want to do that for every single window, use the 'all' version like displayAllWindowSDL2 or unclickAllWindowSDL2. Then again, do not forget to close your windows with closeWindowSDL2 or closeAllWindowSDL2. Those functions are in <a class="el" href="SANDAL2_8h.html" title="File to include, include everything else. Compilation flags to use : -lSDL2 -lSDL2_ttf -lSDL2_image -...">SANDAL2.h</a>.<br />
+ &#160;&#160;&#160;For the event management, you can bind functions to elements which will be called in the functions we will speak about right now when specific conditions are met. You will not have to look when you touch an elements or what function to call when a key is pressed. For that, use the functions like clickWindowSDL2 or keyPressedWindowSDL2. When you want to update all your elements and the current window, use updateWindowSDL2. For displaying, use displayWindowSDL2. If you want to do that for every single window, use the 'all' version like displayAllWindowSDL2 or unclickAllWindowSDL2. Then again, do not forget to close your windows with closeWindowSDL2 or closeAllWindowSDL2. Those functions are in <a class="el" href="SANDAL2_8h.html" title="File to include which includes everything else. Compilation flags to use : -lSDL2 -lSDL2_ttf -lSDL2_i...">SANDAL2.h</a>.<br />
 <br />
- If you want to iterate through all the windows, you can use initIteratorWindowSDL2 and nextWindowSDL2. You can also get and set informations about the window with all the functions in <a class="el" href="WindowSDL2_8h.html" title="Contains all structures related to windows but only those unrelated to Elements. ">WindowSDL2.h</a>.<br />
+ &#160;&#160;&#160;If you want to iterate through all the windows, you can use initIteratorWindowSDL2 and nextWindowSDL2. You can also get and set informations about the window with all the functions in <a class="el" href="WindowSDL2_8h.html" title="Contains all structures related to windows but only those unrelated to Elements. ">WindowSDL2.h</a>.<br />
 </p>
 <h3>II. Element manipulations</h3>
-<p>An element is kind of an object with lots of display informations. It can have an image, a text or a color (for rectangles). As said higher, they can be created with functions like createBlock or createButton for example. Once created, you can modifie all informations about them. They have the following information :</p><ul>
+<p>&#160;&#160;&#160;An element is kind of an object with lots of display informations. It can have an image, a text or a color (for rectangles). As said higher, they can be created with functions like createBlock or createButton for example. Once created, you can modifie all informations about them. They have the following information :</p><ul>
 <li>coordinates in the window ;</li>
 <li>dimensions ;</li>
 <li>a collection of display code, each display code has a plan ;</li>
@@ -141,25 +157,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>a rotation speed ;</li>
 <li>a rotation (the current angle of the element) ;</li>
 <li>a package of data (void *);</li>
-<li><p class="startli">a package of informations if the element is a prompt. <br />
+<li>a package of informations if the element is a prompt. <br />
 <br />
-</p>
-<p class="startli">The functions that can be bind to the element are the following ones :</p>
 </li>
+</ul>
+<p>&#160;&#160;&#160;The functions that can be bind to the element are the following ones :</p><ul>
 <li>action, to be called every update ;</li>
 <li>keyPress, to be called when a key is pressed ;</li>
 <li>keyReleased, to be called when a key is released ;</li>
 <li>click, to be called if the element is clicked (be careful, there have to be a clickable zone) ;</li>
 <li>unClick, to be called when the user release the click of the mouse on the clickable zone of the element ;</li>
 <li>unSelect, to be called when the user click elsewhere or unclick elsewhere ;</li>
-<li><p class="startli">endSprite, to be called when an animation reach its end, before starting of again. <br />
+<li>endSprite, to be called when an animation reach its end, before starting of again. <br />
 <br />
-</p>
-<p class="startli">You can add elements to a current element so that the parent element will be able to modifie them in one of the function you binded to it. In those function, you can modifie the element itself or other, even removing them. Each animation of an element has a code so that you can switch from one to another. When you want to add a step to the animation, you will have to define its coordinates in the image of the element (which should be a sprite sheet or something the like). Each sprite has a lifespan, which correspond to the number of update call before going to the next. That is if the animation is on 'automatic' mode. The mode can be set with the function setWayAnimationElementSDL2. If there are no sprite, the entire image will be displaied. <br />
-<br />
- </p>
 </li>
 </ul>
+<p>&#160;&#160;&#160;You can add elements to a current element so that the parent element will be able to modifie them in one of the function you binded to it. In those function, you can modifie the element itself or other, even removing them. Each animation of an element has a code so that you can switch from one to another. When you want to add a step to the animation, you will have to define its coordinates in the image of the element (which should be a sprite sheet or something the like). Each sprite has a lifespan, which correspond to the number of update call before going to the next. That is if the animation is on 'automatic' mode. The mode can be set with the function setWayAnimationElementSDL2. If there are no sprite, the entire image will be displaied. <br />
+<br />
+ </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
