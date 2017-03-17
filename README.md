@@ -13,68 +13,68 @@ in it. I hope you will enjoy using it, if you have any comment or advice, do not
 
 ### I. HitBox.h
 
-  1. LineSDL2 : 
+  1. LineSDL2 : <br/>
     A clickable zone delimited by a line (only one side of the line is clickable).
 
-  2. CircleSDL2 :
+  2. CircleSDL2 :<br/>
     An elliptic shaped clickable zone.
 
-  3. HitBox :
+  3. HitBox :<br/>
     A clickable zone made of a collection of lines and ellipses.
     This is one of the only structure you'll be manipulating (even though not directly accessing to its values).
 
-  4. ListHitBox : 
+  4. ListHitBox : <br/>
     A clickable zone defined by a collection of clickable HitBox and blocking HitBox.
 
 ### II. Sprite.h
 
-  1. Sprite :
+  1. Sprite :<br/>
     A step in an animation defined by the rectangle in the image and its lifespan.
 
-  2. ListSprite :
+  2. ListSprite :<br/>
     A list of Sprite forming a complete animation.
 
-  3. ListAnimation :
+  3. ListAnimation :<br/>
     A list of animations.
     
 ### III. DisplayCode.h
 
-  1. DisplayCode : 
+  1. DisplayCode : <br/>
     A package of information about a display code. It contains the display code, the plan and a flag to tell whether or not
     the object should be displaied.
 
-  2. ListDisplayCode : 
+  2. ListDisplayCode : <br/>
     A list of display codes.
 
 ### IV. FontSDL2.h
 
-  1. FontSDL2 :
+  1. FontSDL2 :<br/>
     A package of information about a text. It contains its font, its text, its color and its SDL2 texture.
 
 ### V. WindowSDL2.h
 
-  1. WindowSDL2 :
+  1. WindowSDL2 :<br/>
     Representation of a window. It contains all informations (such as the dimension, the display code, ...) about a window.
 
-  2. ListWindowSDL2 :
+  2. ListWindowSDL2 :<br/>
     A list of WindowSDL2.
 
 ### VI. ElementSDL2.h
 
-  1. ElementSDL2 :
+  1. ElementSDL2 :<br/>
     A package of information about objects. It contains its coordinates (top left corner), its size, its color and so on.
     This is one of the only structure you'll be manipulating (even though not directly accessing to its values).
 
-  2. PtrElementSDL2 :
+  2. PtrElementSDL2 :<br/>
     A structure mean to store an ElementSDL2's pointer
 
-  3. ListPtrElementSDL2 :
+  3. ListPtrElementSDL2 :<br/>
     A list of PtrElementSDL2. Either used as a list of elements with a common plan or so that an element can change another.
 
-  4. ListDCElementSDL2 :
+  4. ListDCElementSDL2 :<br/>
     A list of lists of elements with a common plan, every lists in this list has a common display code.
 
-  5. ListElementSDL2 :
+  5. ListElementSDL2 :<br/>
     A list of ListDCElementSDL2.
 
 ## Functionnality
