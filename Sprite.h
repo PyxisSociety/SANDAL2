@@ -5,6 +5,7 @@
 
 /**
  * @file Sprite.h
+ * @author Baptiste PRUNIER (KLEVH)
  * @brief Sprite manager for SANDAL2
  */
 

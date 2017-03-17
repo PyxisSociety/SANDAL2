@@ -10,6 +10,7 @@
 
 /**
  * @file WindowSDL2.h
+ * @author Baptiste PRUNIER (KLEVH)
  * @brief Contains all structures related to windows but only those unrelated to Elements.
  */
 

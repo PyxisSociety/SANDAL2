@@ -6,7 +6,7 @@
 
 /**
  * @file DisplayCode.h
- * @author Baptiste Prunier
+ * @author Baptiste PRUNIER (KLEVH)
  * @brief Contains display code and list of display codes
  */
 

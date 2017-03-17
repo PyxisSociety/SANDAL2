@@ -9,6 +9,7 @@
 
 /**
  * @file ElementSDL2.h
+ * @author Baptiste PRUNIER (KLEVH)
  * @brief Contains all structures related to Elements
  */
 

@@ -6,7 +6,7 @@
 
 /**
  * @file HitBox.h
- * @author Baptiste PRUNIER
+ * @author Baptiste PRUNIER (KLEVH)
  * @brief Generic hitboxes either polygonial, elliptic or a mixe of both
  */
 

@@ -5,7 +5,8 @@
 
 /**
  * @file SANDAL2.h
- * @brief File to include, include everything else.
+ * @author Baptiste PRUNIER (KLEVH)
+ * @brief File to include which includes everything else.
  *  Compilation flags to use :
  *    -lSDL2 -lSDL2_ttf -lSDL2_image -lm
  */

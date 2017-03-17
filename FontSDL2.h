@@ -5,6 +5,7 @@
 
 /**
  * @file FontSDL2.h
+ * @author Baptiste PRUNIER (KLEVH)
  * @brief Information about TTF objects
  */
 
