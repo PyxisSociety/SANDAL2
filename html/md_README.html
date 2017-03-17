@@ -80,6 +80,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>SANDAL2 is a SDL2 wrapper which purpose is to make objects managment and graphic display easier.</p>
+<h2>About the author</h2>
+<p>I am a French guy and I am studying computer science engineering. I made this wrapper because I found boresome to have to create a display function for each menu's page, but I ended up going a little more further in it. I hope you will enjoy using it, if you have any comment or advice, do not feel shy and tell me !<br />
+ I will really appreciate it.</p>
 <h2>Structures</h2>
 <h3>I. <a class="el" href="HitBox_8h.html" title="Generic hitboxes either polygonial, elliptic or a mixe of both. ">HitBox.h</a></h3>
 <ol type="1">
@@ -121,6 +124,34 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  If you want to iterate through all the windows, you can use initIteratorFenetreSDL2 and nextFenetreSDL2. You can also get and set informations about the window with all the functions in FenetreSDL2.h.<br />
 </p>
 <h3>II. Element manipulations</h3>
+<p>An element is kind of an object with lots of display informations. It can have an image, a text or a color (for rectangles). As said higher, they can be created with functions like createBlock or createButton for example. Once created, you can modifie all informations about them. They have the following information :</p><ul>
+<li>coordinates in the window ;</li>
+<li>dimensions ;</li>
+<li>a collection of display code, each display code has a plan ;</li>
+<li>a collection of clickable zone ;</li>
+<li>functions bind on it to be called for certain event (they will be listed later) ;</li>
+<li>a collection of animations ;</li>
+<li>a collection of elements which can be modified by the parent element ;</li>
+<li>a rotation speed ;</li>
+<li>a rotation (the current angle of the element) ;</li>
+<li>a package of data (void *);</li>
+<li>a package of informations if the element is a prompt. <br />
+<br />
+ The functions that can be bind to the element are the following ones :<ul>
+<li>action, to be called every update ;</li>
+</ul>
+</li>
+<li>keyPress, to be called when a key is pressed ;</li>
+<li>keyReleased, to be called when a key is released ;</li>
+<li>click, to be called if the element is clicked (be careful, there have to be a clickable zone) ;</li>
+<li>unClick, to be called when the user release the click of the mouse on the clickable zone of the element ;</li>
+<li>unSelect, to be called when the user click elsewhere or unclick elsewhere ;</li>
+<li>endSprite, to be called when an animation reach its end, before starting of again. <br />
+<br />
+ You can add elements to a current element so that the parent element will be able to modifie them in one of the function you binded to it. In those function, you can modifie the element itself or other, even removing them. Each animation of an element has a code so that you can switch from one to another. When you want to add a step to the animation, you will have to define its coordinates in the image of the element (which should be a sprite sheet or something the like). Each sprite has a lifespan, which correspond to the number of update call before going to the next. That is if the animation is on 'automatic' mode. The mode can be set with the function setWayAnimationElementSDL2. If there are no sprite, the entire image will be displaied. <br />
+<br />
+ </li>
+</ul>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

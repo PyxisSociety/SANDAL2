@@ -23,14 +23,17 @@ CFLAGS=-Wall -Wextra -pedantic
 #your program's name
 EXEC=
 
+#your compiler
+CC=gcc
+
 
 all:$(EXEC)
 
 $(EXEC):$(OFILES) $(SANDAL2)
-	gcc $(OFILES) $(OSANDAL2) -o $(EXEC) $(LDFLAGS) $(DEBUG)
+	$(CC) $(OFILES) $(OSANDAL2) -o $(EXEC) $(LDFLAGS) $(DEBUG)
 
 %.o:%.c
-	gcc -c $< $(CFLAGS)
+	$(CC) -c $< $(CFLAGS)
 
 clear:
 	rm *.o

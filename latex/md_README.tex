@@ -1,5 +1,10 @@
 S\+A\+N\+D\+A\+L2 is a S\+D\+L2 wrapper which purpose is to make objects managment and graphic display easier.
 
+\subsection*{About the author}
+
+I am a French guy and I am studying computer science engineering. I made this wrapper because I found boresome to have to create a display function for each menu\textquotesingle{}s page, but I ended up going a little more further in it. I hope you will enjoy using it, if you have any comment or advice, do not feel shy and tell me !~\newline
+ I will really appreciate it.
+
 \subsection*{Structures}
 
 \subsubsection*{I. \hyperlink{HitBox_8h}{Hit\+Box.\+h}}
@@ -60,3 +65,33 @@ To begin with, you\textquotesingle{}ll have to initialise S\+D\+L2 with init\+Al
 
 
 \subsubsection*{II. Element manipulations}
+
+An element is kind of an object with lots of display informations. It can have an image, a text or a color (for rectangles). As said higher, they can be created with functions like create\+Block or create\+Button for example. Once created, you can modifie all informations about them. They have the following information \+:
+\begin{DoxyItemize}
+\item coordinates in the window ;
+\item dimensions ;
+\item a collection of display code, each display code has a plan ;
+\item a collection of clickable zone ;
+\item functions bind on it to be called for certain event (they will be listed later) ;
+\item a collection of animations ;
+\item a collection of elements which can be modified by the parent element ;
+\item a rotation speed ;
+\item a rotation (the current angle of the element) ;
+\item a package of data (void $\ast$);
+\item a package of informations if the element is a prompt. ~\newline
+~\newline
+ The functions that can be bind to the element are the following ones \+:
+\begin{DoxyItemize}
+\item action, to be called every update ;
+\end{DoxyItemize}
+\item key\+Press, to be called when a key is pressed ;
+\item key\+Released, to be called when a key is released ;
+\item click, to be called if the element is clicked (be careful, there have to be a clickable zone) ;
+\item un\+Click, to be called when the user release the click of the mouse on the clickable zone of the element ;
+\item un\+Select, to be called when the user click elsewhere or unclick elsewhere ;
+\item end\+Sprite, to be called when an animation reach its end, before starting of again. ~\newline
+~\newline
+ You can add elements to a current element so that the parent element will be able to modifie them in one of the function you binded to it. In those function, you can modifie the element itself or other, even removing them. Each animation of an element has a code so that you can switch from one to another. When you want to add a step to the animation, you will have to define its coordinates in the image of the element (which should be a sprite sheet or something the like). Each sprite has a lifespan, which correspond to the number of update call before going to the next. That is if the animation is on \textquotesingle{}automatic\textquotesingle{} mode. The mode can be set with the function set\+Way\+Animation\+Element\+S\+D\+L2. If there are no sprite, the entire image will be displaied. ~\newline
+~\newline
+ 
+\end{DoxyItemize}
