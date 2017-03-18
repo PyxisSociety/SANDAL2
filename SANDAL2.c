@@ -473,50 +473,80 @@ void keyReleasedWindowSDL2(char c){
 
 
 void updateAllWindowSDL2(){
-  if(initIteratorWindowSDL2()){
+  WindowSDL2 * w;
+  
+  if(_windows_SDL2TK){
+    w=_windows_SDL2TK->current;
+    initIteratorWindowSDL2();
     do{
       updateWindowSDL2();
-    }while(nextWindowSDL2());
+    }while(!nextWindowSDL2());
+    _windows_SDL2TK->current=w;
   }
 }
 
 void displayAllWindowSDL2(){
-  if(initIteratorWindowSDL2()){
+  WindowSDL2 * w;
+  
+  if(_windows_SDL2TK){
+    w=_windows_SDL2TK->current;
+    initIteratorWindowSDL2();
     do{
       displayWindowSDL2();
-    }while(nextWindowSDL2());
+    }while(!nextWindowSDL2());
+    _windows_SDL2TK->current=w;
   }
 }
 
 void clickAllWindowSDL2(int x,int y){
-  if(initIteratorWindowSDL2()){
+  WindowSDL2 * w;
+  
+  if(_windows_SDL2TK){
+    w=_windows_SDL2TK->current;
+    initIteratorWindowSDL2();
     do{
       clickWindowSDL2(x,y);
-    }while(nextWindowSDL2());
+    }while(!nextWindowSDL2());
+    _windows_SDL2TK->current=w;
   }
 }
 
 void unclickAllWindowSDL2(int x,int y){
-  if(initIteratorWindowSDL2()){
+  WindowSDL2 * w;
+  
+  if(_windows_SDL2TK){
+    w=_windows_SDL2TK->current;
+    initIteratorWindowSDL2();
     do{
       unclickWindowSDL2(x,y);
     }while(nextWindowSDL2());
+    _windows_SDL2TK->current=w;
   }
 }
 
 void keyPressedAllWindowSDL2(char c){
-  if(initIteratorWindowSDL2()){
+  WindowSDL2 * w;
+  
+  if(_windows_SDL2TK){
+    w=_windows_SDL2TK->current;
+    initIteratorWindowSDL2();
     do{
       keyPressedWindowSDL2(c);
-    }while(nextWindowSDL2());
+    }while(!nextWindowSDL2());
+    _windows_SDL2TK->current=w;
   }
 }
 
 void keyReleasedAllWindowSDL2(char c){
-  if(initIteratorWindowSDL2()){
+  WindowSDL2 * w;
+  
+  if(_windows_SDL2TK){
+    w=_windows_SDL2TK->current;
+    initIteratorWindowSDL2();
     do{
       keyReleasedWindowSDL2(c);
-    }while(nextWindowSDL2());
+    }while(!nextWindowSDL2());
+    _windows_SDL2TK->current=w;
   }
 }
 

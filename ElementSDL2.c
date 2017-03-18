@@ -1091,12 +1091,13 @@ void addElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *add){
 }
 
 void delElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *del){
-  PtrElementSDL2 **pe, *rm;
+  PtrElementSDL2 **pe, *rm, **tmp=NULL;
 
   if(e && e->interactions && del){
     pe=&(e->interactions->first);
 
     while(*pe && (*pe)->element!=del){
+      tmp=pe;
       pe=&((*pe)->next);
     }
 
@@ -1108,7 +1109,11 @@ void delElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *del){
 	e->interactions->current=*pe;
       }
       if(rm == e->interactions->last){
-	e->interactions->last=*pe;
+	if(tmp){
+	  e->interactions->last=*tmp;
+	}else{
+	  e->interactions->last=NULL;
+	}
       }
     }
   }   
