@@ -91,6 +91,44 @@ int setColorWindowSDL2(int color[4]){
 
   return error;
 }
+
+int getCoordWindowSDL2(int *x,int *y){
+  int error = 1;
+
+  if(_windows_SDL2TK && _windows_SDL2TK->first){
+    error = 0;
+    SDL_GetWindowPosition(_windows_SDL2TK->current->window,x,y);
+  }
+
+  return error;
+}
+
+int setCoordWindowSDL2(int x,int y){
+  int error = 1;
+
+  if(_windows_SDL2TK && _windows_SDL2TK->first){
+    error = 0;
+    SDL_SetWindowPosition(_windows_SDL2TK->current->window,x,y);
+  }
+
+  return error;
+}
+
+int getRealDimensionWindowSDL2(int *width,int *height){
+  int error = 1;
+
+  if(_windows_SDL2TK && _windows_SDL2TK->first){
+    error = 0;
+    if(width){
+      width=_windows_SDL2TK->current->width;
+    }
+    if(height){
+      height=_windows_SDL2TK->current->height;
+    }
+  }
+
+  return error;
+}
 /* ------------------------------------------------------- */
 
 

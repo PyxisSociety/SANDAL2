@@ -165,6 +165,15 @@ Functions</h2></td></tr>
 <tr class="memitem:ab2a44a6ecb477ff514889ed501f1dfe9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="WindowSDL2_8h.html#ab2a44a6ecb477ff514889ed501f1dfe9">setColorWindowSDL2</a> (int color[4])</td></tr>
 <tr class="memdesc:ab2a44a6ecb477ff514889ed501f1dfe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the background color of the current window.  <a href="#ab2a44a6ecb477ff514889ed501f1dfe9">More...</a><br /></td></tr>
 <tr class="separator:ab2a44a6ecb477ff514889ed501f1dfe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bceae33ca9b5354961b0d77c4587296"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="WindowSDL2_8h.html#a0bceae33ca9b5354961b0d77c4587296">getCoordWindowSDL2</a> (int *x, int *y)</td></tr>
+<tr class="memdesc:a0bceae33ca9b5354961b0d77c4587296"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter for the current window position.  <a href="#a0bceae33ca9b5354961b0d77c4587296">More...</a><br /></td></tr>
+<tr class="separator:a0bceae33ca9b5354961b0d77c4587296"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0009a30eb62063162491bed7f850ac99"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="WindowSDL2_8h.html#a0009a30eb62063162491bed7f850ac99">setCoordWindowSDL2</a> (int x, int y)</td></tr>
+<tr class="memdesc:a0009a30eb62063162491bed7f850ac99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set for the current window position.  <a href="#a0009a30eb62063162491bed7f850ac99">More...</a><br /></td></tr>
+<tr class="separator:a0009a30eb62063162491bed7f850ac99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97ef221687bafa5c69efe9fdd3374f59"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="WindowSDL2_8h.html#a97ef221687bafa5c69efe9fdd3374f59">getRealDimensionWindowSDL2</a> (int *width, int *height)</td></tr>
+<tr class="memdesc:a97ef221687bafa5c69efe9fdd3374f59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter for the real dimension of the current window (do not use this function to calculate elements' size or coordinates, use getDimensionWindowSDL2 instead)  <a href="#a97ef221687bafa5c69efe9fdd3374f59">More...</a><br /></td></tr>
+<tr class="separator:a97ef221687bafa5c69efe9fdd3374f59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a76223ef0eba8f56e0c706f1085f71d64"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="WindowSDL2_8h.html#a76223ef0eba8f56e0c706f1085f71d64">cmpCoul</a> (int c1[4], int c2[4])</td></tr>
 <tr class="memdesc:a76223ef0eba8f56e0c706f1085f71d64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare two static arrays of size 4.  <a href="#a76223ef0eba8f56e0c706f1085f71d64">More...</a><br /></td></tr>
 <tr class="separator:a76223ef0eba8f56e0c706f1085f71d64"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -321,6 +330,42 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a0bceae33ca9b5354961b0d77c4587296"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getCoordWindowSDL2 </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Getter for the current window position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>: where the abscissa coordinate of the window will be store </td></tr>
+    <tr><td class="paramname">y</td><td>: where the ordinate coordinate of the window will be store </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if there was an error, 0 if not </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="aa6fa8acffb037a5e73a87e492093fe91"></a>
 <div class="memitem">
 <div class="memproto">
@@ -375,6 +420,42 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">d</td><td>: where the display code of the current window should be store </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if there was an error, 0 if not </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a97ef221687bafa5c69efe9fdd3374f59"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getRealDimensionWindowSDL2 </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>height</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Getter for the real dimension of the current window (do not use this function to calculate elements' size or coordinates, use getDimensionWindowSDL2 instead) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">width</td><td>: where the real width of the window will be store </td></tr>
+    <tr><td class="paramname">height</td><td>: where the real height of the window will be store </td></tr>
   </table>
   </dd>
 </dl>
@@ -471,6 +552,42 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">color</td><td>: new color of the background of the current window </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if there was an error, 0 if not </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0009a30eb62063162491bed7f850ac99"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int setCoordWindowSDL2 </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set for the current window position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>: new abscissa coordinate of the window </td></tr>
+    <tr><td class="paramname">y</td><td>: new ordinate coordinate of the window </td></tr>
   </table>
   </dd>
 </dl>

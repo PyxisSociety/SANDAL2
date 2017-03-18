@@ -25,15 +25,15 @@ extern ListWindowSDL2 * _windows_SDL2TK;
  */
 typedef struct{
   int size_min;
-  ///< minimum size of the text of the entry
+  /**< minimum size of the text of the entry*/
   int size_max;
-  ///< maximum size of the text of the entry
+  /**< maximum size of the text of the entry*/
   int size;
-  ///< actual size of the text of the entry
+  /**< actual size of the text of the entry*/
   int isSelect;
-  ///< tells whether or not the Entry is selected (1 for yes, 0 for no)
+  /**< tells whether or not the Entry is selected (1 for yes, 0 for no)*/
   int isScripted;
-  ///< tells whether or not the Entry is crypted (1 for yes, 0 for no)
+  /**< tells whether or not the Entry is crypted (1 for yes, 0 for no)*/
 }EntrySDL2;
 
 struct ListPtrElementSDL2;
@@ -44,62 +44,61 @@ struct ListPtrElementSDL2;
  */
 typedef struct ElementSDL2{
   float x;
-  ///< abscissa coordinate of the top left of the element
+  /**< abscissa coordinate of the top left of the element*/
   float y;
-  ///< ordinate coordinate of the top left of the element
+  /**< ordinate coordinate of the top left of the element*/
   float width;
-  ///< width of the element
+  /**< width of the element*/
   float height;
-  ///< height of the element
+  /**< height of the element*/
   float prX;
-  ///< abscissa coordinate of the rotation point (if from 0 to 1, in the element)
+  /**< abscissa coordinate of the rotation point (if from 0 to 1, in the element)*/
   float prY;
-  ///< ordinate coordinate of the rotation point (if from 0 to 1, in the element)
+  /**< ordinate coordinate of the rotation point (if from 0 to 1, in the element)*/
   float rotation;
-  ///< rotation angle of the element
+  /**< rotation angle of the element*/
   float rotSpeed;
-  ///< speed rotation (degree / update) of the element
-  /* couleurs du texte et du block (la premiere case vaut -1 si la partie a colorie n'est pas dans l'element) */
+  /**< speed rotation (degree / update) of the element*/
   int coulBlock[4];
-  ///< color of the block of the element (if first value -1, there is no block)
+  /**< color of the block of the element (if first value -1, there is no block)*/
   float textSize;
-  ///< text proportion in the block
+  /**< text proportion in the block*/
   ListDisplayCode *codes;
-  ///< list of display code of the element
+  /**< list of display code of the element*/
   void (*action)(struct ElementSDL2*);
-  ///< function called when update
+  /**< function called when update*/
   void (*onClick)(struct ElementSDL2*);
-  ///< function called when the element is clicked
+  /**< function called when the element is clicked*/
   void (*unClick)(struct ElementSDL2*);
-  ///< function called when the element is unclicked
+  /**< function called when the element is unclicked*/
   void (*keyPress)(struct ElementSDL2*,SDL_Keycode c);
-  ///< function called when a key is pressed
+  /**< function called when a key is pressed*/
   void (*keyReleased)(struct ElementSDL2*,SDL_Keycode c);
-  ///< function called when a key is released
+  /**< function called when a key is released*/
   void (*unSelect)(struct ElementSDL2*);
-  ///< function called when the element is unselected
+  /**< function called when the element is unselected*/
   void (*endSprite)(struct ElementSDL2*,int code);
-  ///< function called at the end of a sprite
+  /**< function called at the end of a sprite*/
   SDL_Texture *image;
-  ///< texture of the image (NULL if no image)
+  /**< texture of the image (NULL if no image)*/
   ListAnimation* animation;
-  ///< animation of the image
+  /**< animation of the image*/
   FontSDL2 *police;
-  ///< informations about the text (NULL if no text)
+  /**< informations about the text (NULL if no text)*/
   EntrySDL2 *entry;
-  ///< informations about the entry (NULL if no entry)
+  /**< informations about the entry (NULL if no entry)*/
   struct ListPtrElementSDL2 *interactions;
-  ///< list of elements that this element can modifie
+  /**< list of elements that this element can modifie*/
   ListHitBox * hitboxes;
-  ///< list of clickable zones
+  /**< list of clickable zones*/
   void * data;
-  ///< data available for the user
+  /**< data available for the user*/
   int delete;
-  ///< tells whether or not the element should be deleted (1 for completely deleted, 2 for display remove, 3 for plan change)
+  /**< tells whether or not the element should be deleted (1 for completely deleted, 2 for display remove, 3 for plan change)*/
   int deleteCode;
-  ///< plan or display code to be removed from
+  /**< plan or display code to be removed from*/
   int selected;
-  ///< tells whether or not the element is selected
+  /**< tells whether or not the element is selected*/
 }ElementSDL2;
 
 /**
@@ -108,9 +107,9 @@ typedef struct ElementSDL2{
  */
 typedef struct PtrElement{
   ElementSDL2 *element;
-  ///< pointer of the element
+  /**< pointer of the element*/
   struct PtrElement *next;
-  ///< next PtrElement in the list
+  /**< next PtrElement in the list*/
 }PtrElementSDL2;
 
 /**
@@ -119,15 +118,15 @@ typedef struct PtrElement{
  */
 typedef struct ListPtrElementSDL2{
   PtrElementSDL2 *first;
-  ///< first PtrElementSDL2 of the list
+  /**< first PtrElementSDL2 of the list*/
   PtrElementSDL2 *last;
-  ///< last PtrElementSDL2 of the list
+  /**< last PtrElementSDL2 of the list*/
   PtrElementSDL2 *current;
-  ///< current PtrElementSDL2 of the list (used for iterator)
+  /**< current PtrElementSDL2 of the list (used for iterator)*/
   struct ListPtrElementSDL2 * next;
-  ///< next List of PtrElementSDL2
+  /**< next List of PtrElementSDL2*/
   int code;
-  ///< plan of the list
+  /**< plan of the list*/
 }ListPtrElementSDL2;
 
 /**
@@ -136,13 +135,13 @@ typedef struct ListPtrElementSDL2{
  */
 typedef struct ListDCElementSDL2{
   ListPtrElementSDL2 * first;
-  ///< first list (plan) of element
+  /**< first list (plan) of element*/
   ListPtrElementSDL2 * current;
-  ///< current list (plan) of element (used for iterator)
+  /**< current list (plan) of element (used for iterator)*/
   struct ListDCElementSDL2 * next;
-  ///< next list (display code) of list (plan) of element
+  /**< next list (display code) of list (plan) of element*/
   int code;
-  ///< display code of this list
+  /**< display code of this list*/
 }ListDCElementSDL2;
 
 /**
@@ -151,11 +150,11 @@ typedef struct ListDCElementSDL2{
  */
 typedef struct ListElementSDL2{
   ListDCElementSDL2 *first;
-  ///< first list (display code) of list (plan) of elements
+  /**< first list (display code) of list (plan) of elements*/
   ListDCElementSDL2 * currentDCIterator;
-  ///< current list (display code) of list (plan) of elements (used for iterator)
+  /**< current list (display code) of list (plan) of elements (used for iterator)*/
   ListPtrElementSDL2 *currentPIterator;
-  ///< current list (plan) of elements (used for iterator)
+  /**< current list (plan) of elements (used for iterator)*/
 }ListElementSDL2;
 
 

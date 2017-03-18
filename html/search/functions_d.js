@@ -6,6 +6,7 @@ var searchData=
   ['setanimationelementsdl2',['setAnimationElementSDL2',['../ElementSDL2_8h.html#ac380916932e89cc3c7ad5f4694edf3d6',1,'ElementSDL2.c']]],
   ['setcolorelementsdl2',['setColorElementSDL2',['../ElementSDL2_8h.html#af702b89bddffe64eb1353d2883bfb593',1,'ElementSDL2.c']]],
   ['setcolorwindowsdl2',['setColorWindowSDL2',['../WindowSDL2_8h.html#ab2a44a6ecb477ff514889ed501f1dfe9',1,'WindowSDL2.c']]],
+  ['setcoordwindowsdl2',['setCoordWindowSDL2',['../WindowSDL2_8h.html#a0009a30eb62063162491bed7f850ac99',1,'WindowSDL2.c']]],
   ['setdataelementsdl2',['setDataElementSDL2',['../ElementSDL2_8h.html#a8335fb6c08b9256c244bff44f4fb5500',1,'ElementSDL2.c']]],
   ['setdisplayelementsdl2',['setDisplayElementSDL2',['../ElementSDL2_8h.html#a09ef66460ba6aa4211a679dd859edc8b',1,'ElementSDL2.c']]],
   ['setendspriteelementsdl2',['setEndSpriteElementSDL2',['../ElementSDL2_8h.html#a6863b4e87e43fc9d7b2312c84157f3a6',1,'ElementSDL2.c']]],

@@ -35,27 +35,27 @@ struct ListElementSDL2;
  */
 typedef struct WindowSDL2{
   int height;
-  ///< current height of the window
+  /**< current height of the window*/
   int width;
-  ///< current width of the window
+  /**< current width of the window*/
   int initHeight;
-  ///< initial height of the window
+  /**< initial height of the window*/
   int initWidth;
-  ///< initial width of the window
+  /**< initial width of the window*/
   int displayCode;
-  ///< display code of the window
+  /**< display code of the window*/
   int background[4];
-  ///< background color of the window
+  /**< background color of the window*/
   SDL_Window *window;
-  ///< true SDL2 window
+  /**< true SDL2 window*/
   SDL_Renderer *renderer;
-  ///< SDL2 renderer
+  /**< SDL2 renderer*/
   struct ListElementSDL2 * liste;
-  ///< elements in the window
+  /**< elements in the window*/
   struct WindowSDL2 * next;
-  ///< next window
+  /**< next window*/
   unsigned toDelete;
-  ///< number of element to be deleted by the cleaner
+  /**< number of element to be deleted by the cleaner*/
 }WindowSDL2;
 
 /**
@@ -64,8 +64,11 @@ typedef struct WindowSDL2{
  */
 typedef struct{
   WindowSDL2 * first;
+  /**<First WindowSDL2 of the list*/
   WindowSDL2 * last;
+  /**<Last WindowSDL2 of the list*/
   WindowSDL2 * current;
+  /**<current WindowSDL2 of the list*/
 }ListWindowSDL2;
 
 
@@ -124,6 +127,27 @@ int getColorWindowSDL2(int color[4]);
  * @return 1 if there was an error, 0 if not
  */
 int setColorWindowSDL2(int color[4]);
+/**
+ * @brief Getter for the current window position
+ * @param x : where the abscissa coordinate of the window will be store
+ * @param y : where the ordinate coordinate of the window will be store
+ * @return 1 if there was an error, 0 if not
+ */
+int getCoordWindowSDL2(int *x,int *y);
+/**
+ * @brief Set for the current window position
+ * @param x : new abscissa coordinate of the window
+ * @param y : new ordinate coordinate of the window
+ * @return 1 if there was an error, 0 if not
+ */
+int setCoordWindowSDL2(int x,int y);
+/**
+ * @brief Getter for the real dimension of the current window (do not use this function to calculate elements' size or coordinates, use getDimensionWindowSDL2 instead)
+ * @param width : where the real width of the window will be store
+ * @param height : where the real height of the window will be store
+ * @return 1 if there was an error, 0 if not
+ */
+int getRealDimensionWindowSDL2(int *width,int *height);
 /* ------------------------------------------------------- */
 
 /* -------------------------------------------------------

@@ -15,13 +15,13 @@
  */
 typedef struct Sprite{
   struct Sprite * next;
-  ///< next step of the animation
+  /**< next step of the animation*/
   struct Sprite * prev;
-  ///< previous step of the animation
+  /**< previous step of the animation*/
   int coords[4];
-  ///< [0] and [1] for the coordinates of the top left corner and [2] and [3] respectively for the width and the height
+  /**< [0] and [1] for the coordinates of the top left corner and [2] and [3] respectively for the width and the height*/
   unsigned lifespan;
-  ///< number of time minus one the Sprite should be displaied before going to the next
+  /**< number of time minus one the Sprite should be displaied before going to the next*/
 }Sprite;
 
 /**
@@ -30,21 +30,21 @@ typedef struct Sprite{
  */
 typedef struct ListSprite{
   Sprite * first;
-  ///< first step of the animation
+  /**< first step of the animation*/
   Sprite * current;
-  ///< current step of the animation
+  /**< current step of the animation*/
   unsigned size;
-  ///< number of steps in the animation
+  /**< number of steps in the animation*/
   int sens;
-  ///< tells whether to go forward (1), backward (-1) or not to move (0)
+  /**< tells whether to go forward (1), backward (-1) or not to move (0)*/
   unsigned wasChanged;
-  ///< tells how many time the current sprite was displaied
+  /**< tells how many time the current sprite was displaied*/
   int code;
-  ///< identifier of the animation
+  /**< identifier of the animation*/
   struct ListSprite * next;
-  ///< next animation
+  /**< next animation*/
   struct ListSprite * prev;
-  ///< previous animation
+  /**< previous animation*/
 }ListSprite;
 
 /**
@@ -53,11 +53,11 @@ typedef struct ListSprite{
  */
 typedef struct{
   ListSprite * first;
-  ///< first animation
+  /**< first animation*/
   ListSprite * current;
-  ///< current animation
+  /**< current animation*/
   unsigned size;
-  ///< number of animations
+  /**< number of animations*/
 }ListAnimation;
 
 /* -----------------------------------------------------

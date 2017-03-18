@@ -54,6 +54,12 @@ int \hyperlink{WindowSDL2_8h_a3aa539842573a7388a3d8421458cbc07}{get\+Color\+Wind
 \begin{DoxyCompactList}\small\item\em Put the background color of the current window in color. \end{DoxyCompactList}\item 
 int \hyperlink{WindowSDL2_8h_ab2a44a6ecb477ff514889ed501f1dfe9}{set\+Color\+Window\+S\+D\+L2} (int color\mbox{[}4\mbox{]})
 \begin{DoxyCompactList}\small\item\em Change the background color of the current window. \end{DoxyCompactList}\item 
+int \hyperlink{WindowSDL2_8h_a0bceae33ca9b5354961b0d77c4587296}{get\+Coord\+Window\+S\+D\+L2} (int $\ast$x, int $\ast$y)
+\begin{DoxyCompactList}\small\item\em Getter for the current window position. \end{DoxyCompactList}\item 
+int \hyperlink{WindowSDL2_8h_a0009a30eb62063162491bed7f850ac99}{set\+Coord\+Window\+S\+D\+L2} (int x, int y)
+\begin{DoxyCompactList}\small\item\em Set for the current window position. \end{DoxyCompactList}\item 
+int \hyperlink{WindowSDL2_8h_a97ef221687bafa5c69efe9fdd3374f59}{get\+Real\+Dimension\+Window\+S\+D\+L2} (int $\ast$width, int $\ast$height)
+\begin{DoxyCompactList}\small\item\em Getter for the real dimension of the current window (do not use this function to calculate elements\textquotesingle{} size or coordinates, use get\+Dimension\+Window\+S\+D\+L2 instead) \end{DoxyCompactList}\item 
 int \hyperlink{WindowSDL2_8h_a76223ef0eba8f56e0c706f1085f71d64}{cmp\+Coul} (int c1\mbox{[}4\mbox{]}, int c2\mbox{[}4\mbox{]})
 \begin{DoxyCompactList}\small\item\em Compare two static arrays of size 4. \end{DoxyCompactList}\item 
 void \hyperlink{WindowSDL2_8h_af505c56ae14df2c6644964143706953a}{copy\+Color} (int to\mbox{[}4\mbox{]}, int from\mbox{[}4\mbox{]})
@@ -172,6 +178,28 @@ Put the background color of the current window in color.
 \begin{DoxyReturn}{Returns}
 1 if there was an error, 0 if not 
 \end{DoxyReturn}
+\index{Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}!get\+Coord\+Window\+S\+D\+L2@{get\+Coord\+Window\+S\+D\+L2}}
+\index{get\+Coord\+Window\+S\+D\+L2@{get\+Coord\+Window\+S\+D\+L2}!Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{get\+Coord\+Window\+S\+D\+L2(int $\ast$x, int $\ast$y)}{getCoordWindowSDL2(int *x, int *y)}}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Coord\+Window\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{x, }
+\item[{int $\ast$}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{WindowSDL2_8h_a0bceae33ca9b5354961b0d77c4587296}{}\label{WindowSDL2_8h_a0bceae33ca9b5354961b0d77c4587296}
+
+
+Getter for the current window position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \+: where the abscissa coordinate of the window will be store \\
+\hline
+{\em y} & \+: where the ordinate coordinate of the window will be store \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if there was an error, 0 if not 
+\end{DoxyReturn}
 \index{Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}!get\+Dimension\+Window\+S\+D\+L2@{get\+Dimension\+Window\+S\+D\+L2}}
 \index{get\+Dimension\+Window\+S\+D\+L2@{get\+Dimension\+Window\+S\+D\+L2}!Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}}
 \subsubsection[{\texorpdfstring{get\+Dimension\+Window\+S\+D\+L2(int $\ast$w, int $\ast$h)}{getDimensionWindowSDL2(int *w, int *h)}}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Dimension\+Window\+S\+D\+L2 (
@@ -208,6 +236,28 @@ Put the display code of the current window in d (if not N\+U\+LL)
 
 \begin{DoxyParams}{Parameters}
 {\em d} & \+: where the display code of the current window should be store \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if there was an error, 0 if not 
+\end{DoxyReturn}
+\index{Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}!get\+Real\+Dimension\+Window\+S\+D\+L2@{get\+Real\+Dimension\+Window\+S\+D\+L2}}
+\index{get\+Real\+Dimension\+Window\+S\+D\+L2@{get\+Real\+Dimension\+Window\+S\+D\+L2}!Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{get\+Real\+Dimension\+Window\+S\+D\+L2(int $\ast$width, int $\ast$height)}{getRealDimensionWindowSDL2(int *width, int *height)}}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Real\+Dimension\+Window\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{width, }
+\item[{int $\ast$}]{height}
+\end{DoxyParamCaption}
+)}\hypertarget{WindowSDL2_8h_a97ef221687bafa5c69efe9fdd3374f59}{}\label{WindowSDL2_8h_a97ef221687bafa5c69efe9fdd3374f59}
+
+
+Getter for the real dimension of the current window (do not use this function to calculate elements\textquotesingle{} size or coordinates, use get\+Dimension\+Window\+S\+D\+L2 instead) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & \+: where the real width of the window will be store \\
+\hline
+{\em height} & \+: where the real height of the window will be store \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -274,6 +324,28 @@ Change the background color of the current window.
 
 \begin{DoxyParams}{Parameters}
 {\em color} & \+: new color of the background of the current window \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if there was an error, 0 if not 
+\end{DoxyReturn}
+\index{Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}!set\+Coord\+Window\+S\+D\+L2@{set\+Coord\+Window\+S\+D\+L2}}
+\index{set\+Coord\+Window\+S\+D\+L2@{set\+Coord\+Window\+S\+D\+L2}!Window\+S\+D\+L2.\+h@{Window\+S\+D\+L2.\+h}}
+\subsubsection[{\texorpdfstring{set\+Coord\+Window\+S\+D\+L2(int x, int y)}{setCoordWindowSDL2(int x, int y)}}]{\setlength{\rightskip}{0pt plus 5cm}int set\+Coord\+Window\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{WindowSDL2_8h_a0009a30eb62063162491bed7f850ac99}{}\label{WindowSDL2_8h_a0009a30eb62063162491bed7f850ac99}
+
+
+Set for the current window position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \+: new abscissa coordinate of the window \\
+\hline
+{\em y} & \+: new ordinate coordinate of the window \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

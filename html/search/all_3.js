@@ -32,7 +32,8 @@ var searchData=
   ['createfontsdl2',['createFontSDL2',['../FontSDL2_8h.html#a4f982c478d0c8ca1f40f0529522ea6f0',1,'FontSDL2.c']]],
   ['createimage',['createImage',['../ElementSDL2_8h.html#ae1a152f048870ca8056e60fd34644ae1',1,'ElementSDL2.c']]],
   ['createtexte',['createTexte',['../ElementSDL2_8h.html#a7e403a326d49cba562bb44932c846312',1,'ElementSDL2.c']]],
-  ['current',['current',['../structListPtrElementSDL2.html#aed8b7b9ca4455c05f016dd8089925ba6',1,'ListPtrElementSDL2::current()'],['../structListDCElementSDL2.html#a1e39f2362d4eb953baec5eeaa7d6d8fd',1,'ListDCElementSDL2::current()'],['../structListSprite.html#a3b1ab9fe7a6593fbe2767e7b2a7f6676',1,'ListSprite::current()'],['../structListAnimation.html#a183b3118dc9a28773848b0ec8c60fc19',1,'ListAnimation::current()']]],
+  ['current',['current',['../structListPtrElementSDL2.html#aed8b7b9ca4455c05f016dd8089925ba6',1,'ListPtrElementSDL2::current()'],['../structListDCElementSDL2.html#a1e39f2362d4eb953baec5eeaa7d6d8fd',1,'ListDCElementSDL2::current()'],['../structListHitBox.html#aca919adfe212d5525a9b24d9bd7d2a93',1,'ListHitBox::current()'],['../structListSprite.html#a3b1ab9fe7a6593fbe2767e7b2a7f6676',1,'ListSprite::current()'],['../structListAnimation.html#a183b3118dc9a28773848b0ec8c60fc19',1,'ListAnimation::current()'],['../structListWindowSDL2.html#a221c8512f5669c9ec3f5450b139a3493',1,'ListWindowSDL2::current()']]],
+  ['currentblock',['currentBlock',['../structListHitBox.html#a5ecee29db2078182f88247b05cf13636',1,'ListHitBox']]],
   ['currentdciterator',['currentDCIterator',['../structListElementSDL2.html#aa2c7b7135bd405aeed7860875569c7dd',1,'ListElementSDL2']]],
   ['currentpiterator',['currentPIterator',['../structListElementSDL2.html#a3bb9a3656cbff63c06e54554f93b2f87',1,'ListElementSDL2']]]
 ];

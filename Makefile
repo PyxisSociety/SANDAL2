@@ -17,8 +17,8 @@ OFILES=
 #add the LDFLAGS you need (such as -g or -O)
 LDFLAGS+=-g
 
-#your compilation flags, do not put ansi
-CFLAGS=-Wall -Wextra -pedantic
+#your compilation flags
+CFLAGS=-Wall -Wextra -pedantic -ansi
 
 #your program's name
 EXEC=

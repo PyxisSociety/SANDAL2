@@ -16,15 +16,15 @@
  */
 typedef struct LineSDL2{
   struct LineSDL2 * next;
-  ///< next element
+  /**< next element*/
   float a;
-  ///< a in the equation of the line ax+by=c
+  /**< a in the equation of the line ax+by=c*/
   float b;
-  ///< b in the equation of the line ax+by=c
+  /**< b in the equation of the line ax+by=c*/
   float c;
-  ///< c in the equation of the line ax+by=c
+  /**< c in the equation of the line ax+by=c*/
   int sens;
-  ///< side of the line that is hittable (-1 : ax+by<c, 1 : ax+by>c)
+  /**< side of the line that is hittable (-1 : ax+by<c, 1 : ax+by>c)*/
 }LineSDL2;
 
 /**
@@ -33,17 +33,17 @@ typedef struct LineSDL2{
  */
 typedef struct CircleSDL2{
   struct CircleSDL2 * next;
-  ///< next ellipse
+  /**< next ellipse*/
   float x;
-  ///< abscissa coordinate of the center of the ellipse
+  /**< abscissa coordinate of the center of the ellipse*/
   float y;
-  ///< ordinate coordinate of the center of the ellipse
+  /**< ordinate coordinate of the center of the ellipse*/
   float rY;
-  ///< size of the radius parallel to the ordinate axis
+  /**< size of the radius parallel to the ordinate axis*/
   float rX;
-  ///< size of the radius parallel to the abscissa axis
+  /**< size of the radius parallel to the abscissa axis*/
   float theta;
-  ///< degree of rotation
+  /**< degree of rotation*/
 }CircleSDL2;
 
 /**
@@ -52,11 +52,11 @@ typedef struct CircleSDL2{
  */
 typedef struct HitBox{
   LineSDL2 * firstL;
-  ///< first element of the lines' list
+  /**< first element of the lines' list*/
   CircleSDL2 * firstC;
-  ///< first element of the ellipses' list
+  /**< first element of the ellipses' list*/
   struct HitBox * next;
-  ///< next hitbox
+  /**< next hitbox*/
 }HitBox;
 
 /**
@@ -65,9 +65,13 @@ typedef struct HitBox{
  */
 typedef struct{
   HitBox * first;
+  /**<First hit box of the list*/
   HitBox * current;
+  /**<Current hit box of the list*/
   HitBox * firstBlock;
+  /**<First blocking hit box of the list*/
   HitBox * currentBlock;
+  /**<Current blocking hit box of the list*/
 }ListHitBox;
 
 /* ----------------------------------------------------------
