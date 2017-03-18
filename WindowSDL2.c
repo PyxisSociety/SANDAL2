@@ -120,10 +120,10 @@ int getRealDimensionWindowSDL2(int *width,int *height){
   if(_windows_SDL2TK && _windows_SDL2TK->first){
     error = 0;
     if(width){
-      width=_windows_SDL2TK->current->width;
+      *width=_windows_SDL2TK->current->width;
     }
     if(height){
-      height=_windows_SDL2TK->current->height;
+      *height=_windows_SDL2TK->current->height;
     }
   }
 
