@@ -99,6 +99,8 @@ typedef struct ElementSDL2{
   /**< plan or display code to be removed from*/
   int selected;
   /**< tells whether or not the element is selected*/
+  WindowSDL2 * parent;
+  /**< parent window of the element */
 }ElementSDL2;
 
 /**

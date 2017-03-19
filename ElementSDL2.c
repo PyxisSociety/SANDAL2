@@ -257,6 +257,7 @@ int addElementSDL2(ElementSDL2* e){
       addPtrElementSDL2(*lp,e);
       d=d->next;
     }
+    e->parent=_windows_SDL2TK->current;
   }
 
   return error;
@@ -336,7 +337,7 @@ void cleanElementSDL2(){
 void removeElementSDL2(ElementSDL2 *e){
   if(e && _windows_SDL2TK && _windows_SDL2TK->current){
     e->delete=1;
-    _windows_SDL2TK->current->toDelete++;
+    e->parent->toDelete++;
   }
 }
 /* ------------------------------------------------------- */
