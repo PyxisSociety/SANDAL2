@@ -129,6 +129,19 @@ int getRealDimensionWindowSDL2(int *width,int *height){
 
   return error;
 }
+
+int getIDWindowSDL2(Uint32 *ID){
+  int error = 1;
+
+  if(_windows_SDL2TK && _windows_SDL2TK->first){
+    error = 0;
+    if(ID){
+      *ID=SDL_GetWindowID(_windows_SDL2TK->current->window);
+    }
+  }
+
+  return error;
+}
 /* ------------------------------------------------------- */
 
 

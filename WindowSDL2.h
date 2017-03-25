@@ -148,6 +148,12 @@ int setCoordWindowSDL2(int x,int y);
  * @return 1 if there was an error, 0 if not
  */
 int getRealDimensionWindowSDL2(int *width,int *height);
+/**
+ * @brief Getter for the curent window ID
+ * @param ID : where to store the ID
+ * @return 1 if there was an error, 0 if not
+ */
+int getIDWindowSDL2(Uint32 *ID);
 /* ------------------------------------------------------- */
 
 /* -------------------------------------------------------

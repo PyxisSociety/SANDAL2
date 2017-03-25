@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['parent',['parent',['../structElementSDL2.html#a9cd0b68349b49321423bec3136cf7e6e',1,'ElementSDL2']]],
   ['pfree',['PFREE',['../WindowSDL2_8h.html#affdaeca57041cde6bebb2d23eea6a6aa',1,'WindowSDL2.h']]],
   ['plan',['plan',['../structDisplayCode.html#aa6eee6772ad5cb410437a3923c9f3cd6',1,'DisplayCode']]],
   ['police',['police',['../structElementSDL2.html#a785d4fada0ba0ac6b5ce7a53c379f8cd',1,'ElementSDL2']]],
