@@ -1,13 +1,14 @@
 # SANDAL2
 
-SANDAL2 is a SDL2 wrapper which purpose is to make objects managment and
+SANDAL2 is a SDL2 wrapper which purpose is to make object managment and
 graphic display easier.
 
 ## About the author
 
-&nbsp;&nbsp;&nbsp;I am a French guy and I am studying computer science engineering. I made this wrapper because I found
-boresome to have to create a display function for each menu's page, but I ended up going a little more further
-in it. I hope you will enjoy using it, if you have any comment or advice, do not feel shy and tell me ! I will really appreciate it.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I am a French student, studying computer science engineering at ISIMA, France. 
+I made this wrapper because I found boresome to have to create a display function for each menu's page, but I ended 
+up going a little further in it. I hope you will enjoy using it, if you have any comment or advice, do not feel shy 
+and tell me ! I will really appreciate it.
 
 ## Structures
 
@@ -36,7 +37,7 @@ in it. I hope you will enjoy using it, if you have any comment or advice, do not
 
   3. ListAnimation :<br/>
     A list of animations.
-    
+
 ### III. DisplayCode.h
 
   1. DisplayCode : <br/>
@@ -57,7 +58,7 @@ in it. I hope you will enjoy using it, if you have any comment or advice, do not
     Representation of a window. It contains all informations (such as the dimension, the display code, ...) about a window.
 
   2. ListWindowSDL2 :<br/>
-    A list of WindowSDL2.
+    A list of WindowSDL2, used to manage all your windows while hiding them to you.
 
 ### VI. ElementSDL2.h
 
@@ -81,40 +82,42 @@ in it. I hope you will enjoy using it, if you have any comment or advice, do not
 
 ### I. To begin with
 
-&nbsp;&nbsp;&nbsp;To begin with, you'll have to initialise SDL2 with initAllSDL2 for image, ttf and SDL2, or one of the
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To begin with, you'll have to initialise SDL2 with initAllSDL2 for image, ttf and SDL2, or one of the
 specific function in SANDAL2.h. Do not forget to close the SDL2 with either closeAllSDL2 or one or more functions
-in SANDAL2.h.<br/><br/>
-&nbsp;&nbsp;&nbsp;Then you'll want to create a window (or more). For that, use the initWindowSDL2 function. Then you can had
+in SANDAL2.h (use the closing version for every opening you made).<br/><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Then you'll want to create a window (or more). For that, use the initWindowSDL2 function. Then you can add
 elements in it with all the create functions in ElementSDL2.h like createBlock or createEntryImage for example.
 We will see later what you can do with all those elements more in details.<br/><br/>
-&nbsp;&nbsp;&nbsp;For the event management, you can bind functions to elements which will be called in the functions we will speak
-about right now when specific conditions are met. You will not have to look when you touch an elements or what
-function to call when a key is pressed. For that, use the functions like clickWindowSDL2 or keyPressedWindowSDL2.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For the event management, you can bind functions to elements which will be called in the functions we will speak
+about right now when specific conditions are met. You will not have to look when you touch an element or what
+function to call when a key is pressed as long as you binded the right function and defined its clickable zone. For that, use functions like clickWindowSDL2 or keyPressedWindowSDL2.
 When you want to update all your elements and the current window, use updateWindowSDL2. For displaying, use displayWindowSDL2.
 If you want to do that for every single window, use the 'all' version like displayAllWindowSDL2 or unclickAllWindowSDL2.
 Then again, do not forget to close your windows with closeWindowSDL2 or closeAllWindowSDL2.
 Those functions are in SANDAL2.h.<br/><br/>
-&nbsp;&nbsp;&nbsp;If you want to iterate through all the windows, you can use initIteratorWindowSDL2 and nextWindowSDL2. You can also get and set informations about the window with all the functions in WindowSDL2.h.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If you want to iterate through all the windows, you can use initIteratorWindowSDL2 and nextWindowSDL2. You can 
+also get and set informations about the window with all the functions in WindowSDL2.h. There they are also functions to
+ get informations about the current window such as its ID, its position and its size.<br/>
 
 ### II. Element manipulations
 
-&nbsp;&nbsp;&nbsp;An element is kind of an object with lots of display informations. It can have an image, a text or a color (for rectangles).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;An element is kind of an object with lots of display informations. It can have an image, a text or/and a color (for rectangles).
 As said higher, they can be created with functions like createBlock or createButton for example. Once created, you can
-modifie all informations about them. They have the following information :
+modifie all informations about them. They have the following informations :
 * coordinates in the window ;
 * dimensions ;
 * a collection of display code, each display code has a plan ;
 * a collection of clickable zone ;
 * functions bind on it to be called for certain event (they will be listed later) ;
 * a collection of animations ;
-* a collection of elements which can be modified by the parent element ;
+* a collection of elements which can be modified by the parent's element ;
 * a rotation speed ;
 * a rotation (the current angle of the element) ;
 * a package of data (void *);
 * a package of informations if the element is a prompt.
 <br/><br/>
 
-&nbsp;&nbsp;&nbsp;The functions that can be bind to the element are the following ones :
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The functions that can be bind to the element are the following ones :
 * action, to be called every update ;
 * keyPress, to be called when a key is pressed ;
 * keyReleased, to be called when a key is released ;
@@ -124,8 +127,8 @@ modifie all informations about them. They have the following information :
 * endSprite, to be called when an animation reach its end, before starting of again.
 <br/><br/>
 
-&nbsp;&nbsp;&nbsp;You can add elements to a current element so that the parent element will be able to modifie them in one of
-the function you binded to it. In those function, you can modifie the element itself or other, even removing them.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You can bind elements to another (which will become their parent) so that the parent element will be able to modifie them in one of
+the functions you binded to it. In those function, you can modifie the element itself or others, even removing them.
 Each animation of an element has a code so that you can switch from one to another. When you want to add a step
 to the animation, you will have to define its coordinates in the image of the element (which should be a sprite sheet
 or something the like). Each sprite has a lifespan, which correspond to the number of update call before going to the
