@@ -4,7 +4,7 @@ SANDAL2 is a SDL2 wrapper which purpose is to make object managment and
 graphic display easier.<br/>
 
 To generate the Doxygen documentation, use the command :<br/>
-   doxygen Doxyfile
+```doxygen Doxyfile```
 
 ## About the author
 
