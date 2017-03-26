@@ -121,7 +121,7 @@ modifie all informations about them. They have the following informations :
 * a rotation (the current angle of the element) ;
 * a package of data (void *);
 * a package of informations if the element is a prompt.
-<br/>
+<br/><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The functions that can be bind to the element are the following ones :
 * action, to be called every update ;
 * keyPress, to be called when a key is pressed ;
@@ -130,7 +130,7 @@ modifie all informations about them. They have the following informations :
 * unClick, to be called when the user release the click of the mouse on the clickable zone of the element ;
 * unSelect, to be called when the user click elsewhere or unclick elsewhere ;
 * endSprite, to be called when an animation reach its end, before starting of again.
-<br/>
+<br/><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You can bind elements to another (which will become their parent) so that the parent element will be able to modifie them in one of
 the functions you binded to it. In those function, you can modifie the element itself or others, even removing them.
 Each animation of an element has a code so that you can switch from one to another. When you want to add a step
