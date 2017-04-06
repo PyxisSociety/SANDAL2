@@ -647,18 +647,7 @@ ElementSDL2* createEntryImage(float x,float y,float width,float height,float tex
 }
 
 int isDisplaied(ElementSDL2 *e){
-  DisplayCode *d;
-  int resultat = 0;
-
-  if(e && !(e->delete) && _windows_SDL2TK && _windows_SDL2TK->current){
-    d=e->codes->first;
-    while(d && d->code<_windows_SDL2TK->current->displayCode){
-      d=d->next;
-    }
-    resultat = d && d->code==_windows_SDL2TK->current->displayCode;
-  }
-
-  return resultat;
+  return (e && !(e->delete) && _windows_SDL2TK && _windows_SDL2TK->current == e->parent);
 }
 
 int getCoordElementSDL2(ElementSDL2* e,float* x,float* y){

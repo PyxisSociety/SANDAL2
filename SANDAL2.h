@@ -148,4 +148,14 @@ void closeWindowSDL2();
 void closeAllWindowSDL2();
 /* ------------------------------------------------------- */
 
+/* ------------------------------------------------------- 
+ * Gestion d'evenement
+ */
+/**
+ * @brief Get the event (if there is one) and apply the corresponding functions
+ * @return 1 if the user asked to close the window, 0 if not
+ */
+int PollEventSDL2();
+/* ------------------------------------------------------- */
+
 #endif

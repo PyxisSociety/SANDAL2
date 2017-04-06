@@ -18,7 +18,6 @@ int main(){
   int tps = 0, ticks = 0;
   int noir[4] = {0,0,0,0};
   int i;
-  SDL_Event event;
   
   if(initAllSDL2(IMG_INIT_JPG)){
     fprintf(stderr,"Erreur d'initialisation de la bibliotheque graphique.\n");
@@ -58,29 +57,7 @@ int main(){
   while(run){
     tps = SDL_GetTicks();
     /* gestion d'evenement */
-    while(SDL_PollEvent(&event)){
-      switch(event.type){
-      case SDL_WINDOWEVENT:
-	if(event.window.event == SDL_WINDOWEVENT_CLOSE)  {
-	  run = 0;
-	}
-	break;
-      case SDL_QUIT :   
-	run = 0;
-      case SDL_KEYUP:
-	keyReleasedWindowSDL2(event.key.keysym.sym);
-	break;
-      case SDL_KEYDOWN:
-	keyPressedWindowSDL2(event.key.keysym.sym);
-	break;
-      case SDL_MOUSEBUTTONDOWN:
-	clickWindowSDL2(event.button.x,event.button.y);
-	break;
-      case SDL_MOUSEBUTTONUP:
-	unclickWindowSDL2(event.button.x,event.button.y);
-	break;
-      }
-    }
+    run=!PollEventSDL2();
 
     /* update de la fenetre */
     updateWindowSDL2();

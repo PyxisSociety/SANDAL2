@@ -590,3 +590,41 @@ void closeAllWindowSDL2(){
   }
 }
 /* ------------------------------------------------------- */
+
+
+
+/* ------------------------------------------------------- 
+ * Gestion d'evenement
+ */
+int PollEventSDL2(){
+  SDL_Event event;
+  int quit = 0;
+
+  while(SDL_PollEvent(&event)){
+    switch(event.type){
+    case SDL_WINDOWEVENT:
+      if(event.window.event == SDL_WINDOWEVENT_CLOSE)  {
+	quit = 1;
+      }
+      break;
+    case SDL_QUIT :   
+      quit = 1;
+      break;
+    case SDL_KEYUP:
+      keyReleasedWindowSDL2(event.key.keysym.sym);
+      break;
+    case SDL_KEYDOWN:
+      keyPressedWindowSDL2(event.key.keysym.sym);
+      break;
+    case SDL_MOUSEBUTTONDOWN:
+      clickWindowSDL2(event.button.x,event.button.y);
+      break;
+    case SDL_MOUSEBUTTONUP:
+      unclickWindowSDL2(event.button.x,event.button.y);
+      break;
+    }
+  }
+
+  return quit;
+}
+/* ------------------------------------------------------- */
