@@ -1,5 +1,5 @@
-#ifndef _ELEMENTSDL2_SDL2TK_KLEVH_
-#define _ELEMENTSDL2_SDL2TK_KLEVH_
+#ifndef _ELEMENTSDL2_SANDAL2_KLEVH_
+#define _ELEMENTSDL2_SANDAL2_KLEVH_
 
 #include "HitBox.h"
 #include "FontSDL2.h"
@@ -17,7 +17,7 @@
  * @brief List of windows
  *   WARNING : Do not touch this list ... trust me
  */
-extern ListWindowSDL2 * _windows_SDL2TK;
+extern ListWindowSDL2 * _windows_SANDAL2;
 
 /**
  * @struct EntrySDL2

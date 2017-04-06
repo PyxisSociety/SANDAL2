@@ -1,5 +1,5 @@
-#ifndef _FONTSDL2_SDL2TK_KLEVH_
-#define _FONTSDL2_SDL2TK_KLEVH_
+#ifndef _FONTSDL2_SANDAL2_KLEVH_
+#define _FONTSDL2_SANDAL2_KLEVH_
 
 #include "WindowSDL2.h"
 
@@ -13,7 +13,7 @@
  * @brief List of the windows
  *   WARNING : do not touch it ... trust me
  */
-extern ListWindowSDL2 * _windows_SDL2TK;
+extern ListWindowSDL2 * _windows_SANDAL2;
 
 /**
  * @struct FontSDL2

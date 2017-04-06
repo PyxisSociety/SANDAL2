@@ -1,5 +1,5 @@
-#ifndef _HITBOX_SDL2TK_KLEVH_
-#define _HITBOX_SDL2TK_KLEVH_
+#ifndef _HITBOX_SANDAL2_KLEVH_
+#define _HITBOX_SANDAL2_KLEVH_
 
 #include <math.h>
 #include <stdlib.h>

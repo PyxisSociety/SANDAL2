@@ -1,29 +1,29 @@
 #include "WindowSDL2.h"
 
-ListWindowSDL2 * _windows_SDL2TK = NULL;
+ListWindowSDL2 * _windows_SANDAL2 = NULL;
 
 /* -------------------------------------------------------
  * Window SDL2
  */
 void resizeWindowSDL2(unsigned width,unsigned height){
-  if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->window){
-    SDL_SetWindowSize(_windows_SDL2TK->current->window,width,height);
-    _windows_SDL2TK->current->width=width;
-    _windows_SDL2TK->current->height=height;
+  if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->window){
+    SDL_SetWindowSize(_windows_SANDAL2->current->window,width,height);
+    _windows_SANDAL2->current->width=width;
+    _windows_SANDAL2->current->height=height;
   }
 }
 
 void changeDisplayWindowSDL2(int displayCode){
-  if(_windows_SDL2TK && _windows_SDL2TK->current){
-    _windows_SDL2TK->current->displayCode=displayCode;
+  if(_windows_SANDAL2 && _windows_SANDAL2->current){
+    _windows_SANDAL2->current->displayCode=displayCode;
   }
 }
 
 int initIteratorWindowSDL2(){
   int error = 1;
 
-  if(_windows_SDL2TK){
-    _windows_SDL2TK->current = _windows_SDL2TK->first;
+  if(_windows_SANDAL2){
+    _windows_SANDAL2->current = _windows_SANDAL2->first;
     error = 0;
   }
 
@@ -33,8 +33,8 @@ int initIteratorWindowSDL2(){
 int nextWindowSDL2(){
   int error = 1;
 
-  if(_windows_SDL2TK && _windows_SDL2TK->current){
-    _windows_SDL2TK->current = _windows_SDL2TK->current->next;
+  if(_windows_SANDAL2 && _windows_SANDAL2->current){
+    _windows_SANDAL2->current = _windows_SANDAL2->current->next;
     error = 0;
   }
   
@@ -44,12 +44,12 @@ int nextWindowSDL2(){
 int getDimensionWindowSDL2(int * w,int * h){
   int error = 0;
 
-  if(_windows_SDL2TK && _windows_SDL2TK->current){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current){
     if(w){
-      *w=_windows_SDL2TK->current->initWidth;
+      *w=_windows_SANDAL2->current->initWidth;
     }
     if(h){
-      *h=_windows_SDL2TK->current->initHeight;
+      *h=_windows_SANDAL2->current->initHeight;
     }
     error =1;
   }
@@ -60,9 +60,9 @@ int getDimensionWindowSDL2(int * w,int * h){
 int getDisplayCodeWindowSDL2(int * d){
   int error = 1;
 
-  if(_windows_SDL2TK && _windows_SDL2TK->current){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current){
     if(d){
-      *d=_windows_SDL2TK->current->displayCode;
+      *d=_windows_SANDAL2->current->displayCode;
     }
     error=0;
   }
@@ -73,8 +73,8 @@ int getDisplayCodeWindowSDL2(int * d){
 int getColorWindowSDL2(int color[4]){
   int error = 1;
 
-  if(_windows_SDL2TK && _windows_SDL2TK->current){
-    copyColor(color,_windows_SDL2TK->current->background);
+  if(_windows_SANDAL2 && _windows_SANDAL2->current){
+    copyColor(color,_windows_SANDAL2->current->background);
     error = 0;
   }
 
@@ -84,8 +84,8 @@ int getColorWindowSDL2(int color[4]){
 int setColorWindowSDL2(int color[4]){
   int error = 1;
 
-  if(_windows_SDL2TK && _windows_SDL2TK->current){
-    copyColor(_windows_SDL2TK->current->background,color);
+  if(_windows_SANDAL2 && _windows_SANDAL2->current){
+    copyColor(_windows_SANDAL2->current->background,color);
     error = 0;
   }
 
@@ -95,9 +95,9 @@ int setColorWindowSDL2(int color[4]){
 int getCoordWindowSDL2(int *x,int *y){
   int error = 1;
 
-  if(_windows_SDL2TK && _windows_SDL2TK->first){
+  if(_windows_SANDAL2 && _windows_SANDAL2->first){
     error = 0;
-    SDL_GetWindowPosition(_windows_SDL2TK->current->window,x,y);
+    SDL_GetWindowPosition(_windows_SANDAL2->current->window,x,y);
   }
 
   return error;
@@ -106,9 +106,9 @@ int getCoordWindowSDL2(int *x,int *y){
 int setCoordWindowSDL2(int x,int y){
   int error = 1;
 
-  if(_windows_SDL2TK && _windows_SDL2TK->first){
+  if(_windows_SANDAL2 && _windows_SANDAL2->first){
     error = 0;
-    SDL_SetWindowPosition(_windows_SDL2TK->current->window,x,y);
+    SDL_SetWindowPosition(_windows_SANDAL2->current->window,x,y);
   }
 
   return error;
@@ -117,13 +117,13 @@ int setCoordWindowSDL2(int x,int y){
 int getRealDimensionWindowSDL2(int *width,int *height){
   int error = 1;
 
-  if(_windows_SDL2TK && _windows_SDL2TK->first){
+  if(_windows_SANDAL2 && _windows_SANDAL2->first){
     error = 0;
     if(width){
-      *width=_windows_SDL2TK->current->width;
+      *width=_windows_SANDAL2->current->width;
     }
     if(height){
-      *height=_windows_SDL2TK->current->height;
+      *height=_windows_SANDAL2->current->height;
     }
   }
 
@@ -133,10 +133,10 @@ int getRealDimensionWindowSDL2(int *width,int *height){
 int getIDWindowSDL2(Uint32 *ID){
   int error = 1;
 
-  if(_windows_SDL2TK && _windows_SDL2TK->first){
+  if(_windows_SANDAL2 && _windows_SANDAL2->first){
     error = 0;
     if(ID){
-      *ID=SDL_GetWindowID(_windows_SDL2TK->current->window);
+      *ID=SDL_GetWindowID(_windows_SANDAL2->current->window);
     }
   }
 

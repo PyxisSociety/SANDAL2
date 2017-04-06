@@ -8,7 +8,7 @@ FontSDL2* createFontSDL2(char *fontPath,char *texte,int couleur[4]){
   SDL_Surface *s;
   SDL_Color c;
 
-  if(_windows_SDL2TK && _windows_SDL2TK->current){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current){
     f=malloc(sizeof(*f));
     if(f){
       f->font=TTF_OpenFont(fontPath,30);
@@ -22,7 +22,7 @@ FontSDL2* createFontSDL2(char *fontPath,char *texte,int couleur[4]){
 	if(f->text){
 	  strcpy(f->text,texte);
 	  s=TTF_RenderText_Solid(f->font,texte,c);
-	  f->texture=SDL_CreateTextureFromSurface(_windows_SDL2TK->current->renderer,s);
+	  f->texture=SDL_CreateTextureFromSurface(_windows_SANDAL2->current->renderer,s);
 	  SDL_FreeSurface(s);
 	}else{
 	  free(f);
@@ -56,7 +56,7 @@ void actualizeTextFontSDL2(FontSDL2 *font,int isScripted){
   char *str;
   int size,i;
   
-  if(_windows_SDL2TK && _windows_SDL2TK->current && font){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current && font){
     if(isScripted){
       size=strlen(font->text);
       str=malloc((size+1)*sizeof(*str));
@@ -78,7 +78,7 @@ void actualizeTextFontSDL2(FontSDL2 *font,int isScripted){
       if(font->texture){
 	SDL_DestroyTexture(font->texture);
       }
-      font->texture=SDL_CreateTextureFromSurface(_windows_SDL2TK->current->renderer,s);
+      font->texture=SDL_CreateTextureFromSurface(_windows_SANDAL2->current->renderer,s);
       SDL_FreeSurface(s);
     }
   }
@@ -87,7 +87,7 @@ void actualizeTextFontSDL2(FontSDL2 *font,int isScripted){
 void changeTextFontSDL2(FontSDL2 *font,char *text){
   SDL_Surface *s;
   
-  if(_windows_SDL2TK && _windows_SDL2TK->current && font && text){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current && font && text){
     PFREE(font->text);
     font->text=malloc((strlen(text)+1)*sizeof(*(font->text)));
     if(font->text){
@@ -96,7 +96,7 @@ void changeTextFontSDL2(FontSDL2 *font,char *text){
       if(font->texture){
 	SDL_DestroyTexture(font->texture);
       }
-      font->texture=SDL_CreateTextureFromSurface(_windows_SDL2TK->current->renderer,s);
+      font->texture=SDL_CreateTextureFromSurface(_windows_SANDAL2->current->renderer,s);
       SDL_FreeSurface(s);
     }
   }
@@ -105,7 +105,7 @@ void changeTextFontSDL2(FontSDL2 *font,char *text){
 void changeColorFontSDL2(FontSDL2 *font,int color[4]){
   SDL_Surface *s;
   
-  if(_windows_SDL2TK && _windows_SDL2TK->current && font){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current && font){
     font->color.r=color[0];
     font->color.g=color[1];
     font->color.b=color[2];
@@ -115,7 +115,7 @@ void changeColorFontSDL2(FontSDL2 *font,int color[4]){
       if(font->texture){
 	SDL_DestroyTexture(font->texture);
       }
-      font->texture=SDL_CreateTextureFromSurface(_windows_SDL2TK->current->renderer,s);
+      font->texture=SDL_CreateTextureFromSurface(_windows_SANDAL2->current->renderer,s);
       SDL_FreeSurface(s);
     }
   }

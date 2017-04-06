@@ -223,10 +223,10 @@ int addElementSDL2(ElementSDL2* e){
   ListPtrElementSDL2 ** lp, *ptmp;
   int error = 1;
   
-  if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste && e && e->codes){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste && e && e->codes){
     error = 0;
     d=e->codes->first;
-    ldc=&(_windows_SDL2TK->current->liste->first);
+    ldc=&(_windows_SANDAL2->current->liste->first);
     while(d){
       while(*ldc && (*ldc)->code < d->code){
 	ldc=&((*ldc)->next);
@@ -257,7 +257,7 @@ int addElementSDL2(ElementSDL2* e){
       addPtrElementSDL2(*lp,e);
       d=d->next;
     }
-    e->parent=_windows_SDL2TK->current;
+    e->parent=_windows_SANDAL2->current;
   }
 
   return error;
@@ -269,18 +269,18 @@ void cleanElementSDL2(){
   ListDCElementSDL2 **ldc, *dctmp;
   ElementSDL2 *ee;
   
-  if(_windows_SDL2TK && _windows_SDL2TK->current){
-    ldc=&(_windows_SDL2TK->current->liste->first);
-    while(*ldc && _windows_SDL2TK->current->toDelete){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current){
+    ldc=&(_windows_SANDAL2->current->liste->first);
+    while(*ldc && _windows_SANDAL2->current->toDelete){
       lp=&((*ldc)->first);
-      while(*lp && _windows_SDL2TK->current->toDelete){
+      while(*lp && _windows_SANDAL2->current->toDelete){
 	e=&((*lp)->first);
-	while(*e && _windows_SDL2TK->current->toDelete){
+	while(*e && _windows_SANDAL2->current->toDelete){
 	  switch((*e)->element->delete-((*e)->element->delete==2 && (*e)->element->codes->size==1)){
 	  case 1:
 	    ee=(*e)->element;
 	    removeDCElementSDL2(ldc,ee);
-	    _windows_SDL2TK->current->toDelete-=(ee->codes?ee->codes->size:1);
+	    _windows_SANDAL2->current->toDelete-=(ee->codes?ee->codes->size:1);
 	    freeElementSDL2(ee);
 	    break;
 	  case 2:
@@ -289,7 +289,7 @@ void cleanElementSDL2(){
 	      (*e)->element->codes->size--;
 	      *e=(*e)->next;
 	      free(etmp);
-	      _windows_SDL2TK->current->toDelete--;
+	      _windows_SANDAL2->current->toDelete--;
 	    }else{
 	      e=&((*e)->next);
 	    }
@@ -299,7 +299,7 @@ void cleanElementSDL2(){
 	      etmp=*e;
 	      *e=(*e)->next;
 	      free(etmp);
-	      _windows_SDL2TK->current->toDelete--;
+	      _windows_SANDAL2->current->toDelete--;
 	    }else{
 	      e=&((*e)->next);
 	    }
@@ -310,8 +310,8 @@ void cleanElementSDL2(){
 	}
 	if(!(*lp)->first){
 	  ptmp=(*lp)->next;
-	  if(*lp == _windows_SDL2TK->current->liste->currentPIterator){
-	    _windows_SDL2TK->current->liste->currentPIterator = ptmp;
+	  if(*lp == _windows_SANDAL2->current->liste->currentPIterator){
+	    _windows_SANDAL2->current->liste->currentPIterator = ptmp;
 	  }
 	  free(*lp);
 	  *lp=ptmp;
@@ -321,8 +321,8 @@ void cleanElementSDL2(){
       }
       if(!(*ldc)->first){
 	dctmp=(*ldc)->next;
-	if(*ldc == _windows_SDL2TK->current->liste->currentDCIterator){
-	  _windows_SDL2TK->current->liste->currentDCIterator = dctmp;
+	if(*ldc == _windows_SANDAL2->current->liste->currentDCIterator){
+	  _windows_SANDAL2->current->liste->currentDCIterator = dctmp;
 	}
 	free(*ldc);
 	*ldc=dctmp;
@@ -330,12 +330,12 @@ void cleanElementSDL2(){
 	ldc=&((*ldc)->next);
       }
     }
-    _windows_SDL2TK->current->toDelete=0;
+    _windows_SANDAL2->current->toDelete=0;
   }
 }
 
 void removeElementSDL2(ElementSDL2 *e){
-  if(e && _windows_SDL2TK && _windows_SDL2TK->current){
+  if(e && _windows_SANDAL2 && _windows_SANDAL2->current){
     e->delete=1;
     e->parent->toDelete++;
   }
@@ -380,7 +380,7 @@ void freeElementSDL2(ElementSDL2 *e){
 ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4],int displayCode,int plan){
   ElementSDL2 *e = NULL;
 
-  if(_windows_SDL2TK && _windows_SDL2TK->current){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current){
     e=malloc(sizeof(*e));
     if(e){
       e->delete=0;
@@ -425,7 +425,7 @@ ElementSDL2* createTexte(float x,float y,float width,float height,char * font,ch
   ElementSDL2 *e=NULL;
   FontSDL2 * f;
 
-  if(_windows_SDL2TK && _windows_SDL2TK->current){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current){
     e=malloc(sizeof(*e));
     if(e){
       e->delete=0;
@@ -478,7 +478,7 @@ ElementSDL2* createImage(float x,float y,float width,float height,char *image,in
   ElementSDL2 *e=NULL;
   SDL_Surface *s;
 
-  if(_windows_SDL2TK && _windows_SDL2TK->current){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current){
     s=IMG_Load(image);
   
     if(s){
@@ -496,7 +496,7 @@ ElementSDL2* createImage(float x,float y,float width,float height,char *image,in
 	e->rotation=0.f;
 	e->rotSpeed=0.f;
 	e->animation=initListAnimation();
-	e->image=SDL_CreateTextureFromSurface(_windows_SDL2TK->current->renderer,s);
+	e->image=SDL_CreateTextureFromSurface(_windows_SANDAL2->current->renderer,s);
 	e->codes=initListDisplayCode();
 	addDisplayCode(e->codes,displayCode,1,plan);
 	e->coulBlock[0]=-1;
@@ -528,7 +528,7 @@ ElementSDL2* createButton(float x,float y,float width,float height,float texteSi
   ElementSDL2 *e = NULL;
   FontSDL2 * f;
 
-  if(_windows_SDL2TK && _windows_SDL2TK->current){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current){
     e=createBlock(x,y,width,height,couleurBlock,displayCode,plan);
     if(e){
       e->textSize=texteSize/100.f;
@@ -550,7 +550,7 @@ ElementSDL2* createButtonImage(float x,float y,float width,float height,float te
   ElementSDL2 *e = NULL;
   FontSDL2 * f;
   
-  if(_windows_SDL2TK && _windows_SDL2TK->current){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current){
     e=createImage(x,y,width,height,image,displayCode,plan);
     if(e){
       e->textSize=texteSize/100.f;
@@ -573,7 +573,7 @@ ElementSDL2* createEntry(float x,float y,float width,float height,float texteSiz
   EntrySDL2 *ent;
   int i;
 
-  if(_windows_SDL2TK && _windows_SDL2TK->current){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current){
     e=createButton(x,y,width,height,texteSize,font,text,textColor,couleurBlock,displayCode,plan);
     if(e){
       ent=malloc(sizeof(*ent));
@@ -612,7 +612,7 @@ ElementSDL2* createEntryImage(float x,float y,float width,float height,float tex
   EntrySDL2 *ent;
   int i;
 
-  if(_windows_SDL2TK && _windows_SDL2TK->current){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current){
     e=createButtonImage(x,y,width,height,texteSize,font,text,textColor,image,displayCode,plan);
     if(e){
       ent=malloc(sizeof(*ent));
@@ -647,7 +647,7 @@ ElementSDL2* createEntryImage(float x,float y,float width,float height,float tex
 }
 
 int isDisplaied(ElementSDL2 *e){
-  return (e && !(e->delete) && _windows_SDL2TK && _windows_SDL2TK->current == e->parent);
+  return (e && !(e->delete) && _windows_SANDAL2 && _windows_SANDAL2->current == e->parent);
 }
 
 int getCoordElementSDL2(ElementSDL2* e,float* x,float* y){
@@ -757,7 +757,7 @@ void setFontElementSDL2(ElementSDL2 *e,char * font){
   FontSDL2 *f;
   int color[4];
 
-  if(_windows_SDL2TK && _windows_SDL2TK->current){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current){
     if(e && font && e->police){
       color[0]=e->police->color.r;
       color[1]=e->police->color.g;
@@ -773,7 +773,7 @@ void setFontElementSDL2(ElementSDL2 *e,char * font){
 }
 
 void setTextElementSDL2(ElementSDL2 *e,char * text){
-  if(_windows_SDL2TK && _windows_SDL2TK->current && e && text && e->police){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current && e && text && e->police){
     changeTextFontSDL2(e->police,text);
   }
 }
@@ -794,11 +794,11 @@ int setImageElementSDL2(ElementSDL2 *e,char *image){
   SDL_Surface *s;
   int changed=0;
   
-  if(e && _windows_SDL2TK && _windows_SDL2TK->current){
+  if(e && _windows_SANDAL2 && _windows_SANDAL2->current){
     if(image){
       s=IMG_Load(image);
       if(s){
-	e->image=SDL_CreateTextureFromSurface(_windows_SDL2TK->current->renderer,s);
+	e->image=SDL_CreateTextureFromSurface(_windows_SANDAL2->current->renderer,s);
 	SDL_FreeSurface(s);
 	changed=1;
       }
@@ -826,14 +826,14 @@ int setImageTextureElementSDL2(ElementSDL2 *e,SDL_Texture * image){
 }
 
 void replaceElementSDL2(ElementSDL2 *e,float x,float y){
-  if(e && _windows_SDL2TK && _windows_SDL2TK->current){
+  if(e && _windows_SANDAL2 && _windows_SANDAL2->current){
     e->x=x;
     e->y=y;
   }
 }
 
 void moveElementSDL2(ElementSDL2 *e,float x,float y){
-  if(e && _windows_SDL2TK && _windows_SDL2TK->current){
+  if(e && _windows_SANDAL2 && _windows_SANDAL2->current){
     e->x+=x;
     e->y+=y;
   }
@@ -858,7 +858,7 @@ void addDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode, int plan){
   ListPtrElementSDL2 **lp, *ptmp;
   PtrElementSDL2 *el;
 
-  if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste && e && e->codes){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste && e && e->codes){
     d=&(e->codes->first);
     while(*d && (*d)->code<displayCode){
       d=&((*d)->next);
@@ -872,7 +872,7 @@ void addDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode, int plan){
 	tmp->plan = plan;
 	tmp->next=*d;
 	*d=tmp;
-	ldc=&(_windows_SDL2TK->current->liste->first);
+	ldc=&(_windows_SANDAL2->current->liste->first);
 	while(*ldc && (*ldc)->code < displayCode){
 	  ldc=&((*ldc)->next);
 	}
@@ -910,13 +910,13 @@ void removeDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode){
   ListPtrElementSDL2 **lp;
   PtrElementSDL2 **cour;
 
-  if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste && e && e->codes){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste && e && e->codes){
     d=&(e->codes->first);
     while(*d && (*d)->code < displayCode){
       d=&((*d)->next);
     }
     if(*d && (*d)->code==displayCode){
-      ldc=&(_windows_SDL2TK->current->liste->first);
+      ldc=&(_windows_SANDAL2->current->liste->first);
       while(*ldc && (*ldc)->code < displayCode){
 	ldc=&((*ldc)->next);
       }
@@ -933,7 +933,7 @@ void removeDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode){
 	  if(*cour){
 	    (*cour)->element->delete=2;
 	    (*cour)->element->deleteCode=displayCode;
-	    _windows_SDL2TK->current->toDelete++;
+	    _windows_SANDAL2->current->toDelete++;
 	  }
 	}
       }
@@ -965,7 +965,7 @@ void setPlanElementSDL2(ElementSDL2 *e,int displayCode,int plan){
   ListPtrElementSDL2 **lp, *ptmp, **lpNew = NULL;
   PtrElementSDL2 **cour,*tmp;
 
-  if(e && _windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste){
+  if(e && _windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
     d=e->codes->first;
     while(d && d->code<displayCode){
       d=d->next;
@@ -973,7 +973,7 @@ void setPlanElementSDL2(ElementSDL2 *e,int displayCode,int plan){
     if(d && d->code==displayCode && d->plan != plan){
       old = d->plan;
       d->plan = plan;
-      ldc=_windows_SDL2TK->current->liste->first;
+      ldc=_windows_SANDAL2->current->liste->first;
       while(ldc && ldc->code < displayCode){
 	ldc=ldc->next;
       }
@@ -992,7 +992,7 @@ void setPlanElementSDL2(ElementSDL2 *e,int displayCode,int plan){
 	if(*cour){
 	  (*cour)->element->delete=3;
 	  (*cour)->element->deleteCode=old;
-	  _windows_SDL2TK->current->toDelete++;
+	  _windows_SANDAL2->current->toDelete++;
 	}
 	if(!lpNew){
 	  lpNew=lp;
@@ -1326,23 +1326,23 @@ int initIterateur(int displayCode){
   int succes = 0;
   ListDCElementSDL2 *lp;
   
-  if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste){
-    if(_windows_SDL2TK->current->liste->currentDCIterator && _windows_SDL2TK->current->liste->currentDCIterator->code == displayCode){
-      _windows_SDL2TK->current->liste->currentPIterator=_windows_SDL2TK->current->liste->currentDCIterator->first;
-      _windows_SDL2TK->current->liste->currentPIterator->current=_windows_SDL2TK->current->liste->currentPIterator->first;
+  if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
+    if(_windows_SANDAL2->current->liste->currentDCIterator && _windows_SANDAL2->current->liste->currentDCIterator->code == displayCode){
+      _windows_SANDAL2->current->liste->currentPIterator=_windows_SANDAL2->current->liste->currentDCIterator->first;
+      _windows_SANDAL2->current->liste->currentPIterator->current=_windows_SANDAL2->current->liste->currentPIterator->first;
       succes=1;
     }else{
-      if(_windows_SDL2TK->current->liste->currentDCIterator && _windows_SDL2TK->current->liste->currentDCIterator->code < displayCode){
-	lp=_windows_SDL2TK->current->liste->currentDCIterator;
+      if(_windows_SANDAL2->current->liste->currentDCIterator && _windows_SANDAL2->current->liste->currentDCIterator->code < displayCode){
+	lp=_windows_SANDAL2->current->liste->currentDCIterator;
       }else{
-	lp=_windows_SDL2TK->current->liste->first;
+	lp=_windows_SANDAL2->current->liste->first;
       }
       while(lp->code < displayCode){
 	lp=lp->next;
       }
       if(lp && lp->code==displayCode){
-	_windows_SDL2TK->current->liste->currentDCIterator=lp;
-	_windows_SDL2TK->current->liste->currentPIterator=lp->first;
+	_windows_SANDAL2->current->liste->currentDCIterator=lp;
+	_windows_SANDAL2->current->liste->currentPIterator=lp->first;
 	lp->first->current=lp->first->first;
 	succes=1;
       }
@@ -1356,17 +1356,17 @@ ElementSDL2* nextElementSDL2(){
   ElementSDL2 *res = NULL;
   PtrElementSDL2 *pres;
 
-  if(_windows_SDL2TK && _windows_SDL2TK->current && _windows_SDL2TK->current->liste && _windows_SDL2TK->current->liste->currentDCIterator){
-    if(_windows_SDL2TK->current->liste->currentPIterator){
-      pres=_windows_SDL2TK->current->liste->currentPIterator->current;
+  if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste && _windows_SANDAL2->current->liste->currentDCIterator){
+    if(_windows_SANDAL2->current->liste->currentPIterator){
+      pres=_windows_SANDAL2->current->liste->currentPIterator->current;
       if(pres){
-	_windows_SDL2TK->current->liste->currentPIterator->current = _windows_SDL2TK->current->liste->currentPIterator->current->next;
+	_windows_SANDAL2->current->liste->currentPIterator->current = _windows_SANDAL2->current->liste->currentPIterator->current->next;
 	res=pres->element;
       }else{
-	_windows_SDL2TK->current->liste->currentPIterator = _windows_SDL2TK->current->liste->currentPIterator->next;
-	if(_windows_SDL2TK->current->liste->currentPIterator){
-	  _windows_SDL2TK->current->liste->currentPIterator->current=_windows_SDL2TK->current->liste->currentPIterator->first->next;
-	  res=_windows_SDL2TK->current->liste->currentPIterator->first->element;
+	_windows_SANDAL2->current->liste->currentPIterator = _windows_SANDAL2->current->liste->currentPIterator->next;
+	if(_windows_SANDAL2->current->liste->currentPIterator){
+	  _windows_SANDAL2->current->liste->currentPIterator->current=_windows_SANDAL2->current->liste->currentPIterator->first->next;
+	  res=_windows_SANDAL2->current->liste->currentPIterator->first->element;
 	}
       }
     }
@@ -1383,7 +1383,7 @@ ElementSDL2* nextElementSDL2(){
  */
 void changeSizeEntrySDL2(ElementSDL2 *e,int size_min,int size_max){
   char *s;
-  if(_windows_SDL2TK && _windows_SDL2TK->current && e && e->entry){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current && e && e->entry){
     if(size_min>-1 && size_min<=size_max){
       e->entry->size_min=size_min;
     }
@@ -1400,14 +1400,14 @@ void changeSizeEntrySDL2(ElementSDL2 *e,int size_min,int size_max){
 }
 
 void setScriptedEntrySDL2(ElementSDL2 *e,int isScripted){
-  if(_windows_SDL2TK && _windows_SDL2TK->current && e && e->entry && e->entry->isScripted!=isScripted){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current && e && e->entry && e->entry->isScripted!=isScripted){
     e->entry->isScripted=isScripted;
     actualizeTextFontSDL2(e->police,e->entry->isScripted);
   }
 }
 
 void addCharEntrySDL2(ElementSDL2 *e,char c){
-  if(_windows_SDL2TK && _windows_SDL2TK->current && e && e->entry && e->police && e->police->text && e->entry->size < e->entry->size_max){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current && e && e->entry && e->police && e->police->text && e->entry->size < e->entry->size_max){
     *(e->police->text+e->entry->size)=c;
     ++e->entry->size;
     actualizeTextFontSDL2(e->police,e->entry->isScripted);
@@ -1415,7 +1415,7 @@ void addCharEntrySDL2(ElementSDL2 *e,char c){
 }
 
 void removeCharEntrySDL2(ElementSDL2 *e){
-  if(_windows_SDL2TK && _windows_SDL2TK->current && e && e->entry && e->police && e->police->text && e->entry->size){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current && e && e->entry && e->police && e->police->text && e->entry->size){
     --e->entry->size;
     *(e->police->text+e->entry->size)=' ';
     actualizeTextFontSDL2(e->police,e->entry->isScripted);

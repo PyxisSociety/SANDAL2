@@ -1,5 +1,5 @@
-#ifndef _DISPLAYCODE_SDL2TK_KLEVH_
-#define _DISPLAYCODE_SDL2TK_KLEVH_
+#ifndef _DISPLAYCODE_SANDAL2_KLEVH_
+#define _DISPLAYCODE_SANDAL2_KLEVH_
 
 #include <stdio.h>
 #include <stdlib.h>

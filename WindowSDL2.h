@@ -76,7 +76,7 @@ typedef struct{
  * @brief list of windows
  *   WARNING : do not touch this variable, never ... trust me
  */
-extern ListWindowSDL2 * _windows_SDL2TK;
+extern ListWindowSDL2 * _windows_SANDAL2;
 
 /* -------------------------------------------------------
  * Window SDL2
