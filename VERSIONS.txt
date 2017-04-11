@@ -5,6 +5,8 @@
 1.0.0 : SANDAL2 :
       	retirer la fenetre de l'utilisateur
 	retirer la liste d'element de l'utilisateur
-	passage de liste de liste d'element (display code) à liste (display code) de liste (plan) de liste d'element
+	passage de liste de liste d'element (display code) a liste (display code) de liste (plan) de liste d'element
 	passage de liste d'element a liste de liste d'element (display code)
 1.0.1 : gestion des evenements cachés
+1.0.2 : ajout des rendus de texte Shaded et Blended
+      	// En cours de developpement

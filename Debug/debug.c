@@ -17,6 +17,7 @@ int main(){
   int run = 1;
   int tps = 0, ticks = 0;
   int noir[4] = {0,0,0,0};
+  int rouge[4] = {255,0,0,0};
   int i;
   
   if(initAllSDL2(IMG_INIT_JPG)){
@@ -52,6 +53,9 @@ int main(){
   setOnClickElementSDL2(objet,touch);
 
   setEndSpriteElementSDL2(objet,endJump);
+
+
+  objet=createTexte(150.f,100.f,50.f,50.f,"arial.ttf","OK",rouge,2,1,-1);
   
   /* display de la fenetre */
   while(run){

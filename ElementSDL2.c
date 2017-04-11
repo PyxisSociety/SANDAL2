@@ -421,9 +421,8 @@ ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4]
   return e;
 }
 
-ElementSDL2* createTexte(float x,float y,float width,float height,char * font,char * text,int textColor[4],int displayCode,int plan){
+ElementSDL2* createTexte(float x,float y,float width,float height,char * font,char * text,int textColor[4],int quality,int displayCode,int plan){
   ElementSDL2 *e=NULL;
-  FontSDL2 * f;
 
   if(_windows_SANDAL2 && _windows_SANDAL2->current){
     e=malloc(sizeof(*e));
@@ -446,9 +445,9 @@ ElementSDL2* createTexte(float x,float y,float width,float height,char * font,ch
       e->interactions=NULL;
       e->hitboxes = initListHitBox();
       e->codes=NULL;
-      f=createFontSDL2(font,text,textColor);
-      if(f){
-	e->police=f;
+      e->police=createFontSDL2(font,text,textColor,quality);
+      e->data=NULL;
+      if(e->police){
 	e->codes=initListDisplayCode();
 	addDisplayCode(e->codes,displayCode,1,plan);
 	e->coulBlock[0]=-1;
@@ -524,7 +523,7 @@ ElementSDL2* createImage(float x,float y,float width,float height,char *image,in
   return e;
 }
 
-ElementSDL2* createButton(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int couleurBlock[4],int displayCode,int plan){
+ElementSDL2* createButton(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int quality,int couleurBlock[4],int displayCode,int plan){
   ElementSDL2 *e = NULL;
   FontSDL2 * f;
 
@@ -532,7 +531,7 @@ ElementSDL2* createButton(float x,float y,float width,float height,float texteSi
     e=createBlock(x,y,width,height,couleurBlock,displayCode,plan);
     if(e){
       e->textSize=texteSize/100.f;
-      f=createFontSDL2(font,text,textColor);
+      f=createFontSDL2(font,text,textColor,quality);
       if(f){
 	e->police=f;
       }else{
@@ -546,7 +545,7 @@ ElementSDL2* createButton(float x,float y,float width,float height,float texteSi
   return e;
 }
 
-ElementSDL2* createButtonImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan){
+ElementSDL2* createButtonImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int quality,char *image,int displayCode,int plan){
   ElementSDL2 *e = NULL;
   FontSDL2 * f;
   
@@ -554,7 +553,7 @@ ElementSDL2* createButtonImage(float x,float y,float width,float height,float te
     e=createImage(x,y,width,height,image,displayCode,plan);
     if(e){
       e->textSize=texteSize/100.f;
-      f=createFontSDL2(font,text,textColor);
+      f=createFontSDL2(font,text,textColor,quality);
       if(f){
 	e->police=f;
       }else{
@@ -568,13 +567,13 @@ ElementSDL2* createButtonImage(float x,float y,float width,float height,float te
   return e;
 }
 
-ElementSDL2* createEntry(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int couleurBlock[4],int displayCode,int plan,int min,int max,int isScripted){
+ElementSDL2* createEntry(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int quality,int couleurBlock[4],int displayCode,int plan,int min,int max,int isScripted){
   ElementSDL2 *e = NULL;
   EntrySDL2 *ent;
   int i;
 
   if(_windows_SANDAL2 && _windows_SANDAL2->current){
-    e=createButton(x,y,width,height,texteSize,font,text,textColor,couleurBlock,displayCode,plan);
+    e=createButton(x,y,width,height,texteSize,font,text,textColor,quality,couleurBlock,displayCode,plan);
     if(e){
       ent=malloc(sizeof(*ent));
       if(ent){
@@ -607,13 +606,13 @@ ElementSDL2* createEntry(float x,float y,float width,float height,float texteSiz
   return e;  
 }
 
-ElementSDL2* createEntryImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],char *image,int displayCode,int plan,int min,int max,int isScripted){
+ElementSDL2* createEntryImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int quality,char *image,int displayCode,int plan,int min,int max,int isScripted){
   ElementSDL2 *e = NULL;
   EntrySDL2 *ent;
   int i;
 
   if(_windows_SANDAL2 && _windows_SANDAL2->current){
-    e=createButtonImage(x,y,width,height,texteSize,font,text,textColor,image,displayCode,plan);
+    e=createButtonImage(x,y,width,height,texteSize,font,text,textColor,quality,image,displayCode,plan);
     if(e){
       ent=malloc(sizeof(*ent));
       if(ent){
@@ -763,7 +762,7 @@ void setFontElementSDL2(ElementSDL2 *e,char * font){
       color[1]=e->police->color.g;
       color[2]=e->police->color.b;
       color[3]=e->police->color.a;
-      f=createFontSDL2(font,e->police->text,color);
+      f=createFontSDL2(font,e->police->text,color,e->police->quality);
       if(f){
 	freeFontSDL2(e->police);
 	e->police=f;
@@ -788,6 +787,17 @@ void setTextColorElementSDL2(ElementSDL2 *e, int color[4]){
   if(e && e->police){
     changeColorFontSDL2(e->police,color);
   }
+}
+
+int setTextQualityElementSDL2(ElementSDL2 *e, int quality){
+  int error = 1;
+
+  if(e && e->police){
+    error = 0;
+    e->police->quality=quality;
+  }
+
+  return error;
 }
 
 int setImageElementSDL2(ElementSDL2 *e,char *image){
