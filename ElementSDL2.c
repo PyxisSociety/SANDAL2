@@ -28,9 +28,10 @@ void freeListPtrElementSDL2(ListPtrElementSDL2* l){
   }
 }
 
-void addPtrElementSDL2(ListPtrElementSDL2* l,ElementSDL2* e){
+int addPtrElementSDL2(ListPtrElementSDL2* l,ElementSDL2* e){
   DisplayCode *d;
   PtrElementSDL2 *p;
+  int error = 1;
   
   if(l && e){
     d=e->codes->first;
@@ -48,13 +49,17 @@ void addPtrElementSDL2(ListPtrElementSDL2* l,ElementSDL2* e){
 	l->last=p;
 	p->next=NULL;
 	p->element=e;
+	error = 0;
       }
     }
   }
+
+  return error;
 }
 
-void removePtrElementSDL2(ListPtrElementSDL2* l,ElementSDL2* e){
+int removePtrElementSDL2(ListPtrElementSDL2* l,ElementSDL2* e){
   PtrElementSDL2 ** p, ** tmp, * ttmp;
+  int error = 1;
   
   if(l && e){
     p=&(l->first);
@@ -79,8 +84,11 @@ void removePtrElementSDL2(ListPtrElementSDL2* l,ElementSDL2* e){
       ttmp=(*p)->next;
       free(*p);
       *p=ttmp;
+      error = 0;
     }
   }
+
+  return error;
 }
 /* ------------------------------------------------------- */
 
@@ -116,8 +124,9 @@ void freeListDCElementSDL2(ListDCElementSDL2* l){
   }
 }
 
-void addListPtrElementSDL2(ListDCElementSDL2* l, ListPtrElementSDL2 *lp){
+int addListPtrElementSDL2(ListDCElementSDL2* l, ListPtrElementSDL2 *lp){
   ListPtrElementSDL2 **cour;
+  int error = 1;
 
   if(l && lp){
     cour = &(l->first);
@@ -127,12 +136,16 @@ void addListPtrElementSDL2(ListDCElementSDL2* l, ListPtrElementSDL2 *lp){
     if(lp->code != (*cour)->code){
       lp->next=*cour;
       *cour=lp;
+      error = 0;
     }
   }
+
+  return error;
 }
 
-void removeListPtrElementSDL2(ListDCElementSDL2* l,ListPtrElementSDL2 *lp){
+int removeListPtrElementSDL2(ListDCElementSDL2* l,ListPtrElementSDL2 *lp){
   ListPtrElementSDL2 **cour, *tmp;
+  int error = 1;
 
   if(l && lp){
     cour = &(l->first);
@@ -143,15 +156,20 @@ void removeListPtrElementSDL2(ListDCElementSDL2* l,ListPtrElementSDL2 *lp){
       tmp=(*cour)->next;
       freeListPtrElementSDL2(*cour);
       *cour=tmp;
+      error = 0;
     }
   }
+
+  return error;
 }
 
-void removeDCElementSDL2(ListDCElementSDL2** l,ElementSDL2 *e){
+int removeDCElementSDL2(ListDCElementSDL2** l,ElementSDL2 *e){
   ListPtrElementSDL2 **lp;
   PtrElementSDL2 **pe, *etmp, **pte;
+  int error = 1;
   
   if(e && l){
+    error = 0;
     while(*l){
       lp=&((*l)->first);
       while(*lp){
@@ -182,6 +200,8 @@ void removeDCElementSDL2(ListDCElementSDL2** l,ElementSDL2 *e){
       l=&((*l)->next);
     }
   }
+
+  return error;
 }
 /* ------------------------------------------------------- */
 
@@ -334,11 +354,16 @@ void cleanElementSDL2(){
   }
 }
 
-void removeElementSDL2(ElementSDL2 *e){
+int removeElementSDL2(ElementSDL2 *e){
+  int error = 1;
+  
   if(e && _windows_SANDAL2 && _windows_SANDAL2->current){
     e->delete=1;
     e->parent->toDelete++;
+    error = 0;
   }
+
+  return error;
 }
 /* ------------------------------------------------------- */
 
@@ -723,14 +748,17 @@ int getRotationSpeedElementSDL2(ElementSDL2* e,float* s){
   return error;
 }
 
-void * getDataElementSDL2(ElementSDL2* e){
-  void * res = NULL;
+int getDataElementSDL2(ElementSDL2* e,void ** data){
+  int error = 1;
 
   if(e){
-    res=e->data;
+    error = 0;
+    if(data){
+      *data=e->data;
+    }
   }
 
-  return res;
+  return error;
 }
 
 int isSelectedElementSDL2(ElementSDL2 *e, int * select){
@@ -752,9 +780,10 @@ int isSelectedElementSDL2(ElementSDL2 *e, int * select){
 /* -------------------------------------------------------
  * modification d'un Element SDL2
  */
-void setFontElementSDL2(ElementSDL2 *e,char * font){
+int setFontElementSDL2(ElementSDL2 *e,char * font){
   FontSDL2 *f;
   int color[4];
+  int error = 1;
 
   if(_windows_SANDAL2 && _windows_SANDAL2->current){
     if(e && font && e->police){
@@ -766,27 +795,43 @@ void setFontElementSDL2(ElementSDL2 *e,char * font){
       if(f){
 	freeFontSDL2(e->police);
 	e->police=f;
+	error = 0;
       }
     }
   }
+
+  return error;
 }
 
-void setTextElementSDL2(ElementSDL2 *e,char * text){
+int setTextElementSDL2(ElementSDL2 *e,char * text){
+  int error = 1;
+  
   if(_windows_SANDAL2 && _windows_SANDAL2->current && e && text && e->police){
-    changeTextFontSDL2(e->police,text);
+    error=changeTextFontSDL2(e->police,text);
   }
+
+  return error;
 }
 
-void setColorElementSDL2(ElementSDL2 *e,int color[4]){
+int setColorElementSDL2(ElementSDL2 *e,int color[4]){
+  int error = 1;
+  
   if(e){
+    error = 0;
     copyColor(e->coulBlock,color);
   }
+
+  return error;
 }
 
-void setTextColorElementSDL2(ElementSDL2 *e, int color[4]){
+int setTextColorElementSDL2(ElementSDL2 *e, int color[4]){
+  int error = 1;
+
   if(e && e->police){
-    changeColorFontSDL2(e->police,color);
+    error=changeColorFontSDL2(e->police,color);
   }
+
+  return error;
 }
 
 int setTextQualityElementSDL2(ElementSDL2 *e, int quality){
@@ -802,7 +847,7 @@ int setTextQualityElementSDL2(ElementSDL2 *e, int quality){
 
 int setImageElementSDL2(ElementSDL2 *e,char *image){
   SDL_Surface *s;
-  int changed=0;
+  int error=1;
   
   if(e && _windows_SANDAL2 && _windows_SANDAL2->current){
     if(image){
@@ -810,63 +855,84 @@ int setImageElementSDL2(ElementSDL2 *e,char *image){
       if(s){
 	e->image=SDL_CreateTextureFromSurface(_windows_SANDAL2->current->renderer,s);
 	SDL_FreeSurface(s);
-	changed=1;
+	error=0;
       }
     }else{
       if(e->image){
 	SDL_DestroyTexture(e->image);
       }
       e->image=NULL;
-      changed=1;
+      error=0;
     }
   }
 
-  return changed;
+  return error;
 }
 
 int setImageTextureElementSDL2(ElementSDL2 *e,SDL_Texture * image){
-  int changed = 0;
+  int error = 1;
 
   if(e){
-    changed = 1;
+    error = 0;
     e->image=image;
   }
 
-  return changed;
+  return error;
 }
 
-void replaceElementSDL2(ElementSDL2 *e,float x,float y){
+int replaceElementSDL2(ElementSDL2 *e,float x,float y){
+  int error = 1;
+
   if(e && _windows_SANDAL2 && _windows_SANDAL2->current){
     e->x=x;
     e->y=y;
+    error = 0;
   }
+
+  return error;
 }
 
-void moveElementSDL2(ElementSDL2 *e,float x,float y){
+int moveElementSDL2(ElementSDL2 *e,float x,float y){
+  int error = 1;
+
   if(e && _windows_SANDAL2 && _windows_SANDAL2->current){
     e->x+=x;
     e->y+=y;
+    error = 0;
   }
+
+  return error;
 }
 
-void resizeElementSDL2(ElementSDL2 *e,float width,float height){
+int resizeElementSDL2(ElementSDL2 *e,float width,float height){
+  int error = 1;
+
   if(e){
     e->width=width;
     e->height=height;
+    error = 0;
   }
+
+  return error;
 }
 
-void setTextSize(ElementSDL2 *e,float textSize){
+int setTextSize(ElementSDL2 *e,float textSize){
+  int error = 1;
+
   if(e){
     e->textSize=textSize/100.0f;
+    error = 0;
   }
+
+  return error;
 }
 
-void addDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode, int plan){
+int addDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode, int plan){
   DisplayCode **d, *tmp;
   ListDCElementSDL2 **ldc, *dctmp;
   ListPtrElementSDL2 **lp, *ptmp;
   PtrElementSDL2 *el;
+  int error = 1;
 
   if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste && e && e->codes){
     d=&(e->codes->first);
@@ -901,24 +967,30 @@ void addDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode, int plan){
 	  *lp=ptmp;
 	}
 	el=malloc(sizeof(*el));
-	el->next=NULL;
-	el->element=e;
-	if((*lp)->last){
-	  (*lp)->last->next=el;
-	}else{
-	  (*lp)->first=el;
+	if(el){
+	  error = 0;
+	  el->next=NULL;
+	  el->element=e;
+	  if((*lp)->last){
+	    (*lp)->last->next=el;
+	  }else{
+	    (*lp)->first=el;
+	  }
+	  (*lp)->last=el;
 	}
-	(*lp)->last=el;
       }
     }
   }
+
+  return error;
 }
 
-void removeDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode){
+int removeDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode){
   DisplayCode **d, *tmp;
   ListDCElementSDL2 **ldc;
   ListPtrElementSDL2 **lp;
   PtrElementSDL2 **cour;
+  int error = 1;
 
   if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste && e && e->codes){
     d=&(e->codes->first);
@@ -944,6 +1016,7 @@ void removeDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode){
 	    (*cour)->element->delete=2;
 	    (*cour)->element->deleteCode=displayCode;
 	    _windows_SANDAL2->current->toDelete++;
+	    error = 0;
 	  }
 	}
       }
@@ -952,10 +1025,13 @@ void removeDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode){
       *d=tmp;
     }
   }
+
+  return error;
 }
 
-void setDisplayElementSDL2(ElementSDL2 *e,int displayCode,int isDisplaied){
+int setDisplayElementSDL2(ElementSDL2 *e,int displayCode,int isDisplaied){
   DisplayCode *d;
+  int error = 1;
 
   if(e){
     d=e->codes->first;
@@ -963,17 +1039,21 @@ void setDisplayElementSDL2(ElementSDL2 *e,int displayCode,int isDisplaied){
       d=d->next;
     }
     if(d && d->code==displayCode){
+      error = 0;
       d->isDisplaied=isDisplaied;
     }
   }
+
+  return error;
 }
 
-void setPlanElementSDL2(ElementSDL2 *e,int displayCode,int plan){
+int setPlanElementSDL2(ElementSDL2 *e,int displayCode,int plan){
   int old;
   DisplayCode *d;
   ListDCElementSDL2 *ldc;
   ListPtrElementSDL2 **lp, *ptmp, **lpNew = NULL;
   PtrElementSDL2 **cour,*tmp;
+  int error = 1;
 
   if(e && _windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
     d=e->codes->first;
@@ -1016,58 +1096,100 @@ void setPlanElementSDL2(ElementSDL2 *e,int displayCode,int plan){
 	  }
 	}
 	tmp=malloc(sizeof(*tmp));
-	tmp->element=e;
-	tmp->next=(*lpNew)->last;
-	(*lpNew)->last=tmp;
+	if(tmp){
+	  tmp->element=e;
+	  tmp->next=(*lpNew)->last;
+	  (*lpNew)->last=tmp;
+	  error=0;
+	}
       }
     }
   }
+
+  return error;
 }
 
-void setActionElementSDL2(ElementSDL2 *e,void (*action)(ElementSDL2*)){
+int setActionElementSDL2(ElementSDL2 *e,void (*action)(ElementSDL2*)){
+  int error = 1;
+  
   if(e){
+    error=0;
     e->action=action;
   }
+
+  return error;
 }
 
-void setKeyPressElementSDL2(ElementSDL2 *e,void (*keyPress)(ElementSDL2*,SDL_Keycode c)){
+int setKeyPressElementSDL2(ElementSDL2 *e,void (*keyPress)(ElementSDL2*,SDL_Keycode c)){
+  int error = 1;
+  
   if(e){
+    error=0;
     e->keyPress=keyPress;
   }
+
+  return error;
 }
 
-void setKeyReleasedElementSDL2(ElementSDL2 *e,void (*keyReleased)(ElementSDL2*,SDL_Keycode c)){
+int setKeyReleasedElementSDL2(ElementSDL2 *e,void (*keyReleased)(ElementSDL2*,SDL_Keycode c)){
+  int error = 1;
+  
   if(e){
+    error=0;
     e->keyReleased=keyReleased;
   }
+
+  return error;
 }
 
-void setUnClickElementSDL2(ElementSDL2 *e,void (*unCLick)(ElementSDL2*)){
+int setUnClickElementSDL2(ElementSDL2 *e,void (*unCLick)(ElementSDL2*)){
+  int error = 1;
+  
   if(e){
+    error=0;
     e->unClick=unCLick;
   }
+
+  return error;
 }
 
-void setOnClickElementSDL2(ElementSDL2 *e,void (*onCLick)(ElementSDL2*)){
+int setOnClickElementSDL2(ElementSDL2 *e,void (*onCLick)(ElementSDL2*)){
+  int error = 1;
+  
   if(e){
+    error=0;
     e->onClick=onCLick;
   }
+
+  return error;
 }
 
-void setUnSelectElementSDL2(ElementSDL2 *e,void (*unSelect)(ElementSDL2*)){
+int setUnSelectElementSDL2(ElementSDL2 *e,void (*unSelect)(ElementSDL2*)){
+  int error = 1;
+  
   if(e){
+    error=0;
     e->unSelect=unSelect;
   }
+
+  return error;
 }
 
-void setEndSpriteElementSDL2(ElementSDL2 *e,void (*endSprite)(ElementSDL2*,int)){
+int setEndSpriteElementSDL2(ElementSDL2 *e,void (*endSprite)(ElementSDL2*,int)){
+  int error = 1;
+  
   if(e){
+    error=0;
     e->endSprite=endSprite;
   }
+
+  return error;
 }
 
-void addElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *add){
+int addElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *add){
   PtrElementSDL2 *pe;
+  int error = 1;
+  
   if(e && add){
     pe=malloc(sizeof(*pe));
     pe->element=add;
@@ -1075,9 +1197,12 @@ void addElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *add){
     
     if(!e->interactions){
       e->interactions=malloc(sizeof(*(e->interactions)));
-      e->interactions->first=pe;
-      e->interactions->last=pe;
-      e->interactions->current=pe;
+      if(e->interactions){
+	e->interactions->first=pe;
+	e->interactions->last=pe;
+	e->interactions->current=pe;
+	error = 0;
+      }
     }else{
       if(!e->interactions->first){
 	e->interactions->first=pe;
@@ -1086,12 +1211,16 @@ void addElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *add){
 	e->interactions->last->next=pe;
       }
       e->interactions->last=pe;
+      error = 0;
     }
   }
+
+  return error;
 }
 
-void delElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *del){
+int delElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *del){
   PtrElementSDL2 **pe, *rm, **tmp=NULL;
+  int error = 1;
 
   if(e && e->interactions && del){
     pe=&(e->interactions->first);
@@ -1102,6 +1231,7 @@ void delElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *del){
     }
 
     if(*pe && (*pe)->element==del){
+      error = 0;
       rm=*pe;
       *pe=(*pe)->next;
       free(rm);
@@ -1116,50 +1246,86 @@ void delElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *del){
 	}
       }
     }
-  }   
-}
-
-void addHitBoxElementSDL2(ElementSDL2 *e,HitBox *hb,int blocking){
-  if(e && hb){
-    addHitBox(e->hitboxes,hb,blocking);
   }
+
+  return error;
 }
 
-void addRotationSpeedElementSDL2(ElementSDL2 *e,float s){
+int addHitBoxElementSDL2(ElementSDL2 *e,HitBox *hb,int blocking){
+  int error = 1;
+
+  if(e && hb){
+    error=addHitBox(e->hitboxes,hb,blocking);
+  }
+
+  return error;
+}
+
+int addRotationSpeedElementSDL2(ElementSDL2 *e,float s){
+  int error = 1;
+
   if(e && e->coulBlock[0]==-1){
     e->rotSpeed+=s;
+    error = 0;
   }
+
+  return error;
 }
 
-void setRotationSpeedElementSDL2(ElementSDL2 *e,float s){
+int setRotationSpeedElementSDL2(ElementSDL2 *e,float s){
+  int error = 1;
+
   if(e && e->coulBlock[0]==-1){
     e->rotSpeed=s;
+    error = 0;
   }
+
+  return error;
 }
 
-void addAngleElementSDL2(ElementSDL2 *e,float a){
+int addAngleElementSDL2(ElementSDL2 *e,float a){
+  int error = 1;
+
   if(e && e->coulBlock[0]==-1){
     e->rotation+=a;
+    error = 0;
   }
+
+  return error;
 }
 
-void setAngleElementSDL2(ElementSDL2 *e,float a){
+int setAngleElementSDL2(ElementSDL2 *e,float a){
+  int error = 1;
+
   if(e && e->coulBlock[0]==-1){
     e->rotation=a;
+    error = 0;
   }
+
+  return error;
 }
 
-void setRotationPointElementSDL2(ElementSDL2 *e,float x,float y){
+int setRotationPointElementSDL2(ElementSDL2 *e,float x,float y){
+  int error = 1;
+
   if(e && e->coulBlock[0]==-1){
     e->prX=x;
     e->prY=y;
+    error = 0;
   }
+
+  return error;
 }
 
-void setDataElementSDL2(ElementSDL2 *e,void *data){
+int setDataElementSDL2(ElementSDL2 *e,void *data){
+  int error = 1;
+
   if(e){
+    error = 0;
     e->data=data;
   }
+
+  return error;
 }
 
 int createAnimationElementSDL2(ElementSDL2 *e,int code){
@@ -1391,44 +1557,64 @@ ElementSDL2* nextElementSDL2(){
 /* -------------------------------------------------------
  * modification d'un Element SDL2 spécifique aux Entry
  */
-void changeSizeEntrySDL2(ElementSDL2 *e,int size_min,int size_max){
+int changeSizeEntrySDL2(ElementSDL2 *e,int size_min,int size_max){
   char *s;
+  int error = 1;
+  
   if(_windows_SANDAL2 && _windows_SANDAL2->current && e && e->entry){
+    error = 0;
     if(size_min>-1 && size_min<=size_max){
       e->entry->size_min=size_min;
     }
     if(size_max>-1 && size_max>=size_min && size_max!=e->entry->size_max){
       s=malloc((size_max+1)*sizeof(*s));
-      strncpy(s,e->police->text,size_max);
-      s[size_max]='\0';
-      PFREE(e->police->text);
-      e->police->text=s;
-      e->entry->size_max=size_max;
-      actualizeTextFontSDL2(e->police,e->entry->isScripted);
+      error = 1;
+      if(s){
+	strncpy(s,e->police->text,size_max);
+	s[size_max]='\0';
+	PFREE(e->police->text);
+	e->police->text=s;
+	e->entry->size_max=size_max;
+	error=actualizeTextFontSDL2(e->police,e->entry->isScripted);
+      }
     }
   }
+
+  return error;
 }
 
-void setScriptedEntrySDL2(ElementSDL2 *e,int isScripted){
+int setScriptedEntrySDL2(ElementSDL2 *e,int isScripted){
+  int error = 1;
+  
   if(_windows_SANDAL2 && _windows_SANDAL2->current && e && e->entry && e->entry->isScripted!=isScripted){
     e->entry->isScripted=isScripted;
-    actualizeTextFontSDL2(e->police,e->entry->isScripted);
+    error=actualizeTextFontSDL2(e->police,e->entry->isScripted);
   }
+
+  return error;
 }
 
-void addCharEntrySDL2(ElementSDL2 *e,char c){
+int addCharEntrySDL2(ElementSDL2 *e,char c){
+  int error = 1;
+  
   if(_windows_SANDAL2 && _windows_SANDAL2->current && e && e->entry && e->police && e->police->text && e->entry->size < e->entry->size_max){
     *(e->police->text+e->entry->size)=c;
     ++e->entry->size;
-    actualizeTextFontSDL2(e->police,e->entry->isScripted);
+    error=actualizeTextFontSDL2(e->police,e->entry->isScripted);
   }
+
+  return error;
 }
 
-void removeCharEntrySDL2(ElementSDL2 *e){
+int removeCharEntrySDL2(ElementSDL2 *e){
+  int error = 1;
+  
   if(_windows_SANDAL2 && _windows_SANDAL2->current && e && e->entry && e->police && e->police->text && e->entry->size){
     --e->entry->size;
     *(e->police->text+e->entry->size)=' ';
-    actualizeTextFontSDL2(e->police,e->entry->isScripted);
+    error=actualizeTextFontSDL2(e->police,e->entry->isScripted);
   }
+
+  return error;
 }
 /* ------------------------------------------------------- */

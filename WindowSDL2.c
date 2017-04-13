@@ -5,18 +5,28 @@ ListWindowSDL2 * _windows_SANDAL2 = NULL;
 /* -------------------------------------------------------
  * Window SDL2
  */
-void resizeWindowSDL2(unsigned width,unsigned height){
+int resizeWindowSDL2(unsigned width,unsigned height){
+  int error = 1;
+  
   if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->window){
     SDL_SetWindowSize(_windows_SANDAL2->current->window,width,height);
     _windows_SANDAL2->current->width=width;
     _windows_SANDAL2->current->height=height;
+    error=0;
   }
+
+  return error;
 }
 
-void changeDisplayWindowSDL2(int displayCode){
+int changeDisplayWindowSDL2(int displayCode){
+  int error = 1;
+  
   if(_windows_SANDAL2 && _windows_SANDAL2->current){
     _windows_SANDAL2->current->displayCode=displayCode;
+    error = 0;
   }
+
+  return error;
 }
 
 int initIteratorWindowSDL2(){

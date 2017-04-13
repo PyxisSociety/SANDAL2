@@ -179,14 +179,16 @@ void freeListPtrElementSDL2(ListPtrElementSDL2* l);
  * @brief add an element to a list (plan) of elements
  * @param l : list (plan) of elements which to add an element
  * @param e : element to add
+ * @return 0 if it could be done, 1 if not
  */
-void addPtrElementSDL2(ListPtrElementSDL2* l,ElementSDL2* e);
+int addPtrElementSDL2(ListPtrElementSDL2* l,ElementSDL2* e);
 /**
  * @brief remove an element to a list (plan) of elements
  * @param l : list (plan) of elements which to remove an element
  * @param e : element to remove
+ * @return 0 if it could be done, 1 if not
  */
-void removePtrElementSDL2(ListPtrElementSDL2* l,ElementSDL2* e);
+int removePtrElementSDL2(ListPtrElementSDL2* l,ElementSDL2* e);
 /* ------------------------------------------------------- */
 
 
@@ -210,18 +212,21 @@ void freeListDCElementSDL2(ListDCElementSDL2* l);
  * @brief add a list (plan) to a list (display code) of lists (plan) of elements
  * @param l : list (display code) of lists (plan) of elements which to add a list (plan)
  * @param lp : list (plan) to add
+ * @return 0 if it could be done, 1 if not
  */
 void addListPtrElementSDL2(ListDCElementSDL2* l, ListPtrElementSDL2 *lp);
 /**
  * @brief remove a list (plan) from a list (display code) of lists (plan) of elements
  * @param l : list (display code) of lists (plan) of elements which to remove an element
  * @param lp : list (plan) to remove
+ * @return 0 if it could be done, 1 if not
  */
 void removeListPtrElementSDL2(ListDCElementSDL2* l,ListPtrElementSDL2 *lp);
 /**
  * @brief remove an element all lists (display code) starting from a list (display code) of lists (plan) of elements 
  * @param l : list (display code) of lists (plan) of elements which to remove an element
  * @param e : element to be removed
+ * @return 0 if it could be done, 1 if not
  */
 void removeDCElementSDL2(ListDCElementSDL2** l,ElementSDL2 *e);
 /* ------------------------------------------------------- */
@@ -245,6 +250,7 @@ void freeListElementSDL2(ListElementSDL2* l);
 /**
  * @brief add an element to a list of lists (display code) of lists (plan) of elements
  * @param e : element to be add
+ * @return 0 if it could be done, 1 if not
  */
 int addElementSDL2(ElementSDL2* e);
 /**
@@ -254,8 +260,9 @@ void cleanElementSDL2();
 /**
  * @brief mark an element as removable
  * @param e : element to be removed
+ * @return 0 if it could be done, 1 if not
  */
-void removeElementSDL2(ElementSDL2 *e);
+int removeElementSDL2(ElementSDL2 *e);
 /* ------------------------------------------------------- */
 
 
@@ -421,9 +428,10 @@ int getRotationSpeedElementSDL2(ElementSDL2* e,float* s);
 /**
  * @brief getter for the element's data
  * @param e : element to get its data
- * @return the data of the element
+ * @param data : where to store the element's data
+ * @return 0 if it could be done, 1 if not
  */
-void * getDataElementSDL2(ElementSDL2* e);
+int getDataElementSDL2(ElementSDL2* e,void ** data);
 /**
  * @brief tells whether or not the element is selected
  * @param e : element to get the information from
@@ -442,26 +450,30 @@ int isSelectedElementSDL2(ElementSDL2 *e, int * select);
  * @brief set the element's font
  * @param e : element to be modified
  * @param font : path of the new font
+ * @return 1 if there was an error, 0 if not
  */
-void setFontElementSDL2(ElementSDL2 *e,char * font);
+int setFontElementSDL2(ElementSDL2 *e,char * font);
 /**
  * @brief set the element's text
  * @param e : element to be modified
  * @param text : the new text
+ * @return 1 if there was an error, 0 if not
  */
-void setTextElementSDL2(ElementSDL2 *e,char * text);
+int setTextElementSDL2(ElementSDL2 *e,char * text);
 /**
  * @brief set the element's block color
  * @param e : element to be modified
  * @param color : new block color
+ * @return 1 if there was an error, 0 if not
  */
-void setColorElementSDL2(ElementSDL2 *e,int color[4]);
+int setColorElementSDL2(ElementSDL2 *e,int color[4]);
 /**
  * @brief set the element's text color
  * @param e : element to be modified
  * @param color : new text color
+ * @return 1 if there was an error, 0 if not
  */
-void setTextColorElementSDL2(ElementSDL2 *e, int color[4]);
+int setTextColorElementSDL2(ElementSDL2 *e, int color[4]);
 /**
  * @brief set the element's text color
  * @param e : element to be modified
@@ -473,14 +485,14 @@ int setTextQualityElementSDL2(ElementSDL2 *e, int quality);
  * @brief set the element's image
  * @param e : element to be modified
  * @param image : path of the new image
- * @return 0 if it failed, 1 if it succeeded
+ * @return 1 if it failed, 0 if it succeeded
  */
 int setImageElementSDL2(ElementSDL2 *e,char *image);
 /**
  * @brief set the element's image with a SDL2's texture
  * @param e : element to be modified
  * @param image : texture of the new image
- * @return 0 if it failed, 1 if it succeeded
+ * @return 1 if it failed, 0 if it succeeded
  */
 int setImageTextureElementSDL2(ElementSDL2 *e,SDL_Texture * image);
 /**
@@ -489,106 +501,122 @@ int setImageTextureElementSDL2(ElementSDL2 *e,SDL_Texture * image);
  * @param x : new abscissa coordinate
  * @param y : new ordinate coordinate
  */
-void replaceElementSDL2(ElementSDL2 *e,float x,float y);
+int replaceElementSDL2(ElementSDL2 *e,float x,float y);
 /**
  * @brief move an element
  * @param e : element to be modified
  * @param x : abscissa increment
  * @param y : ordinate increment
+ * @return 1 if it was possible, 0 if not
  */
-void moveElementSDL2(ElementSDL2 *e,float x,float y);
+int moveElementSDL2(ElementSDL2 *e,float x,float y);
 /**
  * @brief resize an element
  * @param e : element to be modified
  * @param width : new width
  * @param height : new height
+ * @return 1 if it was possible, 0 if not
  */
-void resizeElementSDL2(ElementSDL2 *e,float width,float height);
+int resizeElementSDL2(ElementSDL2 *e,float width,float height);
 /**
  * @brief set the text size of the text of an element in this element
  * @param e : element to be modified
  * @param textSize : new size of the text (in percent)
+ * @return 1 if it was possible, 0 if not
  */
-void setTextSize(ElementSDL2 *e,float textSize);
+int setTextSize(ElementSDL2 *e,float textSize);
 /**
  * @brief add a display code to an element (if it did not already had it)
  * @param e : element to be modified
  * @param displayCode : new display code
  * @param plan : plan linked to the new display code
+ * @return 1 if it was possible, 0 if not
  */
-void addDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode,int plan);
+int addDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode,int plan);
 /**
  * @brief remove a display code to an element (if it has it)
  * @param e : element to be modified
  * @param displayCode : display code to be removed
+ * @return 1 if it was possible, 0 if not
  */
-void removeDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode);
+int removeDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode);
 /**
  * @brief set the isDisplaied option of a display code (if the element has it)
  * @param e : element to be modified
  * @param displayCode : display code to be modified
  * @param isDisplaied : new isDisplaied option
+ * @return 1 if it was possible, 0 if not
  */
-void setDisplayElementSDL2(ElementSDL2 *e,int displayCode,int isDisplaied);
+int setDisplayElementSDL2(ElementSDL2 *e,int displayCode,int isDisplaied);
 /**
  * @brief set the plan of a display code (if the element has it)
  * @param e : element to be modified
  * @param displayCode : display code to be modified
  * @param plan : new plan linked to the display code
+ * @return 1 if it was possible, 0 if not
  */
-void setPlanElementSDL2(ElementSDL2 *e,int DisplayCode,int plan);
+int setPlanElementSDL2(ElementSDL2 *e,int DisplayCode,int plan);
 /**
  * @brief set the continuous behaviour of an element
  * @param e : element to be modified
  * @param action : function to be called on each update call
+ * @return 1 if it was possible, 0 if not
  */
-void setActionElementSDL2(ElementSDL2 *e,void (*action)(ElementSDL2*));
+int setActionElementSDL2(ElementSDL2 *e,void (*action)(ElementSDL2*));
 /**
  * @brief set the behaviour of an element when a key is pressed
  * @param e : element to be modified
  * @param keyPress : function to be called when a key is pressed
+ * @return 1 if it was possible, 0 if not
  */
-void setKeyPressElementSDL2(ElementSDL2 *e,void (*keyPress)(ElementSDL2*,SDL_Keycode c));
+int setKeyPressElementSDL2(ElementSDL2 *e,void (*keyPress)(ElementSDL2*,SDL_Keycode c));
 /**
  * @brief set the behaviour of an element when a key is released
  * @param e : element to be modified
  * @param keyReleased : function to be called when a key is released
+ * @return 1 if it was possible, 0 if not
  */
-void setKeyReleasedElementSDL2(ElementSDL2 *e,void (*keyReleased)(ElementSDL2*,SDL_Keycode c));
+int setKeyReleasedElementSDL2(ElementSDL2 *e,void (*keyReleased)(ElementSDL2*,SDL_Keycode c));
 /**
  * @brief set the behaviour of an element when it is clicked
  * @param e : element to be modified
  * @param onCLick : function to be called when it is clicked
+ * @return 1 if it was possible, 0 if not
  */
-void setOnClickElementSDL2(ElementSDL2 *e,void (*onCLick)(ElementSDL2*));
+int setOnClickElementSDL2(ElementSDL2 *e,void (*onCLick)(ElementSDL2*));
 /**
  * @brief set the behaviour of an element when it is unclicked
  * @param e : element to be modified
  * @param unCLick : function to be called when it is unclicked
+ * @return 1 if it was possible, 0 if not
  */
-void setUnClickElementSDL2(ElementSDL2 *e,void (*unCLick)(ElementSDL2*));
+int setUnClickElementSDL2(ElementSDL2 *e,void (*unCLick)(ElementSDL2*));
 /**
  * @brief set the behaiour of an element when it is unselect
  * @param e : element to be modified
  * @param unSelect : new behaviour
+ * @return 1 if it was possible, 0 if not
  */
-void setUnSelectElementSDL2(ElementSDL2 *e,void (*unSelect)(ElementSDL2*));
+int setUnSelectElementSDL2(ElementSDL2 *e,void (*unSelect)(ElementSDL2*));
 /**
  * @brief set the behaiour of an element when it ends a sprite
  * @param e : element to be modified
  * @param endSprite : new behaviour
+ * @return 1 if it was possible, 0 if not
  */
-void setEndSpriteElementSDL2(ElementSDL2 *e,void (*endSprite)(ElementSDL2*,int));
+int setEndSpriteElementSDL2(ElementSDL2 *e,void (*endSprite)(ElementSDL2*,int));
 /**
  * @brief add an element to another so that this other can modifie the first one
  * @param e : element to be modified
  * @param add : element to be add
+ * @return 1 if it was possible, 0 if not
  */
-void addElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *add);
+int addElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *add);
 /**
  * @brief remove an element to another so that this other can not modifie the first one
  * @param e : element to be modified
  * @param add : element to be removed
+ * @return 1 if it was possible, 0 if not
  */
 void delElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *del);
 /**
@@ -596,45 +624,52 @@ void delElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *del);
  * @param e : element to be modified
  * @param hb : clickable zone to be add
  * @param blocking : tells whether or not the clickable zone is a blocking one
+ * @return 1 if it was possible, 0 if not
  */
-void addHitBoxElementSDL2(ElementSDL2 *e,HitBox *hb,int blocking);
+int addHitBoxElementSDL2(ElementSDL2 *e,HitBox *hb,int blocking);
 /**
  * @brief increase the rotation speed of an element
  * @param e : element to be modified
  * @param s : rotation speed increment
+ * @return 1 if it was possible, 0 if not
  */
-void addRotationSpeedElementSDL2(ElementSDL2 *e,float s);
+int addRotationSpeedElementSDL2(ElementSDL2 *e,float s);
 /**
  * @brief set the rotation speed of an element
  * @param e : element to be modified
  * @param s : new rotation speed of the element
+ * @return 1 if it was possible, 0 if not
  */
-void setRotationSpeedElementSDL2(ElementSDL2 *e,float s);
+int setRotationSpeedElementSDL2(ElementSDL2 *e,float s);
 /**
  * @brief increase the angle of an element
  * @param e : element to be modified
  * @param a : angle increment
+ * @return 1 if it was possible, 0 if not
  */
-void addAngleElementSDL2(ElementSDL2 *e,float a);
+int addAngleElementSDL2(ElementSDL2 *e,float a);
 /**
  * @brief set the angle of an element
  * @param e : element to be modified
  * @param a : new angle of the element
+ * @return 1 if it was possible, 0 if not
  */
-void setAngleElementSDL2(ElementSDL2 *e,float a);
+int setAngleElementSDL2(ElementSDL2 *e,float a);
 /**
  * @brief set the rotation point's coordinates of an element
  * @param e : element to be modified
  * @param x : new abscissa coordinate of the rotation point
  * @param y : new ordinate coordinate of the rotation point
+ * @return 1 if it was possible, 0 if not
  */
-void setRotationPointElementSDL2(ElementSDL2 *e,float x,float y);
+int setRotationPointElementSDL2(ElementSDL2 *e,float x,float y);
 /**
  * @brief set the element's data
  * @param e : element to be modified
  * @param data : new data of the element
+ * @return 1 if it was possible, 0 if not
  */
-void setDataElementSDL2(ElementSDL2 *e,void *data);
+int setDataElementSDL2(ElementSDL2 *e,void *data);
 /**
  * @brief add an empty animation to the element
  * @param e : element
@@ -764,25 +799,29 @@ ElementSDL2* nextElementSDL2();
  * @param e : element to be modified
  * @param size_min : new minimum size of the prompt
  * @param size_max : new maximum size of the prompt
+ * @return 0 if it was possible, 1 if not
  */
-void changeSizeEntrySDL2(ElementSDL2 *e,int size_min,int size_max);
+int changeSizeEntrySDL2(ElementSDL2 *e,int size_min,int size_max);
 /**
  * @brief set an element to crypted or uncrypted
  * @param e : element to be modified
  * @param isScripted : crypted option
+ * @return 0 if it was possible, 1 if not
  */
-void setScriptedEntrySDL2(ElementSDL2 *e,int isScripted);
+int setScriptedEntrySDL2(ElementSDL2 *e,int isScripted);
 /**
  * @brief add a character to a prompt
  * @param e : element to be modified
  * @param c : character to be added
+ * @return 0 if it was possible, 1 if not
  */
-void addCharEntrySDL2(ElementSDL2 *e,char c);
+int addCharEntrySDL2(ElementSDL2 *e,char c);
 /**
  * @brief remove a character to a prompt
  * @param e : element to be modified
+ * @return 0 if it was possible, 1 if not
  */
-void removeCharEntrySDL2(ElementSDL2 *e);
+int removeCharEntrySDL2(ElementSDL2 *e);
 /* ------------------------------------------------------- */
 
 #endif

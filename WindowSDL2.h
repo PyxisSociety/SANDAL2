@@ -85,13 +85,15 @@ extern ListWindowSDL2 * _windows_SANDAL2;
  * @brief Resize the current window
  * @param width : new width of the current window
  * @param height : new height of the current window
+ * @return 1 if it was possible, 0 if not
  */
-void resizeWindowSDL2(unsigned width,unsigned height);
+int resizeWindowSDL2(unsigned width,unsigned height);
 /**
  * @brief Change the display code of the current window
  * @param displayCode : new display code of the current window
+ * @return 1 if it was possible, 0 if not
  */
-void changeDisplayWindowSDL2(int displayCode);
+int changeDisplayWindowSDL2(int displayCode);
 /**
  * @brief Initialise the iterator of the windows' list
  * @return 0 if the iterator could not be initialised, 1 if it could

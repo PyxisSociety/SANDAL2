@@ -9,4 +9,5 @@
 	passage de liste d'element a liste de liste d'element (display code)
 1.0.1 : gestion des evenements cachés
 1.0.2 : ajout des rendus de texte Shaded et Blended
+      	correction des retours d'erreurs et ajout quand manquant
       	// En cours de developpement

@@ -76,76 +76,91 @@ void freeWindowSDL2(WindowSDL2 *fen);
  * @param SDLFlags : flags of SDL2
  * @param background : color of the background
  * @param displayCode : display code of the window
+ * @return 1 if it failed, 0 if not
  */
-void initWindowSDL2(int width,int height,char *title,int SDLFlags,int background[4],int displayCode);
+int initWindowSDL2(int width,int height,char *title,int SDLFlags,int background[4],int displayCode);
 /**
  * @brief update all the elements of the current window
+ * @return 1 if it failed, 0 if not
  */
-void updateWindowSDL2();
+int updateWindowSDL2();
 /**
  * @brief actualise the display of the current window 
+ * @return 1 if it failed, 0 if not
  */
-void displayWindowSDL2();
+int displayWindowSDL2();
 /**
  * @brief activation of click events on the current window
  * @param x : abscissa coordinate of the mouse during the click
  * @param y : ordinate coordinate of the mouse during the click
+ * @return 1 if it failed, 0 if not
  */
-void clickWindowSDL2(int x,int y);
+int clickWindowSDL2(int x,int y);
 /**
  * @brief activation of unclick events on the current window
  * @param x : abscissa coordinate of the mouse during the unclick
  * @param y : ordinate coordinate of the mouse during the unclick
+ * @return 1 if it failed, 0 if not
  */
-void unclickWindowSDL2(int x,int y);
+int unclickWindowSDL2(int x,int y);
 /**
  * @brief activation of the key pressed events on the current window
  * @param c : key which was pressed
+ * @return 1 if it failed, 0 if not
  */
-void keyPressedWindowSDL2(char c);
+int keyPressedWindowSDL2(char c);
 /**
  * @brief activation of the key released events on the current window
  * @param c : key which was released
+ * @return 1 if it failed, 0 if not
  */
-void keyReleasedWindowSDL2(char c);
+int keyReleasedWindowSDL2(char c);
 /**
  * @brief update all the elements of all the windows
+ * @return 1 if it failed, 0 if not
  */
-void updateAllWindowSDL2();
+int updateAllWindowSDL2();
 /**
  * @brief actualise the display of all the windows 
+ * @return 0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one
  */
-void displayAllWindowSDL2();
+int displayAllWindowSDL2();
 /**
  * @brief activation of click events on all the windows
  * @param x : abscissa coordinate of the mouse during the click
  * @param y : ordinate coordinate of the mouse during the click
+ * @return 0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one
  */
-void clickAllWindowSDL2(int x,int y);
+int clickAllWindowSDL2(int x,int y);
 /**
  * @brief activation of unclick events on all the windows
  * @param x : abscissa coordinate of the mouse during the unclick
  * @param y : ordinate coordinate of the mouse during the unclick
+ * @return 0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one
  */
-void unclickAllWindowSDL2(int x,int y);
+int unclickAllWindowSDL2(int x,int y);
 /**
  * @brief activation of the key pressed events on all windows
  * @param c : key which was pressed
+ * @return 0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one
  */
-void keyPressedAllWindowSDL2(char c);
+int keyPressedAllWindowSDL2(char c);
 /**
  * @brief activation of the key released events on all windows
  * @param c : key which was released
+ * @return 0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one
  */
-void keyReleasedAllWindowSDL2(char c);
+int keyReleasedAllWindowSDL2(char c);
 /**
  * @brief close the current windows and go to the next
+ * @return 1 if it failed, 0 if not
  */
-void closeWindowSDL2();
+int closeWindowSDL2();
 /**
  * @brief close all windows
+ * @return 1 if it failed, 0 if not
  */
-void closeAllWindowSDL2();
+int closeAllWindowSDL2();
 /* ------------------------------------------------------- */
 
 /* ------------------------------------------------------- 
@@ -153,9 +168,10 @@ void closeAllWindowSDL2();
  */
 /**
  * @brief Get the event (if there is one) and apply the corresponding functions
+ * @param error: where to store the error flag (0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one)
  * @return 1 if the user asked to close the window, 0 if not
  */
-int PollEventSDL2();
+int PollEventSDL2(int * error);
 /* ------------------------------------------------------- */
 
 #endif

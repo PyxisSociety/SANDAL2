@@ -88,8 +88,9 @@ void freeWindowSDL2(WindowSDL2 *fen){
   }
 }
 
-void initWindowSDL2(int width,int height,char *title,int SDLFlags,int background[4],int displayCode){
+int initWindowSDL2(int width,int height,char *title,int SDLFlags,int background[4],int displayCode){
   WindowSDL2 *fen=malloc(sizeof(*fen));
+  int error = 1;
 
   fen->window=SDL_CreateWindow(title,
 			      SDL_WINDOWPOS_CENTERED,
@@ -123,6 +124,7 @@ void initWindowSDL2(int width,int height,char *title,int SDLFlags,int background
 	    _windows_SANDAL2->first = fen;
 	    _windows_SANDAL2->last = fen;
 	    _windows_SANDAL2->current = fen;
+	    error = 0;
 	  }else{
 	    SDL_DestroyWindow(fen->window);
 	    SDL_DestroyRenderer(fen->renderer);
@@ -140,15 +142,19 @@ void initWindowSDL2(int width,int height,char *title,int SDLFlags,int background
   }else{
     free(fen);
   }
+
+  return error;
 }
 
-void updateWindowSDL2(){
+int updateWindowSDL2(){
   PtrElementSDL2 **ele;
   ListPtrElementSDL2 *lp;
   ListDCElementSDL2 *ldc;
   unsigned i;
+  int error=1;
 
   if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
+    error = 0;
     /* update de la taille de la fenetre */
     SDL_GetWindowSize(_windows_SANDAL2->current->window,&(_windows_SANDAL2->current->width),&(_windows_SANDAL2->current->height));
     
@@ -199,17 +205,21 @@ void updateWindowSDL2(){
       cleanElementSDL2();
     }
   }
+
+  return error;
 }
 
-void displayWindowSDL2(){
+int displayWindowSDL2(){
   PtrElementSDL2 *ele;
   ListPtrElementSDL2 * lp;
   ListDCElementSDL2 * ldc;
   SDL_Rect r,sr, *srect;
   int coul[4];
   SDL_Point p;
+  int error = 1;
 
   if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
+    error=0;
     /* fond de la fenetre */
     copyColor(coul,_windows_SANDAL2->current->background);
     SDL_SetRenderDrawColor(_windows_SANDAL2->current->renderer,coul[0],coul[1],coul[2],coul[3]);
@@ -283,16 +293,20 @@ void displayWindowSDL2(){
     }
     SDL_RenderPresent(_windows_SANDAL2->current->renderer);
   }
+
+  return error;
 }
 
-void clickWindowSDL2(int x,int y){
+int clickWindowSDL2(int x,int y){
   PtrElementSDL2 *e;
   ListPtrElementSDL2 *lp;
   ListDCElementSDL2 *ldc;
   float newX,newY,c,s,xtmp,prX,prY;
   float rot = 0.f;
+  int error = 1;
 
   if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
+    error = 0;
     /* recherche de la liste d'element ayant le bon code de display */
     if(_windows_SANDAL2->current->liste->currentDCIterator && _windows_SANDAL2->current->liste->currentDCIterator->code<=_windows_SANDAL2->current->displayCode){
       ldc=_windows_SANDAL2->current->liste->currentDCIterator;
@@ -349,16 +363,20 @@ void clickWindowSDL2(int x,int y){
       }
     }
   }
+
+  return error;
 }
 
-void unclickWindowSDL2(int x,int y){
+int unclickWindowSDL2(int x,int y){
   PtrElementSDL2 *e;
   ListPtrElementSDL2 *lp;
   ListDCElementSDL2 *ldc;
   float newX,newY,c,s,xtmp;
   float rot = 0.f;
+  int error = 1;
 
   if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
+    error = 0;
     /* recherche de la liste d'element ayant le bon code de display */
     if(_windows_SANDAL2->current->liste->currentDCIterator && _windows_SANDAL2->current->liste->currentDCIterator->code<=_windows_SANDAL2->current->displayCode){
       ldc=_windows_SANDAL2->current->liste->currentDCIterator;
@@ -405,14 +423,18 @@ void unclickWindowSDL2(int x,int y){
       }
     }
   }
+
+  return error;
 }
 
-void keyPressedWindowSDL2(char c){
+int keyPressedWindowSDL2(char c){
   PtrElementSDL2 *e;
   ListPtrElementSDL2 *lp;
   ListDCElementSDL2 *ldc;
+  int error = 1;
 
   if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
+    error = 0
     /* recherche de la liste d'element ayant le bon code de display */
     if(_windows_SANDAL2->current->liste->currentDCIterator && _windows_SANDAL2->current->liste->currentDCIterator->code<=_windows_SANDAL2->current->displayCode){
       ldc=_windows_SANDAL2->current->liste->currentDCIterator;
@@ -437,14 +459,18 @@ void keyPressedWindowSDL2(char c){
       }
     }
   }
+
+  return error;
 }
 
-void keyReleasedWindowSDL2(char c){
+int keyReleasedWindowSDL2(char c){
   PtrElementSDL2 *e;
   ListPtrElementSDL2 *lp;
   ListDCElementSDL2 *ldc;
+  int error = 1;
 
   if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
+    error = 0;
     /* recherche de la liste d'element ayant le bon code de display */
     if(_windows_SANDAL2->current->liste->currentDCIterator && _windows_SANDAL2->current->liste->currentDCIterator->code<=_windows_SANDAL2->current->displayCode){
       ldc=_windows_SANDAL2->current->liste->currentDCIterator;
@@ -469,89 +495,158 @@ void keyReleasedWindowSDL2(char c){
       }
     }
   }
+
+  return error;
 }
 
 
-void updateAllWindowSDL2(){
+int updateAllWindowSDL2(){
   WindowSDL2 * w;
+  int error = 1;
+  int err;
+  int bit = 2;
   
   if(_windows_SANDAL2){
+    error = 0;
     w=_windows_SANDAL2->current;
     initIteratorWindowSDL2();
     do{
-      updateWindowSDL2();
+      err=updateWindowSDL2()*bit;
+      if(!error && err){
+	error1;
+      }
+      error+=err*bit;
+      bit*=2;
     }while(!nextWindowSDL2());
     _windows_SANDAL2->current=w;
   }
+
+  return error;
 }
 
-void displayAllWindowSDL2(){
+int displayAllWindowSDL2(){
   WindowSDL2 * w;
+  int error = 1;
+  int err;
+  int bit = 2;
   
   if(_windows_SANDAL2){
+    error = 0;
     w=_windows_SANDAL2->current;
     initIteratorWindowSDL2();
     do{
-      displayWindowSDL2();
+      err=displayWindowSDL2()*bit;
+      if(!error && err){
+	error1;
+      }
+      error+=err*bit;
+      bit*=2;
     }while(!nextWindowSDL2());
     _windows_SANDAL2->current=w;
   }
+
+  return error;
 }
 
-void clickAllWindowSDL2(int x,int y){
+int clickAllWindowSDL2(int x,int y){
   WindowSDL2 * w;
+  int error = 1;
+  int err;
+  int bit = 2;
   
   if(_windows_SANDAL2){
+    error = 0;
     w=_windows_SANDAL2->current;
     initIteratorWindowSDL2();
     do{
-      clickWindowSDL2(x,y);
+      err=clickWindowSDL2(x,y)*bit;
+      if(!error && err){
+	error1;
+      }
+      error+=err*bit;
+      bit*=2;
     }while(!nextWindowSDL2());
     _windows_SANDAL2->current=w;
   }
+
+  return error;
 }
 
-void unclickAllWindowSDL2(int x,int y){
+int unclickAllWindowSDL2(int x,int y){
   WindowSDL2 * w;
+  int error = 1;
+  int err;
+  int bit = 2;
   
   if(_windows_SANDAL2){
+    error = 0;
     w=_windows_SANDAL2->current;
     initIteratorWindowSDL2();
     do{
-      unclickWindowSDL2(x,y);
+      err=unclickWindowSDL2(x,y)*bit;
+      if(!error && err){
+	error1;
+      }
+      error+=err*bit;
+      bit*=2;
     }while(nextWindowSDL2());
     _windows_SANDAL2->current=w;
   }
+
+  return error;
 }
 
-void keyPressedAllWindowSDL2(char c){
+int keyPressedAllWindowSDL2(char c){
   WindowSDL2 * w;
+  int error = 1;
+  int err;
+  int bit = 2;
   
   if(_windows_SANDAL2){
+    error = 0;
     w=_windows_SANDAL2->current;
     initIteratorWindowSDL2();
     do{
-      keyPressedWindowSDL2(c);
+      err=keyPressedWindowSDL2(c)*bit;
+      if(!error && err){
+	error1;
+      }
+      error+=err*bit;
+      bit*=2;
     }while(!nextWindowSDL2());
     _windows_SANDAL2->current=w;
   }
+
+  return error;
 }
 
-void keyReleasedAllWindowSDL2(char c){
+int keyReleasedAllWindowSDL2(char c){
   WindowSDL2 * w;
+  int error = 1;
+  int err;
+  int bit = 2;
   
   if(_windows_SANDAL2){
+    error = 0;
     w=_windows_SANDAL2->current;
     initIteratorWindowSDL2();
     do{
-      keyReleasedWindowSDL2(c);
+      err=keyReleasedWindowSDL2(c)*bit;
+      if(!error && err){
+	error1;
+      }
+      error+=err*bit;
+      bit*=2;
     }while(!nextWindowSDL2());
     _windows_SANDAL2->current=w;
   }
+
+  return error;
 }
 
-void closeWindowSDL2(){
+int closeWindowSDL2(){
   WindowSDL2 * f, * tmp;
+  int error = 1;
   
   if(_windows_SANDAL2 && _windows_SANDAL2->current){
     f=_windows_SANDAL2->current;
@@ -566,6 +661,7 @@ void closeWindowSDL2(){
 	tmp->next=f->next;
       }
     }
+    error = 0;
     _windows_SANDAL2->current=_windows_SANDAL2->current->next;
     freeWindowSDL2(f);
     if(!_windows_SANDAL2->first){
@@ -573,12 +669,16 @@ void closeWindowSDL2(){
       _windows_SANDAL2 = NULL;
     }
   }
+
+  return error;
 }
 
-void closeAllWindowSDL2(){
+int closeAllWindowSDL2(){
   WindowSDL2 *f, *tmp;
+  int error = 1;
 
   if(_windows_SANDAL2 && _windows_SANDAL2->first){
+    error = 0;
     f=_windows_SANDAL2->first;
     while(f){
       tmp=f;
@@ -588,6 +688,8 @@ void closeAllWindowSDL2(){
     free(_windows_SANDAL2);
     _windows_SANDAL2=NULL;
   }
+
+  return error;
 }
 /* ------------------------------------------------------- */
 
@@ -596,9 +698,11 @@ void closeAllWindowSDL2(){
 /* ------------------------------------------------------- 
  * Gestion d'evenement
  */
-int PollEventSDL2(){
+int PollEventSDL2(int * error){
   SDL_Event event;
   int quit = 0;
+  int err = 0;
+  int bit=1;
 
   while(SDL_PollEvent(&event)){
     switch(event.type){
@@ -611,18 +715,22 @@ int PollEventSDL2(){
       quit = 1;
       break;
     case SDL_KEYUP:
-      keyReleasedWindowSDL2(event.key.keysym.sym);
+      err=err|keyReleasedWindowSDL2(event.key.keysym.sym);
       break;
     case SDL_KEYDOWN:
-      keyPressedWindowSDL2(event.key.keysym.sym);
+      err=err|keyPressedWindowSDL2(event.key.keysym.sym);
       break;
     case SDL_MOUSEBUTTONDOWN:
-      clickWindowSDL2(event.button.x,event.button.y);
+      err=err|clickWindowSDL2(event.button.x,event.button.y);
       break;
     case SDL_MOUSEBUTTONUP:
-      unclickWindowSDL2(event.button.x,event.button.y);
+      err=err|unclickWindowSDL2(event.button.x,event.button.y);
       break;
     }
+  }
+
+  if(error){
+    *error=err;
   }
 
   return quit;

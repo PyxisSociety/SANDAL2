@@ -28,8 +28,9 @@ void freeListDisplayCode(ListDisplayCode *l){
   }
 }
 
-void addDisplayCode(ListDisplayCode* l,int code,int isDisplaied,int plan){
+int addDisplayCode(ListDisplayCode* l,int code,int isDisplaied,int plan){
   DisplayCode **d, *new;
+  int error = 1;
 
   if(l){
     d=&(l->first);
@@ -39,6 +40,7 @@ void addDisplayCode(ListDisplayCode* l,int code,int isDisplaied,int plan){
     if(*d && (*d)->code==code){
       (*d)->isDisplaied=isDisplaied;
       (*d)->plan=plan;
+      error = 0;
     }else{
       new=malloc(sizeof(*new));
       if(new){
@@ -48,8 +50,11 @@ void addDisplayCode(ListDisplayCode* l,int code,int isDisplaied,int plan){
 	new->plan=plan;
 	*d=new;
 	l->size++;
+	error = 0;
       }
     }
   }
+
+  return error;
 }
 /* ------------------------------------------------------- */

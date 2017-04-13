@@ -55,8 +55,9 @@ void freeListDisplayCode(ListDisplayCode* l);
  * @param code : display code of the DisplayCode
  * @param isDisplaied : flag to tell if the element is displaied or not
  * @param plan : plan linked to the display code 
+ * @return 1 if it could not be done, 0 if it could
  */
-void addDisplayCode(ListDisplayCode* l,int code,int isDisplaied,int plan);
+int addDisplayCode(ListDisplayCode* l,int code,int isDisplaied,int plan);
 /* ------------------------------------------------------- */
 
 #endif
