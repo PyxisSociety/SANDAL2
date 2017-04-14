@@ -1,14 +1,14 @@
 #include "FontSDL2.h"
 
 /* -------------------------------------------------------
- * Police de caractere SDL2
+ * Text SDL2
  */
 FontSDL2* createFontSDL2(char *fontPath,char *texte,int couleur[4],int quality){
   FontSDL2 *f;
   SDL_Surface *s;
   SDL_Color c,c2;
 
-  if(_windows_SANDAL2 && _windows_SANDAL2->current){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->renderer){
     f=malloc(sizeof(*f));
     if(f){
       f->font=TTF_OpenFont(fontPath,30);
@@ -45,6 +45,7 @@ FontSDL2* createFontSDL2(char *fontPath,char *texte,int couleur[4],int quality){
 	    f=NULL;
 	  }
 	}else{
+	  TTF_CloseFont(f->font);
 	  free(f);
 	  f=NULL;
 	}
@@ -76,7 +77,7 @@ int actualizeTextFontSDL2(FontSDL2 *font,int isScripted){
   int size,i,error=1;
   SDL_Color c2;
   
-  if(_windows_SANDAL2 && _windows_SANDAL2->current && font){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->renderer && font && font->font){
     if(isScripted){
       size=strlen(font->text);
       str=malloc((size+1)*sizeof(*str));
@@ -140,7 +141,7 @@ int changeTextFontSDL2(FontSDL2 *font,char *text){
   int error = 1;
   SDL_Color c2;
   
-  if(_windows_SANDAL2 && _windows_SANDAL2->current && font && text){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->renderer && font && text && font->font){
     PFREE(font->text);
     font->text=malloc((strlen(text)+1)*sizeof(*(font->text)));
     if(font->text){
@@ -178,7 +179,7 @@ int changeColorFontSDL2(FontSDL2 *font,int color[4]){
   int error = 1;
   SDL_Color c2;
 
-  if(_windows_SANDAL2 && _windows_SANDAL2->current && font){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->renderer && font){
     font->color.r=color[0];
     font->color.g=color[1];
     font->color.b=color[2];
@@ -206,6 +207,55 @@ int changeColorFontSDL2(FontSDL2 *font,int color[4]){
       if(font->texture){
 	error = 0;
       }
+    }
+  }
+
+  return error;
+}
+
+int setStyleFontSDL2(FontSDL2 *font,int style){
+  SDL_Surface *s;
+  int error = 1;
+  SDL_Color c2;
+
+  if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->renderer && font && font->font){
+    TTF_SetFontStyle(font->font,style);
+    switch(font->quality){
+    case 1:
+      c2.r=_windows_SANDAL2->current->background[0];
+      c2.g=_windows_SANDAL2->current->background[1];
+      c2.b=_windows_SANDAL2->current->background[2];
+      c2.a=_windows_SANDAL2->current->background[3];
+      s=TTF_RenderText_Shaded(font->font,font->text,font->color,c2);
+      break;
+    case 2:
+      s=TTF_RenderText_Blended(font->font,font->text,font->color);
+      break;
+    default:
+      s=TTF_RenderText_Solid(font->font,font->text,font->color);
+    }
+    if(s){
+      if(font->texture){
+	SDL_DestroyTexture(font->texture);
+      }
+      font->texture=SDL_CreateTextureFromSurface(_windows_SANDAL2->current->renderer,s);
+      SDL_FreeSurface(s);
+      if(font->texture){
+	error = 0;
+      }
+    }
+  }
+
+  return error;
+}
+
+int getStyleFontSDL2(FontSDL2 *font,int * style){
+  int error = 1;
+
+  if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->renderer && font && font->font){
+    error = 0;
+    if(style){
+      *style=TTF_GetFontStyle(font->font);
     }
   }
 

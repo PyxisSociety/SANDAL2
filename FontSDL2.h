@@ -10,8 +10,22 @@
  */
 
 #define SANDAL2_SOLID 0
+/**< Type of text's texture rendering (see SDL2's TTF_RendreText_Solid)*/
 #define SANDAL2_SHADED 1
+/**< Type of text's texture rendering (see SDL2's TTF_RendreText_Shaded)*/
 #define SANDAL2_BLENDED 2
+/**< Type of text's texture rendering (see SDL2's TTF_RendreText_Blended)*/
+
+#define SANDAL2_BOLD TTF_STYLE_BOLD
+/**< Text font style : bold*/
+#define SANDAL2_ITALIC TTF_STYLE_ITALIC
+/**< Text font style : italic*/
+#define SANDAL2_UNDERLINE TTF_STYLE_UNDERLINE
+/**< Text font style : underline*/
+#define SANDAL2_STRIKETHROUGH TTF_STYLE_STRIKETHROUGH
+/**< Text font style : strikethrough*/
+#define SANDAL2_NORMAL TTF_STYLE_NORMAL
+/**< Text font style : normal*/
 
 /**
  * @brief List of the windows
@@ -37,7 +51,7 @@ typedef struct{
 }FontSDL2;
 
 /* -------------------------------------------------------
- * Police de caractere SDL2
+ * Text SDL2
  */
 /**
  * @brief generate a FontSDL2 using the path to the font, the text and the color of the text (use the window's background font as background color for Shaded quality)
@@ -74,6 +88,20 @@ int changeTextFontSDL2(FontSDL2 *font,char *text);
  * @return 1 if there was an error, 0 if not
  */
 int changeColorFontSDL2(FontSDL2 *font,int color[4]);
+/**
+ * @brief set the text's font style
+ * @param font : the text to be modified
+ * @param style : the style to apply
+ * @return 1 if there was an error, 0 if not
+ */
+int setStyleFontSDL2(FontSDL2 *font,int style);
+/**
+ * @breif get the text's font style
+ * @param font : the text to get the font style
+ * @param style : where to store the style
+ * @return 1 if there was an error, 0 if not
+ */
+int getStyleFontSDL2(FontSDL2 *font,int * style);
 /* ------------------------------------------------------- */
 
 #endif

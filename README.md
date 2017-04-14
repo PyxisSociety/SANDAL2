@@ -137,6 +137,43 @@ Each animation of an element has a code so that you can switch from one to anoth
 to the animation, you will have to define its coordinates in the image of the element (which should be a sprite sheet
 or something the like). Each sprite has a lifespan, which correspond to the number of update call before going to the
 next. That is if the animation is on 'automatic' mode. The mode can be set with the function setWayAnimationElementSDL2.
-If there are no sprite, the entire image will be displaied.
+If there are no sprite, the entire image will be displaied.<br/>
 
-  
+## Versions
+
+0.0.0 : SDL2TK<br/>
+0.0.1 : adding rotations<br/>
+0.0.2 : clickable areas<br/>
+0.0.3 : animation's managment<br/>
+1.0.0 : project renamed SANDAL2<br/>
+      	hide window objects from the user<br/>
+	hide element's lists from the user<br/>
+	going from an element's list structure to a list of list (display code) of list (plan) of elements<br/>
+1.0.1 : possibility to hide event managment from the user<br/>
+1.0.2 : adding shaded and blended text rendering<br/>
+      	adding and correcting error's functions return<br/>
+	wrapping of TTF's font style<br/>
+
+## Project's size
+
+FontSDL2.c : 263 rows<br/>
+WindowSDL2.c : 179 rows<br/>
+DisplayCode.c : 60 rows<br/>
+Sprite.c : 281 rows<br/>
+HitBox.c : 321 rows<br/>
+ElementSDL2.c : 1,640 rows<br/> 
+SANDAL2.c : 738 rows<br/>
+<br/>
+Total for source files : 3,482 rows<br/>
+<br/>
+FontSDL2.h : 107 rows<br/>
+WindowSDL2.h : 179 rows<br/>
+DisplayCode.h : 63 rows<br/>
+Sprite.h : 180 rows<br/>
+HitBox.h : 211 rows<br/>
+ElementSDL2.h : 841 rows<br/> 
+SANDAL2.h : 177 rows<br/>
+<br/>
+Total for header files : 1,758 rows<br/>
+<br/
+Total : 5,240 rows

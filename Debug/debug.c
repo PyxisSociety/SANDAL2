@@ -56,12 +56,13 @@ int main(){
 
 
   objet=createTexte(150.f,100.f,50.f,50.f,"arial.ttf","OK",rouge,2,1,-1);
+  setTextStyleElementSDL2(objet,SANDAL2_STRIKETHROUGH);
   
   /* display de la fenetre */
   while(run){
     tps = SDL_GetTicks();
     /* gestion d'evenement */
-    run=!PollEventSDL2();
+    run=!PollEventSDL2(NULL);
 
     /* update de la fenetre */
     updateWindowSDL2();

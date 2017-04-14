@@ -386,8 +386,8 @@ void freeElementSDL2(ElementSDL2 *e){
     if(e->data){
       free(e->data);
     }
-    if(e->police){
-      freeFontSDL2(e->police);
+    if(e->font){
+      freeFontSDL2(e->font);
     }
     if(e->interactions){
       freeListPtrElementSDL2(e->interactions);
@@ -430,7 +430,7 @@ ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4]
       e->keyReleased=NULL;
       e->unSelect=NULL;
       e->endSprite=NULL;
-      e->police=NULL;
+      e->font=NULL;
       e->entry=NULL;
       e->interactions=NULL;
       e->image=NULL;
@@ -470,9 +470,9 @@ ElementSDL2* createTexte(float x,float y,float width,float height,char * font,ch
       e->interactions=NULL;
       e->hitboxes = initListHitBox();
       e->codes=NULL;
-      e->police=createFontSDL2(font,text,textColor,quality);
+      e->font=createFontSDL2(font,text,textColor,quality);
       e->data=NULL;
-      if(e->police){
+      if(e->font){
 	e->codes=initListDisplayCode();
 	addDisplayCode(e->codes,displayCode,1,plan);
 	e->coulBlock[0]=-1;
@@ -531,7 +531,7 @@ ElementSDL2* createImage(float x,float y,float width,float height,char *image,in
 	e->keyReleased=NULL;
 	e->unSelect=NULL;
 	e->endSprite=NULL;
-	e->police=NULL;
+	e->font=NULL;
 	e->entry=NULL;
 	e->interactions=NULL;
 	e->hitboxes = initListHitBox();
@@ -558,7 +558,7 @@ ElementSDL2* createButton(float x,float y,float width,float height,float texteSi
       e->textSize=texteSize/100.f;
       f=createFontSDL2(font,text,textColor,quality);
       if(f){
-	e->police=f;
+	e->font=f;
       }else{
 	removeElementSDL2(e);
 	freeElementSDL2(e);
@@ -580,7 +580,7 @@ ElementSDL2* createButtonImage(float x,float y,float width,float height,float te
       e->textSize=texteSize/100.f;
       f=createFontSDL2(font,text,textColor,quality);
       if(f){
-	e->police=f;
+	e->font=f;
       }else{
 	removeElementSDL2(e);
 	freeElementSDL2(e);
@@ -606,13 +606,13 @@ ElementSDL2* createEntry(float x,float y,float width,float height,float texteSiz
 	ent->size_max=max;
 	ent->isSelect=0;
 	ent->isScripted=isScripted;
-	PFREE(e->police->text);
-	e->police->text=malloc((max+1)*sizeof(*(e->police->text)));
-	if(e->police->text){
+	PFREE(e->font->text);
+	e->font->text=malloc((max+1)*sizeof(*(e->font->text)));
+	if(e->font->text){
 	  for(i=0;i<max;++i){
-	    e->police->text[i]=' ';
+	    e->font->text[i]=' ';
 	  }
-	  e->police->text[max]='\0';
+	  e->font->text[max]='\0';
 	  e->entry=ent;
 	  ent->size=0;
 	}else{
@@ -645,13 +645,13 @@ ElementSDL2* createEntryImage(float x,float y,float width,float height,float tex
 	ent->size_max=max;
 	ent->isSelect=0;
 	ent->isScripted=isScripted;
-	PFREE(e->police->text);
-	e->police->text=malloc((max+1)*sizeof(*(e->police->text)));
-	if(e->police->text){
+	PFREE(e->font->text);
+	e->font->text=malloc((max+1)*sizeof(*(e->font->text)));
+	if(e->font->text){
 	  for(i=0;i<max;++i){
-	    e->police->text[i]=' ';
+	    e->font->text[i]=' ';
 	  }
-	  e->police->text[max]='\0';
+	  e->font->text[max]='\0';
 	  e->entry=ent;
 	  ent->size=0;
 	}else{
@@ -773,6 +773,16 @@ int isSelectedElementSDL2(ElementSDL2 *e, int * select){
 
   return error;
 }
+
+int getTextStyleElementSDL2(ElementSDL2 *e,int * style){
+  int error = 1;
+
+  if(e && e->font){
+    error=getStyleFontSDL2(e->font,style);
+  }
+
+  return error;
+}
 /* ------------------------------------------------------- */
 
 
@@ -786,15 +796,15 @@ int setFontElementSDL2(ElementSDL2 *e,char * font){
   int error = 1;
 
   if(_windows_SANDAL2 && _windows_SANDAL2->current){
-    if(e && font && e->police){
-      color[0]=e->police->color.r;
-      color[1]=e->police->color.g;
-      color[2]=e->police->color.b;
-      color[3]=e->police->color.a;
-      f=createFontSDL2(font,e->police->text,color,e->police->quality);
+    if(e && font && e->font){
+      color[0]=e->font->color.r;
+      color[1]=e->font->color.g;
+      color[2]=e->font->color.b;
+      color[3]=e->font->color.a;
+      f=createFontSDL2(font,e->font->text,color,e->font->quality);
       if(f){
-	freeFontSDL2(e->police);
-	e->police=f;
+	freeFontSDL2(e->font);
+	e->font=f;
 	error = 0;
       }
     }
@@ -806,8 +816,18 @@ int setFontElementSDL2(ElementSDL2 *e,char * font){
 int setTextElementSDL2(ElementSDL2 *e,char * text){
   int error = 1;
   
-  if(_windows_SANDAL2 && _windows_SANDAL2->current && e && text && e->police){
-    error=changeTextFontSDL2(e->police,text);
+  if(_windows_SANDAL2 && _windows_SANDAL2->current && e && text && e->font){
+    error=changeTextFontSDL2(e->font,text);
+  }
+
+  return error;
+}
+
+int setTextStyleElementSDL2(ElementSDL2 *e,int style){
+  int error = 1;
+
+  if(e && e->font){
+    error=setStyleFontSDL2(e->font,style);
   }
 
   return error;
@@ -827,8 +847,8 @@ int setColorElementSDL2(ElementSDL2 *e,int color[4]){
 int setTextColorElementSDL2(ElementSDL2 *e, int color[4]){
   int error = 1;
 
-  if(e && e->police){
-    error=changeColorFontSDL2(e->police,color);
+  if(e && e->font){
+    error=changeColorFontSDL2(e->font,color);
   }
 
   return error;
@@ -837,9 +857,9 @@ int setTextColorElementSDL2(ElementSDL2 *e, int color[4]){
 int setTextQualityElementSDL2(ElementSDL2 *e, int quality){
   int error = 1;
 
-  if(e && e->police){
+  if(e && e->font){
     error = 0;
-    e->police->quality=quality;
+    e->font->quality=quality;
   }
 
   return error;
@@ -1570,12 +1590,12 @@ int changeSizeEntrySDL2(ElementSDL2 *e,int size_min,int size_max){
       s=malloc((size_max+1)*sizeof(*s));
       error = 1;
       if(s){
-	strncpy(s,e->police->text,size_max);
+	strncpy(s,e->font->text,size_max);
 	s[size_max]='\0';
-	PFREE(e->police->text);
-	e->police->text=s;
+	PFREE(e->font->text);
+	e->font->text=s;
 	e->entry->size_max=size_max;
-	error=actualizeTextFontSDL2(e->police,e->entry->isScripted);
+	error=actualizeTextFontSDL2(e->font,e->entry->isScripted);
       }
     }
   }
@@ -1588,7 +1608,7 @@ int setScriptedEntrySDL2(ElementSDL2 *e,int isScripted){
   
   if(_windows_SANDAL2 && _windows_SANDAL2->current && e && e->entry && e->entry->isScripted!=isScripted){
     e->entry->isScripted=isScripted;
-    error=actualizeTextFontSDL2(e->police,e->entry->isScripted);
+    error=actualizeTextFontSDL2(e->font,e->entry->isScripted);
   }
 
   return error;
@@ -1597,10 +1617,10 @@ int setScriptedEntrySDL2(ElementSDL2 *e,int isScripted){
 int addCharEntrySDL2(ElementSDL2 *e,char c){
   int error = 1;
   
-  if(_windows_SANDAL2 && _windows_SANDAL2->current && e && e->entry && e->police && e->police->text && e->entry->size < e->entry->size_max){
-    *(e->police->text+e->entry->size)=c;
+  if(_windows_SANDAL2 && _windows_SANDAL2->current && e && e->entry && e->font && e->font->text && e->entry->size < e->entry->size_max){
+    *(e->font->text+e->entry->size)=c;
     ++e->entry->size;
-    error=actualizeTextFontSDL2(e->police,e->entry->isScripted);
+    error=actualizeTextFontSDL2(e->font,e->entry->isScripted);
   }
 
   return error;
@@ -1609,10 +1629,10 @@ int addCharEntrySDL2(ElementSDL2 *e,char c){
 int removeCharEntrySDL2(ElementSDL2 *e){
   int error = 1;
   
-  if(_windows_SANDAL2 && _windows_SANDAL2->current && e && e->entry && e->police && e->police->text && e->entry->size){
+  if(_windows_SANDAL2 && _windows_SANDAL2->current && e && e->entry && e->font && e->font->text && e->entry->size){
     --e->entry->size;
-    *(e->police->text+e->entry->size)=' ';
-    error=actualizeTextFontSDL2(e->police,e->entry->isScripted);
+    *(e->font->text+e->entry->size)=' ';
+    error=actualizeTextFontSDL2(e->font,e->entry->isScripted);
   }
 
   return error;

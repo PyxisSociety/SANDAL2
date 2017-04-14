@@ -83,7 +83,7 @@ typedef struct ElementSDL2{
   /**< texture of the image (NULL if no image)*/
   ListAnimation* animation;
   /**< animation of the image*/
-  FontSDL2 *police;
+  FontSDL2 *font;
   /**< informations about the text (NULL if no text)*/
   EntrySDL2 *entry;
   /**< informations about the entry (NULL if no entry)*/
@@ -214,21 +214,21 @@ void freeListDCElementSDL2(ListDCElementSDL2* l);
  * @param lp : list (plan) to add
  * @return 0 if it could be done, 1 if not
  */
-void addListPtrElementSDL2(ListDCElementSDL2* l, ListPtrElementSDL2 *lp);
+int addListPtrElementSDL2(ListDCElementSDL2* l, ListPtrElementSDL2 *lp);
 /**
  * @brief remove a list (plan) from a list (display code) of lists (plan) of elements
  * @param l : list (display code) of lists (plan) of elements which to remove an element
  * @param lp : list (plan) to remove
  * @return 0 if it could be done, 1 if not
  */
-void removeListPtrElementSDL2(ListDCElementSDL2* l,ListPtrElementSDL2 *lp);
+int removeListPtrElementSDL2(ListDCElementSDL2* l,ListPtrElementSDL2 *lp);
 /**
  * @brief remove an element all lists (display code) starting from a list (display code) of lists (plan) of elements 
  * @param l : list (display code) of lists (plan) of elements which to remove an element
  * @param e : element to be removed
  * @return 0 if it could be done, 1 if not
  */
-void removeDCElementSDL2(ListDCElementSDL2** l,ElementSDL2 *e);
+int removeDCElementSDL2(ListDCElementSDL2** l,ElementSDL2 *e);
 /* ------------------------------------------------------- */
 
 
@@ -439,6 +439,13 @@ int getDataElementSDL2(ElementSDL2* e,void ** data);
  * @return 1 if there was an error, 0 if not
  */
 int isSelectedElementSDL2(ElementSDL2 *e, int * select);
+/**
+ * @breif get the element's text font style
+ * @param e : the element to get the font style
+ * @param style : where to store the style
+ * @return 1 if there was an error, 0 if not
+ */
+int getTextStyleElementSDL2(ElementSDL2 *e,int * style);
 /* ------------------------------------------------------- */
 
 
@@ -460,6 +467,13 @@ int setFontElementSDL2(ElementSDL2 *e,char * font);
  * @return 1 if there was an error, 0 if not
  */
 int setTextElementSDL2(ElementSDL2 *e,char * text);
+/**
+ * @brief set the element's text font style
+ * @param e : the element to be modified
+ * @param style : the style to apply
+ * @return 1 if there was an error, 0 if not
+ */
+int setTextStyleElementSDL2(ElementSDL2 *e,int style);
 /**
  * @brief set the element's block color
  * @param e : element to be modified
@@ -618,7 +632,7 @@ int addElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *add);
  * @param add : element to be removed
  * @return 1 if it was possible, 0 if not
  */
-void delElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *del);
+int delElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *del);
 /**
  * @brief add a clickable zone to the element (or a blocking one)
  * @param e : element to be modified

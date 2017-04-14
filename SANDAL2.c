@@ -272,17 +272,17 @@ int displayWindowSDL2(){
 	      }
 	    }
 	    /* affichage du texte */
-	    if(ele->element->police){
+	    if(ele->element->font){
 	      r.x+=r.w*(1.0-ele->element->textSize)/2;
 	      r.y+=r.h*(1.0-ele->element->textSize)/2;
 	      r.w*=ele->element->textSize;
 	      r.h*=ele->element->textSize;
 	      if(ele->element->rotation == 0.f || (ele->element->coulBlock[0]!=-1 && !ele->element->image)){
-		SDL_RenderCopy(_windows_SANDAL2->current->renderer,ele->element->police->texture,NULL,&r);
+		SDL_RenderCopy(_windows_SANDAL2->current->renderer,ele->element->font->texture,NULL,&r);
 	      }else{
 		p.x=(int)(ele->element->textSize*ele->element->prX*ele->element->width*_windows_SANDAL2->current->width/_windows_SANDAL2->current->initWidth);
 		p.y=(int)(ele->element->textSize*ele->element->prY*ele->element->height*_windows_SANDAL2->current->height/_windows_SANDAL2->current->initHeight);
-		SDL_RenderCopyEx(_windows_SANDAL2->current->renderer,ele->element->police->texture,NULL,&r,(double)ele->element->rotation,&p,SDL_FLIP_NONE);
+		SDL_RenderCopyEx(_windows_SANDAL2->current->renderer,ele->element->font->texture,NULL,&r,(double)ele->element->rotation,&p,SDL_FLIP_NONE);
 	      }
 	    }
 	  }
@@ -434,7 +434,7 @@ int keyPressedWindowSDL2(char c){
   int error = 1;
 
   if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
-    error = 0
+    error = 0;
     /* recherche de la liste d'element ayant le bon code de display */
     if(_windows_SANDAL2->current->liste->currentDCIterator && _windows_SANDAL2->current->liste->currentDCIterator->code<=_windows_SANDAL2->current->displayCode){
       ldc=_windows_SANDAL2->current->liste->currentDCIterator;
@@ -513,7 +513,7 @@ int updateAllWindowSDL2(){
     do{
       err=updateWindowSDL2()*bit;
       if(!error && err){
-	error1;
+	error=1;
       }
       error+=err*bit;
       bit*=2;
@@ -537,7 +537,7 @@ int displayAllWindowSDL2(){
     do{
       err=displayWindowSDL2()*bit;
       if(!error && err){
-	error1;
+	error=1;
       }
       error+=err*bit;
       bit*=2;
@@ -561,7 +561,7 @@ int clickAllWindowSDL2(int x,int y){
     do{
       err=clickWindowSDL2(x,y)*bit;
       if(!error && err){
-	error1;
+	error=1;
       }
       error+=err*bit;
       bit*=2;
@@ -585,7 +585,7 @@ int unclickAllWindowSDL2(int x,int y){
     do{
       err=unclickWindowSDL2(x,y)*bit;
       if(!error && err){
-	error1;
+	error=1;
       }
       error+=err*bit;
       bit*=2;
@@ -609,7 +609,7 @@ int keyPressedAllWindowSDL2(char c){
     do{
       err=keyPressedWindowSDL2(c)*bit;
       if(!error && err){
-	error1;
+	error=1;
       }
       error+=err*bit;
       bit*=2;
@@ -633,7 +633,7 @@ int keyReleasedAllWindowSDL2(char c){
     do{
       err=keyReleasedWindowSDL2(c)*bit;
       if(!error && err){
-	error1;
+	error=1;
       }
       error+=err*bit;
       bit*=2;
@@ -702,7 +702,6 @@ int PollEventSDL2(int * error){
   SDL_Event event;
   int quit = 0;
   int err = 0;
-  int bit=1;
 
   while(SDL_PollEvent(&event)){
     switch(event.type){
