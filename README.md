@@ -146,13 +146,13 @@ If there are no sprite, the entire image will be displaied.<br/>
 0.0.2 : clickable areas<br/>
 0.0.3 : animation's managment<br/>
 1.0.0 : project renamed SANDAL2<br/>
-      	hide window objects from the user<br/>
-	hide element's lists from the user<br/>
-	going from an element's list structure to a list of list (display code) of list (plan) of elements<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hide window objects from the user<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hide element's lists from the user<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;going from an element's list structure to a list of list (display code) of list (plan) of elements<br/>
 1.0.1 : possibility to hide event managment from the user<br/>
 1.0.2 : adding shaded and blended text rendering<br/>
-      	adding and correcting error's functions return<br/>
-	wrapping of TTF's font style<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adding and correcting error's functions return<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wrapping of TTF's font style<br/>
 
 ## Project's size
 
@@ -175,5 +175,5 @@ ElementSDL2.h : 841 rows<br/>
 SANDAL2.h : 177 rows<br/>
 <br/>
 Total for header files : 1,758 rows<br/>
-<br/
+<br/>
 Total : 5,240 rows
