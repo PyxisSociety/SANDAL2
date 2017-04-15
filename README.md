@@ -3,7 +3,7 @@
 SANDAL2 is a SDL2 wrapper which purpose is to make object managment and
 graphic display easier.  
 
-To generate the Doxygen documentation, use the command :  
+To generate the Doxygen documentation, use the command:  
 `doxygen Doxyfile`
 
 ## About the author
@@ -12,74 +12,6 @@ To generate the Doxygen documentation, use the command :
 I made this wrapper because I found boresome to have to create a display function for each menu's page, but I ended 
 up going a little further in it. I hope you will enjoy using it, if you have any comment or advice, do not feel shy 
 and tell me ! I will really appreciate it.
-
-## Structures
-
-### I. HitBox.h
-
-  1. LineSDL2 :  
-    A clickable zone delimited by a line (only one side of the line is clickable).
-
-  2. CircleSDL2 :  
-    An elliptic shaped clickable zone.
-
-  3. HitBox :  
-    A clickable zone made of a collection of lines and ellipses.
-    This is one of the only structure you'll be manipulating (even though not directly accessing to its values).
-
-  4. ListHitBox :  
-    A clickable zone defined by a collection of clickable HitBox and blocking HitBox.
-
-### II. Sprite.h
-
-  1. Sprite :  
-    A step in an animation defined by the rectangle in the image and its lifespan.
-
-  2. ListSprite :  
-    A list of Sprite forming a complete animation.
-
-  3. ListAnimation :  
-    A list of animations.
-
-### III. DisplayCode.h
-
-  1. DisplayCode :  
-    A package of information about a display code. It contains the display code, the plan and a flag to tell whether or not
-    the object should be displaied.
-
-  2. ListDisplayCode :  
-    A list of display codes.
-
-### IV. FontSDL2.h
-
-  1. FontSDL2 :  
-    A package of information about a text. It contains its font, its text, its color and its SDL2 texture.
-
-### V. WindowSDL2.h
-
-  1. WindowSDL2 :  
-    Representation of a window. It contains all informations (such as the dimension, the display code, ...) about a window.
-
-  2. ListWindowSDL2 :  
-    A list of WindowSDL2, used to manage all your windows while hiding them to you.
-
-### VI. ElementSDL2.h
-
-  1. ElementSDL2 :  
-    A package of information about objects. It contains its coordinates (top left corner), its size, its color and so on.
-    This is one of the only structure you'll be manipulating (even though not directly accessing to its values).
-
-  2. PtrElementSDL2 :  
-    A structure mean to store an ElementSDL2's pointer
-
-  3. ListPtrElementSDL2 :  
-    A list of PtrElementSDL2. Either used as a list of elements with a common plan or so that an element can change another.
-
-  4. ListDCElementSDL2 :  
-    A list of lists of elements with a common plan, every lists in this list has a common display code.
-
-  5. ListElementSDL2 :  
-    A list of ListDCElementSDL2.
 
 ## Functionnality
 
@@ -109,26 +41,26 @@ also get and set informations about the window with all the functions in WindowS
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;An element is kind of an object with lots of display informations. It can have an image, a text or/and a color (for rectangles).
 As said higher, they can be created with functions like createBlock or createButton for example. Once created, you can
-modifie all informations about them. They have the following informations :
-* coordinates in the window ;
-* dimensions ;
-* a collection of display code, each display code has a plan ;
-* a collection of clickable zone ;
-* functions bind on it to be called for certain event (they will be listed later) ;
-* a collection of animations ;
-* a collection of elements which can be modified by the parent's element ;
-* a rotation speed ;
-* a rotation (the current angle of the element) ;
+modifie all informations about them. They have the following informations:
+* coordinates in the window;
+* dimensions;
+* a collection of display code, each display code has a plan;
+* a collection of clickable zone;
+* functions bind on it to be called for certain event (they will be listed later);
+* a collection of animations;
+* a collection of elements which can be modified by the parent's element;
+* a rotation speed;
+* a rotation (the current angle of the element);
 * a package of data (void *);
 * a package of informations if the element is a prompt.
 <br/><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The functions that can be bind to the element are the following ones :
-* action, to be called every update ;
-* keyPress, to be called when a key is pressed ;
-* keyReleased, to be called when a key is released ;
-* click, to be called if the element is clicked (be careful, there have to be a clickable zone) ;
-* unClick, to be called when the user release the click of the mouse on the clickable zone of the element ;
-* unSelect, to be called when the user click elsewhere or unclick elsewhere ;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The functions that can be bind to the element are the following ones:
+* action, to be called every update;
+* keyPress, to be called when a key is pressed;
+* keyReleased, to be called when a key is released;
+* click, to be called if the element is clicked (be careful, there have to be a clickable zone);
+* unClick, to be called when the user release the click of the mouse on the clickable zone of the element;
+* unSelect, to be called when the user click elsewhere or unclick elsewhere;
 * endSprite, to be called when an animation reach its end, before starting of again.
 <br/><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You can bind elements to another (which will become their parent) so that the parent element will be able to modifie them in one of
@@ -154,6 +86,74 @@ If there are no sprite, the entire image will be displaied.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adding and correcting error's functions return<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wrapping of TTF's font style<br/>
 1.0.3 : adding identifier to sprites<br/>
+
+## Structures
+
+### I. HitBox.h
+
+  1. LineSDL2:  
+    A clickable zone delimited by a line (only one side of the line is clickable).
+
+  2. CircleSDL2:  
+    An elliptic shaped clickable zone.
+
+  3. HitBox:  
+    A clickable zone made of a collection of lines and ellipses.
+    This is one of the only structure you'll be manipulating (even though not directly accessing to its values).
+
+  4. ListHitBox:  
+    A clickable zone defined by a collection of clickable HitBox and blocking HitBox.
+
+### II. Sprite.h
+
+  1. Sprite:  
+    A step in an animation defined by the rectangle in the image and its lifespan.
+
+  2. ListSprite:  
+    A list of Sprite forming a complete animation.
+
+  3. ListAnimation:  
+    A list of animations.
+
+### III. DisplayCode.h
+
+  1. DisplayCode:  
+    A package of information about a display code. It contains the display code, the plan and a flag to tell whether or not
+    the object should be displaied.
+
+  2. ListDisplayCode:  
+    A list of display codes.
+
+### IV. FontSDL2.h
+
+  1. FontSDL2:  
+    A package of information about a text. It contains its font, its text, its color and its SDL2 texture.
+
+### V. WindowSDL2.h
+
+  1. WindowSDL2:  
+    Representation of a window. It contains all informations (such as the dimension, the display code, ...) about a window.
+
+  2. ListWindowSDL2:  
+    A list of WindowSDL2, used to manage all your windows while hiding them to you.
+
+### VI. ElementSDL2.h
+
+  1. ElementSDL2:  
+    A package of information about objects. It contains its coordinates (top left corner), its size, its color and so on.
+    This is one of the only structure you'll be manipulating (even though not directly accessing to its values).
+
+  2. PtrElementSDL2:  
+    A structure mean to store an ElementSDL2's pointer
+
+  3. ListPtrElementSDL2:  
+    A list of PtrElementSDL2. Either used as a list of elements with a common plan or so that an element can change another.
+
+  4. ListDCElementSDL2:  
+    A list of lists of elements with a common plan, every lists in this list has a common display code.
+
+  5. ListElementSDL2:  
+    A list of ListDCElementSDL2.
 
 ## Project's size
 
