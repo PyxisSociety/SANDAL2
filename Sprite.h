@@ -22,6 +22,8 @@ typedef struct Sprite{
   /**< [0] and [1] for the coordinates of the top left corner and [2] and [3] respectively for the width and the height*/
   unsigned lifespan;
   /**< number of time minus one the Sprite should be displaied before going to the next*/
+  int code;
+  /**< identifier of the Sprite */
 }Sprite;
 
 /**
@@ -81,30 +83,32 @@ void freeListSprite(ListSprite * l);
  * @param width : width of the sprite in its image
  * @param height : height of the sprite in its image
  * @param lifespan : number of time the sprite should be displaied before going to the next sprite
+ * @param code : identifier of the Sprite to add
  * @return 0 if the sprite was correctly added, 1 if not
  */
-int addSprite(ListSprite * l,int x,int y,int width,int height,unsigned lifespan);
+int addSprite(ListSprite * l,int x,int y,int width,int height,unsigned lifespan,int code);
 /**
  * @brief remove a Sprite to the list
  * @param l : list of sprite
- * @param x : abscissa coordinate of the top left corner of the sprite in its image
- * @param y : ordinate coordinate of the top left corner of the sprite in its image
- * @param width : width of the sprite in its image
- * @param height : height of the sprite in its image
+ * @param code : code of the sprite to be removed
  * @return 0 if the sprite was correctly removed, 1 if not
  */
-int removeSprite(ListSprite * l,int x,int y,int width,int height);
+int removeSprite(ListSprite * l,int code);
 /**
  * @brief set the lifespan of a sprite
  * @param l : list of sprite
- * @param x : abscissa coordinate of the top left corner of the sprite in its image
- * @param y : ordinate coordinate of the top left corner of the sprite in its image
- * @param width : width of the sprite in its image
- * @param height : height of the sprite in its image
+ * @param code : code of the sprite to be changed
  * @param lifespan : new number of time the sprite should be displaied before going to the next sprite
  * @return 0 if the lifespan could be set, 1 if not
  */
-int setLifeSpanSprite(ListSprite * l,int x,int y,int width,int height,unsigned lifespan);
+int setLifeSpanSprite(ListSprite * l,int code,unsigned lifespan);
+/**
+ * @brief change the current sprite in a given list of sprite
+ * @param l : list of sprite
+ * @param code : code of the sprite to be set
+ * @return 0 if the sprite could be set, 1 if not
+ */
+int setSprite(ListSprite * l,int code);
 /* ----------------------------------------------------- */
 
 /* -----------------------------------------------------
@@ -143,32 +147,27 @@ int removeAnimation(ListAnimation *l,int code);
  * @param width : width of the sprite in its image
  * @param height : height of the sprite in its image
  * @param lifespan : number of time the sprite should be displaied before going to the next sprite
+ * @param codeS : code of the Sprite to be added
  * @return 0 if the sprite was correctly added, 1 if not
  */
-int addSpriteAnimation(ListAnimation *l,int code,int x,int y,int width,int height,unsigned lifespan);
+int addSpriteAnimation(ListAnimation *l,int code,int x,int y,int width,int height,int codeS,unsigned lifespan);
 /**
  * @brief remove a Sprite to an animation
  * @param l : list of animations
  * @param code : code of the animation to remove the sprite
- * @param x : abscissa coordinate of the top left corner of the sprite in its image
- * @param y : ordinate coordinate of the top left corner of the sprite in its image
- * @param width : width of the sprite in its image
- * @param height : height of the sprite in its image
+ * @param codeS : code of the sprite to be removed
  * @return 0 if the sprite was correctly removed, 1 if not
  */
-int removeSpriteAnimation(ListAnimation *l,int code,int x,int y,int width,int height);
+int removeSpriteAnimation(ListAnimation *l,int code,int codeS);
 /**
  * @brief set the lifespan of a sprite
  * @param l : list of animations
  * @param code : code of the animation to set the sprite
- * @param x : abscissa coordinate of the top left corner of the sprite in its image
- * @param y : ordinate coordinate of the top left corner of the sprite in its image
- * @param width : width of the sprite in its image
- * @param height : height of the sprite in its image
+ * @param codeS : code of the sprite to be modified
  * @param lifespan : new number of time the sprite should be displaied before going to the next sprite
  * @return 0 if the lifespan could be set, 1 if not
  */
-int setLifeSpanSpriteAnimation(ListAnimation *l,int code,int x,int y,int width,int height,unsigned lifespan);
+int setLifeSpanSpriteAnimation(ListAnimation *l,int code,int codeS,unsigned lifespan);
 /**
  * @brief set the current animation of a list of animations
  * @param l : list of animations
@@ -176,5 +175,12 @@ int setLifeSpanSpriteAnimation(ListAnimation *l,int code,int x,int y,int width,i
  * @return 0 if the animation could be set as current, 1 if not
  */
 int setAnimation(ListAnimation *l,int code);
+/**
+ * @brief change the current sprite in the current list of sprite in a given list of animation
+ * @param l : list of animation
+ * @param codeS : code of the sprite to be set
+ * @return 0 if the sprite could be set, 1 if not
+ */
+int setSpriteAnimation(ListAnimation *l,int codeS);
 /* ----------------------------------------------------- */
 #endif

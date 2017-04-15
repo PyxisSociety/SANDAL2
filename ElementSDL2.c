@@ -1368,31 +1368,31 @@ int removeAnimationElementSDL2(ElementSDL2 *e,int code){
   return error;
 }
 
-int addSpriteAnimationElementSDL2(ElementSDL2 *e,int code,int x,int y,int width,int height,int lifespan){
+int addSpriteAnimationElementSDL2(ElementSDL2 *e,int code,int x,int y,int width,int height,int lifespan,int code){
   int error = 1;
 
   if(e){
-    error = addSpriteAnimation(e->animation,code,x,y,width,height,lifespan);
+    error = addSpriteAnimation(e->animation,code,x,y,width,height,lifespan,code);
   }
   
   return error;
 }
 
-int removeSpriteAnimationElementSDL2(ElementSDL2 *e,int code,int x,int y,int width,int height){
+int removeSpriteAnimationElementSDL2(ElementSDL2 *e,int code,int codeS){
   int error = 1;
 
   if(e){
-    error = removeSpriteAnimation(e->animation,code,x,y,width,height);
+    error = removeSpriteAnimation(e->animation,code,codeS);
   }
 
   return error;
 }
 
-int setLifeSpanSpriteAnimationElementSDL2(ElementSDL2 * e,int code,int x,int y,int width,int height,unsigned lifespan){
+int setLifeSpanSpriteAnimationElementSDL2(ElementSDL2 * e,int code,int codeS,unsigned lifespan){
   int error = 1;
 
   if(e){
-    error = setLifeSpanSpriteAnimation(e->animation,code,x,y,width,height,lifespan);
+    error = setLifeSpanSpriteAnimation(e->animation,code,codeS,lifespan);
   }
 
   return error;
@@ -1466,19 +1466,19 @@ int previousAnimationElementSDL2(ElementSDL2 * e){
 
 int setAnimationElementSDL2(ElementSDL2 *e,int code){
   int error = 1;
-  ListSprite *ls;
-  unsigned i=0;
 
-  if(e && e->animation->size){
-    ls=e->animation->first;
-    while(i<e->animation->size && ls->code != code){
-      ls=ls->next;
-      ++i;
-    }
-    if(i<e->animation->size){
-      e->animation->current=ls;
-      error = 0;
-    }
+  if(e && e->animation){
+    error = setAnimation(e->animation,code);
+  }
+
+  return error;
+}
+
+int setSpriteAnimationElementSDL2(ElementSDL2 *e,int codeS){
+  int error = 1;
+
+  if(e && e->animation){
+    error = setSpriteAnimation(e->animation,codeS);
   }
 
   return error;

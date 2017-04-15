@@ -35,7 +35,7 @@ void freeListSprite(ListSprite * l){
   }
 }
 
-int addSprite(ListSprite * l,int x,int y,int width,int height,unsigned lifespan){
+int addSprite(ListSprite * l,int x,int y,int width,int height,unsigned lifespan,int code){
   Sprite *s;
   int error = 1;
   
@@ -47,6 +47,7 @@ int addSprite(ListSprite * l,int x,int y,int width,int height,unsigned lifespan)
       s->coords[2]=width;
       s->coords[3]=height;
       s->lifespan=lifespan;
+      s->code=code;
       if(l->size){
 	s->next=l->first;
 	s->prev=l->first->prev;
@@ -67,14 +68,14 @@ int addSprite(ListSprite * l,int x,int y,int width,int height,unsigned lifespan)
   return error;
 }
 
-int removeSprite(ListSprite * l,int x,int y,int width,int height){
+int removeSprite(ListSprite * l,int code){
   unsigned i = 0;
   int error = 1;
   Sprite * s;
 
   if(l && l->size){
     s=l->first;
-    while(i < l->size && (s->coords[0]!=x || s->coords[1]!=y || s->coords[2]!=width || s->coords[3]!=height)){
+    while(i < l->size && s->code!=code){
       ++i;
       s=s->next;
     }
@@ -98,14 +99,14 @@ int removeSprite(ListSprite * l,int x,int y,int width,int height){
   return error;
 }
 
-int setLifeSpanSprite(ListSprite * l,int x,int y,int width,int height,unsigned lifespan){
+int setLifeSpanSprite(ListSprite * l,int code,unsigned lifespan){
   unsigned i = 0;
   int error = 1;
   Sprite * s;
 
   if(l && l->size){
     s=l->first;
-    while(i < l->size && (s->coords[0]!=x || s->coords[1]!=y || s->coords[2]!=width || s->coords[3]!=height)){
+    while(i < l->size && s->code!=code){
       ++i;
       s=s->next;
     }
@@ -115,6 +116,23 @@ int setLifeSpanSprite(ListSprite * l,int x,int y,int width,int height,unsigned l
     }
   }
   
+  return error;
+}
+
+int setSprite(ListSprite * l,int code){
+  int error = 1;
+  Sprite *s;
+
+  if(l){
+    s=l->first;
+    while(s && s->code!=code){
+      s=s->next;
+    }
+    if(s){
+      l->current=s;
+      error = 0;
+    }
+  }
   return error;
 }
 /* ----------------------------------------------------- */
@@ -201,7 +219,7 @@ int removeAnimation(ListAnimation *l,int code){
   return error;
 }
 
-int addSpriteAnimation(ListAnimation *l,int code,int x,int y,int width,int height,unsigned lifespan){
+int addSpriteAnimation(ListAnimation *l,int code,int x,int y,int width,int height,unsigned lifespan,int codeS){
   ListSprite *ls;
   int error = 1;
   unsigned i = 0;
@@ -213,14 +231,14 @@ int addSpriteAnimation(ListAnimation *l,int code,int x,int y,int width,int heigh
       ++i;
     }
     if(i<l->size){
-      error=addSprite(ls,x,y,width,height,lifespan);
+      error=addSprite(ls,x,y,width,height,lifespan,codeS);
     }
   }
 
   return error;
 }
 
-int removeSpriteAnimation(ListAnimation *l,int code,int x,int y,int width,int height){
+int removeSpriteAnimation(ListAnimation *l,int code,int codeS){
   ListSprite *ls;
   int error = 1;
   unsigned i = 0;
@@ -232,14 +250,14 @@ int removeSpriteAnimation(ListAnimation *l,int code,int x,int y,int width,int he
       ++i;
     }
     if(i<l->size){
-      error=removeSprite(ls,x,y,width,height);
+      error=removeSprite(ls,codeS);
     }
   }
 
   return error;
 }
 
-int setLifeSpanSpriteAnimation(ListAnimation *l,int code,int x,int y,int width,int height,unsigned lifespan){
+int setLifeSpanSpriteAnimation(ListAnimation *l,int code,int codeS,unsigned lifespan){
   ListSprite *ls;
   int error = 1;
   unsigned i = 0;
@@ -251,7 +269,7 @@ int setLifeSpanSpriteAnimation(ListAnimation *l,int code,int x,int y,int width,i
       ++i;
     }
     if(i<l->size){
-      error=setLifeSpanSprite(ls,x,y,width,height,lifespan);
+      error=setLifeSpanSprite(ls,codeS,lifespan);
     }
   }
 
@@ -273,6 +291,16 @@ int setAnimation(ListAnimation *l,int code){
       l->current=ls;
       error=0;
     }
+  }
+
+  return error;
+}
+
+int setSpriteAnimation(ListAnimation *l,int codeS){
+  int error = 0;
+
+  if(l){
+    error=setSprite(l->current,codeS);
   }
 
   return error;

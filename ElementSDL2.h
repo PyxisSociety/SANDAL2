@@ -706,30 +706,25 @@ int removeAnimationElementSDL2(ElementSDL2 *e,int code);
  * @param width : width of the sprite in its image
  * @param height : height of the sprite in its image
  * @param lifespan : number of time the sprite should be displaied before going to the next sprite
+ * @param codeS : identifier of the sprite to be added
  * @return 0 if the sprite was correctly added, 1 if not
  */
-int addSpriteAnimationElementSDL2(ElementSDL2 *e,int code,int x,int y,int width,int height,int lifespan);
+int addSpriteAnimationElementSDL2(ElementSDL2 *e,int code,int x,int y,int width,int height,int lifespan,int codeS);
 /**
  * @brief remove a Sprite in the element
  * @param e : element
- * @param x : abscissa coordinate of the top left corner of the sprite in its image
- * @param y : ordinate coordinate of the top left corner of the sprite in its image
- * @param width : width of the sprite in its image
- * @param height : height of the sprite in its image
+ * @param codeS : code of the sprite to be removed
  * @return 0 if the sprite was correctly removed, 1 if not
  */
-int removeSpriteAnimationElementSDL2(ElementSDL2 *e,int code,int x,int y,int width,int height);
+int removeSpriteAnimationElementSDL2(ElementSDL2 *e,int code,int codeS);
 /**
  * @brief set the lifespan of a sprite
  * @param e : element
- * @param x : abscissa coordinate of the top left corner of the sprite in its image
- * @param y : ordinate coordinate of the top left corner of the sprite in its image
- * @param width : width of the sprite in its image
- * @param height : height of the sprite in its image
+ * @param codeS : code of the sprite to be changed
  * @param lifespan : new number of time the sprite should be displaied before going to the next sprite
  * @return 0 if the lifespan could be set, 1 if not
  */
-int setLifeSpanSpriteAnimationElementSDL2(ElementSDL2 * e,int code,int x,int y,int width,int height,unsigned lifespan);
+int setLifeSpanSpriteAnimationElementSDL2(ElementSDL2 * e,int code,int codeS,unsigned lifespan);
 /**
  * @brief go to te next sprite of the current animation of an element
  * @param e : element
@@ -763,11 +758,18 @@ int nextAnimationElementSDL2(ElementSDL2 * e);
 int previousAnimationElementSDL2(ElementSDL2 * e);
 /**
  * @brief set the animation of an element
- * @param e : element to be modifid
+ * @param e : element to be modified
  * @param code : code of the animation to set
  * @return 0 if the animation is set, 1 if not
  */
 int setAnimationElementSDL2(ElementSDL2 *e,int code);
+/**
+ * @brief set the sprite in the current animation of an element
+ * @param e : element to be modified
+ * @param codeS : code of the sprite to set
+ * @return 0 if the sprite is set, 1 if not
+ */
+int setSpriteAnimationElementSDL2(ElementSDL2 *e,int codeS);
 /* ------------------------------------------------------- */
 
 
