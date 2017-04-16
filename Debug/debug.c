@@ -38,13 +38,13 @@ int main(){
   
   createAnimationElementSDL2(objet,0);
   for(i=0;i<4;++i){
-    addSpriteAnimationElementSDL2(objet,0,55*i,0,55,75,10);
+    addSpriteAnimationElementSDL2(objet,0,55*i,0,55,75,10,i);
   }
   setWaySpriteAnimationElementSDL2(objet,0,1);
 
   createAnimationElementSDL2(objet,1);
   for(i=0;i<4;++i){
-    addSpriteAnimationElementSDL2(objet,1,259+i*72,0,72,75,10);
+    addSpriteAnimationElementSDL2(objet,1,259+i*72,0,72,75,10,i);
   }
   setWaySpriteAnimationElementSDL2(objet,1,1);
   

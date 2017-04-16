@@ -1368,11 +1368,11 @@ int removeAnimationElementSDL2(ElementSDL2 *e,int code){
   return error;
 }
 
-int addSpriteAnimationElementSDL2(ElementSDL2 *e,int code,int x,int y,int width,int height,int lifespan,int code){
+int addSpriteAnimationElementSDL2(ElementSDL2 *e,int code,int x,int y,int width,int height,int lifespan,int codeS){
   int error = 1;
 
   if(e){
-    error = addSpriteAnimation(e->animation,code,x,y,width,height,lifespan,code);
+    error = addSpriteAnimation(e->animation,code,x,y,width,height,lifespan,codeS);
   }
   
   return error;

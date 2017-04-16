@@ -150,7 +150,7 @@ int removeAnimation(ListAnimation *l,int code);
  * @param codeS : code of the Sprite to be added
  * @return 0 if the sprite was correctly added, 1 if not
  */
-int addSpriteAnimation(ListAnimation *l,int code,int x,int y,int width,int height,int codeS,unsigned lifespan);
+int addSpriteAnimation(ListAnimation *l,int code,int x,int y,int width,int height,unsigned lifespan,int codeS);
 /**
  * @brief remove a Sprite to an animation
  * @param l : list of animations
