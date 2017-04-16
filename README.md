@@ -86,6 +86,7 @@ If there are no sprite, the entire image will be displaied.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adding and correcting error's functions return<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wrapping of TTF's font style<br/>
 1.0.3 : adding identifier to sprites<br/>
+1.0.4 : adding the possibility to set the window's icon<br/>
 
 ## Structures
 
@@ -158,23 +159,23 @@ If there are no sprite, the entire image will be displaied.<br/>
 ## Project's size
 
 FontSDL2.c : 263 rows<br/>
-WindowSDL2.c : 179 rows<br/>
+WindowSDL2.c : 195 rows<br/>
 DisplayCode.c : 60 rows<br/>
 Sprite.c : 308 rows<br/>
 HitBox.c : 321 rows<br/>
 ElementSDL2.c : 1,640 rows<br/> 
 SANDAL2.c : 738 rows<br/>
 <br/>
-Total for source files : 3,509 rows<br/>
+Total for source files : 3,525 rows<br/>
 <br/>
 FontSDL2.h : 107 rows<br/>
-WindowSDL2.h : 179 rows<br/>
+WindowSDL2.h : 185 rows<br/>
 DisplayCode.h : 63 rows<br/>
 Sprite.h : 188 rows<br/>
 HitBox.h : 211 rows<br/>
 ElementSDL2.h : 843 rows<br/> 
 SANDAL2.h : 177 rows<br/>
 <br/>
-Total for header files : 1,768 rows<br/>
+Total for header files : 1,774 rows<br/>
 <br/>
-Total : 5,277 rows
+Total : 5,299 rows

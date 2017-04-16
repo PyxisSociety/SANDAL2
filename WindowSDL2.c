@@ -152,6 +152,22 @@ int getIDWindowSDL2(Uint32 *ID){
 
   return error;
 }
+
+int setIconWindowSDL2(char * icon_path){
+  SDL_Surface *s;
+  int error = 1;
+
+  if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->window && icon_path){
+    s=IMG_Load(icon_path);
+    if(s){
+      SDL_SetWindowIcon(_windows_SANDAL2->current->window,s);
+      SDL_FreeSurface(s);
+      error = 0;
+    }
+  }
+
+  return error;
+}
 /* ------------------------------------------------------- */
 
 

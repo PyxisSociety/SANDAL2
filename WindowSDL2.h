@@ -156,6 +156,12 @@ int getRealDimensionWindowSDL2(int *width,int *height);
  * @return 1 if there was an error, 0 if not
  */
 int getIDWindowSDL2(Uint32 *ID);
+/**
+ * @brief Set the current window's icon
+ * @param icon_path : path of the image to be used
+ * @return 1 if there was an error, 0 if not
+ */
+int setIconWindowSDL2(char * icon_path);
 /* ------------------------------------------------------- */
 
 /* -------------------------------------------------------
