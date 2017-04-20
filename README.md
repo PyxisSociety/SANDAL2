@@ -173,9 +173,9 @@ WindowSDL2.h : 185 rows<br/>
 DisplayCode.h : 63 rows<br/>
 Sprite.h : 188 rows<br/>
 HitBox.h : 211 rows<br/>
-ElementSDL2.h : 843 rows<br/> 
+ElementSDL2.h : 847 rows<br/> 
 SANDAL2.h : 177 rows<br/>
 <br/>
-Total for header files : 1,774 rows<br/>
+Total for header files : 1,778 rows<br/>
 <br/>
-Total : 5,299 rows
+Total : 5,303 rows
