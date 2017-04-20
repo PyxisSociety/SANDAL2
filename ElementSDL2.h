@@ -778,13 +778,15 @@ int setSpriteAnimationElementSDL2(ElementSDL2 *e,int codeS);
  * Iterateur de structure sur la liste d'ElementSDL2 lié a un autre ElementSL2
  */
 /**
- * @brief initialise the element's iterator on all the elements it can modifie
+ * @brief initialize the element's iterator on all the elements it can modifie
  * @param e : element from which to initialise the iterator
+ * @return 1 if it succeeded, 0 if not
  */
 int initIterateurElementSDL2(ElementSDL2 *e);
 /**
  * @brief gives the current element's iterator's value and go to the next one
  * @param e : element to be modified
+ * @return the current element
  */
 ElementSDL2* nextIterateurElementSDL2(ElementSDL2 *e);
 /* ------------------------------------------------------- */
@@ -797,10 +799,12 @@ ElementSDL2* nextIterateurElementSDL2(ElementSDL2 *e);
 /**
  * @brief initialise the iterator of all elements having a common display code
  * @param displayCode : common display code of the elements
+ * @return 1 if it succeeded, 0 if not
  */
 int initIterateur(int displayCode);
 /**
  * @brief gives the current iterator's value and go to the next one
+ * @return the current element
  */
 ElementSDL2* nextElementSDL2();
 /* ------------------------------------------------------- */
