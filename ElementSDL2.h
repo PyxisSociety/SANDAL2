@@ -268,7 +268,7 @@ int removeElementSDL2(ElementSDL2 *e);
 
 
 /* -------------------------------------------------------
- * Creation, liberation et information sur un Element SDL2
+ * Element creation, freeing and informations
  */
 /**
  * @brief Free the memory used by an element
@@ -451,7 +451,7 @@ int getTextStyleElementSDL2(ElementSDL2 *e,int * style);
 
 
 /* -------------------------------------------------------
- * modification d'un Element SDL2
+ * ElementSDL2 modifications
  */
 /**
  * @brief set the element's font
@@ -775,33 +775,33 @@ int setSpriteAnimationElementSDL2(ElementSDL2 *e,int codeS);
 
 
 /* -------------------------------------------------------
- * Iterateur de structure sur la liste d'ElementSDL2 lié a un autre ElementSL2
+ * Element's list binded to an Element's iterator
  */
 /**
  * @brief initialize the element's iterator on all the elements it can modifie
  * @param e : element from which to initialise the iterator
  * @return 1 if it succeeded, 0 if not
  */
-int initIterateurElementSDL2(ElementSDL2 *e);
+int initIteratorElementSDL2(ElementSDL2 *e);
 /**
  * @brief gives the current element's iterator's value and go to the next one
  * @param e : element to be modified
  * @return the current element
  */
-ElementSDL2* nextIterateurElementSDL2(ElementSDL2 *e);
+ElementSDL2* nextIteratorElementSDL2(ElementSDL2 *e);
 /* ------------------------------------------------------- */
 
 
 
 /* ------------------------------------------------------- 
- * Iterateur de structure sur la liste d'ElementSDL2
+ * Element's list iterator
  */
 /**
  * @brief initialise the iterator of all elements having a common display code
  * @param displayCode : common display code of the elements
  * @return 1 if it succeeded, 0 if not
  */
-int initIterateur(int displayCode);
+int initIterator(int displayCode);
 /**
  * @brief gives the current iterator's value and go to the next one
  * @return the current element
@@ -812,7 +812,7 @@ ElementSDL2* nextElementSDL2();
 
 
 /* -------------------------------------------------------
- * modification d'un Element SDL2 spécifique aux Entry
+ * Entry modifications
  */
 /**
  * @brief change the minimum and maximum size of a prompt (if a value is negative, it is not modified)

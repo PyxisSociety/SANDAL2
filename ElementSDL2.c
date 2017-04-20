@@ -370,7 +370,7 @@ int removeElementSDL2(ElementSDL2 *e){
 
 
 /* -------------------------------------------------------
- * Element SDL2
+ * Element creation, freeing and informations
  */
 void freeElementSDL2(ElementSDL2 *e){
   if(e){
@@ -788,7 +788,7 @@ int getTextStyleElementSDL2(ElementSDL2 *e,int * style){
 
 
 /* -------------------------------------------------------
- * modification d'un Element SDL2
+ * ElementSDL2 modifications
  */
 int setFontElementSDL2(ElementSDL2 *e,char * font){
   FontSDL2 *f;
@@ -1488,9 +1488,9 @@ int setSpriteAnimationElementSDL2(ElementSDL2 *e,int codeS){
 
 
 /* -------------------------------------------------------
- * Iterateur de structure sur la liste d'ElementSDL2 lié a un autre ElementSL2
+ * Element's list binded to an Element's iterator
  */
-int initIterateurElementSDL2(ElementSDL2 *e){
+int initIteratorElementSDL2(ElementSDL2 *e){
   int succes = 0;
   
   if(e && e->interactions){
@@ -1501,7 +1501,7 @@ int initIterateurElementSDL2(ElementSDL2 *e){
   return succes;
 }
 
-ElementSDL2* nextIterateurElementSDL2(ElementSDL2 *e){
+ElementSDL2* nextIteratorElementSDL2(ElementSDL2 *e){
   ElementSDL2* next=NULL;
   
   if(e && e->interactions && e->interactions->current){
@@ -1516,9 +1516,9 @@ ElementSDL2* nextIterateurElementSDL2(ElementSDL2 *e){
 
 
 /* ------------------------------------------------------- 
- * Iterateur de structure sur la liste d'ElementSDL2
+ * Element's list iterator
  */
-int initIterateur(int displayCode){
+int initIterator(int displayCode){
   int succes = 0;
   ListDCElementSDL2 *lp;
   
@@ -1575,7 +1575,7 @@ ElementSDL2* nextElementSDL2(){
 
 
 /* -------------------------------------------------------
- * modification d'un Element SDL2 spécifique aux Entry
+ * Entry modifications
  */
 int changeSizeEntrySDL2(ElementSDL2 *e,int size_min,int size_max){
   char *s;
