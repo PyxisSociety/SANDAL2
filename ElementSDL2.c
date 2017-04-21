@@ -783,6 +783,22 @@ int getTextStyleElementSDL2(ElementSDL2 *e,int * style){
 
   return error;
 }
+
+int getTextElementSDL2(ElementSDL2 *e,char **s){
+  int error = 1;
+
+  if(e && e->font && e->font->text){
+    if(s){
+      *s=malloc((strlen(e->font->text)+1)*sizeof(**s));
+      strcpy(*s,e->font->text);
+      error = abs(strcmp(*s,e->font->text));
+    }else{
+      error = 0;
+    }
+  }
+
+  return error;
+}
 /* ------------------------------------------------------- */
 
 

@@ -75,5 +75,8 @@ int main(){
     }
   }
 
+  closeAllWindowSDL2();
+  closeAllSDL2();
+
   return 0;
 }

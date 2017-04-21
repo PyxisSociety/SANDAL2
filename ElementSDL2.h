@@ -446,6 +446,13 @@ int isSelectedElementSDL2(ElementSDL2 *e, int * select);
  * @return 1 if there was an error, 0 if not
  */
 int getTextStyleElementSDL2(ElementSDL2 *e,int * style);
+/**
+ * @brief get the text of an element
+ * @param e : the element to get the text from
+ * @param s : where to store the text
+ * @return 1 if it failed, 0 if not
+ */
+int getTextElementSDL2(ElementSDL2 *e,char **s);
 /* ------------------------------------------------------- */
 
 
