@@ -671,7 +671,18 @@ ElementSDL2* createEntryImage(float x,float y,float width,float height,float tex
 }
 
 int isDisplaied(ElementSDL2 *e){
-  return (e && !(e->delete) && _windows_SANDAL2 && _windows_SANDAL2->current == e->parent);
+  int display = (e && !(e->delete) && _windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current == e->parent && e->codes);
+  DisplayCode *d;
+
+  if(display){
+    d=e->codes->first;
+    while(d && d->code<_windows_SANDAL2->current->displayCode){
+      d=d->next;
+    }
+    display=d && d->code==_windows_SANDAL2->current->displayCode && d->isDisplaied;
+  }
+  
+  return display;
 }
 
 int getCoordElementSDL2(ElementSDL2* e,float* x,float* y){
@@ -982,6 +993,7 @@ int addDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode, int plan){
 	tmp=malloc(sizeof(*tmp));
 	tmp->code=displayCode;
 	tmp->plan = plan;
+	tmp->isDisplaied = 1;
 	tmp->next=*d;
 	*d=tmp;
 	ldc=&(_windows_SANDAL2->current->liste->first);
@@ -1069,7 +1081,7 @@ int setDisplayElementSDL2(ElementSDL2 *e,int displayCode,int isDisplaied){
   DisplayCode *d;
   int error = 1;
 
-  if(e){
+  if(e && e->codes){
     d=e->codes->first;
     while(d && d->code<displayCode){
       d=d->next;
