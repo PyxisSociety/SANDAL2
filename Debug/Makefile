@@ -17,8 +17,8 @@ OFILES=debug.o
 #add the LDFLAGS you need (such as -g or -O)
 LDFLAGS+=-g
 
-#your compilation flags, do not put ansi
-CFLAGS=-Wall -Wextra -pedantic
+#your compilation flags, do not put ansi or -std=c89
+CFLAGS=-Wall -Wextra -pedantic 
 
 #your program's name
 EXEC=debug
