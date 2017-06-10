@@ -1,0 +1,467 @@
+\hypertarget{SANDAL2_8h}{}\section{S\+A\+N\+D\+A\+L2.\+h File Reference}
+\label{SANDAL2_8h}\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+
+
+File to include which includes everything else. Compilation flags to use \+: -\/l\+S\+D\+L2 -\/l\+S\+D\+L2\+\_\+ttf -\/l\+S\+D\+L2\+\_\+image -\/lm.  
+
+
+{\ttfamily \#include \char`\"{}Element\+S\+D\+L2.\+h\char`\"{}}\\*
+Include dependency graph for S\+A\+N\+D\+A\+L2.\+h\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{SANDAL2_8h_ad537ef8fe4a84d613f1e38c05e771c94}{init\+All\+S\+D\+L2} (int image\+Flags)
+\begin{DoxyCompactList}\small\item\em Initialisation of S\+D\+L2, its image and fonts (return 1 if S\+D\+L2 initialisation error, 2 if image initialisation error, 3 if font initialisation error, 0 if not) using S\+D\+L2\textquotesingle{}s image flags. \end{DoxyCompactList}\item 
+void \hyperlink{SANDAL2_8h_a66c4e05613569e4f7943ac9edb57dbf7}{close\+All\+S\+D\+L2} ()\hypertarget{SANDAL2_8h_a66c4e05613569e4f7943ac9edb57dbf7}{}\label{SANDAL2_8h_a66c4e05613569e4f7943ac9edb57dbf7}
+
+\begin{DoxyCompactList}\small\item\em Close S\+D\+L2, images and font. \end{DoxyCompactList}\item 
+int \hyperlink{SANDAL2_8h_a01bf8251dec7ff78e84c0128658c51b3}{init\+S\+D\+L2} ()
+\begin{DoxyCompactList}\small\item\em Initialisation of S\+D\+L2 alone. \end{DoxyCompactList}\item 
+int \hyperlink{SANDAL2_8h_a5f3f01c6686a767dce94cf37e9017ba7}{init\+Image} (int image\+Flags)
+\begin{DoxyCompactList}\small\item\em Initialisation of images alone. \end{DoxyCompactList}\item 
+int \hyperlink{SANDAL2_8h_ae77b49097e2b9c9ad4b1f4a09abd4eff}{init\+Texte} ()
+\begin{DoxyCompactList}\small\item\em Initialisation of text alone. \end{DoxyCompactList}\item 
+void \hyperlink{SANDAL2_8h_a13e455075c9cf7e333194e280095c2b2}{close\+S\+D\+L2} ()\hypertarget{SANDAL2_8h_a13e455075c9cf7e333194e280095c2b2}{}\label{SANDAL2_8h_a13e455075c9cf7e333194e280095c2b2}
+
+\begin{DoxyCompactList}\small\item\em Close S\+D\+L2. \end{DoxyCompactList}\item 
+void \hyperlink{SANDAL2_8h_a4413fc24f9f51cd13c6be8d28a9eac17}{close\+Image} ()\hypertarget{SANDAL2_8h_a4413fc24f9f51cd13c6be8d28a9eac17}{}\label{SANDAL2_8h_a4413fc24f9f51cd13c6be8d28a9eac17}
+
+\begin{DoxyCompactList}\small\item\em Close images. \end{DoxyCompactList}\item 
+void \hyperlink{SANDAL2_8h_a68e9d4a4b36d4fff7b60781d5c01473f}{close\+Texte} ()\hypertarget{SANDAL2_8h_a68e9d4a4b36d4fff7b60781d5c01473f}{}\label{SANDAL2_8h_a68e9d4a4b36d4fff7b60781d5c01473f}
+
+\begin{DoxyCompactList}\small\item\em Close font. \end{DoxyCompactList}\item 
+void \hyperlink{SANDAL2_8h_a60aed15125bbd6074a38ed060f409e63}{free\+Window\+S\+D\+L2} (\hyperlink{structWindowSDL2}{Window\+S\+D\+L2} $\ast$fen)\hypertarget{SANDAL2_8h_a60aed15125bbd6074a38ed060f409e63}{}\label{SANDAL2_8h_a60aed15125bbd6074a38ed060f409e63}
+
+\begin{DoxyCompactList}\small\item\em Free a window\textquotesingle{}s memory. \end{DoxyCompactList}\item 
+int \hyperlink{SANDAL2_8h_a06db9b9cce19fe740874853428c73298}{init\+Window\+S\+D\+L2} (int width, int height, char $\ast$title, int S\+D\+L\+Flags, int background\mbox{[}4\mbox{]}, int display\+Code)
+\begin{DoxyCompactList}\small\item\em Add a window to the list of windows. \end{DoxyCompactList}\item 
+int \hyperlink{SANDAL2_8h_ad643c8e42ab9491fd0cd8f7924e721f9}{update\+Window\+S\+D\+L2} ()
+\begin{DoxyCompactList}\small\item\em update all the elements of the current window \end{DoxyCompactList}\item 
+int \hyperlink{SANDAL2_8h_a0d3481efa73916efd8d3b6591ee83026}{display\+Window\+S\+D\+L2} ()
+\begin{DoxyCompactList}\small\item\em actualise the display of the current window \end{DoxyCompactList}\item 
+int \hyperlink{SANDAL2_8h_a44e7c8d01d0f9e375202dfb675176901}{click\+Window\+S\+D\+L2} (int x, int y)
+\begin{DoxyCompactList}\small\item\em activation of click events on the current window \end{DoxyCompactList}\item 
+int \hyperlink{SANDAL2_8h_ab4905fa37a5dd8aba2bdb846a789af0b}{unclick\+Window\+S\+D\+L2} (int x, int y)
+\begin{DoxyCompactList}\small\item\em activation of unclick events on the current window \end{DoxyCompactList}\item 
+int \hyperlink{SANDAL2_8h_abbccc38a06657bbf3ed51b09f2d949bc}{key\+Pressed\+Window\+S\+D\+L2} (char c)
+\begin{DoxyCompactList}\small\item\em activation of the key pressed events on the current window \end{DoxyCompactList}\item 
+int \hyperlink{SANDAL2_8h_a07d389d30ddd550aebb0d23b21720c43}{key\+Released\+Window\+S\+D\+L2} (char c)
+\begin{DoxyCompactList}\small\item\em activation of the key released events on the current window \end{DoxyCompactList}\item 
+int \hyperlink{SANDAL2_8h_ab310f0668019b069ff463ec42d003cd0}{update\+All\+Window\+S\+D\+L2} ()
+\begin{DoxyCompactList}\small\item\em update all the elements of all the windows \end{DoxyCompactList}\item 
+int \hyperlink{SANDAL2_8h_a5f08c5bbdb3fbbf24ca942b83da2c511}{display\+All\+Window\+S\+D\+L2} ()
+\begin{DoxyCompactList}\small\item\em actualise the display of all the windows \end{DoxyCompactList}\item 
+int \hyperlink{SANDAL2_8h_acd84ee894cae3d571ad2049730f7f4c9}{click\+All\+Window\+S\+D\+L2} (int x, int y)
+\begin{DoxyCompactList}\small\item\em activation of click events on all the windows \end{DoxyCompactList}\item 
+int \hyperlink{SANDAL2_8h_ad25b29d3a3bc66196d3b8e4bfd1294e3}{unclick\+All\+Window\+S\+D\+L2} (int x, int y)
+\begin{DoxyCompactList}\small\item\em activation of unclick events on all the windows \end{DoxyCompactList}\item 
+int \hyperlink{SANDAL2_8h_a32d3d46fc3631124846bf26664c01c1c}{key\+Pressed\+All\+Window\+S\+D\+L2} (char c)
+\begin{DoxyCompactList}\small\item\em activation of the key pressed events on all windows \end{DoxyCompactList}\item 
+int \hyperlink{SANDAL2_8h_a974d726f9c11cc6416916dc2eafda7b5}{key\+Released\+All\+Window\+S\+D\+L2} (char c)
+\begin{DoxyCompactList}\small\item\em activation of the key released events on all windows \end{DoxyCompactList}\item 
+int \hyperlink{SANDAL2_8h_a9aaab146cbf4510e27ca634a0a2b7a61}{close\+Window\+S\+D\+L2} ()
+\begin{DoxyCompactList}\small\item\em close the current windows and go to the next \end{DoxyCompactList}\item 
+int \hyperlink{SANDAL2_8h_a4297786eaedd45416e3bbafcb1c5eced}{close\+All\+Window\+S\+D\+L2} ()
+\begin{DoxyCompactList}\small\item\em close all windows \end{DoxyCompactList}\item 
+int \hyperlink{SANDAL2_8h_a578221776da915c1d8d5aeaccdf40cb7}{Poll\+Event\+S\+D\+L2} (int $\ast$error)
+\begin{DoxyCompactList}\small\item\em Get the event (if there is one) and apply the corresponding functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structListWindowSDL2}{List\+Window\+S\+D\+L2} $\ast$ \hyperlink{SANDAL2_8h_a4609f071fbb5e2e36e893ee2bceef7c7}{\+\_\+windows\+\_\+\+S\+A\+N\+D\+A\+L2}
+\begin{DoxyCompactList}\small\item\em list of windows W\+A\+R\+N\+I\+NG \+: do not touch this variable, never ... trust me \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File to include which includes everything else. Compilation flags to use \+: -\/l\+S\+D\+L2 -\/l\+S\+D\+L2\+\_\+ttf -\/l\+S\+D\+L2\+\_\+image -\/lm. 
+
+\begin{DoxyAuthor}{Author}
+Baptiste P\+R\+U\+N\+I\+ER (K\+L\+E\+VH) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0.\+5 
+\end{DoxyVersion}
+
+
+\subsection{Function Documentation}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!click\+All\+Window\+S\+D\+L2@{click\+All\+Window\+S\+D\+L2}}
+\index{click\+All\+Window\+S\+D\+L2@{click\+All\+Window\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{click\+All\+Window\+S\+D\+L2(int x, int y)}{clickAllWindowSDL2(int x, int y)}}]{\setlength{\rightskip}{0pt plus 5cm}int click\+All\+Window\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_acd84ee894cae3d571ad2049730f7f4c9}{}\label{SANDAL2_8h_acd84ee894cae3d571ad2049730f7f4c9}
+
+
+activation of click events on all the windows 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \+: abscissa coordinate of the mouse during the click \\
+\hline
+{\em y} & \+: ordinate coordinate of the mouse during the click \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if it succeeded, a binary code telling which window failed (example \+: 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one 
+\end{DoxyReturn}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!click\+Window\+S\+D\+L2@{click\+Window\+S\+D\+L2}}
+\index{click\+Window\+S\+D\+L2@{click\+Window\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{click\+Window\+S\+D\+L2(int x, int y)}{clickWindowSDL2(int x, int y)}}]{\setlength{\rightskip}{0pt plus 5cm}int click\+Window\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_a44e7c8d01d0f9e375202dfb675176901}{}\label{SANDAL2_8h_a44e7c8d01d0f9e375202dfb675176901}
+
+
+activation of click events on the current window 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \+: abscissa coordinate of the mouse during the click \\
+\hline
+{\em y} & \+: ordinate coordinate of the mouse during the click \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if it failed, 0 if not 
+\end{DoxyReturn}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!close\+All\+Window\+S\+D\+L2@{close\+All\+Window\+S\+D\+L2}}
+\index{close\+All\+Window\+S\+D\+L2@{close\+All\+Window\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{close\+All\+Window\+S\+D\+L2()}{closeAllWindowSDL2()}}]{\setlength{\rightskip}{0pt plus 5cm}int close\+All\+Window\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_a4297786eaedd45416e3bbafcb1c5eced}{}\label{SANDAL2_8h_a4297786eaedd45416e3bbafcb1c5eced}
+
+
+close all windows 
+
+\begin{DoxyReturn}{Returns}
+1 if it failed, 0 if not 
+\end{DoxyReturn}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!close\+Window\+S\+D\+L2@{close\+Window\+S\+D\+L2}}
+\index{close\+Window\+S\+D\+L2@{close\+Window\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{close\+Window\+S\+D\+L2()}{closeWindowSDL2()}}]{\setlength{\rightskip}{0pt plus 5cm}int close\+Window\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_a9aaab146cbf4510e27ca634a0a2b7a61}{}\label{SANDAL2_8h_a9aaab146cbf4510e27ca634a0a2b7a61}
+
+
+close the current windows and go to the next 
+
+\begin{DoxyReturn}{Returns}
+1 if it failed, 0 if not 
+\end{DoxyReturn}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!display\+All\+Window\+S\+D\+L2@{display\+All\+Window\+S\+D\+L2}}
+\index{display\+All\+Window\+S\+D\+L2@{display\+All\+Window\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{display\+All\+Window\+S\+D\+L2()}{displayAllWindowSDL2()}}]{\setlength{\rightskip}{0pt plus 5cm}int display\+All\+Window\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_a5f08c5bbdb3fbbf24ca942b83da2c511}{}\label{SANDAL2_8h_a5f08c5bbdb3fbbf24ca942b83da2c511}
+
+
+actualise the display of all the windows 
+
+\begin{DoxyReturn}{Returns}
+0 if it succeeded, a binary code telling which window failed (example \+: 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one 
+\end{DoxyReturn}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!display\+Window\+S\+D\+L2@{display\+Window\+S\+D\+L2}}
+\index{display\+Window\+S\+D\+L2@{display\+Window\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{display\+Window\+S\+D\+L2()}{displayWindowSDL2()}}]{\setlength{\rightskip}{0pt plus 5cm}int display\+Window\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_a0d3481efa73916efd8d3b6591ee83026}{}\label{SANDAL2_8h_a0d3481efa73916efd8d3b6591ee83026}
+
+
+actualise the display of the current window 
+
+\begin{DoxyReturn}{Returns}
+1 if it failed, 0 if not 
+\end{DoxyReturn}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!init\+All\+S\+D\+L2@{init\+All\+S\+D\+L2}}
+\index{init\+All\+S\+D\+L2@{init\+All\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{init\+All\+S\+D\+L2(int image\+Flags)}{initAllSDL2(int imageFlags)}}]{\setlength{\rightskip}{0pt plus 5cm}int init\+All\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{int}]{image\+Flags}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_ad537ef8fe4a84d613f1e38c05e771c94}{}\label{SANDAL2_8h_ad537ef8fe4a84d613f1e38c05e771c94}
+
+
+Initialisation of S\+D\+L2, its image and fonts (return 1 if S\+D\+L2 initialisation error, 2 if image initialisation error, 3 if font initialisation error, 0 if not) using S\+D\+L2\textquotesingle{}s image flags. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image\+Flags} & \+: S\+D\+L2\textquotesingle{}s image flags \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+error code 
+\end{DoxyReturn}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!init\+Image@{init\+Image}}
+\index{init\+Image@{init\+Image}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{init\+Image(int image\+Flags)}{initImage(int imageFlags)}}]{\setlength{\rightskip}{0pt plus 5cm}int init\+Image (
+\begin{DoxyParamCaption}
+\item[{int}]{image\+Flags}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_a5f3f01c6686a767dce94cf37e9017ba7}{}\label{SANDAL2_8h_a5f3f01c6686a767dce94cf37e9017ba7}
+
+
+Initialisation of images alone. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image\+Flags} & \+: S\+D\+L2\textquotesingle{}s image flags \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if success, 1 if failed 
+\end{DoxyReturn}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!init\+S\+D\+L2@{init\+S\+D\+L2}}
+\index{init\+S\+D\+L2@{init\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{init\+S\+D\+L2()}{initSDL2()}}]{\setlength{\rightskip}{0pt plus 5cm}int init\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_a01bf8251dec7ff78e84c0128658c51b3}{}\label{SANDAL2_8h_a01bf8251dec7ff78e84c0128658c51b3}
+
+
+Initialisation of S\+D\+L2 alone. 
+
+\begin{DoxyReturn}{Returns}
+0 if success, 1 if failed 
+\end{DoxyReturn}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!init\+Texte@{init\+Texte}}
+\index{init\+Texte@{init\+Texte}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{init\+Texte()}{initTexte()}}]{\setlength{\rightskip}{0pt plus 5cm}int init\+Texte (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_ae77b49097e2b9c9ad4b1f4a09abd4eff}{}\label{SANDAL2_8h_ae77b49097e2b9c9ad4b1f4a09abd4eff}
+
+
+Initialisation of text alone. 
+
+\begin{DoxyReturn}{Returns}
+0 if success, 1 if failed 
+\end{DoxyReturn}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!init\+Window\+S\+D\+L2@{init\+Window\+S\+D\+L2}}
+\index{init\+Window\+S\+D\+L2@{init\+Window\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{init\+Window\+S\+D\+L2(int width, int height, char $\ast$title, int S\+D\+L\+Flags, int background[4], int display\+Code)}{initWindowSDL2(int width, int height, char *title, int SDLFlags, int background[4], int displayCode)}}]{\setlength{\rightskip}{0pt plus 5cm}int init\+Window\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{int}]{width, }
+\item[{int}]{height, }
+\item[{char $\ast$}]{title, }
+\item[{int}]{S\+D\+L\+Flags, }
+\item[{int}]{background\mbox{[}4\mbox{]}, }
+\item[{int}]{display\+Code}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_a06db9b9cce19fe740874853428c73298}{}\label{SANDAL2_8h_a06db9b9cce19fe740874853428c73298}
+
+
+Add a window to the list of windows. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & \+: width of the window \\
+\hline
+{\em height} & \+: height of the window \\
+\hline
+{\em title} & \+: title of the window \\
+\hline
+{\em S\+D\+L\+Flags} & \+: flags of S\+D\+L2 \\
+\hline
+{\em background} & \+: color of the background \\
+\hline
+{\em display\+Code} & \+: display code of the window \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if it failed, 0 if not 
+\end{DoxyReturn}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!key\+Pressed\+All\+Window\+S\+D\+L2@{key\+Pressed\+All\+Window\+S\+D\+L2}}
+\index{key\+Pressed\+All\+Window\+S\+D\+L2@{key\+Pressed\+All\+Window\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{key\+Pressed\+All\+Window\+S\+D\+L2(char c)}{keyPressedAllWindowSDL2(char c)}}]{\setlength{\rightskip}{0pt plus 5cm}int key\+Pressed\+All\+Window\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{char}]{c}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_a32d3d46fc3631124846bf26664c01c1c}{}\label{SANDAL2_8h_a32d3d46fc3631124846bf26664c01c1c}
+
+
+activation of the key pressed events on all windows 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & \+: key which was pressed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if it succeeded, a binary code telling which window failed (example \+: 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one 
+\end{DoxyReturn}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!key\+Pressed\+Window\+S\+D\+L2@{key\+Pressed\+Window\+S\+D\+L2}}
+\index{key\+Pressed\+Window\+S\+D\+L2@{key\+Pressed\+Window\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{key\+Pressed\+Window\+S\+D\+L2(char c)}{keyPressedWindowSDL2(char c)}}]{\setlength{\rightskip}{0pt plus 5cm}int key\+Pressed\+Window\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{char}]{c}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_abbccc38a06657bbf3ed51b09f2d949bc}{}\label{SANDAL2_8h_abbccc38a06657bbf3ed51b09f2d949bc}
+
+
+activation of the key pressed events on the current window 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & \+: key which was pressed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if it failed, 0 if not 
+\end{DoxyReturn}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!key\+Released\+All\+Window\+S\+D\+L2@{key\+Released\+All\+Window\+S\+D\+L2}}
+\index{key\+Released\+All\+Window\+S\+D\+L2@{key\+Released\+All\+Window\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{key\+Released\+All\+Window\+S\+D\+L2(char c)}{keyReleasedAllWindowSDL2(char c)}}]{\setlength{\rightskip}{0pt plus 5cm}int key\+Released\+All\+Window\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{char}]{c}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_a974d726f9c11cc6416916dc2eafda7b5}{}\label{SANDAL2_8h_a974d726f9c11cc6416916dc2eafda7b5}
+
+
+activation of the key released events on all windows 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & \+: key which was released \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if it succeeded, a binary code telling which window failed (example \+: 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one 
+\end{DoxyReturn}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!key\+Released\+Window\+S\+D\+L2@{key\+Released\+Window\+S\+D\+L2}}
+\index{key\+Released\+Window\+S\+D\+L2@{key\+Released\+Window\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{key\+Released\+Window\+S\+D\+L2(char c)}{keyReleasedWindowSDL2(char c)}}]{\setlength{\rightskip}{0pt plus 5cm}int key\+Released\+Window\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{char}]{c}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_a07d389d30ddd550aebb0d23b21720c43}{}\label{SANDAL2_8h_a07d389d30ddd550aebb0d23b21720c43}
+
+
+activation of the key released events on the current window 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & \+: key which was released \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if it failed, 0 if not 
+\end{DoxyReturn}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!Poll\+Event\+S\+D\+L2@{Poll\+Event\+S\+D\+L2}}
+\index{Poll\+Event\+S\+D\+L2@{Poll\+Event\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{Poll\+Event\+S\+D\+L2(int $\ast$error)}{PollEventSDL2(int *error)}}]{\setlength{\rightskip}{0pt plus 5cm}int Poll\+Event\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{error}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_a578221776da915c1d8d5aeaccdf40cb7}{}\label{SANDAL2_8h_a578221776da915c1d8d5aeaccdf40cb7}
+
+
+Get the event (if there is one) and apply the corresponding functions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em error} & where to store the error flag (0 if it succeeded, a binary code telling which window failed (example \+: 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the user asked to close the window, 0 if not 
+\end{DoxyReturn}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!unclick\+All\+Window\+S\+D\+L2@{unclick\+All\+Window\+S\+D\+L2}}
+\index{unclick\+All\+Window\+S\+D\+L2@{unclick\+All\+Window\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{unclick\+All\+Window\+S\+D\+L2(int x, int y)}{unclickAllWindowSDL2(int x, int y)}}]{\setlength{\rightskip}{0pt plus 5cm}int unclick\+All\+Window\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_ad25b29d3a3bc66196d3b8e4bfd1294e3}{}\label{SANDAL2_8h_ad25b29d3a3bc66196d3b8e4bfd1294e3}
+
+
+activation of unclick events on all the windows 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \+: abscissa coordinate of the mouse during the unclick \\
+\hline
+{\em y} & \+: ordinate coordinate of the mouse during the unclick \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if it succeeded, a binary code telling which window failed (example \+: 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one 
+\end{DoxyReturn}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!unclick\+Window\+S\+D\+L2@{unclick\+Window\+S\+D\+L2}}
+\index{unclick\+Window\+S\+D\+L2@{unclick\+Window\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{unclick\+Window\+S\+D\+L2(int x, int y)}{unclickWindowSDL2(int x, int y)}}]{\setlength{\rightskip}{0pt plus 5cm}int unclick\+Window\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_ab4905fa37a5dd8aba2bdb846a789af0b}{}\label{SANDAL2_8h_ab4905fa37a5dd8aba2bdb846a789af0b}
+
+
+activation of unclick events on the current window 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \+: abscissa coordinate of the mouse during the unclick \\
+\hline
+{\em y} & \+: ordinate coordinate of the mouse during the unclick \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if it failed, 0 if not 
+\end{DoxyReturn}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!update\+All\+Window\+S\+D\+L2@{update\+All\+Window\+S\+D\+L2}}
+\index{update\+All\+Window\+S\+D\+L2@{update\+All\+Window\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{update\+All\+Window\+S\+D\+L2()}{updateAllWindowSDL2()}}]{\setlength{\rightskip}{0pt plus 5cm}int update\+All\+Window\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_ab310f0668019b069ff463ec42d003cd0}{}\label{SANDAL2_8h_ab310f0668019b069ff463ec42d003cd0}
+
+
+update all the elements of all the windows 
+
+\begin{DoxyReturn}{Returns}
+1 if it failed, 0 if not 
+\end{DoxyReturn}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!update\+Window\+S\+D\+L2@{update\+Window\+S\+D\+L2}}
+\index{update\+Window\+S\+D\+L2@{update\+Window\+S\+D\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{update\+Window\+S\+D\+L2()}{updateWindowSDL2()}}]{\setlength{\rightskip}{0pt plus 5cm}int update\+Window\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{SANDAL2_8h_ad643c8e42ab9491fd0cd8f7924e721f9}{}\label{SANDAL2_8h_ad643c8e42ab9491fd0cd8f7924e721f9}
+
+
+update all the elements of the current window 
+
+\begin{DoxyReturn}{Returns}
+1 if it failed, 0 if not 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\index{S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}!\+\_\+windows\+\_\+\+S\+A\+N\+D\+A\+L2@{\+\_\+windows\+\_\+\+S\+A\+N\+D\+A\+L2}}
+\index{\+\_\+windows\+\_\+\+S\+A\+N\+D\+A\+L2@{\+\_\+windows\+\_\+\+S\+A\+N\+D\+A\+L2}!S\+A\+N\+D\+A\+L2.\+h@{S\+A\+N\+D\+A\+L2.\+h}}
+\subsubsection[{\texorpdfstring{\+\_\+windows\+\_\+\+S\+A\+N\+D\+A\+L2}{_windows_SANDAL2}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf List\+Window\+S\+D\+L2}$\ast$ \+\_\+windows\+\_\+\+S\+A\+N\+D\+A\+L2}\hypertarget{SANDAL2_8h_a4609f071fbb5e2e36e893ee2bceef7c7}{}\label{SANDAL2_8h_a4609f071fbb5e2e36e893ee2bceef7c7}
+
+
+list of windows W\+A\+R\+N\+I\+NG \+: do not touch this variable, never ... trust me 
+
+list of windows W\+A\+R\+N\+I\+NG \+: do not touch this variable, never ... trust me
+
+List of the windows W\+A\+R\+N\+I\+NG \+: do not touch it ... trust me. 

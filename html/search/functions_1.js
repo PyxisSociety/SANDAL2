@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['changecolorfontsdl2',['changeColorFontSDL2',['../FontSDL2_8h.html#a8ef2b04604fd6cf1d08cb35533d732ba',1,'FontSDL2.c']]],
+  ['changedisplaywindowsdl2',['changeDisplayWindowSDL2',['../WindowSDL2_8h.html#a44d7632f2ddc46ab5a3f52579941365d',1,'WindowSDL2.c']]],
+  ['changesizeentrysdl2',['changeSizeEntrySDL2',['../ElementSDL2_8h.html#ad1066c1ed75ee3c52eea5981c169cb95',1,'ElementSDL2.c']]],
+  ['changetextfontsdl2',['changeTextFontSDL2',['../FontSDL2_8h.html#afe965e301b70b25fc58c81ebf674f223',1,'FontSDL2.c']]],
+  ['cleanelementsdl2',['cleanElementSDL2',['../ElementSDL2_8h.html#ad04ce7cf475dc35109b94db30467e3d9',1,'ElementSDL2.c']]],
+  ['clickallwindowsdl2',['clickAllWindowSDL2',['../SANDAL2_8h.html#acd84ee894cae3d571ad2049730f7f4c9',1,'SANDAL2.c']]],
+  ['clickwindowsdl2',['clickWindowSDL2',['../SANDAL2_8h.html#a44e7c8d01d0f9e375202dfb675176901',1,'SANDAL2.c']]],
+  ['closeallsdl2',['closeAllSDL2',['../SANDAL2_8h.html#a66c4e05613569e4f7943ac9edb57dbf7',1,'SANDAL2.c']]],
+  ['closeallwindowsdl2',['closeAllWindowSDL2',['../SANDAL2_8h.html#a4297786eaedd45416e3bbafcb1c5eced',1,'SANDAL2.c']]],
+  ['closeimage',['closeImage',['../SANDAL2_8h.html#a4413fc24f9f51cd13c6be8d28a9eac17',1,'SANDAL2.c']]],
+  ['closesdl2',['closeSDL2',['../SANDAL2_8h.html#a13e455075c9cf7e333194e280095c2b2',1,'SANDAL2.c']]],
+  ['closetexte',['closeTexte',['../SANDAL2_8h.html#a68e9d4a4b36d4fff7b60781d5c01473f',1,'SANDAL2.c']]],
+  ['closewindowsdl2',['closeWindowSDL2',['../SANDAL2_8h.html#a9aaab146cbf4510e27ca634a0a2b7a61',1,'SANDAL2.c']]],
+  ['cmpcoul',['cmpCoul',['../WindowSDL2_8h.html#a76223ef0eba8f56e0c706f1085f71d64',1,'WindowSDL2.c']]],
+  ['copycolor',['copyColor',['../WindowSDL2_8h.html#af505c56ae14df2c6644964143706953a',1,'WindowSDL2.c']]],
+  ['createanimation',['createAnimation',['../Sprite_8h.html#a8a2528930dc78d5b7a3b2739f561cc5c',1,'Sprite.c']]],
+  ['createanimationelementsdl2',['createAnimationElementSDL2',['../ElementSDL2_8h.html#ac51cf912a7e4ea06504bbbe6b930a381',1,'ElementSDL2.c']]],
+  ['createblock',['createBlock',['../ElementSDL2_8h.html#af43268f632b67a33d80933445e04e23c',1,'ElementSDL2.c']]],
+  ['createbutton',['createButton',['../ElementSDL2_8h.html#a0450799d01cad34958c8f4d6caadbdd4',1,'ElementSDL2.c']]],
+  ['createbuttonimage',['createButtonImage',['../ElementSDL2_8h.html#a25a3013e5cd7943562c9599f3b299c2b',1,'ElementSDL2.c']]],
+  ['createentry',['createEntry',['../ElementSDL2_8h.html#a0bc983f2aaafdddc82306a1c6d578e8f',1,'ElementSDL2.c']]],
+  ['createentryimage',['createEntryImage',['../ElementSDL2_8h.html#ae4abd58ee96ae0d15dfcbe79cffc9688',1,'ElementSDL2.c']]],
+  ['createfontsdl2',['createFontSDL2',['../FontSDL2_8h.html#a62baaca0c4a94ff043153fce516f1c4c',1,'FontSDL2.c']]],
+  ['createimage',['createImage',['../ElementSDL2_8h.html#ae1a152f048870ca8056e60fd34644ae1',1,'ElementSDL2.c']]],
+  ['createtexte',['createTexte',['../ElementSDL2_8h.html#aaad5f2c67cd8cae678f5011698c30a7c',1,'ElementSDL2.c']]]
+];

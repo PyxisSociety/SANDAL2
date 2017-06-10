@@ -1,0 +1,461 @@
+\hypertarget{HitBox_8h}{}\section{Hit\+Box.\+h File Reference}
+\label{HitBox_8h}\index{Hit\+Box.\+h@{Hit\+Box.\+h}}
+
+
+Generic hitboxes either polygonial, elliptic or a mixe of both.  
+
+
+{\ttfamily \#include $<$math.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+Include dependency graph for Hit\+Box.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structLineSDL2}{Line\+S\+D\+L2}
+\begin{DoxyCompactList}\small\item\em Represente a line which delimitate a hittable surface from a none hittable one. \end{DoxyCompactList}\item 
+struct \hyperlink{structCircleSDL2}{Circle\+S\+D\+L2}
+\begin{DoxyCompactList}\small\item\em Represente a hittable ellipse. \end{DoxyCompactList}\item 
+struct \hyperlink{structHitBox}{Hit\+Box}
+\begin{DoxyCompactList}\small\item\em Represente a hit boxe which is a collection of \hyperlink{structLineSDL2}{Line\+S\+D\+L2} (defining a convexe polygon) and \hyperlink{structCircleSDL2}{Circle\+S\+D\+L2}. \end{DoxyCompactList}\item 
+struct \hyperlink{structListHitBox}{List\+Hit\+Box}
+\begin{DoxyCompactList}\small\item\em Collection of hit boxes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structLineSDL2}{Line\+S\+D\+L2} {\bfseries Line\+S\+D\+L2}\hypertarget{HitBox_8h_adbac6d4c3d92dee5ab10e216ad138157}{}\label{HitBox_8h_adbac6d4c3d92dee5ab10e216ad138157}
+
+\item 
+typedef struct \hyperlink{structCircleSDL2}{Circle\+S\+D\+L2} {\bfseries Circle\+S\+D\+L2}\hypertarget{HitBox_8h_a1eaa3bd6a2d247ff767843a8c9692a72}{}\label{HitBox_8h_a1eaa3bd6a2d247ff767843a8c9692a72}
+
+\item 
+typedef struct \hyperlink{structHitBox}{Hit\+Box} {\bfseries Hit\+Box}\hypertarget{HitBox_8h_ac43c440496eab690980369935e1c59bd}{}\label{HitBox_8h_ac43c440496eab690980369935e1c59bd}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structHitBox}{Hit\+Box} $\ast$ \hyperlink{HitBox_8h_a1be18a82249f1704d11a8f0521c7d7f8}{init\+Hit\+Box} ()
+\begin{DoxyCompactList}\small\item\em Generate an empty hitbox. \end{DoxyCompactList}\item 
+int \hyperlink{HitBox_8h_a7b6d10c254712d180a299cd083b1e41a}{add\+Line\+S\+D\+L2} (\hyperlink{structHitBox}{Hit\+Box} $\ast$hb, float a, float b, float c, int sens)
+\begin{DoxyCompactList}\small\item\em add a line to the hitbox sens$\ast$(ax+by) $>$ sens$\ast$c \end{DoxyCompactList}\item 
+int \hyperlink{HitBox_8h_ae810abbc933be4edc7ab992c4f00eb58}{add\+Circle\+S\+D\+L2} (\hyperlink{structHitBox}{Hit\+Box} $\ast$hb, float x, float y, float rX, float rY, float theta)
+\begin{DoxyCompactList}\small\item\em add an ellipse to the hitbox \end{DoxyCompactList}\item 
+int \hyperlink{HitBox_8h_adacf36e9ec30f271bdadbd0e7be54894}{remove\+Line\+S\+D\+L2} (\hyperlink{structHitBox}{Hit\+Box} $\ast$hb, float a, float b, float c, int sens)
+\begin{DoxyCompactList}\small\item\em remove a line from the hitbox \end{DoxyCompactList}\item 
+int \hyperlink{HitBox_8h_ab29f466c828cb4926d29b363ff72b7be}{remove\+Circle\+S\+D\+L2} (\hyperlink{structHitBox}{Hit\+Box} $\ast$hb, float x, float y, float rX, float rY, float theta)
+\begin{DoxyCompactList}\small\item\em remove an ellipse from the hitbox \end{DoxyCompactList}\item 
+int \hyperlink{HitBox_8h_acb8e3edb3409a0917aac17008a593f32}{hit\+Hit\+Box} (\hyperlink{structHitBox}{Hit\+Box} $\ast$hb, float x, float y)
+\begin{DoxyCompactList}\small\item\em tells if (x,y) touch the hitbox \end{DoxyCompactList}\item 
+\hyperlink{structHitBox}{Hit\+Box} $\ast$ \hyperlink{HitBox_8h_a7e554380ba3c8fecae2a346f83ec6cb0}{rectangle\+Hit\+Box} (float x1, float y1, float x2, float y2)
+\begin{DoxyCompactList}\small\item\em generate a rectangulare shapped \hyperlink{structHitBox}{Hit\+Box} \end{DoxyCompactList}\item 
+\hyperlink{structHitBox}{Hit\+Box} $\ast$ \hyperlink{HitBox_8h_aba91745aca080e5d5221f49de7a9717e}{ellipse\+Hit\+Box} (float x, float y, float rX, float rY, float theta)
+\begin{DoxyCompactList}\small\item\em generate an ellipse shapped \hyperlink{structHitBox}{Hit\+Box} \end{DoxyCompactList}\item 
+void \hyperlink{HitBox_8h_a0def7ba8b84923bc5dd5ae5d5c7715a4}{free\+Hit\+Box} (\hyperlink{structHitBox}{Hit\+Box} $\ast$hb)
+\begin{DoxyCompactList}\small\item\em free a hit boxe\textquotesingle{}s memory \end{DoxyCompactList}\item 
+void \hyperlink{HitBox_8h_a8b6c3993c3b41a8cb492d94d492a34c5}{free\+List\+Hit\+Box} (\hyperlink{structListHitBox}{List\+Hit\+Box} $\ast$l)
+\begin{DoxyCompactList}\small\item\em free the memory of a list of hit boxe \end{DoxyCompactList}\item 
+\hyperlink{structListHitBox}{List\+Hit\+Box} $\ast$ \hyperlink{HitBox_8h_a8dfd82ae68c323f9b3c5487c8a21e7bd}{init\+List\+Hit\+Box} ()
+\begin{DoxyCompactList}\small\item\em initialise an empty list of hit boxes \end{DoxyCompactList}\item 
+int \hyperlink{HitBox_8h_a340f9c3921b2549989b206cceb0422b3}{add\+Hit\+Box} (\hyperlink{structListHitBox}{List\+Hit\+Box} $\ast$l, \hyperlink{structHitBox}{Hit\+Box} $\ast$hb, int blocking)
+\begin{DoxyCompactList}\small\item\em add a hit boxe to a list of hit boxes \end{DoxyCompactList}\item 
+int \hyperlink{HitBox_8h_a46fb14a1494db72746d96fee8840c6d9}{remove\+Hit\+Box} (\hyperlink{structListHitBox}{List\+Hit\+Box} $\ast$l, \hyperlink{structHitBox}{Hit\+Box} $\ast$hb)
+\begin{DoxyCompactList}\small\item\em remove a hit boxe to a list of hit boxes \end{DoxyCompactList}\item 
+int \hyperlink{HitBox_8h_ab97462121987d2a6bbd4b52f3a7f4907}{init\+Iterator\+List\+Hit\+Box} (\hyperlink{structListHitBox}{List\+Hit\+Box} $\ast$l)
+\begin{DoxyCompactList}\small\item\em initialise the iterator of the list of hit boxes \end{DoxyCompactList}\item 
+\hyperlink{structHitBox}{Hit\+Box} $\ast$ \hyperlink{HitBox_8h_ac3ccd75e3678b97833eeb054b51c9f42}{next\+Hit\+Box} (\hyperlink{structListHitBox}{List\+Hit\+Box} $\ast$l)
+\begin{DoxyCompactList}\small\item\em getter of the current element of the iterator and setter of the next element \end{DoxyCompactList}\item 
+int \hyperlink{HitBox_8h_a40a080f680b6c800546bd400dfcad9c2}{hit\+List\+Hit\+Box} (\hyperlink{structListHitBox}{List\+Hit\+Box} $\ast$l, float x, float y)
+\begin{DoxyCompactList}\small\item\em tells if (x,y) touch one of the hitboxes \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Generic hitboxes either polygonial, elliptic or a mixe of both. 
+
+\begin{DoxyAuthor}{Author}
+Baptiste P\+R\+U\+N\+I\+ER (K\+L\+E\+VH) 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\index{Hit\+Box.\+h@{Hit\+Box.\+h}!add\+Circle\+S\+D\+L2@{add\+Circle\+S\+D\+L2}}
+\index{add\+Circle\+S\+D\+L2@{add\+Circle\+S\+D\+L2}!Hit\+Box.\+h@{Hit\+Box.\+h}}
+\subsubsection[{\texorpdfstring{add\+Circle\+S\+D\+L2(\+Hit\+Box $\ast$hb, float x, float y, float r\+X, float r\+Y, float theta)}{addCircleSDL2(HitBox *hb, float x, float y, float rX, float rY, float theta)}}]{\setlength{\rightskip}{0pt plus 5cm}int add\+Circle\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{{\bf Hit\+Box} $\ast$}]{hb, }
+\item[{float}]{x, }
+\item[{float}]{y, }
+\item[{float}]{rX, }
+\item[{float}]{rY, }
+\item[{float}]{theta}
+\end{DoxyParamCaption}
+)}\hypertarget{HitBox_8h_ae810abbc933be4edc7ab992c4f00eb58}{}\label{HitBox_8h_ae810abbc933be4edc7ab992c4f00eb58}
+
+
+add an ellipse to the hitbox 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hb} & \+: hit boxe to which the line will be added \\
+\hline
+{\em x} & \+: abscissa coordinate of the center of the ellipse \\
+\hline
+{\em y} & \+: ordinate coordinate of the center of the ellipse \\
+\hline
+{\em rX} & \+: size of the radius parallel to the abscissa axis \\
+\hline
+{\em rY} & \+: size of the radius parallel to the ordinate axis \\
+\hline
+{\em theta} & \+: rotation of the ellipse (in degree) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the ellipse was correctly added, 1 in the other case 
+\end{DoxyReturn}
+\index{Hit\+Box.\+h@{Hit\+Box.\+h}!add\+Hit\+Box@{add\+Hit\+Box}}
+\index{add\+Hit\+Box@{add\+Hit\+Box}!Hit\+Box.\+h@{Hit\+Box.\+h}}
+\subsubsection[{\texorpdfstring{add\+Hit\+Box(\+List\+Hit\+Box $\ast$l, Hit\+Box $\ast$hb, int blocking)}{addHitBox(ListHitBox *l, HitBox *hb, int blocking)}}]{\setlength{\rightskip}{0pt plus 5cm}int add\+Hit\+Box (
+\begin{DoxyParamCaption}
+\item[{{\bf List\+Hit\+Box} $\ast$}]{l, }
+\item[{{\bf Hit\+Box} $\ast$}]{hb, }
+\item[{int}]{blocking}
+\end{DoxyParamCaption}
+)}\hypertarget{HitBox_8h_a340f9c3921b2549989b206cceb0422b3}{}\label{HitBox_8h_a340f9c3921b2549989b206cceb0422b3}
+
+
+add a hit boxe to a list of hit boxes 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & \+: list of hit boxes \\
+\hline
+{\em hb} & \+: hit boxe \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the hit boxe was succesfully added, 1 if not 
+\end{DoxyReturn}
+\index{Hit\+Box.\+h@{Hit\+Box.\+h}!add\+Line\+S\+D\+L2@{add\+Line\+S\+D\+L2}}
+\index{add\+Line\+S\+D\+L2@{add\+Line\+S\+D\+L2}!Hit\+Box.\+h@{Hit\+Box.\+h}}
+\subsubsection[{\texorpdfstring{add\+Line\+S\+D\+L2(\+Hit\+Box $\ast$hb, float a, float b, float c, int sens)}{addLineSDL2(HitBox *hb, float a, float b, float c, int sens)}}]{\setlength{\rightskip}{0pt plus 5cm}int add\+Line\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{{\bf Hit\+Box} $\ast$}]{hb, }
+\item[{float}]{a, }
+\item[{float}]{b, }
+\item[{float}]{c, }
+\item[{int}]{sens}
+\end{DoxyParamCaption}
+)}\hypertarget{HitBox_8h_a7b6d10c254712d180a299cd083b1e41a}{}\label{HitBox_8h_a7b6d10c254712d180a299cd083b1e41a}
+
+
+add a line to the hitbox sens$\ast$(ax+by) $>$ sens$\ast$c 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hb} & \+: hit boxe to which the line will be added \\
+\hline
+{\em a} & \+: a in the equation of the line ax+by=c \\
+\hline
+{\em b} & \+: b in the equation of the line ax+by=c \\
+\hline
+{\em c} & \+: c in the equation of the line ax+by=c \\
+\hline
+{\em sens} & \+: indicator of the side of the line which is hittable (-\/1 \+: ax+by$<$c, 1 \+: ax+by$>$c) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the line was correctly added, 1 in the other case 
+\end{DoxyReturn}
+\index{Hit\+Box.\+h@{Hit\+Box.\+h}!ellipse\+Hit\+Box@{ellipse\+Hit\+Box}}
+\index{ellipse\+Hit\+Box@{ellipse\+Hit\+Box}!Hit\+Box.\+h@{Hit\+Box.\+h}}
+\subsubsection[{\texorpdfstring{ellipse\+Hit\+Box(float x, float y, float r\+X, float r\+Y, float theta)}{ellipseHitBox(float x, float y, float rX, float rY, float theta)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Hit\+Box}$\ast$ ellipse\+Hit\+Box (
+\begin{DoxyParamCaption}
+\item[{float}]{x, }
+\item[{float}]{y, }
+\item[{float}]{rX, }
+\item[{float}]{rY, }
+\item[{float}]{theta}
+\end{DoxyParamCaption}
+)}\hypertarget{HitBox_8h_aba91745aca080e5d5221f49de7a9717e}{}\label{HitBox_8h_aba91745aca080e5d5221f49de7a9717e}
+
+
+generate an ellipse shapped \hyperlink{structHitBox}{Hit\+Box} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \+: abscissa coordinate of the center of the ellipse \\
+\hline
+{\em y} & \+: ordinate coordinate of the center of the ellipse \\
+\hline
+{\em rX} & \+: size of the radius parallel to the abscissa axis \\
+\hline
+{\em rY} & \+: size of the radius parallel to the ordinate axis \\
+\hline
+{\em theta} & \+: rotation of the ellipse (in degree) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An elliptical hit boxe 
+\end{DoxyReturn}
+\index{Hit\+Box.\+h@{Hit\+Box.\+h}!free\+Hit\+Box@{free\+Hit\+Box}}
+\index{free\+Hit\+Box@{free\+Hit\+Box}!Hit\+Box.\+h@{Hit\+Box.\+h}}
+\subsubsection[{\texorpdfstring{free\+Hit\+Box(\+Hit\+Box $\ast$hb)}{freeHitBox(HitBox *hb)}}]{\setlength{\rightskip}{0pt plus 5cm}void free\+Hit\+Box (
+\begin{DoxyParamCaption}
+\item[{{\bf Hit\+Box} $\ast$}]{hb}
+\end{DoxyParamCaption}
+)}\hypertarget{HitBox_8h_a0def7ba8b84923bc5dd5ae5d5c7715a4}{}\label{HitBox_8h_a0def7ba8b84923bc5dd5ae5d5c7715a4}
+
+
+free a hit boxe\textquotesingle{}s memory 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hb} & \+: hit boxe to be freed \\
+\hline
+\end{DoxyParams}
+\index{Hit\+Box.\+h@{Hit\+Box.\+h}!free\+List\+Hit\+Box@{free\+List\+Hit\+Box}}
+\index{free\+List\+Hit\+Box@{free\+List\+Hit\+Box}!Hit\+Box.\+h@{Hit\+Box.\+h}}
+\subsubsection[{\texorpdfstring{free\+List\+Hit\+Box(\+List\+Hit\+Box $\ast$l)}{freeListHitBox(ListHitBox *l)}}]{\setlength{\rightskip}{0pt plus 5cm}void free\+List\+Hit\+Box (
+\begin{DoxyParamCaption}
+\item[{{\bf List\+Hit\+Box} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}\hypertarget{HitBox_8h_a8b6c3993c3b41a8cb492d94d492a34c5}{}\label{HitBox_8h_a8b6c3993c3b41a8cb492d94d492a34c5}
+
+
+free the memory of a list of hit boxe 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & \+: list of hit boxe to be freed \\
+\hline
+\end{DoxyParams}
+\index{Hit\+Box.\+h@{Hit\+Box.\+h}!hit\+Hit\+Box@{hit\+Hit\+Box}}
+\index{hit\+Hit\+Box@{hit\+Hit\+Box}!Hit\+Box.\+h@{Hit\+Box.\+h}}
+\subsubsection[{\texorpdfstring{hit\+Hit\+Box(\+Hit\+Box $\ast$hb, float x, float y)}{hitHitBox(HitBox *hb, float x, float y)}}]{\setlength{\rightskip}{0pt plus 5cm}int hit\+Hit\+Box (
+\begin{DoxyParamCaption}
+\item[{{\bf Hit\+Box} $\ast$}]{hb, }
+\item[{float}]{x, }
+\item[{float}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{HitBox_8h_acb8e3edb3409a0917aac17008a593f32}{}\label{HitBox_8h_acb8e3edb3409a0917aac17008a593f32}
+
+
+tells if (x,y) touch the hitbox 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hb} & \+: hit boxe that you are trying to touch \\
+\hline
+{\em x} & \+: abscissa coordinate of the point trying to touch the hit boxe \\
+\hline
+{\em y} & \+: ordinate coordinate of the point trying to touch the hit boxe \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the hit boxe is hit, 0 in the other case 
+\end{DoxyReturn}
+\index{Hit\+Box.\+h@{Hit\+Box.\+h}!hit\+List\+Hit\+Box@{hit\+List\+Hit\+Box}}
+\index{hit\+List\+Hit\+Box@{hit\+List\+Hit\+Box}!Hit\+Box.\+h@{Hit\+Box.\+h}}
+\subsubsection[{\texorpdfstring{hit\+List\+Hit\+Box(\+List\+Hit\+Box $\ast$l, float x, float y)}{hitListHitBox(ListHitBox *l, float x, float y)}}]{\setlength{\rightskip}{0pt plus 5cm}int hit\+List\+Hit\+Box (
+\begin{DoxyParamCaption}
+\item[{{\bf List\+Hit\+Box} $\ast$}]{l, }
+\item[{float}]{x, }
+\item[{float}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{HitBox_8h_a40a080f680b6c800546bd400dfcad9c2}{}\label{HitBox_8h_a40a080f680b6c800546bd400dfcad9c2}
+
+
+tells if (x,y) touch one of the hitboxes 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & \+: list of hit boxes \\
+\hline
+{\em x} & \+: abscissa coordinate of the point trying to touch the hit boxe \\
+\hline
+{\em y} & \+: ordinate coordinate of the point trying to touch the hit boxe \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if one of the hit boxes was hit, 0 if not 
+\end{DoxyReturn}
+\index{Hit\+Box.\+h@{Hit\+Box.\+h}!init\+Hit\+Box@{init\+Hit\+Box}}
+\index{init\+Hit\+Box@{init\+Hit\+Box}!Hit\+Box.\+h@{Hit\+Box.\+h}}
+\subsubsection[{\texorpdfstring{init\+Hit\+Box()}{initHitBox()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Hit\+Box}$\ast$ init\+Hit\+Box (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{HitBox_8h_a1be18a82249f1704d11a8f0521c7d7f8}{}\label{HitBox_8h_a1be18a82249f1704d11a8f0521c7d7f8}
+
+
+Generate an empty hitbox. 
+
+\begin{DoxyReturn}{Returns}
+return an empty hitbox 
+\end{DoxyReturn}
+\index{Hit\+Box.\+h@{Hit\+Box.\+h}!init\+Iterator\+List\+Hit\+Box@{init\+Iterator\+List\+Hit\+Box}}
+\index{init\+Iterator\+List\+Hit\+Box@{init\+Iterator\+List\+Hit\+Box}!Hit\+Box.\+h@{Hit\+Box.\+h}}
+\subsubsection[{\texorpdfstring{init\+Iterator\+List\+Hit\+Box(\+List\+Hit\+Box $\ast$l)}{initIteratorListHitBox(ListHitBox *l)}}]{\setlength{\rightskip}{0pt plus 5cm}int init\+Iterator\+List\+Hit\+Box (
+\begin{DoxyParamCaption}
+\item[{{\bf List\+Hit\+Box} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}\hypertarget{HitBox_8h_ab97462121987d2a6bbd4b52f3a7f4907}{}\label{HitBox_8h_ab97462121987d2a6bbd4b52f3a7f4907}
+
+
+initialise the iterator of the list of hit boxes 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & \+: list of hit boxes \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the iterator was succesfully initialised, 0 if not 
+\end{DoxyReturn}
+\index{Hit\+Box.\+h@{Hit\+Box.\+h}!init\+List\+Hit\+Box@{init\+List\+Hit\+Box}}
+\index{init\+List\+Hit\+Box@{init\+List\+Hit\+Box}!Hit\+Box.\+h@{Hit\+Box.\+h}}
+\subsubsection[{\texorpdfstring{init\+List\+Hit\+Box()}{initListHitBox()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf List\+Hit\+Box}$\ast$ init\+List\+Hit\+Box (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{HitBox_8h_a8dfd82ae68c323f9b3c5487c8a21e7bd}{}\label{HitBox_8h_a8dfd82ae68c323f9b3c5487c8a21e7bd}
+
+
+initialise an empty list of hit boxes 
+
+\begin{DoxyReturn}{Returns}
+an empty list of hit boxes 
+\end{DoxyReturn}
+\index{Hit\+Box.\+h@{Hit\+Box.\+h}!next\+Hit\+Box@{next\+Hit\+Box}}
+\index{next\+Hit\+Box@{next\+Hit\+Box}!Hit\+Box.\+h@{Hit\+Box.\+h}}
+\subsubsection[{\texorpdfstring{next\+Hit\+Box(\+List\+Hit\+Box $\ast$l)}{nextHitBox(ListHitBox *l)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Hit\+Box}$\ast$ next\+Hit\+Box (
+\begin{DoxyParamCaption}
+\item[{{\bf List\+Hit\+Box} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}\hypertarget{HitBox_8h_ac3ccd75e3678b97833eeb054b51c9f42}{}\label{HitBox_8h_ac3ccd75e3678b97833eeb054b51c9f42}
+
+
+getter of the current element of the iterator and setter of the next element 
+
+\begin{DoxyReturn}{Returns}
+the current hit boxes 
+\end{DoxyReturn}
+\index{Hit\+Box.\+h@{Hit\+Box.\+h}!rectangle\+Hit\+Box@{rectangle\+Hit\+Box}}
+\index{rectangle\+Hit\+Box@{rectangle\+Hit\+Box}!Hit\+Box.\+h@{Hit\+Box.\+h}}
+\subsubsection[{\texorpdfstring{rectangle\+Hit\+Box(float x1, float y1, float x2, float y2)}{rectangleHitBox(float x1, float y1, float x2, float y2)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Hit\+Box}$\ast$ rectangle\+Hit\+Box (
+\begin{DoxyParamCaption}
+\item[{float}]{x1, }
+\item[{float}]{y1, }
+\item[{float}]{x2, }
+\item[{float}]{y2}
+\end{DoxyParamCaption}
+)}\hypertarget{HitBox_8h_a7e554380ba3c8fecae2a346f83ec6cb0}{}\label{HitBox_8h_a7e554380ba3c8fecae2a346f83ec6cb0}
+
+
+generate a rectangulare shapped \hyperlink{structHitBox}{Hit\+Box} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x1} & \+: abscissa coordinate of the top left point of the rectangle \\
+\hline
+{\em y1} & \+: ordinate coordinate of the top left point of the rectangle \\
+\hline
+{\em x2} & \+: abscissa coordinate of the bottom right point of the rectangle \\
+\hline
+{\em y2} & \+: ordinate coordinate of the bottom right point of the rectangle \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A rectangulare hit boxe defined by the points (x1,y1) and (x2,y2) 
+\end{DoxyReturn}
+\index{Hit\+Box.\+h@{Hit\+Box.\+h}!remove\+Circle\+S\+D\+L2@{remove\+Circle\+S\+D\+L2}}
+\index{remove\+Circle\+S\+D\+L2@{remove\+Circle\+S\+D\+L2}!Hit\+Box.\+h@{Hit\+Box.\+h}}
+\subsubsection[{\texorpdfstring{remove\+Circle\+S\+D\+L2(\+Hit\+Box $\ast$hb, float x, float y, float r\+X, float r\+Y, float theta)}{removeCircleSDL2(HitBox *hb, float x, float y, float rX, float rY, float theta)}}]{\setlength{\rightskip}{0pt plus 5cm}int remove\+Circle\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{{\bf Hit\+Box} $\ast$}]{hb, }
+\item[{float}]{x, }
+\item[{float}]{y, }
+\item[{float}]{rX, }
+\item[{float}]{rY, }
+\item[{float}]{theta}
+\end{DoxyParamCaption}
+)}\hypertarget{HitBox_8h_ab29f466c828cb4926d29b363ff72b7be}{}\label{HitBox_8h_ab29f466c828cb4926d29b363ff72b7be}
+
+
+remove an ellipse from the hitbox 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hb} & \+: hit boxe to which the line will be removed \\
+\hline
+{\em x} & \+: abscissa coordinate of the center of the ellipse \\
+\hline
+{\em y} & \+: ordinate coordinate of the center of the ellipse \\
+\hline
+{\em rX} & \+: size of the radius parallel to the abscissa axis \\
+\hline
+{\em rY} & \+: size of the radius parallel to the ordinate axis \\
+\hline
+{\em theta} & \+: rotation of the ellipse (in degree) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the ellipse was correctly removed, 1 in the other case 
+\end{DoxyReturn}
+\index{Hit\+Box.\+h@{Hit\+Box.\+h}!remove\+Hit\+Box@{remove\+Hit\+Box}}
+\index{remove\+Hit\+Box@{remove\+Hit\+Box}!Hit\+Box.\+h@{Hit\+Box.\+h}}
+\subsubsection[{\texorpdfstring{remove\+Hit\+Box(\+List\+Hit\+Box $\ast$l, Hit\+Box $\ast$hb)}{removeHitBox(ListHitBox *l, HitBox *hb)}}]{\setlength{\rightskip}{0pt plus 5cm}int remove\+Hit\+Box (
+\begin{DoxyParamCaption}
+\item[{{\bf List\+Hit\+Box} $\ast$}]{l, }
+\item[{{\bf Hit\+Box} $\ast$}]{hb}
+\end{DoxyParamCaption}
+)}\hypertarget{HitBox_8h_a46fb14a1494db72746d96fee8840c6d9}{}\label{HitBox_8h_a46fb14a1494db72746d96fee8840c6d9}
+
+
+remove a hit boxe to a list of hit boxes 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & \+: list of hit boxes \\
+\hline
+{\em hb} & \+: hit boxe \\
+\hline
+{\em blocking} & \+: 0 if the hit boxe is hittable, 1 if it block other hit boxes \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the hit boxe was succesfully removed, 1 if not 
+\end{DoxyReturn}
+\index{Hit\+Box.\+h@{Hit\+Box.\+h}!remove\+Line\+S\+D\+L2@{remove\+Line\+S\+D\+L2}}
+\index{remove\+Line\+S\+D\+L2@{remove\+Line\+S\+D\+L2}!Hit\+Box.\+h@{Hit\+Box.\+h}}
+\subsubsection[{\texorpdfstring{remove\+Line\+S\+D\+L2(\+Hit\+Box $\ast$hb, float a, float b, float c, int sens)}{removeLineSDL2(HitBox *hb, float a, float b, float c, int sens)}}]{\setlength{\rightskip}{0pt plus 5cm}int remove\+Line\+S\+D\+L2 (
+\begin{DoxyParamCaption}
+\item[{{\bf Hit\+Box} $\ast$}]{hb, }
+\item[{float}]{a, }
+\item[{float}]{b, }
+\item[{float}]{c, }
+\item[{int}]{sens}
+\end{DoxyParamCaption}
+)}\hypertarget{HitBox_8h_adacf36e9ec30f271bdadbd0e7be54894}{}\label{HitBox_8h_adacf36e9ec30f271bdadbd0e7be54894}
+
+
+remove a line from the hitbox 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hb} & \+: hit boxe to which the line will be removed \\
+\hline
+{\em a} & \+: a in the equation of the line ax+by=c \\
+\hline
+{\em b} & \+: b in the equation of the line ax+by=c \\
+\hline
+{\em c} & \+: c in the equation of the line ax+by=c \\
+\hline
+{\em sens} & \+: indicator of the side of the line which is hittable (-\/1 \+: ax+by$<$c, 1 \+: ax+by$>$c) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the line was correctly removed, 1 in the other case 
+\end{DoxyReturn}

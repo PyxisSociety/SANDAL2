@@ -15,6 +15,22 @@ I made this wrapper because I found boresome to have to create a display functio
 up going a little further in it. I hope you will enjoy using it, if you have any comment or advice, do not feel shy 
 and tell me ! I will really appreciate it.
 
+## To Install
+
+To use SANDAL2, you will have to install SDL2, SDL2_image and SDL2_ttf.
+
+### I. On Linux
+
+'''
+sudo apt-get install libsdl2-dev
+sudo apt-get install libsdl2-image-dev
+sudo apt-get install libsdl2-ttf-dev
+'''
+
+### II. Other OS
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I honestly tried to sum up how to do but I did not succeed. You should search on the internet, some guys made it way clearer than I can possibly do.
+
 ## Functionnality
 
 ### I. To begin with

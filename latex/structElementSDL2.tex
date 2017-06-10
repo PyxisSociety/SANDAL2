@@ -1,0 +1,174 @@
+\hypertarget{structElementSDL2}{}\section{Element\+S\+D\+L2 Struct Reference}
+\label{structElementSDL2}\index{Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+
+
+All the informations of an element.  
+
+
+
+
+{\ttfamily \#include $<$Element\+S\+D\+L2.\+h$>$}
+
+
+
+Collaboration diagram for Element\+S\+D\+L2\+:
+% FIG 0
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{structElementSDL2_a85c4f16793909cb2ab4fc3d1da0ad788}{x}
+\item 
+float \hyperlink{structElementSDL2_a07636d9e6dc09c88aaff9062b2db5278}{y}
+\item 
+float \hyperlink{structElementSDL2_a1dc0d58f7dfad658560111bd8d37a114}{width}
+\item 
+float \hyperlink{structElementSDL2_aa85848e696ee9420c7993d395ed883be}{height}
+\item 
+float \hyperlink{structElementSDL2_a9b522d7b8bf6b476d142fd0058aff66c}{prX}
+\item 
+float \hyperlink{structElementSDL2_a23b79d2468ca18e33071cd137f6961c6}{prY}
+\item 
+float \hyperlink{structElementSDL2_a8bbd5c157ceaba03f33b77e71daa7a79}{rotation}
+\item 
+float \hyperlink{structElementSDL2_a46a53dcb3d0d119e5df7cd276de2c4ae}{rot\+Speed}
+\item 
+int \hyperlink{structElementSDL2_a527fdb85c7fa55880dfcd9ddfdd4e0b9}{coul\+Block} \mbox{[}4\mbox{]}
+\item 
+float \hyperlink{structElementSDL2_a49a55a004e56ad15b5b0f0cb0045c83f}{text\+Size}
+\item 
+\hyperlink{structListDisplayCode}{List\+Display\+Code} $\ast$ \hyperlink{structElementSDL2_a60652c6e4cf3d38aadbc650a624d2999}{codes}
+\item 
+void($\ast$ \hyperlink{structElementSDL2_a86441847b7f6595e3405d6d9bbf1b8d9}{action} )(struct \hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$)
+\item 
+void($\ast$ \hyperlink{structElementSDL2_ae56c022599e2e8acdda29fbb8af44942}{on\+Click} )(struct \hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$)
+\item 
+void($\ast$ \hyperlink{structElementSDL2_a0ad4094686063db36244b474fe42a336}{un\+Click} )(struct \hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$)
+\item 
+void($\ast$ \hyperlink{structElementSDL2_aff1dc935700d44a0ef0d53de7cca9d41}{key\+Press} )(struct \hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$, S\+D\+L\+\_\+\+Keycode c)
+\item 
+void($\ast$ \hyperlink{structElementSDL2_a76ecf85adcb072db772a8351ea7e04ee}{key\+Released} )(struct \hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$, S\+D\+L\+\_\+\+Keycode c)
+\item 
+void($\ast$ \hyperlink{structElementSDL2_a8057ee0d19cdd60ec568076206ee0e12}{un\+Select} )(struct \hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$)
+\item 
+void($\ast$ \hyperlink{structElementSDL2_aa857e06629320966e80bd437050b07e8}{end\+Sprite} )(struct \hyperlink{structElementSDL2}{Element\+S\+D\+L2} $\ast$, int code)
+\item 
+S\+D\+L\+\_\+\+Texture $\ast$ \hyperlink{structElementSDL2_aab2ff0fd3a1c4370d7f1f9cdd250d056}{image}
+\item 
+\hyperlink{structListAnimation}{List\+Animation} $\ast$ \hyperlink{structElementSDL2_a9b7927abbd7b67f843758ff65436fbb5}{animation}
+\item 
+\hyperlink{structFontSDL2}{Font\+S\+D\+L2} $\ast$ \hyperlink{structElementSDL2_a0379d0d8d499b3916a191b65f2d23f3d}{font}
+\item 
+\hyperlink{structEntrySDL2}{Entry\+S\+D\+L2} $\ast$ \hyperlink{structElementSDL2_a9c99c1c34dcf0e52baaca7a64598bd8a}{entry}
+\item 
+struct \hyperlink{structListPtrElementSDL2}{List\+Ptr\+Element\+S\+D\+L2} $\ast$ \hyperlink{structElementSDL2_aca39f22199862196fc52dfcecafeca4a}{interactions}
+\item 
+\hyperlink{structListHitBox}{List\+Hit\+Box} $\ast$ \hyperlink{structElementSDL2_aa4af7ab8949d93544da609659a4011c0}{hitboxes}
+\item 
+void $\ast$ \hyperlink{structElementSDL2_abca7de78cc7e420d98d24a955563c7cc}{data}
+\item 
+int \hyperlink{structElementSDL2_a59d6b7086533d8d7da883bc882c4ef6d}{delete}
+\item 
+int \hyperlink{structElementSDL2_a1f8620d697afd711263d20dd82077cd0}{delete\+Code}
+\item 
+int \hyperlink{structElementSDL2_a2cae92fe5dd207db485261128b82bc02}{selected}
+\item 
+\hyperlink{structWindowSDL2}{Window\+S\+D\+L2} $\ast$ \hyperlink{structElementSDL2_a9cd0b68349b49321423bec3136cf7e6e}{parent}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+All the informations of an element. 
+
+\subsection{Member Data Documentation}
+\index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!action@{action}}
+\index{action@{action}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{action}{action}}]{\setlength{\rightskip}{0pt plus 5cm}void($\ast$ Element\+S\+D\+L2\+::action) (struct {\bf Element\+S\+D\+L2} $\ast$)}\hypertarget{structElementSDL2_a86441847b7f6595e3405d6d9bbf1b8d9}{}\label{structElementSDL2_a86441847b7f6595e3405d6d9bbf1b8d9}
+function called when update \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!animation@{animation}}
+\index{animation@{animation}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{animation}{animation}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf List\+Animation}$\ast$ Element\+S\+D\+L2\+::animation}\hypertarget{structElementSDL2_a9b7927abbd7b67f843758ff65436fbb5}{}\label{structElementSDL2_a9b7927abbd7b67f843758ff65436fbb5}
+animation of the image \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!codes@{codes}}
+\index{codes@{codes}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{codes}{codes}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf List\+Display\+Code}$\ast$ Element\+S\+D\+L2\+::codes}\hypertarget{structElementSDL2_a60652c6e4cf3d38aadbc650a624d2999}{}\label{structElementSDL2_a60652c6e4cf3d38aadbc650a624d2999}
+list of display code of the element \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!coul\+Block@{coul\+Block}}
+\index{coul\+Block@{coul\+Block}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{coul\+Block}{coulBlock}}]{\setlength{\rightskip}{0pt plus 5cm}int Element\+S\+D\+L2\+::coul\+Block\mbox{[}4\mbox{]}}\hypertarget{structElementSDL2_a527fdb85c7fa55880dfcd9ddfdd4e0b9}{}\label{structElementSDL2_a527fdb85c7fa55880dfcd9ddfdd4e0b9}
+color of the block of the element (if first value -\/1, there is no block) \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!data@{data}}
+\index{data@{data}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{data}{data}}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ Element\+S\+D\+L2\+::data}\hypertarget{structElementSDL2_abca7de78cc7e420d98d24a955563c7cc}{}\label{structElementSDL2_abca7de78cc7e420d98d24a955563c7cc}
+data available for the user \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!delete@{delete}}
+\index{delete@{delete}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{delete}{delete}}]{\setlength{\rightskip}{0pt plus 5cm}int Element\+S\+D\+L2\+::delete}\hypertarget{structElementSDL2_a59d6b7086533d8d7da883bc882c4ef6d}{}\label{structElementSDL2_a59d6b7086533d8d7da883bc882c4ef6d}
+tells whether or not the element should be deleted (1 for completely deleted, 2 for display remove, 3 for plan change) \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!delete\+Code@{delete\+Code}}
+\index{delete\+Code@{delete\+Code}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{delete\+Code}{deleteCode}}]{\setlength{\rightskip}{0pt plus 5cm}int Element\+S\+D\+L2\+::delete\+Code}\hypertarget{structElementSDL2_a1f8620d697afd711263d20dd82077cd0}{}\label{structElementSDL2_a1f8620d697afd711263d20dd82077cd0}
+plan or display code to be removed from \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!end\+Sprite@{end\+Sprite}}
+\index{end\+Sprite@{end\+Sprite}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{end\+Sprite}{endSprite}}]{\setlength{\rightskip}{0pt plus 5cm}void($\ast$ Element\+S\+D\+L2\+::end\+Sprite) (struct {\bf Element\+S\+D\+L2} $\ast$, int code)}\hypertarget{structElementSDL2_aa857e06629320966e80bd437050b07e8}{}\label{structElementSDL2_aa857e06629320966e80bd437050b07e8}
+function called at the end of a sprite \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!entry@{entry}}
+\index{entry@{entry}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{entry}{entry}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Entry\+S\+D\+L2}$\ast$ Element\+S\+D\+L2\+::entry}\hypertarget{structElementSDL2_a9c99c1c34dcf0e52baaca7a64598bd8a}{}\label{structElementSDL2_a9c99c1c34dcf0e52baaca7a64598bd8a}
+informations about the entry (N\+U\+LL if no entry) \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!font@{font}}
+\index{font@{font}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{font}{font}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Font\+S\+D\+L2}$\ast$ Element\+S\+D\+L2\+::font}\hypertarget{structElementSDL2_a0379d0d8d499b3916a191b65f2d23f3d}{}\label{structElementSDL2_a0379d0d8d499b3916a191b65f2d23f3d}
+informations about the text (N\+U\+LL if no text) \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!height@{height}}
+\index{height@{height}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{height}{height}}]{\setlength{\rightskip}{0pt plus 5cm}float Element\+S\+D\+L2\+::height}\hypertarget{structElementSDL2_aa85848e696ee9420c7993d395ed883be}{}\label{structElementSDL2_aa85848e696ee9420c7993d395ed883be}
+height of the element \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!hitboxes@{hitboxes}}
+\index{hitboxes@{hitboxes}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{hitboxes}{hitboxes}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf List\+Hit\+Box}$\ast$ Element\+S\+D\+L2\+::hitboxes}\hypertarget{structElementSDL2_aa4af7ab8949d93544da609659a4011c0}{}\label{structElementSDL2_aa4af7ab8949d93544da609659a4011c0}
+list of clickable zones \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!image@{image}}
+\index{image@{image}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{image}{image}}]{\setlength{\rightskip}{0pt plus 5cm}S\+D\+L\+\_\+\+Texture$\ast$ Element\+S\+D\+L2\+::image}\hypertarget{structElementSDL2_aab2ff0fd3a1c4370d7f1f9cdd250d056}{}\label{structElementSDL2_aab2ff0fd3a1c4370d7f1f9cdd250d056}
+texture of the image (N\+U\+LL if no image) \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!interactions@{interactions}}
+\index{interactions@{interactions}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{interactions}{interactions}}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf List\+Ptr\+Element\+S\+D\+L2}$\ast$ Element\+S\+D\+L2\+::interactions}\hypertarget{structElementSDL2_aca39f22199862196fc52dfcecafeca4a}{}\label{structElementSDL2_aca39f22199862196fc52dfcecafeca4a}
+list of elements that this element can modifie \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!key\+Press@{key\+Press}}
+\index{key\+Press@{key\+Press}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{key\+Press}{keyPress}}]{\setlength{\rightskip}{0pt plus 5cm}void($\ast$ Element\+S\+D\+L2\+::key\+Press) (struct {\bf Element\+S\+D\+L2} $\ast$, S\+D\+L\+\_\+\+Keycode c)}\hypertarget{structElementSDL2_aff1dc935700d44a0ef0d53de7cca9d41}{}\label{structElementSDL2_aff1dc935700d44a0ef0d53de7cca9d41}
+function called when a key is pressed \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!key\+Released@{key\+Released}}
+\index{key\+Released@{key\+Released}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{key\+Released}{keyReleased}}]{\setlength{\rightskip}{0pt plus 5cm}void($\ast$ Element\+S\+D\+L2\+::key\+Released) (struct {\bf Element\+S\+D\+L2} $\ast$, S\+D\+L\+\_\+\+Keycode c)}\hypertarget{structElementSDL2_a76ecf85adcb072db772a8351ea7e04ee}{}\label{structElementSDL2_a76ecf85adcb072db772a8351ea7e04ee}
+function called when a key is released \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!on\+Click@{on\+Click}}
+\index{on\+Click@{on\+Click}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{on\+Click}{onClick}}]{\setlength{\rightskip}{0pt plus 5cm}void($\ast$ Element\+S\+D\+L2\+::on\+Click) (struct {\bf Element\+S\+D\+L2} $\ast$)}\hypertarget{structElementSDL2_ae56c022599e2e8acdda29fbb8af44942}{}\label{structElementSDL2_ae56c022599e2e8acdda29fbb8af44942}
+function called when the element is clicked \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!parent@{parent}}
+\index{parent@{parent}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{parent}{parent}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Window\+S\+D\+L2}$\ast$ Element\+S\+D\+L2\+::parent}\hypertarget{structElementSDL2_a9cd0b68349b49321423bec3136cf7e6e}{}\label{structElementSDL2_a9cd0b68349b49321423bec3136cf7e6e}
+parent window of the element \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!prX@{prX}}
+\index{prX@{prX}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{prX}{prX}}]{\setlength{\rightskip}{0pt plus 5cm}float Element\+S\+D\+L2\+::prX}\hypertarget{structElementSDL2_a9b522d7b8bf6b476d142fd0058aff66c}{}\label{structElementSDL2_a9b522d7b8bf6b476d142fd0058aff66c}
+abscissa coordinate of the rotation point (if from 0 to 1, in the element) \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!prY@{prY}}
+\index{prY@{prY}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{prY}{prY}}]{\setlength{\rightskip}{0pt plus 5cm}float Element\+S\+D\+L2\+::prY}\hypertarget{structElementSDL2_a23b79d2468ca18e33071cd137f6961c6}{}\label{structElementSDL2_a23b79d2468ca18e33071cd137f6961c6}
+ordinate coordinate of the rotation point (if from 0 to 1, in the element) \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!rotation@{rotation}}
+\index{rotation@{rotation}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{rotation}{rotation}}]{\setlength{\rightskip}{0pt plus 5cm}float Element\+S\+D\+L2\+::rotation}\hypertarget{structElementSDL2_a8bbd5c157ceaba03f33b77e71daa7a79}{}\label{structElementSDL2_a8bbd5c157ceaba03f33b77e71daa7a79}
+rotation angle of the element \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!rot\+Speed@{rot\+Speed}}
+\index{rot\+Speed@{rot\+Speed}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{rot\+Speed}{rotSpeed}}]{\setlength{\rightskip}{0pt plus 5cm}float Element\+S\+D\+L2\+::rot\+Speed}\hypertarget{structElementSDL2_a46a53dcb3d0d119e5df7cd276de2c4ae}{}\label{structElementSDL2_a46a53dcb3d0d119e5df7cd276de2c4ae}
+speed rotation (degree / update) of the element \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!selected@{selected}}
+\index{selected@{selected}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{selected}{selected}}]{\setlength{\rightskip}{0pt plus 5cm}int Element\+S\+D\+L2\+::selected}\hypertarget{structElementSDL2_a2cae92fe5dd207db485261128b82bc02}{}\label{structElementSDL2_a2cae92fe5dd207db485261128b82bc02}
+tells whether or not the element is selected \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!text\+Size@{text\+Size}}
+\index{text\+Size@{text\+Size}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{text\+Size}{textSize}}]{\setlength{\rightskip}{0pt plus 5cm}float Element\+S\+D\+L2\+::text\+Size}\hypertarget{structElementSDL2_a49a55a004e56ad15b5b0f0cb0045c83f}{}\label{structElementSDL2_a49a55a004e56ad15b5b0f0cb0045c83f}
+text proportion in the block \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!un\+Click@{un\+Click}}
+\index{un\+Click@{un\+Click}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{un\+Click}{unClick}}]{\setlength{\rightskip}{0pt plus 5cm}void($\ast$ Element\+S\+D\+L2\+::un\+Click) (struct {\bf Element\+S\+D\+L2} $\ast$)}\hypertarget{structElementSDL2_a0ad4094686063db36244b474fe42a336}{}\label{structElementSDL2_a0ad4094686063db36244b474fe42a336}
+function called when the element is unclicked \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!un\+Select@{un\+Select}}
+\index{un\+Select@{un\+Select}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{un\+Select}{unSelect}}]{\setlength{\rightskip}{0pt plus 5cm}void($\ast$ Element\+S\+D\+L2\+::un\+Select) (struct {\bf Element\+S\+D\+L2} $\ast$)}\hypertarget{structElementSDL2_a8057ee0d19cdd60ec568076206ee0e12}{}\label{structElementSDL2_a8057ee0d19cdd60ec568076206ee0e12}
+function called when the element is unselected \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!width@{width}}
+\index{width@{width}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{width}{width}}]{\setlength{\rightskip}{0pt plus 5cm}float Element\+S\+D\+L2\+::width}\hypertarget{structElementSDL2_a1dc0d58f7dfad658560111bd8d37a114}{}\label{structElementSDL2_a1dc0d58f7dfad658560111bd8d37a114}
+width of the element \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!x@{x}}
+\index{x@{x}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{x}{x}}]{\setlength{\rightskip}{0pt plus 5cm}float Element\+S\+D\+L2\+::x}\hypertarget{structElementSDL2_a85c4f16793909cb2ab4fc3d1da0ad788}{}\label{structElementSDL2_a85c4f16793909cb2ab4fc3d1da0ad788}
+abscissa coordinate of the top left of the element \index{Element\+S\+D\+L2@{Element\+S\+D\+L2}!y@{y}}
+\index{y@{y}!Element\+S\+D\+L2@{Element\+S\+D\+L2}}
+\subsubsection[{\texorpdfstring{y}{y}}]{\setlength{\rightskip}{0pt plus 5cm}float Element\+S\+D\+L2\+::y}\hypertarget{structElementSDL2_a07636d9e6dc09c88aaff9062b2db5278}{}\label{structElementSDL2_a07636d9e6dc09c88aaff9062b2db5278}
+ordinate coordinate of the top left of the element 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ElementSDL2_8h}{Element\+S\+D\+L2.\+h}\end{DoxyCompactItemize}

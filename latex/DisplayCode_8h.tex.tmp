@@ -1,0 +1,104 @@
+\hypertarget{DisplayCode_8h}{}\section{Display\+Code.\+h File Reference}
+\label{DisplayCode_8h}\index{Display\+Code.\+h@{Display\+Code.\+h}}
+
+
+Contains display code and list of display codes.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+Include dependency graph for Display\+Code.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structDisplayCode}{Display\+Code}
+\begin{DoxyCompactList}\small\item\em Display code containing the plan and a flag to indicate if it is displaied. \end{DoxyCompactList}\item 
+struct \hyperlink{structListDisplayCode}{List\+Display\+Code}
+\begin{DoxyCompactList}\small\item\em List of display codes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structDisplayCode}{Display\+Code} {\bfseries Display\+Code}\hypertarget{DisplayCode_8h_a8f29d365a9eb9e9cd5e4ac84068bc0cc}{}\label{DisplayCode_8h_a8f29d365a9eb9e9cd5e4ac84068bc0cc}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structListDisplayCode}{List\+Display\+Code} $\ast$ \hyperlink{DisplayCode_8h_a36c8d05b31541f4527fa4b96a902a1c1}{init\+List\+Display\+Code} ()
+\begin{DoxyCompactList}\small\item\em Initialise an empty list of display codes. \end{DoxyCompactList}\item 
+void \hyperlink{DisplayCode_8h_ae0cfa5055ded96f56130189cc89f7edd}{free\+List\+Display\+Code} (\hyperlink{structListDisplayCode}{List\+Display\+Code} $\ast$l)
+\begin{DoxyCompactList}\small\item\em Free the memory of a list of display codes. \end{DoxyCompactList}\item 
+int \hyperlink{DisplayCode_8h_a89fe93a0eda043a8fc3d879b369ddf75}{add\+Display\+Code} (\hyperlink{structListDisplayCode}{List\+Display\+Code} $\ast$l, int code, int \hyperlink{ElementSDL2_8h_ade52f46cef352da9d226a1a1d9e01b19}{is\+Displaied}, int plan)
+\begin{DoxyCompactList}\small\item\em Add of a display code to a list of display code. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Contains display code and list of display codes. 
+
+\begin{DoxyAuthor}{Author}
+Baptiste P\+R\+U\+N\+I\+ER (K\+L\+E\+VH) 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\index{Display\+Code.\+h@{Display\+Code.\+h}!add\+Display\+Code@{add\+Display\+Code}}
+\index{add\+Display\+Code@{add\+Display\+Code}!Display\+Code.\+h@{Display\+Code.\+h}}
+\subsubsection[{\texorpdfstring{add\+Display\+Code(\+List\+Display\+Code $\ast$l, int code, int is\+Displaied, int plan)}{addDisplayCode(ListDisplayCode *l, int code, int isDisplaied, int plan)}}]{\setlength{\rightskip}{0pt plus 5cm}int add\+Display\+Code (
+\begin{DoxyParamCaption}
+\item[{{\bf List\+Display\+Code} $\ast$}]{l, }
+\item[{int}]{code, }
+\item[{int}]{is\+Displaied, }
+\item[{int}]{plan}
+\end{DoxyParamCaption}
+)}\hypertarget{DisplayCode_8h_a89fe93a0eda043a8fc3d879b369ddf75}{}\label{DisplayCode_8h_a89fe93a0eda043a8fc3d879b369ddf75}
+
+
+Add of a display code to a list of display code. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & \+: list of display codes \\
+\hline
+{\em code} & \+: display code of the \hyperlink{structDisplayCode}{Display\+Code} \\
+\hline
+{\em is\+Displaied} & \+: flag to tell if the element is displaied or not \\
+\hline
+{\em plan} & \+: plan linked to the display code \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if it could not be done, 0 if it could 
+\end{DoxyReturn}
+\index{Display\+Code.\+h@{Display\+Code.\+h}!free\+List\+Display\+Code@{free\+List\+Display\+Code}}
+\index{free\+List\+Display\+Code@{free\+List\+Display\+Code}!Display\+Code.\+h@{Display\+Code.\+h}}
+\subsubsection[{\texorpdfstring{free\+List\+Display\+Code(\+List\+Display\+Code $\ast$l)}{freeListDisplayCode(ListDisplayCode *l)}}]{\setlength{\rightskip}{0pt plus 5cm}void free\+List\+Display\+Code (
+\begin{DoxyParamCaption}
+\item[{{\bf List\+Display\+Code} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}\hypertarget{DisplayCode_8h_ae0cfa5055ded96f56130189cc89f7edd}{}\label{DisplayCode_8h_ae0cfa5055ded96f56130189cc89f7edd}
+
+
+Free the memory of a list of display codes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & \+: list of display codes \\
+\hline
+\end{DoxyParams}
+\index{Display\+Code.\+h@{Display\+Code.\+h}!init\+List\+Display\+Code@{init\+List\+Display\+Code}}
+\index{init\+List\+Display\+Code@{init\+List\+Display\+Code}!Display\+Code.\+h@{Display\+Code.\+h}}
+\subsubsection[{\texorpdfstring{init\+List\+Display\+Code()}{initListDisplayCode()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf List\+Display\+Code}$\ast$ init\+List\+Display\+Code (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{DisplayCode_8h_a36c8d05b31541f4527fa4b96a902a1c1}{}\label{DisplayCode_8h_a36c8d05b31541f4527fa4b96a902a1c1}
+
+
+Initialise an empty list of display codes. 
+
+\begin{DoxyReturn}{Returns}
+an empty list of display codes 
+\end{DoxyReturn}
