@@ -1,4 +1,6 @@
 *.o
 *~
-./latex
-./html
+html
+latex
+html/*
+latex/*
