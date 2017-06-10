@@ -37,6 +37,28 @@ typedef struct{
 }EntrySDL2;
 
 struct ListPtrElementSDL2;
+struct ElementSDL2;
+
+/**
+ * @struct EventElementSDL2
+ * @brief Behaviors of an element to SDL2 events
+ */
+typedef struct{
+  void (*action)(struct ElementSDL2*);
+  /**< function called when update*/
+  void (*onClick)(struct ElementSDL2*);
+  /**< function called when the element is clicked*/
+  void (*unClick)(struct ElementSDL2*);
+  /**< function called when the element is unclicked*/
+  void (*keyPress)(struct ElementSDL2*,SDL_Keycode c);
+  /**< function called when a key is pressed*/
+  void (*keyReleased)(struct ElementSDL2*,SDL_Keycode c);
+  /**< function called when a key is released*/
+  void (*unSelect)(struct ElementSDL2*);
+  /**< function called when the element is unselected*/
+  void (*endSprite)(struct ElementSDL2*,int code);
+  /**< function called at the end of a sprite*/
+}EventWindowSDL2;
 
 /**
  * @struct ElementSDL2
@@ -65,20 +87,8 @@ typedef struct ElementSDL2{
   /**< text proportion in the block*/
   ListDisplayCode *codes;
   /**< list of display code of the element*/
-  void (*action)(struct ElementSDL2*);
-  /**< function called when update*/
-  void (*onClick)(struct ElementSDL2*);
-  /**< function called when the element is clicked*/
-  void (*unClick)(struct ElementSDL2*);
-  /**< function called when the element is unclicked*/
-  void (*keyPress)(struct ElementSDL2*,SDL_Keycode c);
-  /**< function called when a key is pressed*/
-  void (*keyReleased)(struct ElementSDL2*,SDL_Keycode c);
-  /**< function called when a key is released*/
-  void (*unSelect)(struct ElementSDL2*);
-  /**< function called when the element is unselected*/
-  void (*endSprite)(struct ElementSDL2*,int code);
-  /**< function called at the end of a sprite*/
+  EventElementSDL2 events;
+  /**< behavior of the element to SDL2 events*/
   SDL_Texture *image;
   /**< texture of the image (NULL if no image)*/
   ListAnimation* animation;
@@ -93,6 +103,8 @@ typedef struct ElementSDL2{
   /**< list of clickable zones*/
   void * data;
   /**< data available for the user*/
+  void (*freeData)(void*);
+  /**< function to be called to free the data */
   int delete;
   /**< tells whether or not the element should be deleted (1 for completely deleted, 2 for display remove, 3 for plan change)*/
   int deleteCode;
@@ -528,7 +540,7 @@ int replaceElementSDL2(ElementSDL2 *e,float x,float y);
  * @param e : element to be modified
  * @param x : abscissa increment
  * @param y : ordinate increment
- * @return 1 if it was possible, 0 if not
+ * @return 1 if it was impossible, 0 if not
  */
 int moveElementSDL2(ElementSDL2 *e,float x,float y);
 /**
@@ -536,14 +548,14 @@ int moveElementSDL2(ElementSDL2 *e,float x,float y);
  * @param e : element to be modified
  * @param width : new width
  * @param height : new height
- * @return 1 if it was possible, 0 if not
+ * @return 1 if it was impossible, 0 if not
  */
 int resizeElementSDL2(ElementSDL2 *e,float width,float height);
 /**
  * @brief set the text size of the text of an element in this element
  * @param e : element to be modified
  * @param textSize : new size of the text (in percent)
- * @return 1 if it was possible, 0 if not
+ * @return 1 if it was impossible, 0 if not
  */
 int setTextSize(ElementSDL2 *e,float textSize);
 /**
@@ -551,14 +563,14 @@ int setTextSize(ElementSDL2 *e,float textSize);
  * @param e : element to be modified
  * @param displayCode : new display code
  * @param plan : plan linked to the new display code
- * @return 1 if it was possible, 0 if not
+ * @return 1 if it was impossible, 0 if not
  */
 int addDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode,int plan);
 /**
  * @brief remove a display code to an element (if it has it)
  * @param e : element to be modified
  * @param displayCode : display code to be removed
- * @return 1 if it was possible, 0 if not
+ * @return 1 if it was impossible, 0 if not
  */
 int removeDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode);
 /**
@@ -566,7 +578,7 @@ int removeDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode);
  * @param e : element to be modified
  * @param displayCode : display code to be modified
  * @param isDisplaied : new isDisplaied option
- * @return 1 if it was possible, 0 if not
+ * @return 1 if it was impossible, 0 if not
  */
 int setDisplayElementSDL2(ElementSDL2 *e,int displayCode,int isDisplaied);
 /**
@@ -574,70 +586,70 @@ int setDisplayElementSDL2(ElementSDL2 *e,int displayCode,int isDisplaied);
  * @param e : element to be modified
  * @param displayCode : display code to be modified
  * @param plan : new plan linked to the display code
- * @return 1 if it was possible, 0 if not
+ * @return 1 if it was impossible, 0 if not
  */
 int setPlanElementSDL2(ElementSDL2 *e,int DisplayCode,int plan);
 /**
  * @brief set the continuous behaviour of an element
  * @param e : element to be modified
  * @param action : function to be called on each update call
- * @return 1 if it was possible, 0 if not
+ * @return 1 if it was impossible, 0 if not
  */
 int setActionElementSDL2(ElementSDL2 *e,void (*action)(ElementSDL2*));
 /**
  * @brief set the behaviour of an element when a key is pressed
  * @param e : element to be modified
  * @param keyPress : function to be called when a key is pressed
- * @return 1 if it was possible, 0 if not
+ * @return 1 if it was impossible, 0 if not
  */
 int setKeyPressElementSDL2(ElementSDL2 *e,void (*keyPress)(ElementSDL2*,SDL_Keycode c));
 /**
  * @brief set the behaviour of an element when a key is released
  * @param e : element to be modified
  * @param keyReleased : function to be called when a key is released
- * @return 1 if it was possible, 0 if not
+ * @return 1 if it was impossible, 0 if not
  */
 int setKeyReleasedElementSDL2(ElementSDL2 *e,void (*keyReleased)(ElementSDL2*,SDL_Keycode c));
 /**
  * @brief set the behaviour of an element when it is clicked
  * @param e : element to be modified
  * @param onCLick : function to be called when it is clicked
- * @return 1 if it was possible, 0 if not
+ * @return 1 if it was impossible, 0 if not
  */
 int setOnClickElementSDL2(ElementSDL2 *e,void (*onCLick)(ElementSDL2*));
 /**
  * @brief set the behaviour of an element when it is unclicked
  * @param e : element to be modified
  * @param unCLick : function to be called when it is unclicked
- * @return 1 if it was possible, 0 if not
+ * @return 1 if it was impossible, 0 if not
  */
 int setUnClickElementSDL2(ElementSDL2 *e,void (*unCLick)(ElementSDL2*));
 /**
  * @brief set the behaiour of an element when it is unselect
  * @param e : element to be modified
  * @param unSelect : new behaviour
- * @return 1 if it was possible, 0 if not
+ * @return 1 if it was impossible, 0 if not
  */
 int setUnSelectElementSDL2(ElementSDL2 *e,void (*unSelect)(ElementSDL2*));
 /**
  * @brief set the behaiour of an element when it ends a sprite
  * @param e : element to be modified
  * @param endSprite : new behaviour
- * @return 1 if it was possible, 0 if not
+ * @return 1 if it was impossible, 0 if not
  */
 int setEndSpriteElementSDL2(ElementSDL2 *e,void (*endSprite)(ElementSDL2*,int));
 /**
  * @brief add an element to another so that this other can modifie the first one
  * @param e : element to be modified
  * @param add : element to be add
- * @return 1 if it was possible, 0 if not
+ * @return 1 if it was impossible, 0 if not
  */
 int addElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *add);
 /**
  * @brief remove an element to another so that this other can not modifie the first one
  * @param e : element to be modified
  * @param add : element to be removed
- * @return 1 if it was possible, 0 if not
+ * @return 1 if it was impossible, 0 if not
  */
 int delElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *del);
 /**
@@ -645,35 +657,35 @@ int delElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *del);
  * @param e : element to be modified
  * @param hb : clickable zone to be add
  * @param blocking : tells whether or not the clickable zone is a blocking one
- * @return 1 if it was possible, 0 if not
+ * @return 1 if it was impossible, 0 if not
  */
 int addHitBoxElementSDL2(ElementSDL2 *e,HitBox *hb,int blocking);
 /**
  * @brief increase the rotation speed of an element
  * @param e : element to be modified
  * @param s : rotation speed increment
- * @return 1 if it was possible, 0 if not
+ * @return 1 if it was impossible, 0 if not
  */
 int addRotationSpeedElementSDL2(ElementSDL2 *e,float s);
 /**
  * @brief set the rotation speed of an element
  * @param e : element to be modified
  * @param s : new rotation speed of the element
- * @return 1 if it was possible, 0 if not
+ * @return 1 if it was impossible, 0 if not
  */
 int setRotationSpeedElementSDL2(ElementSDL2 *e,float s);
 /**
  * @brief increase the angle of an element
  * @param e : element to be modified
  * @param a : angle increment
- * @return 1 if it was possible, 0 if not
+ * @return 1 if it was impossible, 0 if not
  */
 int addAngleElementSDL2(ElementSDL2 *e,float a);
 /**
  * @brief set the angle of an element
  * @param e : element to be modified
  * @param a : new angle of the element
- * @return 1 if it was possible, 0 if not
+ * @return 1 if it was impossible, 0 if not
  */
 int setAngleElementSDL2(ElementSDL2 *e,float a);
 /**
@@ -681,16 +693,29 @@ int setAngleElementSDL2(ElementSDL2 *e,float a);
  * @param e : element to be modified
  * @param x : new abscissa coordinate of the rotation point
  * @param y : new ordinate coordinate of the rotation point
- * @return 1 if it was possible, 0 if not
+ * @return 1 if it was impossible, 0 if not
  */
 int setRotationPointElementSDL2(ElementSDL2 *e,float x,float y);
 /**
  * @brief set the element's data
  * @param e : element to be modified
  * @param data : new data of the element
- * @return 1 if it was possible, 0 if not
+ * @return 1 if it was impossible, 0 if not
  */
 int setDataElementSDL2(ElementSDL2 *e,void *data);
+/**
+ * @brief set the element's freeing data's function (by default, set to free)
+ * @param e : element to be modified
+ * @param freeData : new data freeing behavior
+ * @return 1 if it was impossible, 0 if not
+ */
+int setFreeDataElementSDL2(ElementSDL2 *e,void (*freeData)(void*));
+/**
+ * @brief free the element's data according to the element's freeing data behavior
+ * @param e : element to be modified
+ * @return 1 if it was impossible, 0 if not
+ */
+int freeDataElementSDL2(ElementSDL2 *e);
 /**
  * @brief add an empty animation to the element
  * @param e : element

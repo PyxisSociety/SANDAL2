@@ -168,6 +168,61 @@ int setIconWindowSDL2(char * icon_path){
 
   return error;
 }
+
+int setActionWindowSDL2(void (*action)(void)){
+  int error = 1;
+  
+  if(_windows_SANDAL2 && _windows_SANDAL2->current){
+    _windows_SANDAL2->current->events.action=action;
+    error=0;
+  }
+
+  return error;
+}
+
+int setKeyPressWindowSDL2(void (*keyPress)(SDL_Keycode c)){
+  int error = 1;
+  
+  if(_windows_SANDAL2 && _windows_SANDAL2->current){
+    _windows_SANDAL2->current->events.keyPress=keyPress;
+    error=0;
+  }
+
+  return error;
+}
+
+int setKeyReleasedWindowSDL2(void (*keyReleased)(SDL_Keycode c)){
+  int error = 1;
+  
+  if(_windows_SANDAL2 && _windows_SANDAL2->current){
+    _windows_SANDAL2->current->events.keyReleased=keyReleased;
+    error=0;
+  }
+
+  return error;
+}
+
+int setOnClickWindowSDL2(void (*onCLick)(void)){
+  int error = 1;
+  
+  if(_windows_SANDAL2 && _windows_SANDAL2->current){
+    _windows_SANDAL2->current->events.onCLick=onCLick;
+    error=0;
+  }
+
+  return error;
+}
+
+int setUnClickWindowSDL2(void (*unCLick)(void)){
+  int error = 1;
+  
+  if(_windows_SANDAL2 && _windows_SANDAL2->current){
+    _windows_SANDAL2->current->events.unCLick=unCLick;
+    error=0;
+  }
+
+  return error;
+}
 /* ------------------------------------------------------- */
 
 

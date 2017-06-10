@@ -110,6 +110,11 @@ int initWindowSDL2(int width,int height,char *title,int SDLFlags,int background[
       fen->initWidth=width;
       fen->displayCode=displayCode;
       fen->next = NULL;
+      fen->events.action=NULL;
+      fen->events.onClick=NULL;
+      fen->events.unClick=NULL;
+      fen->events.keyPress=NULL;
+      fen->events.keyReleased=NULL;
       fen->toDelete=0;
       copyColor(fen->background,background);
       fen->liste = initListElementSDL2();
@@ -157,6 +162,11 @@ int updateWindowSDL2(){
     error = 0;
     /* update de la taille de la fenetre */
     SDL_GetWindowSize(_windows_SANDAL2->current->window,&(_windows_SANDAL2->current->width),&(_windows_SANDAL2->current->height));
+
+    /* fait l'action de la fenetre courante */
+    if(_windows_SANDAL2->current->events.action){
+      _windows_SANDAL2->current->events.action();
+    }
     
     /* recherche de la liste d'element ayant le bon code de display */
     if(_windows_SANDAL2->current->liste->currentDCIterator && _windows_SANDAL2->current->liste->currentDCIterator->code<=_windows_SANDAL2->current->displayCode){
@@ -307,6 +317,12 @@ int clickWindowSDL2(int x,int y){
 
   if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
     error = 0;
+
+    /* fait l'action de la fenetre courante */
+    if(_windows_SANDAL2->current->events.onClick){
+      _windows_SANDAL2->current->events.onClick();
+    }
+    
     /* recherche de la liste d'element ayant le bon code de display */
     if(_windows_SANDAL2->current->liste->currentDCIterator && _windows_SANDAL2->current->liste->currentDCIterator->code<=_windows_SANDAL2->current->displayCode){
       ldc=_windows_SANDAL2->current->liste->currentDCIterator;
@@ -377,6 +393,12 @@ int unclickWindowSDL2(int x,int y){
 
   if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
     error = 0;
+
+    /* fait l'action de la fenetre courante */
+    if(_windows_SANDAL2->current->events.unClick){
+      _windows_SANDAL2->current->events.unClick();
+    }
+    
     /* recherche de la liste d'element ayant le bon code de display */
     if(_windows_SANDAL2->current->liste->currentDCIterator && _windows_SANDAL2->current->liste->currentDCIterator->code<=_windows_SANDAL2->current->displayCode){
       ldc=_windows_SANDAL2->current->liste->currentDCIterator;
@@ -435,6 +457,12 @@ int keyPressedWindowSDL2(char c){
 
   if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
     error = 0;
+
+    /* fait l'action de la fenetre courante */
+    if(_windows_SANDAL2->current->events.keyPress){
+      _windows_SANDAL2->current->events.keyPress();
+    }
+    
     /* recherche de la liste d'element ayant le bon code de display */
     if(_windows_SANDAL2->current->liste->currentDCIterator && _windows_SANDAL2->current->liste->currentDCIterator->code<=_windows_SANDAL2->current->displayCode){
       ldc=_windows_SANDAL2->current->liste->currentDCIterator;
@@ -471,6 +499,12 @@ int keyReleasedWindowSDL2(char c){
 
   if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
     error = 0;
+
+    /* fait l'action de la fenetre courante */
+    if(_windows_SANDAL2->current->events.keyReleased){
+      _windows_SANDAL2->current->events.keyReleased();
+    }
+    
     /* recherche de la liste d'element ayant le bon code de display */
     if(_windows_SANDAL2->current->liste->currentDCIterator && _windows_SANDAL2->current->liste->currentDCIterator->code<=_windows_SANDAL2->current->displayCode){
       ldc=_windows_SANDAL2->current->liste->currentDCIterator;

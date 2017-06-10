@@ -384,7 +384,7 @@ void freeElementSDL2(ElementSDL2 *e){
       free(e->entry);
     }
     if(e->data){
-      free(e->data);
+      e->freeData(e->data);
     }
     if(e->font){
       freeFontSDL2(e->font);
@@ -423,13 +423,14 @@ ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4]
       e->codes=initListDisplayCode();
       addDisplayCode(e->codes,displayCode,1,plan);
       e->animation=initListAnimation();
-      e->action=NULL;
-      e->onClick=NULL;
-      e->unClick=NULL;
-      e->keyPress=NULL;
-      e->keyReleased=NULL;
-      e->unSelect=NULL;
-      e->endSprite=NULL;
+      e->freeData=free;
+      e->events.action=NULL;
+      e->events.onClick=NULL;
+      e->events.unClick=NULL;
+      e->events.keyPress=NULL;
+      e->events.keyReleased=NULL;
+      e->events.unSelect=NULL;
+      e->events.endSprite=NULL;
       e->font=NULL;
       e->entry=NULL;
       e->interactions=NULL;
@@ -476,13 +477,14 @@ ElementSDL2* createTexte(float x,float y,float width,float height,char * font,ch
 	e->codes=initListDisplayCode();
 	addDisplayCode(e->codes,displayCode,1,plan);
 	e->coulBlock[0]=-1;
-	e->action=NULL;
-	e->onClick=NULL;
-	e->unClick=NULL;
-	e->keyPress=NULL;
-	e->keyReleased=NULL;
-	e->unSelect=NULL;
-	e->endSprite=NULL;
+	e->freeData=free;
+	e->events.action=NULL;
+	e->events.onClick=NULL;
+	e->events.unClick=NULL;
+	e->events.keyPress=NULL;
+	e->events.keyReleased=NULL;
+	e->events.unSelect=NULL;
+	e->events.endSprite=NULL;
 	e->data=NULL;
 	if(addElementSDL2(e)){
 	  freeElementSDL2(e);
@@ -524,13 +526,14 @@ ElementSDL2* createImage(float x,float y,float width,float height,char *image,in
 	e->codes=initListDisplayCode();
 	addDisplayCode(e->codes,displayCode,1,plan);
 	e->coulBlock[0]=-1;
-	e->action=NULL;
-	e->onClick=NULL;
-	e->unClick=NULL;
-	e->keyPress=NULL;
-	e->keyReleased=NULL;
-	e->unSelect=NULL;
-	e->endSprite=NULL;
+	e->events.action=NULL;
+	e->events.onClick=NULL;
+	e->events.unClick=NULL;
+	e->events.keyPress=NULL;
+	e->events.keyReleased=NULL;
+	e->events.unSelect=NULL;
+	e->events.endSprite=NULL;
+	e->freeData=free;
 	e->font=NULL;
 	e->entry=NULL;
 	e->interactions=NULL;
@@ -1162,7 +1165,7 @@ int setActionElementSDL2(ElementSDL2 *e,void (*action)(ElementSDL2*)){
   
   if(e){
     error=0;
-    e->action=action;
+    e->events.action=action;
   }
 
   return error;
@@ -1173,7 +1176,7 @@ int setKeyPressElementSDL2(ElementSDL2 *e,void (*keyPress)(ElementSDL2*,SDL_Keyc
   
   if(e){
     error=0;
-    e->keyPress=keyPress;
+    e->events.keyPress=keyPress;
   }
 
   return error;
@@ -1184,7 +1187,7 @@ int setKeyReleasedElementSDL2(ElementSDL2 *e,void (*keyReleased)(ElementSDL2*,SD
   
   if(e){
     error=0;
-    e->keyReleased=keyReleased;
+    e->events.keyReleased=keyReleased;
   }
 
   return error;
@@ -1195,7 +1198,7 @@ int setUnClickElementSDL2(ElementSDL2 *e,void (*unCLick)(ElementSDL2*)){
   
   if(e){
     error=0;
-    e->unClick=unCLick;
+    e->events.unClick=unCLick;
   }
 
   return error;
@@ -1206,7 +1209,7 @@ int setOnClickElementSDL2(ElementSDL2 *e,void (*onCLick)(ElementSDL2*)){
   
   if(e){
     error=0;
-    e->onClick=onCLick;
+    e->events.onClick=onCLick;
   }
 
   return error;
@@ -1217,7 +1220,7 @@ int setUnSelectElementSDL2(ElementSDL2 *e,void (*unSelect)(ElementSDL2*)){
   
   if(e){
     error=0;
-    e->unSelect=unSelect;
+    e->events.unSelect=unSelect;
   }
 
   return error;
@@ -1228,7 +1231,7 @@ int setEndSpriteElementSDL2(ElementSDL2 *e,void (*endSprite)(ElementSDL2*,int)){
   
   if(e){
     error=0;
-    e->endSprite=endSprite;
+    e->events.endSprite=endSprite;
   }
 
   return error;
@@ -1371,6 +1374,29 @@ int setDataElementSDL2(ElementSDL2 *e,void *data){
   if(e){
     error = 0;
     e->data=data;
+  }
+
+  return error;
+}
+
+int setFreeDataElementSDL2(ElementSDL2 *e,void (*freeData)(void*)){
+  int error = 1;
+
+  if(e && freeData){
+    e->freeData=freeData;
+    error = 0;
+  }
+
+  return error;
+}
+
+int freeDataElementSDL2(ElementSDL2 *e){
+  int error = 1;
+
+  if(e && e->data && e->freeData){
+    e->freeData(e->data);
+    e->data=NULL;
+    error=0;
   }
 
   return error;

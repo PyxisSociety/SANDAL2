@@ -30,6 +30,23 @@
 struct ListElementSDL2;
 
 /**
+ * @struct EventWindowSDL2
+ * @brief Behaviors of a window to SDL2 events
+ */
+typedef struct{
+  void (*action)(struct ElementSDL2*);
+  /**< function called when update*/
+  void (*onClick)(struct ElementSDL2*);
+  /**< function called when the element is clicked*/
+  void (*unClick)(struct ElementSDL2*);
+  /**< function called when the element is unclicked*/
+  void (*keyPress)(struct ElementSDL2*,SDL_Keycode c);
+  /**< function called when a key is pressed*/
+  void (*keyReleased)(struct ElementSDL2*,SDL_Keycode c);
+  /**< function called when a key is released*/
+}EventWindowSDL2;
+
+/**
  * @struct WindowSDL2
  * @brief SANDAL2 window 
  */
@@ -52,6 +69,8 @@ typedef struct WindowSDL2{
   /**< SDL2 renderer*/
   struct ListElementSDL2 * liste;
   /**< elements in the window*/
+  EventWindowSDL2 events;
+  /**< behavior of the window to SDL2 events */
   struct WindowSDL2 * next;
   /**< next window*/
   unsigned toDelete;
@@ -162,6 +181,36 @@ int getIDWindowSDL2(Uint32 *ID);
  * @return 1 if there was an error, 0 if not
  */
 int setIconWindowSDL2(char * icon_path);
+/**
+ * @brief set the continuous behaviour of the current window
+ * @param action : function to be called on each update call
+ * @return 1 if it was impossible, 0 if not
+ */
+int setActionWindowSDL2(void (*action)(void));
+/**
+ * @brief set the behaviour of the current window when a key is pressed
+ * @param keyPress : function to be called when a key is pressed
+ * @return 1 if it was impossible, 0 if not
+ */
+int setKeyPressWindowSDL2(void (*keyPress)(SDL_Keycode c));
+/**
+ * @brief set the behaviour of the current window when a key is released
+ * @param keyReleased : function to be called when a key is released
+ * @return 1 if it was impossible, 0 if not
+ */
+int setKeyReleasedWindowSDL2(void (*keyReleased)(SDL_Keycode c));
+/**
+ * @brief set the behaviour of the current window when it is clicked
+ * @param onCLick : function to be called when it is clicked
+ * @return 1 if it was impossible, 0 if not
+ */
+int setOnClickWindowSDL2(void (*onCLick)(void));
+/**
+ * @brief set the behaviour of the current window when it is unclicked
+ * @param unCLick : function to be called when it is unclicked
+ * @return 1 if it was impossible, 0 if not
+ */
+int setUnClickWindowSDL2(void (*unCLick)(void));
 /* ------------------------------------------------------- */
 
 /* -------------------------------------------------------
