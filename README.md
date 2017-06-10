@@ -92,9 +92,9 @@ If there are no sprite, the entire image will be displaied.<br/>
 ## Versions
 
 0.0.0 : SDL2TK<br/>
-0.0.1 : adding rotations<br/>
-0.0.2 : clickable areas<br/>
-0.0.3 : animation's managment<br/>
+0.1.0 : adding rotations<br/>
+0.2.0 : clickable areas<br/>
+0.3.0 : animation's managment<br/>
 1.0.0 : project renamed SANDAL2<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hide window objects from the user<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hide element's lists from the user<br/>
