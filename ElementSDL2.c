@@ -1521,7 +1521,7 @@ int setSpriteAnimationElementSDL2(ElementSDL2 *e,int codeS){
 int initIteratorElementSDL2(ElementSDL2 *e){
   int succes = 0;
   
-  if(e && e->interactions){
+  if(e && e->interactions && e->interactions->first){
     e->interactions->current=e->interactions->first;
     succes = 1;
   }
