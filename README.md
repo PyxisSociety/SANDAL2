@@ -21,11 +21,11 @@ To use SANDAL2, you will have to install SDL2, SDL2_image and SDL2_ttf.
 
 ### I. On Linux
 
-'''
+```
 sudo apt-get install libsdl2-dev
 sudo apt-get install libsdl2-image-dev
 sudo apt-get install libsdl2-ttf-dev
-'''
+```
 
 ### II. Other OS
 
