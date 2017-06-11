@@ -75,6 +75,8 @@ typedef struct WindowSDL2{
   /**< next window*/
   unsigned toDelete;
   /**< number of element to be deleted by the cleaner*/
+  int close;
+  /**< tells whether or not the window should be closed */
 }WindowSDL2;
 
 /**

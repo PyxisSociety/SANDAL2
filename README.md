@@ -113,6 +113,8 @@ If there are no sprite, the entire image will be displaied.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adding a structure that contains every function pointer (event handler)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adding an event handler to windows so that the user can add window events<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adding functions to allow the user to add window event functions to a window<br/>
+1.1.1 : adding functions so that windows can be closed in binded functions<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;changing error return type from int to unsigned long for event functions on more than one window<br/> 
 
 ## Structures
 
@@ -190,18 +192,18 @@ DisplayCode.c : 60 rows<br/>
 Sprite.c : 308 rows<br/>
 HitBox.c : 321 rows<br/>
 ElementSDL2.c : 1,694 rows<br/> 
-SANDAL2.c : 771 rows<br/>
+SANDAL2.c : 819 rows<br/>
 <br/>
-Total for source files : 3,667 rows<br/>
+Total for source files : 3,715 rows<br/>
 <br/>
 FontSDL2.h : 107 rows<br/>
-WindowSDL2.h : 234 rows<br/>
+WindowSDL2.h : 236 rows<br/>
 DisplayCode.h : 63 rows<br/>
 Sprite.h : 188 rows<br/>
 HitBox.h : 211 rows<br/>
 ElementSDL2.h : 879 rows<br/> 
-SANDAL2.h : 177 rows<br/>
+SANDAL2.h : 182 rows<br/>
 <br/>
-Total for header files : 1,859 rows<br/>
+Total for header files : 1,866 rows<br/>
 <br/>
-Total : 5,526 rows
+Total : 5,581 rows

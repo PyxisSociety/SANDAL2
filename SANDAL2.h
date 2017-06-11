@@ -119,43 +119,48 @@ int keyReleasedWindowSDL2(char c);
  * @brief update all the elements of all the windows
  * @return 1 if it failed, 0 if not
  */
-int updateAllWindowSDL2();
+unsigned long updateAllWindowSDL2();
 /**
  * @brief actualise the display of all the windows 
  * @return 0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one
  */
-int displayAllWindowSDL2();
+unsigned long displayAllWindowSDL2();
 /**
  * @brief activation of click events on all the windows
  * @param x : abscissa coordinate of the mouse during the click
  * @param y : ordinate coordinate of the mouse during the click
  * @return 0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one
  */
-int clickAllWindowSDL2(int x,int y);
+unsigned long clickAllWindowSDL2(int x,int y);
 /**
  * @brief activation of unclick events on all the windows
  * @param x : abscissa coordinate of the mouse during the unclick
  * @param y : ordinate coordinate of the mouse during the unclick
  * @return 0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one
  */
-int unclickAllWindowSDL2(int x,int y);
+unsigned long unclickAllWindowSDL2(int x,int y);
 /**
  * @brief activation of the key pressed events on all windows
  * @param c : key which was pressed
  * @return 0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one
  */
-int keyPressedAllWindowSDL2(char c);
+unsigned long keyPressedAllWindowSDL2(char c);
 /**
  * @brief activation of the key released events on all windows
  * @param c : key which was released
  * @return 0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one
  */
-int keyReleasedAllWindowSDL2(char c);
+unsigned long keyReleasedAllWindowSDL2(char c);
 /**
- * @brief close the current windows and go to the next
+ * @brief close the current windows and go to the next, do not use this one in elements' or windows' binded functions, use shouldCloseWindowSDL2() instead
  * @return 1 if it failed, 0 if not
  */
 int closeWindowSDL2();
+/**
+ * @brief tells that the current window should be closed, do not use this one in functions that are not binded to windows or elements, use closeWindowSDL2() instead
+ * @return 1 if it failed, 0 if not
+ */
+int shouldCloseWindowSDL2();
 /**
  * @brief close all windows
  * @return 1 if it failed, 0 if not
@@ -171,7 +176,7 @@ int closeAllWindowSDL2();
  * @param error: where to store the error flag (0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one)
  * @return 1 if the user asked to close the window, 0 if not
  */
-int PollEventSDL2(int * error);
+int PollEventSDL2(unsigned long * error);
 /* ------------------------------------------------------- */
 
 #endif
