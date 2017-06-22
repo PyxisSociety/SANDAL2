@@ -58,7 +58,7 @@ typedef struct{
   /**< function called when the element is unselected*/
   void (*endSprite)(struct ElementSDL2*,int code);
   /**< function called at the end of a sprite*/
-}EventWindowSDL2;
+}EventElementSDL2;
 
 /**
  * @struct ElementSDL2

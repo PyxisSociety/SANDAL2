@@ -166,6 +166,9 @@ If there are no sprite, the entire image will be displaied.<br/>
   2. ListWindowSDL2:  
     A list of WindowSDL2, used to manage all your windows while hiding them to you.
 
+  3. EventWindowSDL2:
+    All the behaviors a window can have.
+
 ### VI. ElementSDL2.h
 
   1. ElementSDL2:  
@@ -183,6 +186,12 @@ If there are no sprite, the entire image will be displaied.<br/>
 
   5. ListElementSDL2:  
     A list of ListDCElementSDL2.
+
+  6. EventElementSDL2:
+    All the behaviors an element can have.
+
+  7. Entry:
+    Entries' informations needed that other elements do not need.
 
 ## Project's size
 
