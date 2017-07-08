@@ -101,7 +101,7 @@ void closeTexte(){
 static void freeWindowSDL2(WindowSDL2 *fen){
   if(fen){
     if(fen->liste){
-      freeListElementSDL2(fen->liste);
+      _freeListElementSDL2(fen->liste);
     }
     if(fen->renderer){
       SDL_DestroyRenderer(fen->renderer);
@@ -142,7 +142,7 @@ int initWindowSDL2(int width,int height,char *title,int SDLFlags,int background[
       fen->events.keyReleased=NULL;
       fen->toDelete=0;
       copyColor(fen->background,background);
-      fen->liste = initListElementSDL2();
+      fen->liste = _initListElementSDL2();
       if(!fen->liste){
 	SDL_DestroyWindow(fen->window);
 	SDL_DestroyRenderer(fen->renderer);
@@ -240,7 +240,7 @@ int updateWindowSDL2(){
       if(_windows_SANDAL2->current->close){
 	closeWindowSDL2();
       }else{
-	cleanElementSDL2();
+	_cleanElementSDL2();
       }
     }
   }

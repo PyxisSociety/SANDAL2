@@ -69,40 +69,6 @@ static int addPtrElementSDL2(ListPtrElementSDL2* l,ElementSDL2* e){
 
   return error;
 }
-
-static int removePtrElementSDL2(ListPtrElementSDL2* l,ElementSDL2* e){
-  PtrElementSDL2 ** p, ** tmp, * ttmp;
-  int error = 1;
-  
-  if(l && e){
-    p=&(l->first);
-    tmp=NULL;
-    while(*p && (*p)->element!=e){
-      tmp=p;
-      p=&((*p)->next);
-    }
-    if(*p){
-      if(*p==l->current){
-	l->current=(*p)->next;
-      }
-      if((*p)==l->last){
-	l->last=*tmp;
-      }
-      if(*p==l->first){
-	l->first=(*p)->next;
-      }
-      if(*tmp){
-	(*tmp)->next=(*p)->next;
-      }
-      ttmp=(*p)->next;
-      free(*p);
-      *p=ttmp;
-      error = 0;
-    }
-  }
-
-  return error;
-}
 /* ------------------------------------------------------- */
 
 
@@ -135,45 +101,6 @@ static void freeListDCElementSDL2(ListDCElementSDL2* l){
       lp=lptmp;
     }
   }
-}
-
-static int addListPtrElementSDL2(ListDCElementSDL2* l, ListPtrElementSDL2 *lp){
-  ListPtrElementSDL2 **cour;
-  int error = 1;
-
-  if(l && lp){
-    cour = &(l->first);
-    while(*cour && (*cour)->code > lp->code){
-      *cour=(*cour)->next;
-    }
-    if(lp->code != (*cour)->code){
-      lp->next=*cour;
-      *cour=lp;
-      error = 0;
-    }
-  }
-
-  return error;
-}
-
-static int removeListPtrElementSDL2(ListDCElementSDL2* l,ListPtrElementSDL2 *lp){
-  ListPtrElementSDL2 **cour, *tmp;
-  int error = 1;
-
-  if(l && lp){
-    cour = &(l->first);
-    while(*cour && (*cour)->code < lp->code){
-      *cour=(*cour)->next;
-    }
-    if(lp == *cour){
-      tmp=(*cour)->next;
-      freeListPtrElementSDL2(*cour);
-      *cour=tmp;
-      error = 0;
-    }
-  }
-
-  return error;
 }
 
 static int removeDCElementSDL2(ListDCElementSDL2** l,ElementSDL2 *e){
@@ -314,7 +241,7 @@ void _cleanElementSDL2(){
 	    ee=(*e)->element;
 	    removeDCElementSDL2(ldc,ee);
 	    _windows_SANDAL2->current->toDelete-=(ee->codes?ee->codes->size:1);
-	    freeElementSDL2(ee);
+	    _freeElementSDL2(ee);
 	    break;
 	  case 2:
 	    if((*ldc)->code==(*e)->element->deleteCode){
@@ -451,7 +378,7 @@ ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4]
       e->hitboxes = initListHitBox();
       e->data=NULL;
       if(addElementSDL2(e)){
-	freeElementSDL2(e);
+	_freeElementSDL2(e);
 	e=NULL;
       }
     }
@@ -500,11 +427,11 @@ ElementSDL2* createTexte(float x,float y,float width,float height,char * font,ch
 	e->events.endSprite=NULL;
 	e->data=NULL;
 	if(addElementSDL2(e)){
-	  freeElementSDL2(e);
+	  _freeElementSDL2(e);
 	  e=NULL;
 	}
       }else{
-	freeElementSDL2(e);
+	_freeElementSDL2(e);
 	e=NULL;
       }
     }
@@ -553,7 +480,7 @@ ElementSDL2* createImage(float x,float y,float width,float height,char *image,in
 	e->hitboxes = initListHitBox();
 	e->data=NULL;
 	if(addElementSDL2(e)){
-	  freeElementSDL2(e);
+	  _freeElementSDL2(e);
 	  e=NULL;
 	}
       }
@@ -577,7 +504,7 @@ ElementSDL2* createButton(float x,float y,float width,float height,float texteSi
 	e->font=f;
       }else{
 	removeElementSDL2(e);
-	freeElementSDL2(e);
+	_freeElementSDL2(e);
 	e=NULL;
       }
     }
@@ -599,7 +526,7 @@ ElementSDL2* createButtonImage(float x,float y,float width,float height,float te
 	e->font=f;
       }else{
 	removeElementSDL2(e);
-	freeElementSDL2(e);
+	_freeElementSDL2(e);
 	e=NULL;
       }
     }
@@ -633,12 +560,12 @@ ElementSDL2* createEntry(float x,float y,float width,float height,float texteSiz
 	  ent->size=0;
 	}else{
 	  removeElementSDL2(e);
-	  freeElementSDL2(e);
+	  _freeElementSDL2(e);
 	  e=NULL;
 	}
       }else{
 	removeElementSDL2(e);
-	freeElementSDL2(e);
+	_freeElementSDL2(e);
 	e=NULL;
       }
     }
@@ -672,12 +599,12 @@ ElementSDL2* createEntryImage(float x,float y,float width,float height,float tex
 	  ent->size=0;
 	}else{
 	  removeElementSDL2(e);
-	  freeElementSDL2(e);
+	  _freeElementSDL2(e);
 	  e=NULL;
 	}
       }else{
 	removeElementSDL2(e);
-	freeElementSDL2(e);
+	_freeElementSDL2(e);
 	e=NULL;
       }
     }
