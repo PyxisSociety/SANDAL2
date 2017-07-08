@@ -202,19 +202,19 @@ WindowSDL2.c : 242 rows<br/>
 DisplayCode.c : 60 rows<br/>
 Sprite.c : 308 rows<br/>
 HitBox.c : 321 rows<br/>
-ElementSDL2.c : 1,694 rows<br/> 
+ElementSDL2.c : 1,634 rows<br/> 
 SANDAL2.c : 844 rows<br/>
 <br/>
-Total for source files : 3,732 rows<br/>
+Total for source files : 3,672 rows<br/>
 <br/>
 FontSDL2.h : 107 rows<br/>
 WindowSDL2.h : 219 rows<br/>
 DisplayCode.h : 63 rows<br/>
 Sprite.h : 188 rows<br/>
 HitBox.h : 211 rows<br/>
-ElementSDL2.h : 879 rows<br/> 
+ElementSDL2.h : 807 rows<br/> 
 SANDAL2.h : 182 rows<br/>
 <br/>
-Total for header files : 1,849 rows<br/>
+Total for header files : 1,777 rows<br/>
 <br/>
-Total : 5,581 rows
+Total : 5,449 rows
