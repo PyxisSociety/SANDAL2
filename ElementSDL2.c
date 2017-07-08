@@ -1,6 +1,19 @@
 #include "ElementSDL2.h"
 
 /* -------------------------------------------------------
+ * Other functions
+ */
+static void copyColor(int to[4],int from[4]){
+  to[0]=from[0];
+  to[1]=from[1];
+  to[2]=from[2];
+  to[3]=from[3];
+}
+/* ------------------------------------------------------- */
+
+
+
+/* -------------------------------------------------------
  * Liste d'elements SDL2 avec display code commun
  */
 ListPtrElementSDL2* initListPtrElementSDL2(int plan){
