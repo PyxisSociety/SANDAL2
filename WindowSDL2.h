@@ -34,15 +34,15 @@ struct ListElementSDL2;
  * @brief Behaviors of a window to SDL2 events
  */
 typedef struct{
-  void (*action)(struct ElementSDL2*);
+  void (*action)();
   /**< function called when update*/
-  void (*onClick)(struct ElementSDL2*);
+  void (*onClick)();
   /**< function called when the element is clicked*/
-  void (*unClick)(struct ElementSDL2*);
+  void (*unClick)();
   /**< function called when the element is unclicked*/
-  void (*keyPress)(struct ElementSDL2*,SDL_Keycode c);
+  void (*keyPress)(SDL_Keycode c);
   /**< function called when a key is pressed*/
-  void (*keyReleased)(struct ElementSDL2*,SDL_Keycode c);
+  void (*keyReleased)(SDL_Keycode c);
   /**< function called when a key is released*/
 }EventWindowSDL2;
 
