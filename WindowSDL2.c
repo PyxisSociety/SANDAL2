@@ -202,22 +202,22 @@ int setKeyReleasedWindowSDL2(void (*keyReleased)(SDL_Keycode c)){
   return error;
 }
 
-int setOnClickWindowSDL2(void (*onCLick)(void)){
+int setOnClickWindowSDL2(void (*onClick)(void)){
   int error = 1;
   
   if(_windows_SANDAL2 && _windows_SANDAL2->current){
-    _windows_SANDAL2->current->events.onCLick=onCLick;
+    _windows_SANDAL2->current->events.onClick=onClick;
     error=0;
   }
 
   return error;
 }
 
-int setUnClickWindowSDL2(void (*unCLick)(void)){
+int setUnClickWindowSDL2(void (*unClick)(void)){
   int error = 1;
   
   if(_windows_SANDAL2 && _windows_SANDAL2->current){
-    _windows_SANDAL2->current->events.unCLick=unCLick;
+    _windows_SANDAL2->current->events.unClick=unClick;
     error=0;
   }
 
