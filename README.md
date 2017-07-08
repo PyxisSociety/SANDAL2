@@ -198,14 +198,14 @@ If there are no sprite, the entire image will be displaied.<br/>
 ## Project's size
 
 FontSDL2.c : 263 rows<br/>
-WindowSDL2.c : 250 rows<br/>
+WindowSDL2.c : 242 rows<br/>
 DisplayCode.c : 60 rows<br/>
 Sprite.c : 308 rows<br/>
 HitBox.c : 321 rows<br/>
 ElementSDL2.c : 1,694 rows<br/> 
-SANDAL2.c : 819 rows<br/>
+SANDAL2.c : 844 rows<br/>
 <br/>
-Total for source files : 3,715 rows<br/>
+Total for source files : 3,732 rows<br/>
 <br/>
 FontSDL2.h : 107 rows<br/>
 WindowSDL2.h : 219 rows<br/>
@@ -217,4 +217,4 @@ SANDAL2.h : 182 rows<br/>
 <br/>
 Total for header files : 1,849 rows<br/>
 <br/>
-Total : 5,564 rows
+Total : 5,581 rows

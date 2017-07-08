@@ -16,8 +16,8 @@ static void copyColor(int to[4],int from[4]){
 /* -------------------------------------------------------
  * Liste d'elements SDL2 avec display code commun
  */
-ListPtrElementSDL2* initListPtrElementSDL2(int plan){
-  ListPtrElementSDL2 *l=malloc(sizeof(*l));
+static ListPtrElementSDL2* initListPtrElementSDL2(int plan){
+  ListPtrElementSDL2 *l=(ListPtrElementSDL2*)malloc(sizeof(*l));
 
   if(l){
     l->first=NULL;
@@ -30,7 +30,7 @@ ListPtrElementSDL2* initListPtrElementSDL2(int plan){
   return l;
 }
 
-void freeListPtrElementSDL2(ListPtrElementSDL2* l){
+static void freeListPtrElementSDL2(ListPtrElementSDL2* l){
   if(l){
     while(l->first){
       l->current=l->first->next;
@@ -41,7 +41,7 @@ void freeListPtrElementSDL2(ListPtrElementSDL2* l){
   }
 }
 
-int addPtrElementSDL2(ListPtrElementSDL2* l,ElementSDL2* e){
+static int addPtrElementSDL2(ListPtrElementSDL2* l,ElementSDL2* e){
   DisplayCode *d;
   PtrElementSDL2 *p;
   int error = 1;
@@ -52,7 +52,7 @@ int addPtrElementSDL2(ListPtrElementSDL2* l,ElementSDL2* e){
       d=d->next;
     }
     if(d && d->plan==l->code){
-      p=malloc(sizeof(*p));
+      p=(PtrElementSDL2*)malloc(sizeof(*p));
       if(p){
 	if(l->last){
 	  l->last->next=p;
@@ -70,7 +70,7 @@ int addPtrElementSDL2(ListPtrElementSDL2* l,ElementSDL2* e){
   return error;
 }
 
-int removePtrElementSDL2(ListPtrElementSDL2* l,ElementSDL2* e){
+static int removePtrElementSDL2(ListPtrElementSDL2* l,ElementSDL2* e){
   PtrElementSDL2 ** p, ** tmp, * ttmp;
   int error = 1;
   
@@ -111,8 +111,8 @@ int removePtrElementSDL2(ListPtrElementSDL2* l,ElementSDL2* e){
  * Liste de liste (plan) d'element, contenant le code 
  * d'affichage
  */
-ListDCElementSDL2* initListDCElementSDL2(int displayCode){
-  ListDCElementSDL2 * l =malloc(sizeof(*l));
+static ListDCElementSDL2* initListDCElementSDL2(int displayCode){
+  ListDCElementSDL2 * l =(ListDCElementSDL2*)malloc(sizeof(*l));
 
   if(l){
     l->first=NULL;
@@ -124,7 +124,7 @@ ListDCElementSDL2* initListDCElementSDL2(int displayCode){
   return l;
 }
 
-void freeListDCElementSDL2(ListDCElementSDL2* l){
+static void freeListDCElementSDL2(ListDCElementSDL2* l){
   ListPtrElementSDL2 *lp,*lptmp;
 
   if(l){
@@ -137,7 +137,7 @@ void freeListDCElementSDL2(ListDCElementSDL2* l){
   }
 }
 
-int addListPtrElementSDL2(ListDCElementSDL2* l, ListPtrElementSDL2 *lp){
+static int addListPtrElementSDL2(ListDCElementSDL2* l, ListPtrElementSDL2 *lp){
   ListPtrElementSDL2 **cour;
   int error = 1;
 
@@ -156,7 +156,7 @@ int addListPtrElementSDL2(ListDCElementSDL2* l, ListPtrElementSDL2 *lp){
   return error;
 }
 
-int removeListPtrElementSDL2(ListDCElementSDL2* l,ListPtrElementSDL2 *lp){
+static int removeListPtrElementSDL2(ListDCElementSDL2* l,ListPtrElementSDL2 *lp){
   ListPtrElementSDL2 **cour, *tmp;
   int error = 1;
 
@@ -176,7 +176,7 @@ int removeListPtrElementSDL2(ListDCElementSDL2* l,ListPtrElementSDL2 *lp){
   return error;
 }
 
-int removeDCElementSDL2(ListDCElementSDL2** l,ElementSDL2 *e){
+static int removeDCElementSDL2(ListDCElementSDL2** l,ElementSDL2 *e){
   ListPtrElementSDL2 **lp;
   PtrElementSDL2 **pe, *etmp, **pte;
   int error = 1;
@@ -224,8 +224,8 @@ int removeDCElementSDL2(ListDCElementSDL2** l,ElementSDL2 *e){
  * Liste de liste (code d'affichage) de liste (plan) 
  * d'element
  */
-ListElementSDL2* initListElementSDL2(){
-  ListElementSDL2 *l=malloc(sizeof(*l));
+ListElementSDL2* _initListElementSDL2(){
+  ListElementSDL2 *l=(ListElementSDL2*)malloc(sizeof(*l));
   
   if(l){
     l->first=NULL;
@@ -236,7 +236,7 @@ ListElementSDL2* initListElementSDL2(){
   return l;
 }
 
-void freeListElementSDL2(ListElementSDL2 *l){
+void _freeListElementSDL2(ListElementSDL2 *l){
   ListDCElementSDL2 *lp,*ltmp;
 
   if(l){
@@ -296,7 +296,7 @@ int addElementSDL2(ElementSDL2* e){
   return error;
 }
 
-void cleanElementSDL2(){
+void _cleanElementSDL2(){
   PtrElementSDL2 **e, *etmp;
   ListPtrElementSDL2 **lp, *ptmp;
   ListDCElementSDL2 **ldc, *dctmp;
@@ -385,7 +385,7 @@ int removeElementSDL2(ElementSDL2 *e){
 /* -------------------------------------------------------
  * Element creation, freeing and informations
  */
-void freeElementSDL2(ElementSDL2 *e){
+void _freeElementSDL2(ElementSDL2 *e){
   if(e){
     if(e->codes){
       freeListDisplayCode(e->codes);
@@ -419,7 +419,7 @@ ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4]
   ElementSDL2 *e = NULL;
 
   if(_windows_SANDAL2 && _windows_SANDAL2->current){
-    e=malloc(sizeof(*e));
+    e=(ElementSDL2*)malloc(sizeof(*e));
     if(e){
       e->delete=0;
       e->deleteCode=0;
@@ -464,7 +464,7 @@ ElementSDL2* createTexte(float x,float y,float width,float height,char * font,ch
   ElementSDL2 *e=NULL;
 
   if(_windows_SANDAL2 && _windows_SANDAL2->current){
-    e=malloc(sizeof(*e));
+    e=(ElementSDL2*)malloc(sizeof(*e));
     if(e){
       e->delete=0;
       e->deleteCode=0;
@@ -521,7 +521,7 @@ ElementSDL2* createImage(float x,float y,float width,float height,char *image,in
     s=IMG_Load(image);
   
     if(s){
-      e=malloc(sizeof(*e));
+      e=(ElementSDL2*)malloc(sizeof(*e));
       if(e){
 	e->delete=0;
 	e->deleteCode=0;
@@ -616,14 +616,14 @@ ElementSDL2* createEntry(float x,float y,float width,float height,float texteSiz
   if(_windows_SANDAL2 && _windows_SANDAL2->current){
     e=createButton(x,y,width,height,texteSize,font,text,textColor,quality,couleurBlock,displayCode,plan);
     if(e){
-      ent=malloc(sizeof(*ent));
+      ent=(EntrySDL2*)malloc(sizeof(*ent));
       if(ent){
 	ent->size_min=min;
 	ent->size_max=max;
 	ent->isSelect=0;
 	ent->isScripted=isScripted;
 	PFREE(e->font->text);
-	e->font->text=malloc((max+1)*sizeof(*(e->font->text)));
+	e->font->text=(char*)malloc((max+1)*sizeof(*(e->font->text)));
 	if(e->font->text){
 	  for(i=0;i<max;++i){
 	    e->font->text[i]=' ';
@@ -655,14 +655,14 @@ ElementSDL2* createEntryImage(float x,float y,float width,float height,float tex
   if(_windows_SANDAL2 && _windows_SANDAL2->current){
     e=createButtonImage(x,y,width,height,texteSize,font,text,textColor,quality,image,displayCode,plan);
     if(e){
-      ent=malloc(sizeof(*ent));
+      ent=(EntrySDL2*)malloc(sizeof(*ent));
       if(ent){
 	ent->size_min=min;
 	ent->size_max=max;
 	ent->isSelect=0;
 	ent->isScripted=isScripted;
 	PFREE(e->font->text);
-	e->font->text=malloc((max+1)*sizeof(*(e->font->text)));
+	e->font->text=(char*)malloc((max+1)*sizeof(*(e->font->text)));
 	if(e->font->text){
 	  for(i=0;i<max;++i){
 	    e->font->text[i]=' ';
@@ -816,7 +816,7 @@ int getTextElementSDL2(ElementSDL2 *e,char **s){
 
   if(e && e->font && e->font->text){
     if(s){
-      *s=malloc((strlen(e->font->text)+1)*sizeof(**s));
+      *s=(char*)malloc((strlen(e->font->text)+1)*sizeof(**s));
       strcpy(*s,e->font->text);
       error = abs(strcmp(*s,e->font->text));
     }else{
@@ -1006,7 +1006,7 @@ int addDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode, int plan){
       if(*d && (*d)->code == displayCode){
 	(*d)->plan=plan;
       }else{
-	tmp=malloc(sizeof(*tmp));
+	tmp=(DisplayCode*)malloc(sizeof(*tmp));
 	tmp->code=displayCode;
 	tmp->plan = plan;
 	tmp->isDisplaied = 1;
@@ -1030,7 +1030,7 @@ int addDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode, int plan){
 	  ptmp->next=*lp;
 	  *lp=ptmp;
 	}
-	el=malloc(sizeof(*el));
+	el=(PtrElementSDL2*)malloc(sizeof(*el));
 	if(el){
 	  error = 0;
 	  el->next=NULL;
@@ -1159,7 +1159,7 @@ int setPlanElementSDL2(ElementSDL2 *e,int displayCode,int plan){
 	    *lpNew=ptmp;
 	  }
 	}
-	tmp=malloc(sizeof(*tmp));
+	tmp=(PtrElementSDL2*)malloc(sizeof(*tmp));
 	if(tmp){
 	  tmp->element=e;
 	  tmp->next=(*lpNew)->last;
@@ -1255,12 +1255,12 @@ int addElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *add){
   int error = 1;
   
   if(e && add){
-    pe=malloc(sizeof(*pe));
+    pe=(PtrElementSDL2*)malloc(sizeof(*pe));
     pe->element=add;
     pe->next=NULL;
     
     if(!e->interactions){
-      e->interactions=malloc(sizeof(*(e->interactions)));
+      e->interactions=(ListPtrElementSDL2*)malloc(sizeof(*(e->interactions)));
       if(e->interactions){
 	e->interactions->first=pe;
 	e->interactions->last=pe;
@@ -1654,7 +1654,7 @@ int changeSizeEntrySDL2(ElementSDL2 *e,int size_min,int size_max){
       e->entry->size_min=size_min;
     }
     if(size_max>-1 && size_max>=size_min && size_max!=e->entry->size_max){
-      s=malloc((size_max+1)*sizeof(*s));
+      s=(char*)malloc((size_max+1)*sizeof(*s));
       error = 1;
       if(s){
 	strncpy(s,e->font->text,size_max);

@@ -172,7 +172,7 @@ typedef struct ListElementSDL2{
 }ListElementSDL2;
 
 
-
+#if 0
 /* -------------------------------------------------------
  * Liste d'elements SDL2 avec plan commun
  */
@@ -242,7 +242,7 @@ int removeListPtrElementSDL2(ListDCElementSDL2* l,ListPtrElementSDL2 *lp);
  */
 int removeDCElementSDL2(ListDCElementSDL2** l,ElementSDL2 *e);
 /* ------------------------------------------------------- */
-
+#endif
 
 
 /* -------------------------------------------------------
@@ -253,12 +253,12 @@ int removeDCElementSDL2(ListDCElementSDL2** l,ElementSDL2 *e);
  * @brief Initialise a list of lists (display code) of lists (plan) of elements
  * @return An empty list  of lists (display code) of lists (plan) of elements
  */
-ListElementSDL2* initListElementSDL2();
+ListElementSDL2* _initListElementSDL2();
 /**
  * @brief free the memory of a list of lists (display code) of lists (plan) of elements
  * @param l : list to be freed
  */
-void freeListElementSDL2(ListElementSDL2* l);
+void _freeListElementSDL2(ListElementSDL2* l);
 /**
  * @brief add an element to a list of lists (display code) of lists (plan) of elements
  * @param e : element to be add
@@ -268,7 +268,7 @@ int addElementSDL2(ElementSDL2* e);
 /**
  * @brief remove all elements that are marked as deletable (do not use it yourself, used in update)
  */
-void cleanElementSDL2();
+void _cleanElementSDL2();
 /**
  * @brief mark an element as removable
  * @param e : element to be removed
@@ -286,7 +286,7 @@ int removeElementSDL2(ElementSDL2 *e);
  * @brief Free the memory used by an element
  * @param e : element to be freed
  */
-void freeElementSDL2(ElementSDL2 *e);
+void _freeElementSDL2(ElementSDL2 *e);
 /**
  * @brief Generate a rectangle like element
  * @param x : abscissa coordinate of its top left corner

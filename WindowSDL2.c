@@ -7,17 +7,6 @@ ListWindowSDL2 * _windows_SANDAL2 = NULL;
 /* -------------------------------------------------------
  * Other functions
  */
-static int cmpCoul(int c1[4],int c2[4]){
-  int res=1,i;
-
-  for(i=0;i<4;++i){
-    res=res && c1[i]==c2[i];
-    c1[i]=c2[i];
-  }
-
-  return res;
-}
-
 static void copyColor(int to[4],int from[4]){
   to[0]=from[0];
   to[1]=from[1];
