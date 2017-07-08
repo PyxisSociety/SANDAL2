@@ -74,7 +74,7 @@ void closeTexte(){
 /* -------------------------------------------------------
  * Fenetre SDL2
  */
-void freeWindowSDL2(WindowSDL2 *fen){
+static void freeWindowSDL2(WindowSDL2 *fen){
   if(fen){
     if(fen->liste){
       freeListElementSDL2(fen->liste);
@@ -89,7 +89,7 @@ void freeWindowSDL2(WindowSDL2 *fen){
 }
 
 int initWindowSDL2(int width,int height,char *title,int SDLFlags,int background[4],int displayCode){
-  WindowSDL2 *fen=malloc(sizeof(*fen));
+  WindowSDL2 *fen=(WindowSDL2*)malloc(sizeof(*fen));
   int error = 1;
 
   fen->window=SDL_CreateWindow(title,
@@ -125,7 +125,7 @@ int initWindowSDL2(int width,int height,char *title,int SDLFlags,int background[
 	free(fen);
       }else{
 	if(!_windows_SANDAL2){
-	  _windows_SANDAL2 = malloc(sizeof(*_windows_SANDAL2));
+	  _windows_SANDAL2 = (ListWindowSDL2*)malloc(sizeof(*_windows_SANDAL2));
 	  if(_windows_SANDAL2){
 	    _windows_SANDAL2->first = fen;
 	    _windows_SANDAL2->last = fen;

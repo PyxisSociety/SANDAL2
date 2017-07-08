@@ -6,7 +6,7 @@
  */
 
 HitBox * initHitBox(){
-  HitBox * hb = malloc(sizeof(*hb));
+  HitBox * hb = (HitBox*)malloc(sizeof(*hb));
 
   if(hb){
     hb->firstC = NULL;
@@ -22,7 +22,7 @@ int addLineSDL2(HitBox * hb,float a,float b,float c,int sens){
   int error = 1;
 
   if(hb){
-    l=malloc(sizeof(*l));
+    l=(LineSDL2*)malloc(sizeof(*l));
     if(l){
       l->next=hb->firstL;
       l->a=a;
@@ -42,7 +42,7 @@ int addCircleSDL2(HitBox * hb,float x,float y,float rX,float rY,float theta){
   int error = 1;
 
   if(hb){
-    c=malloc(sizeof(*c));
+    c=(CircleSDL2*)malloc(sizeof(*c));
     if(c){
       c->next=hb->firstC;
       c->x=x;

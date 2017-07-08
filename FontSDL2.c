@@ -1,25 +1,6 @@
 #include "FontSDL2.h"
 
 /* -------------------------------------------------------
- * Font SDL2's structure
- */
-typedef struct FontSDL2{
-  TTF_Font *font;
-  /**< SDL font object*/
-  int quality;
-  /**< quality of the texture : SANDAL2_SOLID, SANDAL2_SHADED or SANDAL2_BLENDED (same meaning as for SDL2 functions TTF_RenderText_Solid, Shaded or Blended) */
-  char *text;
-  /**< text*/
-  SDL_Color color;
-  /**< color of the text*/
-  SDL_Texture *texture;
-  /**< SDL texture*/
-}FontSDL2;
-/* ------------------------------------------------------- */
-
-
-
-/* -------------------------------------------------------
  * Text SDL2
  */
 FontSDL2* createFontSDL2(char *fontPath,char *texte,int couleur[4],int quality){
@@ -28,7 +9,7 @@ FontSDL2* createFontSDL2(char *fontPath,char *texte,int couleur[4],int quality){
   SDL_Color c,c2;
 
   if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->renderer){
-    f=malloc(sizeof(*f));
+    f=(FontSDL2*)malloc(sizeof(*f));
     if(f){
       f->font=TTF_OpenFont(fontPath,30);
       if(f->font){
@@ -37,7 +18,7 @@ FontSDL2* createFontSDL2(char *fontPath,char *texte,int couleur[4],int quality){
 	c.b=couleur[2];
 	c.a=couleur[3];
 	f->color=c;
-	f->text=malloc((strlen(texte)+1)*sizeof(*(f->text)));
+	f->text=(char*)malloc((strlen(texte)+1)*sizeof(*(f->text)));
 	f->texture=NULL;
 	if(f->text){
 	  strcpy(f->text,texte);
@@ -99,7 +80,7 @@ int actualizeTextFontSDL2(FontSDL2 *font,int isScripted){
   if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->renderer && font && font->font){
     if(isScripted){
       size=strlen(font->text);
-      str=malloc((size+1)*sizeof(*str));
+      str=(char*)malloc((size+1)*sizeof(*str));
       if(str){
 	for(i=0;i<size;++i){
 	  if(font->text[i]!=' '){
@@ -162,7 +143,7 @@ int changeTextFontSDL2(FontSDL2 *font,char *text){
   
   if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->renderer && font && text && font->font){
     PFREE(font->text);
-    font->text=malloc((strlen(text)+1)*sizeof(*(font->text)));
+    font->text=(char*)malloc((strlen(text)+1)*sizeof(*(font->text)));
     if(font->text){
       strcpy(font->text,text);
       switch(font->quality){

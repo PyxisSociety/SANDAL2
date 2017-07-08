@@ -37,8 +37,18 @@ extern ListWindowSDL2 * _windows_SANDAL2;
  * @struct FontSDL2
  * @brief Informations about SDL2 font
  */
-struct FontSDL2;
-typedef struct FontSDL2 FontSDL2;
+typedef struct{
+  TTF_Font *font;
+  /**< SDL font object*/
+  int quality;
+  /**< quality of the texture : SANDAL2_SOLID, SANDAL2_SHADED or SANDAL2_BLENDED (same meaning as for SDL2 functions TTF_RenderText_Solid, Shaded or Blended) */
+  char *text;
+  /**< text*/
+  SDL_Color color;
+  /**< color of the text*/
+  SDL_Texture *texture;
+  /**< SDL texture*/
+}FontSDL2;
 
 /* -------------------------------------------------------
  * Text SDL2

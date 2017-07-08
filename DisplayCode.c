@@ -4,7 +4,7 @@
  * Liste de code d'affichage
  */
 ListDisplayCode* initListDisplayCode(){
-  ListDisplayCode *l=malloc(sizeof(*l));
+  ListDisplayCode *l=(ListDisplayCode*)malloc(sizeof(*l));
 
   if(l){
     l->first=NULL;
@@ -42,7 +42,7 @@ int addDisplayCode(ListDisplayCode* l,int code,int isDisplaied,int plan){
       (*d)->plan=plan;
       error = 0;
     }else{
-      new=malloc(sizeof(*new));
+      new=(DisplayCode*)malloc(sizeof(*new));
       if(new){
 	new->code=code;
 	new->next=*d;
