@@ -184,8 +184,8 @@ int updateWindowSDL2(){
 	ele=&(lp->first);
 	while(*ele && !_windows_SANDAL2->current->close){
 	  if(isDisplaied((*ele)->element)){
-	    if((*ele)->element->action){
-	      (*ele)->element->action((*ele)->element);
+	    if((*ele)->element->event.action){
+	      (*ele)->element->event.action((*ele)->element);
 	    }
 	    if((*ele)->element->animation->size && (*ele)->element->animation->size){
 	      (*ele)->element->animation->current->wasChanged++;
@@ -199,8 +199,8 @@ int updateWindowSDL2(){
 		  }
 		  ++i;
 		}while(i<(*ele)->element->animation->current->size && !(*ele)->element->animation->current->current->lifespan);
-		if((*ele)->element->animation->current->current == (*ele)->element->animation->current->first && (*ele)->element->endSprite){
-		  (*ele)->element->endSprite((*ele)->element,(*ele)->element->animation->current->code);
+		if((*ele)->element->animation->current->current == (*ele)->element->animation->current->first && (*ele)->element->event.endSprite){
+		  (*ele)->element->event.endSprite((*ele)->element,(*ele)->element->animation->current->code);
 		}
 		(*ele)->element->animation->current->wasChanged = 0;
 	      }
@@ -365,13 +365,13 @@ int clickWindowSDL2(int x,int y){
 	      if(e->element->entry){
 		e->element->entry->isSelect=1;
 	      }
-	      if(e->element->onClick){
-		e->element->onClick(e->element);
+	      if(e->element->event.onClick){
+		e->element->event.onClick(e->element);
 	      }
 	    }
 	  }else{
-	    if(e->element->selected && e->element->unSelect){
-	      e->element->unSelect(e->element);
+	    if(e->element->selected && e->element->event.unSelect){
+	      e->element->event.unSelect(e->element);
 	    }
 	    e->element->selected=0;
 	    if(e->element->entry){
@@ -436,13 +436,13 @@ int unclickWindowSDL2(int x,int y){
 	      newX=xtmp;
 	    }
 	    if(hitListHitBox(e->element->hitboxes,newX,newY)){
-	      if(e->element->unClick){
-		e->element->unClick(e->element);
+	      if(e->element->event.unClick){
+		e->element->event.unClick(e->element);
 	      }
 	    }
 	  }else if(e->element->entry){
-	    if(e->element->selected && e->element->unSelect){
-	      e->element->unSelect(e->element);
+	    if(e->element->selected && e->element->event.unSelect){
+	      e->element->event.unSelect(e->element);
 	    }
 	    e->element->selected=0;
 	    e->element->entry->isSelect=0;
@@ -471,7 +471,7 @@ int keyPressedWindowSDL2(char c){
 
     /* fait l'action de la fenetre courante */
     if(_windows_SANDAL2->current->events.keyPress){
-      _windows_SANDAL2->current->events.keyPress();
+      _windows_SANDAL2->current->events.keyPress(c);
     }
     
     /* recherche de la liste d'element ayant le bon code de display */
@@ -489,8 +489,8 @@ int keyPressedWindowSDL2(char c){
       while(lp && !_windows_SANDAL2->current->close){
 	e=lp->first;
 	while(e && !_windows_SANDAL2->current->close){
-	  if(e->element->keyPress && (!e->element->entry || e->element->entry->isSelect)){
-	    e->element->keyPress(e->element,c);
+	  if(e->element->event.keyPress && (!e->element->entry || e->element->entry->isSelect)){
+	    e->element->event.keyPress(e->element,c);
 	  }
 	  e=e->next;
 	}
@@ -516,7 +516,7 @@ int keyReleasedWindowSDL2(char c){
 
     /* fait l'action de la fenetre courante */
     if(_windows_SANDAL2->current->events.keyReleased){
-      _windows_SANDAL2->current->events.keyReleased();
+      _windows_SANDAL2->current->events.keyReleased(c);
     }
     
     /* recherche de la liste d'element ayant le bon code de display */
@@ -534,8 +534,8 @@ int keyReleasedWindowSDL2(char c){
       while(lp && !_windows_SANDAL2->current->close){
 	e=lp->first;
 	while(e && !_windows_SANDAL2->current->close){
-	  if(e->element->keyReleased && (!e->element->entry || e->element->entry->isSelect)){
-	    e->element->keyReleased(e->element,c);
+	  if(e->element->event.keyReleased && (!e->element->entry || e->element->entry->isSelect)){
+	    e->element->event.keyReleased(e->element,c);
 	  }
 	  e=e->next;
 	}
