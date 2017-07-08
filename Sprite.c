@@ -4,7 +4,7 @@
  * ListSprite
  */
 ListSprite * initListSprite(int code){
-  ListSprite * l = malloc(sizeof(*l));
+  ListSprite * l = (ListSprite*)malloc(sizeof(*l));
 
   if(l){
     l->current = NULL;
@@ -40,7 +40,7 @@ int addSprite(ListSprite * l,int x,int y,int width,int height,unsigned lifespan,
   int error = 1;
   
   if(l){
-    s=malloc(sizeof(*s));
+    s=(Sprite*)malloc(sizeof(*s));
     if(s){
       s->coords[0]=x;
       s->coords[1]=y;
@@ -143,7 +143,7 @@ int setSprite(ListSprite * l,int code){
  * ListAnimation
  */
 ListAnimation * initListAnimation(){
-  ListAnimation * l = malloc(sizeof(*l));
+  ListAnimation * l = (ListAnimation*)malloc(sizeof(*l));
 
   if(l){
     l->first=NULL;

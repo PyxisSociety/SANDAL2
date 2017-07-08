@@ -65,10 +65,6 @@ void closeTexte();
  * Fenetre SDL2
  */
 /**
- * @brief Free a window's memory
- */
-/*void freeWindowSDL2(WindowSDL2 *fen);*/
-/**
  * @brief Add a window to the list of windows
  * @param width : width of the window
  * @param height : height of the window

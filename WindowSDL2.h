@@ -224,13 +224,13 @@ int setUnClickWindowSDL2(void (*unCLick)(void));
  * @param c2 : second array to be compared
  * @return 1 if both arrays are equal, 0 if not
  */
-int cmpCoul(int c1[4],int c2[4]);
+/*int cmpCoul(int c1[4],int c2[4]);
 /**
  * @brief Copy a static array of size 4 in another
  * @param to : where the second array will be copied
  * @param from : array to copy
  */
-void copyColor(int to[4],int from[4]);
+/*void copyColor(int to[4],int from[4]);
 /* ------------------------------------------------------- */
 
 #endif
