@@ -22,28 +22,29 @@
  * @brief free p if it is not NULL
  */
 #define PFREE(p){				\
-    if(p){					\
-      free(p);					\
-    }						\
-  }
+        if(p){					\
+            free(p);                            \
+        }                                       \
+    }
 
 struct ListElementSDL2;
+struct ListDCElementSDL2;
 
 /**
  * @struct EventWindowSDL2
  * @brief Behaviors of a window to SDL2 events
  */
 typedef struct{
-  void (*action)();
-  /**< function called when update*/
-  void (*onClick)();
-  /**< function called when the element is clicked*/
-  void (*unClick)();
-  /**< function called when the element is unclicked*/
-  void (*keyPress)(SDL_Keycode c);
-  /**< function called when a key is pressed*/
-  void (*keyReleased)(SDL_Keycode c);
-  /**< function called when a key is released*/
+    void (*action)();
+    /**< function called when update*/
+    void (*onClick)();
+    /**< function called when the element is clicked*/
+    void (*unClick)();
+    /**< function called when the element is unclicked*/
+    void (*keyPress)(SDL_Keycode c);
+    /**< function called when a key is pressed*/
+    void (*keyReleased)(SDL_Keycode c);
+    /**< function called when a key is released*/
 }EventWindowSDL2;
 
 /**
@@ -51,32 +52,38 @@ typedef struct{
  * @brief SANDAL2 window 
  */
 typedef struct WindowSDL2{
-  int height;
-  /**< current height of the window*/
-  int width;
-  /**< current width of the window*/
-  int initHeight;
-  /**< initial height of the window*/
-  int initWidth;
-  /**< initial width of the window*/
-  int displayCode;
-  /**< display code of the window*/
-  int background[4];
-  /**< background color of the window*/
-  SDL_Window *window;
-  /**< true SDL2 window*/
-  SDL_Renderer *renderer;
-  /**< SDL2 renderer*/
-  struct ListElementSDL2 * liste;
-  /**< elements in the window*/
-  EventWindowSDL2 events;
-  /**< behavior of the window to SDL2 events */
-  struct WindowSDL2 * next;
-  /**< next window*/
-  unsigned toDelete;
-  /**< number of element to be deleted by the cleaner*/
-  int close;
-  /**< tells whether or not the window should be closed */
+    int height;
+    /**< current height of the window*/
+    int width;
+    /**< current width of the window*/
+    int initHeight;
+    /**< initial height of the window*/
+    int initWidth;
+    /**< initial width of the window*/
+    int displayCode;
+    /**< display code of the window*/
+    int background[4];
+    /**< background color of the window*/
+    SDL_Window *window;
+    /**< true SDL2 window*/
+    SDL_Renderer *renderer;
+    /**< SDL2 renderer*/
+    struct ListElementSDL2 * liste;
+    /**< elements in the window*/
+    EventWindowSDL2 events;
+    /**< behavior of the window to SDL2 events */
+    struct WindowSDL2 * next;
+    /**< next window*/
+    unsigned toDelete;
+    /**< number of element to be deleted by the cleaner*/
+    int close;
+    /**< tells whether or not the window should be closed */
+    int newDisplayCode;
+    /**< display code to be changed */
+    int displayToChange;
+    /**< tells whether or not the display code has to be changed */
+    struct ListDCElementSDL2 * current;
+    /**< current list of elements to display */
 }WindowSDL2;
 
 /**
@@ -84,12 +91,12 @@ typedef struct WindowSDL2{
  * @brief list of windows
  */
 typedef struct{
-  WindowSDL2 * first;
-  /**<First WindowSDL2 of the list*/
-  WindowSDL2 * last;
-  /**<Last WindowSDL2 of the list*/
-  WindowSDL2 * current;
-  /**<current WindowSDL2 of the list*/
+    WindowSDL2 * first;
+    /**<First WindowSDL2 of the list*/
+    WindowSDL2 * last;
+    /**<Last WindowSDL2 of the list*/
+    WindowSDL2 * current;
+    /**<current WindowSDL2 of the list*/
 }ListWindowSDL2;
 
 

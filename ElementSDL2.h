@@ -89,9 +89,9 @@ typedef struct ElementSDL2{
   /**< list of display code of the element*/
   EventElementSDL2 events;
   /**< behavior of the element to SDL2 events*/
-  SDL_Texture *image;
+  SDL_Texture * image;
   /**< texture of the image (NULL if no image)*/
-  ListAnimation* animation;
+  ListAnimation * animation;
   /**< animation of the image*/
   FontSDL2 *font;
   /**< informations about the text (NULL if no text)*/
