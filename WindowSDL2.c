@@ -38,7 +38,7 @@ int changeDisplayWindowSDL2(int displayCode){
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->displayCode != displayCode){
         _windows_SANDAL2->current->newDisplayCode = displayCode;
-        _windows_SANDAL2->curent->displayToChange = 1;
+        _windows_SANDAL2->current->displayToChange = 1;
         error = 0;
     }
 

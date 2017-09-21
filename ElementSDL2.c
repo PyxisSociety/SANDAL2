@@ -193,11 +193,13 @@ int addElementSDL2(ElementSDL2* e){
             }
             if(!*ldc){
                 *ldc=initListDCElementSDL2(d->code);
+                if(d->code == _windows_SANDAL2->current->displayCode && !(_windows_SANDAL2->current->current))
+                    _windows_SANDAL2->current->current = *ldc;
                 lp=&((*ldc)->first);
                 *lp=initListPtrElementSDL2(d->plan);
             }else if((*ldc)->code!=d->code){
                 dctmp=initListDCElementSDL2(d->code);
-                if(d->code == _windows_SANDAL2->current->displayCode && _windows_SANDAL2->current->current == NULL)
+                if(d->code == _windows_SANDAL2->current->displayCode && !(_windows_SANDAL2->current->current))
                     _windows_SANDAL2->current->current = dctmp;
                 dctmp->next=(*ldc);
                 (*ldc)=dctmp;

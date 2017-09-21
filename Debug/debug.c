@@ -37,15 +37,15 @@ int main(){
   addHitBoxElementSDL2(objet,rectangleHitBox(0.f,0.f,1.f,1.f),0);
   
   createAnimationElementSDL2(objet,0);
-  for(i=0;i<4;++i){
-    addSpriteAnimationElementSDL2(objet,0,55*i,0,55,75,10,i);
-  }
+  for(i=0;i<4;++i)
+    if(addSpriteAnimationElementSDL2(objet,0,55*i,0,55,75,10,i))
+      printf("Error adding sprite %d to animation 0\n",i);
   setWaySpriteAnimationElementSDL2(objet,0,1);
 
   createAnimationElementSDL2(objet,1);
-  for(i=0;i<4;++i){
-    addSpriteAnimationElementSDL2(objet,1,259+i*72,0,72,75,10,i);
-  }
+  for(i=0;i<4;++i)
+    if(addSpriteAnimationElementSDL2(objet,1,259+i*72,0,72,75,10,i))
+      printf("Error adding sprite %d to animation 1\n",i);
   setWaySpriteAnimationElementSDL2(objet,1,1);
   
   addRotationSpeedElementSDL2(objet,1.f);
@@ -57,7 +57,6 @@ int main(){
 
   objet=createTexte(150.f,100.f,50.f,50.f,"arial.ttf","OK",rouge,2,1,-1);
   setTextStyleElementSDL2(objet,SANDAL2_STRIKETHROUGH);
-  
   /* display de la fenetre */
   while(run){
     tps = SDL_GetTicks();

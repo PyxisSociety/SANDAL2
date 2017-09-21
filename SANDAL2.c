@@ -193,15 +193,15 @@ int updateWindowSDL2(){
 
         /* update le code d'affichage et la liste courante a afficher */
         if(_windows_SANDAL2->current->displayToChange){
-            ldc = _windows_SANDAL2->current->first;
-            while(ldc && ldc->displayCode < _windows_SANDAL2->current->newDisplayCode)
+            ldc = _windows_SANDAL2->current->liste->first;
+            while(ldc && ldc->code < _windows_SANDAL2->current->newDisplayCode)
                 ldc = ldc->next;
-            if(ldc && ldc->displayCode == _windows_SANDAL2->current->newDisplayCode)
+            if(ldc && ldc->code == _windows_SANDAL2->current->newDisplayCode)
                 _windows_SANDAL2->current->current = ldc;
             else
                 _windows_SANDAL2->current->current = NULL;
             _windows_SANDAL2->current->displayToChange = 0;
-            _windows_SANDAL2->curent->displayCode = _windows_SANDAL2->current->newDisplayCode;
+            _windows_SANDAL2->current->displayCode = _windows_SANDAL2->current->newDisplayCode;
         }
 
         /* fait l'action de la fenetre courante */
@@ -211,7 +211,7 @@ int updateWindowSDL2(){
     
         /* recherche de la liste d'element ayant le bon code de display */
         ldc = _windows_SANDAL2->current->current;
-        if(ldc && ldc->code==_windows_SANDAL2->current->displayCode){
+        if(ldc){
             lp=ldc->first;
             while(lp && !_windows_SANDAL2->current->close){
                 ele=&(lp->first);
