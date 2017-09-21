@@ -1,7 +1,7 @@
 #ifndef _ELEMENTSDL2_SANDAL2_KLEVH_
 #define _ELEMENTSDL2_SANDAL2_KLEVH_
 
-#include "HitBox.h"
+#include "Clickable.h"
 #include "FontSDL2.h"
 #include "WindowSDL2.h"
 #include "DisplayCode.h"
@@ -99,7 +99,7 @@ typedef struct ElementSDL2{
   /**< informations about the entry (NULL if no entry)*/
   struct ListPtrElementSDL2 *interactions;
   /**< list of elements that this element can modifie*/
-  ListHitBox * hitboxes;
+  ListClickable * hitboxes;
   /**< list of clickable zones*/
   void * data;
   /**< data available for the user*/
@@ -587,7 +587,7 @@ int delElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *del);
  * @param blocking : tells whether or not the clickable zone is a blocking one
  * @return 1 if it was impossible, 0 if not
  */
-int addHitBoxElementSDL2(ElementSDL2 *e,HitBox *hb,int blocking);
+int addClickableElementSDL2(ElementSDL2 *e,Clickable *hb,int blocking);
 /**
  * @brief increase the rotation speed of an element
  * @param e : element to be modified

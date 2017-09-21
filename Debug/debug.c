@@ -7,9 +7,8 @@ void touch(ElementSDL2 *this){
 }
 
 void endJump(ElementSDL2 *this,int code){
-  if(code==1){
+  if(code==1)
     setAnimationElementSDL2(this,0);
-  }
 }
 
 int main(){
@@ -69,9 +68,8 @@ int main(){
     displayWindowSDL2();
     /* delai pour 60 frames/secondes */
     ticks = 16 - SDL_GetTicks() + tps;
-    if(ticks>0){
+    if(ticks>0)
       SDL_Delay(ticks);
-    }
   }
 
   closeAllWindowSDL2();

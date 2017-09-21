@@ -117,10 +117,12 @@ If there are no sprite, the entire image will be displaied.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;changing error return type from int to unsigned long for event functions on more than one window<br/>
 1.1.2 : changing functions not meant for the user to static in their source file, removing them from the header<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adding the cast on all mallocs for C++ portability<br/>
+1.1.3 : optimizing window managment<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;renaming HitBox by Clickable<br/>
 
 ## Structures
 
-### I. HitBox.h
+### I. Clickable.h
 
   1. LineSDL2:  
     A clickable zone delimited by a line (only one side of the line is clickable).
@@ -128,12 +130,12 @@ If there are no sprite, the entire image will be displaied.<br/>
   2. CircleSDL2:  
     An elliptic shaped clickable zone.
 
-  3. HitBox:  
+  3. Clickable:  
     A clickable zone made of a collection of lines and ellipses.
     This is one of the only structure you'll be manipulating (even though not directly accessing to its values).
 
-  4. ListHitBox:  
-    A clickable zone defined by a collection of clickable HitBox and blocking HitBox.
+  4. ListClickable:  
+    A clickable zone defined by a collection of clickable Clickable and blocking Clickable.
 
 ### II. Sprite.h
 
@@ -197,24 +199,24 @@ If there are no sprite, the entire image will be displaied.<br/>
 
 ## Project's size
 
-FontSDL2.c : 263 rows<br/>
+FontSDL2.c : 264 rows<br/>
 WindowSDL2.c : 242 rows<br/>
 DisplayCode.c : 60 rows<br/>
 Sprite.c : 308 rows<br/>
-HitBox.c : 321 rows<br/>
+Clickable.c : 321 rows<br/>
 ElementSDL2.c : 1,634 rows<br/> 
-SANDAL2.c : 844 rows<br/>
+SANDAL2.c : 808 rows<br/>
 <br/>
-Total for source files : 3,672 rows<br/>
+Total for source files : 3,645 rows<br/>
 <br/>
 FontSDL2.h : 107 rows<br/>
-WindowSDL2.h : 219 rows<br/>
+WindowSDL2.h : 225 rows<br/>
 DisplayCode.h : 63 rows<br/>
-Sprite.h : 188 rows<br/>
-HitBox.h : 211 rows<br/>
+Sprite.h : 186 rows<br/>
+Clickable.h : 211 rows<br/>
 ElementSDL2.h : 807 rows<br/> 
-SANDAL2.h : 182 rows<br/>
+SANDAL2.h : 178 rows<br/>
 <br/>
 Total for header files : 1,777 rows<br/>
 <br/>
-Total : 5,449 rows
+Total : 5,422 rows

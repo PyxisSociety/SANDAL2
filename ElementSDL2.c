@@ -339,7 +339,7 @@ void _freeElementSDL2(ElementSDL2 *e){
             freeListPtrElementSDL2(e->interactions);
         }
         if(e->hitboxes){
-            freeListHitBox(e->hitboxes);
+            freeListClickable(e->hitboxes);
         }
         if(e->animation){
             freeListAnimation(e->animation);
@@ -381,7 +381,7 @@ ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4]
             e->entry=NULL;
             e->interactions=NULL;
             e->image=NULL;
-            e->hitboxes = initListHitBox();
+            e->hitboxes = initListClickable();
             e->data=NULL;
             if(addElementSDL2(e)){
                 _freeElementSDL2(e);
@@ -415,7 +415,7 @@ ElementSDL2* createTexte(float x,float y,float width,float height,char * font,ch
             e->image=NULL;
             e->entry=NULL;
             e->interactions=NULL;
-            e->hitboxes = initListHitBox();
+            e->hitboxes = initListClickable();
             e->codes=NULL;
             e->font=createFontSDL2(font,text,textColor,quality);
             e->data=NULL;
@@ -483,7 +483,7 @@ ElementSDL2* createImage(float x,float y,float width,float height,char *image,in
                 e->font=NULL;
                 e->entry=NULL;
                 e->interactions=NULL;
-                e->hitboxes = initListHitBox();
+                e->hitboxes = initListClickable();
                 e->data=NULL;
                 if(addElementSDL2(e)){
                     _freeElementSDL2(e);
@@ -1250,11 +1250,11 @@ int delElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *del){
     return error;
 }
 
-int addHitBoxElementSDL2(ElementSDL2 *e,HitBox *hb,int blocking){
+int addClickableElementSDL2(ElementSDL2 *e,Clickable *hb,int blocking){
     int error = 1;
 
     if(e && hb){
-        error=addHitBox(e->hitboxes,hb,blocking);
+        error=addClickable(e->hitboxes,hb,blocking);
     }
 
     return error;
