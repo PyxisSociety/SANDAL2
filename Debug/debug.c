@@ -33,7 +33,7 @@ int main(){
   }
 
   objet = createImage(150.f,100.f,100.f,200.f,"spritesheet.jpg",1,0);
-  addHitBoxElementSDL2(objet,rectangleHitBox(0.f,0.f,1.f,1.f),0);
+  addClickableElementSDL2(objet,rectangleClickable(0.f,0.f,1.f,1.f),0);
   
   createAnimationElementSDL2(objet,0);
   for(i=0;i<4;++i)

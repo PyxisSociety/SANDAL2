@@ -1,36 +1,47 @@
 #!/bin/makefile
 
-#change this variable to match the path from the current directory to where SANDAL2 is store (without the last '/')
+#change this variable to match the path from the current directory to where SANDAL2 is store 
+#without the last '/'
 SANDAL2PATH=..
 
 #in this part, nothing for you to be done, it is the inclusion of SANDAL2's files and LDFLAGS
 #SANDAL2's files
-SANDAL2=$(SANDAL2PATH)/SANDAL2.o $(SANDAL2PATH)/WindowSDL2.o $(SANDAL2PATH)/ElementSDL2.o $(SANDAL2PATH)/FontSDL2.o $(SANDAL2PATH)/DisplayCode.o $(SANDAL2PATH)/HitBox.o $(SANDAL2PATH)/Sprite.o
+SANDAL2SRC=$(wildcard $(SANDAL2PATH)/*.c)
+SANDAL2=$(SANDAL2SRC:.c=.o)
 #SANDAL2's LDFLAGS
 LDFLAGS=-lSDL2 -lSDL2_ttf -lSDL2_image -lm
 #added because .o files are made in your directory
-OSANDAL2=SANDAL2.o WindowSDL2.o ElementSDL2.o FontSDL2.o DisplayCode.o HitBox.o Sprite.o
 
-#add to this variables all the '.o' files for your program
-OFILES=debug.o
+#add to this variables all the '.c' files for your program 
+#$(wildcard *.c) is equivalent to all the .c files in the current folder
+SRC=$(wildcard *.c)
+OFILES=$(SRC:.c=.o)
 
-#add the LDFLAGS you need (such as -g or -O)
+#add the LDFLAGS you need (such as -g or -O), lm already added 
+#-ansi or -std=gnu89 is not compatible with lm on gcc
 LDFLAGS+=-g
 
-#your compilation flags, do not put ansi or -std=c89
-CFLAGS=-Wall -Wextra -pedantic 
+#your compilation flags, 
+#-ansi or -std=gnu89 are not compatible with -lm on gcc
+CFLAGS=-Wall -Wextra -pedantic
 
 #your program's name
-EXEC=debug
+EXEC=a.out
+
+#your compiler
+CC=gcc
 
 
 all:$(EXEC)
 
 $(EXEC):$(OFILES) $(SANDAL2)
-	gcc $(OFILES) $(OSANDAL2) -o $(EXEC) $(LDFLAGS) $(DEBUG)
+	$(CC) $^ -o $(EXEC) $(LDFLAGS) $(DEBUG)
+
+$(SANDAL2PATH)/%.o:$(SANDAL2PATH)/%.c
+	$(CC) -c $< -o $@ $(CFLAGS)
 
 %.o:%.c
-	gcc -c $< $(CFLAGS)
+	$(CC) -c $< -o $@ $(CFLAGS)
 
 clear:
 	rm *.o
