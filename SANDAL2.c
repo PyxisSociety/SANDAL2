@@ -384,7 +384,15 @@ int clickWindowSDL2(int x,int y){
                             if(e->element->events.onClick){
                                 e->element->events.onClick(e->element);
                             }
-                        }
+                        }else{
+			    if(e->element->selected && e->element->events.unSelect){
+				e->element->events.unSelect(e->element);
+			    }
+			    e->element->selected=0;
+			    if(e->element->entry){
+				e->element->entry->isSelect=0;
+			    }
+			}
                     }else{
                         if(e->element->selected && e->element->events.unSelect){
                             e->element->events.unSelect(e->element);
