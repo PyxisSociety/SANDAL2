@@ -753,11 +753,12 @@ int getTextElementSDL2(ElementSDL2 *e,char **s){
 		*s=(char*)malloc((e->entry->size+1)*sizeof(**s));
 		strncpy(*s,e->font->text,e->entry->size);
 		(*s)[e->entry->size] = 0;
+		error = *s && abs(strncmp(*s,e->font->text,e->entry->size));
 	    }else{
 		*s=(char*)malloc((strlen(e->font->text)+1)*sizeof(**s));
 		strcpy(*s,e->font->text);
+		error = *s && abs(strcmp(*s,e->font->text));
 	    }
-            error = *s && abs(strcmp(*s,e->font->text));
         }else{
             error = 0;
         }
