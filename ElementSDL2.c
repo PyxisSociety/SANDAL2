@@ -759,6 +759,17 @@ int getTextElementSDL2(ElementSDL2 *e,char **s){
 
     return error;
 }
+
+int getColorElementSDL2(ElementSDL2 * e, int color[4]){
+    int error = 1;
+
+    if(e && color){
+	error = 0;
+	copyColor(e->coulBlock,color);
+    }
+
+    return error;
+}
 /* ------------------------------------------------------- */
 
 

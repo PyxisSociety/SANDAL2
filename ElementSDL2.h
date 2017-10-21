@@ -393,6 +393,13 @@ int getTextStyleElementSDL2(ElementSDL2 *e,int * style);
  * @return 1 if it failed, 0 if not
  */
 int getTextElementSDL2(ElementSDL2 *e,char **s);
+/**
+ * @brief get the element's block color
+ * @param e : element to be modified
+ * @param color : where to store the block color
+ * @return 1 if there was an error, 0 if not
+ */
+int getColorElementSDL2(ElementSDL2 *e,int color[4]);
 /* ------------------------------------------------------- */
 
 
