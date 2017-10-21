@@ -349,7 +349,7 @@ int getAngleElementSDL2(ElementSDL2* e,float* a);
  * @param h : where the height will be store
  * @return 1 if there was an error, 0 if not
  */
-int getDimensionElementSDL2(ElementSDL2* e,int* w,int * h);
+int getDimensionElementSDL2(ElementSDL2* e,float* w,float * h);
 /**
  * @brief getter for the Element's rotation point
  * @param e : element to get the rotation point's coordinate

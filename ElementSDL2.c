@@ -663,7 +663,7 @@ int getAngleElementSDL2(ElementSDL2* e,float* a){
     return error;
 }
 
-int getDimensionElementSDL2(ElementSDL2* e,int* w,int * h){
+int getDimensionElementSDL2(ElementSDL2* e,float* w,float * h){
     int error = 1;
 
     if(e){
