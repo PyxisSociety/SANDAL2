@@ -803,7 +803,7 @@ int setFontElementSDL2(ElementSDL2 *e,char * font){
 int setTextElementSDL2(ElementSDL2 *e,char * text){
     int error = 1;
     unsigned i = 0;
-    unsigned size;
+    int size;
     
     if(_windows_SANDAL2 && _windows_SANDAL2->current && e && text && e->font){
 	if(e->entry){
