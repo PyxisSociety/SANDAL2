@@ -369,7 +369,7 @@ ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4]
             e->codes=initListDisplayCode();
             addDisplayCode(e->codes,displayCode,1,plan);
             e->animation=initListAnimation();
-            e->freeData=free;
+            e->freeData=NULL;
             e->events.action=NULL;
             e->events.onClick=NULL;
             e->events.unClick=NULL;
@@ -423,7 +423,7 @@ ElementSDL2* createTexte(float x,float y,float width,float height,char * font,ch
                 e->codes=initListDisplayCode();
                 addDisplayCode(e->codes,displayCode,1,plan);
                 e->coulBlock[0]=-1;
-                e->freeData=free;
+                e->freeData=NULL;
                 e->events.action=NULL;
                 e->events.onClick=NULL;
                 e->events.unClick=NULL;
@@ -479,7 +479,7 @@ ElementSDL2* createImage(float x,float y,float width,float height,char *image,in
                 e->events.keyReleased=NULL;
                 e->events.unSelect=NULL;
                 e->events.endSprite=NULL;
-                e->freeData=free;
+                e->freeData=NULL;
                 e->font=NULL;
                 e->entry=NULL;
                 e->interactions=NULL;
