@@ -765,7 +765,7 @@ int getColorElementSDL2(ElementSDL2 * e, int color[4]){
 
     if(e && color){
 	error = 0;
-	copyColor(e->coulBlock,color);
+	copyColor(color,e->coulBlock);
     }
 
     return error;
