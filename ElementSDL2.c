@@ -802,9 +802,16 @@ int setFontElementSDL2(ElementSDL2 *e,char * font){
 
 int setTextElementSDL2(ElementSDL2 *e,char * text){
     int error = 1;
-  
+    unsigned i = 0;
+    unsigned size;
+    
     if(_windows_SANDAL2 && _windows_SANDAL2->current && e && text && e->font){
-        error=changeTextFontSDL2(e->font,text);
+	if(e->entry){
+	    size = strlen(text);
+	    error = changeTextFontSDL2(e->font,(size > e->entry->size_max ? text + size - e->entry->size_max : text));
+	    e->entry->size = (size >= e->entry->size_max ? e->entry->size_max : size);
+	}else
+	    error=changeTextFontSDL2(e->font,text);
     }
 
     return error;
