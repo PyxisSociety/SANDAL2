@@ -329,7 +329,7 @@ void _freeElementSDL2(ElementSDL2 *e){
         if(e->entry){
             free(e->entry);
         }
-        if(e->data){
+        if(e->data && e->freeData){
             e->freeData(e->data);
         }
         if(e->font){
