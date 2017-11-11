@@ -105,7 +105,7 @@ typedef struct ElementSDL2{
   /**< data available for the user*/
   void (*freeData)(void*);
   /**< function to be called to free the data */
-  int delete;
+  int deleted;
   /**< tells whether or not the element should be deleted (1 for completely deleted, 2 for display remove, 3 for plan change)*/
   int deleteCode;
   /**< plan or display code to be removed from*/
