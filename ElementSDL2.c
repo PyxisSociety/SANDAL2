@@ -240,7 +240,7 @@ void _cleanElementSDL2(){
             while(*lp && _windows_SANDAL2->current->toDelete){
                 e=&((*lp)->first);
                 while(*e && _windows_SANDAL2->current->toDelete){
-                    switch((*e)->element->delete-((*e)->element->delete==2 && (*e)->element->codes->size==1)){
+                    switch((*e)->element->deleted-((*e)->element->deleted==2 && (*e)->element->codes->size==1)){
                     case 1:
                         ee=(*e)->element;
                         removeDCElementSDL2(ldc,ee);
@@ -304,7 +304,7 @@ int removeElementSDL2(ElementSDL2 *e){
     int error = 1;
   
     if(e && _windows_SANDAL2 && _windows_SANDAL2->current){
-        e->delete=1;
+        e->deleted=1;
         e->parent->toDelete++;
         error = 0;
     }
@@ -354,7 +354,7 @@ ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4]
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
         e=(ElementSDL2*)malloc(sizeof(*e));
         if(e){
-            e->delete=0;
+            e->deleted=0;
             e->deleteCode=0;
             e->selected=0;
             e->x=x;
@@ -399,7 +399,7 @@ ElementSDL2* createTexte(float x,float y,float width,float height,char * font,ch
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
         e=(ElementSDL2*)malloc(sizeof(*e));
         if(e){
-            e->delete=0;
+            e->deleted=0;
             e->deleteCode=0;
             e->selected=0;
             e->x=x;
@@ -456,9 +456,9 @@ ElementSDL2* createImage(float x,float y,float width,float height,char *image,in
         if(s){
             e=(ElementSDL2*)malloc(sizeof(*e));
             if(e){
-                e->delete=0;
+                e->deleted=0;
                 e->deleteCode=0;
-                e->selected=0;
+                e->selectœed=0;
                 e->x=x;
                 e->y=y;
                 e->width=width;
@@ -620,7 +620,7 @@ ElementSDL2* createEntryImage(float x,float y,float width,float height,float tex
 }
 
 int isDisplaied(ElementSDL2 *e){
-    int display = (e && !(e->delete) && _windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current == e->parent && e->codes);
+    int display = (e && !(e->deleted) && _windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current == e->parent && e->codes);
     DisplayCode *d;
 
     if(display){
@@ -1038,7 +1038,7 @@ int removeDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode){
                         cour=&((*cour)->next);
                     }
                     if(*cour){
-                        (*cour)->element->delete=2;
+                        (*cour)->element->deleted=2;
                         (*cour)->element->deleteCode=displayCode;
                         _windows_SANDAL2->current->toDelete++;
                         error = 0;
@@ -1105,7 +1105,7 @@ int setPlanElementSDL2(ElementSDL2 *e,int displayCode,int plan){
                     cour=&((*cour)->next);
                 }
                 if(*cour){
-                    (*cour)->element->delete=3;
+                    (*cour)->element->deleted=3;
                     (*cour)->element->deleteCode=old;
                     _windows_SANDAL2->current->toDelete++;
                 }
