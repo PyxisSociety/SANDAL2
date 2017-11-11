@@ -458,7 +458,7 @@ ElementSDL2* createImage(float x,float y,float width,float height,char *image,in
             if(e){
                 e->deleted=0;
                 e->deleteCode=0;
-                e->selectœed=0;
+                e->selected=0;
                 e->x=x;
                 e->y=y;
                 e->width=width;
