@@ -119,6 +119,10 @@ If there are no sprite, the entire image will be displaied.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adding the cast on all mallocs for C++ portability<br/>
 1.1.3 : optimizing window managment<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;renaming HitBox by Clickable<br/>
+1.1.4 : adding the possibility to change the correspondance between the origin of the window and the origin of all the elements placed<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;correcting C++ compatibility by renaming delete attribute of WindowSDL2 deleted<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;passing char * to const char * when possible<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adding clearElementToElementSDL2, clearElementWindowSDL2, clearDisplayCode and clearPlanDisplayCode<br/>
 
 ## Structures
 
@@ -199,24 +203,24 @@ If there are no sprite, the entire image will be displaied.<br/>
 
 ## Project's size
 
-FontSDL2.c : 264 rows<br/>
-WindowSDL2.c : 242 rows<br/>
-DisplayCode.c : 60 rows<br/>
+FontSDL2.c : 268 rows<br/>
+WindowSDL2.c : 291 rows<br/>
+DisplayCode.c : 80 rows<br/>
 Sprite.c : 308 rows<br/>
 Clickable.c : 321 rows<br/>
-ElementSDL2.c : 1,634 rows<br/> 
-SANDAL2.c : 808 rows<br/>
+ElementSDL2.c : 1,793 rows<br/>
+SANDAL2.c : 833 rows<br/>
 <br/>
-Total for source files : 3,645 rows<br/>
+Total for source files : 3,902 rows<br/>
 <br/>
 FontSDL2.h : 107 rows<br/>
-WindowSDL2.h : 225 rows<br/>
-DisplayCode.h : 63 rows<br/>
+WindowSDL2.h : 269 rows<br/>
+DisplayCode.h : 70 rows<br/>
 Sprite.h : 186 rows<br/>
 Clickable.h : 211 rows<br/>
-ElementSDL2.h : 807 rows<br/> 
-SANDAL2.h : 178 rows<br/>
+ElementSDL2.h : 838 rows<br/>
+SANDAL2.h : 199 rows<br/>
 <br/>
-Total for header files : 1,777 rows<br/>
+Total for header files : 1,880 rows<br/>
 <br/>
-Total : 5,422 rows
+Total : 5,782 rows

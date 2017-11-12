@@ -88,6 +88,8 @@ typedef struct WindowSDL2{
     /**< current list of elements to display */
     void * data;
     /**< data of the window */
+    int stop;
+    /**< tells whether or not all elements where removed */
 }WindowSDL2;
 
 /**

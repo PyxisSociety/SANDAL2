@@ -61,8 +61,8 @@ void closeImage();
 void closeTexte();
 /* ------------------------------------------------------- */
 
-/* -------------------------------------------------------
- * Fenetre SDL2
+/* ------------------------------------------------------- 
+ * Creation, modification et suppression des fenetres
  */
 /**
  * @brief Add a window to the list of windows
@@ -75,6 +75,27 @@ void closeTexte();
  * @return 1 if it failed, 0 if not
  */
 int initWindowSDL2(int width,int height,char *title,int SDLFlags,int background[4],int displayCode);
+/**
+ * @brief close the current windows and go to the next, do not use this one in elements' or windows' binded functions, use shouldCloseWindowSDL2() instead
+ * @return 1 if it failed, 0 if not
+ */
+int closeWindowSDL2();
+/**
+ * @brief tells that the current window should be closed, do not use this one in functions that are not binded to windows or elements, use closeWindowSDL2() instead
+ * @return 1 if it failed, 0 if not
+ */
+int shouldCloseWindowSDL2();
+/**
+ * @brief close all windows
+ * @return 1 if it failed, 0 if not
+ */
+int closeAllWindowSDL2();
+
+/* ------------------------------------------------------- */
+
+/* -------------------------------------------------------
+ * Gestion des Fenetres SDL2
+ */
 /**
  * @brief update all the elements of the current window
  * @return 1 if it failed, 0 if not

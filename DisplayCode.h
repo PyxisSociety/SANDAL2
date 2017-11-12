@@ -58,6 +58,13 @@ void freeListDisplayCode(ListDisplayCode* l);
  * @return 1 if it could not be done, 0 if it could
  */
 int addDisplayCode(ListDisplayCode* l,int code,int isDisplaied,int plan);
+/**
+ * @brief Remove a display code to a list of display code
+ * @param l : list of display codes
+ * @param code : display code to be removed
+ * @return 0 if it succeeded, 1 if not
+ */
+int removeDisplayCode(ListDisplayCode * l, int code);
 /* ------------------------------------------------------- */
 
 #endif

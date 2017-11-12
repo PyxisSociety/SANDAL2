@@ -57,4 +57,24 @@ int addDisplayCode(ListDisplayCode* l,int code,int isDisplaied,int plan){
 
   return error;
 }
+
+int removeDisplayCode(ListDisplayCode * l, int code){
+    int error = 1;
+    DisplayCode ** d, * dtmp;
+    
+    if(l){
+	d = &(l->first);
+	while(*d && (*d)->code < code)
+	    d = &((*d)->next);
+	if(*d && (*d)->code == code){
+	    error = 0;
+	    dtmp = *d;
+	    *d = dtmp->next;
+	    free(dtmp);
+	    --l->size;
+	}
+    }
+    
+    return error;
+}
 /* ------------------------------------------------------- */

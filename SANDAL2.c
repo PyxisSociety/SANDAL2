@@ -1,5 +1,4 @@
 #include "SANDAL2.h"
-
 /* -------------------------------------------------------
  * Other functions
  */
@@ -95,8 +94,8 @@ void closeTexte(){
 
 
 
-/* -------------------------------------------------------
- * Fenetre SDL2
+/* ------------------------------------------------------- 
+ * Creation, modification et suppression des fenetres
  */
 static void freeWindowSDL2(WindowSDL2 *fen){
     if(fen){
@@ -139,6 +138,7 @@ int initWindowSDL2(int width,int height,char *title,int SDLFlags,int background[
 	    fen->origin[0] = 0;
 	    fen->origin[1] = 0;
             fen->next = NULL;
+	    fen->data = NULL;
             fen->events.action=NULL;
             fen->events.onClick=NULL;
             fen->events.unClick=NULL;
@@ -148,6 +148,7 @@ int initWindowSDL2(int width,int height,char *title,int SDLFlags,int background[
             copyColor(fen->background,background);
             fen->liste = _initListElementSDL2();
             fen->current = NULL;
+	    fen->stop = 0;
             if(!fen->liste){
                 SDL_DestroyWindow(fen->window);
                 SDL_DestroyRenderer(fen->renderer);
@@ -181,6 +182,71 @@ int initWindowSDL2(int width,int height,char *title,int SDLFlags,int background[
     return error;
 }
 
+int closeWindowSDL2(){
+    WindowSDL2 * f, * tmp;
+    int error = 1;
+  
+    if(_windows_SANDAL2 && _windows_SANDAL2->current){
+        f=_windows_SANDAL2->current;
+        if(f == _windows_SANDAL2->first){
+            _windows_SANDAL2->first = _windows_SANDAL2->first->next;
+        }else{
+            tmp=_windows_SANDAL2->first;
+            while(tmp && tmp->next!=f){
+                tmp=tmp->next;
+            }
+            if(tmp){
+                tmp->next=f->next;
+            }
+        }
+        error = 0;
+        _windows_SANDAL2->current=_windows_SANDAL2->current->next;
+        freeWindowSDL2(f);
+        if(!_windows_SANDAL2->first){
+            free(_windows_SANDAL2);
+            _windows_SANDAL2 = NULL;
+        }
+    }
+
+    return error;
+}
+
+int shouldCloseWindowSDL2(){
+    int error = 1;
+
+    if(_windows_SANDAL2 && _windows_SANDAL2->current){
+        _windows_SANDAL2->current->close=1;
+        error=0;
+    }
+
+    return error;
+}
+
+int closeAllWindowSDL2(){
+    WindowSDL2 *f, *tmp;
+    int error = 1;
+
+    if(_windows_SANDAL2 && _windows_SANDAL2->first){
+        error = 0;
+        f=_windows_SANDAL2->first;
+        while(f){
+            tmp=f;
+            f=f->next;
+            freeWindowSDL2(tmp);
+        }
+        free(_windows_SANDAL2);
+        _windows_SANDAL2=NULL;
+    }
+
+    return error;
+}
+/* ------------------------------------------------------- */
+
+
+
+/* -------------------------------------------------------
+ * Fenetre SDL2
+ */
 int updateWindowSDL2(){
     PtrElementSDL2 **ele;
     ListPtrElementSDL2 *lp;
@@ -244,10 +310,17 @@ int updateWindowSDL2(){
                             (*ele)->element->rotation = ((*ele)->element->rotation + (*ele)->element->rotSpeed > 360.f ? (*ele)->element->rotation + (*ele)->element->rotSpeed - 360.f : (*ele)->element->rotation + (*ele)->element->rotSpeed);
                         }
                     }
-                    ele=&((*ele)->next);
+		    if(_windows_SANDAL2->current->stop)
+			break;
+		    else
+			ele=&((*ele)->next);
                 }
-                lp=lp->next;
+		if(_windows_SANDAL2->current->stop)
+		    break;
+		else
+		    lp=lp->next;
             }
+	    _windows_SANDAL2->current->stop = 0;
             if(_windows_SANDAL2->current->close){
                 closeWindowSDL2();
             }else{
@@ -283,8 +356,8 @@ int displayWindowSDL2(){
                 ele=lp->first;
                 while(ele){
                     if(isDisplaied(ele->element)){
-                        r.x=ele->element->x*_windows_SANDAL2->current->width/_windows_SANDAL2->current->initWidth - _windows_SANDAL2->current->origin[0];
-                        r.y=ele->element->y*_windows_SANDAL2->current->height/_windows_SANDAL2->current->initHeight - _windows_SANDAL2->current->origin[1];
+                        r.x=(ele->element->x - _windows_SANDAL2->current->origin[0])*_windows_SANDAL2->current->width/_windows_SANDAL2->current->initWidth;
+                        r.y=(ele->element->y - _windows_SANDAL2->current->origin[1])*_windows_SANDAL2->current->height/_windows_SANDAL2->current->initHeight;
                         r.w=ele->element->width*_windows_SANDAL2->current->width/_windows_SANDAL2->current->initWidth;
                         r.h=ele->element->height*_windows_SANDAL2->current->height/_windows_SANDAL2->current->initHeight;
                         /* affichage du block */
@@ -713,66 +786,8 @@ unsigned long keyReleasedAllWindowSDL2(char c){
 
     return error;
 }
-
-int closeWindowSDL2(){
-    WindowSDL2 * f, * tmp;
-    int error = 1;
-  
-    if(_windows_SANDAL2 && _windows_SANDAL2->current){
-        f=_windows_SANDAL2->current;
-        if(f == _windows_SANDAL2->first){
-            _windows_SANDAL2->first = _windows_SANDAL2->first->next;
-        }else{
-            tmp=_windows_SANDAL2->first;
-            while(tmp && tmp->next!=f){
-                tmp=tmp->next;
-            }
-            if(tmp){
-                tmp->next=f->next;
-            }
-        }
-        error = 0;
-        _windows_SANDAL2->current=_windows_SANDAL2->current->next;
-        freeWindowSDL2(f);
-        if(!_windows_SANDAL2->first){
-            free(_windows_SANDAL2);
-            _windows_SANDAL2 = NULL;
-        }
-    }
-
-    return error;
-}
-
-int shouldCloseWindowSDL2(){
-    int error = 1;
-
-    if(_windows_SANDAL2 && _windows_SANDAL2->current){
-        _windows_SANDAL2->current->close=1;
-        error=0;
-    }
-
-    return error;
-}
-
-int closeAllWindowSDL2(){
-    WindowSDL2 *f, *tmp;
-    int error = 1;
-
-    if(_windows_SANDAL2 && _windows_SANDAL2->first){
-        error = 0;
-        f=_windows_SANDAL2->first;
-        while(f){
-            tmp=f;
-            f=f->next;
-            freeWindowSDL2(tmp);
-        }
-        free(_windows_SANDAL2);
-        _windows_SANDAL2=NULL;
-    }
-
-    return error;
-}
 /* ------------------------------------------------------- */
+
 
 
 

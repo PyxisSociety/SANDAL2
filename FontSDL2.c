@@ -39,6 +39,10 @@ FontSDL2* createFontSDL2(const char *fontPath,const char *texte,int couleur[4],i
 	  }
 	  if(s){
 	    f->texture=SDL_CreateTextureFromSurface(_windows_SANDAL2->current->renderer,s);
+	    if(!f->texture){
+		freeFontSDL2(f);
+		f=NULL;
+	    }
 	    SDL_FreeSurface(s);
 	  }else if(f){
 	    freeFontSDL2(f);

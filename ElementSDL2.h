@@ -324,9 +324,15 @@ ElementSDL2* createEntryImage(float x,float y,float width,float height,float tex
 /**
  * @brief tell whether or not the element can be displaied
  * @param e : element
- * @return 1 if the element is displaied, 0 if not
+ * @return 1 if the element is displaied (even outside the window), 0 if not
  */
 int isDisplaied(ElementSDL2* e);
+/**
+ * @brief clear all elements of a display code in the current window
+ * @param code : display code to be cleared
+ * @return 1 if there was an error, 0 if not
+ */
+int clearDisplayCode(int code);
 /**
  * @brief getter for the Element's coordinates
  * @param e : element to get the coordinates
@@ -525,6 +531,13 @@ int setDisplayElementSDL2(ElementSDL2 *e,int displayCode,int isDisplaied);
  */
 int setPlanElementSDL2(ElementSDL2 *e,int DisplayCode,int plan);
 /**
+ * @brief clear all elements of a plan in a display code of the current window
+ * @param code : display code to be modified
+ * @param plan : plan to be removed
+ * @return 0 if it succeeded, 1 if not
+ */
+int clearPlanDisplayCode(int code, int plan);
+/**
  * @brief set the continuous behaviour of an element
  * @param e : element to be modified
  * @param action : function to be called on each update call
@@ -583,10 +596,16 @@ int addElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *add);
 /**
  * @brief remove an element to another so that this other can not modifie the first one
  * @param e : element to be modified
- * @param add : element to be removed
+ * @param del : element to be removed
  * @return 1 if it was impossible, 0 if not
  */
 int delElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *del);
+/**
+ * @brief remove all elements binded to an element
+ * @param e : element to be modified
+ * @return 1 if it was impossible, 0 if not
+ */
+int clearElementToElementSDL2(ElementSDL2 *e);
 /**
  * @brief add a clickable zone to the element (or a blocking one)
  * @param e : element to be modified
@@ -737,6 +756,11 @@ int setAnimationElementSDL2(ElementSDL2 *e,int code);
  * @return 0 if the sprite is set, 1 if not
  */
 int setSpriteAnimationElementSDL2(ElementSDL2 *e,int codeS);
+/**
+ * @brief remove all elements from the current window
+ * @return 0 if it was possible, 1 if not
+ */
+int clearWindowSDL2(void);
 /* ------------------------------------------------------- */
 
 

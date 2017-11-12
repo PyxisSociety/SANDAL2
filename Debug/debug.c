@@ -63,6 +63,10 @@ int main(){
     setKeyPressWindowSDL2(moveWindow);
     setOriginWindowSDL2(0,0);
     setDataWindowSDL2(&run);
+    
+    objet=createTexte(150.f,100.f,50.f,50.f,"arial.ttf","OK",rouge,2,1,-1);
+    printf("%p\n",(void*)objet->font->texture);
+    setTextStyleElementSDL2(objet,SANDAL2_STRIKETHROUGH);
 
     objet = createImage(150.f,100.f,100.f,200.f,"spritesheet.jpg",1,0);
     addClickableElementSDL2(objet,rectangleClickable(0.f,0.f,1.f,1.f),0);
@@ -84,10 +88,7 @@ int main(){
     setOnClickElementSDL2(objet,touch);
 
     setEndSpriteElementSDL2(objet,endJump);
-
-
-    objet=createTexte(150.f,100.f,50.f,50.f,"arial.ttf","OK",rouge,2,1,-1);
-    setTextStyleElementSDL2(objet,SANDAL2_STRIKETHROUGH);
+    
     /* display de la fenetre */
     while(run){
 	tps = SDL_GetTicks();
