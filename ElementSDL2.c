@@ -393,7 +393,7 @@ ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4]
     return e;
 }
 
-ElementSDL2* createTexte(float x,float y,float width,float height,char * font,char * text,int textColor[4],int quality,int displayCode,int plan){
+ElementSDL2* createTexte(float x,float y,float width,float height,const char * font,const char * text,int textColor[4],int quality,int displayCode,int plan){
     ElementSDL2 *e=NULL;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
@@ -446,7 +446,7 @@ ElementSDL2* createTexte(float x,float y,float width,float height,char * font,ch
     return e;
 }
 
-ElementSDL2* createImage(float x,float y,float width,float height,char *image,int displayCode,int plan){
+ElementSDL2* createImage(float x,float y,float width,float height,const char *image,int displayCode,int plan){
     ElementSDL2 *e=NULL;
     SDL_Surface *s;
 
@@ -497,7 +497,7 @@ ElementSDL2* createImage(float x,float y,float width,float height,char *image,in
     return e;
 }
 
-ElementSDL2* createButton(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int quality,int couleurBlock[4],int displayCode,int plan){
+ElementSDL2* createButton(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,int couleurBlock[4],int displayCode,int plan){
     ElementSDL2 *e = NULL;
     FontSDL2 * f;
 
@@ -519,7 +519,7 @@ ElementSDL2* createButton(float x,float y,float width,float height,float texteSi
     return e;
 }
 
-ElementSDL2* createButtonImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int quality,char *image,int displayCode,int plan){
+ElementSDL2* createButtonImage(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,const char *image,int displayCode,int plan){
     ElementSDL2 *e = NULL;
     FontSDL2 * f;
   
@@ -541,7 +541,7 @@ ElementSDL2* createButtonImage(float x,float y,float width,float height,float te
     return e;
 }
 
-ElementSDL2* createEntry(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int quality,int couleurBlock[4],int displayCode,int plan,int min,int max,int isScripted){
+ElementSDL2* createEntry(float x,float y,float width,float height,float texteSize,const char * font, const char * text,int textColor[4],int quality,int couleurBlock[4],int displayCode,int plan,int min,int max,int isScripted){
     ElementSDL2 *e = NULL;
     EntrySDL2 *ent;
     int i;
@@ -580,7 +580,7 @@ ElementSDL2* createEntry(float x,float y,float width,float height,float texteSiz
     return e;  
 }
 
-ElementSDL2* createEntryImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int quality,char *image,int displayCode,int plan,int min,int max,int isScripted){
+ElementSDL2* createEntryImage(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,const char *image,int displayCode,int plan,int min,int max,int isScripted){
     ElementSDL2 *e = NULL;
     EntrySDL2 *ent;
     int i;
@@ -786,7 +786,7 @@ int getColorElementSDL2(ElementSDL2 * e, int color[4]){
 /* -------------------------------------------------------
  * ElementSDL2 modifications
  */
-int setFontElementSDL2(ElementSDL2 *e,char * font){
+int setFontElementSDL2(ElementSDL2 *e,const char * font){
     FontSDL2 *f;
     int color[4];
     int error = 1;
@@ -809,7 +809,7 @@ int setFontElementSDL2(ElementSDL2 *e,char * font){
     return error;
 }
 
-int setTextElementSDL2(ElementSDL2 *e,char * text){
+int setTextElementSDL2(ElementSDL2 *e,const char * text){
     int error = 1;
     int size;
     
@@ -867,7 +867,7 @@ int setTextQualityElementSDL2(ElementSDL2 *e, int quality){
     return error;
 }
 
-int setImageElementSDL2(ElementSDL2 *e,char *image){
+int setImageElementSDL2(ElementSDL2 *e,const char *image){
     SDL_Surface *s;
     int error=1;
   

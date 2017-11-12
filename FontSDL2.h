@@ -61,7 +61,7 @@ typedef struct{
  * @param quality : quality of the texture (SANDAL2_SOLID, SANDAL2_SHADED or SANDAL2_BLENDED)
  * @return NULL if the object was not initialised, if not, the object
  */
-FontSDL2* createFontSDL2(char *fontPath,char *texte,int couleur[4], int quality);
+FontSDL2* createFontSDL2(const char *fontPath,const char * texte,int couleur[4], int quality);
 /**
  * @brief free the memory of a FontSDL2
  * @param font : the FontSDL2 to be freed
@@ -80,7 +80,7 @@ int actualizeTextFontSDL2(FontSDL2 *font,int isScripted);
  * @param text : the new text
  * @return 1 if there was an error, 0 if not
  */
-int changeTextFontSDL2(FontSDL2 *font,char *text);
+int changeTextFontSDL2(FontSDL2 *font,const char *text);
 /**
  * @brief actualize the color of the FontSDL2
  * @param font : the font to be actualize

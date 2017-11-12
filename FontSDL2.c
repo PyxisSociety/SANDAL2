@@ -3,7 +3,7 @@
 /* -------------------------------------------------------
  * Text SDL2
  */
-FontSDL2* createFontSDL2(char *fontPath,char *texte,int couleur[4],int quality){
+FontSDL2* createFontSDL2(const char *fontPath,const char *texte,int couleur[4],int quality){
   FontSDL2 *f;
   SDL_Surface *s;
   SDL_Color c,c2;
@@ -136,7 +136,7 @@ int actualizeTextFontSDL2(FontSDL2 *font,int isScripted){
   return error;
 }
 
-int changeTextFontSDL2(FontSDL2 *font,char *text){
+int changeTextFontSDL2(FontSDL2 *font,const char *text){
   SDL_Surface *s;
   int error = 1;
   SDL_Color c2;

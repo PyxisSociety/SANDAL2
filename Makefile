@@ -39,7 +39,7 @@ $(EXEC):$(OFILES) $(SANDAL2)
 
 $(SANDAL2PATH)/%.o:$(SANDAL2PATH)/%.c
 	$(CC) -c $< -o $@ $(CFLAGS)
-	
+
 %.o:%.c
 	$(CC) -c $< -o $@ $(CFLAGS)
 

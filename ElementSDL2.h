@@ -239,7 +239,7 @@ ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4]
  * @param displayCode : display code of the text
  * @param plan : plan of the text
  */
-ElementSDL2* createTexte(float x,float y,float width,float height,char * font,char * text,int textColor[4],int quality,int displayCode,int plan);
+ElementSDL2* createTexte(float x,float y,float width,float height,const char * font,const char * text,int textColor[4],int quality,int displayCode,int plan);
 /**
  * @brief Generate an image like element
  * @param x : abscissa coordinate of its top left corner
@@ -250,7 +250,7 @@ ElementSDL2* createTexte(float x,float y,float width,float height,char * font,ch
  * @param displayCode : display code of the image
  * @param plan : plan of the image
  */
-ElementSDL2* createImage(float x,float y,float width,float height,char *image,int displayCode,int plan);
+ElementSDL2* createImage(float x,float y,float width,float height,const char *image,int displayCode,int plan);
 /**
  * @brief Generate a button like element
  * @param x : abscissa coordinate of its top left corner
@@ -266,7 +266,7 @@ ElementSDL2* createImage(float x,float y,float width,float height,char *image,in
  * @param displayCode : display code of the button
  * @param plan : plan of the button
  */
-ElementSDL2* createButton(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int quality,int couleurBlock[4],int displayCode,int plan);
+ElementSDL2* createButton(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,int couleurBlock[4],int displayCode,int plan);
 /**
  * @brief Generate a button like element with an image
  * @param x : abscissa coordinate of its top left corner
@@ -282,7 +282,7 @@ ElementSDL2* createButton(float x,float y,float width,float height,float texteSi
  * @param displayCode : display code of the button
  * @param plan : plan of the button
  */
-ElementSDL2* createButtonImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int quality,char *image,int displayCode,int plan);
+ElementSDL2* createButtonImage(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,const char *image,int displayCode,int plan);
 /**
  * @brief Generate a prompt like element
  * @param x : abscissa coordinate of its top left corner
@@ -301,7 +301,7 @@ ElementSDL2* createButtonImage(float x,float y,float width,float height,float te
  * @param max : maximum number of character for the prompt to be validate
  * @param isScripted : flag which tells whether or not the prompt is cripted
  */
-ElementSDL2* createEntry(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int quality,int couleurBlock[4],int displayCode,int plan,int min,int max, int isScripted);
+ElementSDL2* createEntry(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,int couleurBlock[4],int displayCode,int plan,int min,int max, int isScripted);
 /**
  * @brief Generate a prompt like element with an image
  * @param x : abscissa coordinate of its top left corner
@@ -320,7 +320,7 @@ ElementSDL2* createEntry(float x,float y,float width,float height,float texteSiz
  * @param max : maximum number of character for the prompt to be validate
  * @param isScripted : flag which tells whether or not the prompt is cripted
  */
-ElementSDL2* createEntryImage(float x,float y,float width,float height,float texteSize,char * font,char * text,int textColor[4],int quality,char *image,int displayCode,int plan,int min,int max,int isScripted);
+ElementSDL2* createEntryImage(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,const char *image,int displayCode,int plan,int min,int max,int isScripted);
 /**
  * @brief tell whether or not the element can be displaied
  * @param e : element
@@ -413,14 +413,14 @@ int getColorElementSDL2(ElementSDL2 *e,int color[4]);
  * @param font : path of the new font
  * @return 1 if there was an error, 0 if not
  */
-int setFontElementSDL2(ElementSDL2 *e,char * font);
+int setFontElementSDL2(ElementSDL2 *e,const char * font);
 /**
  * @brief set the element's text
  * @param e : element to be modified
  * @param text : the new text
  * @return 1 if there was an error, 0 if not
  */
-int setTextElementSDL2(ElementSDL2 *e,char * text);
+int setTextElementSDL2(ElementSDL2 *e,const char * text);
 /**
  * @brief set the element's text font style
  * @param e : the element to be modified
@@ -455,7 +455,7 @@ int setTextQualityElementSDL2(ElementSDL2 *e, int quality);
  * @param image : path of the new image
  * @return 1 if it failed, 0 if it succeeded
  */
-int setImageElementSDL2(ElementSDL2 *e,char *image);
+int setImageElementSDL2(ElementSDL2 *e,const char *image);
 /**
  * @brief set the element's image with a SDL2's texture
  * @param e : element to be modified
