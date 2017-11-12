@@ -252,20 +252,40 @@ int getOriginWindowSDL2(int * x,int * y){
 }
 
 int setOriginWindowSDL2(int x,int y){
-    return setXOriginWindowSDL2(x) && setYOriginWindowSDL2(y);
+    if(_windows_SANDAL2 && _windows_SANDAL2->current){
+	_windows_SANDAL2->current->origin[0] = x;
+	_windows_SANDAL2->current->origin[1] = y;
+    }
+    
+    return !(_windows_SANDAL2 && _windows_SANDAL2->current);
 }
 
 int setXOriginWindowSDL2(int x){
     if(_windows_SANDAL2 && _windows_SANDAL2->current)
 	_windows_SANDAL2->current->origin[0] = x;
 
-    return _windows_SANDAL2 && _windows_SANDAL2->current;
+    return !(_windows_SANDAL2 && _windows_SANDAL2->current);
 }
 
 int setYOriginWindowSDL2(int y){
     if(_windows_SANDAL2 && _windows_SANDAL2->current)
 	_windows_SANDAL2->current->origin[1] = y;
 
-    return _windows_SANDAL2 && _windows_SANDAL2->current;
+    return !(_windows_SANDAL2 && _windows_SANDAL2->current);
+}
+
+int setDataWindowSDL2(void * data){
+    if(_windows_SANDAL2 && _windows_SANDAL2->current)
+	_windows_SANDAL2->current->data = data;
+
+    return !(_windows_SANDAL2 && _windows_SANDAL2->current);
+}
+
+int getDataWindowSDL2(void ** data){
+    if(_windows_SANDAL2 && _windows_SANDAL2->current)
+	if(data)
+	    *data = _windows_SANDAL2->current->data;
+
+    return !(_windows_SANDAL2 && _windows_SANDAL2->current);
 }
 /* ------------------------------------------------------- */

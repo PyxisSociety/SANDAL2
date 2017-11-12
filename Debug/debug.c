@@ -13,10 +13,11 @@ void endJump(ElementSDL2 *this,int code){
 
 void moveWindow(SDL_Keycode c){
     int x = 0, y = 0;
+    int * val;
     const int pas = 3;
 
     getOriginWindowSDL2(&x,&y);
-    
+
     switch(c){
     case 'z':
 	y -= pas;
@@ -29,6 +30,10 @@ void moveWindow(SDL_Keycode c){
 	break;
     case 'd':
 	x += pas;
+	break;
+    case 27:
+	if(!getDataWindowSDL2((void **)&val) && val)
+	    *val = 0;
 	break;
     }
 
@@ -57,6 +62,7 @@ int main(){
     }
     setKeyPressWindowSDL2(moveWindow);
     setOriginWindowSDL2(0,0);
+    setDataWindowSDL2(&run);
 
     objet = createImage(150.f,100.f,100.f,200.f,"spritesheet.jpg",1,0);
     addClickableElementSDL2(objet,rectangleClickable(0.f,0.f,1.f,1.f),0);
@@ -86,7 +92,7 @@ int main(){
     while(run){
 	tps = SDL_GetTicks();
 	/* gestion d'evenement */
-	run=!PollEventSDL2(NULL);
+	run=!PollEventSDL2(NULL) && run;
 
 	/* update de la fenetre */
 	updateWindowSDL2();

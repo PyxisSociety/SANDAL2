@@ -86,6 +86,8 @@ typedef struct WindowSDL2{
     /**< tells whether or not the display code has to be changed */
     struct ListDCElementSDL2 * current;
     /**< current list of elements to display */
+    void * data;
+    /**< data of the window */
 }WindowSDL2;
 
 /**
@@ -248,6 +250,18 @@ int setXOriginWindowSDL2(int x);
  * @return 1 if it was impossible, 0 if not
  */
 int setYOriginWindowSDL2(int y);
+/**
+ * @brief set the data package of a window
+ * @param data : new package of the window
+ * @return 0 if it was possible, 1 if not
+ */
+int setDataWindowSDL2(void * data);
+/**
+ * @brief get the data package of a window
+ * @param data : where to store the package of the window
+ * @return 0 if it was possible, 1 if not
+ */
+int getDataWindowSDL2(void ** data);
 /* ------------------------------------------------------- */
 
 #endif
