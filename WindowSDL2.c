@@ -239,4 +239,33 @@ int setUnClickWindowSDL2(void (*unClick)(void)){
 
     return error;
 }
+
+int getOriginWindowSDL2(int * x,int * y){
+    if(_windows_SANDAL2 && _windows_SANDAL2->current){
+	if(x)
+	    *x = _windows_SANDAL2->current->origin[0];
+	if(y)
+	    *y = _windows_SANDAL2->current->origin[1];
+    }
+
+    return _windows_SANDAL2 && _windows_SANDAL2->current;
+}
+
+int setOriginWindowSDL2(int x,int y){
+    return setXOriginWindowSDL2(x) && setYOriginWindowSDL2(y);
+}
+
+int setXOriginWindowSDL2(int x){
+    if(_windows_SANDAL2 && _windows_SANDAL2->current)
+	_windows_SANDAL2->current->origin[0] = x;
+
+    return _windows_SANDAL2 && _windows_SANDAL2->current;
+}
+
+int setYOriginWindowSDL2(int y){
+    if(_windows_SANDAL2 && _windows_SANDAL2->current)
+	_windows_SANDAL2->current->origin[1] = y;
+
+    return _windows_SANDAL2 && _windows_SANDAL2->current;
+}
 /* ------------------------------------------------------- */

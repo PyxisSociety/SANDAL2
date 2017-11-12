@@ -136,6 +136,8 @@ int initWindowSDL2(int width,int height,char *title,int SDLFlags,int background[
             fen->displayCode=displayCode;
             fen->newDisplayCode=0;
             fen->displayToChange=0;
+	    fen->origin[0] = 0;
+	    fen->origin[1] = 0;
             fen->next = NULL;
             fen->events.action=NULL;
             fen->events.onClick=NULL;
@@ -281,8 +283,8 @@ int displayWindowSDL2(){
                 ele=lp->first;
                 while(ele){
                     if(isDisplaied(ele->element)){
-                        r.x=ele->element->x*_windows_SANDAL2->current->width/_windows_SANDAL2->current->initWidth;
-                        r.y=ele->element->y*_windows_SANDAL2->current->height/_windows_SANDAL2->current->initHeight;
+                        r.x=ele->element->x*_windows_SANDAL2->current->width/_windows_SANDAL2->current->initWidth - _windows_SANDAL2->current->origin[0];
+                        r.y=ele->element->y*_windows_SANDAL2->current->height/_windows_SANDAL2->current->initHeight - _windows_SANDAL2->current->origin[1];
                         r.w=ele->element->width*_windows_SANDAL2->current->width/_windows_SANDAL2->current->initWidth;
                         r.h=ele->element->height*_windows_SANDAL2->current->height/_windows_SANDAL2->current->initHeight;
                         /* affichage du block */
@@ -360,8 +362,8 @@ int clickWindowSDL2(int x,int y){
                 e=lp->first;
                 while(e && !_windows_SANDAL2->current->close){
                     if(isDisplaied(e->element)){
-                        newX=x*_windows_SANDAL2->current->initWidth/_windows_SANDAL2->current->width;
-                        newY=y*_windows_SANDAL2->current->initHeight/_windows_SANDAL2->current->height;
+                        newX=x*_windows_SANDAL2->current->initWidth/_windows_SANDAL2->current->width + _windows_SANDAL2->current->origin[0];
+                        newY=y*_windows_SANDAL2->current->initHeight/_windows_SANDAL2->current->height + _windows_SANDAL2->current->origin[1];
                         if(e->element->rotation != 0.f && e->element->coulBlock[0]==-1){
                             if(e->element->rotation != rot){
                                 c=cosf(-M_PI*e->element->rotation/180.f);
@@ -438,8 +440,8 @@ int unclickWindowSDL2(int x,int y){
                 e=lp->first;
                 while(e && !_windows_SANDAL2->current->close){
                     if(isDisplaied(e->element)){
-                        newX=(x*_windows_SANDAL2->current->initWidth/_windows_SANDAL2->current->width-e->element->x)/(e->element->width);
-                        newY=(y*_windows_SANDAL2->current->initHeight/_windows_SANDAL2->current->height-e->element->y)/(e->element->height);
+                        newX=(x*_windows_SANDAL2->current->initWidth/_windows_SANDAL2->current->width-e->element->x)/(e->element->width) + _windows_SANDAL2->current->origin[0];
+                        newY=(y*_windows_SANDAL2->current->initHeight/_windows_SANDAL2->current->height-e->element->y)/(e->element->height) + _windows_SANDAL2->current->origin[1];
                         if(e->element->rotation != 0.f && e->element->coulBlock[0]==-1){
                             if(e->element->rotation != rot){
                                 c=cosf(-M_PI*e->element->rotation/180);

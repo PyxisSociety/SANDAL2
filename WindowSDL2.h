@@ -64,6 +64,8 @@ typedef struct WindowSDL2{
     /**< display code of the window*/
     int background[4];
     /**< background color of the window*/
+    int origin[2];
+    /**< origin of the window (initialized at (0,0)) */
     SDL_Window *window;
     /**< true SDL2 window*/
     SDL_Renderer *renderer;
@@ -220,6 +222,32 @@ int setOnClickWindowSDL2(void (*onCLick)(void));
  * @return 1 if it was impossible, 0 if not
  */
 int setUnClickWindowSDL2(void (*unCLick)(void));
+/**
+ * @brief get the origin point of the current window
+ * @param x : where to store the x coordinate
+ * @param y : where to store the y coordinate
+ * @return 1 if it was impossible, 0 if not
+ */
+int getOriginWindowSDL2(int * x,int * y);
+/**
+ * @brief set the origin point of the current window
+ * @param x : new x coordinate
+ * @param y : new y coordinate
+ * @return 1 if it was impossible, 0 if not
+ */
+int setOriginWindowSDL2(int x,int y);
+/**
+ * @brief set the x coordinate of the origin point of the current window
+ * @param x : new x coordinate
+ * @return 1 if it was impossible, 0 if not
+ */
+int setXOriginWindowSDL2(int x);
+/**
+ * @brief set the y coordinate of the origin point of the current window
+ * @param y : new y coordinate
+ * @return 1 if it was impossible, 0 if not
+ */
+int setYOriginWindowSDL2(int y);
 /* ------------------------------------------------------- */
 
 #endif
