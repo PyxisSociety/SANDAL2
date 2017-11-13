@@ -2,7 +2,7 @@
 
 #change this variable to match the path from the current directory to where SANDAL2 is store 
 #without the last '/'
-SANDAL2PATH=..
+SANDAL2PATH=../..
 
 #in this part, nothing for you to be done, it is the inclusion of SANDAL2's files and LDFLAGS
 #SANDAL2's files

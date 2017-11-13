@@ -32,39 +32,17 @@ static ListPtrElementSDL2* initListPtrElementSDL2(int plan){
     return l;
 }
 
-static void freeListPtrElementSDL2(ListPtrElementSDL2* l, long long dc){
-    DisplayCode ** d;
+static void freeListPtrElementSDL2(ListPtrElementSDL2* l){
     PtrElementSDL2 * ptr, * ptmp;
     
     if(l){
 	ptr = l->first;
         while(ptr){
             ptmp=ptr->next;
-	    if(dc > (long long)INT_MIN - 1 && dc < (long long)INT_MAX + 1){
-		ptr->element->deleted=2;
-		ptr->element->deleteCode=dc;
-		_windows_SANDAL2->current->toDelete++;
-	    }else if(dc > (long long)INT_MIN - 1){
-		d = &(ptr->element->codes->first);
-		while(*d && (*d)->plan < l->code)
-		    d = &((*d)->next);
-		if(*d && (*d)->plan == l->code){
-		    ptr->element->deleted=2;
-		    ptr->element->deleteCode=(*d)->code;
-		    _windows_SANDAL2->current->toDelete++;
-		}
-	    }
+	    free(ptr);
             ptr=ptmp;
         }
-	if(!(dc > (long long)INT_MIN - 1 && dc < (long long)INT_MAX + 1)){
-	    ptr = l->first;
-	    while(ptr){
-		ptmp = ptr->next;
-		free(ptr);
-		ptr = ptmp;
-	    }
-	    free(l);
-	}
+	free(l);
     }
 }
 
@@ -124,9 +102,10 @@ static void freeListDCElementSDL2(ListDCElementSDL2* l){
         lp=l->first;
         while(lp){
             lptmp=lp->next;
-            freeListPtrElementSDL2(lp,lp->code);
+            freeListPtrElementSDL2(lp);
             lp=lptmp;
         }
+	free(l);
     }
 }
 
@@ -364,7 +343,7 @@ void _freeElementSDL2(ElementSDL2 *e){
             freeFontSDL2(e->font);
         }
         if(e->interactions){
-            freeListPtrElementSDL2(e->interactions,(long long)INT_MIN - 1);
+            freeListPtrElementSDL2(e->interactions);
         }
         if(e->hitboxes){
             freeListClickable(e->hitboxes);
@@ -662,8 +641,9 @@ int isDisplaied(ElementSDL2 *e){
 }
 
 int clearDisplayCode(int code){
-    ListPtrElementSDL2 * lptr, * ltmp;
-    ListDCElementSDL2 ** ldc,  * dtmp;
+    ListPtrElementSDL2 * lptr;
+    ListDCElementSDL2 ** ldc;
+    PtrElementSDL2 * ptr;
     int error = 1;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
@@ -674,18 +654,15 @@ int clearDisplayCode(int code){
 	    error = 0;
 	    lptr = (*ldc)->first;
 	    while(lptr){
-		ltmp = lptr->next;
-		freeListPtrElementSDL2(lptr,(*ldc)->code);
-		lptr = ltmp;
+		ptr = lptr->first;
+		while(ptr){
+                    ptr->element->deleted=2;
+                    ptr->element->deleteCode=code;
+                    _windows_SANDAL2->current->toDelete++;
+		    ptr = ptr->next;
+		}
+		lptr = lptr->next;
 	    }
-	    dtmp = (*ldc)->next;
-	    free(*ldc);
-	    if(*ldc == _windows_SANDAL2->current->liste->currentDCIterator){
-		_windows_SANDAL2->current->liste->currentDCIterator = dtmp;
-		if(dtmp)
-		    _windows_SANDAL2->current->liste->currentPIterator = dtmp->first;
-	    }
-	    *ldc = dtmp;
 	}
     }
 
@@ -1196,6 +1173,7 @@ int setPlanElementSDL2(ElementSDL2 *e,int displayCode,int plan){
 int clearPlanDisplayCode(int code, int plan){
     ListDCElementSDL2 * ldc;
     ListPtrElementSDL2 * lptr;
+    PtrElementSDL2 * ptr;
     int error = 1;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
@@ -1204,11 +1182,17 @@ int clearPlanDisplayCode(int code, int plan){
 	    ldc = ldc->next;
 	if(ldc && ldc->code == code){
 	    lptr = ldc->first;
-	    while(lptr && lptr->code < plan)
+	    while(lptr && lptr->code > plan)
 		lptr = lptr->next;
 	    if(lptr && lptr->code == plan){
 		error = 0;
-		freeListPtrElementSDL2(lptr,(long long)INT_MAX + 1);
+		ptr = lptr->first;
+		while(ptr){
+                    ptr->element->deleted=3;
+                    ptr->element->deleteCode=plan;
+                    _windows_SANDAL2->current->toDelete++;
+		    ptr = ptr->next;
+		}
 	    }
 	}
     }
