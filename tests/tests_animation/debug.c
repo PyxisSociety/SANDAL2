@@ -35,6 +35,9 @@ void moveWindow(SDL_Keycode c){
 	if(!getDataWindowSDL2((void **)&val) && val)
 	    *val = 0;
 	break;
+    case 'f':
+	toggleFullScreenWindowSDL2();
+	break;
     }
 
     setOriginWindowSDL2(x,y);

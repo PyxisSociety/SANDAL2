@@ -30,12 +30,12 @@ int initAllSDL2(int imageFlags);
 /**
  * @brief Close SDL2, images and font
  */
-void closeAllSDL2();
+void closeAllSDL2(void);
 /**
  * @brief Initialisation of SDL2 alone
  * @return 0 if success, 1 if failed
  */
-int initSDL2();
+int initSDL2(void);
 /**
  * @brief Initialisation of images alone
  * @param imageFlags : SDL2's image flags
@@ -46,19 +46,19 @@ int initImage(int imageFlags);
  * @brief Initialisation of text alone
  * @return 0 if success, 1 if failed
  */
-int initTexte();
+int initTexte(void);
 /**
  * @brief Close SDL2
  */
-void closeSDL2();
+void closeSDL2(void);
 /**
  * @brief Close images
  */
-void closeImage();
+void closeImage(void);
 /**
  * @brief Close font
  */
-void closeTexte();
+void closeTexte(void);
 /* ------------------------------------------------------- */
 
 /* ------------------------------------------------------- 
@@ -79,18 +79,27 @@ int initWindowSDL2(int width,int height,char *title,int SDLFlags,int background[
  * @brief close the current windows and go to the next, do not use this one in elements' or windows' binded functions, use shouldCloseWindowSDL2() instead
  * @return 1 if it failed, 0 if not
  */
-int closeWindowSDL2();
+int closeWindowSDL2(void);
 /**
  * @brief tells that the current window should be closed, do not use this one in functions that are not binded to windows or elements, use closeWindowSDL2() instead
  * @return 1 if it failed, 0 if not
  */
-int shouldCloseWindowSDL2();
+int shouldCloseWindowSDL2(void);
 /**
  * @brief close all windows
  * @return 1 if it failed, 0 if not
  */
-int closeAllWindowSDL2();
-
+int closeAllWindowSDL2(void);
+/**
+ * @brief Toggle the full screen mode of the current window
+ * @return 0 if succeeded, 1 if not
+ */
+int toggleFullScreenWindowSDL2(void);
+/**
+ * @brief Tells whether or not the window is in full screen mode
+ * @return 1 if the current window is in full screen mode, 0 if not or if there is no current window
+ */
+int isFullScreenWindowSDL2(void);
 /* ------------------------------------------------------- */
 
 /* -------------------------------------------------------
@@ -100,12 +109,12 @@ int closeAllWindowSDL2();
  * @brief update all the elements of the current window
  * @return 1 if it failed, 0 if not
  */
-int updateWindowSDL2();
+int updateWindowSDL2(void);
 /**
  * @brief actualise the display of the current window 
  * @return 1 if it failed, 0 if not
  */
-int displayWindowSDL2();
+int displayWindowSDL2(void);
 /**
  * @brief activation of click events on the current window
  * @param x : abscissa coordinate of the mouse during the click
@@ -136,12 +145,12 @@ int keyReleasedWindowSDL2(char c);
  * @brief update all the elements of all the windows
  * @return 1 if it failed, 0 if not
  */
-unsigned long updateAllWindowSDL2();
+unsigned long updateAllWindowSDL2(void);
 /**
  * @brief actualise the display of all the windows 
  * @return 0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one
  */
-unsigned long displayAllWindowSDL2();
+unsigned long displayAllWindowSDL2(void);
 /**
  * @brief activation of click events on all the windows
  * @param x : abscissa coordinate of the mouse during the click
@@ -168,21 +177,6 @@ unsigned long keyPressedAllWindowSDL2(char c);
  * @return 0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one
  */
 unsigned long keyReleasedAllWindowSDL2(char c);
-/**
- * @brief close the current windows and go to the next, do not use this one in elements' or windows' binded functions, use shouldCloseWindowSDL2() instead
- * @return 1 if it failed, 0 if not
- */
-int closeWindowSDL2();
-/**
- * @brief tells that the current window should be closed, do not use this one in functions that are not binded to windows or elements, use closeWindowSDL2() instead
- * @return 1 if it failed, 0 if not
- */
-int shouldCloseWindowSDL2();
-/**
- * @brief close all windows
- * @return 1 if it failed, 0 if not
- */
-int closeAllWindowSDL2();
 /* ------------------------------------------------------- */
 
 /* ------------------------------------------------------- 

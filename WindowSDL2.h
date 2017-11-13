@@ -90,6 +90,8 @@ typedef struct WindowSDL2{
     /**< data of the window */
     int stop;
     /**< tells whether or not all elements where removed */
+    int state;
+    /**< tells if window is in full screen or normal */
 }WindowSDL2;
 
 /**

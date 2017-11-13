@@ -149,6 +149,7 @@ int initWindowSDL2(int width,int height,char *title,int SDLFlags,int background[
             fen->liste = _initListElementSDL2();
             fen->current = NULL;
 	    fen->stop = 0;
+	    fen->state = SDLFlags&SDL_WINDOW_FULLSCREEN;
             if(!fen->liste){
                 SDL_DestroyWindow(fen->window);
                 SDL_DestroyRenderer(fen->renderer);
@@ -239,6 +240,24 @@ int closeAllWindowSDL2(){
     }
 
     return error;
+}
+
+int toggleFullScreenWindowSDL2(void){
+    if(_windows_SANDAL2 && _windows_SANDAL2->current){
+	if(_windows_SANDAL2->current->state == SDL_WINDOW_FULLSCREEN){
+	    SDL_SetWindowFullscreen(_windows_SANDAL2->current->window, 0);
+	    _windows_SANDAL2->current->state = 0;
+	}else{
+	    SDL_SetWindowFullscreen(_windows_SANDAL2->current->window, SDL_WINDOW_FULLSCREEN);
+	    _windows_SANDAL2->current->state = SDL_WINDOW_FULLSCREEN;
+	}
+    }
+
+    return _windows_SANDAL2 && _windows_SANDAL2->current;
+}
+
+int isFullScreenWindowSDL2(void){
+    return _windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->state == SDL_WINDOW_FULLSCREEN;
 }
 /* ------------------------------------------------------- */
 
