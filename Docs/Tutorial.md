@@ -9,4 +9,7 @@ To generate the Doxygen documentation, use the command:
 To see this read me file with a better display, you can go to [this project's
 website](https://klevh.github.io/SANDAL2/).
 
-## Tutorial coming soon ...
+## Tutorial
+
+If you follow those steps, you should be able to use SANDAL2 with ease :
+* [Your first window](beginning.md)
