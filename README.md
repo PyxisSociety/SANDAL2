@@ -8,6 +8,7 @@ To generate the Doxygen documentation, use the command:
 <br/>
 To see this read me file with a better display, you can go to [this project's
 website](https://klevh.github.io/SANDAL2/).
+
 ## About the author
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I am a French student, studying computer science engineering at ISIMA, France. 
