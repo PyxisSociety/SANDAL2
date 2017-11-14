@@ -125,7 +125,7 @@ int initWindowSDL2(int width,int height,char *title,int SDLFlags,int background[
         fen->renderer=SDL_CreateRenderer(fen->window,
                                          -1,
                                          SDL_RENDERER_ACCELERATED);
-    
+
         if(fen->renderer){
             fen->height=height;
             fen->width=width;
