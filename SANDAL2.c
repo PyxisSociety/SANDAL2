@@ -69,7 +69,7 @@ int initImage(int imageFlags){
     return failedInit;
 }
 
-int initTexte(){
+int initText(){
     int failedInit = 0;
   
     if(TTF_Init()){
@@ -87,7 +87,7 @@ void closeImage(){
     IMG_Quit();
 }
 
-void closeTexte(){
+void closeText(){
     TTF_Quit();
 }
 /* ------------------------------------------------------- */

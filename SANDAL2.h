@@ -46,7 +46,7 @@ int initImage(int imageFlags);
  * @brief Initialisation of text alone
  * @return 0 if success, 1 if failed
  */
-int initTexte(void);
+int initText(void);
 /**
  * @brief Close SDL2
  */
@@ -58,7 +58,7 @@ void closeImage(void);
 /**
  * @brief Close font
  */
-void closeTexte(void);
+void closeText(void);
 /* ------------------------------------------------------- */
 
 /* ------------------------------------------------------- 
