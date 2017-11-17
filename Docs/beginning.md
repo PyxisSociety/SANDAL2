@@ -62,4 +62,4 @@ The first method has the advantage that the image and text initialisations can b
 
 The parameter of initImage() (same for initAllSDL2()) is the SDL2_image flag to tell which type of image you want to open (here jpg/jpeg images).
 
-#This Tutorial is in progress
+# This Tutorial is in progress
