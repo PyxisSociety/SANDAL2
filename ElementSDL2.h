@@ -181,7 +181,7 @@ typedef struct ListElementSDL2{
  * @brief Initialise a list of lists (display code) of lists (plan) of elements
  * @return An empty list  of lists (display code) of lists (plan) of elements
  */
-ListElementSDL2* _initListElementSDL2();
+ListElementSDL2* _initListElementSDL2(void);
 /**
  * @brief free the memory of a list of lists (display code) of lists (plan) of elements
  * @param l : list to be freed
@@ -196,7 +196,7 @@ int addElementSDL2(ElementSDL2* e);
 /**
  * @brief remove all elements that are marked as deletable (do not use it yourself, used in update)
  */
-void _cleanElementSDL2();
+void _cleanElementSDL2(void);
 /**
  * @brief mark an element as removable
  * @param e : element to be removed

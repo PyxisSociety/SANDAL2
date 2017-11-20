@@ -502,7 +502,8 @@ int clickWindowSDL2(int x,int y){
             }
             if(_windows_SANDAL2->current->close){
                 closeWindowSDL2();
-            }
+            }else
+		_cleanElementSDL2();
         }
     }
 

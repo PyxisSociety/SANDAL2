@@ -248,12 +248,6 @@ void _cleanElementSDL2(){
                 while(e && *e && _windows_SANDAL2->current->toDelete){
                     switch((*e)->element->deleted-((*e)->element->deleted==2 && (*e)->element->codes->size==1)){
                     case 1:
-                        ee=(*e)->element;
-			e = &((*e)->next);
-                        removeDCElementSDL2(ldc,ee);
-                        _windows_SANDAL2->current->toDelete-=(ee->codes?ee->codes->size:1);
-                        _freeElementSDL2(ee);
-                        break;
                     case 2:
                         if((*ldc)->code==(*e)->element->deleteCode){
                             etmp=*e;
