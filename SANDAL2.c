@@ -453,7 +453,7 @@ int clickWindowSDL2(int x,int y){
             while(lp && !_windows_SANDAL2->current->close){
                 e=lp->first;
                 while(e && !_windows_SANDAL2->current->close){
-                    if(e->element && isDisplaied(e->element)){
+                    if(isDisplaied(e->element)){
                         newX=x*_windows_SANDAL2->current->initWidth/_windows_SANDAL2->current->width + _windows_SANDAL2->current->origin[0];
                         newY=y*_windows_SANDAL2->current->initHeight/_windows_SANDAL2->current->height + _windows_SANDAL2->current->origin[1];
                         if(e->element->rotation != 0.f && e->element->coulBlock[0]==-1){
@@ -487,7 +487,7 @@ int clickWindowSDL2(int x,int y){
 				e->element->entry->isSelect=0;
 			    }
 			}
-                    }else{
+                    }else if(e && e->element){
                         if(e->element->selected && e->element->events.unSelect){
                             e->element->events.unSelect(e->element);
                         }
