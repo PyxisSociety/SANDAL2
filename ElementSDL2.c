@@ -239,17 +239,17 @@ void _cleanElementSDL2(){
     ListDCElementSDL2 **ldc, *dctmp;
     ElementSDL2 *ee;
   
-    if(_windows_SANDAL2 && _windows_SANDAL2->current){
+    if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
         ldc=&(_windows_SANDAL2->current->liste->first);
         while(*ldc && _windows_SANDAL2->current->toDelete){
             lp=&((*ldc)->first);
             while(*lp && _windows_SANDAL2->current->toDelete){
                 e=&((*lp)->first);
-                while(*e && _windows_SANDAL2->current->toDelete){
+                while(e && *e && _windows_SANDAL2->current->toDelete){
                     switch((*e)->element->deleted-((*e)->element->deleted==2 && (*e)->element->codes->size==1)){
                     case 1:
                         ee=(*e)->element;
-			e = &(*e)->next;
+			e = &((*e)->next);
                         removeDCElementSDL2(ldc,ee);
                         _windows_SANDAL2->current->toDelete-=(ee->codes?ee->codes->size:1);
                         _freeElementSDL2(ee);
