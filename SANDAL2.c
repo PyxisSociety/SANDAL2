@@ -487,7 +487,7 @@ int clickWindowSDL2(int x,int y){
 				e->element->entry->isSelect=0;
 			    }
 			}
-                    }else if(e && e->element){
+                    }else{
                         if(e->element->selected && e->element->events.unSelect){
                             e->element->events.unSelect(e->element);
                         }
@@ -563,7 +563,8 @@ int unclickWindowSDL2(int x,int y){
             }
             if(_windows_SANDAL2->current->close){
                 closeWindowSDL2();
-            }
+            }else
+		_cleanElementSDL2();
         }
     }
 
@@ -599,7 +600,8 @@ int keyPressedWindowSDL2(char c){
             }
             if(_windows_SANDAL2->current->close){
                 closeWindowSDL2();
-            }
+            }else
+		_cleanElementSDL2();
         }
     }
 
@@ -635,7 +637,8 @@ int keyReleasedWindowSDL2(char c){
             }
             if(_windows_SANDAL2->current->close){
                 closeWindowSDL2();
-            }
+            }else
+		_cleanElementSDL2();
         }
     }
 

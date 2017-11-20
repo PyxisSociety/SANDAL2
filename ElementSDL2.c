@@ -109,7 +109,7 @@ static void freeListDCElementSDL2(ListDCElementSDL2* l){
     }
 }
 
-static int removeDCElementSDL2(ListDCElementSDL2** l,ElementSDL2 *e){
+/*static int removeDCElementSDL2(ListDCElementSDL2** l,ElementSDL2 *e){
     ListPtrElementSDL2 **lp;
     PtrElementSDL2 **pe, *etmp, **pte;
     int error = 1;
@@ -148,7 +148,7 @@ static int removeDCElementSDL2(ListDCElementSDL2** l,ElementSDL2 *e){
     }
 
     return error;
-}
+}*/
 /* ------------------------------------------------------- */
 
 
@@ -237,7 +237,6 @@ void _cleanElementSDL2(){
     PtrElementSDL2 **e, *etmp;
     ListPtrElementSDL2 **lp, *ptmp;
     ListDCElementSDL2 **ldc, *dctmp;
-    ElementSDL2 *ee;
   
     if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
         ldc=&(_windows_SANDAL2->current->liste->first);
