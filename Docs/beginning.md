@@ -60,6 +60,6 @@ int main(){
   
 The first method has the advantage that the image and text initialisations can be omitted if you do not use those features while the second one is way shorter.
 
-The parameter of initImage() (same for initAllSDL2()) is the SDL2_image flag to tell which type of image you want to open (here jpg/jpeg images).
+The parameter of initImage() (same for initAllSDL2()) is either IMG_INIT_JPG, IMG_INIT_PNG or IMG_INIT_TIF or a combination of those flags to tell which type of image you want to open (here jpg/jpeg images).
 
 # This Tutorial is in progress
