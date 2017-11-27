@@ -1,11 +1,10 @@
 # SANDAL2
 
-* go back to [Tutorial](Tutorial.md)
+* go back to [Tutorial page](Tutorial.md)
 * go back to the [main read-me](../README.md)
+* go to the next [tutorial](element.md)
 
 ## Initialasing SANDAL2
-
-&nbsp;&nbsp;&nbsp;To initialize SANDAL2, you will need to use either of those two methods :
 
 ```c
 #include <stdio.h>
@@ -60,6 +59,46 @@ int main(){
   
 The first method has the advantage that the image and text initialisations can be omitted if you do not use those features while the second one is way shorter.
 
-The parameter of initImage() (same for initAllSDL2()) is either IMG_INIT_JPG, IMG_INIT_PNG or IMG_INIT_TIF or a combination of those flags to tell which type of image you want to open (here jpg/jpeg images).
+The parameter of initImage() (same for initAllSDL2()) is either IMG_INIT_JPG, IMG_INIT_PNG or IMG_INIT_TIF or a combination of those flags to tell which type of image you want to open (here jpg/jpeg images). For example : `IMG_INIT_PNG | IMG_INIT_TIF` for png and tif image files.
 
-# This Tutorial is in progress
+## Window Creation
+
+```c
+#include <stdio.h>
+#include "SANDAL2/SANDAL2.h" /* only header needed for SANDAL2 */
+
+int main(){
+    if(initAllSDL2(IMG_INIT_JPG)){
+	puts("Failed to init SANDAL2");
+	return -1;
+    }
+
+    /* creation of your window */
+    initWindowSDL2(400, /* width of the window */
+		   400, /* height of the window */
+		   "SANDAL2 - Klevh", /* title */
+		   0, /* Options (see below) */
+		   black, /* background color */
+		   0); /* Default display code of the window (we will see more about them later) */
+
+    /* your code */
+
+    closeAllWindowSDL2(); /* close all windows */
+    closeAllSDL2();
+    
+    return 0;
+}
+```
+&nbsp;&nbsp;&nbsp;Options can be :
+* SDL_WINDOW_FULLSCREEN : fullscreen window
+* SDL_WINDOW_FULLSCREEN_DESKTOP : fullscreen window at the current desktop resolution
+* SDL_WINDOW_BORDERLESS : no window decoration
+* SDL_WINDOW_RESIZABLE : window can be resized
+* SDL_WINDOW_MINIMIZED : window is minimized
+* SDL_WINDOW_MAXIMIZED : window is maximized
+* SDL_WINDOW_INPUT_GRABBED : window has grabbed input focus
+* SDL_WINDOW_ALLOW_HIGHDPI : window should be created in high-DPI mode if supported
+
+## What next ?
+
+After learning how to initialize SANDAL2 and create a window, you will need to add elements in it. You can learn it [here](element.md).
