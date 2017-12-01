@@ -15,3 +15,4 @@ website](https://klevh.github.io/SANDAL2/).
 
 If you follow those steps, you should be able to use SANDAL2 with ease :
 * [Your first window](beginning.md)
+* [Creating some Elements](element.md)

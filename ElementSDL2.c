@@ -393,7 +393,7 @@ ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4]
     return e;
 }
 
-ElementSDL2* createTexte(float x,float y,float width,float height,const char * font,const char * text,int textColor[4],int quality,int displayCode,int plan){
+ElementSDL2* createText(float x,float y,float width,float height,const char * font,const char * text,int textColor[4],int quality,int displayCode,int plan){
     ElementSDL2 *e=NULL;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current){

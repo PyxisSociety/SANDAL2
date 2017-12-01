@@ -23,6 +23,7 @@ clear:
 
 package:
 	dpkg-deb --build sandal2
+	mv sandal2.deb downloadable
 
 clean: clear
 
@@ -30,7 +31,7 @@ cleaner:
 	rm *.o $(EXEC)
 
 install:
-	dpkg -i sandal2.deb
+	dpkg -i downloadable/sandal2.deb
 
 uninstall:
 	dpkg --purge sandal2
