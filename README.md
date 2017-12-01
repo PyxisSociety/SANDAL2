@@ -30,7 +30,7 @@ Regardless the way you install SANDAL2, you'll need to include SANDAL2.h and use
 
 Installing :
 ```
-wget https://github.com/Klevh/SANDAL2/raw/master/sandal2.deb
+wget https://github.com/Klevh/SANDAL2/raw/master/downloadable/sandal2.deb
 dpkg -i sandal2.deb
 ```
 Then you'll need to add `-lSANDAL2` as a compilation flag.
