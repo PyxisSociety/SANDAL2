@@ -196,7 +196,7 @@ int setActionWindowSDL2(void (*action)(void)){
     return error;
 }
 
-int setKeyPressWindowSDL2(void (*keyPress)(SDL_Keycode c)){
+int setKeyPressedWindowSDL2(void (*keyPress)(SDL_Keycode c)){
     int error = 1;
   
     if(_windows_SANDAL2 && _windows_SANDAL2->current){

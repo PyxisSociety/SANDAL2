@@ -209,7 +209,7 @@ int setActionWindowSDL2(void (*action)(void));
  * @param keyPress : function to be called when a key is pressed
  * @return 1 if it was impossible, 0 if not
  */
-int setKeyPressWindowSDL2(void (*keyPress)(SDL_Keycode c));
+int setKeyPressedWindowSDL2(void (*keyPress)(SDL_Keycode c));
 /**
  * @brief set the behaviour of the current window when a key is released
  * @param keyReleased : function to be called when a key is released

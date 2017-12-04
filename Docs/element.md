@@ -3,6 +3,7 @@
 * go back to [Tutorial](Tutorial.md)
 * go back to the [main read-me](../README.md)
 * go back to the previous tutorial about [SANDAL2 initialisation and window creation](beginning.md)
+* go to the next tutorial about [user events](events.md)
 
 ## Creating some elements
 
@@ -16,8 +17,8 @@ You can download those I used at :
 #include <SANDAL2/SANDAL2.h>
 
 int main(){
-    int red[] = {255,0,0,0};
-    int blue[] = {0,255,0,0};
+    int red[]   = {255,0,0,0};
+    int blue[]  = {0,255,0,0};
     int green[] = {0,0,255,0};
     int white[] = {255,255,255,0};
     int black[] = {0,0,0,0};
@@ -153,4 +154,8 @@ int main(){
 }
 ```
 
-# This Tutorial is in progress
+With all that, you can create a lot of different elements and ... do nothing with it.
+
+## What's next ?
+
+Next, you will need to learn how to catch [user events](events.md) and define behaviors according to them.

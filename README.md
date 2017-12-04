@@ -33,7 +33,7 @@ Installing :
 wget https://github.com/Klevh/SANDAL2/raw/master/downloadable/sandal2.deb
 dpkg -i sandal2.deb
 ```
-Then you'll need to add `-lSANDAL2` as a compilation flag.
+Then you'll need to add `-lSANDAL2` as a compilation flag before all the SDL2 flags.
 
 Uninstalling :
 ```
