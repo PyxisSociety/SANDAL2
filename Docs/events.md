@@ -140,7 +140,7 @@ They are some events that I did not mentioned but here is a list of all the one 
 * endSprite : each time an animation end (we will see animations later)
 
 
-If you want to modify your element further, go to the [Element's documentation](https://klevh.github.io/SANDAL2_Documentation/ElementSDL2_8h.html#a9295ff1478c109fe4bd5a22aa48e0e49).
+If you want to modify your element further, go to the [Element's documentation](https://klevh.github.io/SANDAL2_Documentation/ElementSDL2_8h.html).
 
 ## Defining a global event behavior
 
