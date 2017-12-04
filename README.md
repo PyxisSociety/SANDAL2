@@ -20,6 +20,7 @@ and tell me ! I will really appreciate it.
 
 From this "read-me", you can either go to :
 * the [read-me](Docs/README.md) with more informations about the project in itself ;
+* the [documentation](https://Klevh.github.io/SANDAL2_Documentation) of the projet
 * or a [small tutorial](Docs/Tutorial.md) explaining how to use it.
 
 ## To Install/Uninstall On Linux
