@@ -17,9 +17,10 @@ You will need to learn how to define a behavior that should happen when an event
 To make it simplier, we will only use a block, but all elements behave the same way.
 All event functions follow the same pattern :
 `function_name(element, behavior)`
-Behavior functions have the same prototype expect for the key pressed and released ones :
-* void function(ElementSDL2 * e) : all but keyboard
+Behavior functions have the same prototype expect for the key pressed and released ones, and the end of an animation :
+* void function(ElementSDL2 * e) : all but keyboard and animation
 * void function(ElementSDL2 * e, SDL_Keycode c) : keyboard
+* void function(ElementSDL2 * e, int animation_id) : animation
 
 ```c
 #include <stdio.h>
@@ -81,7 +82,7 @@ int main(){
     setOnClickElementSDL2(e,click);
     /* ----------------------------------- */
 
-    /* PollEventSDL2 : function to catch events, return 1 when the user clicked on the cross to close the window, we will speak about it later */
+    /* PollEventSDL2 : function to catch events, return 1 when the user clicked on the cross to close the window */
     while(!PollEventSDL2(NULL)){ 
 	/* updating the window content, mandatory when you change things in your window while running */
 	updateWindowSDL2();

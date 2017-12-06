@@ -33,6 +33,7 @@ int main(){
     if(initWindowSDL2(400,400,"SANDAL2 - Klevh",0,black,0)){
         puts("Failed to open the window");
 	closeAllSDL2();
+	return -1;
     }
 
     /* ----------------------creating some elements-------------------------- */
