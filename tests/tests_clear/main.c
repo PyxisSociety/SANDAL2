@@ -77,7 +77,7 @@ int main(){
 	fprintf(stderr,"Erreur d'ouverture de la fenetre.\n");
 	exit(-1);
     }
-    setKeyPressWindowSDL2(keyWindow);
+    setKeyPressedWindowSDL2(keyWindow);
     
     /* display de la fenetre */
     while(run){

@@ -36,7 +36,7 @@ int main(){
 	return -1;
     }
 
-    /* initialisation de la fenetre */
+    /* initializing the window */
     initWindowSDL2(400,400,"SANDAL2 - Klevh",0,black,0);
     if(initIteratorWindowSDL2()){
         puts("Failed to open the window");
@@ -102,4 +102,6 @@ int main(){
 }
 ```
 
-## More tutorials coming soon ...
+## What next ?
+
+There is still one major thing to learn, and that is [Display code and Plan manipulation](dc_plan.md) !

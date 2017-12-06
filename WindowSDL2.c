@@ -33,7 +33,7 @@ int resizeWindowSDL2(unsigned width,unsigned height){
     return error;
 }
 
-int changeDisplayWindowSDL2(int displayCode){
+int setDisplayCodeWindowSDL2(int displayCode){
     int error = 1;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->displayCode != displayCode){

@@ -129,7 +129,7 @@ int resizeWindowSDL2(unsigned width,unsigned height);
  * @param displayCode : new display code of the current window
  * @return 1 if it was possible, 0 if not
  */
-int changeDisplayWindowSDL2(int displayCode);
+int setDisplayCodeWindowSDL2(int displayCode);
 /**
  * @brief Initialise the iterator of the windows' list
  * @return 0 if the iterator could not be initialised, 1 if it could
