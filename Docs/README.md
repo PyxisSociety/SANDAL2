@@ -13,7 +13,8 @@ website](https://klevh.github.io/SANDAL2/).
 
 From this "read-me", you can either go to :
 * the [main read-me](../README.md) ;
-* or a [small tutorial](Tutorial.md) explaining how to use it.
+* a [small tutorial](Tutorial.md) explaining how to use it ;
+* or the page to report an issue about a tutorial lacking things, an update that could be done or anything that comes to your mind [here](https://github.com/Klevh/SANDAL2/issues/new).
 
 ## Versions
 

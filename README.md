@@ -21,7 +21,8 @@ and tell me ! I will really appreciate it.
 From this "read-me", you can either go to :
 * the [read-me](Docs/README.md) with more informations about the project in itself ;
 * the [documentation](https://Klevh.github.io/SANDAL2_Documentation) of the projet
-* or a [small tutorial](Docs/Tutorial.md) explaining how to use it.
+* a [small tutorial](Docs/Tutorial.md) explaining how to use it ;
+* or the page to report an issue about a tutorial lacking things, an update that could be done or anything that comes to your mind [here](https://github.com/Klevh/SANDAL2/issues/new).
 
 ## To Install/Uninstall On Linux
 

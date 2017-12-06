@@ -3,6 +3,8 @@
 * go back to [Tutorial](Tutorial.md)
 * go back to the [main read-me](../README.md)
 * go back to the previous tutorial about [elements creation](element.md)
+* go to the next tutorial about [animations](animations.md)
+* report an issue about a tutorial lacking things, an update that could be done or anything that comes to your mind [here](https://github.com/Klevh/SANDAL2/issues/new)
 
 ## Catching events
 
@@ -152,4 +154,6 @@ Here are the events you can define for a window :
 * keyPressed
 * keyReleased
 
-## More tutorials coming soon ...
+## What next ?
+
+Now, you can do a lot of games with just that. But you doing an animation would be an eyesore with a spritesheet. Fortunatelly, this can be done simply with SANDAL2 ! You can learn how [here](animations.md).
