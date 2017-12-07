@@ -7,9 +7,9 @@
 
 ## Manipulating Display code and Plan
 
-A display code is the *index* of a page. You can have more than one page and switch with them whenever you want. With this principle, you can have your first menu in a page and the game in another.
+A display code is the index of a page. You can have more than one page and switch with them whenever you want. With this principle, you can have your first menu in a page and the game in another.
 
-When an object is on a plan with a greater index than another one, this first object will be displaied behind the second one. If both of them have the same plan index, they will follow the rule of *last added on top*.
+When an object is on a plan with a greater index than another one, this first object will be displaied behind the second one. If both of them have the same plan index, they will follow the rule of last added on top.
 
 
 With the code bellow, try playing with keys 1, 2, 3, 4, 5 and 6 (1, 2, 3 first, then 4, 5, 6 where all the random squares were added).
