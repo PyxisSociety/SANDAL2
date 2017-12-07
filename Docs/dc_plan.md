@@ -3,6 +3,7 @@
 * go back to [Tutorial](Tutorial.md)
 * go back to the [main read-me](../README.md)
 * go back to the previous tutorial about [animations](animations.md)
+* go to the next tutorial about [modifying an element in another's event function](element_to_element.md)
 * report an issue about a tutorial lacking things, an update that could be done or anything that comes to your mind [here](https://github.com/Klevh/SANDAL2/issues/new)
 
 ## Manipulating Display code and Plan
@@ -137,4 +138,6 @@ int main(){
 }
 ```
 
-## More tutorials coming soon ...
+## What's next ?
+
+Now, there is still one problem that I did not mentioned earlier. When you bind a behavior to an element, you can't modify another one in the function. If you want to know how to correct that, click [here](element_to_element.md) !

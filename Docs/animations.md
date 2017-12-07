@@ -102,6 +102,6 @@ int main(){
 }
 ```
 
-## What next ?
+## What's next ?
 
 There is still one major thing to learn, and that is [Display code and Plan manipulation](dc_plan.md) !

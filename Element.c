@@ -224,7 +224,7 @@ int addElement(Element* e){
                     (*lp)->next=ptmp;
                 }
             }
-            addPtrElement(*lp,e);
+            error |= addPtrElement(*lp,e);
             d=d->next;
         }
         e->parent=_windows_SANDAL2->current;
@@ -234,7 +234,7 @@ int addElement(Element* e){
 }
 
 void _cleanElement(){
-    PtrElement **e, *etmp;
+    PtrElement **e, *etmp, *prev;
     ListPtrElement **lp, *ptmp;
     ListDCElement **ldc, *dctmp;
   
@@ -244,6 +244,7 @@ void _cleanElement(){
             lp=&((*ldc)->first);
             while(*lp && _windows_SANDAL2->current->toDelete){
                 e=&((*lp)->first);
+		prev = NULL;
                 while(e && *e && _windows_SANDAL2->current->toDelete){
                     switch((*e)->element->deleted-((*e)->element->deleted==2 && (*e)->element->codes->size==1)){
                     case 1:
@@ -251,10 +252,15 @@ void _cleanElement(){
                         if((*ldc)->code==(*e)->element->deleteCode){
                             etmp=*e;
 			    delDisplayCode((*e)->element->codes, (*ldc)->code);
+			    if(!((*e)->element->codes->first))
+				_freeElement((*e)->element);
                             *e=(*e)->next;
+			    if(etmp == (*lp)->last)
+				(*lp)->last = prev;
                             free(etmp);
                             _windows_SANDAL2->current->toDelete--;
                         }else{
+			    prev = *e;
                             e=&((*e)->next);
                         }
                         break;
@@ -262,13 +268,17 @@ void _cleanElement(){
                         if((*lp)->code==(*e)->element->deleteCode){
                             etmp=*e;
                             *e=(*e)->next;
+			    if(etmp == (*lp)->last)
+				(*lp)->last = prev;
                             free(etmp);
                             _windows_SANDAL2->current->toDelete--;
                         }else{
+			    prev = *e;
                             e=&((*e)->next);
                         }
                         break;
                     default:
+			prev = *e;
                         e=&((*e)->next);
                     }
                 }
@@ -1204,7 +1214,7 @@ int setActionElement(Element *e,void (*action)(Element*)){
     return error;
 }
 
-int setKeyPressElement(Element *e,void (*keyPress)(Element*,SDL_Keycode c)){
+int setKeyPressedElement(Element *e,void (*keyPress)(Element*,SDL_Keycode c)){
     int error = 1;
   
     if(e){

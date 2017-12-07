@@ -550,7 +550,7 @@ int setActionElement(Element *e,void (*action)(Element*));
  * @param keyPress : function to be called when a key is pressed
  * @return 1 if it was impossible, 0 if not
  */
-int setKeyPressElement(Element *e,void (*keyPress)(Element*,SDL_Keycode c));
+int setKeyPressedElement(Element *e,void (*keyPress)(Element*,SDL_Keycode c));
 /**
  * @brief set the behaviour of an element when a key is released
  * @param e : element to be modified
