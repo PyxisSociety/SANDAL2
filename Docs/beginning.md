@@ -9,7 +9,7 @@
 
 ```c
 #include <stdio.h>
-#include "SANDAL2/SANDAL2.h" /* only header needed for SANDAL2 */
+#include <SANDAL2/SANDAL2.h> /* only header needed for SANDAL2 */
 
 int main(){
     if(initSDL2()){
@@ -42,7 +42,7 @@ int main(){
 
 ```c
 #include <stdio.h>
-#include "SANDAL2/SANDAL2.h" /* only header needed for SANDAL2 */
+#include <SANDAL2/SANDAL2.h> /* only header needed for SANDAL2 */
 
 int main(){
     if(initAllSDL2(IMG_INIT_JPG)){
@@ -66,7 +66,7 @@ The parameter of initImage() (same for initAllSDL2()) is either IMG_INIT_JPG, IM
 
 ```c
 #include <stdio.h>
-#include "SANDAL2/SANDAL2.h" /* only header needed for SANDAL2 */
+#include <SANDAL2/SANDAL2.h> /* only header needed for SANDAL2 */
 
 int main(){
     if(initAllSDL2(IMG_INIT_JPG)){
