@@ -25,13 +25,13 @@ void generate(int plan){
     int ww,wh;
     int x, y, w, h;
     int i;
-    int color[5][4] = {{255,255,255,0},
-		       {255,0,0,0},
-		       {0,255,0,0},
-		       {0,0,255,0},
+    int color[5][4] = {{255,255,255,0},\
+		       {255,0,0,0},\
+		       {0,255,0,0},\
+		       {0,0,255,0},\
 		       {255,0,255}};
 
-    getDimensionWindowSDL2(&ww,&wh);
+    getDimensionWindow(&ww,&wh);
 
     ww *= .8;
     wh *= .8;
@@ -52,7 +52,7 @@ void keyWindow(SDL_Keycode c){
 
     switch(c){
     case 27: /* ESCAP */
-	if(!getDataWindowSDL2((void **)&val) && val)
+	if(!getDataWindow((void **)&val) && val)
 	    *val = 0;
 	break;
     case 38:
@@ -82,8 +82,8 @@ void keyWindow(SDL_Keycode c){
 	break;
     case 34:
     case 91: /* 3 */
-        getDisplayCodeWindowSDL2(&d); /* getting the display code of the window */
-	setDisplayCodeWindowSDL2(1 - d); /* setting the display code of the window */
+        getDisplayCodeWindow(&d); /* getting the display code of the window */
+	setDisplayCodeWindow(1 - d); /* setting the display code of the window */
 	break;
     }
 }
@@ -96,40 +96,40 @@ int main(){
     srand(time(0));
   
     /* initializing SANDAL2 */
-    if(initAllSDL2(IMG_INIT_JPG)){
+    if(initAllSANDAL2(IMG_INIT_JPG)){
 	puts("Failed to init SANDAL2");
 	return -1;
     }
 
     /* initializing the window */
-    initWindowSDL2(400,400,"SANDAL2 - Klevh",SDL_WINDOW_RESIZABLE,black,0);
-    if(initIteratorWindowSDL2()){
+    createWindow(400,400,"SANDAL2 - Klevh",SDL_WINDOW_RESIZABLE,black,0);
+    if(initIteratorWindow()){
         puts("Failed to open the window");
-	closeAllSDL2();
+	closeAllSANDAL2();
 	return -1;
     }
     
     /* adding a void * to the window, you can do the same to an element */
-    setDataWindowSDL2(&run);
+    setDataWindow(&run);
 
     /* setting the window behavior when a key is pressed */
-    setKeyPressedWindowSDL2(keyWindow);
+    setKeyPressedWindow(keyWindow);
 
     /* creating a simple block on another display code */
     createBlock(100,100,200,200,white,1,0);
     
     /* main loop */
     while(run){
-	run=!PollEventSDL2(NULL) && run;
+	run=!PollEvent(NULL) && run;
 
-	updateWindowSDL2();
-	displayWindowSDL2();
+	updateWindow();
+	displayWindow();
 	
 	SDL_Delay(16);
     }
 
-    closeAllWindowSDL2();
-    closeAllSDL2();
+    closeAllWindow();
+    closeAllSANDAL2();
 
     return 0;
 }

@@ -1,5 +1,5 @@
-#ifndef _DISPLAYCODE_SANDAL2_KLEVH_
-#define _DISPLAYCODE_SANDAL2_KLEVH_
+#ifndef DISPLAYCODE_SANDAL2_KLEVH
+#define DISPLAYCODE_SANDAL2_KLEVH
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -64,7 +64,7 @@ int addDisplayCode(ListDisplayCode* l,int code,int isDisplaied,int plan);
  * @param code : display code to be removed
  * @return 0 if it succeeded, 1 if not
  */
-int removeDisplayCode(ListDisplayCode * l, int code);
+int delDisplayCode(ListDisplayCode * l, int code);
 /* ------------------------------------------------------- */
 
 #endif

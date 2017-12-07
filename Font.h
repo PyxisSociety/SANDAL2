@@ -1,10 +1,10 @@
-#ifndef _FONTSDL2_SANDAL2_KLEVH_
-#define _FONTSDL2_SANDAL2_KLEVH_
+#ifndef FONT_SANDAL2_KLEVH
+#define FONT_SANDAL2_KLEVH
 
-#include "WindowSDL2.h"
+#include "Window.h"
 
 /**
- * @file FontSDL2.h
+ * @file Font.h
  * @author Baptiste PRUNIER (KLEVH)
  * @brief Information about TTF objects
  */
@@ -31,11 +31,11 @@
  * @brief List of the windows
  *   WARNING : do not touch it ... trust me
  */
-extern ListWindowSDL2 * _windows_SANDAL2;
+extern ListWindow * _windows_SANDAL2;
 
 /**
- * @struct FontSDL2
- * @brief Informations about SDL2 font
+ * @struct Font
+ * @brief Informations about font
  */
 typedef struct{
   TTF_Font *font;
@@ -48,60 +48,60 @@ typedef struct{
   /**< color of the text*/
   SDL_Texture *texture;
   /**< SDL texture*/
-}FontSDL2;
+}Font;
 
 /* -------------------------------------------------------
- * Text SDL2
+ * Text 
  */
 /**
- * @brief generate a FontSDL2 using the path to the font, the text and the color of the text (use the window's background font as background color for Shaded quality)
+ * @brief generate a Font using the path to the font, the text and the color of the text (use the window's background font as background color for Shaded quality)
  * @param fontPath : path of the font
  * @param texte : text of the object
  * @param couleur : color of the text
  * @param quality : quality of the texture (SANDAL2_SOLID, SANDAL2_SHADED or SANDAL2_BLENDED)
  * @return NULL if the object was not initialised, if not, the object
  */
-FontSDL2* createFontSDL2(const char *fontPath,const char * texte,int couleur[4], int quality);
+Font* createFont(const char *fontPath,const char * texte,int couleur[4], int quality);
 /**
- * @brief free the memory of a FontSDL2
- * @param font : the FontSDL2 to be freed
+ * @brief free the memory of a Font
+ * @param font : the Font to be freed
  */
-void freeFontSDL2(FontSDL2 *font);
+void freeFont(Font *font);
 /**
  * @brief actualize the text to cript it or uncript it
  * @param font : the font to be actualize
  * @param isScripted : 0 if the text should be uncripted, 1 for cripted
  * @return 1 if there was an error, 0 if not
  */
-int actualizeTextFontSDL2(FontSDL2 *font,int isScripted);
+int actualizeTextFont(Font *font,int isScripted);
 /**
- * @brief actualize the text of a FontSDL2
+ * @brief actualize the text of a Font
  * @param font : the font to be actualize
  * @param text : the new text
  * @return 1 if there was an error, 0 if not
  */
-int changeTextFontSDL2(FontSDL2 *font,const char *text);
+int setTextFont(Font *font,const char *text);
 /**
- * @brief actualize the color of the FontSDL2
+ * @brief actualize the color of the Font
  * @param font : the font to be actualize
  * @param color : new color
  * @return 1 if there was an error, 0 if not
  */
-int changeColorFontSDL2(FontSDL2 *font,int color[4]);
+int setColorFont(Font *font,int color[4]);
 /**
  * @brief set the text's font style
  * @param font : the text to be modified
  * @param style : the style to apply
  * @return 1 if there was an error, 0 if not
  */
-int setStyleFontSDL2(FontSDL2 *font,int style);
+int setStyleFont(Font *font,int style);
 /**
  * @breif get the text's font style
  * @param font : the text to get the font style
  * @param style : where to store the style
  * @return 1 if there was an error, 0 if not
  */
-int getStyleFontSDL2(FontSDL2 *font,int * style);
+int getStyleFont(Font *font,int * style);
 /* ------------------------------------------------------- */
 
 #endif

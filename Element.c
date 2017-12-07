@@ -1,4 +1,4 @@
-#include "ElementSDL2.h"
+#include "Element.h"
 
 #include <limits.h>
 
@@ -16,10 +16,10 @@ static void copyColor(int to[4],int from[4]){
 
 
 /* -------------------------------------------------------
- * Liste d'elements SDL2 avec display code commun
+ * Liste d'elements  avec display code commun
  */
-static ListPtrElementSDL2* initListPtrElementSDL2(int plan){
-    ListPtrElementSDL2 *l=(ListPtrElementSDL2*)malloc(sizeof(*l));
+static ListPtrElement* initListPtrElement(int plan){
+    ListPtrElement *l=(ListPtrElement*)malloc(sizeof(*l));
 
     if(l){
         l->first=NULL;
@@ -32,8 +32,8 @@ static ListPtrElementSDL2* initListPtrElementSDL2(int plan){
     return l;
 }
 
-static void freeListPtrElementSDL2(ListPtrElementSDL2* l){
-    PtrElementSDL2 * ptr, * ptmp;
+static void freeListPtrElement(ListPtrElement* l){
+    PtrElement * ptr, * ptmp;
     
     if(l){
 	ptr = l->first;
@@ -46,9 +46,9 @@ static void freeListPtrElementSDL2(ListPtrElementSDL2* l){
     }
 }
 
-static int addPtrElementSDL2(ListPtrElementSDL2* l,ElementSDL2* e){
+static int addPtrElement(ListPtrElement* l,Element* e){
     DisplayCode *d;
-    PtrElementSDL2 *p;
+    PtrElement *p;
     int error = 1;
   
     if(l && e){
@@ -57,7 +57,7 @@ static int addPtrElementSDL2(ListPtrElementSDL2* l,ElementSDL2* e){
             d=d->next;
         }
         if(d && d->plan==l->code){
-            p=(PtrElementSDL2*)malloc(sizeof(*p));
+            p=(PtrElement*)malloc(sizeof(*p));
             if(p){
                 if(l->last){
                     l->last->next=p;
@@ -82,8 +82,8 @@ static int addPtrElementSDL2(ListPtrElementSDL2* l,ElementSDL2* e){
  * Liste de liste (plan) d'element, contenant le code 
  * d'affichage
  */
-static ListDCElementSDL2* initListDCElementSDL2(int displayCode){
-    ListDCElementSDL2 * l =(ListDCElementSDL2*)malloc(sizeof(*l));
+static ListDCElement* initListDCElement(int displayCode){
+    ListDCElement * l =(ListDCElement*)malloc(sizeof(*l));
 
     if(l){
         l->first=NULL;
@@ -95,23 +95,23 @@ static ListDCElementSDL2* initListDCElementSDL2(int displayCode){
     return l;
 }
 
-static void freeListDCElementSDL2(ListDCElementSDL2* l){
-    ListPtrElementSDL2 *lp,*lptmp;
+static void freeListDCElement(ListDCElement* l){
+    ListPtrElement *lp,*lptmp;
 
     if(l){
         lp=l->first;
         while(lp){
             lptmp=lp->next;
-            freeListPtrElementSDL2(lp);
+            freeListPtrElement(lp);
             lp=lptmp;
         }
 	free(l);
     }
 }
 
-/*static int removeDCElementSDL2(ListDCElementSDL2** l,ElementSDL2 *e){
-    ListPtrElementSDL2 **lp;
-    PtrElementSDL2 **pe, *etmp, **pte;
+/*static int delDCElement(ListDCElement** l,Element *e){
+    ListPtrElement **lp;
+    PtrElement **pe, *etmp, **pte;
     int error = 1;
   
     if(e && l){
@@ -157,8 +157,8 @@ static void freeListDCElementSDL2(ListDCElementSDL2* l){
  * Liste de liste (code d'affichage) de liste (plan) 
  * d'element
  */
-ListElementSDL2* _initListElementSDL2(){
-    ListElementSDL2 *l=(ListElementSDL2*)malloc(sizeof(*l));
+ListElement* _initListElement(){
+    ListElement *l=(ListElement*)malloc(sizeof(*l));
   
     if(l){
         l->first=NULL;
@@ -169,24 +169,24 @@ ListElementSDL2* _initListElementSDL2(){
     return l;
 }
 
-void _freeListElementSDL2(ListElementSDL2 *l){
-    ListDCElementSDL2 *lp,*ltmp;
+void _freeListElement(ListElement *l){
+    ListDCElement *lp,*ltmp;
 
     if(l){
         lp=l->first;
         while(lp){
             ltmp=lp->next;
-            freeListDCElementSDL2(lp);
+            freeListDCElement(lp);
             lp=ltmp;
         }
         free(l);
     }
 }
 
-int addElementSDL2(ElementSDL2* e){
+int addElement(Element* e){
     DisplayCode *d;
-    ListDCElementSDL2 ** ldc, *dctmp;
-    ListPtrElementSDL2 ** lp, *ptmp;
+    ListDCElement ** ldc, *dctmp;
+    ListPtrElement ** lp, *ptmp;
     int error = 1;
   
     if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste && e && e->codes){
@@ -198,33 +198,33 @@ int addElementSDL2(ElementSDL2* e){
                 ldc=&((*ldc)->next);
             }
             if(!*ldc){
-                *ldc=initListDCElementSDL2(d->code);
+                *ldc=initListDCElement(d->code);
                 if(d->code == _windows_SANDAL2->current->displayCode && !(_windows_SANDAL2->current->current))
                     _windows_SANDAL2->current->current = *ldc;
                 lp=&((*ldc)->first);
-                *lp=initListPtrElementSDL2(d->plan);
+                *lp=initListPtrElement(d->plan);
             }else if((*ldc)->code!=d->code){
-                dctmp=initListDCElementSDL2(d->code);
+                dctmp=initListDCElement(d->code);
                 if(d->code == _windows_SANDAL2->current->displayCode && !(_windows_SANDAL2->current->current))
                     _windows_SANDAL2->current->current = dctmp;
                 dctmp->next=(*ldc);
                 (*ldc)=dctmp;
                 lp=&((*ldc)->first);
-                *lp=initListPtrElementSDL2(d->plan);
+                *lp=initListPtrElement(d->plan);
             }else{
                 lp=&((*ldc)->first);
                 while(*lp && (*lp)->code > d->plan){
                     lp=&((*lp)->next);
                 }
                 if(!*lp){
-                    *lp=initListPtrElementSDL2(d->plan);
+                    *lp=initListPtrElement(d->plan);
                 }else if((*lp)->code != d->plan){
                     ptmp=*lp;
-                    *lp=initListPtrElementSDL2(d->plan);
+                    *lp=initListPtrElement(d->plan);
                     (*lp)->next=ptmp;
                 }
             }
-            addPtrElementSDL2(*lp,e);
+            addPtrElement(*lp,e);
             d=d->next;
         }
         e->parent=_windows_SANDAL2->current;
@@ -233,10 +233,10 @@ int addElementSDL2(ElementSDL2* e){
     return error;
 }
 
-void _cleanElementSDL2(){
-    PtrElementSDL2 **e, *etmp;
-    ListPtrElementSDL2 **lp, *ptmp;
-    ListDCElementSDL2 **ldc, *dctmp;
+void _cleanElement(){
+    PtrElement **e, *etmp;
+    ListPtrElement **lp, *ptmp;
+    ListDCElement **ldc, *dctmp;
   
     if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
         ldc=&(_windows_SANDAL2->current->liste->first);
@@ -250,7 +250,7 @@ void _cleanElementSDL2(){
                     case 2:
                         if((*ldc)->code==(*e)->element->deleteCode){
                             etmp=*e;
-			    removeDisplayCode((*e)->element->codes, (*ldc)->code);
+			    delDisplayCode((*e)->element->codes, (*ldc)->code);
                             *e=(*e)->next;
                             free(etmp);
                             _windows_SANDAL2->current->toDelete--;
@@ -300,7 +300,7 @@ void _cleanElementSDL2(){
     }
 }
 
-int removeElementSDL2(ElementSDL2 *e){
+int delElement(Element *e){
     int error = 1;
   
     if(e && _windows_SANDAL2 && _windows_SANDAL2->current){
@@ -318,7 +318,7 @@ int removeElementSDL2(ElementSDL2 *e){
 /* -------------------------------------------------------
  * Element creation, freeing and informations
  */
-void _freeElementSDL2(ElementSDL2 *e){
+void _freeElement(Element *e){
     if(e){
         if(e->codes){
             freeListDisplayCode(e->codes);
@@ -333,10 +333,10 @@ void _freeElementSDL2(ElementSDL2 *e){
             e->freeData(e->data);
         }
         if(e->font){
-            freeFontSDL2(e->font);
+            freeFont(e->font);
         }
         if(e->interactions){
-            freeListPtrElementSDL2(e->interactions);
+            freeListPtrElement(e->interactions);
         }
         if(e->hitboxes){
             freeListClickable(e->hitboxes);
@@ -348,11 +348,11 @@ void _freeElementSDL2(ElementSDL2 *e){
     }    
 }
 
-ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4],int displayCode,int plan){
-    ElementSDL2 *e = NULL;
+Element* createBlock(float x,float y,float width,float height,int couleur[4],int displayCode,int plan){
+    Element *e = NULL;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
-        e=(ElementSDL2*)malloc(sizeof(*e));
+        e=(Element*)malloc(sizeof(*e));
         if(e){
             e->deleted=0;
             e->deleteCode=0;
@@ -383,8 +383,8 @@ ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4]
             e->image=NULL;
             e->hitboxes = initListClickable();
             e->data=NULL;
-            if(addElementSDL2(e)){
-                _freeElementSDL2(e);
+            if(addElement(e)){
+                _freeElement(e);
                 e=NULL;
             }
         }
@@ -393,11 +393,11 @@ ElementSDL2* createBlock(float x,float y,float width,float height,int couleur[4]
     return e;
 }
 
-ElementSDL2* createText(float x,float y,float width,float height,const char * font,const char * text,int textColor[4],int quality,int displayCode,int plan){
-    ElementSDL2 *e=NULL;
+Element* createText(float x,float y,float width,float height,const char * font,const char * text,int textColor[4],int quality,int displayCode,int plan){
+    Element *e=NULL;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
-        e=(ElementSDL2*)malloc(sizeof(*e));
+        e=(Element*)malloc(sizeof(*e));
         if(e){
             e->deleted=0;
             e->deleteCode=0;
@@ -417,7 +417,7 @@ ElementSDL2* createText(float x,float y,float width,float height,const char * fo
             e->interactions=NULL;
             e->hitboxes = initListClickable();
             e->codes=NULL;
-            e->font=createFontSDL2(font,text,textColor,quality);
+            e->font=createFont(font,text,textColor,quality);
             e->data=NULL;
             if(e->font){
                 e->codes=initListDisplayCode();
@@ -431,12 +431,12 @@ ElementSDL2* createText(float x,float y,float width,float height,const char * fo
                 e->events.keyReleased=NULL;
                 e->events.unSelect=NULL;
                 e->events.endSprite=NULL;
-                if(addElementSDL2(e)){
-                    _freeElementSDL2(e);
+                if(addElement(e)){
+                    _freeElement(e);
                     e=NULL;
                 }
             }else{
-                _freeElementSDL2(e);
+                _freeElement(e);
                 e=NULL;
             }
         }
@@ -445,15 +445,15 @@ ElementSDL2* createText(float x,float y,float width,float height,const char * fo
     return e;
 }
 
-ElementSDL2* createImage(float x,float y,float width,float height,const char *image,int displayCode,int plan){
-    ElementSDL2 *e=NULL;
+Element* createImage(float x,float y,float width,float height,const char *image,int displayCode,int plan){
+    Element *e=NULL;
     SDL_Surface *s;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
         s=IMG_Load(image);
   
         if(s){
-            e=(ElementSDL2*)malloc(sizeof(*e));
+            e=(Element*)malloc(sizeof(*e));
             if(e){
                 e->deleted=0;
                 e->deleteCode=0;
@@ -484,8 +484,8 @@ ElementSDL2* createImage(float x,float y,float width,float height,const char *im
                 e->interactions=NULL;
                 e->hitboxes = initListClickable();
                 e->data=NULL;
-                if(addElementSDL2(e)){
-                    _freeElementSDL2(e);
+                if(addElement(e)){
+                    _freeElement(e);
                     e=NULL;
                 }
             }
@@ -496,20 +496,20 @@ ElementSDL2* createImage(float x,float y,float width,float height,const char *im
     return e;
 }
 
-ElementSDL2* createButton(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,int couleurBlock[4],int displayCode,int plan){
-    ElementSDL2 *e = NULL;
-    FontSDL2 * f;
+Element* createButton(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,int couleurBlock[4],int displayCode,int plan){
+    Element *e = NULL;
+    Font * f;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
         e=createBlock(x,y,width,height,couleurBlock,displayCode,plan);
         if(e){
             e->textSize=texteSize/100.f;
-            f=createFontSDL2(font,text,textColor,quality);
+            f=createFont(font,text,textColor,quality);
             if(f){
                 e->font=f;
             }else{
-                removeElementSDL2(e);
-                _freeElementSDL2(e);
+                delElement(e);
+                _freeElement(e);
                 e=NULL;
             }
         }
@@ -518,20 +518,20 @@ ElementSDL2* createButton(float x,float y,float width,float height,float texteSi
     return e;
 }
 
-ElementSDL2* createButtonImage(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,const char *image,int displayCode,int plan){
-    ElementSDL2 *e = NULL;
-    FontSDL2 * f;
+Element* createButtonImage(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,const char *image,int displayCode,int plan){
+    Element *e = NULL;
+    Font * f;
   
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
         e=createImage(x,y,width,height,image,displayCode,plan);
         if(e){
             e->textSize=texteSize/100.f;
-            f=createFontSDL2(font,text,textColor,quality);
+            f=createFont(font,text,textColor,quality);
             if(f){
                 e->font=f;
             }else{
-                removeElementSDL2(e);
-                _freeElementSDL2(e);
+                delElement(e);
+                _freeElement(e);
                 e=NULL;
             }
         }
@@ -540,15 +540,15 @@ ElementSDL2* createButtonImage(float x,float y,float width,float height,float te
     return e;
 }
 
-ElementSDL2* createEntry(float x,float y,float width,float height,float texteSize,const char * font, const char * text,int textColor[4],int quality,int couleurBlock[4],int displayCode,int plan,int min,int max,int isScripted){
-    ElementSDL2 *e = NULL;
-    EntrySDL2 *ent;
+Element* createEntry(float x,float y,float width,float height,float texteSize,const char * font, const char * text,int textColor[4],int quality,int couleurBlock[4],int displayCode,int plan,int min,int max,int isScripted){
+    Element *e = NULL;
+    Entry *ent;
     int i;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
         e=createButton(x,y,width,height,texteSize,font,text,textColor,quality,couleurBlock,displayCode,plan);
         if(e){
-            ent=(EntrySDL2*)malloc(sizeof(*ent));
+            ent=(Entry*)malloc(sizeof(*ent));
             if(ent){
                 ent->size_min=min;
                 ent->size_max=max;
@@ -564,13 +564,13 @@ ElementSDL2* createEntry(float x,float y,float width,float height,float texteSiz
                     e->entry=ent;
                     ent->size=0;
                 }else{
-                    removeElementSDL2(e);
-                    _freeElementSDL2(e);
+                    delElement(e);
+                    _freeElement(e);
                     e=NULL;
                 }
             }else{
-                removeElementSDL2(e);
-                _freeElementSDL2(e);
+                delElement(e);
+                _freeElement(e);
                 e=NULL;
             }
         }
@@ -579,15 +579,15 @@ ElementSDL2* createEntry(float x,float y,float width,float height,float texteSiz
     return e;  
 }
 
-ElementSDL2* createEntryImage(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,const char *image,int displayCode,int plan,int min,int max,int isScripted){
-    ElementSDL2 *e = NULL;
-    EntrySDL2 *ent;
+Element* createEntryImage(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,const char *image,int displayCode,int plan,int min,int max,int isScripted){
+    Element *e = NULL;
+    Entry *ent;
     int i;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
         e=createButtonImage(x,y,width,height,texteSize,font,text,textColor,quality,image,displayCode,plan);
         if(e){
-            ent=(EntrySDL2*)malloc(sizeof(*ent));
+            ent=(Entry*)malloc(sizeof(*ent));
             if(ent){
                 ent->size_min=min;
                 ent->size_max=max;
@@ -603,13 +603,13 @@ ElementSDL2* createEntryImage(float x,float y,float width,float height,float tex
                     e->entry=ent;
                     ent->size=0;
                 }else{
-                    removeElementSDL2(e);
-                    _freeElementSDL2(e);
+                    delElement(e);
+                    _freeElement(e);
                     e=NULL;
                 }
             }else{
-                removeElementSDL2(e);
-                _freeElementSDL2(e);
+                delElement(e);
+                _freeElement(e);
                 e=NULL;
             }
         }
@@ -618,7 +618,7 @@ ElementSDL2* createEntryImage(float x,float y,float width,float height,float tex
     return e;  
 }
 
-int isDisplaied(ElementSDL2 *e){
+int isDisplaiedElement(Element *e){
     int display = (e && !(e->deleted) && _windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current == e->parent && e->codes);
     DisplayCode *d;
 
@@ -634,9 +634,9 @@ int isDisplaied(ElementSDL2 *e){
 }
 
 int clearDisplayCode(int code){
-    ListPtrElementSDL2 * lptr;
-    ListDCElementSDL2 ** ldc;
-    PtrElementSDL2 * ptr;
+    ListPtrElement * lptr;
+    ListDCElement ** ldc;
+    PtrElement * ptr;
     int error = 1;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
@@ -662,7 +662,7 @@ int clearDisplayCode(int code){
     return error;
 }
 
-int getCoordElementSDL2(ElementSDL2* e,float* x,float* y){
+int getCoordElement(Element* e,float* x,float* y){
     int error = 1;
 
     if(e){
@@ -678,7 +678,7 @@ int getCoordElementSDL2(ElementSDL2* e,float* x,float* y){
     return error;
 }
 
-int getAngleElementSDL2(ElementSDL2* e,float* a){
+int getAngleElement(Element* e,float* a){
     int error = 1;
 
     if(e){
@@ -691,7 +691,7 @@ int getAngleElementSDL2(ElementSDL2* e,float* a){
     return error;
 }
 
-int getDimensionElementSDL2(ElementSDL2* e,float* w,float * h){
+int getDimensionElement(Element* e,float* w,float * h){
     int error = 1;
 
     if(e){
@@ -707,7 +707,7 @@ int getDimensionElementSDL2(ElementSDL2* e,float* w,float * h){
     return error;
 }
 
-int getRotationPointElementSDL2(ElementSDL2* e,float *x,float *y){
+int getRotationPointElement(Element* e,float *x,float *y){
     int error = 1;
 
     if(e){
@@ -723,7 +723,7 @@ int getRotationPointElementSDL2(ElementSDL2* e,float *x,float *y){
     return error;
 }
 
-int getRotationSpeedElementSDL2(ElementSDL2* e,float* s){
+int getRotationSpeedElement(Element* e,float* s){
     int error = 1;
 
     if(e){
@@ -736,7 +736,7 @@ int getRotationSpeedElementSDL2(ElementSDL2* e,float* s){
     return error;
 }
 
-int getDataElementSDL2(ElementSDL2* e,void ** data){
+int getDataElement(Element* e,void ** data){
     int error = 1;
 
     if(e){
@@ -749,7 +749,7 @@ int getDataElementSDL2(ElementSDL2* e,void ** data){
     return error;
 }
 
-int isSelectedElementSDL2(ElementSDL2 *e, int * select){
+int isSelectedElement(Element *e, int * select){
     int error = 1;
 
     if(e){
@@ -762,17 +762,17 @@ int isSelectedElementSDL2(ElementSDL2 *e, int * select){
     return error;
 }
 
-int getTextStyleElementSDL2(ElementSDL2 *e,int * style){
+int getTextStyleElement(Element *e,int * style){
     int error = 1;
 
     if(e && e->font){
-        error=getStyleFontSDL2(e->font,style);
+        error=getStyleFont(e->font,style);
     }
 
     return error;
 }
 
-int getTextElementSDL2(ElementSDL2 *e,char **s){
+int getTextElement(Element *e,char **s){
     int error = 1;
 
     if(e && e->font && e->font->text){
@@ -797,7 +797,7 @@ int getTextElementSDL2(ElementSDL2 *e,char **s){
     return error;
 }
 
-int getColorElementSDL2(ElementSDL2 * e, int color[4]){
+int getColorElement(Element * e, int color[4]){
     int error = 1;
 
     if(e && color){
@@ -812,10 +812,10 @@ int getColorElementSDL2(ElementSDL2 * e, int color[4]){
 
 
 /* -------------------------------------------------------
- * ElementSDL2 modifications
+ * Element modifications
  */
-int setFontElementSDL2(ElementSDL2 *e,const char * font){
-    FontSDL2 *f;
+int setFontElement(Element *e,const char * font){
+    Font *f;
     int color[4];
     int error = 1;
 
@@ -825,9 +825,9 @@ int setFontElementSDL2(ElementSDL2 *e,const char * font){
             color[1]=e->font->color.g;
             color[2]=e->font->color.b;
             color[3]=e->font->color.a;
-            f=createFontSDL2(font,e->font->text,color,e->font->quality);
+            f=createFont(font,e->font->text,color,e->font->quality);
             if(f){
-                freeFontSDL2(e->font);
+                freeFont(e->font);
                 e->font=f;
                 error = 0;
             }
@@ -837,33 +837,33 @@ int setFontElementSDL2(ElementSDL2 *e,const char * font){
     return error;
 }
 
-int setTextElementSDL2(ElementSDL2 *e,const char * text){
+int setTextElement(Element *e,const char * text){
     int error = 1;
     int size;
     
     if(_windows_SANDAL2 && _windows_SANDAL2->current && e && text && e->font){
 	if(e->entry){
 	    size = strlen(text);
-	    error = changeTextFontSDL2(e->font,(size > e->entry->size_max ? text + size - e->entry->size_max : text));
+	    error = setTextFont(e->font,(size > e->entry->size_max ? text + size - e->entry->size_max : text));
 	    e->entry->size = (size >= e->entry->size_max ? e->entry->size_max : size);
 	}else
-	    error=changeTextFontSDL2(e->font,text);
+	    error=setTextFont(e->font,text);
     }
 
     return error;
 }
 
-int setTextStyleElementSDL2(ElementSDL2 *e,int style){
+int setTextStyleElement(Element *e,int style){
     int error = 1;
 
     if(e && e->font){
-        error=setStyleFontSDL2(e->font,style);
+        error=setStyleFont(e->font,style);
     }
 
     return error;
 }
 
-int setColorElementSDL2(ElementSDL2 *e,int color[4]){
+int setColorElement(Element *e,int color[4]){
     int error = 1;
   
     if(e){
@@ -874,17 +874,17 @@ int setColorElementSDL2(ElementSDL2 *e,int color[4]){
     return error;
 }
 
-int setTextColorElementSDL2(ElementSDL2 *e, int color[4]){
+int setTextColorElement(Element *e, int color[4]){
     int error = 1;
 
     if(e && e->font){
-        error=changeColorFontSDL2(e->font,color);
+        error=setColorFont(e->font,color);
     }
 
     return error;
 }
 
-int setTextQualityElementSDL2(ElementSDL2 *e, int quality){
+int setTextQualityElement(Element *e, int quality){
     int error = 1;
 
     if(e && e->font){
@@ -895,7 +895,7 @@ int setTextQualityElementSDL2(ElementSDL2 *e, int quality){
     return error;
 }
 
-int setImageElementSDL2(ElementSDL2 *e,const char *image){
+int setImageElement(Element *e,const char *image){
     SDL_Surface *s;
     int error=1;
   
@@ -919,7 +919,7 @@ int setImageElementSDL2(ElementSDL2 *e,const char *image){
     return error;
 }
 
-int setImageTextureElementSDL2(ElementSDL2 *e,SDL_Texture * image){
+int setImageTextureElement(Element *e,SDL_Texture * image){
     int error = 1;
 
     if(e){
@@ -930,7 +930,7 @@ int setImageTextureElementSDL2(ElementSDL2 *e,SDL_Texture * image){
     return error;
 }
 
-int replaceElementSDL2(ElementSDL2 *e,float x,float y){
+int replaceElement(Element *e,float x,float y){
     int error = 1;
 
     if(e && _windows_SANDAL2 && _windows_SANDAL2->current){
@@ -942,7 +942,7 @@ int replaceElementSDL2(ElementSDL2 *e,float x,float y){
     return error;
 }
 
-int moveElementSDL2(ElementSDL2 *e,float x,float y){
+int moveElement(Element *e,float x,float y){
     int error = 1;
 
     if(e && _windows_SANDAL2 && _windows_SANDAL2->current){
@@ -954,7 +954,7 @@ int moveElementSDL2(ElementSDL2 *e,float x,float y){
     return error;
 }
 
-int resizeElementSDL2(ElementSDL2 *e,float width,float height){
+int resizeElement(Element *e,float width,float height){
     int error = 1;
 
     if(e){
@@ -966,7 +966,7 @@ int resizeElementSDL2(ElementSDL2 *e,float width,float height){
     return error;
 }
 
-int setTextSize(ElementSDL2 *e,float textSize){
+int setTextSize(Element *e,float textSize){
     int error = 1;
 
     if(e){
@@ -977,11 +977,11 @@ int setTextSize(ElementSDL2 *e,float textSize){
     return error;
 }
 
-int addDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode, int plan){
+int addDisplayCodeElement(Element *e,int displayCode, int plan){
     DisplayCode **d, *tmp;
-    ListDCElementSDL2 **ldc, *dctmp;
-    ListPtrElementSDL2 **lp, *ptmp;
-    PtrElementSDL2 *el;
+    ListDCElement **ldc, *dctmp;
+    ListPtrElement **lp, *ptmp;
+    PtrElement *el;
     int error = 1;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste && e && e->codes){
@@ -1004,7 +1004,7 @@ int addDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode, int plan){
                     ldc=&((*ldc)->next);
                 }
                 if(!*ldc || (*ldc)->code != displayCode){
-                    dctmp=initListDCElementSDL2(displayCode);
+                    dctmp=initListDCElement(displayCode);
                     if(!_windows_SANDAL2->current->current && _windows_SANDAL2->current->displayCode == displayCode)
                         _windows_SANDAL2->current->current = dctmp;
                     dctmp->next=*ldc;
@@ -1015,11 +1015,11 @@ int addDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode, int plan){
                     lp=&((*lp)->next);
                 }
                 if((!*lp || (*lp)->code != plan)){
-                    ptmp=initListPtrElementSDL2(plan);
+                    ptmp=initListPtrElement(plan);
                     ptmp->next=*lp;
                     *lp=ptmp;
                 }
-                el=(PtrElementSDL2*)malloc(sizeof(*el));
+                el=(PtrElement*)malloc(sizeof(*el));
                 if(el){
                     error = 0;
                     el->next=NULL;
@@ -1039,11 +1039,11 @@ int addDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode, int plan){
     return error;
 }
 
-int removeDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode){
+int delDisplayCodeElement(Element *e,int displayCode){
     DisplayCode **d, *tmp;
-    ListDCElementSDL2 **ldc;
-    ListPtrElementSDL2 **lp;
-    PtrElementSDL2 **cour;
+    ListDCElement **ldc;
+    ListPtrElement **lp;
+    PtrElement **cour;
     int error = 1;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste && e && e->codes){
@@ -1083,7 +1083,7 @@ int removeDisplayCodeElementSDL2(ElementSDL2 *e,int displayCode){
     return error;
 }
 
-int setDisplayElementSDL2(ElementSDL2 *e,int displayCode,int isDisplaied){
+int setDisplayCodeElement(Element *e,int displayCode,int isDisplaied){
     DisplayCode *d;
     int error = 1;
 
@@ -1101,12 +1101,12 @@ int setDisplayElementSDL2(ElementSDL2 *e,int displayCode,int isDisplaied){
     return error;
 }
 
-int setPlanElementSDL2(ElementSDL2 *e,int displayCode,int plan){
+int setPlanElement(Element *e,int displayCode,int plan){
     int old;
     DisplayCode *d;
-    ListDCElementSDL2 *ldc;
-    ListPtrElementSDL2 **lp, *ptmp, **lpNew = NULL;
-    PtrElementSDL2 **cour,*tmp;
+    ListDCElement *ldc;
+    ListPtrElement **lp, *ptmp, **lpNew = NULL;
+    PtrElement **cour,*tmp;
     int error = 1;
 
     if(e && _windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
@@ -1144,12 +1144,12 @@ int setPlanElementSDL2(ElementSDL2 *e,int displayCode,int plan){
                         lpNew=&((*lpNew)->next);
                     }
                     if(!*lpNew || (*lpNew)->code != plan){
-                        ptmp=initListPtrElementSDL2(plan);
+                        ptmp=initListPtrElement(plan);
                         ptmp->next=*lpNew;
                         *lpNew=ptmp;
                     }
                 }
-                tmp=(PtrElementSDL2*)malloc(sizeof(*tmp));
+                tmp=(PtrElement*)malloc(sizeof(*tmp));
                 if(tmp){
                     tmp->element=e;
                     tmp->next=(*lpNew)->last;
@@ -1164,9 +1164,9 @@ int setPlanElementSDL2(ElementSDL2 *e,int displayCode,int plan){
 }
 
 int clearPlanDisplayCode(int code, int plan){
-    ListDCElementSDL2 * ldc;
-    ListPtrElementSDL2 * lptr;
-    PtrElementSDL2 * ptr;
+    ListDCElement * ldc;
+    ListPtrElement * lptr;
+    PtrElement * ptr;
     int error = 1;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
@@ -1193,7 +1193,7 @@ int clearPlanDisplayCode(int code, int plan){
     return error;
 }
 
-int setActionElementSDL2(ElementSDL2 *e,void (*action)(ElementSDL2*)){
+int setActionElement(Element *e,void (*action)(Element*)){
     int error = 1;
   
     if(e){
@@ -1204,7 +1204,7 @@ int setActionElementSDL2(ElementSDL2 *e,void (*action)(ElementSDL2*)){
     return error;
 }
 
-int setKeyPressElementSDL2(ElementSDL2 *e,void (*keyPress)(ElementSDL2*,SDL_Keycode c)){
+int setKeyPressElement(Element *e,void (*keyPress)(Element*,SDL_Keycode c)){
     int error = 1;
   
     if(e){
@@ -1215,7 +1215,7 @@ int setKeyPressElementSDL2(ElementSDL2 *e,void (*keyPress)(ElementSDL2*,SDL_Keyc
     return error;
 }
 
-int setKeyReleasedElementSDL2(ElementSDL2 *e,void (*keyReleased)(ElementSDL2*,SDL_Keycode c)){
+int setKeyReleasedElement(Element *e,void (*keyReleased)(Element*,SDL_Keycode c)){
     int error = 1;
   
     if(e){
@@ -1226,7 +1226,7 @@ int setKeyReleasedElementSDL2(ElementSDL2 *e,void (*keyReleased)(ElementSDL2*,SD
     return error;
 }
 
-int setUnClickElementSDL2(ElementSDL2 *e,void (*unCLick)(ElementSDL2*)){
+int setUnClickElement(Element *e,void (*unCLick)(Element*)){
     int error = 1;
   
     if(e){
@@ -1237,7 +1237,7 @@ int setUnClickElementSDL2(ElementSDL2 *e,void (*unCLick)(ElementSDL2*)){
     return error;
 }
 
-int setOnClickElementSDL2(ElementSDL2 *e,void (*onCLick)(ElementSDL2*)){
+int setOnClickElement(Element *e,void (*onCLick)(Element*)){
     int error = 1;
   
     if(e){
@@ -1248,7 +1248,7 @@ int setOnClickElementSDL2(ElementSDL2 *e,void (*onCLick)(ElementSDL2*)){
     return error;
 }
 
-int setUnSelectElementSDL2(ElementSDL2 *e,void (*unSelect)(ElementSDL2*)){
+int setUnSelectElement(Element *e,void (*unSelect)(Element*)){
     int error = 1;
   
     if(e){
@@ -1259,7 +1259,7 @@ int setUnSelectElementSDL2(ElementSDL2 *e,void (*unSelect)(ElementSDL2*)){
     return error;
 }
 
-int setEndSpriteElementSDL2(ElementSDL2 *e,void (*endSprite)(ElementSDL2*,int)){
+int setEndSpriteElement(Element *e,void (*endSprite)(Element*,int)){
     int error = 1;
   
     if(e){
@@ -1270,17 +1270,17 @@ int setEndSpriteElementSDL2(ElementSDL2 *e,void (*endSprite)(ElementSDL2*,int)){
     return error;
 }
 
-int addElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *add){
-    PtrElementSDL2 *pe;
+int addElementToElement(Element *e,Element *add){
+    PtrElement *pe;
     int error = 1;
   
     if(e && add){
-        pe=(PtrElementSDL2*)malloc(sizeof(*pe));
+        pe=(PtrElement*)malloc(sizeof(*pe));
         pe->element=add;
         pe->next=NULL;
     
         if(!e->interactions){
-            e->interactions=(ListPtrElementSDL2*)malloc(sizeof(*(e->interactions)));
+            e->interactions=(ListPtrElement*)malloc(sizeof(*(e->interactions)));
             if(e->interactions){
                 e->interactions->first=pe;
                 e->interactions->last=pe;
@@ -1302,8 +1302,8 @@ int addElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *add){
     return error;
 }
 
-int delElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *del){
-    PtrElementSDL2 **pe, *rm, **tmp=NULL;
+int delElementToElement(Element *e,Element *del){
+    PtrElement **pe, *rm, **tmp=NULL;
     int error = 1;
 
     if(e && e->interactions && del){
@@ -1335,9 +1335,9 @@ int delElementToElementSDL2(ElementSDL2 *e,ElementSDL2 *del){
     return error;
 }
 
-int clearElementToElementSDL2(ElementSDL2 * e){
+int clearElementToElement(Element * e){
     int error = 1;
-    PtrElementSDL2 * pe, * tmp;
+    PtrElement * pe, * tmp;
 
     if(e && e->interactions){
 	pe = e->interactions->first;
@@ -1356,7 +1356,7 @@ int clearElementToElementSDL2(ElementSDL2 * e){
     return error;
 }
 
-int addClickableElementSDL2(ElementSDL2 *e,Clickable *hb,int blocking){
+int addClickableElement(Element *e,Clickable *hb,int blocking){
     int error = 1;
 
     if(e && hb){
@@ -1366,7 +1366,7 @@ int addClickableElementSDL2(ElementSDL2 *e,Clickable *hb,int blocking){
     return error;
 }
 
-int addRotationSpeedElementSDL2(ElementSDL2 *e,float s){
+int addRotationSpeedElement(Element *e,float s){
     int error = 1;
 
     if(e && e->coulBlock[0]==-1){
@@ -1377,7 +1377,7 @@ int addRotationSpeedElementSDL2(ElementSDL2 *e,float s){
     return error;
 }
 
-int setRotationSpeedElementSDL2(ElementSDL2 *e,float s){
+int setRotationSpeedElement(Element *e,float s){
     int error = 1;
 
     if(e && e->coulBlock[0]==-1){
@@ -1388,7 +1388,7 @@ int setRotationSpeedElementSDL2(ElementSDL2 *e,float s){
     return error;
 }
 
-int addAngleElementSDL2(ElementSDL2 *e,float a){
+int addAngleElement(Element *e,float a){
     int error = 1;
 
     if(e && e->coulBlock[0]==-1){
@@ -1399,7 +1399,7 @@ int addAngleElementSDL2(ElementSDL2 *e,float a){
     return error;
 }
 
-int setAngleElementSDL2(ElementSDL2 *e,float a){
+int setAngleElement(Element *e,float a){
     int error = 1;
 
     if(e && e->coulBlock[0]==-1){
@@ -1410,7 +1410,7 @@ int setAngleElementSDL2(ElementSDL2 *e,float a){
     return error;
 }
 
-int setRotationPointElementSDL2(ElementSDL2 *e,float x,float y){
+int setRotationPointElement(Element *e,float x,float y){
     int error = 1;
 
     if(e && e->coulBlock[0]==-1){
@@ -1422,7 +1422,7 @@ int setRotationPointElementSDL2(ElementSDL2 *e,float x,float y){
     return error;
 }
 
-int setDataElementSDL2(ElementSDL2 *e,void *data){
+int setDataElement(Element *e,void *data){
     int error = 1;
 
     if(e){
@@ -1433,7 +1433,7 @@ int setDataElementSDL2(ElementSDL2 *e,void *data){
     return error;
 }
 
-int setFreeDataElementSDL2(ElementSDL2 *e,void (*freeData)(void*)){
+int setFreeDataElement(Element *e,void (*freeData)(void*)){
     int error = 1;
 
     if(e && freeData){
@@ -1444,7 +1444,7 @@ int setFreeDataElementSDL2(ElementSDL2 *e,void (*freeData)(void*)){
     return error;
 }
 
-int freeDataElementSDL2(ElementSDL2 *e){
+int freeDataElement(Element *e){
     int error = 1;
 
     if(e && e->data && e->freeData){
@@ -1456,7 +1456,7 @@ int freeDataElementSDL2(ElementSDL2 *e){
     return error;
 }
 
-int createAnimationElementSDL2(ElementSDL2 *e,int code){
+int addAnimationElement(Element *e,int code){
     int error = 1;
 
     if(e){
@@ -1466,17 +1466,17 @@ int createAnimationElementSDL2(ElementSDL2 *e,int code){
     return error;
 }
 
-int removeAnimationElementSDL2(ElementSDL2 *e,int code){
+int delAnimationElement(Element *e,int code){
     int error = 1;
 
     if(e){
-        error=removeAnimation(e->animation,code);
+        error=delAnimation(e->animation,code);
     }
 
     return error;
 }
 
-int addSpriteAnimationElementSDL2(ElementSDL2 *e,int code,int x,int y,int width,int height,int lifespan,int codeS){
+int addSpriteAnimationElement(Element *e,int code,int x,int y,int width,int height,int lifespan,int codeS){
     int error = 1;
 
     if(e){
@@ -1486,17 +1486,17 @@ int addSpriteAnimationElementSDL2(ElementSDL2 *e,int code,int x,int y,int width,
     return error;
 }
 
-int removeSpriteAnimationElementSDL2(ElementSDL2 *e,int code,int codeS){
+int delSpriteAnimationElement(Element *e,int code,int codeS){
     int error = 1;
 
     if(e){
-        error = removeSpriteAnimation(e->animation,code,codeS);
+        error = delSpriteAnimation(e->animation,code,codeS);
     }
 
     return error;
 }
 
-int setLifeSpanSpriteAnimationElementSDL2(ElementSDL2 * e,int code,int codeS,unsigned lifespan){
+int setLifeSpanSpriteAnimationElement(Element * e,int code,int codeS,unsigned lifespan){
     int error = 1;
 
     if(e){
@@ -1506,7 +1506,7 @@ int setLifeSpanSpriteAnimationElementSDL2(ElementSDL2 * e,int code,int codeS,uns
     return error;
 }
 
-int nextSpriteElementSDL2(ElementSDL2 * e){
+int nextSpriteElement(Element * e){
     int error = 1;
 
     if(e && e->animation->size && e->animation->current->size){
@@ -1518,7 +1518,7 @@ int nextSpriteElementSDL2(ElementSDL2 * e){
     return error;
 }
 
-int previousSpriteElementSDL2(ElementSDL2 * e){
+int previousSpriteElement(Element * e){
     int error = 1;
 
     if(e && e->animation->size && e->animation->current->size){
@@ -1530,7 +1530,7 @@ int previousSpriteElementSDL2(ElementSDL2 * e){
     return error;
 }
 
-int setWaySpriteAnimationElementSDL2(ElementSDL2 * e,int code, int sens){
+int setWaySpriteAnimationElement(Element * e,int code, int sens){
     int error = 1;
     ListSprite *ls;
     unsigned i=0;
@@ -1550,7 +1550,7 @@ int setWaySpriteAnimationElementSDL2(ElementSDL2 * e,int code, int sens){
     return error;
 }
 
-int nextAnimationElementSDL2(ElementSDL2 * e){
+int nextAnimationElement(Element * e){
     int error=1;
 
     if(e && e->animation->size){
@@ -1561,7 +1561,7 @@ int nextAnimationElementSDL2(ElementSDL2 * e){
     return error;
 }
 
-int previousAnimationElementSDL2(ElementSDL2 * e){
+int previousAnimationElement(Element * e){
     int error=1;
 
     if(e && e->animation->size){
@@ -1572,7 +1572,7 @@ int previousAnimationElementSDL2(ElementSDL2 * e){
     return error;
 }
 
-int setAnimationElementSDL2(ElementSDL2 *e,int code){
+int setAnimationElement(Element *e,int code){
     int error = 1;
 
     if(e && e->animation){
@@ -1582,7 +1582,7 @@ int setAnimationElementSDL2(ElementSDL2 *e,int code){
     return error;
 }
 
-int setSpriteAnimationElementSDL2(ElementSDL2 *e,int codeS){
+int setSpriteAnimationElement(Element *e,int codeS){
     int error = 1;
 
     if(e && e->animation){
@@ -1592,8 +1592,8 @@ int setSpriteAnimationElementSDL2(ElementSDL2 *e,int codeS){
     return error;
 }
 
-int clearWindowSDL2(void){
-    ListDCElementSDL2 * ldc, * ltmp;
+int clearWindow(void){
+    ListDCElement * ldc, * ltmp;
     int error = 1;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
@@ -1602,7 +1602,7 @@ int clearWindowSDL2(void){
 	ldc = _windows_SANDAL2->current->liste->first;
 	while(ldc){
 	    ltmp = ldc->next;
-	    freeListDCElementSDL2(ldc);
+	    freeListDCElement(ldc);
 	    ldc = ltmp;
 	}
 	_windows_SANDAL2->current->stop = 1;
@@ -1620,7 +1620,7 @@ int clearWindowSDL2(void){
 /* -------------------------------------------------------
  * Element's list binded to an Element's iterator
  */
-int initIteratorElementSDL2(ElementSDL2 *e){
+int initIteratorElement(Element *e){
     int succes = 0;
   
     if(e && e->interactions && e->interactions->first){
@@ -1631,8 +1631,8 @@ int initIteratorElementSDL2(ElementSDL2 *e){
     return succes;
 }
 
-ElementSDL2* nextIteratorElementSDL2(ElementSDL2 *e){
-    ElementSDL2* next=NULL;
+Element* nextIteratorElement(Element *e){
+    Element* next=NULL;
   
     if(e && e->interactions && e->interactions->current){
         next=e->interactions->current->element;
@@ -1650,7 +1650,7 @@ ElementSDL2* nextIteratorElementSDL2(ElementSDL2 *e){
  */
 int initIterator(int displayCode){
     int succes = 0;
-    ListDCElementSDL2 *lp;
+    ListDCElement *lp;
   
     if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
         if(_windows_SANDAL2->current->liste->currentDCIterator && _windows_SANDAL2->current->liste->currentDCIterator->code == displayCode){
@@ -1678,9 +1678,9 @@ int initIterator(int displayCode){
     return succes;
 }
 
-ElementSDL2* nextElementSDL2(){
-    ElementSDL2 *res = NULL;
-    PtrElementSDL2 *pres;
+Element* nextElement(){
+    Element *res = NULL;
+    PtrElement *pres;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste && _windows_SANDAL2->current->liste->currentDCIterator){
         if(_windows_SANDAL2->current->liste->currentPIterator){
@@ -1707,7 +1707,7 @@ ElementSDL2* nextElementSDL2(){
 /* -------------------------------------------------------
  * Entry modifications
  */
-int changeSizeEntrySDL2(ElementSDL2 *e,int size_min,int size_max){
+int setSizeEntry(Element *e,int size_min,int size_max){
     char *s;
     int error = 1;
   
@@ -1725,7 +1725,7 @@ int changeSizeEntrySDL2(ElementSDL2 *e,int size_min,int size_max){
                 PFREE(e->font->text);
                 e->font->text=s;
                 e->entry->size_max=size_max;
-                error=actualizeTextFontSDL2(e->font,e->entry->isScripted);
+                error=actualizeTextFont(e->font,e->entry->isScripted);
             }
         }
     }
@@ -1733,36 +1733,36 @@ int changeSizeEntrySDL2(ElementSDL2 *e,int size_min,int size_max){
     return error;
 }
 
-int setScriptedEntrySDL2(ElementSDL2 *e,int isScripted){
+int setScriptedEntry(Element *e,int isScripted){
     int error = 1;
   
     if(_windows_SANDAL2 && _windows_SANDAL2->current && e && e->entry && e->entry->isScripted!=isScripted){
         e->entry->isScripted=isScripted;
-        error=actualizeTextFontSDL2(e->font,e->entry->isScripted);
+        error=actualizeTextFont(e->font,e->entry->isScripted);
     }
 
     return error;
 }
 
-int addCharEntrySDL2(ElementSDL2 *e,char c){
+int addCharEntry(Element *e,char c){
     int error = 1;
   
     if(_windows_SANDAL2 && _windows_SANDAL2->current && e && e->entry && e->font && e->font->text && e->entry->size < e->entry->size_max){
         *(e->font->text+e->entry->size)=c;
         ++e->entry->size;
-        error=actualizeTextFontSDL2(e->font,e->entry->isScripted);
+        error=actualizeTextFont(e->font,e->entry->isScripted);
     }
 
     return error;
 }
 
-int removeCharEntrySDL2(ElementSDL2 *e){
+int delCharEntry(Element *e){
     int error = 1;
   
     if(_windows_SANDAL2 && _windows_SANDAL2->current && e && e->entry && e->font && e->font->text && e->entry->size){
         --e->entry->size;
         *(e->font->text+e->entry->size)=' ';
-        error=actualizeTextFontSDL2(e->font,e->entry->isScripted);
+        error=actualizeTextFont(e->font,e->entry->isScripted);
     }
 
     return error;

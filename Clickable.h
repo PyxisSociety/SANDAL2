@@ -1,6 +1,5 @@
-#ifndef _CLICKABLE_SANDAL2_KLEVH_
-#define _CLICKABLE_SANDAL2_KLEVH_
-
+#ifndef CLICKABLE_SANDAL2_KLEVH
+#define CLICKABLE_SANDAL2_KLEVH
 #include <math.h>
 #include <stdlib.h>
 
@@ -11,11 +10,11 @@
  */
 
 /**
- * @struct LineSDL2
+ * @struct Line
  * @brief Represente a line which delimitate a hittable surface from a none hittable one
  */
-typedef struct LineSDL2{
-  struct LineSDL2 * next;
+typedef struct Line{
+  struct Line * next;
   /**< next element*/
   float a;
   /**< a in the equation of the line ax+by=c*/
@@ -25,14 +24,14 @@ typedef struct LineSDL2{
   /**< c in the equation of the line ax+by=c*/
   int sens;
   /**< side of the line that is hittable (-1 : ax+by<c, 1 : ax+by>c)*/
-}LineSDL2;
+}Line;
 
 /**
- * @struct CircleSDL2
+ * @struct Circle
  * @brief Represente a hittable ellipse
  */
-typedef struct CircleSDL2{
-  struct CircleSDL2 * next;
+typedef struct Circle{
+  struct Circle * next;
   /**< next ellipse*/
   float x;
   /**< abscissa coordinate of the center of the ellipse*/
@@ -44,16 +43,16 @@ typedef struct CircleSDL2{
   /**< size of the radius parallel to the abscissa axis*/
   float theta;
   /**< degree of rotation*/
-}CircleSDL2;
+}Circle;
 
 /**
  * @struct Clickable
- * @brief Represente a hit boxe which is a collection of LineSDL2 (defining a convexe polygon) and CircleSDL2
+ * @brief Represente a hit boxe which is a collection of Line (defining a convexe polygon) and Circle
  */
 typedef struct Clickable{
-  LineSDL2 * firstL;
+  Line * firstL;
   /**< first element of the lines' list*/
-  CircleSDL2 * firstC;
+  Circle * firstC;
   /**< first element of the ellipses' list*/
   struct Clickable * next;
   /**< next hitbox*/
@@ -91,7 +90,7 @@ Clickable * initClickable();
  * @param sens : indicator of the side of the line which is hittable (-1 : ax+by<c, 1 : ax+by>c)
  * @return 0 if the line was correctly added, 1 in the other case
  */
-int addLineSDL2(Clickable * hb,float a,float b,float c,int sens);
+int addLine(Clickable * hb,float a,float b,float c,int sens);
 /**
  * @brief add an ellipse to the hitbox
  * @param hb : hit boxe to which the line will be added
@@ -102,7 +101,7 @@ int addLineSDL2(Clickable * hb,float a,float b,float c,int sens);
  * @param theta : rotation of the ellipse (in degree)
  * @return 0 if the ellipse was correctly added, 1 in the other case
  */
-int addCircleSDL2(Clickable * hb,float x,float y,float rX,float rY,float theta);
+int addCircle(Clickable * hb,float x,float y,float rX,float rY,float theta);
 /**
  * @brief remove a line from the hitbox 
  * @param hb : hit boxe to which the line will be removed
@@ -112,7 +111,7 @@ int addCircleSDL2(Clickable * hb,float x,float y,float rX,float rY,float theta);
  * @param sens : indicator of the side of the line which is hittable (-1 : ax+by<c, 1 : ax+by>c)
  * @return 0 if the line was correctly removed, 1 in the other case
  */
-int removeLineSDL2(Clickable * hb,float a,float b,float c,int sens);
+int delLine(Clickable * hb,float a,float b,float c,int sens);
 /**
  * @brief remove an ellipse from the hitbox
  * @param hb : hit boxe to which the line will be removed
@@ -123,7 +122,7 @@ int removeLineSDL2(Clickable * hb,float a,float b,float c,int sens);
  * @param theta : rotation of the ellipse (in degree)
  * @return 0 if the ellipse was correctly removed, 1 in the other case
  */
-int removeCircleSDL2(Clickable * hb,float x,float y,float rX,float rY,float theta);
+int delCircle(Clickable * hb,float x,float y,float rX,float rY,float theta);
 /**
  * @brief tells if (x,y) touch the hitbox 
  * @param hb : hit boxe that you are trying to touch
@@ -186,7 +185,7 @@ int addClickable(ListClickable * l,Clickable * hb,int blocking);
  * @param blocking : 0 if the hit boxe is hittable, 1 if it block other hit boxes
  * @return 0 if the hit boxe was succesfully removed, 1 if not
  */
-int removeClickable(ListClickable * l,Clickable * hb);
+int delClickable(ListClickable * l,Clickable * hb);
 /**
  * @brief initialise the iterator of the list of hit boxes
  * @param l : list of hit boxes

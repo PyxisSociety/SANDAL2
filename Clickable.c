@@ -17,12 +17,12 @@ Clickable * initClickable(){
   return hb;
 }
 
-int addLineSDL2(Clickable * hb,float a,float b,float c,int sens){
-  LineSDL2 * l;
+int addLine(Clickable * hb,float a,float b,float c,int sens){
+  Line * l;
   int error = 1;
 
   if(hb){
-    l=(LineSDL2*)malloc(sizeof(*l));
+    l=(Line*)malloc(sizeof(*l));
     if(l){
       l->next=hb->firstL;
       l->a=a;
@@ -37,12 +37,12 @@ int addLineSDL2(Clickable * hb,float a,float b,float c,int sens){
   return error;
 }
 
-int addCircleSDL2(Clickable * hb,float x,float y,float rX,float rY,float theta){
-  CircleSDL2 *c;
+int addCircle(Clickable * hb,float x,float y,float rX,float rY,float theta){
+  Circle *c;
   int error = 1;
 
   if(hb){
-    c=(CircleSDL2*)malloc(sizeof(*c));
+    c=(Circle*)malloc(sizeof(*c));
     if(c){
       c->next=hb->firstC;
       c->x=x;
@@ -58,9 +58,9 @@ int addCircleSDL2(Clickable * hb,float x,float y,float rX,float rY,float theta){
   return error;
 }
 
-int removeLineSDL2(Clickable * hb,float a,float b,float c,int sens){
+int delLine(Clickable * hb,float a,float b,float c,int sens){
   int error = 1;
-  LineSDL2 ** l, *tmp;
+  Line ** l, *tmp;
 
   if(hb){
     l=&(hb->firstL);
@@ -78,9 +78,9 @@ int removeLineSDL2(Clickable * hb,float a,float b,float c,int sens){
   return error;
 }
 
-int removeCircleSDL2(Clickable * hb,float x,float y,float rX,float rY,float theta){
+int delCircle(Clickable * hb,float x,float y,float rX,float rY,float theta){
   int error = 1;
-  CircleSDL2 ** c, *tmp;
+  Circle ** c, *tmp;
 
   if(hb){
     c=&(hb->firstC);
@@ -100,8 +100,8 @@ int removeCircleSDL2(Clickable * hb,float x,float y,float rX,float rY,float thet
 
 int hitClickable(Clickable * hb,float x,float y){
   int h = 0;
-  LineSDL2 * l;
-  CircleSDL2 * c;
+  Line * l;
+  Circle * c;
   float cs,sn;
   
   if(hb){
@@ -148,10 +148,10 @@ Clickable * rectangleClickable(float x1,float y1,float x2,float y2){
       y1=y2;
       y2=tmp;
     }
-    if(!addLineSDL2(hb,0.f,1.f,y2,-1)){
-      if(!addLineSDL2(hb,0.f,1.f,y1,1)){
-	if(!addLineSDL2(hb,1.f,0.f,x1,1)){
-	  if(addLineSDL2(hb,1.f,0.f,x2,-1)){
+    if(!addLine(hb,0.f,1.f,y2,-1)){
+      if(!addLine(hb,0.f,1.f,y1,1)){
+	if(!addLine(hb,1.f,0.f,x1,1)){
+	  if(addLine(hb,1.f,0.f,x2,-1)){
 	    freeClickable(hb);
 	    hb=NULL;
 	  }
@@ -176,7 +176,7 @@ Clickable * ellipseClickable(float x,float y,float rX,float rY,float theta){
   Clickable * hb=initClickable();
 
   if(hb){
-    if(addCircleSDL2(hb,x,y,rX,rY,theta)){
+    if(addCircle(hb,x,y,rX,rY,theta)){
       free(hb);
       hb=NULL;
     }
@@ -186,8 +186,8 @@ Clickable * ellipseClickable(float x,float y,float rX,float rY,float theta){
 }
 
 void freeClickable(Clickable * hb){
-  CircleSDL2 * c, * ctmp;
-  LineSDL2 * l, * ltmp;
+  Circle * c, * ctmp;
+  Line * l, * ltmp;
   if(hb){
     l=hb->firstL;
     while(l){
@@ -255,7 +255,7 @@ int addClickable(ListClickable * l,Clickable * hb,int blocking){
   return error;
 }
 
-int removeClickable(ListClickable * l,Clickable * hb){
+int delClickable(ListClickable * l,Clickable * hb){
   int error = 1;
   Clickable ** h, *tmp;
   

@@ -68,7 +68,7 @@ int addSprite(ListSprite * l,int x,int y,int width,int height,unsigned lifespan,
   return error;
 }
 
-int removeSprite(ListSprite * l,int code){
+int delSprite(ListSprite * l,int code){
   unsigned i = 0;
   int error = 1;
   Sprite * s;
@@ -196,7 +196,7 @@ int createAnimation(ListAnimation *l,int code){
   return error;
 }
 
-int removeAnimation(ListAnimation *l,int code){
+int delAnimation(ListAnimation *l,int code){
   ListSprite *ls;
   int error = 1;
   unsigned i = 0;
@@ -238,7 +238,7 @@ int addSpriteAnimation(ListAnimation *l,int code,int x,int y,int width,int heigh
   return error;
 }
 
-int removeSpriteAnimation(ListAnimation *l,int code,int codeS){
+int delSpriteAnimation(ListAnimation *l,int code,int codeS){
   ListSprite *ls;
   int error = 1;
   unsigned i = 0;
@@ -250,7 +250,7 @@ int removeSpriteAnimation(ListAnimation *l,int code,int codeS){
       ++i;
     }
     if(i<l->size){
-      error=removeSprite(ls,codeS);
+      error=delSprite(ls,codeS);
     }
   }
 

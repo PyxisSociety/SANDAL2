@@ -1,5 +1,5 @@
-#ifndef _SPRITE_SANDAL2_KLEVH_
-#define _SPRITE_SANDAL2_KLEVH_
+#ifndef SPRITE_SANDAL2_KLEVH
+#define SPRITE_SANDAL2_KLEVH
 
 #include <stdlib.h>
 
@@ -93,7 +93,7 @@ int addSprite(ListSprite * l,int x,int y,int width,int height,unsigned lifespan,
  * @param code : code of the sprite to be removed
  * @return 0 if the sprite was correctly removed, 1 if not
  */
-int removeSprite(ListSprite * l,int code);
+int delSprite(ListSprite * l,int code);
 /**
  * @brief set the lifespan of a sprite
  * @param l : list of sprite
@@ -137,7 +137,7 @@ int createAnimation(ListAnimation *l,int code);
  * @param code : code of the animation to be removed
  * @return 0 if the animation could be removed, 1 if not
  */
-int removeAnimation(ListAnimation *l,int code);
+int delAnimation(ListAnimation *l,int code);
 /**
  * @brief add a Sprite to an animation
  * @param l : list of animations
@@ -158,7 +158,7 @@ int addSpriteAnimation(ListAnimation *l,int code,int x,int y,int width,int heigh
  * @param codeS : code of the sprite to be removed
  * @return 0 if the sprite was correctly removed, 1 if not
  */
-int removeSpriteAnimation(ListAnimation *l,int code,int codeS);
+int delSpriteAnimation(ListAnimation *l,int code,int codeS);
 /**
  * @brief set the lifespan of a sprite
  * @param l : list of animations

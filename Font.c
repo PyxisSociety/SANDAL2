@@ -1,15 +1,15 @@
-#include "FontSDL2.h"
+#include "Font.h"
 
 /* -------------------------------------------------------
- * Text SDL2
+ * Text 
  */
-FontSDL2* createFontSDL2(const char *fontPath,const char *texte,int couleur[4],int quality){
-  FontSDL2 *f;
+Font* createFont(const char *fontPath,const char *texte,int couleur[4],int quality){
+  Font *f;
   SDL_Surface *s;
   SDL_Color c,c2;
 
   if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->renderer){
-    f=(FontSDL2*)malloc(sizeof(*f));
+    f=(Font*)malloc(sizeof(*f));
     if(f){
       f->font=TTF_OpenFont(fontPath,30);
       if(f->font){
@@ -40,12 +40,12 @@ FontSDL2* createFontSDL2(const char *fontPath,const char *texte,int couleur[4],i
 	  if(s){
 	    f->texture=SDL_CreateTextureFromSurface(_windows_SANDAL2->current->renderer,s);
 	    if(!f->texture){
-		freeFontSDL2(f);
+		freeFont(f);
 		f=NULL;
 	    }
 	    SDL_FreeSurface(s);
 	  }else if(f){
-	    freeFontSDL2(f);
+	    freeFont(f);
 	    f=NULL;
 	  }
 	}else{
@@ -63,7 +63,7 @@ FontSDL2* createFontSDL2(const char *fontPath,const char *texte,int couleur[4],i
   return f;
 }
 
-void freeFontSDL2(FontSDL2 *font){
+void freeFont(Font *font){
   if(font){
     if(font->texture){
       SDL_DestroyTexture(font->texture);
@@ -75,7 +75,7 @@ void freeFontSDL2(FontSDL2 *font){
     free(font);
   }
 }
-int actualizeTextFontSDL2(FontSDL2 *font,int isScripted){
+int actualizeTextFont(Font *font,int isScripted){
   SDL_Surface *s = NULL;
   char *str;
   int size,i,error=1;
@@ -140,7 +140,7 @@ int actualizeTextFontSDL2(FontSDL2 *font,int isScripted){
   return error;
 }
 
-int changeTextFontSDL2(FontSDL2 *font,const char *text){
+int setTextFont(Font *font,const char *text){
   SDL_Surface *s;
   int error = 1;
   SDL_Color c2;
@@ -178,7 +178,7 @@ int changeTextFontSDL2(FontSDL2 *font,const char *text){
   return error;
 }
 
-int changeColorFontSDL2(FontSDL2 *font,int color[4]){
+int setColorFont(Font *font,int color[4]){
   SDL_Surface *s;
   int error = 1;
   SDL_Color c2;
@@ -217,7 +217,7 @@ int changeColorFontSDL2(FontSDL2 *font,int color[4]){
   return error;
 }
 
-int setStyleFontSDL2(FontSDL2 *font,int style){
+int setStyleFont(Font *font,int style){
   SDL_Surface *s;
   int error = 1;
   SDL_Color c2;
@@ -253,7 +253,7 @@ int setStyleFontSDL2(FontSDL2 *font,int style){
   return error;
 }
 
-int getStyleFontSDL2(FontSDL2 *font,int * style){
+int getStyleFont(Font *font,int * style){
   int error = 1;
 
   if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->renderer && font && font->font){

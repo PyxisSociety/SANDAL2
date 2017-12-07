@@ -14,7 +14,7 @@ void generate(int plan){
 		       {0,0,255,0},
 		       {255,0,255}};
 
-    getDimensionWindowSDL2(&ww,&wh);
+    getDimensionWindow(&ww,&wh);
 
     ww *= .8;
     wh *= .8;
@@ -36,7 +36,7 @@ void keyWindow(SDL_Keycode c){
 
     switch(c){
     case 27: /* ESCAP */
-	if(!getDataWindowSDL2((void **)&val) && val)
+	if(!getDataWindow((void **)&val) && val)
 	    *val = 0;
 	break;
     case 89: /* 1 pave numerique */
@@ -65,38 +65,39 @@ int main(){
 
     srand(time(0));
   
-    if(initAllSDL2(IMG_INIT_JPG)){
+    if(initAllSANDAL2(IMG_INIT_JPG)){
 	fprintf(stderr,"Erreur d'initialisation de la bibliotheque graphique.\n");
 	exit(-1);
     }
 
     /* initialisation de la fenetre */
-    initWindowSDL2(400,400,"test",SDL_WINDOW_RESIZABLE,noir,0);
-    if(initIteratorWindowSDL2()){
-	closeAllSDL2();
+    createWindow(400,400,"test",SDL_WINDOW_RESIZABLE,noir,0);
+    if(initIteratorWindow()){
+	closeAllSANDAL2();
 	fprintf(stderr,"Erreur d'ouverture de la fenetre.\n");
 	exit(-1);
     }
-    setKeyPressedWindowSDL2(keyWindow);
+    setDataWindow(&run);
+    setKeyPressedWindow(keyWindow);
     
     /* display de la fenetre */
     while(run){
 	tps = SDL_GetTicks();
 	/* gestion d'evenement */
-	run=!PollEventSDL2(NULL) && run;
+	run=!PollEvent(NULL) && run;
 
 	/* update de la fenetre */
-	updateWindowSDL2();
+	updateWindow();
 	/* affichage de la fenetre */
-	displayWindowSDL2();
+	displayWindow();
 	/* delai pour 60 frames/secondes */
 	ticks = 16 - SDL_GetTicks() + tps;
 	if(ticks>0)
 	    SDL_Delay(ticks);
     }
 
-    closeAllWindowSDL2();
-    closeAllSDL2();
+    closeAllWindow();
+    closeAllSANDAL2();
 
     return 0;
 }

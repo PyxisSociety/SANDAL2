@@ -12,18 +12,18 @@
 #include <SANDAL2/SANDAL2.h> /* only header needed for SANDAL2 */
 
 int main(){
-    if(initSDL2()){
+    if(initSANDAL2()){
 	puts("Failed to init SDL2");
 	return -1;
     }
 
-    if(initText()){
+    if(initTextSANDAL2()){
 	puts("Failed to init the Text");
 	closeSDL2();
 	return -1;
     }
 
-    if(initImage(IMG_INIT_JPG)){
+    if(initImageSANDAL2(IMG_INIT_JPG)){
 	puts("Failed to init the image");
 	closeText();
 	closeSDL2();
@@ -32,9 +32,9 @@ int main(){
 
     /* your code */
 
-    closeImage();
-    closeText();
-    closeSDL2();
+    closeImageSANDAL2();
+    closeTextSANDAL2();
+    closeSANDAL2();
 
     return 0;
 }
@@ -45,14 +45,14 @@ int main(){
 #include <SANDAL2/SANDAL2.h> /* only header needed for SANDAL2 */
 
 int main(){
-    if(initAllSDL2(IMG_INIT_JPG)){
+    if(initAllSANDAL2(IMG_INIT_JPG)){
 	puts("Failed to init SANDAL2");
 	return -1;
     }
 
     /* your code */
 
-    closeAllSDL2();
+    closeAllSANDAL2();
     
     return 0;
 }
@@ -60,7 +60,7 @@ int main(){
   
 The first method has the advantage that the image and text initialisations can be omitted if you do not use those features while the second one is way shorter.
 
-The parameter of initImage() (same for initAllSDL2()) is either IMG_INIT_JPG, IMG_INIT_PNG or IMG_INIT_TIF or a combination of those flags to tell which type of image you want to open (here jpg/jpeg images). For example : `IMG_INIT_PNG | IMG_INIT_TIF` for png and tif image files.
+The parameter of initImageSANDAL2() (same for initAllSANDAL2()) is either IMG_INIT_JPG, IMG_INIT_PNG or IMG_INIT_TIF or a combination of those flags to tell which type of image you want to open (here jpg/jpeg images). For example : `IMG_INIT_PNG | IMG_INIT_TIF` for png and tif image files.
 
 ## Window Creation
 
@@ -69,23 +69,23 @@ The parameter of initImage() (same for initAllSDL2()) is either IMG_INIT_JPG, IM
 #include <SANDAL2/SANDAL2.h> /* only header needed for SANDAL2 */
 
 int main(){
-    if(initAllSDL2(IMG_INIT_JPG)){
+    if(initAllSANDAL2(IMG_INIT_JPG)){
 	puts("Failed to init SANDAL2");
 	return -1;
     }
 
     /* creation of your window */
-    initWindowSDL2(400, /* width of the window */
-		   400, /* height of the window */
-		   "SANDAL2 - Klevh", /* title */
-		   0, /* Options (see below) */
-		   black, /* background color */
-		   0); /* Default display code of the window (we will see more about them later) */
+    createWindow(400, /* width of the window */
+	        400, /* height of the window */
+	        "SANDAL2 - Klevh", /* title */
+	        0, /* Options (see below) */
+	        black, /* background color */
+	        0); /* Default display code of the window (we will see more about them later) */
 
     /* your code */
 
-    closeAllWindowSDL2(); /* close all windows */
-    closeAllSDL2();
+    closeAllWindow(); /* close all windows */
+    closeAllSANDAL2();
     
     return 0;
 }

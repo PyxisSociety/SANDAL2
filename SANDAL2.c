@@ -26,7 +26,7 @@ static void copyColor(int to[4],int from[4]){
 /* -------------------------------------------------------
  * Initialisation et fermeture des outils SDL2
  */
-int initAllSDL2(int imageFlags){
+int initAllSANDAL2(int imageFlags){
     int failedInit=0;
 
     if(SDL_Init(SDL_INIT_VIDEO) == -1){
@@ -43,13 +43,13 @@ int initAllSDL2(int imageFlags){
     return failedInit;
 }
 
-void closeAllSDL2(){
+void closeAllSANDAL2(){
     IMG_Quit();
     TTF_Quit();
     SDL_Quit();
 }
 
-int initSDL2(){
+int initSANDAL2(){
     int failedInit = 0;
   
     if(SDL_Init(SDL_INIT_VIDEO) == -1){
@@ -59,7 +59,7 @@ int initSDL2(){
     return failedInit;
 }
 
-int initImage(int imageFlags){
+int initImageSANDAL2(int imageFlags){
     int failedInit = 0;
   
     if((IMG_Init(imageFlags)&imageFlags)!=imageFlags){
@@ -69,7 +69,7 @@ int initImage(int imageFlags){
     return failedInit;
 }
 
-int initText(){
+int initTextSANDAL2(){
     int failedInit = 0;
   
     if(TTF_Init()){
@@ -79,15 +79,15 @@ int initText(){
     return failedInit;
 }
 
-void closeSDL2(){
+void closeSANDAL2(){
     SDL_Quit();
 }
 
-void closeImage(){
+void closeImageSANDAL2(){
     IMG_Quit();
 }
 
-void closeText(){
+void closeTextSANDAL2(){
     TTF_Quit();
 }
 /* ------------------------------------------------------- */
@@ -97,10 +97,10 @@ void closeText(){
 /* ------------------------------------------------------- 
  * Creation, modification et suppression des fenetres
  */
-static void freeWindowSDL2(WindowSDL2 *fen){
+static void freeWindow(Window *fen){
     if(fen){
         if(fen->liste){
-            _freeListElementSDL2(fen->liste);
+            _freeListElement(fen->liste);
         }
         if(fen->renderer){
             SDL_DestroyRenderer(fen->renderer);
@@ -111,8 +111,8 @@ static void freeWindowSDL2(WindowSDL2 *fen){
     }
 }
 
-int initWindowSDL2(int width,int height,char *title,int SDLFlags,int background[4],int displayCode){
-    WindowSDL2 *fen=(WindowSDL2*)malloc(sizeof(*fen));
+int createWindow(int width,int height,char *title,int SDLFlags,int background[4],int displayCode){
+    Window *fen=(Window*)malloc(sizeof(*fen));
     int error = 1;
 
     fen->window=SDL_CreateWindow(title,
@@ -146,7 +146,7 @@ int initWindowSDL2(int width,int height,char *title,int SDLFlags,int background[
             fen->events.keyReleased=NULL;
             fen->toDelete=0;
             copyColor(fen->background,background);
-            fen->liste = _initListElementSDL2();
+            fen->liste = _initListElement();
             fen->current = NULL;
 	    fen->stop = 0;
 	    fen->state = SDLFlags&SDL_WINDOW_FULLSCREEN;
@@ -156,7 +156,7 @@ int initWindowSDL2(int width,int height,char *title,int SDLFlags,int background[
                 free(fen);
             }else{
                 if(!_windows_SANDAL2){
-                    _windows_SANDAL2 = (ListWindowSDL2*)malloc(sizeof(*_windows_SANDAL2));
+                    _windows_SANDAL2 = (ListWindow*)malloc(sizeof(*_windows_SANDAL2));
                     if(_windows_SANDAL2){
                         _windows_SANDAL2->first = fen;
                         _windows_SANDAL2->last = fen;
@@ -183,8 +183,8 @@ int initWindowSDL2(int width,int height,char *title,int SDLFlags,int background[
     return error;
 }
 
-int closeWindowSDL2(){
-    WindowSDL2 * f, * tmp;
+int closeWindow(){
+    Window * f, * tmp;
     int error = 1;
   
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
@@ -202,7 +202,7 @@ int closeWindowSDL2(){
         }
         error = 0;
         _windows_SANDAL2->current=_windows_SANDAL2->current->next;
-        freeWindowSDL2(f);
+        freeWindow(f);
         if(!_windows_SANDAL2->first){
             free(_windows_SANDAL2);
             _windows_SANDAL2 = NULL;
@@ -212,7 +212,7 @@ int closeWindowSDL2(){
     return error;
 }
 
-int shouldCloseWindowSDL2(){
+int shouldCloseWindow(){
     int error = 1;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
@@ -223,8 +223,8 @@ int shouldCloseWindowSDL2(){
     return error;
 }
 
-int closeAllWindowSDL2(){
-    WindowSDL2 *f, *tmp;
+int closeAllWindow(){
+    Window *f, *tmp;
     int error = 1;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->first){
@@ -233,7 +233,7 @@ int closeAllWindowSDL2(){
         while(f){
             tmp=f;
             f=f->next;
-            freeWindowSDL2(tmp);
+            freeWindow(tmp);
         }
         free(_windows_SANDAL2);
         _windows_SANDAL2=NULL;
@@ -242,7 +242,7 @@ int closeAllWindowSDL2(){
     return error;
 }
 
-int toggleFullScreenWindowSDL2(void){
+int toggleFullScreenWindow(void){
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
 	if(_windows_SANDAL2->current->state == SDL_WINDOW_FULLSCREEN){
 	    SDL_SetWindowFullscreen(_windows_SANDAL2->current->window, 0);
@@ -256,7 +256,7 @@ int toggleFullScreenWindowSDL2(void){
     return _windows_SANDAL2 && _windows_SANDAL2->current;
 }
 
-int isFullScreenWindowSDL2(void){
+int isFullScreenWindow(void){
     return _windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->state == SDL_WINDOW_FULLSCREEN;
 }
 /* ------------------------------------------------------- */
@@ -264,12 +264,12 @@ int isFullScreenWindowSDL2(void){
 
 
 /* -------------------------------------------------------
- * Fenetre SDL2
+ * Fenetre 
  */
-int updateWindowSDL2(){
-    PtrElementSDL2 **ele;
-    ListPtrElementSDL2 *lp;
-    ListDCElementSDL2 *ldc;
+int updateWindow(){
+    PtrElement **ele;
+    ListPtrElement *lp;
+    ListDCElement *ldc;
     unsigned i;
     int error=1;
 
@@ -303,7 +303,7 @@ int updateWindowSDL2(){
             while(lp && !_windows_SANDAL2->current->close){
                 ele=&(lp->first);
                 while(*ele && !_windows_SANDAL2->current->close){
-                    if(isDisplaied((*ele)->element)){
+                    if(isDisplaiedElement((*ele)->element)){
                         if((*ele)->element->events.action){
                             (*ele)->element->events.action((*ele)->element);
                         }
@@ -313,9 +313,9 @@ int updateWindowSDL2(){
                                 i=0;
                                 do{
                                     if((*ele)->element->animation->current->sens == -1){
-                                        previousSpriteElementSDL2((*ele)->element);
+                                        previousSpriteElement((*ele)->element);
                                     }else{
-                                        nextSpriteElementSDL2((*ele)->element);
+                                        nextSpriteElement((*ele)->element);
                                     }
                                     ++i;
                                 }while(i<(*ele)->element->animation->current->size && !(*ele)->element->animation->current->current->lifespan);
@@ -341,9 +341,9 @@ int updateWindowSDL2(){
             }
 	    _windows_SANDAL2->current->stop = 0;
             if(_windows_SANDAL2->current->close){
-                closeWindowSDL2();
+                closeWindow();
             }else{
-                _cleanElementSDL2();
+                _cleanElement();
             }
         }
     }
@@ -351,10 +351,10 @@ int updateWindowSDL2(){
     return error;
 }
 
-int displayWindowSDL2(){
-    PtrElementSDL2 *ele;
-    ListPtrElementSDL2 * lp;
-    ListDCElementSDL2 * ldc;
+int displayWindow(){
+    PtrElement *ele;
+    ListPtrElement * lp;
+    ListDCElement * ldc;
     SDL_Rect r,sr, *srect;
     int coul[4];
     SDL_Point p;
@@ -374,7 +374,7 @@ int displayWindowSDL2(){
                 /* affichage des elements */
                 ele=lp->first;
                 while(ele){
-                    if(isDisplaied(ele->element)){
+                    if(isDisplaiedElement(ele->element)){
                         r.x=(ele->element->x - _windows_SANDAL2->current->origin[0])*_windows_SANDAL2->current->width/_windows_SANDAL2->current->initWidth;
                         r.y=(ele->element->y - _windows_SANDAL2->current->origin[1])*_windows_SANDAL2->current->height/_windows_SANDAL2->current->initHeight;
                         r.w=ele->element->width*_windows_SANDAL2->current->width/_windows_SANDAL2->current->initWidth;
@@ -431,10 +431,10 @@ int displayWindowSDL2(){
     return error;
 }
 
-int clickWindowSDL2(int x,int y){
-    PtrElementSDL2 *e;
-    ListPtrElementSDL2 *lp;
-    ListDCElementSDL2 *ldc;
+int clickWindow(int x,int y){
+    PtrElement *e;
+    ListPtrElement *lp;
+    ListDCElement *ldc;
     float newX,newY,c,s,xtmp,prX,prY;
     float rot = 0.f;
     int error = 1;
@@ -453,7 +453,7 @@ int clickWindowSDL2(int x,int y){
             while(lp && !_windows_SANDAL2->current->close){
                 e=lp->first;
                 while(e && !_windows_SANDAL2->current->close){
-                    if(isDisplaied(e->element)){
+                    if(isDisplaiedElement(e->element)){
                         newX=x*_windows_SANDAL2->current->initWidth/_windows_SANDAL2->current->width + _windows_SANDAL2->current->origin[0];
                         newY=y*_windows_SANDAL2->current->initHeight/_windows_SANDAL2->current->height + _windows_SANDAL2->current->origin[1];
                         if(e->element->rotation != 0.f && e->element->coulBlock[0]==-1){
@@ -501,19 +501,19 @@ int clickWindowSDL2(int x,int y){
                 lp=lp->next;
             }
             if(_windows_SANDAL2->current->close){
-                closeWindowSDL2();
+                closeWindow();
             }else
-		_cleanElementSDL2();
+		_cleanElement();
         }
     }
 
     return error;
 }
 
-int unclickWindowSDL2(int x,int y){
-    PtrElementSDL2 *e;
-    ListPtrElementSDL2 *lp;
-    ListDCElementSDL2 *ldc;
+int unclickWindow(int x,int y){
+    PtrElement *e;
+    ListPtrElement *lp;
+    ListDCElement *ldc;
     float newX,newY,c,s,xtmp;
     float rot = 0.f;
     int error = 1;
@@ -532,7 +532,7 @@ int unclickWindowSDL2(int x,int y){
             while(lp && !_windows_SANDAL2->current->close){
                 e=lp->first;
                 while(e && !_windows_SANDAL2->current->close){
-                    if(isDisplaied(e->element)){
+                    if(isDisplaiedElement(e->element)){
                         newX=(x*_windows_SANDAL2->current->initWidth/_windows_SANDAL2->current->width-e->element->x)/(e->element->width) + _windows_SANDAL2->current->origin[0];
                         newY=(y*_windows_SANDAL2->current->initHeight/_windows_SANDAL2->current->height-e->element->y)/(e->element->height) + _windows_SANDAL2->current->origin[1];
                         if(e->element->rotation != 0.f && e->element->coulBlock[0]==-1){
@@ -562,19 +562,19 @@ int unclickWindowSDL2(int x,int y){
                 lp=lp->next;
             }
             if(_windows_SANDAL2->current->close){
-                closeWindowSDL2();
+                closeWindow();
             }else
-		_cleanElementSDL2();
+		_cleanElement();
         }
     }
 
     return error;
 }
 
-int keyPressedWindowSDL2(char c){
-    PtrElementSDL2 *e;
-    ListPtrElementSDL2 *lp;
-    ListDCElementSDL2 *ldc;
+int keyPressedWindow(char c){
+    PtrElement *e;
+    ListPtrElement *lp;
+    ListDCElement *ldc;
     int error = 1;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
@@ -599,19 +599,19 @@ int keyPressedWindowSDL2(char c){
                 lp=lp->next;
             }
             if(_windows_SANDAL2->current->close){
-                closeWindowSDL2();
+                closeWindow();
             }else
-		_cleanElementSDL2();
+		_cleanElement();
         }
     }
 
     return error;
 }
 
-int keyReleasedWindowSDL2(char c){
-    PtrElementSDL2 *e;
-    ListPtrElementSDL2 *lp;
-    ListDCElementSDL2 *ldc;
+int keyReleasedWindow(char c){
+    PtrElement *e;
+    ListPtrElement *lp;
+    ListDCElement *ldc;
     int error = 1;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
@@ -636,9 +636,9 @@ int keyReleasedWindowSDL2(char c){
                 lp=lp->next;
             }
             if(_windows_SANDAL2->current->close){
-                closeWindowSDL2();
+                closeWindow();
             }else
-		_cleanElementSDL2();
+		_cleanElement();
         }
     }
 
@@ -646,8 +646,8 @@ int keyReleasedWindowSDL2(char c){
 }
 
 
-unsigned long updateAllWindowSDL2(){
-    WindowSDL2 * w, * tmp;
+unsigned long updateAllWindow(){
+    Window * w, * tmp;
     unsigned long error = 1;
     int err;
     int bit = 2;
@@ -655,17 +655,17 @@ unsigned long updateAllWindowSDL2(){
     if(_windows_SANDAL2){
         error = 0;
         w=_windows_SANDAL2->current;
-        initIteratorWindowSDL2();
+        initIteratorWindow();
         do{
             tmp=_windows_SANDAL2->current;
-            err=updateWindowSDL2()*bit;
+            err=updateWindow()*bit;
             if(!error && err){
                 error=1;
             }
             error+=(unsigned)err*bit;
             bit*=2;
             if(tmp==_windows_SANDAL2->current){
-                nextWindowSDL2();
+                nextWindow();
             }
         }while(_windows_SANDAL2->current);
         _windows_SANDAL2->current=w;
@@ -674,8 +674,8 @@ unsigned long updateAllWindowSDL2(){
     return error;
 }
 
-unsigned long displayAllWindowSDL2(){
-    WindowSDL2 * w;
+unsigned long displayAllWindow(){
+    Window * w;
     unsigned long error = 1;
     int err;
     int bit = 2;
@@ -683,23 +683,23 @@ unsigned long displayAllWindowSDL2(){
     if(_windows_SANDAL2){
         error = 0;
         w=_windows_SANDAL2->current;
-        initIteratorWindowSDL2();
+        initIteratorWindow();
         do{
-            err=displayWindowSDL2()*bit;
+            err=displayWindow()*bit;
             if(!error && err){
                 error=1;
             }
             error+=(unsigned)err*bit;
             bit*=2;
-        }while(!nextWindowSDL2());
+        }while(!nextWindow());
         _windows_SANDAL2->current=w;
     }
 
     return error;
 }
 
-unsigned long clickAllWindowSDL2(int x,int y){
-    WindowSDL2 * w,* tmp;
+unsigned long clickAllWindow(int x,int y){
+    Window * w,* tmp;
     unsigned long error = 1;
     int err;
     int bit = 2;
@@ -707,17 +707,17 @@ unsigned long clickAllWindowSDL2(int x,int y){
     if(_windows_SANDAL2){
         error = 0;
         w=_windows_SANDAL2->current;
-        initIteratorWindowSDL2();
+        initIteratorWindow();
         do{
             tmp=_windows_SANDAL2->current;
-            err=clickWindowSDL2(x,y)*bit;
+            err=clickWindow(x,y)*bit;
             if(!error && err){
                 error=1;
             }
             error+=(unsigned)err*bit;
             bit*=2;
             if(tmp==_windows_SANDAL2->current){
-                nextWindowSDL2();
+                nextWindow();
             }
         }while(_windows_SANDAL2->current);
         _windows_SANDAL2->current=w;
@@ -726,8 +726,8 @@ unsigned long clickAllWindowSDL2(int x,int y){
     return error;
 }
 
-unsigned long unclickAllWindowSDL2(int x,int y){
-    WindowSDL2 * w, *tmp;
+unsigned long unclickAllWindow(int x,int y){
+    Window * w, *tmp;
     unsigned long error = 1;
     int err;
     int bit = 2;
@@ -735,17 +735,17 @@ unsigned long unclickAllWindowSDL2(int x,int y){
     if(_windows_SANDAL2){
         error = 0;
         w=_windows_SANDAL2->current;
-        initIteratorWindowSDL2();
+        initIteratorWindow();
         do{
             tmp=_windows_SANDAL2->current;
-            err=unclickWindowSDL2(x,y)*bit;
+            err=unclickWindow(x,y)*bit;
             if(!error && err){
                 error=1;
             }
             error+=(unsigned)err*bit;
             bit*=2;
             if(tmp==_windows_SANDAL2->current){
-                nextWindowSDL2();
+                nextWindow();
             }
         }while(_windows_SANDAL2->current);
         _windows_SANDAL2->current=w;
@@ -754,8 +754,8 @@ unsigned long unclickAllWindowSDL2(int x,int y){
     return error;
 }
 
-unsigned long keyPressedAllWindowSDL2(char c){
-    WindowSDL2 * w, *tmp;
+unsigned long keyPressedAllWindow(char c){
+    Window * w, *tmp;
     unsigned long error = 1;
     int err;
     int bit = 2;
@@ -763,17 +763,17 @@ unsigned long keyPressedAllWindowSDL2(char c){
     if(_windows_SANDAL2){
         error = 0;
         w=_windows_SANDAL2->current;
-        initIteratorWindowSDL2();
+        initIteratorWindow();
         do{
             tmp=_windows_SANDAL2->current;
-            err=keyPressedWindowSDL2(c)*bit;
+            err=keyPressedWindow(c)*bit;
             if(!error && err){
                 error=1;
             }
             error+=(unsigned)err*bit;
             bit*=2;
             if(tmp==_windows_SANDAL2->current){
-                nextWindowSDL2();
+                nextWindow();
             }
         }while(_windows_SANDAL2->current);
         _windows_SANDAL2->current=w;
@@ -782,8 +782,8 @@ unsigned long keyPressedAllWindowSDL2(char c){
     return error;
 }
 
-unsigned long keyReleasedAllWindowSDL2(char c){
-    WindowSDL2 * w, *tmp;
+unsigned long keyReleasedAllWindow(char c){
+    Window * w, *tmp;
     unsigned long error = 1;
     int err;
     int bit = 2;
@@ -791,17 +791,17 @@ unsigned long keyReleasedAllWindowSDL2(char c){
     if(_windows_SANDAL2){
         error = 0;
         w=_windows_SANDAL2->current;
-        initIteratorWindowSDL2();
+        initIteratorWindow();
         do{
             tmp=_windows_SANDAL2->current;
-            err=keyReleasedWindowSDL2(c)*bit;
+            err=keyReleasedWindow(c)*bit;
             if(!error && err){
                 error=1;
             }
             error+=(unsigned)err*bit;
             bit*=2;
             if(tmp==_windows_SANDAL2->current){
-                nextWindowSDL2();
+                nextWindow();
             }
         }while(_windows_SANDAL2->current);
         _windows_SANDAL2->current=w;
@@ -817,7 +817,7 @@ unsigned long keyReleasedAllWindowSDL2(char c){
 /* ------------------------------------------------------- 
  * Gestion d'evenement
  */
-int PollEventSDL2(unsigned long * error){
+int PollEvent(unsigned long * error){
     SDL_Event event;
     int quit = 0;
     unsigned long err = 0;
@@ -833,16 +833,16 @@ int PollEventSDL2(unsigned long * error){
             quit = 1;
             break;
         case SDL_KEYUP:
-            err=err|keyReleasedWindowSDL2(event.key.keysym.sym);
+            err=err|keyReleasedWindow(event.key.keysym.sym);
             break;
         case SDL_KEYDOWN:
-            err=err|keyPressedWindowSDL2(event.key.keysym.sym);
+            err=err|keyPressedWindow(event.key.keysym.sym);
             break;
         case SDL_MOUSEBUTTONDOWN:
-            err=err|clickWindowSDL2(event.button.x,event.button.y);
+            err=err|clickWindow(event.button.x,event.button.y);
             break;
         case SDL_MOUSEBUTTONUP:
-            err=err|unclickWindowSDL2(event.button.x,event.button.y);
+            err=err|unclickWindow(event.button.x,event.button.y);
             break;
         }
     }

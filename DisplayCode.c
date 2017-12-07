@@ -58,7 +58,7 @@ int addDisplayCode(ListDisplayCode* l,int code,int isDisplaied,int plan){
   return error;
 }
 
-int removeDisplayCode(ListDisplayCode * l, int code){
+int delDisplayCode(ListDisplayCode * l, int code){
     int error = 1;
     DisplayCode ** d, * dtmp;
     

@@ -24,15 +24,15 @@ int main(){
     int white[] = {255,255,255,0};
     int black[] = {0,0,0,0};
     
-    if(initAllSDL2(IMG_INIT_JPG)){
+    if(initAllSANDAL2(IMG_INIT_JPG)){
 	puts("Failed to init SANDAL2");
 	return -1;
     }
 
     /* creation of your window */
-    if(initWindowSDL2(400,400,"SANDAL2 - Klevh",0,black,0)){
+    if(createWindow(400,400,"SANDAL2 - Klevh",0,black,0)){
         puts("Failed to open the window");
-	closeAllSDL2();
+	closeAllSANDAL2();
 	return -1;
     }
 
@@ -139,19 +139,19 @@ int main(){
 
 
 
-    /* PollEventSDL2 : function to catch events, return 1 when the user clicked on the cross to close the window, we will speak about it later */
-    while(!PollEventSDL2(NULL)){ 
+    /* PollEvent : function to catch events, return 1 when the user clicked on the cross to close the window, we will speak about it later */
+    while(!PollEvent(NULL)){ 
 	/* updating the window content, mandatory when you change things in your window while running */
-	updateWindowSDL2();
+	updateWindow();
 	/* displaying the window */
-	displayWindowSDL2();
+	displayWindow();
 
 	/* this delay is to have about 60fps */
 	SDL_Delay(16);
     }
 
-    closeAllWindowSDL2();
-    closeAllSDL2();
+    closeAllWindow();
+    closeAllSANDAL2();
     return 0;
 }
 ```

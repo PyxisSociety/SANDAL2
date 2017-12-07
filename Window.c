@@ -1,6 +1,6 @@
-#include "WindowSDL2.h"
+#include "Window.h"
 
-ListWindowSDL2 * _windows_SANDAL2 = NULL;
+ListWindow * _windows_SANDAL2 = NULL;
 
 
 
@@ -18,9 +18,9 @@ static void copyColor(int to[4],int from[4]){
 
 
 /* -------------------------------------------------------
- * Window SDL2
+ * Window 
  */
-int resizeWindowSDL2(unsigned width,unsigned height){
+int resizeWindow(unsigned width,unsigned height){
     int error = 1;
     
     if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->window){
@@ -33,7 +33,7 @@ int resizeWindowSDL2(unsigned width,unsigned height){
     return error;
 }
 
-int setDisplayCodeWindowSDL2(int displayCode){
+int setDisplayCodeWindow(int displayCode){
     int error = 1;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->displayCode != displayCode){
@@ -45,7 +45,7 @@ int setDisplayCodeWindowSDL2(int displayCode){
     return error;
 }
 
-int initIteratorWindowSDL2(){
+int initIteratorWindow(){
     int error = 1;
 
     if(_windows_SANDAL2){
@@ -56,7 +56,7 @@ int initIteratorWindowSDL2(){
     return error;
 }
 
-int nextWindowSDL2(){
+int nextWindow(){
     int error = 1;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
@@ -67,7 +67,7 @@ int nextWindowSDL2(){
     return error;
 }
 
-int getDimensionWindowSDL2(int * w,int * h){
+int getDimensionWindow(int * w,int * h){
     int error = 0;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
@@ -83,7 +83,7 @@ int getDimensionWindowSDL2(int * w,int * h){
     return error;
 }
 
-int getDisplayCodeWindowSDL2(int * d){
+int getDisplayCodeWindow(int * d){
     int error = 1;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
@@ -96,7 +96,7 @@ int getDisplayCodeWindowSDL2(int * d){
     return error;
 }
 
-int getColorWindowSDL2(int color[4]){
+int getColorWindow(int color[4]){
     int error = 1;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
@@ -107,7 +107,7 @@ int getColorWindowSDL2(int color[4]){
     return error;
 }
 
-int setColorWindowSDL2(int color[4]){
+int setColorWindow(int color[4]){
     int error = 1;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
@@ -118,7 +118,7 @@ int setColorWindowSDL2(int color[4]){
     return error;
 }
 
-int getCoordWindowSDL2(int *x,int *y){
+int getCoordWindow(int *x,int *y){
     int error = 1;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->first){
@@ -129,7 +129,7 @@ int getCoordWindowSDL2(int *x,int *y){
     return error;
 }
 
-int setCoordWindowSDL2(int x,int y){
+int setCoordWindow(int x,int y){
     int error = 1;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->first){
@@ -140,7 +140,7 @@ int setCoordWindowSDL2(int x,int y){
     return error;
 }
 
-int getRealDimensionWindowSDL2(int *width,int *height){
+int getRealDimensionWindow(int *width,int *height){
     int error = 1;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->first){
@@ -156,7 +156,7 @@ int getRealDimensionWindowSDL2(int *width,int *height){
     return error;
 }
 
-int getIDWindowSDL2(Uint32 *ID){
+int getIDWindow(Uint32 *ID){
     int error = 1;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->first){
@@ -169,7 +169,7 @@ int getIDWindowSDL2(Uint32 *ID){
     return error;
 }
 
-int setIconWindowSDL2(char * icon_path){
+int setIconWindow(char * icon_path){
     SDL_Surface *s;
     int error = 1;
 
@@ -185,7 +185,7 @@ int setIconWindowSDL2(char * icon_path){
     return error;
 }
 
-int setActionWindowSDL2(void (*action)(void)){
+int setActionWindow(void (*action)(void)){
     int error = 1;
   
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
@@ -196,7 +196,7 @@ int setActionWindowSDL2(void (*action)(void)){
     return error;
 }
 
-int setKeyPressedWindowSDL2(void (*keyPress)(SDL_Keycode c)){
+int setKeyPressedWindow(void (*keyPress)(SDL_Keycode c)){
     int error = 1;
   
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
@@ -207,7 +207,7 @@ int setKeyPressedWindowSDL2(void (*keyPress)(SDL_Keycode c)){
     return error;
 }
 
-int setKeyReleasedWindowSDL2(void (*keyReleased)(SDL_Keycode c)){
+int setKeyReleasedWindow(void (*keyReleased)(SDL_Keycode c)){
     int error = 1;
   
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
@@ -218,7 +218,7 @@ int setKeyReleasedWindowSDL2(void (*keyReleased)(SDL_Keycode c)){
     return error;
 }
 
-int setOnClickWindowSDL2(void (*onClick)(void)){
+int setOnClickWindow(void (*onClick)(void)){
     int error = 1;
   
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
@@ -229,7 +229,7 @@ int setOnClickWindowSDL2(void (*onClick)(void)){
     return error;
 }
 
-int setUnClickWindowSDL2(void (*unClick)(void)){
+int setUnClickWindow(void (*unClick)(void)){
     int error = 1;
   
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
@@ -240,7 +240,7 @@ int setUnClickWindowSDL2(void (*unClick)(void)){
     return error;
 }
 
-int getOriginWindowSDL2(int * x,int * y){
+int getOriginWindow(int * x,int * y){
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
 	if(x)
 	    *x = _windows_SANDAL2->current->origin[0];
@@ -251,7 +251,7 @@ int getOriginWindowSDL2(int * x,int * y){
     return _windows_SANDAL2 && _windows_SANDAL2->current;
 }
 
-int setOriginWindowSDL2(int x,int y){
+int setOriginWindow(int x,int y){
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
 	_windows_SANDAL2->current->origin[0] = x;
 	_windows_SANDAL2->current->origin[1] = y;
@@ -260,28 +260,28 @@ int setOriginWindowSDL2(int x,int y){
     return !(_windows_SANDAL2 && _windows_SANDAL2->current);
 }
 
-int setXOriginWindowSDL2(int x){
+int setXOriginWindow(int x){
     if(_windows_SANDAL2 && _windows_SANDAL2->current)
 	_windows_SANDAL2->current->origin[0] = x;
 
     return !(_windows_SANDAL2 && _windows_SANDAL2->current);
 }
 
-int setYOriginWindowSDL2(int y){
+int setYOriginWindow(int y){
     if(_windows_SANDAL2 && _windows_SANDAL2->current)
 	_windows_SANDAL2->current->origin[1] = y;
 
     return !(_windows_SANDAL2 && _windows_SANDAL2->current);
 }
 
-int setDataWindowSDL2(void * data){
+int setDataWindow(void * data){
     if(_windows_SANDAL2 && _windows_SANDAL2->current)
 	_windows_SANDAL2->current->data = data;
 
     return !(_windows_SANDAL2 && _windows_SANDAL2->current);
 }
 
-int getDataWindowSDL2(void ** data){
+int getDataWindow(void ** data){
     if(_windows_SANDAL2 && _windows_SANDAL2->current)
 	if(data)
 	    *data = _windows_SANDAL2->current->data;
