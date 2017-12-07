@@ -14,7 +14,7 @@ When an object is on a plan with a greater index than another one, this first ob
 
 With the code bellow, try playing with keys 1, 2, 3, 4, 5 and 6 (1, 2, 3 first, then 4, 5, 6 where all the random squares were added).
 
-̀̀̀c
+```c
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -25,7 +25,9 @@ void generate(int plan){
     int ww,wh;
     int x, y, w, h;
     int i;
-    int color[5][4] = {{255,255,255,0},{255,0,0,0},{0,255,0,0},{0,0,255,0},{255,0,255}};
+    int color[5][4] = {
+    	{255,255,255,0},{255,0,0,0},{0,255,0,0},{0,0,255,0},{255,0,255}
+    };
 
     getDimensionWindow(&ww,&wh);
 
