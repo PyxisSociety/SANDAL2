@@ -11,7 +11,7 @@ On each Element, there is a list of elements it can modify. You can remove an el
 
 In the code below, each time you click on a, it will create a new block just below the last one created (if there is enough space). You can delete the last block placed by clicking on d. You can move all the blocks together with left and right arrows.
 
-̀``c
+```c
 #include <stdio.h>
 #include <SANDAL2/SANDAL2.h>
 
