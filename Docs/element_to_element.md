@@ -40,7 +40,7 @@ int main(){
     /* creating our first element (which will controle all others) */
     e = createBlock(175,0,50,50,white,0,0);
 
-    /* we set its behavior on click */
+    /* we set its behavior when a key is pressed */
     setKeyPressedElement(e,click);
     
     /* main loop */
