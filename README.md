@@ -50,7 +50,7 @@ If the package is not made for your computer, you can download the [github proje
 make
 make package
 sudo make install
-̀``
+```
 
 ### II. Using the source code
 
