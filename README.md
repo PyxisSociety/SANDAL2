@@ -45,6 +45,13 @@ Uninstalling :
 dpkg --purge sandal2
 ```
 
+If the package is not made for your computer, you can download the [github project](https://github.com/Klevh/SANDAL2/), go into the directory downloaded and do those commands.
+```
+make
+make package
+sudo make install
+̀``
+
 ### II. Using the source code
 
 ```

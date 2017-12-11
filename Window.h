@@ -164,7 +164,7 @@ int getColorWindow(int color[4]);
  * @param color : new color of the background of the current window
  * @return 1 if there was an error, 0 if not
  */
-int setColorWindow(int color[4]);
+int setColorWindow(const int color[4]);
 /**
  * @brief Getter for the current window position
  * @param x : where the abscissa coordinate of the window will be store
@@ -197,7 +197,7 @@ int getIDWindow(Uint32 *ID);
  * @param icon_path : path of the image to be used
  * @return 1 if there was an error, 0 if not
  */
-int setIconWindow(char * icon_path);
+int setIconWindow(const char * icon_path);
 /**
  * @brief set the continuous behaviour of the current window
  * @param action : function to be called on each update call

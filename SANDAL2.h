@@ -74,7 +74,7 @@ void closeTextSANDAL2(void);
  * @param displayCode : display code of the window
  * @return 1 if it failed, 0 if not
  */
-int createWindow(int width,int height,char *title,int SDLFlags,int background[4],int displayCode);
+int createWindow(int width,int height,const char *title,int SDLFlags,int background[4],int displayCode);
 /**
  * @brief close the current windows and go to the next, do not use this one in elements' or windows' binded functions, use shouldCloseWindow() instead
  * @return 1 if it failed, 0 if not

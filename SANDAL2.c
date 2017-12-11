@@ -111,7 +111,7 @@ static void freeWindow(Window *fen){
     }
 }
 
-int createWindow(int width,int height,char *title,int SDLFlags,int background[4],int displayCode){
+int createWindow(int width,int height,const char *title,int SDLFlags,int background[4],int displayCode){
     Window *fen=(Window*)malloc(sizeof(*fen));
     int error = 1;
 

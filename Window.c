@@ -7,7 +7,7 @@ ListWindow * _windows_SANDAL2 = NULL;
 /* -------------------------------------------------------
  * Other functions
  */
-static void copyColor(int to[4],int from[4]){
+static void copyColor(int to[4],const int from[4]){
     to[0]=from[0];
     to[1]=from[1];
     to[2]=from[2];
@@ -107,7 +107,7 @@ int getColorWindow(int color[4]){
     return error;
 }
 
-int setColorWindow(int color[4]){
+int setColorWindow(const int color[4]){
     int error = 1;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
@@ -169,7 +169,7 @@ int getIDWindow(Uint32 *ID){
     return error;
 }
 
-int setIconWindow(char * icon_path){
+int setIconWindow(const char * icon_path){
     SDL_Surface *s;
     int error = 1;
 
