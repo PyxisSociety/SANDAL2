@@ -397,12 +397,12 @@ int displayWindow(){
                             }else{
                                 srect=NULL;
                             }
-                            if(ele->element->rotation == 0.f){
+                            if(ele->element->rotation == 0.f && ele->element->flip == SANDAL2_FLIP_NONE){
                                 SDL_RenderCopy(_windows_SANDAL2->current->renderer,ele->element->image,srect,&r);
                             }else{
                                 p.x=(int)(ele->element->prX*ele->element->width*_windows_SANDAL2->current->width/_windows_SANDAL2->current->initWidth);
                                 p.y=(int)(ele->element->prY*ele->element->height*_windows_SANDAL2->current->height/_windows_SANDAL2->current->initHeight);
-                                SDL_RenderCopyEx(_windows_SANDAL2->current->renderer,ele->element->image,srect,&r,(double)ele->element->rotation,&p,SDL_FLIP_NONE);
+                                SDL_RenderCopyEx(_windows_SANDAL2->current->renderer,ele->element->image,srect,&r,(double)ele->element->rotation,&p,ele->element->flip);
                             }
                         }
                         /* affichage du texte */

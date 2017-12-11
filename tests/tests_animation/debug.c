@@ -4,11 +4,14 @@
 
 void touch(Element *this){
     nextAnimationElement(this);
+    setFlipStateElement(this,SANDAL2_FLIP_NONE);
 }
 
 void endJump(Element *this,int code){
-    if(code==1)
+    if(code==1){
 	setAnimationElement(this,0);
+	setFlipStateElement(this,SANDAL2_FLIP_VER);
+    }
 }
 
 void moveWindow(SDL_Keycode c){
@@ -73,13 +76,13 @@ int main(){
     objet = createImage(150.f,100.f,100.f,200.f,"spritesheet.jpg",1,0);
     addClickableElement(objet,rectangleClickable(0.f,0.f,1.f,1.f),0);
   
-    createAnimationElement(objet,0);
+    addAnimationElement(objet,0);
     for(i=0;i<4;++i)
 	if(addSpriteAnimationElement(objet,0,55*i,0,55,75,10,i))
 	    printf("Error adding sprite %d to animation 0\n",i);
     setWaySpriteAnimationElement(objet,0,1);
 
-    createAnimationElement(objet,1);
+    addAnimationElement(objet,1);
     for(i=0;i<4;++i)
 	if(addSpriteAnimationElement(objet,1,259+i*72,0,72,75,10,i))
 	    printf("Error adding sprite %d to animation 1\n",i);

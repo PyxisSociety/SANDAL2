@@ -59,7 +59,7 @@ int main(){
     }
 
     /* adding key press/released behavior */
-    setKeyPressElement(e,key_behavior);
+    setKeyPressedElement(e,key_behavior);
     setKeyReleasedElement(e,key_behavior);
 
     /* adding continuous behavior */

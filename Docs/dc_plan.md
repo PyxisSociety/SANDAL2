@@ -15,6 +15,8 @@ When an object is on a plan with a greater index than another one, this first ob
 
 With the code bellow, try playing with keys 1, 2, 3, 4, 5 and 6 (1, 2, 3 first, then 4, 5, 6 where all the random squares were added).
 
+If your keyboard has different codes than mine, you can find generic flags [here](https://wiki.libsdl.org/SDL_Keycode).
+
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -45,7 +47,7 @@ void generate(int plan){
 	w = ww / .8 * .2;
 	h = wh / .8 * .2;
 	if(!createBlock(x,y,w,h,color[i],0,plan))
-	    puts("Failed to create block :\n\tDim : %d - %d\n\tCoord : %d - %d\n",w,h,x,y);
+	    printf("Failed to create block :\n\tDim : %d - %d\n\tCoord : %d - %d\n",w,h,x,y);
     }
 }
 

@@ -7,6 +7,11 @@
 #include "DisplayCode.h"
 #include "Sprite.h"
 
+#define SANDAL2_FLIP_HOR SDL_FLIP_HORIZONTAL
+#define SANDAL2_FLIP_VER SDL_FLIP_VERTICAL
+#define SANDAL2_FLIP_NONE SDL_FLIP_NONE
+#define SANDAL2_FLIP SDL_RendererFlip
+
 /**
  * @file Element.h
  * @author Baptiste PRUNIER (KLEVH)
@@ -24,16 +29,16 @@ extern ListWindow * _windows_SANDAL2;
  * @brief More informations about entry 
  */
 typedef struct{
-  int size_min;
-  /**< minimum size of the text of the entry*/
-  int size_max;
-  /**< maximum size of the text of the entry*/
-  int size;
-  /**< actual size of the text of the entry*/
-  int isSelect;
-  /**< tells whether or not the Entry is selected (1 for yes, 0 for no)*/
-  int isScripted;
-  /**< tells whether or not the Entry is crypted (1 for yes, 0 for no)*/
+    int size_min;
+    /**< minimum size of the text of the entry*/
+    int size_max;
+    /**< maximum size of the text of the entry*/
+    int size;
+    /**< actual size of the text of the entry*/
+    int isSelect;
+    /**< tells whether or not the Entry is selected (1 for yes, 0 for no)*/
+    int isScripted;
+    /**< tells whether or not the Entry is crypted (1 for yes, 0 for no)*/
 }Entry;
 
 struct ListPtrElement;
@@ -44,20 +49,20 @@ struct Element;
  * @brief Behaviors of an element to  events
  */
 typedef struct{
-  void (*action)(struct Element*);
-  /**< function called when update*/
-  void (*onClick)(struct Element*);
-  /**< function called when the element is clicked*/
-  void (*unClick)(struct Element*);
-  /**< function called when the element is unclicked*/
-  void (*keyPress)(struct Element*,SDL_Keycode c);
-  /**< function called when a key is pressed*/
-  void (*keyReleased)(struct Element*,SDL_Keycode c);
-  /**< function called when a key is released*/
-  void (*unSelect)(struct Element*);
-  /**< function called when the element is unselected*/
-  void (*endSprite)(struct Element*,int code);
-  /**< function called at the end of a sprite*/
+    void (*action)(struct Element*);
+    /**< function called when update*/
+    void (*onClick)(struct Element*);
+    /**< function called when the element is clicked*/
+    void (*unClick)(struct Element*);
+    /**< function called when the element is unclicked*/
+    void (*keyPress)(struct Element*,SDL_Keycode c);
+    /**< function called when a key is pressed*/
+    void (*keyReleased)(struct Element*,SDL_Keycode c);
+    /**< function called when a key is released*/
+    void (*unSelect)(struct Element*);
+    /**< function called when the element is unselected*/
+    void (*endSprite)(struct Element*,int code);
+    /**< function called at the end of a sprite*/
 }EventElement;
 
 /**
@@ -65,54 +70,56 @@ typedef struct{
  * @brief All the informations of an element
  */
 typedef struct Element{
-  float x;
-  /**< abscissa coordinate of the top left of the element*/
-  float y;
-  /**< ordinate coordinate of the top left of the element*/
-  float width;
-  /**< width of the element*/
-  float height;
-  /**< height of the element*/
-  float prX;
-  /**< abscissa coordinate of the rotation point (if from 0 to 1, in the element)*/
-  float prY;
-  /**< ordinate coordinate of the rotation point (if from 0 to 1, in the element)*/
-  float rotation;
-  /**< rotation angle of the element*/
-  float rotSpeed;
-  /**< speed rotation (degree / update) of the element*/
-  int coulBlock[4];
-  /**< color of the block of the element (if first value -1, there is no block)*/
-  float textSize;
-  /**< text proportion in the block*/
-  ListDisplayCode *codes;
-  /**< list of display code of the element*/
-  EventElement events;
-  /**< behavior of the element to  events*/
-  SDL_Texture * image;
-  /**< texture of the image (NULL if no image)*/
-  ListAnimation * animation;
-  /**< animation of the image*/
-  Font *font;
-  /**< informations about the text (NULL if no text)*/
-  Entry *entry;
-  /**< informations about the entry (NULL if no entry)*/
-  struct ListPtrElement *interactions;
-  /**< list of elements that this element can modifie*/
-  ListClickable * hitboxes;
-  /**< list of clickable zones*/
-  void * data;
-  /**< data available for the user*/
-  void (*freeData)(void*);
-  /**< function to be called to free the data */
-  int deleted;
-  /**< tells whether or not the element should be deleted (1 for completely deleted, 2 for display remove, 3 for plan change)*/
-  int deleteCode;
-  /**< plan or display code to be removed from*/
-  int selected;
-  /**< tells whether or not the element is selected*/
-  Window * parent;
-  /**< parent window of the element */
+    float x;
+    /**< abscissa coordinate of the top left of the element*/
+    float y;
+    /**< ordinate coordinate of the top left of the element*/
+    float width;
+    /**< width of the element*/
+    float height;
+    /**< height of the element*/
+    float prX;
+    /**< abscissa coordinate of the rotation point (if from 0 to 1, in the element)*/
+    float prY;
+    /**< ordinate coordinate of the rotation point (if from 0 to 1, in the element)*/
+    float rotation;
+    /**< rotation angle of the element*/
+    float rotSpeed;
+    /**< speed rotation (degree / update) of the element*/
+    SANDAL2_FLIP flip;
+    /**< tells whether or not the element should be flipped, can be SANDAL2_FLIP_VER, SANDAL2_FLIP_HOR, SANDAL2_FLIP_NONE or a combinaison of those  */
+    int coulBlock[4];
+    /**< color of the block of the element (if first value -1, there is no block)*/
+    float textSize;
+    /**< text proportion in the block*/
+    ListDisplayCode *codes;
+    /**< list of display code of the element*/
+    EventElement events;
+    /**< behavior of the element to  events*/
+    SDL_Texture * image;
+    /**< texture of the image (NULL if no image)*/
+    ListAnimation * animation;
+    /**< animation of the image*/
+    Font *font;
+    /**< informations about the text (NULL if no text)*/
+    Entry *entry;
+    /**< informations about the entry (NULL if no entry)*/
+    struct ListPtrElement *interactions;
+    /**< list of elements that this element can modifie*/
+    ListClickable * hitboxes;
+    /**< list of clickable zones*/
+    void * data;
+    /**< data available for the user*/
+    void (*freeData)(void*);
+    /**< function to be called to free the data */
+    int deleted;
+    /**< tells whether or not the element should be deleted (1 for completely deleted, 2 for display remove, 3 for plan change)*/
+    int deleteCode;
+    /**< plan or display code to be removed from*/
+    int selected;
+    /**< tells whether or not the element is selected*/
+    Window * parent;
+    /**< parent window of the element */
 }Element;
 
 /**
@@ -120,10 +127,10 @@ typedef struct Element{
  * @brief Structure used to store elements' pointers in a list of element
  */
 typedef struct PtrElement{
-  Element *element;
-  /**< pointer of the element*/
-  struct PtrElement *next;
-  /**< next PtrElement in the list*/
+    Element *element;
+    /**< pointer of the element*/
+    struct PtrElement *next;
+    /**< next PtrElement in the list*/
 }PtrElement;
 
 /**
@@ -131,16 +138,16 @@ typedef struct PtrElement{
  * @brief List of PtrElement
  */
 typedef struct ListPtrElement{
-  PtrElement *first;
-  /**< first PtrElement of the list*/
-  PtrElement *last;
-  /**< last PtrElement of the list*/
-  PtrElement *current;
-  /**< current PtrElement of the list (used for iterator)*/
-  struct ListPtrElement * next;
-  /**< next List of PtrElement*/
-  int code;
-  /**< plan of the list*/
+    PtrElement *first;
+    /**< first PtrElement of the list*/
+    PtrElement *last;
+    /**< last PtrElement of the list*/
+    PtrElement *current;
+    /**< current PtrElement of the list (used for iterator)*/
+    struct ListPtrElement * next;
+    /**< next List of PtrElement*/
+    int code;
+    /**< plan of the list*/
 }ListPtrElement;
 
 /**
@@ -148,14 +155,14 @@ typedef struct ListPtrElement{
  * @brief List (display code) of list (plan) of element
  */
 typedef struct ListDCElement{
-  ListPtrElement * first;
-  /**< first list (plan) of element*/
-  ListPtrElement * current;
-  /**< current list (plan) of element (used for iterator)*/
-  struct ListDCElement * next;
-  /**< next list (display code) of list (plan) of element*/
-  int code;
-  /**< display code of this list*/
+    ListPtrElement * first;
+    /**< first list (plan) of element*/
+    ListPtrElement * current;
+    /**< current list (plan) of element (used for iterator)*/
+    struct ListDCElement * next;
+    /**< next list (display code) of list (plan) of element*/
+    int code;
+    /**< display code of this list*/
 }ListDCElement;
 
 /**
@@ -163,12 +170,12 @@ typedef struct ListDCElement{
  * @brief List of list (display code) of list (plan) of elements
  */
 typedef struct ListElement{
-  ListDCElement *first;
-  /**< first list (display code) of list (plan) of elements*/
-  ListDCElement * currentDCIterator;
-  /**< current list (display code) of list (plan) of elements (used for iterator)*/
-  ListPtrElement *currentPIterator;
-  /**< current list (plan) of elements (used for iterator)*/
+    ListDCElement *first;
+    /**< first list (display code) of list (plan) of elements*/
+    ListDCElement * currentDCIterator;
+    /**< current list (display code) of list (plan) of elements (used for iterator)*/
+    ListPtrElement *currentPIterator;
+    /**< current list (plan) of elements (used for iterator)*/
 }ListElement;
 
 
@@ -333,6 +340,13 @@ int isDisplaiedElement(Element* e);
  * @return 1 if there was an error, 0 if not
  */
 int clearDisplayCode(int code);
+/**
+ * @brief get the flip state of an element
+ * @param e : element to get the flip state
+ * @param flip : where to store the flip state
+ * @return 0 if it succeeded, 1 if not
+ */
+int getFlipStateElement(Element * e,SANDAL2_FLIP * flip);
 /**
  * @brief getter for the Element's coordinates
  * @param e : element to get the coordinates
@@ -761,6 +775,13 @@ int setSpriteAnimationElement(Element *e,int codeS);
  * @return 0 if it was possible, 1 if not
  */
 int clearWindow(void);
+/**
+ * @brief set the flip state of an element
+ * @param e : element to be modified
+ * @param flip : new flip state of the element
+ * @return 0 if it was possible, 1 if not
+ */
+int setFlipStateElement(Element * e, SANDAL2_FLIP flip);
 /* ------------------------------------------------------- */
 
 

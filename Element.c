@@ -375,6 +375,7 @@ Element* createBlock(float x,float y,float width,float height,int couleur[4],int
             e->prY=.5f;
             e->rotation=0.f;
             e->rotSpeed=0.f;
+	    e->flip = SANDAL2_FLIP_NONE;
             copyColor(e->coulBlock,couleur);
             e->codes=initListDisplayCode();
             addDisplayCode(e->codes,displayCode,1,plan);
@@ -420,6 +421,7 @@ Element* createText(float x,float y,float width,float height,const char * font,c
             e->prY=.5f;
             e->rotation=0.f;
             e->rotSpeed=0.f;
+	    e->flip = SANDAL2_FLIP_NONE;
             e->textSize=1.0f;
             e->animation=initListAnimation();
             e->image=NULL;
@@ -476,6 +478,7 @@ Element* createImage(float x,float y,float width,float height,const char *image,
                 e->prY=.5f;
                 e->rotation=0.f;
                 e->rotSpeed=0.f;
+		e->flip = SANDAL2_FLIP_NONE;
                 e->animation=initListAnimation();
                 e->image=SDL_CreateTextureFromSurface(_windows_SANDAL2->current->renderer,s);
                 e->codes=initListDisplayCode();
@@ -670,6 +673,13 @@ int clearDisplayCode(int code){
     }
 
     return error;
+}
+
+int getFlipStateElement(Element * e,SANDAL2_FLIP * flip){
+    if(e && flip)
+	*flip = e->flip;
+
+    return !e;
 }
 
 int getCoordElement(Element* e,float* x,float* y){
@@ -1633,6 +1643,13 @@ int clearWindow(void){
     }
 
     return error;
+}
+
+int setFlipStateElement(Element * e, SANDAL2_FLIP flip){
+    if(e)
+	e->flip = flip;
+
+    return !e;
 }
 /* ------------------------------------------------------- */
 
