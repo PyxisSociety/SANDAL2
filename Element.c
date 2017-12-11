@@ -565,9 +565,9 @@ Element* createEntry(float x,float y,float width,float height,float texteSize,co
                 ent->isSelect=0;
                 ent->isScripted=isScripted;
                 PFREE(e->font->text);
-                e->font->text=(char*)malloc((max+1)*sizeof(*(e->font->text)));
+                e->font->text=(char*)malloc((max*2+1)*sizeof(*(e->font->text)));
                 if(e->font->text){
-                    for(i=0;i<max;++i){
+                    for(i=0;i<max*2;++i){
                         e->font->text[i]=' ';
                     }
                     e->font->text[max]='\0';
@@ -604,9 +604,9 @@ Element* createEntryImage(float x,float y,float width,float height,float texteSi
                 ent->isSelect=0;
                 ent->isScripted=isScripted;
                 PFREE(e->font->text);
-                e->font->text=(char*)malloc((max+1)*sizeof(*(e->font->text)));
+                e->font->text=(char*)malloc((max*2+1)*sizeof(*(e->font->text)));
                 if(e->font->text){
-                    for(i=0;i<max;++i){
+                    for(i=0;i<max*2;++i){
                         e->font->text[i]=' ';
                     }
                     e->font->text[max]='\0';
@@ -850,11 +850,22 @@ int setFontElement(Element *e,const char * font){
 int setTextElement(Element *e,const char * text){
     int error = 1;
     int size;
+    int i;
     
     if(_windows_SANDAL2 && _windows_SANDAL2->current && e && text && e->font){
 	if(e->entry){
 	    size = strlen(text);
-	    error = setTextFont(e->font,(size > e->entry->size_max ? text + size - e->entry->size_max : text));
+	    if(size > e->entry->size_max){
+		strncpy(e->font->text,text,e->entry->size_max);
+		e->font->text[e->entry->size_max] = 0;
+	    }else{
+		strncpy(e->font->text,text,size);
+		for(i = size; i < e->entry->size_max - size; ++i){
+		    e->font->text[i] = ' ';
+		}
+		e->font->text[i] = 0;
+	    }
+	    error = setTextFont(e->font,e->font->text);
 	    e->entry->size = (size >= e->entry->size_max ? e->entry->size_max : size);
 	}else
 	    error=setTextFont(e->font,text);
@@ -1758,7 +1769,8 @@ int addCharEntry(Element *e,char c){
     int error = 1;
   
     if(_windows_SANDAL2 && _windows_SANDAL2->current && e && e->entry && e->font && e->font->text && e->entry->size < e->entry->size_max){
-        *(e->font->text+e->entry->size)=c;
+        e->font->text[e->entry->size]=c;
+	e->font->text[e->entry->size_max*2 - e->entry->size] = 0;
         ++e->entry->size;
         error=actualizeTextFont(e->font,e->entry->isScripted);
     }
@@ -1771,7 +1783,9 @@ int delCharEntry(Element *e){
   
     if(_windows_SANDAL2 && _windows_SANDAL2->current && e && e->entry && e->font && e->font->text && e->entry->size){
         --e->entry->size;
-        *(e->font->text+e->entry->size)=' ';
+	if(e->entry->size < e->entry->size_max*2 - e->entry->size)
+	    e->font->text[e->entry->size_max*2 - e->entry->size] = ' ';
+        e->font->text[e->entry->size]=' ';
         error=actualizeTextFont(e->font,e->entry->isScripted);
     }
 
