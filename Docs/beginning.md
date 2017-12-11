@@ -5,7 +5,7 @@
 * go to the next [tutorial](element.md)
 * report an issue about a tutorial lacking things, an update that could be done or anything that comes to your mind [here](https://github.com/Klevh/SANDAL2/issues/new)
 
-## Initialasing SANDAL2
+## Initialising SANDAL2
 
 ```c
 #include <stdio.h>

@@ -19,8 +19,8 @@ You can download those I used at :
 
 int main(){
     int red[]   = {255,0,0,0};
-    int blue[]  = {0,255,0,0};
-    int green[] = {0,0,255,0};
+    int green[]  = {0,255,0,0};
+    int blue[] = {0,0,255,0};
     int white[] = {255,255,255,0};
     int black[] = {0,0,0,0};
     
