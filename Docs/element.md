@@ -11,7 +11,7 @@
 In the code bellow, you'll need to have an image named img.jpg and a font named arial.ttf for it to run.
 You can download those I used at :
 * [font](https://github.com/Klevh/SANDAL2/raw/master/downloadable/arial.ttf)
-* [image](https://github.com/Klevh/SANDAL2/raw/master/downloadable/img.jpg) (owned by entreprise.com)
+* [image](https://github.com/Klevh/SANDAL2/raw/master/downloadable/img.jpg)
   
 ```c
 #include <stdio.h>

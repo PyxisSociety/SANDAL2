@@ -1,16 +1,3 @@
-# SANDAL2
-
-* go back to [Tutorial](Tutorial.md)
-* go back to the [main read-me](../README.md)
-* go back to the previous tutorial about [catching user events](events.md)
-* go to the next tutorial about [display codes and plans handling](dc_plan.md)
-* report an issue about a tutorial lacking things, an update that could be done or anything that comes to your mind [here](https://github.com/Klevh/SANDAL2/issues/new)
-
-## Creating an animation
-
-In the following code, I use this [spritesheet](https://github.com/Klevh/SANDAL2/raw/master/downloadable/spritesheet.jpg).
-
-```c
 #include <stdio.h>
 
 #include <SANDAL2/SANDAL2.h>
@@ -107,9 +94,3 @@ int main(){
 
     return 0;
 }
-```
-You can download this code [here](https://github.com/Klevh/SANDAL2/raw/master/downloadable/animations.zip).
-
-## What's next ?
-
-There is still one major thing to learn, and that is [Display code and Plan manipulation](dc_plan.md) !
