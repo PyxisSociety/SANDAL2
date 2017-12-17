@@ -163,6 +163,6 @@ Here are the events you can define for a window :
 * keyPressed
 * keyReleased
 
-## What next ?
+## What's next ?
 
 Now, you can do a lot of games with just that. But you doing an animation would be an eyesore with a spritesheet. Fortunatelly, this can be done simply with SANDAL2 ! You can learn how [here](animations.md).
