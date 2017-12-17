@@ -827,6 +827,50 @@ int getColorElement(Element * e, int color[4]){
 
     return error;
 }
+
+int getWidthElement(Element * e,float * w){
+    int error = 1;
+
+    if(e && w){
+	error = 0;
+	*w = e->width;
+    }
+
+    return error;
+}
+
+int getHeightElement(Element * e,float * h){
+    int error = 1;
+
+    if(e && h){
+	error = 0;
+	*h = e->height;
+    }
+
+    return error;
+}
+
+int getCoordXElement(Element * e,float * x){
+    int error = 1;
+
+    if(e && x){
+	error = 0;
+	*x = e->x;
+    }
+
+    return error;
+}
+
+int getCoordYElement(Element * e,float * y){
+    int error = 1;
+
+    if(e && y){
+	error = 0;
+	*y = e->y;
+    }
+
+    return error;
+}
 /* ------------------------------------------------------- */
 
 
@@ -985,7 +1029,7 @@ int moveElement(Element *e,float x,float y){
     return error;
 }
 
-int resizeElement(Element *e,float width,float height){
+int setDimensionElement(Element *e,float width,float height){
     int error = 1;
 
     if(e){
@@ -1648,6 +1692,34 @@ int clearWindow(void){
 int setFlipStateElement(Element * e, SANDAL2_FLIP flip){
     if(e)
 	e->flip = flip;
+
+    return !e;
+}
+
+int setWidthElement(Element * e, float width){
+    if(e)
+	e->width = width;
+
+    return !e;
+}
+
+int setHeightElement(Element * e, float height){
+    if(e)
+	e->height = height;
+
+    return !e;
+}
+
+int setCoordXElement(Element * e, float x){
+    if(e)
+	e->x = x;
+
+    return !e;
+}
+
+int setCoordYElement(Element * e, float y){
+    if(e)
+	e->y = y;
 
     return !e;
 }

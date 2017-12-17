@@ -58,27 +58,29 @@ From this "read-me", you can either go to :
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rennaming isDisplaied to isDisplaiedElement<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rennaming createAnimationElement to addAnimationElement<br/>
 1.2.1 : adding flipping on images<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rennaming resizeElement to setDimensionElement<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adding functions getCoordXElement, getCoordYElement, getWidthElement, getHeightElement, setCoordXElement, setCoordYElement, setWidthElement and setHeightElement<br/>
 
 ## Project's size
 
-FontSDL2.c : 268 rows<br/>
-WindowSDL2.c : 291 rows<br/>
+Font.c : 268 rows<br/>
+Window.c : 291 rows<br/>
 DisplayCode.c : 80 rows<br/>
 Sprite.c : 308 rows<br/>
 Clickable.c : 321 rows<br/>
-ElementSDL2.c : 1,793 rows<br/>
-SANDAL2.c : 833 rows<br/>
+Element.c : 1,883 rows<br/>
+SANDAL2.c : 856 rows<br/>
 <br/>
-Total for source files : 3,902 rows<br/>
+Total for source files : 4,015 rows<br/>
 <br/>
-FontSDL2.h : 107 rows<br/>
-WindowSDL2.h : 269 rows<br/>
+Font.h : 107 rows<br/>
+Window.h : 271 rows<br/>
 DisplayCode.h : 70 rows<br/>
 Sprite.h : 186 rows<br/>
-Clickable.h : 211 rows<br/>
-ElementSDL2.h : 838 rows<br/>
-SANDAL2.h : 199 rows<br/>
+Clickable.h : 210 rows<br/>
+Element.h : 915 rows<br/>
+SANDAL2.h : 193 rows<br/>
 <br/>
-Total for header files : 1,880 rows<br/>
+Total for header files : 1,962 rows<br/>
 <br/>
-Total : 5,782 rows
+Total : 5,977 rows

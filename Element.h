@@ -415,11 +415,39 @@ int getTextStyleElement(Element *e,int * style);
 int getTextElement(Element *e,char **s);
 /**
  * @brief get the element's block color
- * @param e : element to be modified
+ * @param e : element to get the informations from
  * @param color : where to store the block color
  * @return 1 if there was an error, 0 if not
  */
 int getColorElement(Element *e,int color[4]);
+/**
+ * @brief get the element's width
+ * @param e : element to get the informations from
+ * @param w : where to store the width
+ * @return 1 if there was an error, 0 if not
+ */
+int getWidthElement(Element * e,float * w);
+/**
+ * @brief get the element's height
+ * @param e : element to get the informations from
+ * @param h : where to store the height
+ * @return 1 if there was an error, 0 if not
+ */
+int getHeightElement(Element * e,float * h);
+/**
+ * @brief get the element's x coordinate
+ * @param e : element to get the informations from
+ * @param x : where to store the x coordinate
+ * @return 1 if there was an error, 0 if not
+ */
+int getCoordXElement(Element * e,float * x);
+/**
+ * @brief get the element's y coordinate
+ * @param e : element to get the informations from
+ * @param y : where to store the y coordinate
+ * @return 1 if there was an error, 0 if not
+ */
+int getCoordYElement(Element * e,float * y);
 /* ------------------------------------------------------- */
 
 
@@ -505,7 +533,7 @@ int moveElement(Element *e,float x,float y);
  * @param height : new height
  * @return 1 if it was impossible, 0 if not
  */
-int resizeElement(Element *e,float width,float height);
+int setDimensionElement(Element *e,float width,float height);
 /**
  * @brief set the text size of the text of an element in this element
  * @param e : element to be modified
@@ -782,6 +810,34 @@ int clearWindow(void);
  * @return 0 if it was possible, 1 if not
  */
 int setFlipStateElement(Element * e, SANDAL2_FLIP flip);
+/**
+ * @brief set the element's width
+ * @param e : element to be modified
+ * @param width : new width
+ * @return 1 if there was an error, 0 if not
+ */
+int setWidthElement(Element * e, float width);
+/**
+ * @brief set the element's height
+ * @param e : element to be modified
+ * @param height : new height
+ * @return 1 if there was an error, 0 if not
+ */
+int setHeightElement(Element * e, float height);
+/**
+ * @brief set the element's x coordinate
+ * @param e : element to be modified
+ * @param x : new x coordinate
+ * @return 1 if there was an error, 0 if not
+ */
+int setCoordXElement(Element * e, float x);
+/**
+ * @brief set the element's y coordinate
+ * @param e : element to be modified
+ * @param y : new y coordinate
+ * @return 1 if there was an error, 0 if not
+ */
+int setCoordYElement(Element * e, float y);
 /* ------------------------------------------------------- */
 
 
