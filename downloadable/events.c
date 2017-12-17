@@ -1,28 +1,3 @@
-# SANDAL2
-
-* go back to [Tutorial](Tutorial.md)
-* go back to the [main read-me](../README.md)
-* go back to the previous tutorial about [elements creation](element.md)
-* go to the next tutorial about [animations](animations.md)
-* report an issue about a tutorial lacking things, an update that could be done or anything that comes to your mind [here](https://github.com/Klevh/SANDAL2/issues/new)
-
-## Catching events
-
-To catch user events, you need to use the same method as we did before : using `PollEvent()`.
-You may ask why it has no effect then. To that I will answer : you already caught a user event, the cross button of the window.
-You will need to learn how to define a behavior that should happen when an event occure.
-
-## Defining event behavior and simple modifications of an element
-
-To make it simplier, we will only use a block, but all elements behave the same way.
-All event functions follow the same pattern :
-`function_name(element, behavior)`
-Behavior functions have the same prototype expect for the key pressed and released ones, and the end of an animation :
-* void function(Element * e) : all but keyboard and animation
-* void function(Element * e, SDL_Keycode c) : keyboard
-* void function(Element * e, int animation_id) : animation
-
-```c
 #include <stdio.h>
 #include <SANDAL2/SANDAL2.h>
 
@@ -132,35 +107,3 @@ void action(Element * this){
 void click(Element * this){
      puts("Clicked !");
 }
-```
-They are some events that I did not mentioned but here is a list of all the one you can use :
-* action : done each updateWindow() call
-* onClick : each time you click on your element
-* unClick : each time you unclick on your element
-* keyPressed : each time you pressed a key
-* keyReleased : each time you release a key
-* unSelect : each time your element is unselected (you click or unclick elsewhere)
-* endSprite : each time an animation end (we will see animations later)
-
-
-If you want to modify your element further, go to the [Element's documentation](https://klevh.github.io/SANDAL2_Documentation/Element_8h.html).
-
-Entry elements have four more functions to modify them (you can find them in the link above).
-* setSizeEntry : change the range of the size allowed to validate it
-* setScriptedEntry : set whether an Entry should be scripted or not
-* addCharEntry : add a char if possible
-* delCharEntry : remove the last char if there is one
-
-## Defining a global event behavior
-
-Window event work nearly exactly the same. The main difference is that the first parameter is omitted as SANDAL2 know which window is the current one (you will learn more about this subtility when you will see how to handle more than one window).
-Here are the events you can define for a window :
-* action
-* onClick
-* unClick
-* keyPressed
-* keyReleased
-
-## What next ?
-
-Now, you can do a lot of games with just that. But you doing an animation would be an eyesore with a spritesheet. Fortunatelly, this can be done simply with SANDAL2 ! You can learn how [here](animations.md).
