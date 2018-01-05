@@ -1,6 +1,10 @@
 #ifndef ELEMENTSDL2_SANDAL2_KLEVH
 #define ELEMENTSDL2_SANDAL2_KLEVH
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+    
 #include "Clickable.h"
 #include "Font.h"
 #include "Window.h"
@@ -912,4 +916,8 @@ int addCharEntry(Element *e,char c);
 int delCharEntry(Element *e);
 /* ------------------------------------------------------- */
 
+#ifdef __cplusplus
+}
+#endif
+    
 #endif

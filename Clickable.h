@@ -1,5 +1,10 @@
 #ifndef CLICKABLE_SANDAL2_KLEVH
 #define CLICKABLE_SANDAL2_KLEVH
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+    
 #include <math.h>
 #include <stdlib.h>
 
@@ -207,4 +212,8 @@ Clickable * nextClickable(ListClickable * l);
 int hitListClickable(ListClickable * l,float x,float y);
 /* ---------------------------------------------------------- */
 
+#ifdef __cplusplus
+}
+#endif
+    
 #endif

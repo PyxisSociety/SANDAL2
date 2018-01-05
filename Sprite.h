@@ -1,6 +1,10 @@
 #ifndef SPRITE_SANDAL2_KLEVH
 #define SPRITE_SANDAL2_KLEVH
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+    
 #include <stdlib.h>
 
 /**
@@ -183,4 +187,9 @@ int setAnimation(ListAnimation *l,int code);
  */
 int setSpriteAnimation(ListAnimation *l,int codeS);
 /* ----------------------------------------------------- */
+
+#ifdef __cplusplus
+}
+#endif
+    
 #endif

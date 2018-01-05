@@ -1,6 +1,10 @@
 #ifndef MAIN_SANDAL2_KLEVH
 #define MAIN_SANDAL2_KLEVH
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+    
 #include "Element.h"
 
 /**
@@ -190,4 +194,8 @@ unsigned long keyReleasedAllWindow(char c);
 int PollEvent(unsigned long * error);
 /* ------------------------------------------------------- */
 
+#ifdef __cplusplus
+}
+#endif
+    
 #endif

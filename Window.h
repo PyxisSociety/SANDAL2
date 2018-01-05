@@ -1,6 +1,10 @@
 #ifndef FENETRE_BY_KLEVH
 #define FENETRE_BY_KLEVH
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+    
 #include <string.h>
 #include <stdlib.h>
 
@@ -268,4 +272,8 @@ int setDataWindow(void * data);
 int getDataWindow(void ** data);
 /* ------------------------------------------------------- */
 
+#ifdef __cplusplus
+}
+#endif
+    
 #endif

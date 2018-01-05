@@ -1,6 +1,10 @@
 #ifndef DISPLAYCODE_SANDAL2_KLEVH
 #define DISPLAYCODE_SANDAL2_KLEVH
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+    
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -67,4 +71,8 @@ int addDisplayCode(ListDisplayCode* l,int code,int isDisplaied,int plan);
 int delDisplayCode(ListDisplayCode * l, int code);
 /* ------------------------------------------------------- */
 
+#ifdef __cplusplus
+}
+#endif
+    
 #endif

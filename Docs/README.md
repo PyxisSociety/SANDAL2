@@ -60,27 +60,28 @@ From this "read-me", you can either go to :
 1.2.1 : adding flipping on images<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rennaming resizeElement to setDimensionElement<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adding functions getCoordXElement, getCoordYElement, getWidthElement, getHeightElement, setCoordXElement, setCoordYElement, setWidthElement and setHeightElement<br/>
+1.2.2 : improving C++ compatibility <br/>
 
 ## Project's size
 
-Font.c : 268 rows<br/>
-Window.c : 291 rows<br/>
-DisplayCode.c : 80 rows<br/>
-Sprite.c : 308 rows<br/>
-Clickable.c : 321 rows<br/>
-Element.c : 1,883 rows<br/>
-SANDAL2.c : 856 rows<br/>
+Font.c : 268 lines<br/>
+Window.c : 291 lines<br/>
+DisplayCode.c : 80 lines<br/>
+Sprite.c : 308 lines<br/>
+Clickable.c : 321 lines<br/>
+Element.c : 1,883 lines<br/>
+SANDAL2.c : 856 lines<br/>
 <br/>
-Total for source files : 4,015 rows<br/>
+Total for source files : 4,015 lines<br/>
 <br/>
-Font.h : 107 rows<br/>
-Window.h : 271 rows<br/>
-DisplayCode.h : 70 rows<br/>
-Sprite.h : 186 rows<br/>
-Clickable.h : 210 rows<br/>
-Element.h : 915 rows<br/>
-SANDAL2.h : 193 rows<br/>
+Font.h : 115 lines<br/>
+Window.h : 279 lines<br/>
+DisplayCode.h : 78 lines<br/>
+Sprite.h : 195 lines<br/>
+Clickable.h : 219 lines<br/>
+Element.h : 923 lines<br/>
+SANDAL2.h : 201 lines<br/>
 <br/>
-Total for header files : 1,962 rows<br/>
+Total for header files : 2,020 lines<br/>
 <br/>
-Total : 5,977 rows
+Total : 6,035 lines

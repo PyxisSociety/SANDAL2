@@ -1,6 +1,10 @@
 #ifndef FONT_SANDAL2_KLEVH
 #define FONT_SANDAL2_KLEVH
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+    
 #include "Window.h"
 
 /**
@@ -104,4 +108,8 @@ int setStyleFont(Font *font,int style);
 int getStyleFont(Font *font,int * style);
 /* ------------------------------------------------------- */
 
+#ifdef __cplusplus
+}
+#endif
+    
 #endif
