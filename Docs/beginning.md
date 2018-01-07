@@ -71,6 +71,8 @@ The parameter of initImageSANDAL2() (same for initAllSANDAL2()) is either IMG_IN
 #include <SANDAL2/SANDAL2.h> /* only header needed for SANDAL2 */
 
 int main(){
+    int black[4] = {0, 0, 0, 0};
+    
     if(initAllSANDAL2(IMG_INIT_JPG)){
 	puts("Failed to init SANDAL2");
 	return -1;
