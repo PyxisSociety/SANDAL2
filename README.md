@@ -24,17 +24,19 @@ From this "read-me", you can either go to :
 * a [small tutorial](Docs/Tutorial.md) explaining how to use it ;
 * or the page to report an issue about a tutorial lacking things, an update that could be done or anything that comes to your mind [here](https://github.com/Klevh/SANDAL2/issues/new).
 
-## To Install/Uninstall On Linux
+## To Install/Uninstall On Linux (Debian)
 
-Regardless the way you install SANDAL2, you'll need to include SANDAL2.h and use `-lm -lSDL2 -lSDL2_ttf -lSDL2_image` compilation flags.
-
-### I. Using the Debian Package
-
-Installing :
+Regardless the way you install SANDAL2, you'll need to include SANDAL2.h and use `-lm -lSDL2 -lSDL2_ttf -lSDL2_image` compilation flags. To install SDL2, you only needs to enter those commands :
 ```
 sudo apt-get install libsdl2-dev
 sudo apt-get install libsdl2-image-dev
 sudo apt-get install libsdl2-ttf-dev
+```
+
+### I. Using the Debian Package only
+
+Installing :
+```
 sudo wget https://github.com/Klevh/SANDAL2/raw/master/downloadable/sandal2.deb
 sudo dpkg -i sandal2.deb
 ```
@@ -45,18 +47,11 @@ Uninstalling :
 dpkg --purge sandal2
 ```
 
-If the package is not made for your computer, you can download the [github project](https://github.com/Klevh/SANDAL2/), go into the directory downloaded and do those commands.
+### II. Using the github repository
+
+If the package is not made for your computer, or you simply want to use the github directory, you can clone the [github project](https://github.com/Klevh/SANDAL2/).
+Once you have it, and you are in the directory of the repository, you can install the package using this command :
 ```
-make
-make package
 sudo make install
 ```
-
-### II. Using the source code
-
-```
-sudo apt-get install libsdl2-dev
-sudo apt-get install libsdl2-image-dev
-sudo apt-get install libsdl2-ttf-dev
-```
-Then, you need to compile all .c files.
+You can also directly use the source code. A Makefile is provided in `downloadable`.
