@@ -435,7 +435,7 @@ int clickWindow(int x,int y){
     PtrElement *e;
     ListPtrElement *lp;
     ListDCElement *ldc;
-    float newX,newY,c,s,xtmp,prX,prY;
+    float newX,newY,c = 1,s = 0,xtmp,prX,prY;
     float rot = 0.f;
     int error = 1;
 
@@ -514,7 +514,7 @@ int unclickWindow(int x,int y){
     PtrElement *e;
     ListPtrElement *lp;
     ListDCElement *ldc;
-    float newX,newY,c,s,xtmp;
+    float newX,newY,c = 1,s = 0,xtmp;
     float rot = 0.f;
     int error = 1;
 

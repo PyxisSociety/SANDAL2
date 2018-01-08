@@ -4,7 +4,7 @@
  * Text 
  */
 Font* createFont(const char *fontPath,const char *texte,int couleur[4],int quality){
-  Font *f;
+  Font *f = NULL;
   SDL_Surface *s;
   SDL_Color c,c2;
 

@@ -3,7 +3,7 @@
 SRC=$(wildcard *.c)
 OFILES=$(SRC:.c=.o)
 LDFLAGS=-shared -fPIC
-CFLAGS=-Wall -Wextra -pedantic -fPIC
+CFLAGS=-Wall -Wextra -pedantic -fPIC -O2
 EXEC=libSANDAL2.so
 CC=gcc
 
