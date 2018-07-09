@@ -404,7 +404,7 @@ Element* createBlock(float x,float y,float width,float height,int couleur[4],int
     return e;
 }
 
-Element* createText(float x,float y,float width,float height,const char * font,const char * text,int textColor[4],int quality,int displayCode,int plan){
+Element* createText(float x,float y,float width,float height,float textSize, const char * font,const char * text,int textColor[4],int quality,int displayCode,int plan){
     Element *e=NULL;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
@@ -422,7 +422,7 @@ Element* createText(float x,float y,float width,float height,const char * font,c
             e->rotation=0.f;
             e->rotSpeed=0.f;
 	    e->flip = SANDAL2_FLIP_NONE;
-            e->textSize=1.0f;
+            e->textSize=textSize/100.f;
             e->animation=initListAnimation();
             e->image=NULL;
             e->entry=NULL;

@@ -250,7 +250,7 @@ Element* createBlock(float x,float y,float width,float height,int couleur[4],int
  * @param displayCode : display code of the text
  * @param plan : plan of the text
  */
-Element* createText(float x,float y,float width,float height,const char * font,const char * text,int textColor[4],int quality,int displayCode,int plan);
+  Element* createText(float x,float y,float width,float height,float textSize, const char * font,const char * text,int textColor[4],int quality,int displayCode,int plan);
 /**
  * @brief Generate an image like element
  * @param x : abscissa coordinate of its top left corner

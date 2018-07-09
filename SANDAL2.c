@@ -571,7 +571,7 @@ int unclickWindow(int x,int y){
     return error;
 }
 
-int keyPressedWindow(char c){
+int keyPressedWindow(int c){
     PtrElement *e;
     ListPtrElement *lp;
     ListDCElement *ldc;
@@ -608,7 +608,7 @@ int keyPressedWindow(char c){
     return error;
 }
 
-int keyReleasedWindow(char c){
+int keyReleasedWindow(int c){
     PtrElement *e;
     ListPtrElement *lp;
     ListDCElement *ldc;
