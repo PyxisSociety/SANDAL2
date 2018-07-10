@@ -218,7 +218,7 @@ int setKeyReleasedWindow(void (*keyReleased)(SDL_Keycode c)){
     return error;
 }
 
-int setOnClickWindow(void (*onClick)(void)){
+int setOnClickWindow(void (*onClick)(int)){
     int error = 1;
   
     if(_windows_SANDAL2 && _windows_SANDAL2->current){

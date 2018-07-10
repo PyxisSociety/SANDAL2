@@ -1312,7 +1312,7 @@ int setUnClickElement(Element *e,void (*unCLick)(Element*)){
     return error;
 }
 
-int setOnClickElement(Element *e,void (*onCLick)(Element*)){
+int setOnClickElement(Element *e,void (*onCLick)(Element*, int)){
     int error = 1;
   
     if(e){

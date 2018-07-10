@@ -225,7 +225,7 @@ int setKeyReleasedWindow(void (*keyReleased)(SDL_Keycode c));
  * @param onCLick : function to be called when it is clicked
  * @return 1 if it was impossible, 0 if not
  */
-int setOnClickWindow(void (*onCLick)(void));
+int setOnClickWindow(void (*onCLick)(int));
 /**
  * @brief set the behaviour of the current window when it is unclicked
  * @param unCLick : function to be called when it is unclicked

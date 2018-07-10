@@ -125,7 +125,7 @@ int displayWindow(void);
  * @param y : ordinate coordinate of the mouse during the click
  * @return 1 if it failed, 0 if not
  */
-int clickWindow(int x,int y);
+int clickWindow(SDL_MouseButtonEvent button);
 /**
  * @brief activation of unclick events on the current window
  * @param x : abscissa coordinate of the mouse during the unclick
@@ -161,7 +161,7 @@ unsigned long displayAllWindow(void);
  * @param y : ordinate coordinate of the mouse during the click
  * @return 0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one
  */
-unsigned long clickAllWindow(int x,int y);
+unsigned long clickAllWindow(SDL_MouseButtonEvent event);
 /**
  * @brief activation of unclick events on all the windows
  * @param x : abscissa coordinate of the mouse during the unclick

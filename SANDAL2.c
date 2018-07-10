@@ -431,20 +431,21 @@ int displayWindow(){
     return error;
 }
 
-int clickWindow(int x,int y){
+int clickWindow(SDL_MouseButtonEvent button){
     PtrElement *e;
     ListPtrElement *lp;
     ListDCElement *ldc;
     float newX,newY,c = 1,s = 0,xtmp,prX,prY;
     float rot = 0.f;
     int error = 1;
+    int x = button.x, y = button.y;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
         error = 0;
 
         /* fait l'action de la fenetre courante */
         if(_windows_SANDAL2->current->events.onClick){
-            _windows_SANDAL2->current->events.onClick();
+            _windows_SANDAL2->current->events.onClick(button.button);
         }
     
         ldc = _windows_SANDAL2->current->current;
@@ -476,7 +477,7 @@ int clickWindow(int x,int y){
                                 e->element->entry->isSelect=1;
                             }
                             if(e->element->events.onClick){
-                                e->element->events.onClick(e->element);
+			      e->element->events.onClick(e->element, button.button);
                             }
                         }else{
 			    if(e->element->selected && e->element->events.unSelect){
@@ -698,7 +699,7 @@ unsigned long displayAllWindow(){
     return error;
 }
 
-unsigned long clickAllWindow(int x,int y){
+unsigned long clickAllWindow(SDL_MouseButtonEvent button){
     Window * w,* tmp;
     unsigned long error = 1;
     int err;
@@ -710,7 +711,7 @@ unsigned long clickAllWindow(int x,int y){
         initIteratorWindow();
         do{
             tmp=_windows_SANDAL2->current;
-            err=clickWindow(x,y)*bit;
+            err=clickWindow(button)*bit;
             if(!error && err){
                 error=1;
             }
@@ -839,7 +840,7 @@ int PollEvent(unsigned long * error){
             err=err|keyPressedWindow(event.key.keysym.sym);
             break;
         case SDL_MOUSEBUTTONDOWN:
-            err=err|clickWindow(event.button.x,event.button.y);
+            err=err|clickWindow(event.button);
             break;
         case SDL_MOUSEBUTTONUP:
             err=err|unclickWindow(event.button.x,event.button.y);

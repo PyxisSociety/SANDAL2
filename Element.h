@@ -55,7 +55,7 @@ struct Element;
 typedef struct{
     void (*action)(struct Element*);
     /**< function called when update*/
-    void (*onClick)(struct Element*);
+    void (*onClick)(struct Element*, int);
     /**< function called when the element is clicked*/
     void (*unClick)(struct Element*);
     /**< function called when the element is unclicked*/
@@ -610,7 +610,7 @@ int setKeyReleasedElement(Element *e,void (*keyReleased)(Element*,SDL_Keycode c)
  * @param onCLick : function to be called when it is clicked
  * @return 1 if it was impossible, 0 if not
  */
-int setOnClickElement(Element *e,void (*onCLick)(Element*));
+  int setOnClickElement(Element *e,void (*onCLick)(Element*,int));
 /**
  * @brief set the behaviour of an element when it is unclicked
  * @param e : element to be modified
