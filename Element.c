@@ -388,6 +388,8 @@ Element* createBlock(float x,float y,float width,float height,int couleur[4],int
             e->events.keyReleased=NULL;
             e->events.unSelect=NULL;
             e->events.endSprite=NULL;
+	    e->events.onMouseMotion=NULL;
+	    e->events.unMouseMotion=NULL;
             e->font=NULL;
             e->entry=NULL;
             e->interactions=NULL;
@@ -443,6 +445,8 @@ Element* createText(float x,float y,float width,float height,float textSize, con
                 e->events.keyReleased=NULL;
                 e->events.unSelect=NULL;
                 e->events.endSprite=NULL;
+		e->events.onMouseMotion=NULL;
+		e->events.unMouseMotion=NULL;
                 if(addElement(e)){
                     _freeElement(e);
                     e=NULL;
@@ -491,6 +495,8 @@ Element* createImage(float x,float y,float width,float height,const char *image,
                 e->events.keyReleased=NULL;
                 e->events.unSelect=NULL;
                 e->events.endSprite=NULL;
+		e->events.onMouseMotion=NULL;
+		e->events.unMouseMotion=NULL;
                 e->freeData=NULL;
                 e->font=NULL;
                 e->entry=NULL;
@@ -1321,6 +1327,28 @@ int setOnClickElement(Element *e,void (*onCLick)(Element*, int)){
     }
 
     return error;
+}
+
+int setOnMouseMotionElement(Element *e, void (*onMouseMotion)(Element*)){
+  int error = 1;
+
+  if(e){
+    error = 0;
+    e->events.onMouseMotion=onMouseMotion;
+  }
+
+  return error;
+}
+
+int setUnMouseMotionElement(Element *e, void (*unMouseMotion)(Element*)){
+  int error = 1;
+
+  if(e){
+    error = 0;
+    e->events.unMouseMotion=unMouseMotion;
+  }
+
+  return error;
 }
 
 int setUnSelectElement(Element *e,void (*unSelect)(Element*)){

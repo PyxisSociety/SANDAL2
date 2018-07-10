@@ -67,6 +67,8 @@ typedef struct{
     /**< function called when the element is unselected*/
     void (*endSprite)(struct Element*,int code);
     /**< function called at the end of a sprite*/
+    void (*onMouseMotion)(struct Element *);
+    void (*unMouseMotion)(struct Element *);
 }EventElement;
 
 /**
@@ -611,6 +613,8 @@ int setKeyReleasedElement(Element *e,void (*keyReleased)(Element*,SDL_Keycode c)
  * @return 1 if it was impossible, 0 if not
  */
   int setOnClickElement(Element *e,void (*onCLick)(Element*,int));
+  int setOnMouseMotionElement(Element *e, void (*onMouseMotion)(Element*));
+  int setUnMouseMotionElement(Element *e, void (*unMouseMotion)(Element*));
 /**
  * @brief set the behaviour of an element when it is unclicked
  * @param e : element to be modified

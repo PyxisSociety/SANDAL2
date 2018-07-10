@@ -511,6 +511,80 @@ int clickWindow(SDL_MouseButtonEvent button){
     return error;
 }
 
+int onMouseMotion(int x, int y){
+    PtrElement *e;
+    ListPtrElement *lp;
+    ListDCElement *ldc;
+    float newX,newY,c = 1,s = 0,xtmp,prX,prY;
+    float rot = 0.f;
+    int error = 1;
+
+    if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
+        error = 0;
+
+        ldc = _windows_SANDAL2->current->current;
+        if(ldc){
+            lp=ldc->first;
+            while(lp && !_windows_SANDAL2->current->close){
+                e=lp->first;
+                while(e && !_windows_SANDAL2->current->close){
+                    if(isDisplaiedElement(e->element)){
+                        newX=x*_windows_SANDAL2->current->initWidth/_windows_SANDAL2->current->width + _windows_SANDAL2->current->origin[0];
+                        newY=y*_windows_SANDAL2->current->initHeight/_windows_SANDAL2->current->height + _windows_SANDAL2->current->origin[1];
+                        if(e->element->rotation != 0.f && e->element->coulBlock[0]==-1){
+                            if(e->element->rotation != rot){
+                                c=cosf(-M_PI*e->element->rotation/180.f);
+                                s=sinf(-M_PI*e->element->rotation/180.f);
+                                rot=e->element->rotation;
+                            }
+                            prX=e->element->prX*e->element->width+e->element->x;
+                            prY=e->element->prY*e->element->height+e->element->y;
+                            xtmp=prX+(newX-prX)*c-(newY-prY)*s;
+                            newY=prY+(newX-prX)*s+(newY-prY)*c;
+                            newX=xtmp;
+                        }
+                        newX=(newX-e->element->x)/(e->element->width);
+                        newY=(newY-e->element->y)/(e->element->height);
+                        if(hitListClickable(e->element->hitboxes,newX,newY)){
+                            e->element->selected=1;
+                            if(e->element->entry){
+                                e->element->entry->isSelect=1;
+                            }
+                            if(e->element->events.onMouseMotion){
+			      e->element->events.onMouseMotion(e->element);
+                            }
+                        }else{
+			    if(e->element->selected && e->element->events.unMouseMotion){
+				e->element->events.unMouseMotion(e->element);
+			    }
+			    e->element->selected=0;
+			    if(e->element->entry){
+				e->element->entry->isSelect=0;
+			    }
+			}
+                    }else{
+                        if(e->element->selected && e->element->events.unSelect){
+                            e->element->events.unSelect(e->element);
+                        }
+                        e->element->selected=0;
+                        if(e->element->entry){
+                            e->element->entry->isSelect=0;
+                        }
+                    }
+                    e=e->next;
+                }
+                lp=lp->next;
+            }
+            if(_windows_SANDAL2->current->close){
+                closeWindow();
+            }else
+		_cleanElement();
+        }
+    }
+
+    return error;
+}
+
 int unclickWindow(int x,int y){
     PtrElement *e;
     ListPtrElement *lp;
@@ -845,6 +919,9 @@ int PollEvent(unsigned long * error){
         case SDL_MOUSEBUTTONUP:
             err=err|unclickWindow(event.button.x,event.button.y);
             break;
+	case SDL_MOUSEMOTION:
+	  err=err|onMouseMotion(event.motion.x, event.motion.y);
+	  break;
         }
     }
 
