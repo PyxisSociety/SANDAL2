@@ -229,7 +229,7 @@ int setOnClickWindow(void (*onClick)(int)){
     return error;
 }
 
-int setUnClickWindow(void (*unClick)(void)){
+int setUnClickWindow(void (*unClick)(int)){
     int error = 1;
   
     if(_windows_SANDAL2 && _windows_SANDAL2->current){

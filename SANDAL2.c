@@ -585,20 +585,21 @@ int onMouseMotion(int x, int y){
     return error;
 }
 
-int unclickWindow(int x,int y){
+int unclickWindow(SDL_MouseButtonEvent button){
     PtrElement *e;
     ListPtrElement *lp;
     ListDCElement *ldc;
     float newX,newY,c = 1,s = 0,xtmp;
     float rot = 0.f;
     int error = 1;
+    int x = button.x, y = button.y;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
         error = 0;
 
         /* fait l'action de la fenetre courante */
         if(_windows_SANDAL2->current->events.unClick){
-            _windows_SANDAL2->current->events.unClick();
+            _windows_SANDAL2->current->events.unClick(button.button);
         }
 
         ldc = _windows_SANDAL2->current->current;
@@ -622,7 +623,7 @@ int unclickWindow(int x,int y){
                         }
                         if(hitListClickable(e->element->hitboxes,newX,newY)){
                             if(e->element->events.unClick){
-                                e->element->events.unClick(e->element);
+			      e->element->events.unClick(e->element,button.button);
                             }
                         }
                     }else if(e->element->entry){
@@ -801,7 +802,7 @@ unsigned long clickAllWindow(SDL_MouseButtonEvent button){
     return error;
 }
 
-unsigned long unclickAllWindow(int x,int y){
+unsigned long unclickAllWindow(SDL_MouseButtonEvent button){
     Window * w, *tmp;
     unsigned long error = 1;
     int err;
@@ -813,7 +814,7 @@ unsigned long unclickAllWindow(int x,int y){
         initIteratorWindow();
         do{
             tmp=_windows_SANDAL2->current;
-            err=unclickWindow(x,y)*bit;
+            err=unclickWindow(button)*bit;
             if(!error && err){
                 error=1;
             }
@@ -917,7 +918,7 @@ int PollEvent(unsigned long * error){
             err=err|clickWindow(event.button);
             break;
         case SDL_MOUSEBUTTONUP:
-            err=err|unclickWindow(event.button.x,event.button.y);
+            err=err|unclickWindow(event.button);
             break;
 	case SDL_MOUSEMOTION:
 	  err=err|onMouseMotion(event.motion.x, event.motion.y);

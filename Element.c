@@ -1307,7 +1307,7 @@ int setKeyReleasedElement(Element *e,void (*keyReleased)(Element*,SDL_Keycode c)
     return error;
 }
 
-int setUnClickElement(Element *e,void (*unCLick)(Element*)){
+int setUnClickElement(Element *e,void (*unCLick)(Element*, int)){
     int error = 1;
   
     if(e){

@@ -41,9 +41,9 @@ struct ListDCElement;
 typedef struct{
     void (*action)();
     /**< function called when update*/
-    void (*onClick)();
+    void (*onClick)(int);
     /**< function called when the element is clicked*/
-    void (*unClick)();
+    void (*unClick)(int);
     /**< function called when the element is unclicked*/
     void (*keyPress)(SDL_Keycode c);
     /**< function called when a key is pressed*/
@@ -231,7 +231,7 @@ int setOnClickWindow(void (*onCLick)(int));
  * @param unCLick : function to be called when it is unclicked
  * @return 1 if it was impossible, 0 if not
  */
-int setUnClickWindow(void (*unCLick)(void));
+int setUnClickWindow(void (*unCLick)(int));
 /**
  * @brief get the origin point of the current window
  * @param x : where to store the x coordinate
