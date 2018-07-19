@@ -240,6 +240,17 @@ int setUnClickWindow(void (*unClick)(int)){
     return error;
 }
 
+int setWheelWindow(void (*wheel)(int))
+{
+  int error = 1;
+
+  if(_windows_SANDAL2 && _windows_SANDAL2->current){
+    _windows_SANDAL2->current->events.wheel=wheel;
+  }
+
+  return error;
+}
+
 int getOriginWindow(int * x,int * y){
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
 	if(x)

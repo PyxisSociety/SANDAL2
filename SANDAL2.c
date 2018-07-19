@@ -888,7 +888,23 @@ unsigned long keyReleasedAllWindow(char c){
 /* ------------------------------------------------------- */
 
 
+unsigned long wheelWindow(int y)
+{
+  unsigned long error = 1;
+  Window * w;
+  
+  if(_windows_SANDAL2 && _windows_SANDAL2->current){
+    error = 0;
 
+    /* fait l'action de la fenetre courante */
+    if(_windows_SANDAL2->current->events.wheel){
+      _windows_SANDAL2->current->events.wheel(y);
+    }
+    
+  }
+  
+  return error;
+}
 
 /* ------------------------------------------------------- 
  * Gestion d'evenement
@@ -922,6 +938,9 @@ int PollEvent(unsigned long * error){
             break;
 	case SDL_MOUSEMOTION:
 	  err=err|onMouseMotion(event.motion.x, event.motion.y);
+	  break;
+	case SDL_MOUSEWHEEL:
+	  err=err|wheelWindow(event.wheel.y);
 	  break;
         }
     }

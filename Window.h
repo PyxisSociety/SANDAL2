@@ -49,6 +49,7 @@ typedef struct{
     /**< function called when a key is pressed*/
     void (*keyReleased)(SDL_Keycode c);
     /**< function called when a key is released*/
+    void (*wheel)(int);
 }EventWindow;
 
 /**
@@ -232,6 +233,7 @@ int setOnClickWindow(void (*onCLick)(int));
  * @return 1 if it was impossible, 0 if not
  */
 int setUnClickWindow(void (*unCLick)(int));
+  int setWheelWindow(void (*wheel)(int));
 /**
  * @brief get the origin point of the current window
  * @param x : where to store the x coordinate

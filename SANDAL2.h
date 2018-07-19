@@ -20,7 +20,7 @@ extern "C" {
  * @brief list of windows
  *   WARNING : do not touch this variable, never ... trust me
  */
-extern ListWindow * _windows_SANDAL2;
+  extern ListWindow * _windows_SANDAL2;
 
 /* -------------------------------------------------------
  * Initialisation et fermeture des outils 
@@ -118,7 +118,7 @@ int updateWindow(void);
  * @brief actualise the display of the current window 
  * @return 1 if it failed, 0 if not
  */
-int displayWindow(void);
+  int displayWindow(void);
 /**
  * @brief activation of click events on the current window
  * @param x : abscissa coordinate of the mouse during the click
@@ -181,6 +181,7 @@ unsigned long keyPressedAllWindow(char c);
  * @return 0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one
  */
 unsigned long keyReleasedAllWindow(char c);
+unsigned long wheelWindow(int y);
 /* ------------------------------------------------------- */
 
 /* ------------------------------------------------------- 
