@@ -68,7 +68,9 @@ typedef struct{
     void (*endSprite)(struct Element*,int code);
     /**< function called at the end of a sprite*/
     void (*onMouseMotion)(struct Element *);
+    /**< function called when the mouse move over a zone */
     void (*unMouseMotion)(struct Element *);
+    /**< function called when the mouse exit the hover zone */
 }EventElement;
 
 /**
