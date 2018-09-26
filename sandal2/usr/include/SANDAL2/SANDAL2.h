@@ -138,13 +138,13 @@ int unclickWindow(int x,int y);
  * @param c : key which was pressed
  * @return 1 if it failed, 0 if not
  */
-int keyPressedWindow(char c);
+int keyPressedWindow(int c);
 /**
  * @brief activation of the key released events on the current window
  * @param c : key which was released
  * @return 1 if it failed, 0 if not
  */
-int keyReleasedWindow(char c);
+int keyReleasedWindow(int c);
 /**
  * @brief update all the elements of all the windows
  * @return 1 if it failed, 0 if not

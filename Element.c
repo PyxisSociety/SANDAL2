@@ -388,6 +388,8 @@ Element* createBlock(float x,float y,float width,float height,int couleur[4],int
             e->events.keyReleased=NULL;
             e->events.unSelect=NULL;
             e->events.endSprite=NULL;
+	    e->events.onMouseMotion=NULL;
+	    e->events.unMouseMotion=NULL;
             e->font=NULL;
             e->entry=NULL;
             e->interactions=NULL;
@@ -404,7 +406,7 @@ Element* createBlock(float x,float y,float width,float height,int couleur[4],int
     return e;
 }
 
-Element* createText(float x,float y,float width,float height,const char * font,const char * text,int textColor[4],int quality,int displayCode,int plan){
+Element* createText(float x,float y,float width,float height,float textSize, const char * font,const char * text,int textColor[4],int quality,int displayCode,int plan){
     Element *e=NULL;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
@@ -422,7 +424,7 @@ Element* createText(float x,float y,float width,float height,const char * font,c
             e->rotation=0.f;
             e->rotSpeed=0.f;
 	    e->flip = SANDAL2_FLIP_NONE;
-            e->textSize=1.0f;
+            e->textSize=textSize/100.f;
             e->animation=initListAnimation();
             e->image=NULL;
             e->entry=NULL;
@@ -443,6 +445,8 @@ Element* createText(float x,float y,float width,float height,const char * font,c
                 e->events.keyReleased=NULL;
                 e->events.unSelect=NULL;
                 e->events.endSprite=NULL;
+		e->events.onMouseMotion=NULL;
+		e->events.unMouseMotion=NULL;
                 if(addElement(e)){
                     _freeElement(e);
                     e=NULL;
@@ -491,6 +495,8 @@ Element* createImage(float x,float y,float width,float height,const char *image,
                 e->events.keyReleased=NULL;
                 e->events.unSelect=NULL;
                 e->events.endSprite=NULL;
+		e->events.onMouseMotion=NULL;
+		e->events.unMouseMotion=NULL;
                 e->freeData=NULL;
                 e->font=NULL;
                 e->entry=NULL;
@@ -1301,7 +1307,7 @@ int setKeyReleasedElement(Element *e,void (*keyReleased)(Element*,SDL_Keycode c)
     return error;
 }
 
-int setUnClickElement(Element *e,void (*unCLick)(Element*)){
+int setUnClickElement(Element *e,void (*unCLick)(Element*, int)){
     int error = 1;
   
     if(e){
@@ -1312,7 +1318,7 @@ int setUnClickElement(Element *e,void (*unCLick)(Element*)){
     return error;
 }
 
-int setOnClickElement(Element *e,void (*onCLick)(Element*)){
+int setOnClickElement(Element *e,void (*onCLick)(Element*, int)){
     int error = 1;
   
     if(e){
@@ -1321,6 +1327,28 @@ int setOnClickElement(Element *e,void (*onCLick)(Element*)){
     }
 
     return error;
+}
+
+int setOnMouseMotionElement(Element *e, void (*onMouseMotion)(Element*)){
+  int error = 1;
+
+  if(e){
+    error = 0;
+    e->events.onMouseMotion=onMouseMotion;
+  }
+
+  return error;
+}
+
+int setUnMouseMotionElement(Element *e, void (*unMouseMotion)(Element*)){
+  int error = 1;
+
+  if(e){
+    error = 0;
+    e->events.unMouseMotion=unMouseMotion;
+  }
+
+  return error;
 }
 
 int setUnSelectElement(Element *e,void (*unSelect)(Element*)){

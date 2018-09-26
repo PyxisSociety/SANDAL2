@@ -431,20 +431,21 @@ int displayWindow(){
     return error;
 }
 
-int clickWindow(int x,int y){
+int clickWindow(SDL_MouseButtonEvent button){
     PtrElement *e;
     ListPtrElement *lp;
     ListDCElement *ldc;
     float newX,newY,c = 1,s = 0,xtmp,prX,prY;
     float rot = 0.f;
     int error = 1;
+    int x = button.x, y = button.y;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
         error = 0;
 
         /* fait l'action de la fenetre courante */
         if(_windows_SANDAL2->current->events.onClick){
-            _windows_SANDAL2->current->events.onClick();
+            _windows_SANDAL2->current->events.onClick(button.button);
         }
     
         ldc = _windows_SANDAL2->current->current;
@@ -476,7 +477,7 @@ int clickWindow(int x,int y){
                                 e->element->entry->isSelect=1;
                             }
                             if(e->element->events.onClick){
-                                e->element->events.onClick(e->element);
+			      e->element->events.onClick(e->element, button.button);
                             }
                         }else{
 			    if(e->element->selected && e->element->events.unSelect){
@@ -510,20 +511,95 @@ int clickWindow(int x,int y){
     return error;
 }
 
-int unclickWindow(int x,int y){
+int onMouseMotion(int x, int y){
     PtrElement *e;
     ListPtrElement *lp;
     ListDCElement *ldc;
-    float newX,newY,c = 1,s = 0,xtmp;
+    float newX,newY,c = 1,s = 0,xtmp,prX,prY;
     float rot = 0.f;
     int error = 1;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
         error = 0;
 
+        ldc = _windows_SANDAL2->current->current;
+        if(ldc){
+            lp=ldc->first;
+            while(lp && !_windows_SANDAL2->current->close){
+                e=lp->first;
+                while(e && !_windows_SANDAL2->current->close){
+                    if(isDisplaiedElement(e->element)){
+                        newX=x*_windows_SANDAL2->current->initWidth/_windows_SANDAL2->current->width + _windows_SANDAL2->current->origin[0];
+                        newY=y*_windows_SANDAL2->current->initHeight/_windows_SANDAL2->current->height + _windows_SANDAL2->current->origin[1];
+                        if(e->element->rotation != 0.f && e->element->coulBlock[0]==-1){
+                            if(e->element->rotation != rot){
+                                c=cosf(-M_PI*e->element->rotation/180.f);
+                                s=sinf(-M_PI*e->element->rotation/180.f);
+                                rot=e->element->rotation;
+                            }
+                            prX=e->element->prX*e->element->width+e->element->x;
+                            prY=e->element->prY*e->element->height+e->element->y;
+                            xtmp=prX+(newX-prX)*c-(newY-prY)*s;
+                            newY=prY+(newX-prX)*s+(newY-prY)*c;
+                            newX=xtmp;
+                        }
+                        newX=(newX-e->element->x)/(e->element->width);
+                        newY=(newY-e->element->y)/(e->element->height);
+                        if(hitListClickable(e->element->hitboxes,newX,newY)){
+                            e->element->selected=1;
+                            if(e->element->entry){
+                                e->element->entry->isSelect=1;
+                            }
+                            if(e->element->events.onMouseMotion){
+			      e->element->events.onMouseMotion(e->element);
+                            }
+                        }else{
+			    if(e->element->selected && e->element->events.unMouseMotion){
+				e->element->events.unMouseMotion(e->element);
+			    }
+			    e->element->selected=0;
+			    if(e->element->entry){
+				e->element->entry->isSelect=0;
+			    }
+			}
+                    }else{
+                        if(e->element->selected && e->element->events.unSelect){
+                            e->element->events.unSelect(e->element);
+                        }
+                        e->element->selected=0;
+                        if(e->element->entry){
+                            e->element->entry->isSelect=0;
+                        }
+                    }
+                    e=e->next;
+                }
+                lp=lp->next;
+            }
+            if(_windows_SANDAL2->current->close){
+                closeWindow();
+            }else
+		_cleanElement();
+        }
+    }
+
+    return error;
+}
+
+int unclickWindow(SDL_MouseButtonEvent button){
+    PtrElement *e;
+    ListPtrElement *lp;
+    ListDCElement *ldc;
+    float newX,newY,c = 1,s = 0,xtmp;
+    float rot = 0.f;
+    int error = 1;
+    int x = button.x, y = button.y;
+
+    if(_windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->liste){
+        error = 0;
+
         /* fait l'action de la fenetre courante */
         if(_windows_SANDAL2->current->events.unClick){
-            _windows_SANDAL2->current->events.unClick();
+            _windows_SANDAL2->current->events.unClick(button.button);
         }
 
         ldc = _windows_SANDAL2->current->current;
@@ -547,7 +623,7 @@ int unclickWindow(int x,int y){
                         }
                         if(hitListClickable(e->element->hitboxes,newX,newY)){
                             if(e->element->events.unClick){
-                                e->element->events.unClick(e->element);
+			      e->element->events.unClick(e->element,button.button);
                             }
                         }
                     }else if(e->element->entry){
@@ -571,7 +647,7 @@ int unclickWindow(int x,int y){
     return error;
 }
 
-int keyPressedWindow(char c){
+int keyPressedWindow(int c){
     PtrElement *e;
     ListPtrElement *lp;
     ListDCElement *ldc;
@@ -608,7 +684,7 @@ int keyPressedWindow(char c){
     return error;
 }
 
-int keyReleasedWindow(char c){
+int keyReleasedWindow(int c){
     PtrElement *e;
     ListPtrElement *lp;
     ListDCElement *ldc;
@@ -698,7 +774,7 @@ unsigned long displayAllWindow(){
     return error;
 }
 
-unsigned long clickAllWindow(int x,int y){
+unsigned long clickAllWindow(SDL_MouseButtonEvent button){
     Window * w,* tmp;
     unsigned long error = 1;
     int err;
@@ -710,7 +786,7 @@ unsigned long clickAllWindow(int x,int y){
         initIteratorWindow();
         do{
             tmp=_windows_SANDAL2->current;
-            err=clickWindow(x,y)*bit;
+            err=clickWindow(button)*bit;
             if(!error && err){
                 error=1;
             }
@@ -726,7 +802,7 @@ unsigned long clickAllWindow(int x,int y){
     return error;
 }
 
-unsigned long unclickAllWindow(int x,int y){
+unsigned long unclickAllWindow(SDL_MouseButtonEvent button){
     Window * w, *tmp;
     unsigned long error = 1;
     int err;
@@ -738,7 +814,7 @@ unsigned long unclickAllWindow(int x,int y){
         initIteratorWindow();
         do{
             tmp=_windows_SANDAL2->current;
-            err=unclickWindow(x,y)*bit;
+            err=unclickWindow(button)*bit;
             if(!error && err){
                 error=1;
             }
@@ -812,7 +888,23 @@ unsigned long keyReleasedAllWindow(char c){
 /* ------------------------------------------------------- */
 
 
+unsigned long wheelWindow(int y)
+{
+  unsigned long error = 1;
+  Window * w;
+  
+  if(_windows_SANDAL2 && _windows_SANDAL2->current){
+    error = 0;
 
+    /* fait l'action de la fenetre courante */
+    if(_windows_SANDAL2->current->events.wheel){
+      _windows_SANDAL2->current->events.wheel(y);
+    }
+    
+  }
+  
+  return error;
+}
 
 /* ------------------------------------------------------- 
  * Gestion d'evenement
@@ -839,11 +931,17 @@ int PollEvent(unsigned long * error){
             err=err|keyPressedWindow(event.key.keysym.sym);
             break;
         case SDL_MOUSEBUTTONDOWN:
-            err=err|clickWindow(event.button.x,event.button.y);
+            err=err|clickWindow(event.button);
             break;
         case SDL_MOUSEBUTTONUP:
-            err=err|unclickWindow(event.button.x,event.button.y);
+            err=err|unclickWindow(event.button);
             break;
+	case SDL_MOUSEMOTION:
+	  err=err|onMouseMotion(event.motion.x, event.motion.y);
+	  break;
+	case SDL_MOUSEWHEEL:
+	  err=err|wheelWindow(event.wheel.y);
+	  break;
         }
     }
 

@@ -218,7 +218,7 @@ int setKeyReleasedWindow(void (*keyReleased)(SDL_Keycode c)){
     return error;
 }
 
-int setOnClickWindow(void (*onClick)(void)){
+int setOnClickWindow(void (*onClick)(int)){
     int error = 1;
   
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
@@ -229,7 +229,7 @@ int setOnClickWindow(void (*onClick)(void)){
     return error;
 }
 
-int setUnClickWindow(void (*unClick)(void)){
+int setUnClickWindow(void (*unClick)(int)){
     int error = 1;
   
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
@@ -238,6 +238,17 @@ int setUnClickWindow(void (*unClick)(void)){
     }
 
     return error;
+}
+
+int setWheelWindow(void (*wheel)(int))
+{
+  int error = 1;
+
+  if(_windows_SANDAL2 && _windows_SANDAL2->current){
+    _windows_SANDAL2->current->events.wheel=wheel;
+  }
+
+  return error;
 }
 
 int getOriginWindow(int * x,int * y){

@@ -55,9 +55,9 @@ struct Element;
 typedef struct{
     void (*action)(struct Element*);
     /**< function called when update*/
-    void (*onClick)(struct Element*);
+    void (*onClick)(struct Element*, int);
     /**< function called when the element is clicked*/
-    void (*unClick)(struct Element*);
+    void (*unClick)(struct Element*, int);
     /**< function called when the element is unclicked*/
     void (*keyPress)(struct Element*,SDL_Keycode c);
     /**< function called when a key is pressed*/
@@ -67,6 +67,10 @@ typedef struct{
     /**< function called when the element is unselected*/
     void (*endSprite)(struct Element*,int code);
     /**< function called at the end of a sprite*/
+    void (*onMouseMotion)(struct Element *);
+    /**< function called when the mouse move over a zone */
+    void (*unMouseMotion)(struct Element *);
+    /**< function called when the mouse exit the hover zone */
 }EventElement;
 
 /**
@@ -250,7 +254,7 @@ Element* createBlock(float x,float y,float width,float height,int couleur[4],int
  * @param displayCode : display code of the text
  * @param plan : plan of the text
  */
-Element* createText(float x,float y,float width,float height,const char * font,const char * text,int textColor[4],int quality,int displayCode,int plan);
+  Element* createText(float x,float y,float width,float height,float textSize, const char * font,const char * text,int textColor[4],int quality,int displayCode,int plan);
 /**
  * @brief Generate an image like element
  * @param x : abscissa coordinate of its top left corner
@@ -610,14 +614,16 @@ int setKeyReleasedElement(Element *e,void (*keyReleased)(Element*,SDL_Keycode c)
  * @param onCLick : function to be called when it is clicked
  * @return 1 if it was impossible, 0 if not
  */
-int setOnClickElement(Element *e,void (*onCLick)(Element*));
+  int setOnClickElement(Element *e,void (*onCLick)(Element*,int));
+  int setOnMouseMotionElement(Element *e, void (*onMouseMotion)(Element*));
+  int setUnMouseMotionElement(Element *e, void (*unMouseMotion)(Element*));
 /**
  * @brief set the behaviour of an element when it is unclicked
  * @param e : element to be modified
  * @param unCLick : function to be called when it is unclicked
  * @return 1 if it was impossible, 0 if not
  */
-int setUnClickElement(Element *e,void (*unCLick)(Element*));
+  int setUnClickElement(Element *e,void (*unCLick)(Element*, int));
 /**
  * @brief set the behaiour of an element when it is unselect
  * @param e : element to be modified
