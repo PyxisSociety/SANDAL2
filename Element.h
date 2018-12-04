@@ -139,6 +139,8 @@ typedef struct PtrElement{
     /**< pointer of the element*/
     struct PtrElement *next;
     /**< next PtrElement in the list*/
+    int deleted;
+    /**< tells whether or not this PtrElement should be deleted */
 }PtrElement;
 
 /**

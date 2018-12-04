@@ -303,7 +303,7 @@ int updateWindow(){
             while(lp && !_windows_SANDAL2->current->close){
                 ele=&(lp->first);
                 while(*ele && !_windows_SANDAL2->current->close){
-                    if(isDisplaiedElement((*ele)->element)){
+                    if(!(*ele)->deleted && isDisplaiedElement((*ele)->element)){
                         if((*ele)->element->events.action){
                             (*ele)->element->events.action((*ele)->element);
                         }
@@ -374,7 +374,7 @@ int displayWindow(){
                 /* affichage des elements */
                 ele=lp->first;
                 while(ele){
-                    if(isDisplaiedElement(ele->element)){
+                    if(!ele->deleted && isDisplaiedElement(ele->element)){
                         r.x=(ele->element->x - _windows_SANDAL2->current->origin[0])*_windows_SANDAL2->current->width/_windows_SANDAL2->current->initWidth;
                         r.y=(ele->element->y - _windows_SANDAL2->current->origin[1])*_windows_SANDAL2->current->height/_windows_SANDAL2->current->initHeight;
                         r.w=ele->element->width*_windows_SANDAL2->current->width/_windows_SANDAL2->current->initWidth;
@@ -454,7 +454,7 @@ int clickWindow(SDL_MouseButtonEvent button){
             while(lp && !_windows_SANDAL2->current->close){
                 e=lp->first;
                 while(e && !_windows_SANDAL2->current->close){
-                    if(isDisplaiedElement(e->element)){
+                    if(!e->deleted && isDisplaiedElement(e->element)){
                         newX=x*_windows_SANDAL2->current->initWidth/_windows_SANDAL2->current->width + _windows_SANDAL2->current->origin[0];
                         newY=y*_windows_SANDAL2->current->initHeight/_windows_SANDAL2->current->height + _windows_SANDAL2->current->origin[1];
                         if(e->element->rotation != 0.f && e->element->coulBlock[0]==-1){
@@ -528,7 +528,7 @@ int onMouseMotion(int x, int y){
             while(lp && !_windows_SANDAL2->current->close){
                 e=lp->first;
                 while(e && !_windows_SANDAL2->current->close){
-                    if(isDisplaiedElement(e->element)){
+                    if(!e->deleted && isDisplaiedElement(e->element)){
                         newX=x*_windows_SANDAL2->current->initWidth/_windows_SANDAL2->current->width + _windows_SANDAL2->current->origin[0];
                         newY=y*_windows_SANDAL2->current->initHeight/_windows_SANDAL2->current->height + _windows_SANDAL2->current->origin[1];
                         if(e->element->rotation != 0.f && e->element->coulBlock[0]==-1){
@@ -608,7 +608,7 @@ int unclickWindow(SDL_MouseButtonEvent button){
             while(lp && !_windows_SANDAL2->current->close){
                 e=lp->first;
                 while(e && !_windows_SANDAL2->current->close){
-                    if(isDisplaiedElement(e->element)){
+                    if(!e->deleted && isDisplaiedElement(e->element)){
                         newX=(x*_windows_SANDAL2->current->initWidth/_windows_SANDAL2->current->width-e->element->x)/(e->element->width) + _windows_SANDAL2->current->origin[0];
                         newY=(y*_windows_SANDAL2->current->initHeight/_windows_SANDAL2->current->height-e->element->y)/(e->element->height) + _windows_SANDAL2->current->origin[1];
                         if(e->element->rotation != 0.f && e->element->coulBlock[0]==-1){
@@ -667,7 +667,7 @@ int keyPressedWindow(int c){
             while(lp && !_windows_SANDAL2->current->close){
                 e=lp->first;
                 while(e && !_windows_SANDAL2->current->close){
-                    if(e->element->events.keyPress && (!e->element->entry || e->element->entry->isSelect)){
+                    if(!e->deleted && e->element->events.keyPress && (!e->element->entry || e->element->entry->isSelect)){
                         e->element->events.keyPress(e->element,c);
                     }
                     e=e->next;
@@ -704,7 +704,7 @@ int keyReleasedWindow(int c){
             while(lp && !_windows_SANDAL2->current->close){
                 e=lp->first;
                 while(e && !_windows_SANDAL2->current->close){
-                    if(e->element->events.keyReleased && (!e->element->entry || e->element->entry->isSelect)){
+                    if(!e->deleted && e->element->events.keyReleased && (!e->element->entry || e->element->entry->isSelect)){
                         e->element->events.keyReleased(e->element,c);
                     }
                     e=e->next;
@@ -891,7 +891,6 @@ unsigned long keyReleasedAllWindow(char c){
 unsigned long wheelWindow(int y)
 {
   unsigned long error = 1;
-  Window * w;
   
   if(_windows_SANDAL2 && _windows_SANDAL2->current){
     error = 0;
