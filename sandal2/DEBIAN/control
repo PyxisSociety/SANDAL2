@@ -1,10 +1,10 @@
 Package: sandal2
-Version: 1.2.2
+Version: 1.2.4
 Section: libdevel
 Priority: optional
 Architecture: amd64
-Installed-Size: 56464
+Installed-Size: 56432
 Depends: libsdl2-dev, libsdl2-ttf-dev, libsdl2-image-dev
 Maintainer: Klevh <klevh1@gmail.com>
-Description: SDL2 wrapper in C made by Klevh
+Description: Graphical display library in C, made by Klevh using SDL2
 Homepage: https://klevh.github.io/SANDAL2/

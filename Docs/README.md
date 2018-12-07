@@ -61,27 +61,33 @@ From this "read-me", you can either go to :
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rennaming resizeElement to setDimensionElement<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adding functions getCoordXElement, getCoordYElement, getWidthElement, getHeightElement, setCoordXElement, setCoordYElement, setWidthElement and setHeightElement<br/>
 1.2.2 : improving C++ compatibility <br/>
+1.2.3 : adding mouse wheel events and mouse motion events support <br/>
+1.2.4 : bug fix on setPlanElement<br/>
+
+## Contributors
+
+dabaldassin : version 1.2.3  
 
 ## Project's size
 
-Font.c : 268 lines<br/>
-Window.c : 291 lines<br/>
-DisplayCode.c : 80 lines<br/>
-Sprite.c : 308 lines<br/>
 Clickable.c : 321 lines<br/>
-Element.c : 1,883 lines<br/>
-SANDAL2.c : 856 lines<br/>
+DisplayCode.c : 80 lines<br/>
+Element.c : 1,947 lines<br/>
+Font.c : 268 lines<br/>
+SANDAL2.c : 953 lines<br/>
+Sprite.c : 308 lines<br/>
+Window.c : 302 lines<br/>
 <br/>
-Total for source files : 4,015 lines<br/>
+Total for source files : 4,179 lines<br/>
 <br/>
-Font.h : 115 lines<br/>
-Window.h : 279 lines<br/>
-DisplayCode.h : 78 lines<br/>
-Sprite.h : 195 lines<br/>
 Clickable.h : 219 lines<br/>
-Element.h : 923 lines<br/>
-SANDAL2.h : 201 lines<br/>
+DisplayCode.h : 78 lines<br/>
+Element.h : 931 lines<br/>
+Font.h : 115 lines<br/>
+SANDAL2.h : 203 lines<br/>
+Sprite.h : 195 lines<br/>
+Window.h : 281 lines<br/>
 <br/>
-Total for header files : 2,020 lines<br/>
+Total for header files : 2,022 lines<br/>
 <br/>
-Total : 6,035 lines
+Total : 6,201 lines
