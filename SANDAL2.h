@@ -144,6 +144,22 @@ int keyPressedWindow(int c);
  */
 int keyReleasedWindow(int c);
 /**
+ * @brief activation of the mouseWheel event on the window
+ * @param y : direction of the wheel
+ * @return 1 if it failed, 0 if not
+ */
+int wheelWindow(int y);
+/**
+ * @brief activation of the gaining focus event
+ * @return 1 if it faied, 0 if not
+ */
+int onFocusedWindow(void);
+/**
+ * @brief activation of the losing focus event
+ * @return 1 if it failed, 0 if not
+ */
+int unFocusedWindow(void);
+/**
  * @brief update all the elements of all the windows
  * @return 1 if it failed, 0 if not
  */
@@ -177,12 +193,6 @@ unsigned long keyPressedAllWindow(char c);
  * @return 0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one
  */
 unsigned long keyReleasedAllWindow(char c);
-
-  /**
-   * @brief activation of the mouseWheel event on the window
-   * @param y : direction of the wheel
-   */
-unsigned long wheelWindow(int y);
 /* ------------------------------------------------------- */
 
 /* ------------------------------------------------------- 

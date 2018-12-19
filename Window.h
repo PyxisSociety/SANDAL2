@@ -39,7 +39,7 @@ struct ListDCElement;
  * @brief Behaviors of a window to  events
  */
 typedef struct{
-    void (*action)();
+    void (*action)(void);
     /**< function called when update*/
     void (*onClick)(int);
     /**< function called when the element is clicked*/
@@ -50,6 +50,11 @@ typedef struct{
     void (*keyReleased)(SDL_Keycode c);
     /**< function called when a key is released*/
     void (*wheel)(int);
+    /**< function called when a wheel motion occures */
+    void (*onFocus)(void);
+    /**< function called when window gain focus */
+    void (*unFocus)(void);
+    /**< function called when window lose focus */
 }EventWindow;
 
 /**
@@ -97,6 +102,8 @@ typedef struct Window{
     /**< tells whether or not all elements where removed */
     int state;
     /**< tells if window is in full screen or normal */
+    int focused;
+    /**< tells whether or not the window is focused */
 }Window;
 
 /**

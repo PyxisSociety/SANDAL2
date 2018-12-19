@@ -616,8 +616,20 @@ int setKeyReleasedElement(Element *e,void (*keyReleased)(Element*,SDL_Keycode c)
  * @param onCLick : function to be called when it is clicked
  * @return 1 if it was impossible, 0 if not
  */
-  int setOnClickElement(Element *e,void (*onCLick)(Element*,int));
+  int setOnClickElement(Element *e,void (*onCLick)(Element*,int button));
+/**
+ * @brief set the behaviour of an element when the mouse move on it
+ * @param e : element to be modified
+ * @param onMouseMotion : function to be called when the mouse move on it
+ * @return 1 if it was impossible, 0 if not
+ */
   int setOnMouseMotionElement(Element *e, void (*onMouseMotion)(Element*));
+/**
+ * @brief set the behaviour of an element when the mouse move out of it
+ * @param e : element to be modified
+ * @param unMouseMotion : function to be called when the mouse move out it
+ * @return 1 if it was impossible, 0 if not
+ */
   int setUnMouseMotionElement(Element *e, void (*unMouseMotion)(Element*));
 /**
  * @brief set the behaviour of an element when it is unclicked
@@ -625,7 +637,7 @@ int setKeyReleasedElement(Element *e,void (*keyReleased)(Element*,SDL_Keycode c)
  * @param unCLick : function to be called when it is unclicked
  * @return 1 if it was impossible, 0 if not
  */
-  int setUnClickElement(Element *e,void (*unCLick)(Element*, int));
+  int setUnClickElement(Element *e,void (*unCLick)(Element*, int button));
 /**
  * @brief set the behaiour of an element when it is unselect
  * @param e : element to be modified
@@ -639,7 +651,7 @@ int setUnSelectElement(Element *e,void (*unSelect)(Element*));
  * @param endSprite : new behaviour
  * @return 1 if it was impossible, 0 if not
  */
-int setEndSpriteElement(Element *e,void (*endSprite)(Element*,int));
+int setEndSpriteElement(Element *e,void (*endSprite)(Element*,int currentCode));
 /**
  * @brief add an element to another so that this other can modifie the first one
  * @param e : element to be modified

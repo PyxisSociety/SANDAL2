@@ -139,17 +139,21 @@ int createWindow(int width,int height,const char *title,int SDLFlags,int backgro
 	    fen->origin[1] = 0;
             fen->next = NULL;
 	    fen->data = NULL;
-            fen->events.action=NULL;
-            fen->events.onClick=NULL;
-            fen->events.unClick=NULL;
-            fen->events.keyPress=NULL;
-            fen->events.keyReleased=NULL;
+            fen->events.action = NULL;
+            fen->events.onClick = NULL;
+            fen->events.unClick = NULL;
+            fen->events.keyPress = NULL;
+            fen->events.keyReleased = NULL;
+	    fen->events.wheel = NULL;
+	    fen->events.onFocus = NULL;
+	    fen->events.unFocus = NULL;
             fen->toDelete=0;
             copyColor(fen->background,background);
             fen->liste = _initListElement();
             fen->current = NULL;
 	    fen->stop = 0;
 	    fen->state = SDLFlags&SDL_WINDOW_FULLSCREEN;
+	    fen->focused = 0;
             if(!fen->liste){
                 SDL_DestroyWindow(fen->window);
                 SDL_DestroyRenderer(fen->renderer);
@@ -161,6 +165,7 @@ int createWindow(int width,int height,const char *title,int SDLFlags,int backgro
                         _windows_SANDAL2->first = fen;
                         _windows_SANDAL2->last = fen;
                         _windows_SANDAL2->current = fen;
+			fen->focused = 1;
                         error = 0;
                     }else{
                         SDL_DestroyWindow(fen->window);
@@ -722,6 +727,54 @@ int keyReleasedWindow(int c){
 }
 
 
+int wheelWindow(int y){
+    int error = 1;
+  
+    if(_windows_SANDAL2 && _windows_SANDAL2->current){
+	error = 0;
+
+	/* fait l'action de la fenetre courante */
+	if(_windows_SANDAL2->current->events.wheel){
+	    _windows_SANDAL2->current->events.wheel(y);
+	}
+    }
+  
+    return error;
+}
+
+
+int onFocusedWindow(){
+    int error = 1;
+
+    if(_windows_SANDAL2 && _windows_SANDAL2->current){
+	error = 0;
+
+	/* fait l'action de la fenetre courante */
+	if(_windows_SANDAL2->current->events.onFocus){
+	    _windows_SANDAL2->current->events.onFocus();
+	}
+    }
+
+    return error;
+}
+
+
+int unFocusedWindow(){
+    int error = 1;
+
+    if(_windows_SANDAL2 && _windows_SANDAL2->current){
+	error = 0;
+
+	/* fait l'action de la fenetre courante */
+	if(_windows_SANDAL2->current->events.unFocus){
+	    _windows_SANDAL2->current->events.unFocus();
+	}
+    }
+
+    return error;
+}
+
+
 unsigned long updateAllWindow(){
     Window * w, * tmp;
     unsigned long error = 1;
@@ -888,37 +941,61 @@ unsigned long keyReleasedAllWindow(char c){
 /* ------------------------------------------------------- */
 
 
-unsigned long wheelWindow(int y)
-{
-  unsigned long error = 1;
-  
-  if(_windows_SANDAL2 && _windows_SANDAL2->current){
-    error = 0;
-
-    /* fait l'action de la fenetre courante */
-    if(_windows_SANDAL2->current->events.wheel){
-      _windows_SANDAL2->current->events.wheel(y);
-    }
-    
-  }
-  
-  return error;
-}
 
 /* ------------------------------------------------------- 
  * Gestion d'evenement
  */
 int PollEvent(unsigned long * error){
-    SDL_Event event;
-    int quit = 0;
-    unsigned long err = 0;
+    SDL_Event       event;
+    int             quit    = 0;
+    unsigned long   err     = 0;
+    Window        * w       = NULL;
+    Window        * focused = NULL;
 
     while(SDL_PollEvent(&event)){
         switch(event.type){
         case SDL_WINDOWEVENT:
-            if(event.window.event == SDL_WINDOWEVENT_CLOSE)  {
-                quit = 1;
-            }
+	    switch(event.window.event){
+	    case SDL_WINDOWEVENT_CLOSE:
+		quit = 1;
+		break;
+	    case SDL_WINDOWEVENT_FOCUS_GAINED:
+		if(_windows_SANDAL2 && _windows_SANDAL2->first){
+		    w = _windows_SANDAL2->first;
+		    while(w){
+			_windows_SANDAL2->current = w;
+			if(SDL_GetWindowID(w->window) == event.window.windowID){
+			    focused = w;
+			    if(!w->focused){
+				err = err|onFocusedWindow();
+			    }
+			}else{
+			    if(w->focused){
+				err = err|unFocusedWindow();
+			    }
+			}
+			w = w->next;
+		    }
+		    _windows_SANDAL2->current = focused;
+		}
+	    case SDL_WINDOWEVENT_FOCUS_LOST:
+		if(_windows_SANDAL2 && _windows_SANDAL2->first){
+		    w = _windows_SANDAL2->first;
+		    while(w && SDL_GetWindowID(w->window) != event.window.windowID){
+			w = w->next;
+		    }
+		    if(w){
+			focused = _windows_SANDAL2->current;
+			_windows_SANDAL2->current = w;
+			err = err|unFocusedWindow();
+			_windows_SANDAL2->current = focused;
+			if(focused == w){
+			    _windows_SANDAL2->current = NULL;
+			}
+		    }
+		}
+		break;
+	    }
             break;
         case SDL_QUIT :   
             quit = 1;
