@@ -162,6 +162,9 @@ Here are the events you can define for a window :
 * unClick
 * keyPressed
 * keyReleased
+* wheel
+* onFocus
+* unFocus
 
 ## What's next ?
 
