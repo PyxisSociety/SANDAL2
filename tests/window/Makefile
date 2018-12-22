@@ -23,7 +23,7 @@ LDFLAGS+=
 
 #your compilation flags, 
 #-ansi or -std=gnu89 are not compatible with -lm on gcc
-CFLAGS=-Wall -Wextra -pedantic -g
+CFLAGS=-g
 
 #your program's name
 EXEC=a.out

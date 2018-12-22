@@ -117,6 +117,8 @@ typedef struct{
     /**<Last Window of the list*/
     Window * current;
     /**<current Window of the list*/
+    unsigned count;
+    /**<number of windows currently opened in the list*/
 }ListWindow;
 
 
@@ -240,7 +242,24 @@ int setOnClickWindow(void (*onCLick)(int));
  * @return 1 if it was impossible, 0 if not
  */
 int setUnClickWindow(void (*unCLick)(int));
-  int setWheelWindow(void (*wheel)(int));
+/**
+ * @brief set behavior of window when a wheel event occure
+ * @param wheel : function to be called
+ * @return 1 if it failed, 0 if not
+ */
+int setWheelWindow(void (*wheel)(int));
+/**
+ * @brief set behavior of window when the window gain focus
+ * @param onFocus : function to be called
+ * @return 1 if it failed, 0 if not
+ */
+int setOnFocusedWindow(void (*onFocus)(void));
+/**
+ * @brief set behavior of window when the window lose focus
+ * @param unFocus : function to be called
+ * @return 1 if it failed, 0 if not
+ */
+int setUnFocusedWindow(void (*unFocus)(void));
 /**
  * @brief get the origin point of the current window
  * @param x : where to store the x coordinate

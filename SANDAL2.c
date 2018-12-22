@@ -113,6 +113,7 @@ static void freeWindow(Window *fen){
 
 int createWindow(int width,int height,const char *title,int SDLFlags,int background[4],int displayCode){
     Window *fen=(Window*)malloc(sizeof(*fen));
+    Window * tmp = NULL;
     int error = 1;
 
     fen->window=SDL_CreateWindow(title,
@@ -153,7 +154,7 @@ int createWindow(int width,int height,const char *title,int SDLFlags,int backgro
             fen->current = NULL;
 	    fen->stop = 0;
 	    fen->state = SDLFlags&SDL_WINDOW_FULLSCREEN;
-	    fen->focused = 0;
+	    fen->focused = 1;
             if(!fen->liste){
                 SDL_DestroyWindow(fen->window);
                 SDL_DestroyRenderer(fen->renderer);
@@ -165,7 +166,7 @@ int createWindow(int width,int height,const char *title,int SDLFlags,int backgro
                         _windows_SANDAL2->first = fen;
                         _windows_SANDAL2->last = fen;
                         _windows_SANDAL2->current = fen;
-			fen->focused = 1;
+			_windows_SANDAL2->count = 1;
                         error = 0;
                     }else{
                         SDL_DestroyWindow(fen->window);
@@ -173,8 +174,16 @@ int createWindow(int width,int height,const char *title,int SDLFlags,int backgro
                         free(fen);
                     }
                 }else{
+		    tmp = _windows_SANDAL2->first;
+		    while(tmp){
+			tmp->focused = 0;
+			tmp = tmp->next;
+		    }
                     _windows_SANDAL2->last->next=fen;
                     _windows_SANDAL2->last=fen;
+		    _windows_SANDAL2->current = fen;
+		    ++_windows_SANDAL2->count;
+		    error = 0;
                 }
             }
         }else{
@@ -753,6 +762,8 @@ int onFocusedWindow(){
 	if(_windows_SANDAL2->current->events.onFocus){
 	    _windows_SANDAL2->current->events.onFocus();
 	}
+
+	_windows_SANDAL2->current->focused = 1;
     }
 
     return error;
@@ -769,6 +780,8 @@ int unFocusedWindow(){
 	if(_windows_SANDAL2->current->events.unFocus){
 	    _windows_SANDAL2->current->events.unFocus();
 	}
+	
+	_windows_SANDAL2->current->focused = 0;
     }
 
     return error;
@@ -957,27 +970,25 @@ int PollEvent(unsigned long * error){
         case SDL_WINDOWEVENT:
 	    switch(event.window.event){
 	    case SDL_WINDOWEVENT_CLOSE:
-		quit = 1;
+		if(_windows_SANDAL2 && _windows_SANDAL2->count){
+		    --_windows_SANDAL2->count;
+		    closeWindow();
+		}else{
+		    quit = 1;
+		}
 		break;
 	    case SDL_WINDOWEVENT_FOCUS_GAINED:
 		if(_windows_SANDAL2 && _windows_SANDAL2->first){
 		    w = _windows_SANDAL2->first;
-		    while(w){
-			_windows_SANDAL2->current = w;
-			if(SDL_GetWindowID(w->window) == event.window.windowID){
-			    focused = w;
-			    if(!w->focused){
-				err = err|onFocusedWindow();
-			    }
-			}else{
-			    if(w->focused){
-				err = err|unFocusedWindow();
-			    }
-			}
+		    while(w && SDL_GetWindowID(w->window) != event.window.windowID){
 			w = w->next;
 		    }
-		    _windows_SANDAL2->current = focused;
+		    if(w){
+			_windows_SANDAL2->current = w;
+			err = err|onFocusedWindow();
+		    }
 		}
+		break;
 	    case SDL_WINDOWEVENT_FOCUS_LOST:
 		if(_windows_SANDAL2 && _windows_SANDAL2->first){
 		    w = _windows_SANDAL2->first;
@@ -998,7 +1009,12 @@ int PollEvent(unsigned long * error){
 	    }
             break;
         case SDL_QUIT :   
-            quit = 1;
+	    if(_windows_SANDAL2 && _windows_SANDAL2->count){
+		--_windows_SANDAL2->count;
+		closeWindow();
+	    }else{
+		quit = 1;
+	    }
             break;
         case SDL_KEYUP:
             err=err|keyReleasedWindow(event.key.keysym.sym);

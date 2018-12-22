@@ -20,7 +20,7 @@ extern "C" {
  * @brief list of windows
  *   WARNING : do not touch this variable, never ... trust me
  */
-  extern ListWindow * _windows_SANDAL2;
+extern ListWindow * _windows_SANDAL2;
 
 /* -------------------------------------------------------
  * Initialisation et fermeture des outils 
@@ -28,7 +28,7 @@ extern "C" {
 /**
  * @brief Initialisation of SANDAL2, its image and fonts (return 1 if  initialisation error, 2 if image initialisation error, 3 if font initialisation error, 0 if not) using SDL2's image flags
  * @param imageFlags : SDL2's image flags
- * @return error code
+ * @return 0 if success, 1 if failed
  */
 int initAllSANDAL2(int imageFlags);
 /**

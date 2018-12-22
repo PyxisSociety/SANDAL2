@@ -50,6 +50,7 @@ int initIteratorWindow(){
 
     if(_windows_SANDAL2){
         _windows_SANDAL2->current = _windows_SANDAL2->first;
+	SDL_RaiseWindow(_windows_SANDAL2->current->window);
         error = 0;
     }
 
@@ -61,7 +62,10 @@ int nextWindow(){
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
         _windows_SANDAL2->current = _windows_SANDAL2->current->next;
-        error = 0;
+	if(_windows_SANDAL2->current){
+	    SDL_RaiseWindow(_windows_SANDAL2->current->window);
+	    error = 0;
+	}
     }
   
     return error;
@@ -240,15 +244,37 @@ int setUnClickWindow(void (*unClick)(int)){
     return error;
 }
 
-int setWheelWindow(void (*wheel)(int))
-{
-  int error = 1;
+int setWheelWindow(void (*wheel)(int)){
+    int error = 1;
 
-  if(_windows_SANDAL2 && _windows_SANDAL2->current){
-    _windows_SANDAL2->current->events.wheel=wheel;
-  }
+    if(_windows_SANDAL2 && _windows_SANDAL2->current){
+	error = 0;
+	_windows_SANDAL2->current->events.wheel=wheel;
+    }
 
-  return error;
+    return error;
+}
+
+int setOnFocusedWindow(void (*onFocus)(void)){
+    int error = 1;
+
+    if(_windows_SANDAL2 && _windows_SANDAL2->current){
+	error = 0;
+	_windows_SANDAL2->current->events.onFocus = onFocus;
+    }
+
+    return error;
+}
+
+int setUnFocusedWindow(void (*unFocus)(void)){
+    int error = 1;
+
+    if(_windows_SANDAL2 && _windows_SANDAL2->current){
+	error = 0;
+	_windows_SANDAL2->current->events.unFocus = unFocus;
+    }
+
+    return error;
 }
 
 int getOriginWindow(int * x,int * y){
