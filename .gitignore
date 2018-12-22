@@ -9,9 +9,6 @@ Doxdoc/
 Doxdoc/*
 Doxyfile
 TODO.txt
-tests/tests_animation/*.o
-tests/tests_animation/*~
-tests/tests_animation/a.out
-tests/tests_clear/*.o
-tests/tests_clear/*~
-tests/tests_clear/a.out
+tests/*/a.out
+tests/*/*.o
+tests/*/*~
