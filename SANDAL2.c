@@ -796,45 +796,48 @@ unsigned long updateAllWindow(){
   
     if(_windows_SANDAL2){
         error = 0;
-        w=_windows_SANDAL2->current;
-        initIteratorWindow();
+        w = _windows_SANDAL2->first;
+	tmp = _windows_SANDAL2->current;
         do{
-            tmp=_windows_SANDAL2->current;
-            err=updateWindow()*bit;
+            _windows_SANDAL2->current = w;
+            err = updateWindow() * bit;
             if(!error && err){
                 error=1;
             }
-            error+=(unsigned)err*bit;
-            bit*=2;
-            if(tmp==_windows_SANDAL2->current){
-                nextWindow();
+            error += (unsigned)err * bit;
+            bit *= 2;
+            if(w != _windows_SANDAL2->current){
+		tmp = _windows_SANDAL2->current;
             }
-        }while(_windows_SANDAL2->current);
-        _windows_SANDAL2->current=w;
+	    w = w->next;
+        }while(w);
+        _windows_SANDAL2->current = tmp;
     }
 
     return error;
 }
 
 unsigned long displayAllWindow(){
-    Window * w;
+    Window * w, * tmp;
     unsigned long error = 1;
     int err;
     int bit = 2;
   
     if(_windows_SANDAL2){
         error = 0;
-        w=_windows_SANDAL2->current;
-        initIteratorWindow();
+        w = _windows_SANDAL2->first;
+	tmp = _windows_SANDAL2->current;
         do{
-            err=displayWindow()*bit;
+            _windows_SANDAL2->current = w;
+            err = displayWindow()*bit;
             if(!error && err){
                 error=1;
             }
-            error+=(unsigned)err*bit;
-            bit*=2;
-        }while(!nextWindow());
-        _windows_SANDAL2->current=w;
+            error += (unsigned)err*bit;
+            bit *= 2;
+	    w = w->next;
+        }while(w);
+        _windows_SANDAL2->current = tmp;
     }
 
     return error;
@@ -848,21 +851,22 @@ unsigned long clickAllWindow(SDL_MouseButtonEvent button){
   
     if(_windows_SANDAL2){
         error = 0;
-        w=_windows_SANDAL2->current;
-        initIteratorWindow();
+        w = _windows_SANDAL2->first;
+	tmp = _windows_SANDAL2->current;
         do{
-            tmp=_windows_SANDAL2->current;
+            _windows_SANDAL2->current = w;
             err=clickWindow(button)*bit;
             if(!error && err){
                 error=1;
             }
             error+=(unsigned)err*bit;
             bit*=2;
-            if(tmp==_windows_SANDAL2->current){
-                nextWindow();
+            if(w != _windows_SANDAL2->current){
+		tmp = _windows_SANDAL2->current;
             }
-        }while(_windows_SANDAL2->current);
-        _windows_SANDAL2->current=w;
+	    w = w->next;
+        }while(w);
+        _windows_SANDAL2->current = tmp;
     }
 
     return error;
@@ -876,21 +880,22 @@ unsigned long unclickAllWindow(SDL_MouseButtonEvent button){
   
     if(_windows_SANDAL2){
         error = 0;
-        w=_windows_SANDAL2->current;
-        initIteratorWindow();
+        w = _windows_SANDAL2->first;
+	tmp = _windows_SANDAL2->current;
         do{
-            tmp=_windows_SANDAL2->current;
+            _windows_SANDAL2->current = w;
             err=unclickWindow(button)*bit;
             if(!error && err){
                 error=1;
             }
             error+=(unsigned)err*bit;
             bit*=2;
-            if(tmp==_windows_SANDAL2->current){
-                nextWindow();
+            if(w != _windows_SANDAL2->current){
+		tmp = _windows_SANDAL2->current;
             }
-        }while(_windows_SANDAL2->current);
-        _windows_SANDAL2->current=w;
+	    w = w->next;
+        }while(w);
+        _windows_SANDAL2->current = tmp;
     }
 
     return error;
@@ -904,21 +909,22 @@ unsigned long keyPressedAllWindow(char c){
   
     if(_windows_SANDAL2){
         error = 0;
-        w=_windows_SANDAL2->current;
-        initIteratorWindow();
+        w = _windows_SANDAL2->first;
+	tmp = _windows_SANDAL2->current;
         do{
-            tmp=_windows_SANDAL2->current;
+            _windows_SANDAL2->current = w;
             err=keyPressedWindow(c)*bit;
             if(!error && err){
                 error=1;
             }
             error+=(unsigned)err*bit;
             bit*=2;
-            if(tmp==_windows_SANDAL2->current){
-                nextWindow();
+            if(w != _windows_SANDAL2->current){
+		tmp = _windows_SANDAL2->current;
             }
-        }while(_windows_SANDAL2->current);
-        _windows_SANDAL2->current=w;
+	    w = w->next;
+        }while(w);
+        _windows_SANDAL2->current = tmp;
     }
 
     return error;
@@ -932,21 +938,22 @@ unsigned long keyReleasedAllWindow(char c){
   
     if(_windows_SANDAL2){
         error = 0;
-        w=_windows_SANDAL2->current;
-        initIteratorWindow();
+        w = _windows_SANDAL2->first;
+	tmp = _windows_SANDAL2->current;
         do{
-            tmp=_windows_SANDAL2->current;
+            _windows_SANDAL2->current = w;
             err=keyReleasedWindow(c)*bit;
             if(!error && err){
                 error=1;
             }
             error+=(unsigned)err*bit;
             bit*=2;
-            if(tmp==_windows_SANDAL2->current){
-                nextWindow();
+            if(w != _windows_SANDAL2->current){
+		tmp = _windows_SANDAL2->current;
             }
-        }while(_windows_SANDAL2->current);
-        _windows_SANDAL2->current=w;
+	    w = w->next;
+        }while(w);
+        _windows_SANDAL2->current = tmp;
     }
 
     return error;
