@@ -9,6 +9,10 @@ To generate the Doxygen documentation, use the command:
 To see this read me file with a better display, you can go to [this project's
 website](https://klevh.github.io/SANDAL2/).
 
+## Contributors
+
+dabaldassin : version 1.2.3  
+
 ## Useful links
 
 From this "read-me", you can either go to :
@@ -63,31 +67,28 @@ From this "read-me", you can either go to :
 1.2.2 : improving C++ compatibility <br/>
 1.2.3 : adding mouse wheel events and mouse motion events support <br/>
 1.2.4 : bug fix on setPlanElement<br/>
-
-## Contributors
-
-dabaldassin : version 1.2.3  
+1.2.5 : bug fix on Clickable and adding iterator for blocking elements of ListClickable<br/>
 
 ## Project's size
 
-Clickable.c : 321 lines<br/>
+Clickable.c : 349 lines<br/>
 DisplayCode.c : 80 lines<br/>
 Element.c : 1,947 lines<br/>
 Font.c : 268 lines<br/>
-SANDAL2.c : 953 lines<br/>
+SANDAL2.c : 1,053 lines<br/>
 Sprite.c : 308 lines<br/>
-Window.c : 302 lines<br/>
+Window.c : 328 lines<br/>
 <br/>
-Total for source files : 4,179 lines<br/>
+Total for source files : 4,333 lines<br/>
 <br/>
-Clickable.h : 219 lines<br/>
+Clickable.h : 230 lines<br/>
 DisplayCode.h : 78 lines<br/>
-Element.h : 931 lines<br/>
+Element.h : 943 lines<br/>
 Font.h : 115 lines<br/>
-SANDAL2.h : 203 lines<br/>
+SANDAL2.h : 213 lines<br/>
 Sprite.h : 195 lines<br/>
-Window.h : 281 lines<br/>
+Window.h : 307 lines<br/>
 <br/>
-Total for header files : 2,022 lines<br/>
+Total for header files : 2,081 lines<br/>
 <br/>
-Total : 6,201 lines
+Total : 6,414 lines

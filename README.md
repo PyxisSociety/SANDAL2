@@ -16,6 +16,10 @@ I made this wrapper because I found boresome to have to create a display functio
 up going a little further in it. I hope you will enjoy using it, if you have any comment or advice, do not feel shy 
 and tell me (by posting an issue [here](https://github.com/Klevh/SANDAL2/issues/new)) ! I will really appreciate it.
 
+## Contributors
+
+dabaldassin : version 1.2.3  
+
 ## Useful links
 
 From this "read-me", you can either go to :
