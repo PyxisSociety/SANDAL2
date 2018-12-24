@@ -1669,12 +1669,12 @@ int previousSpriteElement(Element * e){
     return error;
 }
 
-int setWaySpriteAnimationElement(Element * e,int code, int sens){
+int setWaySpriteAnimationElement(Element * e,int code, int side){
     int error = 1;
     ListSprite *ls;
     unsigned i=0;
 
-    if(e && (sens == 1 || !sens || sens == -1) && e->animation->size){
+    if(e && (side == 1 || !side || side == -1) && e->animation->size){
         ls=e->animation->first;
         while(i<e->animation->size && ls->code != code){
             ls=ls->next;
@@ -1682,7 +1682,7 @@ int setWaySpriteAnimationElement(Element * e,int code, int sens){
         }
         if(i<e->animation->size){
             error = 0;
-            ls->sens=sens;
+            ls->side=side;
         }
     }
 

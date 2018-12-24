@@ -323,10 +323,10 @@ int updateWindow(){
                         }
                         if((*ele)->element->animation->size && (*ele)->element->animation->size){
                             (*ele)->element->animation->current->wasChanged++;
-                            if((*ele)->element->animation->current->sens && (*ele)->element->animation->current->wasChanged >= (*ele)->element->animation->current->current->lifespan){
+                            if((*ele)->element->animation->current->side && (*ele)->element->animation->current->wasChanged >= (*ele)->element->animation->current->current->lifespan){
                                 i=0;
                                 do{
-                                    if((*ele)->element->animation->current->sens == -1){
+                                    if((*ele)->element->animation->current->side == -1){
                                         previousSpriteElement((*ele)->element);
                                     }else{
                                         nextSpriteElement((*ele)->element);

@@ -792,10 +792,10 @@ int previousSpriteElement(Element * e);
 /**
  * @brief set the way to go from a sprite to another (forward (1), backward (-1), no move (0))
  * @param e : element
- * @param sens : new way
+ * @param side : new way
  * @return 0 if the way could be set, 1 if not
  */
-int setWaySpriteAnimationElement(Element * e,int code, int sens);
+int setWaySpriteAnimationElement(Element * e,int code, int side);
 /**
  * @brief go to te next animation of an element
  * @param e : element
