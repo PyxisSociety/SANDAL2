@@ -9,6 +9,6 @@ Doxdoc/
 Doxdoc/*
 Doxyfile
 TODO.txt
-tests/*/a.out
-tests/*/*.o
-tests/*/*~
+*/*/a.out
+*/*/*.o
+*/*/*~
