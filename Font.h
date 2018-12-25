@@ -61,11 +61,11 @@ typedef struct{
  * @brief generate a Font using the path to the font, the text and the color of the text (use the window's background font as background color for Shaded quality)
  * @param fontPath : path of the font
  * @param texte : text of the object
- * @param couleur : color of the text
+ * @param color : color of the text
  * @param quality : quality of the texture (SANDAL2_SOLID, SANDAL2_SHADED or SANDAL2_BLENDED)
  * @return NULL if the object was not initialised, if not, the object
  */
-Font* createFont(const char *fontPath,const char * texte,int couleur[4], int quality);
+Font* createFont(const char *fontPath,const char * texte,int color[4], int quality);
 /**
  * @brief free the memory of a Font
  * @param font : the Font to be freed

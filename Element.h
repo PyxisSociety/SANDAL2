@@ -191,8 +191,7 @@ typedef struct ListElement{
 
 
 /* -------------------------------------------------------
- * Liste de liste (code d'affichage) de liste (plan) 
- * d'element
+ * List of list (display code) of list (plan) of elements
  */
 /**
  * @brief Initialise a list of lists (display code) of lists (plan) of elements
@@ -238,11 +237,11 @@ void _freeElement(Element *e);
  * @param y : ordinate coordinate of its top left corner
  * @param width : width of the element
  * @param height : height of the element
- * @param couleur : color of the rectangle (RGBA)
+ * @param color : color of the rectangle (RGBA)
  * @param displayCode : display code of the rectangle
  * @param plan : plan of the rectangle
  */
-Element* createBlock(float x,float y,float width,float height,int couleur[4],int displayCode,int plan);
+Element* createBlock(float x,float y,float width,float height,int color[4],int displayCode,int plan);
 /**
  * @brief Generate a text like element
  * @param x : abscissa coordinate of its top left corner
@@ -283,7 +282,7 @@ Element* createImage(float x,float y,float width,float height,const char *image,
  * @param displayCode : display code of the button
  * @param plan : plan of the button
  */
-Element* createButton(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,int couleurBlock[4],int displayCode,int plan);
+Element* createButton(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,int colorBlock[4],int displayCode,int plan);
 /**
  * @brief Generate a button like element with an image
  * @param x : abscissa coordinate of its top left corner
@@ -318,7 +317,7 @@ Element* createButtonImage(float x,float y,float width,float height,float texteS
  * @param max : maximum number of character for the prompt to be validate
  * @param isScripted : flag which tells whether or not the prompt is cripted
  */
-Element* createEntry(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,int couleurBlock[4],int displayCode,int plan,int min,int max, int isScripted);
+Element* createEntry(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,int colorBlock[4],int displayCode,int plan,int min,int max, int isScripted);
 /**
  * @brief Generate a prompt like element with an image
  * @param x : abscissa coordinate of its top left corner

@@ -3,7 +3,7 @@
 /* -------------------------------------------------------
  * Text 
  */
-Font* createFont(const char *fontPath,const char *texte,int couleur[4],int quality){
+Font* createFont(const char *fontPath,const char *texte,int color[4],int quality){
     Font *f = NULL;
     SDL_Surface *s;
     SDL_Color c,c2;
@@ -13,10 +13,10 @@ Font* createFont(const char *fontPath,const char *texte,int couleur[4],int quali
 	if(f){
 	    f->font=TTF_OpenFont(fontPath,30);
 	    if(f->font){
-		c.r=couleur[0];
-		c.g=couleur[1];
-		c.b=couleur[2];
-		c.a=couleur[3];
+		c.r=color[0];
+		c.g=color[1];
+		c.b=color[2];
+		c.a=color[3];
 		f->color=c;
 		f->text=(char*)malloc((strlen(texte)+1)*sizeof(*(f->text)));
 		f->texture=NULL;

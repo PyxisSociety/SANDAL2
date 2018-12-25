@@ -382,7 +382,7 @@ void _freeElement(Element *e){
     }    
 }
 
-Element* createBlock(float x,float y,float width,float height,int couleur[4],int displayCode,int plan){
+Element* createBlock(float x,float y,float width,float height,int color[4],int displayCode,int plan){
     Element *e = NULL;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
@@ -400,7 +400,7 @@ Element* createBlock(float x,float y,float width,float height,int couleur[4],int
             e->rotation=0.f;
             e->rotSpeed=0.f;
 	    e->flip = SANDAL2_FLIP_NONE;
-            copyColor(e->coulBlock,couleur);
+            copyColor(e->coulBlock,color);
             e->codes=initListDisplayCode();
             addDisplayCode(e->codes,displayCode,1,plan);
             e->animation=initListAnimation();
@@ -539,12 +539,12 @@ Element* createImage(float x,float y,float width,float height,const char *image,
     return e;
 }
 
-Element* createButton(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,int couleurBlock[4],int displayCode,int plan){
+Element* createButton(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,int colorBlock[4],int displayCode,int plan){
     Element *e = NULL;
     Font * f;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
-        e=createBlock(x,y,width,height,couleurBlock,displayCode,plan);
+        e=createBlock(x,y,width,height,colorBlock,displayCode,plan);
         if(e){
             e->textSize=texteSize/100.f;
             f=createFont(font,text,textColor,quality);
@@ -583,13 +583,13 @@ Element* createButtonImage(float x,float y,float width,float height,float texteS
     return e;
 }
 
-Element* createEntry(float x,float y,float width,float height,float texteSize,const char * font, const char * text,int textColor[4],int quality,int couleurBlock[4],int displayCode,int plan,int min,int max,int isScripted){
+Element* createEntry(float x,float y,float width,float height,float texteSize,const char * font, const char * text,int textColor[4],int quality,int colorBlock[4],int displayCode,int plan,int min,int max,int isScripted){
     Element *e = NULL;
     Entry *ent;
     int i;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
-        e=createButton(x,y,width,height,texteSize,font,text,textColor,quality,couleurBlock,displayCode,plan);
+        e=createButton(x,y,width,height,texteSize,font,text,textColor,quality,colorBlock,displayCode,plan);
         if(e){
             ent=(Entry*)malloc(sizeof(*ent));
             if(ent){
