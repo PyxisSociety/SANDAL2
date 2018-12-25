@@ -39,6 +39,7 @@ TEST_SECTION(SpriteList){
 	REQUIRE(s1->prev == s1);
 	REQUIRE(ls->size == 1);
 	REQUIRE(ls->current == s1);
+	REQUIRE(addSprite(ls, a1[0], a1[1], a1[2], a1[3], 4, 0));
 	
 	int a2[] = {3, 2, 1, 0};
 	REQUIRE(!addSprite(ls, a2[0], a2[1], a2[2], a2[3], 0, 4));
@@ -54,6 +55,7 @@ TEST_SECTION(SpriteList){
 	REQUIRE(s1->next == s2);
 	REQUIRE(s1->prev == s2);
 	REQUIRE(ls->size == 2);
+	REQUIRE(addSprite(ls, a2[0], a2[1], a2[2], a2[3], 0, 4));
     }
 
     TEST_CASE(del){
@@ -100,7 +102,7 @@ TEST_SECTION(SpriteList){
 
 
 
-TEST_SECTION(AnimationList){
+TEST_SECTION(AnimationList){    
     static ListAnimation * la = NULL; // static to be initialized only once
     
     TEST_CASE(creation){
@@ -116,18 +118,98 @@ TEST_SECTION(AnimationList){
     REQUIRE_NOT_NULL(la);
     
     TEST_CASE(addAnimation){
+	ListSprite * ls = NULL;
+	
+	for(int i = 0; i < 2; ++i){
+	    REQUIRE(!!createAnimation(la, 0) == i);
+	    REQUIRE(la->size == 1);
+	    REQUIRE_NOT_NULL(la->first);
+	    REQUIRE(la->current == la->first);
+	}
+	ls = la->first;
+
+	for(int i = 0; i < 2; ++i){
+	    REQUIRE(!!createAnimation(la, 1) == i);
+	    REQUIRE(la->size == 2);
+	    REQUIRE(la->first == ls);
+	    REQUIRE(la->current == ls);
+
+	    REQUIRE(ls->next != ls);
+	    REQUIRE(ls->prev != ls);
+	}
     }
     
     TEST_CASE(delAnimation){
+	ListSprite * ls = la->first;
+	REQUIRE_NOT_NULL(ls);
+
+	for(int i = 0; i < 2; ++i){
+	    REQUIRE(!!delAnimation(la, 0) == i);
+	    REQUIRE(la->size == 1);
+	    REQUIRE(la->first != ls);
+	    REQUIRE(la->current != ls);
+	    REQUIRE_NOT_NULL(la->first);
+	    REQUIRE_NOT_NULL(la->current);
+	}
+
+	for(int i = 0; i < 2; ++i){
+	    REQUIRE(!!delAnimation(la, 1) == i);
+	    REQUIRE(la->size == 0);
+	    REQUIRE(la->first == NULL);
+	    REQUIRE(la->current == NULL);
+	}
     }
     
     TEST_CASE(addSprite){
+	REQUIRE(!createAnimation(la, 0));
+	ListSprite * ls = la->first;
+	REQUIRE_NOT_NULL(ls);
+	REQUIRE(ls->first == NULL);
+
+	for(int i = 0; i < 2; ++i){
+	    REQUIRE(!!addSpriteAnimation(la, 0, 1, 1, 1, 1, 0, 0) == i);
+	    REQUIRE(ls->size == 1);
+	}
+        
+	for(int i = 0; i < 2; ++i){
+	    REQUIRE(!!addSpriteAnimation(la, 0, 2, 2, 2, 2, 1, 1) == i);
+	    REQUIRE(ls->size == 2);
+	}
+	
     }
     
     TEST_CASE(delSprite){
+	ListSprite * ls = la->first;
+	REQUIRE_NOT_NULL(ls);
+
+	for(int j = 0; j < 2; ++j){
+	    for(int i = 0; i < 2; ++i){
+		REQUIRE(!!delSpriteAnimation(la, 0, j) == i);
+		REQUIRE(ls->size == 1 - j);
+	    }
+	}
     }
     
     TEST_CASE(set){
+	REQUIRE(!createAnimation(la, 1));
+	REQUIRE(!createAnimation(la, 2));
+	REQUIRE(!addSpriteAnimation(la, 1, 1, 1, 1, 1, 0, 0));
+	REQUIRE(!addSpriteAnimation(la, 1, 1, 1, 1, 1, 0, 1));
+	REQUIRE(!addSpriteAnimation(la, 1, 1, 1, 1, 1, 0, 2));
+	Sprite * s = la->first->next->first->next;
+
+	REQUIRE(!setLifeSpanSpriteAnimation(la, 1, 1, 42));
+	REQUIRE(s->lifespan == 42);
+	REQUIRE(setLifeSpanSpriteAnimation(la, 1, 42, 0));
+	REQUIRE(setLifeSpanSpriteAnimation(la, 42, 0, 0));
+
+	REQUIRE(setAnimation(la, 3));
+	REQUIRE(!setAnimation(la, 1));
+	REQUIRE(la->current == la->first->next);
+
+	REQUIRE(setSpriteAnimation(la, 42));
+	REQUIRE(!setSpriteAnimation(la, 1));
+	REQUIRE(la->current->current == s);
     }
 
     freeListAnimation(la);
