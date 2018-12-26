@@ -1,6 +1,6 @@
 # SANDAL2
 
-[![pipeline status](https://gitlab.com/BaptistePR/SDL2TK/badges/master/pipeline.svg)](https://gitlab.com/BaptistePR/SDL2TK/commits/master)
+[![pipeline status](https://gitlab.com/BaptistePR/SANDAL2/badges/master/pipeline.svg)](https://gitlab.com/BaptistePR/SANDAL2/commits/master)
   
 SANDAL2 is a SDL2 wrapper which purpose is to make object managment and
 graphic display easier.  
