@@ -1,3 +1,0 @@
-[submodule "tests/LAssert"]
-	path = tests/LAssert
-	url = https://github.com/Klevh/LAssert.git
