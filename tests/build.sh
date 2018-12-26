@@ -7,9 +7,11 @@ dirs=`ls --hide=LAssert`
 for d in $dirs; do
     if [ -d "$d" ]; then
 	cd $d
-	make cleaner > /dev/null
-	make > /dev/null
-	echo "build: $d"
+	if [ -f "Makefile" ]; then
+	    make cleaner 2> /dev/null
+	    make > /dev/null
+	    echo "build: $d"
+	fi
 	cd ..
     fi
 done
