@@ -1029,7 +1029,10 @@ int setImageTextureElement(Element *e,SDL_Texture * image){
 
     if(e){
         error = 0;
-        e->image=image;
+	if(e->image && e->image != image){
+	    SDL_DestroyTexture(e->image);
+	}
+        e->image = image;
     }
 
     return error;
@@ -1575,7 +1578,7 @@ int setDataElement(Element *e,void *data){
 int setFreeDataElement(Element *e,void (*freeData)(void*)){
     int error = 1;
 
-    if(e && freeData){
+    if(e){
         e->freeData=freeData;
         error = 0;
     }

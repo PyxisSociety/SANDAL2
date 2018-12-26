@@ -1,0 +1,7 @@
+tests:
+	script: tests/run.sh
+	stage: test
+
+build_test:
+	script: tests/build.sh
+	stage: build
