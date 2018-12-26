@@ -1,7 +1,12 @@
+.dependancies:
+    script:
+        - sudo apt-get install libsdl2-dev libsdl2-image-dev libsd2-ttf-dev -y
+
 tests:
     script: tests/run.sh
     stage: test
 
 build_test:
+    extends: .dependancies
     script: tests/build.sh
     stage: build
