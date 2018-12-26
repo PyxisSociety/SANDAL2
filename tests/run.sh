@@ -23,6 +23,8 @@ for d in $dirs; do
 		echo ""
 		echo "${out}"
 		echo "=============================================================="
+	    else
+		echo "++++++ $d success"
 	    fi
 	fi
 	cd ..
