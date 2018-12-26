@@ -279,7 +279,7 @@ TEST_SECTION(ListElement){
     }
 
     // not to do other test cases if e failed to be initialized
-    //REQUIRE_NOT_NULL(e);
+    // REQUIRE_NOT_NULL(e);
 
     TEST_CASE(set){
 	// set plan
