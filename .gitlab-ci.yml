@@ -4,6 +4,6 @@ tests:
 
 build_test:
     script:
-        - sudo apt-get install libsdl2-dev libsdl2-image-dev libsd2-ttf-dev -y
+        - apt-get install libsdl2-dev libsdl2-image-dev libsd2-ttf-dev -y
         - tests/build.sh
     stage: build
