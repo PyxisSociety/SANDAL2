@@ -9,6 +9,7 @@ for d in $dirs; do
 	cd $d
 	make cleaner > /dev/null
 	make > /dev/null
+	echo "build: $d"
 	cd ..
     fi
 done
