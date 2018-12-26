@@ -1,6 +1,6 @@
 before_script:
  - apt-get update -qq
- - apt-get install libsdl2-dev libsdl2-image-dev libsd2-ttf-dev -y
+ - apt-get install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev -y
 
 tests:
     script: tests/run.sh
