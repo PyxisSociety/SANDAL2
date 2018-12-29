@@ -600,12 +600,20 @@ Element* createEntry(float x,float y,float width,float height,float texteSize,co
                 PFREE(e->font->text);
                 e->font->text=(char*)malloc((max*2+1)*sizeof(*(e->font->text)));
                 if(e->font->text){
-                    for(i=0;i<max*2;++i){
-                        e->font->text[i]=' ';
+		    if(text){
+			for(i = 0; text[i] && i < max * 2; ++i){
+			    e->font->text[i] = text[i];
+			}
+		        ent->size = i;
+		    }else{
+			i = 0;
+			ent->size = 0;
+		    }
+                    for(; i < max * 2; ++i){
+                        e->font->text[i] = ' ';
                     }
                     e->font->text[max]='\0';
                     e->entry=ent;
-                    ent->size=0;
                 }else{
                     delElement(e);
                     _freeElement(e);
@@ -639,12 +647,20 @@ Element* createEntryImage(float x,float y,float width,float height,float texteSi
                 PFREE(e->font->text);
                 e->font->text=(char*)malloc((max*2+1)*sizeof(*(e->font->text)));
                 if(e->font->text){
-                    for(i=0;i<max*2;++i){
-                        e->font->text[i]=' ';
+		    if(text){
+			for(i = 0; text[i] && i < max * 2; ++i){
+			    e->font->text[i] = text[i];
+			}
+		        ent->size = i;
+		    }else{
+			i = 0;
+			ent->size = 0;
+		    }
+                    for(; i < max * 2; ++i){
+                        e->font->text[i] = ' ';
                     }
                     e->font->text[max]='\0';
                     e->entry=ent;
-                    ent->size=0;
                 }else{
                     delElement(e);
                     _freeElement(e);

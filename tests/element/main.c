@@ -276,10 +276,138 @@ TEST_SECTION(ListElement){
     static Element * e = NULL; // static not to be reinitialized if a test case failed
 
     TEST_CASE(creation){
+#       define TEST_ELEMENT(e, color, tsize, img, fnt, entr)		\
+	REQUIRE_NOT_NULL(e);						\
+	EQ(e->x, 0);							\
+	EQ(e->y, 0);							\
+	EQ(e->width, 1);						\
+	EQ(e->height, 1);						\
+	EQ(e->prX, 0.5f);						\
+	EQ(e->prY, 0.5f);						\
+	EQ(e->rotation, 0);						\
+	EQ(e->rotSpeed, 0);						\
+	EQ(e->flip, SANDAL2_FLIP_NONE);					\
+	if(color[0] == -1){						\
+	    REQUIRE(e->coulBlock[0] == -1);				\
+        }else{								\
+	    for(int i = 0; i < 4; ++i){					\
+		REQUIRE(e->coulBlock[i] == color[i]);			\
+	    }								\
+	}								\
+	if(tsize) EQ(e->textSize, tsize / 100.f);			\
+	if(img){							\
+	    REQUIRE_NOT_NULL(e->image);					\
+	}else{								\
+	    REQUIRE(e->image == NULL);					\
+	}								\
+	REQUIRE_NOT_NULL(e->animation);					\
+	if(fnt){							\
+	    REQUIRE_NOT_NULL(e->font);					\
+	}else{								\
+	    REQUIRE(e->font == NULL);					\
+	}								\
+	REQUIRE_NOT_NULL(e->hitboxes);					\
+	REQUIRE(e->data == NULL);					\
+	REQUIRE(e->freeData == NULL);					\
+	REQUIRE(e->deleted == 0);					\
+	REQUIRE(e->deleteCode == 0);					\
+	REQUIRE(e->selected == 0);					\
+	REQUIRE_NOT_NULL(e->parent);					\
+	REQUIRE(e->interactions == NULL);				\
+	/* e->codes */							\
+	REQUIRE_NOT_NULL(e->codes);					\
+	REQUIRE_NOT_NULL(e->codes->first);				\
+	REQUIRE(e->codes->first->next == NULL);				\
+	REQUIRE(e->codes->first->code == 0);				\
+	REQUIRE(e->codes->first->plan == 0);				\
+	REQUIRE(e->codes->size == 1);					\
+	/* e->entry */							\
+	if(entr){							\
+	    REQUIRE_NOT_NULL(e->entry);					\
+	    REQUIRE(e->entry->size_min == 0);				\
+	    REQUIRE(e->entry->size_max == 10);				\
+	    REQUIRE(e->entry->size == 6);				\
+	    REQUIRE(e->entry->isSelect == 0);				\
+	    REQUIRE(e->entry->isScripted == 0);				\
+	}else{								\
+	    REQUIRE(e->entry == NULL);					\
+	}								\
+	/* e->events */							\
+	REQUIRE(e->events.action == NULL);				\
+	REQUIRE(e->events.onClick == NULL);				\
+	REQUIRE(e->events.unClick == NULL);				\
+	REQUIRE(e->events.keyPress == NULL);				\
+	REQUIRE(e->events.keyReleased == NULL);				\
+	REQUIRE(e->events.unSelect == NULL);				\
+	REQUIRE(e->events.endSprite == NULL);				\
+	REQUIRE(e->events.onMouseMotion == NULL);			\
+	REQUIRE(e->events.unMouseMotion == NULL)
+#       define FONT "../../downloadable/arial.ttf", "coucou"
+#       define IMG "../../downloadable/img.jpg"
+#       define DIM 0, 0, 1, 1
+#       define DC 0, 0
+	
+	int color[4] = {0};
+	int noColor[4] = {-1};
+	e = createEntryImage(DIM, 1, FONT, color, SANDAL2_SOLID, IMG, DC, 0, 10, 0);
+	TEST_ELEMENT(e, noColor, 1, 1, 1, 1);
+	// element, block color, text size (0 if no test), image not NULL, font not NULL, entry not NULL
+	delElement(e);
+
+	e = createEntry(DIM, 1, FONT, color, SANDAL2_SOLID, color, DC, 0, 10, 0);
+	TEST_ELEMENT(e, color, 1, 0, 1, 1);
+	// element, block color, text size (0 if no test), image not NULL, font not NULL, entry not NULL
+	delElement(e);
+
+	e = createButtonImage(DIM, 1, FONT, color, SANDAL2_SOLID, IMG, DC);
+	TEST_ELEMENT(e, noColor, 1, 1, 1, 0);
+	// element, block color, text size (0 if no test), image not NULL, font not NULL, entry not NULL
+	delElement(e);
+
+	e = createButton(DIM, 1, FONT, color, SANDAL2_SOLID, color, DC);
+	TEST_ELEMENT(e, color, 1, 0, 1, 0);
+	// element, block color, text size (0 if no test), image not NULL, font not NULL, entry not NULL
+	delElement(e);
+
+	e = createImage(DIM, IMG, DC);
+	TEST_ELEMENT(e, noColor, 0, 1, 0, 0);
+	// element, block color, text size (0 if no test), image not NULL, font not NULL, entry not NULL
+	delElement(e);
+
+	e = createText(DIM, 1, FONT, color, SANDAL2_SOLID, DC);
+	TEST_ELEMENT(e, noColor, 1, 0, 1, 0);
+	// element, block color, text size (0 if no test), image not NULL, font not NULL, entry not NULL
+	delElement(e);
+
+	e = createBlock(DIM, color, DC);
+	TEST_ELEMENT(e, color, 0, 0, 0, 0);
+	// element, block color, text size (0 if no test), image not NULL, font not NULL, entry not NULL
+#       undef DIM
+#       undef IMG
+#       undef FONT
+#       undef TEST_ELEMENT
+	
+	updateAllWindow(); // deleting all elements that should be deleted
+
+	// testing if deletion was successful
+	REQUIRE_NOT_NULL(_windows_SANDAL2);
+	REQUIRE_NOT_NULL(_windows_SANDAL2->current);
+	REQUIRE_NOT_NULL(_windows_SANDAL2->current->liste);
+	ListElement * le = _windows_SANDAL2->current->liste;
+	REQUIRE_NOT_NULL(le->first);
+	REQUIRE(le->first->next == NULL);
+	REQUIRE(le->first->code == 0);
+	REQUIRE_NOT_NULL(le->first->first);
+	REQUIRE(le->first->first->next == NULL);
+	REQUIRE(le->first->first->code == 0);
+	REQUIRE_NOT_NULL(le->first->first->first);
+	PtrElement * pe = le->first->first->first;
+	REQUIRE(pe->next == NULL);
+	REQUIRE(pe->element == e);
     }
 
     // not to do other test cases if e failed to be initialized
-    // REQUIRE_NOT_NULL(e);
+    REQUIRE_NOT_NULL(e);
 
     TEST_CASE(set){
 	// set plan
@@ -299,6 +427,11 @@ TEST_SECTION(ListElement){
 	// clear element to element
 
 	// clear window
+    }
+
+    if(e){
+	delElement(e);
+	e = NULL;
     }
 }
 
