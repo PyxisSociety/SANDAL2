@@ -20,6 +20,8 @@ and tell me (by posting an issue [here](https://github.com/Klevh/SANDAL2/issues/
 
 ## Contributors
 
+Huge thanks to dabaldassin for the contribution he had for this project : biggest tester, user and promoter of SANDAL2.  
+
 dabaldassin : version 1.2.3  
 
 ## Useful links

@@ -13,6 +13,8 @@ website](https://klevh.github.io/SANDAL2/).
 
 ## Contributors
 
+Huge thanks to dabaldassin for the contribution he had for this project : biggest tester, user and promoter of SANDAL2.  
+
 dabaldassin : version 1.2.3  
 
 ## Useful links
