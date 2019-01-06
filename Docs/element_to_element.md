@@ -19,8 +19,8 @@ void click(Element * this, SDL_Keycode c);
 
 int main(){
     int       run      = 1;
-    int       black[4] = {0,0,0,0};
-    int       white[4] = {255,255,255,0};
+    int       black[4] = {0,0,0,255};
+    int       white[4] = {255,255,255,255};
     Element * e;
   
     /* initializing SANDAL2 */
@@ -62,7 +62,7 @@ int main(){
 void click(Element * this, SDL_Keycode c){
     static int number_of_element = 1;
     Element * e, * next;
-    int white[4] = {255,255,255,0};
+    int white[4] = {255,255,255,255};
     float x, y, w, h;
     int w_w;
 

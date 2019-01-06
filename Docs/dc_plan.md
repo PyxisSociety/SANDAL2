@@ -29,11 +29,11 @@ void generate(int plan){
     int x, y, w, h;
     int i;
     int color[5][4] = {
-    	{255,255,255,0},
-	{255,0,0,0},
-	{0,255,0,0},
-	{0,0,255,0},
-	{255,0,255}
+    	{255,255,255,255},
+	{255,0,0,255},
+	{0,255,0,255},
+	{0,0,255,255},
+	{255,0,255,255}
     };
 
     getDimensionWindow(&ww,&wh);
@@ -95,8 +95,8 @@ void keyWindow(SDL_Keycode c){
 
 int main(){
     int run      = 1;
-    int black[4] = {0,0,0,0};
-    int white[4] = {255,255,255,0};
+    int black[4] = {0,0,0,255};
+    int white[4] = {255,255,255,255};
 
     srand(time(0));
   

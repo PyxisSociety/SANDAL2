@@ -396,6 +396,8 @@ int displayWindow(){
                         /* affichage du block */
                         if(ele->element->coulBlock[0]!=-1 && !ele->element->image){
                             if(!cmpCoul(coul,ele->element->coulBlock)){
+				SDL_SetRenderTarget(_windows_SANDAL2->current->renderer, NULL);
+				SDL_SetRenderDrawBlendMode(_windows_SANDAL2->current->renderer, SDL_BLENDMODE_BLEND);
                                 SDL_SetRenderDrawColor(_windows_SANDAL2->current->renderer,coul[0],coul[1],coul[2],coul[3]);
                             }
                             SDL_RenderFillRect(_windows_SANDAL2->current->renderer,&r);

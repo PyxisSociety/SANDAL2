@@ -28,7 +28,7 @@ void endJump(Element *this,int code){
 int main(){
     Element * object;
     int run = 1;
-    int black[4] = {0,0,0,0};
+    int black[4] = {0,0,0,255};
     int i;
 
     /* initializing SANDAL2 */

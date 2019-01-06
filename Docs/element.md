@@ -18,11 +18,11 @@ You can download those I used at :
 #include <SANDAL2/SANDAL2.h>
 
 int main(){
-    int red[]   = {255,0,0,0};
-    int green[]  = {0,255,0,0};
-    int blue[] = {0,0,255,0};
-    int white[] = {255,255,255,0};
-    int black[] = {0,0,0,0};
+    int red[]   = {255,0,0,255};
+    int green[]  = {0,255,0,255};
+    int blue[] = {0,0,255,255};
+    int white[] = {255,255,255,255};
+    int black[] = {0,0,0,255};
     
     if(initAllSANDAL2(IMG_INIT_JPG)){
 	puts("Failed to init SANDAL2");
