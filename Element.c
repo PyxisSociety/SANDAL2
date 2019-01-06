@@ -1268,7 +1268,7 @@ int setPlanElement(Element *e,int displayCode,int plan){
                     ++_windows_SANDAL2->current->toDelete;
                 }
                 if(!lpNew){ /* if list corresponding to new plan not found */
-                    lpNew=lp;
+                    lpNew=&(ldc->first);
                     while(*lpNew && (*lpNew)->code > plan){
                         lpNew=&((*lpNew)->next);
                     }
@@ -1293,7 +1293,9 @@ int setPlanElement(Element *e,int displayCode,int plan){
                     ++_windows_SANDAL2->current->toDelete;
                 }
             }
-        }
+        }else if(d && d->code==displayCode && d->plan == plan){
+	    error = 0;
+	}
     }
 
     return error;

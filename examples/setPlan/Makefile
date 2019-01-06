@@ -34,7 +34,7 @@ CC=gcc
 
 all:$(EXEC)
 
-$(EXEC):$(OFILES) $(SANDAL2)
+$(EXEC):$(SANDAL2) $(OFILES) 
 	$(CC) $^ -o $(EXEC) $(LDFLAGS) $(DEBUG)
 
 $(SANDAL2PATH)/%.o:$(SANDAL2PATH)/%.c

@@ -10,10 +10,6 @@ void keyElement(Element * this, SDL_Keycode c){
     
     c = (char)c;
 
-    printf("-------\n");
-    
-    printf("%d\n", this->deleted);
-
     switch(c){
     case 27: /* ESCAP */
 	if(!getDataWindow((void **)&val) && val)
