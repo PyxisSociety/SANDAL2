@@ -107,8 +107,7 @@ int main(){
     }
 
     /* initializing the window */
-    createWindow(400,400,"SANDAL2 - Klevh",SDL_WINDOW_RESIZABLE,black,0);
-    if(initIteratorWindow()){
+    if(!createWindow(400,400,"SANDAL2 - Klevh",SDL_WINDOW_RESIZABLE,black,0)){
         puts("Failed to open the window");
 	closeAllSANDAL2();
 	return -1;

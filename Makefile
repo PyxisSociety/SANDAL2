@@ -12,9 +12,9 @@ all:$(EXEC)
 
 $(EXEC):$(OFILES)
 	$(CC) $(LDFLAGS) $^ -o $(EXEC)
-	#mv $(EXEC) sandal2/usr/lib
-	#cp *.h sandal2/usr/include/SANDAL2
-	#cp Doxdoc/Doc/man/man3/*.gz sandal2/usr/share/man/man3
+	@mv $(EXEC) sandal2/usr/lib
+	@cp *.h sandal2/usr/include/SANDAL2
+	@cp Doxdoc/Doc/man/man3/*.gz sandal2/usr/share/man/man3
 
 %.o:%.c
 	$(CC) $(CFLAGS) -c $< -o $@ 

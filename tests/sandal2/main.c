@@ -51,8 +51,8 @@ int main(){
     
     if(!initSANDAL2()){
 	for(i = 0; i < 3 && !rc; ++i){
-	    rc = (i + 2) * createWindow(10, 10, "w", 0, bg, 0);
-	    if(!rc){
+	    rc = createWindow(10, 10, "w", 0, bg, 0);
+	    if(rc){
 		setDataWindow((void*)(data + i));
 		setOnFocusedWindow(onFocus);
 		setUnFocusedWindow(unFocus);

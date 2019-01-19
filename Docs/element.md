@@ -30,7 +30,7 @@ int main(){
     }
 
     /* creation of your window */
-    if(createWindow(400,400,"SANDAL2 - Klevh",0,black,0)){
+    if(!createWindow(400,400,"SANDAL2 - Klevh",0,black,0)){
         puts("Failed to open the window");
 	closeAllSANDAL2();
 	return -1;

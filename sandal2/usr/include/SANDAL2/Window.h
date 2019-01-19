@@ -39,16 +39,22 @@ struct ListDCElement;
  * @brief Behaviors of a window to  events
  */
 typedef struct{
-    void (*action)();
+    void (*action)(void);
     /**< function called when update*/
-    void (*onClick)();
+    void (*onClick)(int);
     /**< function called when the element is clicked*/
-    void (*unClick)();
+    void (*unClick)(int);
     /**< function called when the element is unclicked*/
     void (*keyPress)(SDL_Keycode c);
     /**< function called when a key is pressed*/
     void (*keyReleased)(SDL_Keycode c);
     /**< function called when a key is released*/
+    void (*wheel)(int);
+    /**< function called when a wheel motion occures */
+    void (*onFocus)(void);
+    /**< function called when window gain focus */
+    void (*unFocus)(void);
+    /**< function called when window lose focus */
 }EventWindow;
 
 /**
@@ -96,6 +102,8 @@ typedef struct Window{
     /**< tells whether or not all elements where removed */
     int state;
     /**< tells if window is in full screen or normal */
+    int focused;
+    /**< tells whether or not the window is focused */
 }Window;
 
 /**
@@ -109,6 +117,10 @@ typedef struct{
     /**<Last Window of the list*/
     Window * current;
     /**<current Window of the list*/
+    Window * currentDisplay;
+    /**<current Window displaied of the list*/
+    unsigned count;
+    /**<number of windows currently opened in the list*/
 }ListWindow;
 
 
@@ -125,25 +137,25 @@ extern ListWindow * _windows_SANDAL2;
  * @brief Resize the current window
  * @param width : new width of the current window
  * @param height : new height of the current window
- * @return 1 if it was possible, 0 if not
+ * @return 0 if it was possible, 1 if not
  */
 int resizeWindow(unsigned width,unsigned height);
 /**
  * @brief Change the display code of the current window
  * @param displayCode : new display code of the current window
- * @return 1 if it was possible, 0 if not
+ * @return 0 if it was possible, 1 if not
  */
 int setDisplayCodeWindow(int displayCode);
 /**
  * @brief Initialise the iterator of the windows' list
- * @return 0 if the iterator could not be initialised, 1 if it could
+ * @return 0 if the iterator could not be initialised, the window ID if it could
  */
-int initIteratorWindow();
+Uint32 initIteratorWindow();
 /**
  * @brief Go to the next window
- * @return 1 if it was possible, 0 if not
+ * @return the window ID if it was possible, 0 if not
  */
-int nextWindow();
+Uint32 nextWindow();
 /**
  * @brief Put the width of the current window in w (if not NULL) and its height in h (if not NULL)
  * @param w : where the width of the current window should be store
@@ -191,7 +203,7 @@ int setCoordWindow(int x,int y);
  */
 int getRealDimensionWindow(int *width,int *height);
 /**
- * @brief Getter for the curent window ID
+ * @brief Getter for the currently displaied window ID
  * @param ID : where to store the ID
  * @return 1 if there was an error, 0 if not
  */
@@ -225,13 +237,31 @@ int setKeyReleasedWindow(void (*keyReleased)(SDL_Keycode c));
  * @param onCLick : function to be called when it is clicked
  * @return 1 if it was impossible, 0 if not
  */
-int setOnClickWindow(void (*onCLick)(void));
+int setOnClickWindow(void (*onCLick)(int));
 /**
  * @brief set the behaviour of the current window when it is unclicked
  * @param unCLick : function to be called when it is unclicked
  * @return 1 if it was impossible, 0 if not
  */
-int setUnClickWindow(void (*unCLick)(void));
+int setUnClickWindow(void (*unCLick)(int));
+/**
+ * @brief set behavior of window when a wheel event occure
+ * @param wheel : function to be called
+ * @return 1 if it failed, 0 if not
+ */
+int setWheelWindow(void (*wheel)(int));
+/**
+ * @brief set behavior of window when the window gain focus
+ * @param onFocus : function to be called
+ * @return 1 if it failed, 0 if not
+ */
+int setOnFocusedWindow(void (*onFocus)(void));
+/**
+ * @brief set behavior of window when the window lose focus
+ * @param unFocus : function to be called
+ * @return 1 if it failed, 0 if not
+ */
+int setUnFocusedWindow(void (*unFocus)(void));
 /**
  * @brief get the origin point of the current window
  * @param x : where to store the x coordinate
@@ -270,6 +300,12 @@ int setDataWindow(void * data);
  * @return 0 if it was possible, 1 if not
  */
 int getDataWindow(void ** data);
+/**
+ * @brief set the window to be displaied and the current window
+ * @param windowID : ID of the window to be displaied and to become current
+ * @return 0 if it was possible, 1 if not
+ */
+int setDisplayWindow(Uint32 windowID);
 /* ------------------------------------------------------- */
 
 #ifdef __cplusplus

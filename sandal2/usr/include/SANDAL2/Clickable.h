@@ -27,7 +27,7 @@ typedef struct Line{
   /**< b in the equation of the line ax+by=c*/
   float c;
   /**< c in the equation of the line ax+by=c*/
-  int sens;
+  int side;
   /**< side of the line that is hittable (-1 : ax+by<c, 1 : ax+by>c)*/
 }Line;
 
@@ -87,15 +87,15 @@ typedef struct{
  */
 Clickable * initClickable();
 /**
- * @brief add a line to the hitbox sens*(ax+by) > sens*c 
+ * @brief add a line to the hitbox side*(ax+by) > side*c 
  * @param hb : hit boxe to which the line will be added
  * @param a : a in the equation of the line ax+by=c
  * @param b : b in the equation of the line ax+by=c
  * @param c : c in the equation of the line ax+by=c
- * @param sens : indicator of the side of the line which is hittable (-1 : ax+by<c, 1 : ax+by>c)
+ * @param side : indicator of the side of the line which is hittable (-1 : ax+by<c, 1 : ax+by>c)
  * @return 0 if the line was correctly added, 1 in the other case
  */
-int addLine(Clickable * hb,float a,float b,float c,int sens);
+int addLine(Clickable * hb,float a,float b,float c,int side);
 /**
  * @brief add an ellipse to the hitbox
  * @param hb : hit boxe to which the line will be added
@@ -113,10 +113,10 @@ int addCircle(Clickable * hb,float x,float y,float rX,float rY,float theta);
  * @param a : a in the equation of the line ax+by=c
  * @param b : b in the equation of the line ax+by=c
  * @param c : c in the equation of the line ax+by=c
- * @param sens : indicator of the side of the line which is hittable (-1 : ax+by<c, 1 : ax+by>c)
+ * @param side : indicator of the side of the line which is hittable (-1 : ax+by<c, 1 : ax+by>c)
  * @return 0 if the line was correctly removed, 1 in the other case
  */
-int delLine(Clickable * hb,float a,float b,float c,int sens);
+int delLine(Clickable * hb,float a,float b,float c,int side);
 /**
  * @brief remove an ellipse from the hitbox
  * @param hb : hit boxe to which the line will be removed
@@ -190,18 +190,29 @@ int addClickable(ListClickable * l,Clickable * hb,int blocking);
  * @param blocking : 0 if the hit boxe is hittable, 1 if it block other hit boxes
  * @return 0 if the hit boxe was succesfully removed, 1 if not
  */
-int delClickable(ListClickable * l,Clickable * hb);
+int delClickable(ListClickable * l,Clickable * hb, int blocking);
 /**
- * @brief initialise the iterator of the list of hit boxes
+ * @brief initialise the iterator of the list of non blocking hit boxes
  * @param l : list of hit boxes
  * @return 1 if the iterator was succesfully initialised, 0 if not
  */
 int initIteratorListClickable(ListClickable * l);
 /**
- * @brief getter of the current element of the iterator and setter of the next element
+ * @brief getter of the current non blocking element of the iterator and setter of the next element
  * @return the current hit boxes
  */
 Clickable * nextClickable(ListClickable * l);
+/**
+ * @brief initialise the iterator of the list of blocking hit boxes
+ * @param l : list of hit boxes
+ * @return 1 if the iterator was succesfully initialised, 0 if not
+ */
+int initIteratorListClickableBlocking(ListClickable * l);
+/**
+ * @brief getter of the current blocking element of the iterator and setter of the next element
+ * @return the current hit boxes
+ */
+Clickable * nextClickableBlocking(ListClickable * l);
 /**
  * @brief tells if (x,y) touch one of the hitboxes 
  * @param l : list of hit boxes

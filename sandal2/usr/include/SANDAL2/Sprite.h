@@ -41,7 +41,7 @@ typedef struct ListSprite{
   /**< current step of the animation*/
   unsigned size;
   /**< number of steps in the animation*/
-  int sens;
+  int side;
   /**< tells whether to go forward (1), backward (-1) or not to move (0)*/
   unsigned wasChanged;
   /**< tells how many time the current sprite was displaied*/

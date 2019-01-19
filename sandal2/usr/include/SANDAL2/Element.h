@@ -55,9 +55,9 @@ struct Element;
 typedef struct{
     void (*action)(struct Element*);
     /**< function called when update*/
-    void (*onClick)(struct Element*);
+    void (*onClick)(struct Element*, int);
     /**< function called when the element is clicked*/
-    void (*unClick)(struct Element*);
+    void (*unClick)(struct Element*, int);
     /**< function called when the element is unclicked*/
     void (*keyPress)(struct Element*,SDL_Keycode c);
     /**< function called when a key is pressed*/
@@ -67,6 +67,10 @@ typedef struct{
     /**< function called when the element is unselected*/
     void (*endSprite)(struct Element*,int code);
     /**< function called at the end of a sprite*/
+    void (*onMouseMotion)(struct Element *);
+    /**< function called when the mouse move over a zone */
+    void (*unMouseMotion)(struct Element *);
+    /**< function called when the mouse exit the hover zone */
 }EventElement;
 
 /**
@@ -135,6 +139,8 @@ typedef struct PtrElement{
     /**< pointer of the element*/
     struct PtrElement *next;
     /**< next PtrElement in the list*/
+    int deleted;
+    /**< tells whether or not this PtrElement should be deleted */
 }PtrElement;
 
 /**
@@ -185,8 +191,7 @@ typedef struct ListElement{
 
 
 /* -------------------------------------------------------
- * Liste de liste (code d'affichage) de liste (plan) 
- * d'element
+ * List of list (display code) of list (plan) of elements
  */
 /**
  * @brief Initialise a list of lists (display code) of lists (plan) of elements
@@ -232,11 +237,11 @@ void _freeElement(Element *e);
  * @param y : ordinate coordinate of its top left corner
  * @param width : width of the element
  * @param height : height of the element
- * @param couleur : color of the rectangle (RGBA)
+ * @param color : color of the rectangle (RGBA)
  * @param displayCode : display code of the rectangle
  * @param plan : plan of the rectangle
  */
-Element* createBlock(float x,float y,float width,float height,int couleur[4],int displayCode,int plan);
+Element* createBlock(float x,float y,float width,float height,int color[4],int displayCode,int plan);
 /**
  * @brief Generate a text like element
  * @param x : abscissa coordinate of its top left corner
@@ -277,7 +282,7 @@ Element* createImage(float x,float y,float width,float height,const char *image,
  * @param displayCode : display code of the button
  * @param plan : plan of the button
  */
-Element* createButton(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,int couleurBlock[4],int displayCode,int plan);
+Element* createButton(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,int colorBlock[4],int displayCode,int plan);
 /**
  * @brief Generate a button like element with an image
  * @param x : abscissa coordinate of its top left corner
@@ -312,7 +317,7 @@ Element* createButtonImage(float x,float y,float width,float height,float texteS
  * @param max : maximum number of character for the prompt to be validate
  * @param isScripted : flag which tells whether or not the prompt is cripted
  */
-Element* createEntry(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,int couleurBlock[4],int displayCode,int plan,int min,int max, int isScripted);
+Element* createEntry(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,int colorBlock[4],int displayCode,int plan,int min,int max, int isScripted);
 /**
  * @brief Generate a prompt like element with an image
  * @param x : abscissa coordinate of its top left corner
@@ -610,14 +615,28 @@ int setKeyReleasedElement(Element *e,void (*keyReleased)(Element*,SDL_Keycode c)
  * @param onCLick : function to be called when it is clicked
  * @return 1 if it was impossible, 0 if not
  */
-int setOnClickElement(Element *e,void (*onCLick)(Element*));
+  int setOnClickElement(Element *e,void (*onCLick)(Element*,int button));
+/**
+ * @brief set the behaviour of an element when the mouse move on it
+ * @param e : element to be modified
+ * @param onMouseMotion : function to be called when the mouse move on it
+ * @return 1 if it was impossible, 0 if not
+ */
+  int setOnMouseMotionElement(Element *e, void (*onMouseMotion)(Element*));
+/**
+ * @brief set the behaviour of an element when the mouse move out of it
+ * @param e : element to be modified
+ * @param unMouseMotion : function to be called when the mouse move out it
+ * @return 1 if it was impossible, 0 if not
+ */
+  int setUnMouseMotionElement(Element *e, void (*unMouseMotion)(Element*));
 /**
  * @brief set the behaviour of an element when it is unclicked
  * @param e : element to be modified
  * @param unCLick : function to be called when it is unclicked
  * @return 1 if it was impossible, 0 if not
  */
-int setUnClickElement(Element *e,void (*unCLick)(Element*));
+  int setUnClickElement(Element *e,void (*unCLick)(Element*, int button));
 /**
  * @brief set the behaiour of an element when it is unselect
  * @param e : element to be modified
@@ -631,7 +650,7 @@ int setUnSelectElement(Element *e,void (*unSelect)(Element*));
  * @param endSprite : new behaviour
  * @return 1 if it was impossible, 0 if not
  */
-int setEndSpriteElement(Element *e,void (*endSprite)(Element*,int));
+int setEndSpriteElement(Element *e,void (*endSprite)(Element*,int currentCode));
 /**
  * @brief add an element to another so that this other can modifie the first one
  * @param e : element to be modified
@@ -772,10 +791,10 @@ int previousSpriteElement(Element * e);
 /**
  * @brief set the way to go from a sprite to another (forward (1), backward (-1), no move (0))
  * @param e : element
- * @param sens : new way
+ * @param side : new way
  * @return 0 if the way could be set, 1 if not
  */
-int setWaySpriteAnimationElement(Element * e,int code, int sens);
+int setWaySpriteAnimationElement(Element * e,int code, int side);
 /**
  * @brief go to te next animation of an element
  * @param e : element

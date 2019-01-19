@@ -117,6 +117,8 @@ typedef struct{
     /**<Last Window of the list*/
     Window * current;
     /**<current Window of the list*/
+    Window * currentDisplay;
+    /**<current Window displaied of the list*/
     unsigned count;
     /**<number of windows currently opened in the list*/
 }ListWindow;
@@ -135,25 +137,25 @@ extern ListWindow * _windows_SANDAL2;
  * @brief Resize the current window
  * @param width : new width of the current window
  * @param height : new height of the current window
- * @return 1 if it was possible, 0 if not
+ * @return 0 if it was possible, 1 if not
  */
 int resizeWindow(unsigned width,unsigned height);
 /**
  * @brief Change the display code of the current window
  * @param displayCode : new display code of the current window
- * @return 1 if it was possible, 0 if not
+ * @return 0 if it was possible, 1 if not
  */
 int setDisplayCodeWindow(int displayCode);
 /**
  * @brief Initialise the iterator of the windows' list
- * @return 0 if the iterator could not be initialised, 1 if it could
+ * @return 0 if the iterator could not be initialised, the window ID if it could
  */
-int initIteratorWindow();
+Uint32 initIteratorWindow();
 /**
  * @brief Go to the next window
- * @return 1 if it was possible, 0 if not
+ * @return the window ID if it was possible, 0 if not
  */
-int nextWindow();
+Uint32 nextWindow();
 /**
  * @brief Put the width of the current window in w (if not NULL) and its height in h (if not NULL)
  * @param w : where the width of the current window should be store
@@ -201,7 +203,7 @@ int setCoordWindow(int x,int y);
  */
 int getRealDimensionWindow(int *width,int *height);
 /**
- * @brief Getter for the curent window ID
+ * @brief Getter for the currently displaied window ID
  * @param ID : where to store the ID
  * @return 1 if there was an error, 0 if not
  */
@@ -298,6 +300,12 @@ int setDataWindow(void * data);
  * @return 0 if it was possible, 1 if not
  */
 int getDataWindow(void ** data);
+/**
+ * @brief set the window to be displaied and the current window
+ * @param windowID : ID of the window to be displaied and to become current
+ * @return 0 if it was possible, 1 if not
+ */
+int setDisplayWindow(Uint32 windowID);
 /* ------------------------------------------------------- */
 
 #ifdef __cplusplus

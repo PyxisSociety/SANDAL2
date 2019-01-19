@@ -10,7 +10,7 @@ extern "C" {
 /**
  * @file SANDAL2.h
  * @author Baptiste PRUNIER (KLEVH)
- * @version 1.1.0
+ * @version 1.3.0
  * @brief File to include which includes everything else.
  *  Compilation flags to use :
  *    -lSDL2 -lSDL2_ttf -lSDL2_image -lm
@@ -28,7 +28,7 @@ extern ListWindow * _windows_SANDAL2;
 /**
  * @brief Initialisation of SANDAL2, its image and fonts (return 1 if  initialisation error, 2 if image initialisation error, 3 if font initialisation error, 0 if not) using SDL2's image flags
  * @param imageFlags : SDL2's image flags
- * @return error code
+ * @return 0 if success, 1 if failed
  */
 int initAllSANDAL2(int imageFlags);
 /**
@@ -76,9 +76,9 @@ void closeTextSANDAL2(void);
  * @param SDLFlags : flags of SDL2
  * @param background : color of the background
  * @param displayCode : display code of the window
- * @return 1 if it failed, 0 if not
+ * @return 0 if it failed, the window ID if not
  */
-int createWindow(int width,int height,const char *title,int SDLFlags,int background[4],int displayCode);
+Uint32 createWindow(int width,int height,const char *title,int SDLFlags,int background[4],int displayCode);
 /**
  * @brief close the current windows and go to the next, do not use this one in elements' or windows' binded functions, use shouldCloseWindow() instead
  * @return 1 if it failed, 0 if not
@@ -118,21 +118,19 @@ int updateWindow(void);
  * @brief actualise the display of the current window 
  * @return 1 if it failed, 0 if not
  */
-int displayWindow(void);
+  int displayWindow(void);
 /**
  * @brief activation of click events on the current window
- * @param x : abscissa coordinate of the mouse during the click
- * @param y : ordinate coordinate of the mouse during the click
+ * @param button : Event informations of the button
  * @return 1 if it failed, 0 if not
  */
-int clickWindow(int x,int y);
+int clickWindow(SDL_MouseButtonEvent button);
 /**
  * @brief activation of unclick events on the current window
- * @param x : abscissa coordinate of the mouse during the unclick
- * @param y : ordinate coordinate of the mouse during the unclick
+ * @param button : Event informations of the button
  * @return 1 if it failed, 0 if not
  */
-int unclickWindow(int x,int y);
+int unclickWindow(SDL_MouseButtonEvent button);
 /**
  * @brief activation of the key pressed events on the current window
  * @param c : key which was pressed
@@ -146,6 +144,22 @@ int keyPressedWindow(int c);
  */
 int keyReleasedWindow(int c);
 /**
+ * @brief activation of the mouseWheel event on the window
+ * @param y : direction of the wheel
+ * @return 1 if it failed, 0 if not
+ */
+int wheelWindow(int y);
+/**
+ * @brief activation of the gaining focus event
+ * @return 1 if it faied, 0 if not
+ */
+int onFocusedWindow(void);
+/**
+ * @brief activation of the losing focus event
+ * @return 1 if it failed, 0 if not
+ */
+int unFocusedWindow(void);
+/**
  * @brief update all the elements of all the windows
  * @return 1 if it failed, 0 if not
  */
@@ -157,18 +171,16 @@ unsigned long updateAllWindow(void);
 unsigned long displayAllWindow(void);
 /**
  * @brief activation of click events on all the windows
- * @param x : abscissa coordinate of the mouse during the click
- * @param y : ordinate coordinate of the mouse during the click
+ * @param button : Event informations of the button
  * @return 0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one
  */
-unsigned long clickAllWindow(int x,int y);
+unsigned long clickAllWindow(SDL_MouseButtonEvent button);
 /**
  * @brief activation of unclick events on all the windows
- * @param x : abscissa coordinate of the mouse during the unclick
- * @param y : ordinate coordinate of the mouse during the unclick
+ * @param button : Event informations of the button
  * @return 0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one
  */
-unsigned long unclickAllWindow(int x,int y);
+unsigned long unclickAllWindow(SDL_MouseButtonEvent button);
 /**
  * @brief activation of the key pressed events on all windows
  * @param c : key which was pressed

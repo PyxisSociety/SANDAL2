@@ -45,26 +45,24 @@ int setDisplayCodeWindow(int displayCode){
     return error;
 }
 
-int initIteratorWindow(){
-    int error = 1;
+Uint32 initIteratorWindow(){
+    Uint32 error = 0;
 
     if(_windows_SANDAL2){
         _windows_SANDAL2->current = _windows_SANDAL2->first;
-	SDL_RaiseWindow(_windows_SANDAL2->current->window);
-        error = 0;
+        error = SDL_GetWindowID(_windows_SANDAL2->current->window);
     }
 
     return error;
 }
 
-int nextWindow(){
-    int error = 1;
+Uint32 nextWindow(){
+    Uint32 error = 0;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
         _windows_SANDAL2->current = _windows_SANDAL2->current->next;
 	if(_windows_SANDAL2->current){
-	    SDL_RaiseWindow(_windows_SANDAL2->current->window);
-	    error = 0;
+	    error = SDL_GetWindowID(_windows_SANDAL2->current->window);
 	}
     }
   
@@ -163,10 +161,10 @@ int getRealDimensionWindow(int *width,int *height){
 int getIDWindow(Uint32 *ID){
     int error = 1;
 
-    if(_windows_SANDAL2 && _windows_SANDAL2->first){
+    if(_windows_SANDAL2 && _windows_SANDAL2->currentDisplay){
         error = 0;
         if(ID){
-            *ID=SDL_GetWindowID(_windows_SANDAL2->current->window);
+            *ID=SDL_GetWindowID(_windows_SANDAL2->currentDisplay->window);
         }
     }
 
@@ -324,5 +322,26 @@ int getDataWindow(void ** data){
 	    *data = _windows_SANDAL2->current->data;
 
     return !(_windows_SANDAL2 && _windows_SANDAL2->current);
+}
+
+int setDisplayWindow(Uint32 windowID){
+    Window * window = NULL;
+    int error = 1;
+
+    if(_windows_SANDAL2 && _windows_SANDAL2->currentDisplay){
+	window = _windows_SANDAL2->first;
+	while(window && SDL_GetWindowID(window->window) != windowID){
+	    window = window->next;
+	}
+
+	if(window){
+	    error = 0;
+	    _windows_SANDAL2->currentDisplay = window;
+	    _windows_SANDAL2->current = window;
+	    SDL_RaiseWindow(_windows_SANDAL2->currentDisplay->window);
+	}
+    }
+
+    return error;
 }
 /* ------------------------------------------------------- */
