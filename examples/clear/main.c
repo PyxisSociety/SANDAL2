@@ -71,8 +71,7 @@ int main(){
     }
 
     /* initialisation de la fenetre */
-    createWindow(400,400,"test",SDL_WINDOW_RESIZABLE,noir,0);
-    if(initIteratorWindow()){
+    if(!createWindow(400,400,"test",SDL_WINDOW_RESIZABLE,noir,0)){
 	closeAllSANDAL2();
 	fprintf(stderr,"Erreur d'ouverture de la fenetre.\n");
 	exit(-1);
