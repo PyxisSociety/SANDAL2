@@ -209,6 +209,12 @@ int getRealDimensionWindow(int *width,int *height);
  */
 int getIDWindow(Uint32 *ID);
 /**
+ * @brief Getter for the current window ID
+ * @param ID : where to store the ID
+ * @return 1 if there was an error, 0 if not
+ */
+int getIDCurrentWindow(Uint32 *ID);
+/**
  * @brief Set the current window's icon
  * @param icon_path : path of the image to be used
  * @return 1 if there was an error, 0 if not

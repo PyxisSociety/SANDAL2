@@ -171,6 +171,19 @@ int getIDWindow(Uint32 *ID){
     return error;
 }
 
+int getIDCurrentWindow(Uint32 *ID){
+    int error = 1;
+
+    if(_windows_SANDAL2 && _windows_SANDAL2->current){
+        error = 0;
+        if(ID){
+            *ID=SDL_GetWindowID(_windows_SANDAL2->current->window);
+        }
+    }
+
+    return error;
+}
+
 int setIconWindow(const char * icon_path){
     SDL_Surface *s;
     int error = 1;

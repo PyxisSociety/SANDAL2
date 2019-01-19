@@ -84,9 +84,9 @@ Element.c     : 1,968 lines<br/>
 Font.c        : 268 lines<br/>
 SANDAL2.c     : 1,091 lines<br/>
 Sprite.c      : 344 lines<br/>
-Window.c      : 347 lines<br/>
+Window.c      : 360 lines<br/>
 <br/>
-Total for source files : 4,447 lines<br/>
+Total for source files : 4,460 lines<br/>
 <br/>
 Clickable.h   : 230 lines<br/>
 DisplayCode.h : 78 lines<br/>
@@ -94,11 +94,11 @@ Element.h     : 942 lines<br/>
 Font.h        : 115 lines<br/>
 SANDAL2.h     : 213 lines<br/>
 Sprite.h      : 195 lines<br/>
-Window.h      : 315 lines<br/>
+Window.h      : 321 lines<br/>
 <br/>
-Total for header files : 2,088 lines<br/>
+Total for header files : 2,094 lines<br/>
 <br/>
-Total without tests : 6,535 lines<br/>
+Total without tests : 6,554 lines<br/>
 <br/>
 tests for Clickable   : 274 lines<br/>
 tests for DisplayCode : 67 lines<br/>
@@ -111,4 +111,4 @@ tests for Window      : 0 lines<br/>
 Total for test files : 1183 lines<br/>
 <br/>
 <br/>
-Total with tests : 7718 lines<br/>
+Total with tests : 7737 lines<br/>
