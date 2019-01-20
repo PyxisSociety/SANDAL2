@@ -18,7 +18,10 @@ for d in $dirs; do
 		echo "=============================================================="
 		echo "Failed: $d"
 		echo "    failed with code ${failed}"
+		echo "    ouput log:"
+		echo "${out}"
 		echo "=============================================================="
+		exeCode=1
 	    else
 		for m in ${out}; do
 		    if [ "$m" == "Failed" ]; then
