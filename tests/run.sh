@@ -40,7 +40,6 @@ for d in $dirs; do
 		    percent=${BASH_REMATCH[0]:1:-1}
 		    percent=`bc -l <<< ${percent}*${nbLines}`
 		    totalPercent=`bc -l <<< ${totalPercent}+${percent}`
-		    echo "$m - $percent - $nbLines - $totalPercent"
 		fi
 	    done <<< "$coverage"
 	fi
@@ -52,7 +51,7 @@ totalNbLines=`cat ../*.c | wc -l`
 
 if [[ "$totalNbLines" =~ [0-9]+ ]]; then
     totalPercent=`bc -l <<< ${totalPercent}/${totalNbLines}`
-    echo "coverage: ${totalPercent}%" > coverage.txt
+    echo "coverage: ${totalPercent}%"
 fi
 
 exit ${exeCode}
