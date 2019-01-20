@@ -441,6 +441,7 @@ int main(){
     
     if(initAllSANDAL2(IMG_INIT_JPG)){
 	rc = 1;
+	printf("%s\n", SDL_GetError());
     }else{
 	if(!createWindow(10, 10, "w", 0, bg, 0)){
 	    rc = 2;

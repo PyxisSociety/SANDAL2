@@ -29,7 +29,7 @@ static void copyColor(int to[4],int from[4]){
 int initAllSANDAL2(int imageFlags){
     int failedInit=0;
 
-    if(SDL_Init(SDL_INIT_VIDEO) == -1){
+    if(SDL_Init(SDL_INIT_VIDEO)){
         failedInit=1;
     }else if(TTF_Init()){
         SDL_Quit();
@@ -52,7 +52,7 @@ void closeAllSANDAL2(){
 int initSANDAL2(){
     int failedInit = 0;
   
-    if(SDL_Init(SDL_INIT_VIDEO) == -1){
+    if(SDL_Init(SDL_INIT_VIDEO)){
         failedInit=1;
     }
 
