@@ -9,7 +9,7 @@ for d in $dirs; do
 	cd $d
 	if [ -f "Makefile" ]; then
 	    make cleaner 2> /dev/null
-	    make > /dev/null
+	    make
 	    echo "build: $d"
 	fi
 	cd ..
