@@ -65,7 +65,10 @@ int main(){
 	}else rc = 2;
 	
 	closeSANDAL2();
-    }else rc = 1;
+    }else{
+	rc = 1;
+	printf("%s\n", SDL_GetError());
+    }
     
     return rc;
 }
