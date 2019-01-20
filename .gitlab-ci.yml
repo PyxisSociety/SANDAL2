@@ -2,11 +2,11 @@ before_script:
  - apt-get update -qq
  - apt-get install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev -y
  - export XDG_RUNTIME_DIR="$(mktemp -p $(pwd) -d xdg-runtime-XXXXXX)"
- - apt-get install bc
+ - apt-get install bc -y
 
 tests:
     script:
         - tests/build.sh
         - tests/run.sh
     stage: test
-    coverage: /coverage. [0-9]+%/
+    coverage: /coverage. ([0-9]+%)/
