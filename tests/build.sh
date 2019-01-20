@@ -1,7 +1,5 @@
 #!/bin/bash
 
-ls downloadable
-
 cd tests 2> /dev/null
 
 dirs=`ls --hide=LAssert`

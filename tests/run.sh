@@ -13,22 +13,29 @@ for d in $dirs; do
 	cd $d
 	if [ -f "a.out" ]; then
 	    out=`./a.out`
-	    failed=0
-	    for m in ${out}; do
-		if [ "$m" == "Failed" ]; then
-		    failed=1
-		    break
-		fi
-	    done
+	    failed=$?
 	    if [ "${failed}" == "1" ]; then
-		exeCode=1
 		echo "=============================================================="
 		echo "Failed: $d"
-		echo ""
-		echo "${out}"
+		echo "    failed with code ${failed}"
 		echo "=============================================================="
 	    else
-		echo "++++++ $d success"
+		for m in ${out}; do
+		    if [ "$m" == "Failed" ]; then
+			failed=1
+			break
+		    fi
+		done
+		if [ "${failed}" == "1" ]; then
+		    exeCode=1
+		    echo "=============================================================="
+		    echo "Failed: $d"
+		    echo ""
+		    echo "${out}"
+		    echo "=============================================================="
+		else
+		    echo "++++++ $d success"
+		fi
 	    fi
 
 	    coverage=`gcov ../../${d}.c -m`
