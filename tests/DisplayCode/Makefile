@@ -23,7 +23,7 @@ LDFLAGS+=-fprofile-arcs -ftest-coverage
 
 #your compilation flags, 
 #-ansi or -std=gnu89 are not compatible with -lm on gcc
-CFLAGS=-g -fprofile-arcs -ftest-coverage
+CFLAGS=-g -fprofile-arcs -ftest-coverage -D DEBUG_SDL2_NO_VIDEO
 
 #your program's name
 EXEC=a.out

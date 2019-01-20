@@ -29,12 +29,12 @@ static void copyColor(int to[4],int from[4]){
 int initAllSANDAL2(int imageFlags){
     int failedInit=0;
 
-    if(SDL_Init(SDL_INIT_VIDEO)){
+    if(initSANDAL2()){
         failedInit=1;
-    }else if(TTF_Init()){
+    }else if(initTextSANDAL2()){
         SDL_Quit();
         failedInit=3;
-    }else if((IMG_Init(imageFlags)&imageFlags)!=imageFlags){
+    }else if(initImageSANDAL2(imageFlags)){
         failedInit=2;
         TTF_Quit();
         SDL_Quit();
@@ -51,10 +51,16 @@ void closeAllSANDAL2(){
 
 int initSANDAL2(){
     int failedInit = 0;
-  
+
+#   ifndef DEBUG_SDL2_NO_VIDEO
     if(SDL_Init(SDL_INIT_VIDEO)){
         failedInit=1;
     }
+#   else
+    if(SDL_Init(SDL_INIT_EVENTS)){
+        failedInit=1;
+    }
+#   endif
 
     return failedInit;
 }
