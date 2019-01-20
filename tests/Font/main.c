@@ -72,11 +72,12 @@ int main(){
     int bg[4]  = {0};
     
     if(!initAllSANDAL2(IMG_INIT_JPG)){
-	rc = 2 * createWindow(10, 10, "w", 0, bg, 0);
+	rc = createWindow(10, 10, "w", 0, bg, 0);
 
 	if(rc){
 	    RUN_SECTION(Font);
-	}
+	    rc = 0;
+	}else rc = 2;
 	
 	closeAllSANDAL2();
     }else rc = 1;

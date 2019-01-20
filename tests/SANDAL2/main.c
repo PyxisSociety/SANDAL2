@@ -50,7 +50,7 @@ int main(){
     int i;
     
     if(!initSANDAL2()){
-	for(i = 0; i < 3 && !rc; ++i){
+	for(i = 0; i < 3 && rc; ++i){
 	    rc = createWindow(10, 10, "w", 0, bg, 0);
 	    if(rc){
 		setDataWindow((void*)(data + i));
@@ -59,9 +59,10 @@ int main(){
 	    }
 	}
 
-	if(!rc){
+	if(rc){
 	    RUN_SECTION(WindowEvent_Focus);
-	}
+	    rc = 0;
+	}else rc = 2;
 	
 	closeSANDAL2();
     }else rc = 1;

@@ -43,7 +43,6 @@ for d in $dirs; do
 		    totalPercent=`bc -l <<< ${totalPercent}+${percent}`
 		    totalNbLines=`expr ${totalNbLines} + ${nbLines}`
 		    echo "$m"
-		    echo "${out}"
 		fi
 	    done <<< "$coverage"
 	fi
