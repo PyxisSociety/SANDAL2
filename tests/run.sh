@@ -38,6 +38,7 @@ for d in $dirs; do
 		    echo "=============================================================="
 		else
 		    echo "++++++ $d success"
+		    echo "${out}"
 		fi
 	    fi
 
@@ -62,7 +63,10 @@ done
 
 if [[ "$totalNbLines" =~ [0-9]+ ]]; then
     totalPercent=`bc -l <<< ${totalPercent}/${totalNbLines}`
-    echo "coverage: ${totalPercent/.*}%"
+    totalPercent=`bc -l <<< ${totalPercent}*100`
+    totalPercent=${totalPercent/.*}
+    totalPercent=`bc -l <<< ${totalPercent}/100`
+    echo "coverage: ${totalPercent}%"
 fi
 
 exit ${exeCode}
