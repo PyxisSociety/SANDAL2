@@ -8,3 +8,4 @@ tests:
         - tests/build.sh
         - tests/run.sh
     stage: test
+    coverage: /coverage: [0-9]+%/

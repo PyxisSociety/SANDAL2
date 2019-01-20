@@ -74,7 +74,7 @@ int main(){
     if(!initAllSANDAL2(IMG_INIT_JPG)){
 	rc = 2 * createWindow(10, 10, "w", 0, bg, 0);
 
-	if(!rc){
+	if(rc){
 	    RUN_SECTION(Font);
 	}
 	
