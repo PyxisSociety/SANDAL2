@@ -6,6 +6,7 @@ dirs=`ls --hide=LAssert`
 exeCode=0
 
 totalPercent=0
+totalNbLines=0
 
 for d in $dirs; do
     if [ -d "$d" ]; then
@@ -40,14 +41,13 @@ for d in $dirs; do
 		    percent=${BASH_REMATCH[0]:1:-1}
 		    percent=`bc -l <<< ${percent}*${nbLines}`
 		    totalPercent=`bc -l <<< ${totalPercent}+${percent}`
+		    totalNbLines=`expr ${totalNbLines} + ${nbLines}`
 		fi
 	    done <<< "$coverage"
 	fi
 	cd ..
     fi
 done
-
-totalNbLines=`cat ../*.c | wc -l`
 
 if [[ "$totalNbLines" =~ [0-9]+ ]]; then
     totalPercent=`bc -l <<< ${totalPercent}/${totalNbLines}`
