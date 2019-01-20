@@ -51,7 +51,7 @@ totalNbLines=`cat ../*.c | wc -l`
 
 if [[ "$totalNbLines" =~ [0-9]+ ]]; then
     totalPercent=`bc -l <<< ${totalPercent}/${totalNbLines}`
-    echo "coverage: ${totalPercent}%"
+    echo "coverage: ${totalPercent/.*}%"
 fi
 
 exit ${exeCode}
