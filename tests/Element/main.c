@@ -445,6 +445,7 @@ int main(){
     }else{
 	if(!createWindow(10, 10, "w", 0, bg, 0)){
 	    rc = 2;
+	    printf("%s\n", SDL_GetError());
 	}else{
 	    RUN_SECTION(Element);
 	    RUN_SECTION(ListElement);
