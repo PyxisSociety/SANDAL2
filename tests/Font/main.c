@@ -32,7 +32,6 @@ TEST_SECTION(Font){
 	REQUIRE(SANDAL2_SOLID == font->quality);
 	
 	REQUIRE_NOT_NULL(font->font);
-	REQUIRE_NOT_NULL(font->texture);
     }
 
     // not to do other test cases if font failed to be initialized

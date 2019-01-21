@@ -20,7 +20,7 @@ $(EXEC):$(OFILES)
 	$(CC) $(CFLAGS) -c $< -o $@ 
 
 clear:
-	rm *.o
+	rm *.o *.gc*
 
 package:
 	dpkg-deb --build sandal2
@@ -32,7 +32,7 @@ man:
 clean: clear
 
 cleaner:
-	rm *.o $(EXEC)
+	rm $(EXEC) *.o *.gc*
 
 install:
 	dpkg -i downloadable/sandal2.deb

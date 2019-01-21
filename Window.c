@@ -2,6 +2,10 @@
 
 ListWindow * _windows_SANDAL2 = NULL;
 
+#ifdef DEBUG_SDL2_NO_VIDEO
+Uint32 currentDisplaied = 0;
+#endif
+
 
 
 /* -------------------------------------------------------
@@ -13,6 +17,88 @@ static void copyColor(int to[4],const int from[4]){
     to[2]=from[2];
     to[3]=from[3];
 }
+/* ------------------------------------------------------- */
+
+
+
+/* -------------------------------------------------------
+ * Other functions
+ */
+#ifdef DEBUG_SDL2_NO_VIDEO
+static unsigned fake_SDL_GetWindowID(Window * w){
+    return w ? w->id : 0;
+}
+
+static void fake_SDL_GetWindowSize(Window * w, int * wi, int * he){
+    if(w){
+	if(wi)
+	    *wi = w->width;
+	if(he)
+	    *he = w->height;
+    }
+}
+
+static void fake_SDL_SetWindowSize(Window * w, int width, int height){
+    (void)w;
+    (void)width;
+    (void)height;
+}
+
+static void fake_SDL_GetWindowPosition(Window * w, int * x, int * y){
+    if(w){
+	if(x)
+	    *x = w->posX;
+	if(y)
+	    *y = w->posY;
+    }
+}
+
+static void fake_SDL_SetWindowPosition(Window * w, int x, int y){
+    if(w){
+	w->posX = x;
+	w->posY = y;
+    }
+}
+
+static void fake_SDL_SetWindowIcon(Window * w, SDL_Surface * s){
+    (void)w;
+    (void)s;
+}
+
+static void fake_SDL_RaiseWindow(Window * w){
+    SDL_Event * e = NULL;
+
+    if(w){
+	e = (SDL_Event*)malloc(sizeof(*e));
+
+	if(e){
+	    e->type = SDL_WINDOWEVENT;
+	    e->window.event = SDL_WINDOWEVENT_FOCUS_LOST;
+	    e->window.windowID = currentDisplaied;
+	    SDL_PushEvent(e);
+	}
+
+	e = (SDL_Event*)malloc(sizeof(*e));
+	if(e){
+	    e->type = SDL_WINDOWEVENT;
+	    e->window.event = SDL_WINDOWEVENT_FOCUS_GAINED;
+	    e->window.windowID = w->id;
+	    SDL_PushEvent(e);
+	}
+
+	currentDisplaied = w->id;
+    }
+}
+
+#  define SDL_GetWindowID fake_SDL_GetWindowID
+#  define SDL_GetWindowSize fake_SDL_GetWindowSize
+#  define SDL_SetWindowSize fake_SDL_SetWindowSize
+#  define SDL_GetWindowPosition fake_SDL_GetWindowPosition
+#  define SDL_SetWindowPosition fake_SDL_SetWindowPosition
+#  define SDL_SetWindowIcon fake_SDL_SetWindowIcon
+#  define SDL_RaiseWindow fake_SDL_RaiseWindow
+
+#endif
 /* ------------------------------------------------------- */
 
 

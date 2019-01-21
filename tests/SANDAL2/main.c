@@ -10,23 +10,21 @@ TEST_SECTION(WindowEvent_Focus){
     SDL_Event e = {0};
     
     unsigned long error;
-    Uint32 windowIDs[3] = {0};
+    Uint32 windowIDs[3] = {1, 2, 3};
     
     TEST_CASE(after_init){
 	i = 0;
 	
-	REQUIRE(!initIteratorWindow());
+	REQUIRE(initIteratorWindow());
 
 	// testing if only first window is focused
 	while(i < 3){
 	    REQUIRE_NOT_NULL(_windows_SANDAL2->current);
 	    REQUIRE(_windows_SANDAL2->current->focused == (i == 2),
 		    "%d: is focused ? %d\n", i, _windows_SANDAL2->current->focused);
-
-	    windowIDs[i] = SDL_GetWindowID(_windows_SANDAL2->current->window);
 	    
 	    ++i;
-	    if(i < 3) REQUIRE(!nextWindow(), "Failed on %d\n", i);
+	    if(i < 3) REQUIRE(nextWindow(), "Failed on %d\n", i);
 	}
     }
 
@@ -50,6 +48,7 @@ int main(){
     int i;
     
     if(!initSANDAL2()){
+	rc = 2;
 	for(i = 0; i < 3 && rc; ++i){
 	    rc = createWindow(10, 10, "w", 0, bg, 0);
 	    if(rc){
@@ -62,7 +61,10 @@ int main(){
 	if(rc){
 	    RUN_SECTION(WindowEvent_Focus);
 	    rc = 0;
-	}else rc = 2;
+	}else{
+	    rc = 2;
+	    printf("%s\n", SDL_GetError());
+	}
 	
 	closeSANDAL2();
     }else{

@@ -24,6 +24,78 @@ static void copyColor(int to[4],int from[4]){
 
 
 /* -------------------------------------------------------
+ * Other functions
+ */
+#ifdef DEBUG_SDL2_NO_VIDEO
+static void fake_SDL_DestroyWindow(Window * w){
+    (void)w;
+}
+
+static void fake_SDL_DestroyRenderer(SDL_Renderer * r){
+    (void)r;
+}
+
+static unsigned fake_SDL_GetWindowID(Window * w){
+    return w ? w->id : 0;
+}
+
+static Uint32 fake_SDL_GetWindowFlags(Window * w){
+    return w->state;
+}
+
+static void fake_SDL_GetWindowSize(Window * w, int * wi, int * he){
+    if(w){
+	if(wi)
+	    *wi = w->width;
+	if(he)
+	    *he = w->height;
+    }
+}
+
+static void fake_SDL_SetWindowFullscreen(Window * w, Uint32 fullScreen){
+    if(w){
+	w->state = !!fullScreen * SDL_WINDOW_FULLSCREEN;
+    }
+}
+
+static void fake_SDL_RaiseWindow(Window * w){
+    SDL_Event * e = NULL;
+
+    if(w){
+	e = (SDL_Event*)malloc(sizeof(*e));
+
+	if(e){
+	    e->type = SDL_WINDOWEVENT;
+	    e->window.event = SDL_WINDOWEVENT_FOCUS_LOST;
+	    e->window.windowID = currentDisplaied;
+	    SDL_PushEvent(e);
+	}
+
+	e = (SDL_Event*)malloc(sizeof(*e));
+	if(e){
+	    e->type = SDL_WINDOWEVENT;
+	    e->window.event = SDL_WINDOWEVENT_FOCUS_GAINED;
+	    e->window.windowID = w->id;
+	    SDL_PushEvent(e);
+	}
+
+	currentDisplaied = w->id;
+    }
+}
+
+#  define SDL_DestroyWindow fake_SDL_DestroyWindow
+#  define SDL_DestroyRenderer fake_SDL_DestroyRenderer
+#  define SDL_GetWindowID fake_SDL_GetWindowID
+#  define SDL_GetWindowFlags fake_SDL_GetWindowFlags
+#  define SDL_GetWindowSize fake_SDL_GetWindowSize
+#  define SDL_SetWindowFullscreen fake_SDL_SetWindowFullscreen
+
+#endif
+/* ------------------------------------------------------- */
+
+
+
+/* -------------------------------------------------------
  * Initialisation et fermeture des outils SDL2
  */
 int initAllSANDAL2(int imageFlags){
@@ -52,15 +124,15 @@ void closeAllSANDAL2(){
 int initSANDAL2(){
     int failedInit = 0;
 
-#   ifndef DEBUG_SDL2_NO_VIDEO
+#ifndef DEBUG_SDL2_NO_VIDEO
     if(SDL_Init(SDL_INIT_VIDEO)){
         failedInit=1;
     }
-#   else
+#else
     if(SDL_Init(SDL_INIT_EVENTS)){
         failedInit=1;
     }
-#   endif
+#endif
 
     return failedInit;
 }
@@ -121,91 +193,118 @@ Uint32 createWindow(int width,int height,const char *title,int SDLFlags,int back
     Window *fen=(Window*)malloc(sizeof(*fen));
     Window * tmp = NULL;
     Uint32 error = 0;
+#ifdef DEBUG_SDL2_NO_VIDEO
+    static unsigned id = 0;
+#endif
 
-    fen->window=SDL_CreateWindow(title,
-                                 SDL_WINDOWPOS_CENTERED,
-                                 SDL_WINDOWPOS_CENTERED,
-                                 width, height,
-                                 SDLFlags);
-  
-    if(fen->window){
-        fen->renderer=SDL_CreateRenderer(fen->window,
-                                         -1,
-                                         SDL_RENDERER_ACCELERATED);
+    if(fen){
+#ifdef DEBUG_SDL2_NO_VIDEO
+	fen->window = fen;
+#else
+	fen->window=SDL_CreateWindow(title,
+				     SDL_WINDOWPOS_CENTERED,
+				     SDL_WINDOWPOS_CENTERED,
+				     width, height,
+				     SDLFlags);
+#endif
+    
+	if(fen->window){
+#ifndef DEBUG_SDL2_NO_VIDEO
+	    fen->renderer=SDL_CreateRenderer(fen->window,
+					     -1,
+					     SDL_RENDERER_ACCELERATED);
 
-        if(fen->renderer){
-            fen->height=height;
-            fen->width=width;
-            fen->close=0;
-            fen->initHeight=height;
-            fen->initWidth=width;
-            fen->displayCode=displayCode;
-            fen->newDisplayCode=0;
-            fen->displayToChange=0;
-	    fen->origin[0] = 0;
-	    fen->origin[1] = 0;
-            fen->next = NULL;
-	    fen->data = NULL;
-            fen->events.action = NULL;
-            fen->events.onClick = NULL;
-            fen->events.unClick = NULL;
-            fen->events.keyPress = NULL;
-            fen->events.keyReleased = NULL;
-	    fen->events.wheel = NULL;
-	    fen->events.onFocus = NULL;
-	    fen->events.unFocus = NULL;
-            fen->toDelete=0;
-            copyColor(fen->background,background);
-            fen->liste = _initListElement();
-            fen->current = NULL;
-	    fen->stop = 0;
-	    fen->state = SDLFlags&SDL_WINDOW_FULLSCREEN;
-	    fen->focused = 1;
-	    SDL_SetRenderDrawBlendMode(fen->renderer, SDL_BLENDMODE_BLEND);
-	    SDL_SetRenderDrawColor(fen->renderer,background[0],background[1],background[2],background[3]);
-	    SDL_RenderClear(fen->renderer);
-	    SDL_RenderPresent(fen->renderer);
-            if(!fen->liste){
-                SDL_DestroyWindow(fen->window);
-                SDL_DestroyRenderer(fen->renderer);
-                free(fen);
-            }else{
-                if(!_windows_SANDAL2){
-                    _windows_SANDAL2 = (ListWindow*)malloc(sizeof(*_windows_SANDAL2));
-                    if(_windows_SANDAL2){
-                        _windows_SANDAL2->first = fen;
-                        _windows_SANDAL2->last = fen;
-                        _windows_SANDAL2->current = fen;
-                        _windows_SANDAL2->currentDisplay = fen;
-			_windows_SANDAL2->count = 1;
-                    }else{
-                        SDL_DestroyWindow(fen->window);
-                        SDL_DestroyRenderer(fen->renderer);
-                        free(fen);
-			fen = NULL;
-                    }
-                }else{
-		    tmp = _windows_SANDAL2->first;
-		    while(tmp){
-			tmp->focused = 0;
-			tmp = tmp->next;
+	    if(fen->renderer)
+#else
+	    fen->renderer = NULL;
+	    if(1)
+#endif
+            {
+		fen->height=height;
+		fen->width=width;
+		fen->close=0;
+		fen->initHeight=height;
+		fen->initWidth=width;
+		fen->displayCode=displayCode;
+		fen->newDisplayCode=0;
+		fen->displayToChange=0;
+		fen->origin[0] = 0;
+		fen->origin[1] = 0;
+		fen->next = NULL;
+		fen->data = NULL;
+		fen->events.action = NULL;
+		fen->events.onClick = NULL;
+		fen->events.unClick = NULL;
+		fen->events.keyPress = NULL;
+		fen->events.keyReleased = NULL;
+		fen->events.wheel = NULL;
+		fen->events.onFocus = NULL;
+		fen->events.unFocus = NULL;
+		fen->toDelete=0;
+		copyColor(fen->background,background);
+		fen->liste = _initListElement();
+		fen->current = NULL;
+		fen->stop = 0;
+		fen->state = SDLFlags&SDL_WINDOW_FULLSCREEN;
+		fen->focused = 1;
+#ifndef DEBUG_SDL2_NO_VIDEO
+		SDL_SetRenderDrawBlendMode(fen->renderer, SDL_BLENDMODE_BLEND);
+		SDL_SetRenderDrawColor(fen->renderer,background[0],background[1],background[2],background[3]);
+		SDL_RenderClear(fen->renderer);
+		SDL_RenderPresent(fen->renderer);
+#else
+		fen->id = ++id;
+		currentDisplaied = fen->id;
+		fen->posX = 0;
+		fen->posY = 0;
+#endif
+		if(!fen->liste){
+		    SDL_DestroyWindow(fen->window);
+		    SDL_DestroyRenderer(fen->renderer);
+		    free(fen);
+		}else{
+		    if(!_windows_SANDAL2){
+			_windows_SANDAL2 = (ListWindow*)malloc(sizeof(*_windows_SANDAL2));
+			if(_windows_SANDAL2){
+			    _windows_SANDAL2->first = fen;
+			    _windows_SANDAL2->last = fen;
+			    _windows_SANDAL2->current = fen;
+			    _windows_SANDAL2->currentDisplay = fen;
+			    _windows_SANDAL2->count = 1;
+			}else{
+			    SDL_DestroyWindow(fen->window);
+			    SDL_DestroyRenderer(fen->renderer);
+			    free(fen);
+			    fen = NULL;
+			}
+		    }else{
+			tmp = _windows_SANDAL2->first;
+			while(tmp){
+			    tmp->focused = 0;
+			    tmp = tmp->next;
+			}
+			_windows_SANDAL2->last->next=fen;
+			_windows_SANDAL2->last=fen;
+			_windows_SANDAL2->current = fen;
+			_windows_SANDAL2->currentDisplay = fen;
+			++_windows_SANDAL2->count;
 		    }
-                    _windows_SANDAL2->last->next=fen;
-                    _windows_SANDAL2->last=fen;
-		    _windows_SANDAL2->current = fen;
-		    _windows_SANDAL2->currentDisplay = fen;
-		    ++_windows_SANDAL2->count;
-                }
-		if(fen){
-		    error = SDL_GetWindowID(fen->window);
+		    if(fen){
+#ifdef DEBUG_SDL2_NO_VIDEO
+			fake_SDL_RaiseWindow(fen);
+#endif
+			error = SDL_GetWindowID(fen->window);
+		    }
 		}
-            }
-        }else{
-            SDL_DestroyWindow(fen->window);
-            free(fen);
-        }
-    }else{
-        free(fen);
+	    }else{
+#ifndef DEBUG_SDL2_NO_VIDEO
+		SDL_DestroyWindow(fen->window);
+#endif
+		free(fen);
+	    }
+	}else{
+	    free(fen);
+	}
     }
 
     return error;

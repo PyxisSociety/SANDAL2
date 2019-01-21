@@ -22,6 +22,10 @@ extern "C" {
  */
 extern ListWindow * _windows_SANDAL2;
 
+#ifdef DEBUG_SDL2_NO_VIDEO
+extern Uint32 currentDisplaied;
+#endif
+
 /* -------------------------------------------------------
  * Initialisation et fermeture des outils 
  */

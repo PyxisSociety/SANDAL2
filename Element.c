@@ -357,9 +357,11 @@ void _freeElement(Element *e){
         if(e->codes){
             freeListDisplayCode(e->codes);
         }
+#ifndef DEBUG_SDL2_NO_VIDEO
         if(e->image){
             SDL_DestroyTexture(e->image);
         }
+#endif
         if(e->entry){
             free(e->entry);
         }
@@ -508,7 +510,11 @@ Element* createImage(float x,float y,float width,float height,const char *image,
                 e->rotSpeed=0.f;
 		e->flip = SANDAL2_FLIP_NONE;
                 e->animation=initListAnimation();
+#ifndef DEBUG_SDL2_NO_VIDEO
                 e->image=SDL_CreateTextureFromSurface(_windows_SANDAL2->current->renderer,s);
+#else
+		e->image = (SDL_Texture *)1;
+#endif
                 e->codes=initListDisplayCode();
                 addDisplayCode(e->codes,displayCode,1,plan);
                 e->coulBlock[0]=-1;
@@ -1024,14 +1030,20 @@ int setImageElement(Element *e,const char *image){
         if(image){
             s=IMG_Load(image);
             if(s){
+#ifndef DEBUG_SDL2_NO_VIDEO
                 e->image=SDL_CreateTextureFromSurface(_windows_SANDAL2->current->renderer,s);
+#else
+		e->image = (SDL_Texture *)1;
+#endif
                 SDL_FreeSurface(s);
                 error=0;
             }
         }else{
+#ifndef DEBUG_SDL2_NO_VIDEO
             if(e->image){
                 SDL_DestroyTexture(e->image);
             }
+#endif
             e->image=NULL;
             error=0;
         }
@@ -1045,9 +1057,11 @@ int setImageTextureElement(Element *e,SDL_Texture * image){
 
     if(e){
         error = 0;
+	#ifndef DEBUG_SDL2_NO_VIDEO
 	if(e->image && e->image != image){
 	    SDL_DestroyTexture(e->image);
 	}
+	#endif
         e->image = image;
     }
 

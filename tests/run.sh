@@ -14,13 +14,13 @@ for d in $dirs; do
 	if [ -f "a.out" ]; then
 	    out=`./a.out`
 	    failed=$?
-	    if [ "${failed}" == "1" ]; then
-		echo "=============================================================="
+	    echo "=============================================================="
+	    echo "Start $d"
+	    if [ "${failed}" != "0" ]; then
 		echo "Failed: $d"
 		echo "    failed with code ${failed}"
 		echo "    ouput log:"
 		echo "${out}"
-		echo "=============================================================="
 		exeCode=1
 	    else
 		for m in ${out}; do
@@ -31,14 +31,11 @@ for d in $dirs; do
 		done
 		if [ "${failed}" == "1" ]; then
 		    exeCode=1
-		    echo "=============================================================="
 		    echo "Failed: $d"
 		    echo ""
 		    echo "${out}"
-		    echo "=============================================================="
 		else
 		    echo "++++++ $d success"
-		    echo "${out}"
 		fi
 	    fi
 
@@ -56,6 +53,8 @@ for d in $dirs; do
 		    echo "$m"
 		fi
 	    done <<< "$coverage"
+	    echo "=============================================================="
+	    echo ""
 	fi
 	cd ..
     fi
