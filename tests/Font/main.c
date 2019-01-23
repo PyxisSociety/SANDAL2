@@ -11,46 +11,56 @@ TEST_SECTION(Font){
     static Font * font = NULL; // static not to be reinitialized if a test case failed
 
     TEST_CASE(FontCreation){
+	int qualities[3] = {SANDAL2_SOLID, SANDAL2_SHADED, SANDAL2_BLENDED};
+	int i;
 	Font * dumb = NULL;
 
-	dumb = createFont("path/that/do/not/exist", "nope", color, SANDAL2_SOLID);
+	for(i = 0; i < 3; ++i){
+	    dumb = createFont("path/that/do/not/exist", "nope", color, qualities[i]);
 
-	REQUIRE(!dumb);
+	    REQUIRE(!dumb);
 
-	font = createFont("../../downloadable/arial.ttf", "yes", color, SANDAL2_SOLID);
+	    font = createFont("../../downloadable/arial.ttf", "yes", color, qualities[i]);
 
-	REQUIRE_NOT_NULL(font);
+	    REQUIRE_NOT_NULL(font);
 	
-	REQUIRE_NOT_NULL(font->text);
-	REQUIRE(!strcmp(font->text, "yes"));
+	    REQUIRE_NOT_NULL(font->text);
+	    REQUIRE(!strcmp(font->text, "yes"));
 	
-	REQUIRE(color[0] == font->color.r);
-	REQUIRE(color[1] == font->color.g);
-	REQUIRE(color[2] == font->color.b);
-	REQUIRE(color[3] == font->color.a);
+	    REQUIRE(color[0] == font->color.r);
+	    REQUIRE(color[1] == font->color.g);
+	    REQUIRE(color[2] == font->color.b);
+	    REQUIRE(color[3] == font->color.a);
 	
-	REQUIRE(SANDAL2_SOLID == font->quality);
+	    REQUIRE(qualities[i] == font->quality);
 	
-	REQUIRE_NOT_NULL(font->font);
+	    REQUIRE_NOT_NULL(font->font);
+	}
     }
 
     // not to do other test cases if font failed to be initialized
     REQUIRE_NOT_NULL(font);
 
     TEST_CASE(Setters){
-	REQUIRE(!setTextFont(font, "polo"));
-	REQUIRE_NOT_NULL(font->text);
-	REQUIRE(!strcmp(font->text, "polo"));
+	int qualities[] = {SANDAL2_SOLID, SANDAL2_SHADED, SANDAL2_BLENDED};
+	int i = 0;
 
-	REQUIRE(!setColorFont(font, newColor));
-	REQUIRE(newColor[0] == font->color.r);
-	REQUIRE(newColor[1] == font->color.g);
-	REQUIRE(newColor[2] == font->color.b);
-	REQUIRE(newColor[3] == font->color.a);
+	for(i = 0; i < 3; ++i){
+	    REQUIRE(!setStyleFont(font, qualities[i]));
+	    REQUIRE_NOT_NULL(font->font);
+	    REQUIRE(qualities[i] == TTF_GetFontStyle(font->font));
+	    REQUIRE(qualities[i] == font->quality);
+	
+	    REQUIRE(!setTextFont(font, "polo"));
+	    REQUIRE_NOT_NULL(font->text);
+	    REQUIRE(!strcmp(font->text, "polo"));
 
-	REQUIRE(!setStyleFont(font, SANDAL2_BOLD));
-	REQUIRE_NOT_NULL(font->font);
-	REQUIRE(SANDAL2_BOLD == TTF_GetFontStyle(font->font));
+	    REQUIRE(!setColorFont(font, newColor));
+	    REQUIRE(newColor[0] == font->color.r);
+	    REQUIRE(newColor[1] == font->color.g);
+	    REQUIRE(newColor[2] == font->color.b);
+	    REQUIRE(newColor[3] == font->color.a);
+	}
     }
 
     // not to do other test cases if font failed to be initialized
@@ -60,7 +70,24 @@ TEST_SECTION(Font){
 	int style;
 	
 	REQUIRE(!getStyleFont(font, &style));
-	REQUIRE(style == SANDAL2_BOLD);
+	REQUIRE(style == SANDAL2_BLENDED);
+    }
+
+    TEST_CASE(OtherMethods){
+	int qualities[3] = {SANDAL2_SOLID, SANDAL2_SHADED, SANDAL2_BLENDED};
+	int i = 0;
+	int j;
+
+	REQUIRE(actualizeTextFont(NULL, 0));
+	for(i = 0; i < 3; ++i){
+	    REQUIRE(!setStyleFont(font, qualities[i]));
+	    REQUIRE(font->quality == qualities[i]);
+	    for(j = 0; j < 2; ++j){
+		REQUIRE(!actualizeTextFont(font, 1 - j));
+		REQUIRE(font->texture == (SDL_Texture*)(1 - j),
+			"%d: %p\n", 1 - j, font->texture);
+	    }
+	}
     }
 
     freeFont(font);

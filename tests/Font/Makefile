@@ -50,3 +50,6 @@ clean: clear
 
 cleaner:
 	rm *.o $(EXEC)
+
+coverage:
+	gcov ../../Font.c -m

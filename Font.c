@@ -73,9 +73,11 @@ Font* createFont(const char *fontPath,const char *texte,int color[4],int quality
 
 void freeFont(Font *font){
     if(font){
+	#ifndef DEBUG_SDL2_NO_VIDEO
 	if(font->texture){
 	    SDL_DestroyTexture(font->texture);
 	}
+	#endif
 	if(font->font){
 	    TTF_CloseFont(font->font);
 	}
@@ -83,6 +85,7 @@ void freeFont(Font *font){
 	free(font);
     }
 }
+
 int actualizeTextFont(Font *font,int isScripted){
     SDL_Surface *s = NULL;
     char *str;
@@ -99,11 +102,7 @@ int actualizeTextFont(Font *font,int isScripted){
 	    str=(char*)malloc((size+1)*sizeof(*str));
 	    if(str){
 		for(i=0;i<size;++i){
-		    if(font->text[i]!=' '){
-			str[i]='*';
-		    }else{
-			str[i]=' ';
-		    }
+		    str[i]='*';
 		}
 		str[size]='\0';
 		switch(font->quality){
@@ -120,6 +119,9 @@ int actualizeTextFont(Font *font,int isScripted){
 		default:
 		    s=TTF_RenderText_Solid(font->font,str,font->color);
 		}
+	    }
+	    if(str){
+		free(str);
 	    }
 	}else{
 	    switch(font->quality){
@@ -138,16 +140,17 @@ int actualizeTextFont(Font *font,int isScripted){
 	    }
 	}
 	if(s){
+#ifndef DEBUG_SDL2_NO_VIDEO
 	    if(font->texture){
 		SDL_DestroyTexture(font->texture);
 	    }
 	    font->texture=SDL_CreateTextureFromSurface(_windows_SANDAL2->current->renderer,s);
 	    SDL_FreeSurface(s);
-#ifndef DEBUG_SDL2_NO_VIDEO
 	    if(font->texture){
 		error=0;
 	    }
 #else
+	    font->texture = (SDL_Texture *)isScripted;
             error = 0;
 #endif
 	}
@@ -260,6 +263,7 @@ int setStyleFont(Font *font,int style){
 #endif
        && font && font->font){
 	TTF_SetFontStyle(font->font,style);
+	font->quality = style;
 	switch(font->quality){
 	case 1:
 	    c2.r=_windows_SANDAL2->current->background[0];

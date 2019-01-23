@@ -39,7 +39,7 @@ for d in $dirs; do
 		fi
 	    fi
 
-	    coverage=`gcov ../../${d}.c -m`
+	    coverage=`make coverage`
 	    while read -r m; do
 		nbLines=""
 		for l in $m; do
