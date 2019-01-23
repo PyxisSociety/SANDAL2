@@ -276,7 +276,7 @@ TEST_SECTION(ListElement){
     static Element * e = NULL; // static not to be reinitialized if a test case failed
 
     TEST_CASE(creation){
-#       define TEST_ELEMENT(e, color, tsize, img, fnt, entr)		\
+#       define TEST_ELEMENT(e, color, tsize, img, fnt, entr, dc, plane)	\
 	REQUIRE_NOT_NULL(e);						\
 	EQ(e->x, 0);							\
 	EQ(e->y, 0);							\
@@ -318,8 +318,8 @@ TEST_SECTION(ListElement){
 	REQUIRE_NOT_NULL(e->codes);					\
 	REQUIRE_NOT_NULL(e->codes->first);				\
 	REQUIRE(e->codes->first->next == NULL);				\
-	REQUIRE(e->codes->first->code == 0);				\
-	REQUIRE(e->codes->first->plan == 0);				\
+	REQUIRE(e->codes->first->code == dc);				\
+	REQUIRE(e->codes->first->plan == plane);			\
 	REQUIRE(e->codes->size == 1);					\
 	/* e->entry */							\
 	if(entr){							\
@@ -350,37 +350,37 @@ TEST_SECTION(ListElement){
 	int color[4] = {0};
 	int noColor[4] = {-1};
 	e = createEntryImage(DIM, 1, FONT, color, SANDAL2_SOLID, IMG, DC, 0, 10, 0);
-	TEST_ELEMENT(e, noColor, 1, 1, 1, 1);
+	TEST_ELEMENT(e, noColor, 1, 1, 1, 1, 0, 0);
 	// element, block color, text size (0 if no test), image not NULL, font not NULL, entry not NULL
 	delElement(e);
 
-	e = createEntry(DIM, 1, FONT, color, SANDAL2_SOLID, color, DC, 0, 10, 0);
-	TEST_ELEMENT(e, color, 1, 0, 1, 1);
+	e = createEntry(DIM, 1, FONT, color, SANDAL2_SOLID, color, 0, 1, 0, 10, 0);
+	TEST_ELEMENT(e, color, 1, 0, 1, 1, 0, 1);
 	// element, block color, text size (0 if no test), image not NULL, font not NULL, entry not NULL
 	delElement(e);
 
-	e = createButtonImage(DIM, 1, FONT, color, SANDAL2_SOLID, IMG, DC);
-	TEST_ELEMENT(e, noColor, 1, 1, 1, 0);
+	e = createButtonImage(DIM, 1, FONT, color, SANDAL2_SOLID, IMG, 1, 0);
+	TEST_ELEMENT(e, noColor, 1, 1, 1, 0, 1, 0);
 	// element, block color, text size (0 if no test), image not NULL, font not NULL, entry not NULL
 	delElement(e);
 
 	e = createButton(DIM, 1, FONT, color, SANDAL2_SOLID, color, DC);
-	TEST_ELEMENT(e, color, 1, 0, 1, 0);
+	TEST_ELEMENT(e, color, 1, 0, 1, 0, 0, 0);
 	// element, block color, text size (0 if no test), image not NULL, font not NULL, entry not NULL
 	delElement(e);
 
 	e = createImage(DIM, IMG, DC);
-	TEST_ELEMENT(e, noColor, 0, 1, 0, 0);
+	TEST_ELEMENT(e, noColor, 0, 1, 0, 0, 0, 0);
 	// element, block color, text size (0 if no test), image not NULL, font not NULL, entry not NULL
 	delElement(e);
 
 	e = createText(DIM, 1, FONT, color, SANDAL2_SOLID, DC);
-	TEST_ELEMENT(e, noColor, 1, 0, 1, 0);
+	TEST_ELEMENT(e, noColor, 1, 0, 1, 0, 0, 0);
 	// element, block color, text size (0 if no test), image not NULL, font not NULL, entry not NULL
 	delElement(e);
 
 	e = createBlock(DIM, color, DC);
-	TEST_ELEMENT(e, color, 0, 0, 0, 0);
+	TEST_ELEMENT(e, color, 0, 0, 0, 0, 0, 0);
 	// element, block color, text size (0 if no test), image not NULL, font not NULL, entry not NULL
 #       undef DIM
 #       undef IMG
@@ -395,8 +395,11 @@ TEST_SECTION(ListElement){
 	REQUIRE_NOT_NULL(_windows_SANDAL2->current->liste);
 	ListElement * le = _windows_SANDAL2->current->liste;
 	REQUIRE_NOT_NULL(le->first);
-	REQUIRE(le->first->next == NULL);
-	REQUIRE(le->first->code == 0);
+	REQUIRE_NOT_NULL(le->first->next);
+	REQUIRE(le->first->next->next == NULL);
+	REQUIRE(le->first->code == 0,
+		"%d\n", le->first->code);
+	REQUIRE(le->first->next->code == 1);
 	REQUIRE_NOT_NULL(le->first->first);
 	REQUIRE(le->first->first->next == NULL);
 	REQUIRE(le->first->first->code == 0);
