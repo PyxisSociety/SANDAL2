@@ -6,11 +6,12 @@
 #include <string.h>
 
 TEST_SECTION(Element){
+    static Entry entry = {2, 20, 6, 0, 0};
     static Element e = {0}; // static not to be reinitialized if a test case failed
 
     TEST_CASE(set){
 	// set font
-	int color[4] = {255};
+	int color[4] = {1, 1, 1, 1};
 	const char * fontPath = "../../downloadable/arial.ttf";
 	e.font = createFont(fontPath, "txt", color, SANDAL2_SOLID);
 	REQUIRE_NOT_NULL(e.font);
@@ -173,9 +174,148 @@ TEST_SECTION(Element){
 	TEST_UNARY(CoordX, x);
 	TEST_UNARY(CoordY, y);
 #       undef TEST_UNARY
+
+	// set entry : size
+	e.entry = &entry;
+	REQUIRE(setSizeEntry(NULL, 0, 0));
+	REQUIRE(!setSizeEntry(&e, 1, 21));
+	REQUIRE(entry.size_min == 1);
+	REQUIRE(entry.size_max == 21);
+
+	// set entry : scripted
+	REQUIRE(setScriptedEntry(NULL, 0));
+	REQUIRE(setScriptedEntry(&e, 0));
+	REQUIRE(!setScriptedEntry(&e, 1));
+	REQUIRE(entry.isScripted == 1);
     }
 
     TEST_CASE(get){
+	// get flip
+	SANDAL2_FLIP flip = SANDAL2_FLIP_NONE;
+	e.flip = SANDAL2_FLIP_HOR;
+	REQUIRE(getFlipStateElement(NULL, NULL));
+	REQUIRE(!getFlipStateElement(&e, &flip));
+	REQUIRE(e.flip == SANDAL2_FLIP_HOR);
+	REQUIRE(e.flip == flip);
+
+	// get coord
+	float x = 0., y = 0.;
+	e.x = 1.;
+	e.y = 2.;
+	REQUIRE(getCoordElement(NULL, NULL, NULL));
+	REQUIRE(!getCoordElement(&e, &x, &y));
+	EQ(e.x, x);
+	EQ(e.x, 1.);
+	EQ(e.y, y);
+	EQ(e.y, 2.);
+
+	// get angle
+	e.rotation = 12.;
+	REQUIRE(getAngleElement(NULL, NULL));
+	REQUIRE(!getAngleElement(&e, &x));
+	EQ(e.rotation, x);
+	EQ(e.rotation, 12.);
+
+	// get dimension
+	e.width = 100.;
+	e.height = 200.;
+	REQUIRE(getDimensionElement(NULL, NULL, NULL));
+	REQUIRE(!getDimensionElement(&e, &x, &y));
+	EQ(e.width, x);
+	EQ(e.width, 100.);
+	EQ(e.height, y);
+	EQ(e.height, 200.);
+
+	// get rotation point
+	e.prX = 22.;
+	e.prY = 42.;
+	REQUIRE(getRotationPointElement(NULL, NULL, NULL));
+	REQUIRE(!getRotationPointElement(&e, &x, &y));
+	EQ(e.prX, x);
+	EQ(e.prX, 22.);
+	EQ(e.prY, y);
+	EQ(e.prY, 42.);
+
+	// get rotation speed
+	e.rotSpeed = 12.;
+	REQUIRE(getRotationSpeedElement(NULL, NULL));
+	REQUIRE(!getRotationSpeedElement(&e, &x));
+	EQ(e.rotSpeed, x);
+	EQ(e.rotSpeed, 12.);
+
+	// get data
+	float * pX = NULL;
+	e.data = &x;
+	x = 23.;
+	REQUIRE(getDataElement(NULL, NULL));
+	REQUIRE(!getDataElement(&e, (void**)&pX));
+	REQUIRE_NOT_NULL(pX);
+	EQ(*pX, 23.);
+	EQ(*pX, *(float*)e.data);
+        REQUIRE(e.data == &x);
+
+	// is selected
+	int i = 0;
+	e.selected = 1;
+	REQUIRE(isSelectedElement(NULL, NULL));
+	REQUIRE(!isSelectedElement(&e, &i));
+	REQUIRE(i);
+	REQUIRE(e.selected == i);
+
+	// get text style
+	REQUIRE(getTextStyleElement(NULL, NULL));
+	REQUIRE(!getTextStyleElement(&e, &i));
+	REQUIRE(i == SANDAL2_BOLD);
+
+	// get text element
+	char * s = NULL;
+	REQUIRE(getTextElement(NULL, NULL));
+	REQUIRE(!getTextElement(&e, &s));
+	REQUIRE_NOT_NULL(s);
+	REQUIRE(!strcmp(s, "coucou"));
+
+	// get color
+	int color[4] = {0, 0, 0, 0};
+	REQUIRE(getColorElement(NULL, NULL));
+	REQUIRE(getColorElement(&e, NULL));
+	REQUIRE(getColorElement(NULL, color));
+	REQUIRE(!getColorElement(&e, color));
+	for(i = 0; i < 4; ++i){
+	    REQUIRE(color[i] == e.coulBlock[i],
+		    "%d: %d == %d\n", i, color[i], e.coulBlock[i]);
+	}
+
+	// get width
+	REQUIRE(getWidthElement(NULL, NULL));
+	REQUIRE(getWidthElement(&e, NULL));
+	REQUIRE(getWidthElement(NULL, &x));
+	REQUIRE(!getWidthElement(&e, &x));
+	EQ(e.width, x);
+	EQ(e.width, 100.);
+
+	// get height
+	REQUIRE(getHeightElement(NULL, NULL));
+	REQUIRE(getHeightElement(&e, NULL));
+	REQUIRE(getHeightElement(NULL, &y));
+	REQUIRE(!getHeightElement(&e, &y));
+	EQ(e.height, y);
+	EQ(e.height, 200.);
+
+	// get x
+	REQUIRE(getCoordXElement(NULL, NULL));
+	REQUIRE(getCoordXElement(&e, NULL));
+	REQUIRE(getCoordXElement(NULL, &x));
+	REQUIRE(!getCoordXElement(&e, &x));
+	EQ(e.x, x);
+	EQ(e.x, 1.);
+
+	// get y 
+	REQUIRE(getCoordYElement(NULL, NULL));
+	REQUIRE(getCoordYElement(&e, NULL));
+	REQUIRE(getCoordYElement(NULL, &y));
+	REQUIRE(!getCoordYElement(&e, &y));
+	EQ(e.y, y);
+	EQ(e.y, 2.);
     }
 
     TEST_CASE(otherModifiers){
@@ -200,12 +340,12 @@ TEST_SECTION(Element){
 	// add rotation speed
 	REQUIRE(addRotationSpeedElement(NULL, 10));
 	REQUIRE(!addRotationSpeedElement(&e, 10));
-	EQ(e.rotSpeed, 20);
+	EQ(e.rotSpeed, 22);
 
 	// add angle
 	REQUIRE(addAngleElement(NULL, 10));
 	REQUIRE(!addAngleElement(&e, 10));
-	EQ(e.rotation, 20);
+	EQ(e.rotation, 22);
 
 	// add animation
 	if(!e.animation){
@@ -240,6 +380,22 @@ TEST_SECTION(Element){
 	REQUIRE(delAnimationElement(NULL, 0));
 	REQUIRE(delAnimationElement(&e, 1));
 	REQUIRE(!delAnimationElement(&e, 0));
+
+	// entry : add char
+	char s[42] = {0};
+	strcpy(s, "coucou                             ");
+	free(e.font->text);
+	e.font->text = s;
+	REQUIRE(addCharEntry(NULL, 0));
+	REQUIRE(!addCharEntry(&e, '!'));
+	REQUIRE(!strcmp(e.font->text, "coucou!                            "),
+		"%s\n", e.font->text);
+
+	// entry : del char
+	REQUIRE(delCharEntry(NULL));
+	REQUIRE(!delCharEntry(&e));
+	REQUIRE(!strcmp(e.font->text, "coucou                             "),
+		"%s\n", e.font->text);
     }
 
     if(e.codes){
@@ -255,12 +411,9 @@ TEST_SECTION(Element){
 	e.animation = NULL;
     }
     if(e.font){
+	e.font->text = NULL;
 	freeFont(e.font);
 	e.font = NULL;
-    }
-    if(e.entry){
-	free(e.entry);
-	e.entry = NULL;
     }
     if(e.interactions){
 	free(e.interactions);
@@ -276,6 +429,8 @@ TEST_SECTION(ListElement){
     static Element * e = NULL; // static not to be reinitialized if a test case failed
 
     TEST_CASE(creation){
+	Element * tmp;
+	
 #       define TEST_ELEMENT(e, color, tsize, img, fnt, entr, dc, plane)	\
 	REQUIRE_NOT_NULL(e);						\
 	EQ(e->x, 0);							\
@@ -359,8 +514,9 @@ TEST_SECTION(ListElement){
 	// element, block color, text size (0 if no test), image not NULL, font not NULL, entry not NULL
 	delElement(e);
 
-	e = createButtonImage(DIM, 1, FONT, color, SANDAL2_SOLID, IMG, 1, 0);
-	TEST_ELEMENT(e, noColor, 1, 1, 1, 0, 1, 0);
+	e = createButtonImage(DIM, 1, FONT, color, SANDAL2_SOLID, IMG, -1, 0);
+	tmp = e;
+	TEST_ELEMENT(e, noColor, 1, 1, 1, 0, -1, 0);
 	// element, block color, text size (0 if no test), image not NULL, font not NULL, entry not NULL
 	delElement(e);
 
@@ -397,16 +553,16 @@ TEST_SECTION(ListElement){
 	REQUIRE_NOT_NULL(le->first);
 	REQUIRE_NOT_NULL(le->first->next);
 	REQUIRE(le->first->next->next == NULL);
-	REQUIRE(le->first->code == 0,
+	REQUIRE(le->first->code == -1,
 		"%d\n", le->first->code);
-	REQUIRE(le->first->next->code == 1);
+	REQUIRE(le->first->next->code == 0);
 	REQUIRE_NOT_NULL(le->first->first);
 	REQUIRE(le->first->first->next == NULL);
 	REQUIRE(le->first->first->code == 0);
 	REQUIRE_NOT_NULL(le->first->first->first);
 	PtrElement * pe = le->first->first->first;
 	REQUIRE(pe->next == NULL);
-	REQUIRE(pe->element == e);
+	REQUIRE(pe->element == tmp);
     }
 
     // not to do other test cases if e failed to be initialized
@@ -420,6 +576,8 @@ TEST_SECTION(ListElement){
 	// add display code
 
 	// del display code
+
+	// clear display code
 
 	// clear plan
 
