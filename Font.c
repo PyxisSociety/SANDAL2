@@ -102,7 +102,10 @@ int actualizeTextFont(Font *font,int isScripted){
 	    str=(char*)malloc((size+1)*sizeof(*str));
 	    if(str){
 		for(i=0;i<size;++i){
-		    str[i]='*';
+		    if(font->text[i] == ' ')
+			str[i] = ' ';
+		    else
+			str[i] = '*';
 		}
 		str[size]='\0';
 		switch(font->quality){

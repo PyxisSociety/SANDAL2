@@ -570,6 +570,18 @@ TEST_SECTION(ListElement){
 
     TEST_CASE(set){
 	// set plan
+	REQUIRE(setPlanElement(NULL, 0, 0));
+	REQUIRE(!setPlanElement(e, 0, -1));
+	REQUIRE_NOT_NULL(_windows_SANDAL2);
+	REQUIRE_NOT_NULL(_windows_SANDAL2->current);
+	REQUIRE_NOT_NULL(_windows_SANDAL2->current->liste);
+	ListElement * le = _windows_SANDAL2->current->liste;
+	REQUIRE_NOT_NULL(le->first);
+	REQUIRE_NOT_NULL(le->first->next);
+	REQUIRE_NOT_NULL(le->first->next->first);
+	REQUIRE_NOT_NULL(le->first->next->first->next);
+	REQUIRE(le->first->next->first->next->next == NULL);
+	REQUIRE(le->first->next->first->next->code == -1);
     }
 
     TEST_CASE(otherModifiers){
