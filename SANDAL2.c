@@ -116,6 +116,7 @@ int initAllSANDAL2(int imageFlags){
 }
 
 void closeAllSANDAL2(){
+    closeAllWindow();
     IMG_Quit();
     TTF_Quit();
     SDL_Quit();

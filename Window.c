@@ -156,7 +156,7 @@ Uint32 nextWindow(){
 }
 
 int getDimensionWindow(int * w,int * h){
-    int error = 0;
+    int error = 1;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
         if(w){
@@ -165,7 +165,7 @@ int getDimensionWindow(int * w,int * h){
         if(h){
             *h=_windows_SANDAL2->current->initHeight;
         }
-        error =1;
+        error = 0;
     }
 
     return error;
@@ -382,7 +382,7 @@ int getOriginWindow(int * x,int * y){
 	    *y = _windows_SANDAL2->current->origin[1];
     }
 
-    return _windows_SANDAL2 && _windows_SANDAL2->current;
+    return !(_windows_SANDAL2 && _windows_SANDAL2->current);
 }
 
 int setOriginWindow(int x,int y){
