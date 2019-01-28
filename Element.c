@@ -109,47 +109,6 @@ static void freeListDCElement(ListDCElement* l){
 	free(l);
     }
 }
-
-/*static int delDCElement(ListDCElement** l,Element *e){
-    ListPtrElement **lp;
-    PtrElement **pe, *etmp, **pte;
-    int error = 1;
-  
-    if(e && l){
-        error = 0;
-        while(*l){
-            lp=&((*l)->first);
-            while(*lp){
-                pte=NULL;
-                pe=&((*lp)->first);
-                while(*pe){
-                    if((*pe)->element==e){
-                        if(*pe==(*lp)->last){
-                            if(pte){
-                                (*lp)->last=*pte;
-                            }else{
-                                (*lp)->last=NULL;
-                            }
-                        }
-                        if(*pe==(*lp)->current){
-                            (*lp)->current=(*pe)->next;
-                        }
-                        etmp=(*pe)->next;
-                        free(*pe);
-                        *pe=etmp;
-                    }else{
-                        pte=pe;
-                        pe=&((*pe)->next);
-                    }
-                }
-                lp=&((*lp)->next);
-            }
-            l=&((*l)->next);
-        }
-    }
-
-    return error;
-}*/
 /* ------------------------------------------------------- */
 
 
@@ -250,17 +209,20 @@ void _cleanElement(){
 		    if((*e)->deleted == 1){
 			(*e)->element->deleted = 0;
 			(*e)->element->deleteCode = 0;
+			delDisplayCodeElement((*e)->element, (*ldc)->code);
 			etmp = *e;
 			*e = (*e)->next;
 			if(etmp == (*lp)->last)
 			    (*lp)->last = prev;
 			else if(etmp == (*lp)->first)
 			    (*lp)->first = (*lp)->first->next;
+			_windows_SANDAL2->current->toDelete--;
 			free(etmp);
 			etmp = NULL;
 		    }else if((*e)->deleted == -1){
 			--_windows_SANDAL2->current->toDelete;
 			(*e)->deleted = 0;
+			e = &((*e)->next);
 		    }else{
 			switch((*e)->element->deleted){
 			case 1:
@@ -287,6 +249,7 @@ void _cleanElement(){
 			    if((*lp)->code==(*e)->element->deleteCode){
 				(*e)->element->deleted = 0;
 				(*e)->element->deleteCode = 0;
+				delDisplayCodeElement((*e)->element, (*ldc)->code);
 				etmp=*e;
 				*e=(*e)->next;
 				if(etmp == (*lp)->last)
@@ -714,6 +677,7 @@ int clearDisplayCode(int code){
 	    while(lptr){
 		ptr = lptr->first;
 		while(ptr){
+		    ptr->deleted = 0;
                     ptr->element->deleted=2;
                     ptr->element->deleteCode=code;
                     _windows_SANDAL2->current->toDelete++;
@@ -1127,9 +1091,10 @@ int addDisplayCodeElement(Element *e,int displayCode, int plan){
         while(*d && (*d)->code<displayCode){
             d=&((*d)->next);
         }
-        if(!(*d && (*d)->code==displayCode && (*d)->plan==plan)){ 
+        if(!(*d && (*d)->code==displayCode && (*d)->plan==plan)){
             if(*d && (*d)->code == displayCode){
                 (*d)->plan=plan;
+		error = 0;
             }else{
                 tmp=(DisplayCode*)malloc(sizeof(*tmp));
                 tmp->code=displayCode;
@@ -1162,7 +1127,7 @@ int addDisplayCodeElement(Element *e,int displayCode, int plan){
                     error = 0;
                     el->next=NULL;
                     el->element=e;
-		    ++e->codes;
+		    ++e->codes->size;
                     if((*lp)->last){
                         (*lp)->last->next=el;
                     }else{
@@ -1510,7 +1475,6 @@ int delElementToElement(Element *e,Element *del){
 }
 
 int clearElementToElement(Element * e){
-    int error = 1;
     PtrElement * pe, * tmp;
 
     if(e && e->interactions){
@@ -1527,7 +1491,7 @@ int clearElementToElement(Element * e){
 	e->interactions->current = NULL;
     }
 
-    return error;
+    return !e;
 }
 
 int addClickableElement(Element *e,Clickable *hb,int blocking){

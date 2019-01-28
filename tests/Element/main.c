@@ -586,20 +586,141 @@ TEST_SECTION(ListElement){
 
     TEST_CASE(otherModifiers){
 	// add display code
+	REQUIRE(addDisplayCodeElement(NULL, 0, 0));
+	
+	REQUIRE(!addDisplayCodeElement(e, 0, -2));
+	REQUIRE_NOT_NULL(e->codes);
+	REQUIRE_NOT_NULL(e->codes->first);
+	REQUIRE(e->codes->first->next == NULL);
+	REQUIRE(e->codes->first->code == 0);
+	REQUIRE(e->codes->first->plan == -2);
+	
+	REQUIRE(!addDisplayCodeElement(e, 1, -1));
+	REQUIRE_NOT_NULL(e->codes);
+	REQUIRE_NOT_NULL(e->codes->first);
+	REQUIRE_NOT_NULL(e->codes->first->next);
+	REQUIRE(e->codes->first->next->next == NULL);
+	REQUIRE(e->codes->first->next->code == 1);
+	REQUIRE(e->codes->first->next->plan == -1);
 
 	// del display code
+	REQUIRE(delDisplayCodeElement(NULL, 0));
+	REQUIRE(delDisplayCodeElement(e, -2));
+	REQUIRE_NOT_NULL(e->codes);
+	REQUIRE_NOT_NULL(e->codes->first);
+	REQUIRE_NOT_NULL(e->codes->first->next);
+	REQUIRE(e->codes->first->next->next == NULL);
+	REQUIRE(!delDisplayCodeElement(e, 1));
+	REQUIRE_NOT_NULL(e->codes);
+	REQUIRE_NOT_NULL(e->codes->first);
+	REQUIRE(e->codes->first->next == NULL);
+	_cleanElement();
 
 	// clear display code
+	REQUIRE(!addDisplayCodeElement(e, -1, -1)); // so that e will not be cleared
+	REQUIRE(clearDisplayCode(25));
+	REQUIRE(!clearDisplayCode(0));
+	_cleanElement();
+	REQUIRE_NOT_NULL(e->codes);
+	REQUIRE_NOT_NULL(e->codes->first);
+	REQUIRE(e->codes->first->next == NULL);
+	REQUIRE(e->codes->first->code == -1);
+	REQUIRE_NOT_NULL(_windows_SANDAL2);
+	REQUIRE_NOT_NULL(_windows_SANDAL2->first);
+	REQUIRE(_windows_SANDAL2->first->next == NULL);
+	REQUIRE_NOT_NULL(_windows_SANDAL2->first->liste);
+	REQUIRE_NOT_NULL(_windows_SANDAL2->first->liste->first);
+	REQUIRE_NOT_NULL(_windows_SANDAL2->first->liste->first->next);
+	REQUIRE(_windows_SANDAL2->first->liste->first->next->code == 1,
+		"%d\n", _windows_SANDAL2->first->liste->first->next->code);
+	REQUIRE(_windows_SANDAL2->first->liste->first->code == -1);
 
 	// clear plan
+	REQUIRE(clearPlanDisplayCode(-25, 0));
+	REQUIRE(clearPlanDisplayCode(-1, 234));
+	REQUIRE(!clearPlanDisplayCode(-1, 0));
+	_cleanElement();
+	ListPtrElement * lpe = _windows_SANDAL2->first->liste->first->first;
+	REQUIRE_NOT_NULL(lpe);
+	REQUIRE(_windows_SANDAL2->first->liste->first->code == -1);
+	REQUIRE(lpe->code == -1);
+	REQUIRE(lpe->next == NULL);
 
 	// add element to element
+	REQUIRE(addElementToElement(NULL, e));
+	REQUIRE(addElementToElement(NULL, NULL));
+	REQUIRE(addElementToElement(e, NULL));
+	REQUIRE(!addElementToElement(e, (Element*)25));
+	REQUIRE_NOT_NULL(e->interactions);
+	REQUIRE_NOT_NULL(e->interactions->first);
+	REQUIRE(e->interactions->first->element == (Element*)25);
+	REQUIRE(e->interactions->first->next == NULL);
+	REQUIRE(!addElementToElement(e, (Element*)250));
+	REQUIRE_NOT_NULL(e->interactions);
+	REQUIRE_NOT_NULL(e->interactions->first);
+	REQUIRE(e->interactions->first->element == (Element*)25);
+	REQUIRE_NOT_NULL(e->interactions->first->next);
+	REQUIRE(e->interactions->first->next->element == (Element*)250);
+	REQUIRE(e->interactions->first->next->next == NULL);
 
 	// del element to element
+	REQUIRE(delElementToElement(NULL, NULL));
+	REQUIRE(delElementToElement(e, NULL));
+	REQUIRE(delElementToElement(NULL, e));
+	REQUIRE(delElementToElement(e, (Element*)42));
+	REQUIRE(!delElementToElement(e, (Element*)25));
+	REQUIRE_NOT_NULL(e->interactions);
+	REQUIRE_NOT_NULL(e->interactions->first);
+	REQUIRE(e->interactions->first->next == NULL);
+	REQUIRE(e->interactions->first->element == (Element*)250);
+	REQUIRE(!delElementToElement(e, (Element*)250));
+	REQUIRE_NOT_NULL(e->interactions);
+	REQUIRE(e->interactions->first == NULL);
+	REQUIRE(e->interactions->last == NULL);
 
 	// clear element to element
+	REQUIRE(clearElementToElement(NULL));
+	
+	REQUIRE(!addElementToElement(e, e));
+	REQUIRE(!clearElementToElement(e));
+	REQUIRE_NOT_NULL(e->interactions);
+	REQUIRE(e->interactions->first == NULL);
+	
+	REQUIRE(!addElementToElement(e, e));
+	REQUIRE(!addElementToElement(e, e));
+	REQUIRE(!addElementToElement(e, e));
+	REQUIRE(!clearElementToElement(e));
+	REQUIRE_NOT_NULL(e->interactions);
+	REQUIRE(e->interactions->first == NULL);
+
+	// element to element iterator
+	int i;
+	for(i = 0; i < 3; ++i){
+	    REQUIRE(!addElementToElement(e, (Element*)(i + 1)));
+	}
+	REQUIRE(!initIteratorElement(NULL));
+	REQUIRE(initIteratorElement(e));
+	for(i = 0; i < 3; ++i){
+	    REQUIRE(nextIteratorElement(e) == (Element*)(i + 1));
+	}
+	REQUIRE(!nextIteratorElement(e));
+	REQUIRE(!nextIteratorElement(NULL));
+	REQUIRE(!clearElementToElement(e));
+
+	// element iterator
+	REQUIRE(initIterator(-1));
+	REQUIRE(nextElement() == e);
+	REQUIRE(nextElement() == NULL);
+	REQUIRE(initIterator(1));
+	REQUIRE(nextElement() == e);
+	REQUIRE(nextElement() == NULL);
 
 	// clear window
+	REQUIRE(!clearWindow());
+	REQUIRE_NOT_NULL(_windows_SANDAL2);
+	REQUIRE_NOT_NULL(_windows_SANDAL2->first);
+	REQUIRE_NOT_NULL(_windows_SANDAL2->first->liste);
+	REQUIRE(_windows_SANDAL2->first->liste->first == NULL);
     }
 
     if(e){
