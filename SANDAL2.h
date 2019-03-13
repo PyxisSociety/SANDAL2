@@ -10,7 +10,7 @@ extern "C" {
 /**
  * @file SANDAL2.h
  * @author Baptiste PRUNIER (KLEVH)
- * @version 1.3.0
+ * @version 1.4.0
  * @brief SANDAL2.h is the file to include which includes everything else.
  *  Compilation flags to use :
  *    -lSDL2 -lSDL2_ttf -lSDL2_image -lm
