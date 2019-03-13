@@ -11,7 +11,7 @@ extern "C" {
  * @file SANDAL2.h
  * @author Baptiste PRUNIER (KLEVH)
  * @version 1.3.0
- * @brief File to include which includes everything else.
+ * @brief SANDAL2.h is the file to include which includes everything else.
  *  Compilation flags to use :
  *    -lSDL2 -lSDL2_ttf -lSDL2_image -lm
  */
@@ -21,6 +21,10 @@ extern "C" {
  *   WARNING : do not touch this variable, never ... trust me
  */
 extern ListWindow * _windows_SANDAL2;
+
+#ifdef DEBUG_SDL2_NO_VIDEO
+extern Uint32 currentDisplaied;
+#endif
 
 /* -------------------------------------------------------
  * Initialisation et fermeture des outils 

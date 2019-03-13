@@ -12,6 +12,10 @@ extern "C" {
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_image.h>
 
+#ifdef DEBUG_SDL2_NO_VIDEO
+extern Uint32 currentDisplaied;
+#endif
+
 /**
  * @file Window.h
  * @author Baptiste PRUNIER (KLEVH)
@@ -76,8 +80,15 @@ typedef struct Window{
     /**< background color of the window*/
     int origin[2];
     /**< origin of the window (initialized at (0,0)) */
+#ifndef DEBUG_SDL2_NO_VIDEO
     SDL_Window *window;
     /**< true  window*/
+#else
+    unsigned id;
+    struct Window * window;
+    int posX;
+    int posY;
+#endif
     SDL_Renderer *renderer;
     /**<  renderer*/
     struct ListElement * liste;

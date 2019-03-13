@@ -7,15 +7,13 @@
 void keyElement(Element * this, SDL_Keycode c){
     static unsigned   i     = 0;
     int             * val;
-    
-    c = (char)c;
 
     switch(c){
-    case 27: /* ESCAP */
+    case SDLK_ESCAPE: /* ESCAP */
 	if(!getDataWindow((void **)&val) && val)
 	    *val = 0;
 	break;
-    case 95: /* 7 pave numerique */
+    case SDLK_a: /* a */
 	i = (i + 1) % 5;
 	setPlanElement(this, 0, i);
 	break;

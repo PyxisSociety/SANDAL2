@@ -153,7 +153,7 @@ int actualizeTextFont(Font *font,int isScripted){
 		error=0;
 	    }
 #else
-	    font->texture = (SDL_Texture *)isScripted;
+	    font->texture = isScripted ? (SDL_Texture *)1 : NULL;
             error = 0;
 #endif
 	}

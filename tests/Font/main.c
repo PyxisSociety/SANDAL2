@@ -75,8 +75,8 @@ TEST_SECTION(Font){
 
     TEST_CASE(OtherMethods){
 	int qualities[3] = {SANDAL2_SOLID, SANDAL2_SHADED, SANDAL2_BLENDED};
-	int i = 0;
-	int j;
+	unsigned long i = 0;
+	unsigned long j;
 
 	REQUIRE(actualizeTextFont(NULL, 0));
 	for(i = 0; i < 3; ++i){

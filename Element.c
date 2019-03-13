@@ -207,9 +207,11 @@ void _cleanElement(){
 		prev = NULL;
                 while(e && *e && _windows_SANDAL2->current->toDelete){
 		    if((*e)->deleted == 1){
+                        if((*e)->element->deleted == 1){
+                            delDisplayCodeElement((*e)->element, (*ldc)->code);
+                        }
 			(*e)->element->deleted = 0;
 			(*e)->element->deleteCode = 0;
-			delDisplayCodeElement((*e)->element, (*ldc)->code);
 			etmp = *e;
 			*e = (*e)->next;
 			if(etmp == (*lp)->last)
@@ -225,8 +227,8 @@ void _cleanElement(){
 			e = &((*e)->next);
 		    }else{
 			switch((*e)->element->deleted){
-			case 1:
-			case 2:
+			case 1: // deleting
+			case 2: // changing display code
 			    if((*ldc)->code==(*e)->element->deleteCode){
 				(*e)->element->deleted = 0;
 				(*e)->element->deleteCode = 0;
@@ -245,11 +247,10 @@ void _cleanElement(){
 				e=&((*e)->next);
 			    }
 			    break;
-			case 3:
+			case 3: // changing plan
 			    if((*lp)->code==(*e)->element->deleteCode){
 				(*e)->element->deleted = 0;
 				(*e)->element->deleteCode = 0;
-				delDisplayCodeElement((*e)->element, (*ldc)->code);
 				etmp=*e;
 				*e=(*e)->next;
 				if(etmp == (*lp)->last)
@@ -343,6 +344,9 @@ void _freeElement(Element *e){
         if(e->animation){
             freeListAnimation(e->animation);
         }
+        if(e->actions){
+            freeListAction(e->actions);
+        }
         free(e);
     }    
 }
@@ -379,12 +383,14 @@ Element* createBlock(float x,float y,float width,float height,int color[4],int d
             e->events.endSprite=NULL;
 	    e->events.onMouseMotion=NULL;
 	    e->events.unMouseMotion=NULL;
+	    e->events.endAction=NULL;
             e->font=NULL;
             e->entry=NULL;
             e->interactions=NULL;
             e->image=NULL;
             e->hitboxes = initListClickable();
             e->data=NULL;
+            e->actions = NULL;
             if(addElement(e)){
                 _freeElement(e);
                 e=NULL;
@@ -422,6 +428,7 @@ Element* createText(float x,float y,float width,float height,float textSize, con
             e->codes=NULL;
             e->font=createFont(font,text,textColor,quality);
             e->data=NULL;
+            e->actions = NULL;
             if(e->font){
                 e->codes=initListDisplayCode();
                 addDisplayCode(e->codes,displayCode,1,plan);
@@ -436,6 +443,7 @@ Element* createText(float x,float y,float width,float height,float textSize, con
                 e->events.endSprite=NULL;
 		e->events.onMouseMotion=NULL;
 		e->events.unMouseMotion=NULL;
+                e->events.endAction=NULL;
                 if(addElement(e)){
                     _freeElement(e);
                     e=NULL;
@@ -490,12 +498,14 @@ Element* createImage(float x,float y,float width,float height,const char *image,
                 e->events.endSprite=NULL;
 		e->events.onMouseMotion=NULL;
 		e->events.unMouseMotion=NULL;
+                e->events.endAction=NULL;
                 e->freeData=NULL;
                 e->font=NULL;
                 e->entry=NULL;
                 e->interactions=NULL;
                 e->hitboxes = initListClickable();
                 e->data=NULL;
+                e->actions = NULL;
                 if(addElement(e)){
                     _freeElement(e);
                     e=NULL;
@@ -1409,6 +1419,17 @@ int setEndSpriteElement(Element *e,void (*endSprite)(Element*,int)){
     return error;
 }
 
+int setEndActionElement(Element *e,void (*endAction)(Element*)){
+    int error = 1;
+  
+    if(e){
+        error=0;
+        e->events.endAction = endAction;
+    }
+
+    return error;
+}
+
 int addElementToElement(Element *e,Element *add){
     PtrElement *pe;
     int error = 1;
@@ -1783,6 +1804,17 @@ int setCoordXElement(Element * e, float x){
 int setCoordYElement(Element * e, float y){
     if(e)
 	e->y = y;
+
+    return !e;
+}
+
+int setActionListElement(Element * e, ListAction * actions){
+    if(e){
+        if(e->actions){
+            freeListAction(e->actions);
+        }
+        e->actions = actions;
+    }
 
     return !e;
 }

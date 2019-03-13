@@ -694,7 +694,7 @@ TEST_SECTION(ListElement){
 	REQUIRE(e->interactions->first == NULL);
 
 	// element to element iterator
-	int i;
+	unsigned long i;
 	for(i = 0; i < 3; ++i){
 	    REQUIRE(!addElementToElement(e, (Element*)(i + 1)));
 	}

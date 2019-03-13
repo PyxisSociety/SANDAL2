@@ -122,7 +122,7 @@ int updateWindow(void);
  * @brief actualise the display of the current window 
  * @return 1 if it failed, 0 if not
  */
-  int displayWindow(void);
+int displayWindow(void);
 /**
  * @brief activation of click events on the current window
  * @param button : Event informations of the button

@@ -2,7 +2,9 @@
 
 #include "../../SANDAL2.h"
 
-void touch(Element *this){
+void touch(Element *this, int button){
+    (void)button;
+    
     nextAnimationElement(this);
     setFlipStateElement(this,SANDAL2_FLIP_NONE);
 }
@@ -69,7 +71,7 @@ int main(){
     setOriginWindow(0,0);
     setDataWindow(&run);
     
-    objet=createText(150.f,100.f,50.f,50.f,"arial.ttf","OK",rouge,2,1,-1);
+    objet=createText(150.f,100.f,50.f,50.f,100.f,"arial.ttf","OK",rouge,2,1,-1);
     setTextStyleElement(objet,SANDAL2_STRIKETHROUGH);
 
     objet = createImage(150.f,100.f,100.f,200.f,"spritesheet.jpg",1,0);

@@ -35,23 +35,23 @@ void keyWindow(SDL_Keycode c){
     printf("%d : %c\n",c,c);
 
     switch(c){
-    case 27: /* ESCAP */
+    case SDLK_ESCAPE: /* ESCAP */
 	if(!getDataWindow((void **)&val) && val)
 	    *val = 0;
 	break;
-    case 89: /* 1 pave numerique */
+    case SDLK_a: /* a */
 	generate(1);
 	break;
-    case 90: /* 2 pave numerique */
+    case SDLK_z: /* z */
 	generate(2);
 	break;
-    case 92: /* 4 pave numerique */
+    case SDLK_q: /* q */
         clearPlanDisplayCode(0,1);
 	break;
-    case 93: /* 5 pave numerique */
+    case SDLK_s: /* s */
         clearPlanDisplayCode(0,2);
 	break;
-    case 95: /* 7 pave numerique */
+    case SDLK_w: /* w */
 	clearDisplayCode(0);
 	break;
     }
