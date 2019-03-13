@@ -27,7 +27,11 @@ package:
 	mv sandal2.deb downloadable
 
 man:
-	(cd Doxdoc/Doc/man/man3; gzip *.3$ )
+	(cd Doxdoc/Doc/man/man3; gzip -f *.3$ )
+
+doc:
+	doxygen Doxyfile
+	(cd Doxdoc/Doc/html; git add .; git commit -m "updating doc"; git push)
 
 clean: clear
 
