@@ -207,7 +207,7 @@ void _cleanElement(){
 		prev = NULL;
                 while(e && *e && _windows_SANDAL2->current->toDelete){
 		    if((*e)->deleted == 1){
-                        if((*e)->element->deleted == 1){
+                        if((*e)->element->deleted < 3){
                             delDisplayCodeElement((*e)->element, (*ldc)->code);
                         }
 			(*e)->element->deleted = 0;

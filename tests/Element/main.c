@@ -623,7 +623,7 @@ TEST_SECTION(ListElement){
 	_cleanElement();
 	REQUIRE_NOT_NULL(e->codes);
 	REQUIRE_NOT_NULL(e->codes->first);
-	REQUIRE(e->codes->first->next == NULL);
+	REQUIRE(e->codes->first->next == NULL, "%d\n", e->codes->first->next->code);
 	REQUIRE(e->codes->first->code == -1);
 	REQUIRE_NOT_NULL(_windows_SANDAL2);
 	REQUIRE_NOT_NULL(_windows_SANDAL2->first);
