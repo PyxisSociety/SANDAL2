@@ -115,6 +115,8 @@ typedef struct Window{
     /**< tells if window is in full screen or normal */
     int focused;
     /**< tells whether or not the window is focused */
+    Uint32 ticks;
+    /**< ticks since last update call */
 }Window;
 
 /**

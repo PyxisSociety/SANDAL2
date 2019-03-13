@@ -1,9 +1,9 @@
 Package: sandal2
-Version: 1.3.0
+Version: 1.4.0
 Section: libdevel
 Priority: optional
 Architecture: amd64
-Installed-Size: 56432
+Installed-Size: 61100
 Depends: libsdl2-dev, libsdl2-ttf-dev, libsdl2-image-dev
 Maintainer: Klevh <klevh1@gmail.com>
 Description: Graphical display library in C, made by Klevh using SDL2

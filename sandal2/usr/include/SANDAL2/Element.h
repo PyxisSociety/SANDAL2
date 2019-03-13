@@ -10,6 +10,7 @@ extern "C" {
 #include "Window.h"
 #include "DisplayCode.h"
 #include "Sprite.h"
+#include "Action.h"
 
 #define SANDAL2_FLIP_HOR SDL_FLIP_HORIZONTAL
 #define SANDAL2_FLIP_VER SDL_FLIP_VERTICAL
@@ -71,6 +72,8 @@ typedef struct{
     /**< function called when the mouse move over a zone */
     void (*unMouseMotion)(struct Element *);
     /**< function called when the mouse exit the hover zone */
+    void (*endAction)(struct Element *);
+    /**< function called when the ListAction bound to the element (if any) ends */
 }EventElement;
 
 /**
@@ -128,6 +131,8 @@ typedef struct Element{
     /**< tells whether or not the element is selected*/
     Window * parent;
     /**< parent window of the element */
+    ListAction * actions;
+    /**< list of actions to be done on this element */
 }Element;
 
 /**
@@ -645,12 +650,19 @@ int setKeyReleasedElement(Element *e,void (*keyReleased)(Element*,SDL_Keycode c)
  */
 int setUnSelectElement(Element *e,void (*unSelect)(Element*));
 /**
- * @brief set the behaiour of an element when it ends a sprite
+ * @brief set the behaviour of an element when it ends a sprite
  * @param e : element to be modified
  * @param endSprite : new behaviour
  * @return 1 if it was impossible, 0 if not
  */
 int setEndSpriteElement(Element *e,void (*endSprite)(Element*,int currentCode));
+/**
+ * @brief set the behaviour of an element when its action list ends
+ * @param e : element to be modified
+ * @param unSelect : new behaviour
+ * @return 1 if it was impossible, 0 if not
+ */
+int setEndActionElement(Element *e,void (*endAction)(Element*));
 /**
  * @brief add an element to another so that this other can modifie the first one
  * @param e : element to be modified
@@ -861,6 +873,13 @@ int setCoordXElement(Element * e, float x);
  * @return 1 if there was an error, 0 if not
  */
 int setCoordYElement(Element * e, float y);
+/**
+ * @brief Define a list of actions to apply to an element
+ * @param e : element to be modified
+ * @param actions : list of actions to set on the element (do not free it yourself)
+ * @return 1 if there was an error, 0 if not
+ */
+int setActionListElement(Element * e, ListAction * actions);
 /* ------------------------------------------------------- */
 
 
@@ -880,6 +899,13 @@ int initIteratorElement(Element *e);
  * @return the current element
  */
 Element* nextIteratorElement(Element *e);
+/**
+ * @brief Add an action to an element (can't be removed until its finished)
+ * @param e : element to be modified
+ * @param action : action to be added to the element
+ * @return 1 if it succeeded, 0 if not
+ */
+int addActionToElement(Element * e, Action * action);
 /* ------------------------------------------------------- */
 
 
