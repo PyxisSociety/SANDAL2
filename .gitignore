@@ -1,7 +1,10 @@
+# compilation and tmp files
 *.o
 *~
 *.so
 *.gc*
+
+# documentation
 html
 latex
 html/*
@@ -10,8 +13,17 @@ TODO.txt
 Doxdoc/
 Doxdoc/*
 Doxyfile
-TODO.txt
+
+# examples and tests
 */*/a.out
 */*/*.o
 */*/*~
 */*/*.gc*
+
+# cmake ignored files
+build/
+build/*
+*/build/
+*/build/*
+*/*/build/
+*/*/build/*
