@@ -5,9 +5,11 @@ before_script:
  - apt-get install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev -y
  - export XDG_RUNTIME_DIR="$(mktemp -p $(pwd) -d xdg-runtime-XXXXXX)"
  - apt-get install bc -y
+ - apt-get install cmake -y
 
 tests:
     script:
+        - make BUILD_TYPE=Debug
         - tests/build.sh
         - tests/run.sh
     stage: test

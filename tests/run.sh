@@ -2,20 +2,23 @@
 
 cd tests 2> /dev/null
 
-dirs=`ls --hide=LAssert`
+dirs=`ls --hide=LAsser --hide=build`
 exeCode=0
 
 totalPercent=0
 totalNbLines=0
 
+cd ./build
+subpath=`(cd ../..;pwd)`
 for d in $dirs; do
-    if [ -d "$d" ]; then
-	cd $d
-	if [ -f "a.out" ]; then
-	    out=`./a.out`
-	    failed=$?
+    if [ -d "../$d" ]; then
+        executable=SANDAL2_test_${d}
+        echo ${executable}
+	if [ -f "${executable}" ]; then
 	    echo "=============================================================="
 	    echo "Start $d"
+	    out=`./${executable}`
+	    failed=$?
 	    if [ "${failed}" != "0" ]; then
 		echo "Failed: $d"
 		echo "    failed with code ${failed}"
@@ -39,7 +42,7 @@ for d in $dirs; do
 		fi
 	    fi
 
-	    coverage=`make coverage`
+	    coverage=`gcov CMakeFiles/${executable}.dir${subpath}/src/${d}.c.o`
 	    while read -r m; do
 		nbLines=""
 		for l in $m; do
@@ -56,7 +59,6 @@ for d in $dirs; do
 	    echo "=============================================================="
 	    echo ""
 	fi
-	cd ..
     fi
 done
 

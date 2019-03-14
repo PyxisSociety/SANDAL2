@@ -1,4 +1,4 @@
-#include "../../Clickable.h"
+#include "Clickable.h"
 
 #include "../LAssert/LAssert.h"
 

@@ -6,21 +6,22 @@ LDFLAGS=-shared -fPIC
 CFLAGS=-Wall -Wextra -pedantic -fPIC -O2
 EXEC=libSANDAL2.so
 CC=gcc
+BUILD_TYPE?=Release
 
 
-all:$(EXEC)
-
-$(EXEC):$(OFILES)
-	$(CC) $(LDFLAGS) $^ -o $(EXEC)
-	@mv $(EXEC) sandal2/usr/lib
-	@cp *.h sandal2/usr/include/SANDAL2
+all:
+	@rm -rf build
+	@mkdir build
+	@cd build && cmake -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) .. 
+	@cd build && make --no-print-directory
+	@cp build/lib* sandal2/usr/lib
+	@cp headers/*.h sandal2/usr/include/SANDAL2
 	@cp Doxdoc/Doc/man/man3/*.gz sandal2/usr/share/man/man3
-
-%.o:%.c
-	$(CC) $(CFLAGS) -c $< -o $@ 
+	@echo "\033[0;33mThe installation needs sudo rights, CTRL+C to cancel installation\033[0m"
+	@cd build && sudo make install --no-print-directory
 
 clear:
-	rm *.o *.gc*
+	rm src/*.o src/*.gc*
 
 package:
 	dpkg-deb --build sandal2
