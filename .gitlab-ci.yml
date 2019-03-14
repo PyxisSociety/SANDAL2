@@ -9,7 +9,6 @@ before_script:
 
 tests:
     script:
-        - make BUILD_TYPE=Debug
         - tests/build.sh
         - tests/run.sh
     stage: test
