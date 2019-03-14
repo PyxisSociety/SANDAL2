@@ -71,9 +71,6 @@ add_executable(
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g -fprofile-arcs -ftest-coverage -D DEBUG_SDL2_NO_VIDEO -O0")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -fprofile-arcs -ftest-coverage -D DEBUG_SDL2_NO_VIDEO -O0")
-set(CMAKE_C_COMPILER /usr/bin/gcc)
-set(CMAKE_CXX_COMPILER /usr/bin/g++)
-set(CMAKE_COMPILER_IS_GNUCXX 1)
 
 
 

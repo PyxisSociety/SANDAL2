@@ -43,7 +43,6 @@ target_include_directories(
 
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -g -fprofile-arcs -ftest-coverage -D DEBUG_SDL2_NO_VIDEO" CACHE STRING "Configuration type" FORCE)
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -fprofile-arcs -ftest-coverage -D DEBUG_SDL2_NO_VIDEO" CACHE STRING "Configuration type" FORCE)
-set(CMAKE_C_COMPILER /usr/bin/gcc)
 
 
 
