@@ -17,53 +17,7 @@ project(SANDAL2_test C)
 # file helpers
 
 file(GLOB SANDAL2_src
-  "../src/*.c"
-)
-
-
-
-# creating executables
-
-add_executable(
-  ${PROJECT_NAME}_Action
-  Action/main.c
-  ${SANDAL2_src}
-)
-add_executable(
-  ${PROJECT_NAME}_Clickable
-  Clickable/main.c
-  ${SANDAL2_src}
-)
-add_executable(
-  ${PROJECT_NAME}_DisplayCode
-  DisplayCode/main.c
-  ${SANDAL2_src}
-)
-add_executable(
-  ${PROJECT_NAME}_Element
-  Element/main.c
-  ${SANDAL2_src}
-)
-add_executable(
-  ${PROJECT_NAME}_Font
-  Font/main.c
-  ${SANDAL2_src}
-)
-add_executable(
-  ${PROJECT_NAME}_SANDAL2
-  SANDAL2/main.c
-  ${SANDAL2_src}
-)
-add_executable(
-  ${PROJECT_NAME}_Sprite
-  Sprite/main.c
-  ${SANDAL2_src}
-)
-add_executable(
-  ${PROJECT_NAME}_Window
-  Window/main.c
-  ${SANDAL2_src}
-)
+  "../src/*.c")
 
 
 
@@ -101,98 +55,25 @@ ENDIF()
 
 
 
-# linking external librairies
+# iterating for each test file
+set(test_files Action Clickable DisplayCode Element Font SANDAL2 Sprite Window)
+foreach(test_file ${test_files})
+  # creating executable
+  add_executable(
+    ${PROJECT_NAME}_${test_file}
+    ${test_file}/main.c
+    ${SANDAL2_src})
 
-target_link_libraries(
-  ${PROJECT_NAME}_Action
-  -lSDL2
-  -lSDL2_ttf
-  -lSDL2_image
-  -lm
-)
-target_link_libraries(
-  ${PROJECT_NAME}_Clickable
-  -lSDL2
-  -lSDL2_ttf
-  -lSDL2_image
-  -lm
-)
-target_link_libraries(
-  ${PROJECT_NAME}_DisplayCode
-  -lSDL2
-  -lSDL2_ttf
-  -lSDL2_image
-  -lm
-)
-target_link_libraries(
-  ${PROJECT_NAME}_Element
-  -lSDL2
-  -lSDL2_ttf
-  -lSDL2_image
-  -lm
-)
-target_link_libraries(
-  ${PROJECT_NAME}_Font
-  -lSDL2
-  -lSDL2_ttf
-  -lSDL2_image
-  -lm
-)
-target_link_libraries(
-  ${PROJECT_NAME}_SANDAL2
-  -lSDL2
-  -lSDL2_ttf
-  -lSDL2_image
-  -lm
-)
-target_link_libraries(
-  ${PROJECT_NAME}_Sprite
-  -lSDL2
-  -lSDL2_ttf
-  -lSDL2_image
-  -lm
-)
-target_link_libraries(
-  ${PROJECT_NAME}_Window
-  -lSDL2
-  -lSDL2_ttf
-  -lSDL2_image
-  -lm
-)
-
-
-
-# adding include dir
-
-target_include_directories(
-  ${PROJECT_NAME}_Action
-  PUBLIC ../headers/
-)
-target_include_directories(
-  ${PROJECT_NAME}_Clickable
-  PUBLIC ../headers/
-)
-target_include_directories(
-  ${PROJECT_NAME}_DisplayCode
-  PUBLIC ../headers/
-)
-target_include_directories(
-  ${PROJECT_NAME}_Element
-  PUBLIC ../headers/
-)
-target_include_directories(
-  ${PROJECT_NAME}_Font
-  PUBLIC ../headers/
-)
-target_include_directories(
-  ${PROJECT_NAME}_SANDAL2
-  PUBLIC ../headers/
-)
-target_include_directories(
-  ${PROJECT_NAME}_Sprite
-  PUBLIC ../headers/
-)
-target_include_directories(
-  ${PROJECT_NAME}_Window
-  PUBLIC ../headers/
-)
+  # linking external librairies
+  target_link_libraries(
+    ${PROJECT_NAME}_${test_file}
+    -lSDL2
+    -lSDL2_ttf
+    -lSDL2_image
+    -lm)
+  
+  # adding include dir
+  target_include_directories(
+    ${PROJECT_NAME}_${test_file}
+    PUBLIC ../headers/)
+endforeach()
