@@ -26,6 +26,8 @@ typedef struct Action{
     /**< action to be executed */
     void * data;
     /**< data of the action */
+    int shouldBeFreed;
+    /**< tells whether or not the data should be freed */
 } Action;
 
 typedef struct ListAction{
@@ -54,12 +56,18 @@ typedef struct ListAction{
  */
 Action * initAction(void (*action)(struct Element *, void *, float), float timing);
 /**
+ * @brief Free the memory of an action
+ * @param action : action to be freed
+ */
+void freeAction(Action * action);
+/**
  * @brief Set the data bound to an action
  * @param action : action to bind data to
  * @param data : data to be bound to the action
+ * @param shouldBeFreed : flag to tell whether or not the data should be freed
  * @return the action passed as first parameter
  */
-Action * setDataAction(Action * action, void * data);
+Action * setDataAction(Action * action, void * data, int shouldBeFreed);
 /* ------------------------------------------------------- */
 
 
@@ -107,8 +115,42 @@ ListAction * generateParallelAction(ListAction * action, ...);
 
 
 /* -------------------------------------------------------
+ * Action pre made action functions
+ */
+/*
+void moveByActionFunction(struct Element * e, void * data, float spentTime);
+void moveToActionFunction(struct Element * e, void * data, float spentTime);
+*/
+// [max time, scale X, scale Y, original W, original H]
+void scaleByActionFunction(struct Element * e, void * data, float spentTime);
+/*
+void scaleToActionFunction(struct Element * e, void * data, float spentTime);
+void rotateByActionFunction(struct Element * e, void * data, float spentTime);
+void rotateToActionFunction(struct Element * e, void * data, float spentTime);
+void fadeInActionFunction(struct Element * e, void * data, float spentTime);
+void fadeOutToActionFunction(struct Element * e, void * data, float spentTime);
+*/
+/* ------------------------------------------------------- */
+
+
+
+
+
+/* -------------------------------------------------------
  * Action pre made actions
  */
+/*
+ListAction * moveByAction(struct Element * e, float x, float y, float time);
+ListAction * moveToAction(struct Element * e, float x, float y, float time);
+*/
+ListAction * scaleByAction(struct Element * e, float x, float y, float time);
+/*
+ListAction * scaleToAction(struct Element * e, float x, float y, float time);
+ListAction * rotateByAction(struct Element * e, float angle, float time);
+ListAction * rotateToAction(struct Element * e, float angle, float time);
+ListAction * fadeInAction(struct Element * e, float x, float y, float time);
+ListAction * fadeOutToAction(struct Element * e, float x, float y, float time);
+*/
 /* ------------------------------------------------------- */
 
 #ifdef __cplusplus

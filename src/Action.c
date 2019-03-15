@@ -1,4 +1,5 @@
 #include "Action.h"
+#include "Element.h"
 
 #include <stdarg.h>
 #include <stdlib.h>
@@ -19,15 +20,26 @@ Action * initAction(void (*action)(struct Element *, void *, float), float timin
             a->timeSpent = 0;
             a->action = action;
             a->data = NULL;
+            a->shouldBeFreed = 0;
         }
     }
 
     return a;
 }
 
-Action * setDataAction(Action * action, void * data){
+void freeAction(Action * action){
+    if(action){
+        if(action->data && action->shouldBeFreed){
+            free(action->data);
+        }
+        free(action);
+    }
+}
+
+Action * setDataAction(Action * action, void * data, int shouldBeFreed){
     if(action){
         action->data = data;
+        action->shouldBeFreed = shouldBeFreed;
     }
     return action;
 }
@@ -61,7 +73,7 @@ void freeListAction(ListAction * action){
 
     while(action){
         tmp = action->chained;
-        free(action->action);
+        freeAction(action->action);
         freeListAction(action->parallel);
         free(action);
         action = tmp;
@@ -80,7 +92,7 @@ static void executeOneAction(Action ** action, struct Element * e, float time){
 
         // if action finished
         if((*action)->timing <= (*action)->timeSpent){
-            free(*action);
+            freeAction(*action);
             *action = NULL;
         }
     }
@@ -151,4 +163,88 @@ ListAction * generateParallelAction(ListAction * action, ...){
 
     return result;
 }
+/* ------------------------------------------------------- */
+
+
+
+
+
+/* -------------------------------------------------------
+ * Action pre made action functions
+ */
+/*
+void moveByActionFunction(struct Element * e, void * data, float spentTime);
+void moveToActionFunction(struct Element * e, void * data, float spentTime);
+*/
+void scaleByActionFunction(struct Element * e, void * data, float spentTime){
+    float * infos = (float*)data;
+    float   x;
+    float   y;
+    float   w;
+    float   h;
+    float   ratio;
+    
+    if(e && data){
+        ratio = (infos[0] - (infos[0] - spentTime)) / infos[0];
+        x     = infos[1];
+        y     = infos[2];
+
+        if(!infos[3] && !infos[4]){
+            getDimensionElement(e, infos + 3, infos + 4);
+        }
+        
+        w     = infos[3];
+        h     = infos[4];
+
+        if(x){
+            setWidthElement(e, w + w * x * ratio);
+        }
+        if(y){
+            setHeightElement(e, h + h * y * ratio);
+        }
+    }
+}
+/*
+void scaleToActionFunction(struct Element * e, void * data, float spentTime);
+void rotateByActionFunction(struct Element * e, void * data, float spentTime);
+void rotateToActionFunction(struct Element * e, void * data, float spentTime);
+*/
+/* ------------------------------------------------------- */
+
+
+
+
+
+/* -------------------------------------------------------
+ * Action pre made actions
+ */
+/*
+ListAction * moveByAction(float x, float y, float time);
+ListAction * moveToAction(float x, float y, float time);
+*/
+ListAction * scaleByAction(float x, float y, float time){
+    float      * data   = NULL;
+    ListAction * result = NULL;
+
+    if(e){
+        data = malloc(5 * sizeof(*data));
+
+        if(data){
+            data[0] = time;
+            data[1] = x;
+            data[2] = y;
+            data[3] = 0;
+            data[4] = 0;
+            
+            result = actionAsList(setDataAction(initAction(scaleByActionFunction, time), data, 1));
+        }
+    }
+
+    return result;
+}
+/*
+ListAction * scaleToAction(float x, float y, float time);
+ListAction * rotateByAction(float angle, float time);
+ListAction * rotateToAction(float angle, float time);
+*/
 /* ------------------------------------------------------- */

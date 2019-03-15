@@ -26,6 +26,8 @@ typedef struct Action{
     /**< action to be executed */
     void * data;
     /**< data of the action */
+    int shouldBeFreed;
+    /**< tells whether or not the data should be freed */
 } Action;
 
 typedef struct ListAction{
@@ -54,12 +56,18 @@ typedef struct ListAction{
  */
 Action * initAction(void (*action)(struct Element *, void *, float), float timing);
 /**
+ * @brief Free the memory of an action
+ * @param action : action to be freed
+ */
+void freeAction(Action * action);
+/**
  * @brief Set the data bound to an action
  * @param action : action to bind data to
  * @param data : data to be bound to the action
+ * @param shouldBeFreed : flag to tell whether or not the data should be freed
  * @return the action passed as first parameter
  */
-Action * setDataAction(Action * action, void * data);
+Action * setDataAction(Action * action, void * data, int shouldBeFreed);
 /* ------------------------------------------------------- */
 
 
@@ -107,8 +115,56 @@ ListAction * generateParallelAction(ListAction * action, ...);
 
 
 /* -------------------------------------------------------
+ * Action pre made action functions
+ */
+/*
+void moveByActionFunction(struct Element * e, void * data, float spentTime);
+void moveToActionFunction(struct Element * e, void * data, float spentTime);
+*/
+/**
+ * @brief function used by scaleByAction() and left public to be used in self made action functions
+ * @param e : element on which the action is called
+ * @param data : a float* array of size 5 casted to void*. It MUST have the following format:
+ *               [the duration of the action, the x scale value, the y scale value, 0, 0]
+ *               the last two values MUST be set to 0
+ * @param spentTime : total spent time since the beginning of the action
+ */
+void scaleByActionFunction(struct Element * e, void * data, float spentTime);
+/*
+void scaleToActionFunction(struct Element * e, void * data, float spentTime);
+void rotateByActionFunction(struct Element * e, void * data, float spentTime);
+void rotateToActionFunction(struct Element * e, void * data, float spentTime);
+void fadeInActionFunction(struct Element * e, void * data, float spentTime);
+void fadeOutToActionFunction(struct Element * e, void * data, float spentTime);
+*/
+/* ------------------------------------------------------- */
+
+
+
+
+
+/* -------------------------------------------------------
  * Action pre made actions
  */
+/*
+ListAction * moveByAction(float x, float y, float time);
+ListAction * moveToAction(float x, float y, float time);
+*/
+/**
+ * @brief Generate a ListAction doing a scale XY (only X if y == 0, only Y if x == 0) during a given time
+ * @param x : scale value of x (percentage of modification with 1.0 == +100%)
+ * @param y : scale value of y (percentage of modification with 1.0 == +100%)
+ * @param time : duration of the action
+ * @return the list action generated
+ */
+ListAction * scaleByAction(float x, float y, float time);
+/*
+ListAction * scaleToAction(float x, float y, float time);
+ListAction * rotateByAction(float angle, float time);
+ListAction * rotateToAction(float angle, float time);
+ListAction * fadeInAction(float x, float y, float time);
+ListAction * fadeOutToAction(float x, float y, float time);
+*/
 /* ------------------------------------------------------- */
 
 #ifdef __cplusplus

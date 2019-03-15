@@ -6,12 +6,10 @@ void endAction(Element * e);
 
 int main(){
     Element * objet;
-    SDL_Surface * surface;
     int run = 1;
     int tps = 0, ticks = 0;
     int noir[4] = {0,0,0,255};
     int rouge[4] = {255, 0, 0, 255};
-    Uint32 rmask, gmask, bmask, amask;
   
     if(initAllSANDAL2(IMG_INIT_JPG)){
 	fprintf(stderr,"Erreur d'initialisation de la bibliotheque graphique.\n");
@@ -27,9 +25,6 @@ int main(){
 
     /* creation de l'element */
     objet = createImageBlock(100, 100, 200, 200, rouge, 1, 0);
-    if(!objet){
-        puts("ERROR");
-    }
 
     /* definition des comportements de l'element */
     endAction(objet);
@@ -58,32 +53,6 @@ int main(){
     return 0;
 }
 
-void translateW(Element * e, void * data, float time){
-    float * arr = (float*)data;
-    float w;
-
-    if(arr[1] > arr[2]){
-        w = arr[1] - (time / arr[0]) * (arr[1] - arr[2]);
-    }else{
-        w = (time / arr[0]) * (arr[2] - arr[1]) + arr[1];
-    }
-
-    setWidthElement(e, w);
-}
-
-void translateH(Element * e, void * data, float time){
-    float * arr = (float*)data;
-    float w;
-
-    if(arr[1] > arr[2]){
-        w = arr[1] - (time / arr[0]) * (arr[1] - arr[2]);
-    }else{
-        w = (time / arr[0]) * (arr[2] - arr[1]) + arr[1];
-    }
-
-    setHeightElement(e, w);
-}
-
 void endAction(Element * e){
     /* as they are not modified, we can pass the arrays as static */
     static float data1[] = {2, 100, 100};
@@ -97,12 +66,12 @@ void endAction(Element * e){
         e,
         generateParallelAction(
             generateChainedAction(
-                actionAsList(setDataAction(initAction(translateW, data1[0]), data1)),
-                actionAsList(setDataAction(initAction(translateW, data2[0]), data2)),
+                scaleByAction(e, -0.5, 0, 2),
+                scaleByAction(e, 1, 0, 2),
                 NULL),
             generateChainedAction(
-                actionAsList(setDataAction(initAction(translateH, data1[0]), data1)),
-                actionAsList(setDataAction(initAction(translateH, data2[0]), data2)),
+                scaleByAction(e, 0, -0.5, 2),
+                scaleByAction(e, 0, 1, 2),
                 NULL),
             NULL)
         );
