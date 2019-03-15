@@ -15,7 +15,7 @@ tests:
     coverage: /coverage[:] ([0-9,\.]+%)/
     
 code_quality:
-        stage: code_quality
+        stage: test
         image: docker:stable
         variables:
                 DOCKER_DRIVER: overlay2
