@@ -37,7 +37,7 @@ int main(){
     }
 
     /* ----------------------creating some elements-------------------------- */
-    /*    creating a block */
+    /*    creating a non rotable block (faster) */
     if(!createBlock(100, /* x coordinate */
 		    0, /* y coordinate */
 		    40, /* width */
@@ -45,6 +45,16 @@ int main(){
 		    red, /* color */
 		    0, /* display code */
 		    0)) /* plan, the lower the nearer */
+        puts("Failed to create the block");
+        
+    /*    creating a rotable block (slower) */
+    if(!createImageBlock(100, /* x coordinate */
+		         0, /* y coordinate */
+		         40, /* width */
+		         40, /* height */
+		         red, /* color */
+		         0, /* display code */
+		         0)) /* plan, the lower the nearer */
         puts("Failed to create the block");
 
     /*    creating a text */
