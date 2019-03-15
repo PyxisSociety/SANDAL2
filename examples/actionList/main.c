@@ -7,7 +7,6 @@ void endAction(Element * e);
 int main(){
     Element * objet;
     SDL_Surface * surface;
-    SDL_Texture * texture;
     int run = 1;
     int tps = 0, ticks = 0;
     int noir[4] = {0,0,0,255};
@@ -45,8 +44,7 @@ int main(){
         SDL_Log("SDL_CreateRGBSurface() failed: %s", SDL_GetError());
     }else{
         SDL_FillRect(surface, NULL, SDL_MapRGBA(surface->format, 255, 0, 0, 255));
-        texture = SDL_CreateTextureFromSurface(_windows_SANDAL2->currentDisplay->renderer, surface);
-        setImageTextureElement(objet, texture);
+        setImageSurfaceElement(objet, surface);
     }
 
     /* definition des comportements de l'element */

@@ -521,10 +521,10 @@ int setImageElement(Element *e,const char *image);
 /**
  * @brief set the element's image with a 's texture
  * @param e : element to be modified
- * @param image : texture of the new image
+ * @param image : surface of the new image
  * @return 1 if it failed, 0 if it succeeded
  */
-int setImageTextureElement(Element *e,SDL_Texture * image);
+int setImageSurfaceElement(Element * e, SDL_Surface * image);
 /**
  * @brief set the element's coordinates
  * @param e : element to be modified

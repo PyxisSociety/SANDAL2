@@ -6,6 +6,7 @@ before_script:
  - export XDG_RUNTIME_DIR="$(mktemp -p $(pwd) -d xdg-runtime-XXXXXX)"
  - apt-get install bc -y
  - apt-get install cmake -y
+ - apt-get install wget -y
 
 tests:
     script:

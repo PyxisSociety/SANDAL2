@@ -1026,17 +1026,26 @@ int setImageElement(Element *e,const char *image){
     return error;
 }
 
-int setImageTextureElement(Element *e,SDL_Texture * image){
-    int error = 1;
+int setImageSurfaceElement(Element * e, SDL_Surface * image){
+    int           error   = 1;
+    SDL_Texture * texture = NULL;
 
-    if(e){
-        error = 0;
+    if(e && e->parent && e->parent->renderer){
 	#ifndef DEBUG_SDL2_NO_VIDEO
-	if(e->image && e->image != image){
+        if(image){
+            texture = SDL_CreateTextureFromSurface(e->parent->renderer, image);
+        }
+	if(e->image && (texture || image)){
 	    SDL_DestroyTexture(e->image);
 	}
+        if(!image || texture){
+            e->image = texture;
+        }
+        error = !image || texture;
+        #else
+        error = 0;
+        e->image = (SDL_Texture*)image;
 	#endif
-        e->image = image;
     }
 
     return error;
