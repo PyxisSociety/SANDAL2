@@ -2,14 +2,14 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "../../SANDAL2.h"
+#include <SANDAL2/SANDAL2.h>
 
 void keyWindow(SDL_Keycode c){
     static int start = 1;
     Uint32 id;
 
     if(start){
-	printf("start: %llu\n", initIteratorWindow());
+	printf("start: %u\n", initIteratorWindow());
 	start = 0;
     }
 
@@ -17,9 +17,9 @@ void keyWindow(SDL_Keycode c){
     case SDLK_a:
 	id = nextWindow();
 	if(id){
-	    printf("next: %llu\n", id);
+	    printf("next: %u\n", id);
 	}else{
-	    printf("start again: %llu\n", initIteratorWindow());
+	    printf("start again: %u\n", initIteratorWindow());
 	}
 	break;
     case SDLK_b:

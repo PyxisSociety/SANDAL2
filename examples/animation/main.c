@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "../../SANDAL2.h"
+#include <SANDAL2/SANDAL2.h>
 
 void touch(Element *this, int button){
     (void)button;

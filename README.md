@@ -64,3 +64,13 @@ Once you have it, and you are in the directory of the repository, you can instal
 sudo make install
 ```
 You can also directly use the source code. A Makefile is provided in `downloadable`.
+
+## Compilation tools
+
+### I. Make
+
+A pseudo generic makefile is downloadable [here](https://github.com/Klevh/SANDAL2/blob/master/downloadable/Makefile)
+
+### II. CMake
+
+A `FindSANDAL2.cmake` file was created for this project. Also, find files can be found for SDL2_ttf and SDL2_image. All those files are downloadable [here](https://github.com/Klevh/SANDAL2/tree/master/downloadable/cmake).
