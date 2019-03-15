@@ -126,7 +126,8 @@ void moveToActionFunction(struct Element * e, void * data, float spentTime);
  * @param e : element on which the action is called
  * @param data : a float* array of size 5 casted to void*. It MUST have the following format:
  *               [the duration of the action, the x scale value, the y scale value, 0, 0]
- *               the last two values MUST be set to 0
+ *               the last two values MUST be set to 0 before the first call, they will be modified inside the function
+ *               those modifications NEEDS to be saved for the following calls
  * @param spentTime : total spent time since the beginning of the action
  */
 void scaleByActionFunction(struct Element * e, void * data, float spentTime);
