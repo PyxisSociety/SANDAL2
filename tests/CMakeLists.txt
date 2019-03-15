@@ -30,7 +30,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -fprofile-arcs -ftest-coverage -D DEB
 
 # find packages
 
-set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/../cmake")
+set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/../downloadable/cmake")
 
 find_package(SDL2 REQUIRED)
 IF(SDL2_FOUND)
