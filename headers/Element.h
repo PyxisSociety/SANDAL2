@@ -237,7 +237,7 @@ int delElement(Element *e);
  */
 void _freeElement(Element *e);
 /**
- * @brief Generate a rectangle like element
+ * @brief Generate a non rotable rectangle like element
  * @param x : abscissa coordinate of its top left corner
  * @param y : ordinate coordinate of its top left corner
  * @param width : width of the element
@@ -272,6 +272,17 @@ Element* createBlock(float x,float y,float width,float height,int color[4],int d
  * @param plan : plan of the image
  */
 Element* createImage(float x,float y,float width,float height,const char *image,int displayCode,int plan);
+/**
+ * @brief Generate a rotable rectangle like element (slower than createBlock())
+ * @param x : abscissa coordinate of its top left corner
+ * @param y : ordinate coordinate of its top left corner
+ * @param width : width of the element
+ * @param height : height of the element
+ * @param color : color of the rectangle (RGBA)
+ * @param displayCode : display code of the rectangle
+ * @param plan : plan of the rectangle
+ */
+Element* createImageBlock(float x,float y,float width,float height,int color[4],int displayCode,int plan);
 /**
  * @brief Generate a button like element
  * @param x : abscissa coordinate of its top left corner

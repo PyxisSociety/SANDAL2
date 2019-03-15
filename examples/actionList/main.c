@@ -10,6 +10,7 @@ int main(){
     int run = 1;
     int tps = 0, ticks = 0;
     int noir[4] = {0,0,0,255};
+    int rouge[4] = {255, 0, 0, 255};
     Uint32 rmask, gmask, bmask, amask;
   
     if(initAllSANDAL2(IMG_INIT_JPG)){
@@ -25,26 +26,9 @@ int main(){
     }
 
     /* creation de l'element */
-    objet = createBlock(100, 100, 200, 200, noir, 1, 0);
-
-    /* creation de l'image block */
-#if SDL_BYTEORDER == SDL_BIG_ENDIAN
-    rmask = 0xff000000;
-    gmask = 0x00ff0000;
-    bmask = 0x0000ff00;
-    amask = 0x000000ff;
-#else
-    rmask = 0x000000ff;
-    gmask = 0x0000ff00;
-    bmask = 0x00ff0000;
-    amask = 0xff000000;
-#endif
-    surface = SDL_CreateRGBSurface(0, 100, 100, 32, rmask, gmask, bmask, amask);
-    if (surface == NULL) {
-        SDL_Log("SDL_CreateRGBSurface() failed: %s", SDL_GetError());
-    }else{
-        SDL_FillRect(surface, NULL, SDL_MapRGBA(surface->format, 255, 0, 0, 255));
-        setImageSurfaceElement(objet, surface);
+    objet = createImageBlock(100, 100, 200, 200, rouge, 1, 0);
+    if(!objet){
+        puts("ERROR");
     }
 
     /* definition des comportements de l'element */

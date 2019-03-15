@@ -518,6 +518,48 @@ Element* createImage(float x,float y,float width,float height,const char *image,
     return e;
 }
 
+Element* createImageBlock(float x,float y,float width,float height,int color[4],int displayCode,int plan){
+    Element     * e       = createBlock(x, y, width, height, color, displayCode, plan);
+    Uint32        rmask;
+    Uint32        gmask;
+    Uint32        bmask;
+    Uint32        amask;
+    SDL_Surface * surface;
+    int           error;
+
+    if(e){
+        e->coulBlock[0] = -1;
+        
+#       if SDL_BYTEORDER == SDL_BIG_ENDIAN
+        rmask = 0xff000000;
+        gmask = 0x00ff0000;
+        bmask = 0x0000ff00;
+        amask = 0x000000ff;
+#       else
+        rmask = 0x000000ff;
+        gmask = 0x0000ff00;
+        bmask = 0x00ff0000;
+        amask = 0xff000000;
+#       endif
+        surface = SDL_CreateRGBSurface(0, 10, 10, 32, rmask, gmask, bmask, amask);
+
+        if(surface){
+            SDL_FillRect(surface, NULL, SDL_MapRGBA(surface->format, color[0], color[1], color[2], color[3]));
+            error = setImageSurfaceElement(e, surface);
+            SDL_FreeSurface(surface);
+        }else{
+            error = 1;
+        }
+
+        if(error){
+            _freeElement(e);
+            e = NULL;
+        }
+    }
+
+    return e;
+}
+
 Element* createButton(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,int colorBlock[4],int displayCode,int plan){
     Element *e = NULL;
     Font * f;
@@ -1041,7 +1083,7 @@ int setImageSurfaceElement(Element * e, SDL_Surface * image){
         if(!image || texture){
             e->image = texture;
         }
-        error = !image || texture;
+        error = image && !texture;
         #else
         error = 0;
         e->image = (SDL_Texture*)image;
