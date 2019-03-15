@@ -223,20 +223,20 @@ ListAction * moveByAction(float x, float y, float time);
 ListAction * moveToAction(float x, float y, float time);
 */
 ListAction * scaleByAction(float x, float y, float time){
-    float      * data   = NULL;
     ListAction * result = NULL;
+    float      * data   = malloc(5 * sizeof(*data));
 
-    if(e){
-        data = malloc(5 * sizeof(*data));
-
-        if(data){
-            data[0] = time;
-            data[1] = x;
-            data[2] = y;
-            data[3] = 0;
-            data[4] = 0;
+    if(data){
+        data[0] = time;
+        data[1] = x;
+        data[2] = y;
+        data[3] = 0;
+        data[4] = 0;
             
-            result = actionAsList(setDataAction(initAction(scaleByActionFunction, time), data, 1));
+        result = actionAsList(setDataAction(initAction(scaleByActionFunction, time), data, 1));
+        
+        if(!result){
+            free(data);
         }
     }
 
