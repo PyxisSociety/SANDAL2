@@ -59,8 +59,8 @@ TEST_SECTION(Element){
 	REQUIRE_NOT_NULL(e.image);
 
 	// set image texture
-	REQUIRE(setImageTextureElement(NULL, NULL));
-	REQUIRE(!setImageTextureElement(&e, NULL));
+	REQUIRE(setImageSurfaceElement(NULL, NULL));
+	REQUIRE(!setImageSurfaceElement(&e, NULL));
 	REQUIRE(e.image == NULL);
 
 	// set dimension
