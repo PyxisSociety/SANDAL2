@@ -21,7 +21,9 @@ all:
 	@cd build && sudo make install --no-print-directory
 
 clear:
-	rm src/*.o src/*.gc*
+	rm -rf build
+
+clean: clear
 
 package:
 	dpkg-deb --build sandal2
@@ -33,11 +35,6 @@ man:
 doc:
 	doxygen Doxyfile
 	(cd Doxdoc/Doc/html; git add .; git commit -m "updating doc"; git push)
-
-clean: clear
-
-cleaner:
-	rm $(EXEC) *.o *.gc*
 
 install:
 	dpkg -i downloadable/sandal2.deb
