@@ -58,7 +58,7 @@ TEST_SECTION(Element){
 	REQUIRE(!setImageElement(&e, "../../downloadable/img.jpg"));
 	REQUIRE_NOT_NULL(e.image);
 
-	// set image texture
+	// set image surface
 	REQUIRE(setImageSurfaceElement(NULL, NULL));
 	REQUIRE(!setImageSurfaceElement(&e, NULL));
 	REQUIRE(e.image == NULL);
@@ -401,10 +401,6 @@ TEST_SECTION(Element){
     if(e.codes){
 	freeListDisplayCode(e.codes);
 	e.codes = NULL;
-    }
-    if(e.image){
-	SDL_DestroyTexture(e.image);
-	e.image = NULL;
     }
     if(e.animation){
 	freeListAnimation(e.animation);

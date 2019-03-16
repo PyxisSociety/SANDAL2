@@ -1072,8 +1072,12 @@ int setImageSurfaceElement(Element * e, SDL_Surface * image){
     int           error   = 1;
     SDL_Texture * texture = NULL;
 
-    if(e && e->parent && e->parent->renderer){
-	#ifndef DEBUG_SDL2_NO_VIDEO
+    if(e
+#      ifndef DEBUG_SDL2_NO_VIDEO
+       && e->parent && e->parent->renderer
+#      endif
+        ){
+#       ifndef DEBUG_SDL2_NO_VIDEO
         if(image){
             texture = SDL_CreateTextureFromSurface(e->parent->renderer, image);
         }
@@ -1084,10 +1088,10 @@ int setImageSurfaceElement(Element * e, SDL_Surface * image){
             e->image = texture;
         }
         error = image && !texture;
-        #else
+#       else
         error = 0;
         e->image = (SDL_Texture*)image;
-	#endif
+#       endif
     }
 
     return error;
