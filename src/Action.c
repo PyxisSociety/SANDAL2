@@ -517,7 +517,7 @@ ListAction * fadeInAction(int alpha, float time){
     return result;
 }
 
-ListAction * fadeOutToAction(int alpha, float time){
+ListAction * fadeOutAction(int alpha, float time){
     ListAction * result = NULL;
     float      * data   = malloc(3 * sizeof(*data));
 

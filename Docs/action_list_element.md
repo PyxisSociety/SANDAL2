@@ -163,7 +163,7 @@ void endAction4(Element * e){
         e,
         generateChainedAction(
             fadeInAction(255, 2),
-            fadeOutToAction(255, 2),
+            fadeOutAction(255, 2),
             NULL)
         );
 }

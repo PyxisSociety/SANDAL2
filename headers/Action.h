@@ -220,7 +220,7 @@ ListAction * scaleToAction(float w, float h, float time);
 ListAction * rotateByAction(float angle, float time);
 ListAction * rotateToAction(float angle, float time);
 ListAction * fadeInAction(int alpha, float time);
-ListAction * fadeOutToAction(int alpha, float time);
+ListAction * fadeOutAction(int alpha, float time);
 /* ------------------------------------------------------- */
 
 #ifdef __cplusplus
