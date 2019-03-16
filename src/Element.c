@@ -489,6 +489,7 @@ Element* createImage(float x,float y,float width,float height,const char *image,
                 e->codes=initListDisplayCode();
                 addDisplayCode(e->codes,displayCode,1,plan);
                 e->coulBlock[0]=-1;
+                e->coulBlock[3] = 255;
                 e->events.action=NULL;
                 e->events.onClick=NULL;
                 e->events.unClick=NULL;
@@ -939,6 +940,17 @@ int getCoordYElement(Element * e,float * y){
 
     return error;
 }
+
+int getAlphaElement(Element * e, int * alpha){
+    int error = 1;
+
+    if(e && alpha){
+	error = 0;
+	*alpha = e->coulBlock[3];
+    }
+
+    return error;
+}
 /* ------------------------------------------------------- */
 
 
@@ -1072,8 +1084,12 @@ int setImageSurfaceElement(Element * e, SDL_Surface * image){
     int           error   = 1;
     SDL_Texture * texture = NULL;
 
-    if(e && e->parent && e->parent->renderer){
-	#ifndef DEBUG_SDL2_NO_VIDEO
+    if(e
+#      ifndef DEBUG_SDL2_NO_VIDEO
+       && e->parent && e->parent->renderer
+#      endif
+        ){
+#       ifndef DEBUG_SDL2_NO_VIDEO
         if(image){
             texture = SDL_CreateTextureFromSurface(e->parent->renderer, image);
         }
@@ -1084,10 +1100,10 @@ int setImageSurfaceElement(Element * e, SDL_Surface * image){
             e->image = texture;
         }
         error = image && !texture;
-        #else
+#       else
         error = 0;
         e->image = (SDL_Texture*)image;
-	#endif
+#       endif
     }
 
     return error;
@@ -1868,6 +1884,22 @@ int setActionListElement(Element * e, ListAction * actions){
     }
 
     return !e;
+}
+
+int setAlphaElement(Element * e, int alpha){
+    int error = 1;
+
+    if(e){
+        error = 0;
+
+        if(alpha != e->coulBlock[3] && e->image){
+            error = SDL_SetTextureAlphaMod(e->image, alpha);
+        }
+
+        e->coulBlock[3] = alpha;
+    }
+
+    return error;
 }
 /* ------------------------------------------------------- */
 

@@ -117,10 +117,8 @@ ListAction * generateParallelAction(ListAction * action, ...);
 /* -------------------------------------------------------
  * Action pre made action functions
  */
-/*
 void moveByActionFunction(struct Element * e, void * data, float spentTime);
 void moveToActionFunction(struct Element * e, void * data, float spentTime);
-*/
 /**
  * @brief function used by scaleByAction() and left public to be used in self made action functions
  * @param e : element on which the action is called
@@ -131,13 +129,11 @@ void moveToActionFunction(struct Element * e, void * data, float spentTime);
  * @param spentTime : total spent time since the beginning of the action
  */
 void scaleByActionFunction(struct Element * e, void * data, float spentTime);
-/*
 void scaleToActionFunction(struct Element * e, void * data, float spentTime);
 void rotateByActionFunction(struct Element * e, void * data, float spentTime);
 void rotateToActionFunction(struct Element * e, void * data, float spentTime);
 void fadeInActionFunction(struct Element * e, void * data, float spentTime);
-void fadeOutToActionFunction(struct Element * e, void * data, float spentTime);
-*/
+void fadeOutActionFunction(struct Element * e, void * data, float spentTime);
 /* ------------------------------------------------------- */
 
 
@@ -147,10 +143,8 @@ void fadeOutToActionFunction(struct Element * e, void * data, float spentTime);
 /* -------------------------------------------------------
  * Action pre made actions
  */
-/*
 ListAction * moveByAction(float x, float y, float time);
 ListAction * moveToAction(float x, float y, float time);
-*/
 /**
  * @brief Generate a ListAction doing a scale XY (only X if y == 0, only Y if x == 0) during a given time
  * @param x : scale value of x (percentage of modification with 1.0 == +100%)
@@ -159,13 +153,11 @@ ListAction * moveToAction(float x, float y, float time);
  * @return the list action generated
  */
 ListAction * scaleByAction(float x, float y, float time);
-/*
-ListAction * scaleToAction(float x, float y, float time);
+ListAction * scaleToAction(float w, float h, float time);
 ListAction * rotateByAction(float angle, float time);
 ListAction * rotateToAction(float angle, float time);
-ListAction * fadeInAction(float x, float y, float time);
-ListAction * fadeOutToAction(float x, float y, float time);
-*/
+ListAction * fadeInAction(int alpha, float time);
+ListAction * fadeOutToAction(int alpha, float time);
 /* ------------------------------------------------------- */
 
 #ifdef __cplusplus

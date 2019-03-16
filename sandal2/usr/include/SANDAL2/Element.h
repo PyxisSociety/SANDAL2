@@ -473,6 +473,13 @@ int getCoordXElement(Element * e,float * x);
  * @return 1 if there was an error, 0 if not
  */
 int getCoordYElement(Element * e,float * y);
+/**
+ * @brief get the element's color alpha value (from 0 for transparent to 255 for fully visible)
+ * @param e : element to get the informations from
+ * @param alpha : where to store the alpha value
+ * @return 1 if there was an error, 0 if not
+ */
+int getAlphaElement(Element * e, int * alpha);
 /* ------------------------------------------------------- */
 
 
@@ -631,28 +638,28 @@ int setKeyReleasedElement(Element *e,void (*keyReleased)(Element*,SDL_Keycode c)
  * @param onCLick : function to be called when it is clicked
  * @return 1 if it was impossible, 0 if not
  */
-  int setOnClickElement(Element *e,void (*onCLick)(Element*,int button));
+int setOnClickElement(Element *e,void (*onCLick)(Element*,int button));
 /**
  * @brief set the behaviour of an element when the mouse move on it
  * @param e : element to be modified
  * @param onMouseMotion : function to be called when the mouse move on it
  * @return 1 if it was impossible, 0 if not
  */
-  int setOnMouseMotionElement(Element *e, void (*onMouseMotion)(Element*));
+int setOnMouseMotionElement(Element *e, void (*onMouseMotion)(Element*));
 /**
  * @brief set the behaviour of an element when the mouse move out of it
  * @param e : element to be modified
  * @param unMouseMotion : function to be called when the mouse move out it
  * @return 1 if it was impossible, 0 if not
  */
-  int setUnMouseMotionElement(Element *e, void (*unMouseMotion)(Element*));
+int setUnMouseMotionElement(Element *e, void (*unMouseMotion)(Element*));
 /**
  * @brief set the behaviour of an element when it is unclicked
  * @param e : element to be modified
  * @param unCLick : function to be called when it is unclicked
  * @return 1 if it was impossible, 0 if not
  */
-  int setUnClickElement(Element *e,void (*unCLick)(Element*, int button));
+int setUnClickElement(Element *e,void (*unCLick)(Element*, int button));
 /**
  * @brief set the behaiour of an element when it is unselect
  * @param e : element to be modified
@@ -891,6 +898,13 @@ int setCoordYElement(Element * e, float y);
  * @return 1 if there was an error, 0 if not
  */
 int setActionListElement(Element * e, ListAction * actions);
+/**
+ * @brief set alpha of the element (255: completly visible, 0: completly transparent)
+ * @param e : element to modify
+ * @param alpha : new alpha value of the element
+ * @return 1 if there was an error, 0 if not
+ */
+int setAlphaElement(Element * e, int alpha);
 /* ------------------------------------------------------- */
 
 
