@@ -42,7 +42,7 @@ TEST_SECTION(ListAction){
     pla = NULL;
 
     // generate chained action
-    ListAction la1, la2, la3;
+    ListAction la1 = {0}, la2, la3;
     pla = generateChainedAction(&la1, &la2, &la3, NULL);
     REQUIRE(pla == &la1);
     REQUIRE(la1.chained == &la2);
