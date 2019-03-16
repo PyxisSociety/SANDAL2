@@ -181,8 +181,8 @@ void rotateToActionFunction(struct Element * e, void * data, float spentTime);
  * @brief function used by fadeInAction() and left public to be used in self made action functions
  * @param e : element on which the action is called
  * @param data : a float* array of size 3 casted to void*. It MUST have the following format:
- *               [the duration of the action, the delta to decrement alpha with, 0]
- *               the last value MUST be set to 0 before the first call, it will be modified inside the function
+ *               [the duration of the action, the delta to decrement alpha with, -1]
+ *               the last value MUST be set to -1 before the first call, it will be modified inside the function
  *               those modifications NEEDS to be saved for the following calls
  * @param spentTime : total spent time since the beginning of the action
  */
@@ -191,8 +191,8 @@ void fadeInActionFunction(struct Element * e, void * data, float spentTime);
  * @brief function used by fadeOutAction() and left public to be used in self made action functions
  * @param e : element on which the action is called
  * @param data : a float* array of size 3 casted to void*. It MUST have the following format:
- *               [the duration of the action, the delta to increment alpha with, 0]
- *               the last value MUST be set to 0 before the first call, it will be modified inside the function
+ *               [the duration of the action, the delta to increment alpha with, -1]
+ *               the last value MUST be set to -1 before the first call, it will be modified inside the function
  *               those modifications NEEDS to be saved for the following calls
  * @param spentTime : total spent time since the beginning of the action
  */

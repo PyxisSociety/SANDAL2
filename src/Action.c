@@ -303,7 +303,6 @@ void rotateByActionFunction(struct Element * e, void * data, float spentTime){
         }
 
         angle = infos[2];
-
         setAngleElement(e, angle + toAdd * ratio);
     }
 }
@@ -337,7 +336,7 @@ void fadeInActionFunction(struct Element * e, void * data, float spentTime){
         ratio    = (infos[0] - (infos[0] - spentTime)) / infos[0];
         newAlpha = (int)infos[1];
 
-        if(!infos[2]){
+        if(infos[2] < 0){
             getAlphaElement(e, &oldAlpha);
             infos[2] = (float)oldAlpha;
         }else{        
@@ -357,7 +356,7 @@ void fadeOutActionFunction(struct Element * e, void * data, float spentTime){
         ratio    = (infos[0] - (infos[0] - spentTime)) / infos[0];
         newAlpha = (int)infos[1];
 
-        if(!infos[2]){
+        if(infos[2] < 0){
             getAlphaElement(e, &oldAlpha);
             infos[2] = (float)oldAlpha;
         }else{        
@@ -505,7 +504,7 @@ ListAction * fadeInAction(int alpha, float time){
     if(data){
         data[0] = time;
         data[1] = (float)alpha;
-        data[2] = 0;
+        data[2] = -1;
             
         result = actionAsList(setDataAction(initAction(fadeInActionFunction, time), data, 1));
         
@@ -524,7 +523,7 @@ ListAction * fadeOutAction(int alpha, float time){
     if(data){
         data[0] = time;
         data[1] = (float)alpha;
-        data[2] = 0;
+        data[2] = -1;
             
         result = actionAsList(setDataAction(initAction(fadeOutActionFunction, time), data, 1));
         

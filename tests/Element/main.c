@@ -98,6 +98,7 @@ TEST_SECTION(Element){
 	TEST_HANDLER(UnClick, unClick);
 	TEST_HANDLER(UnSelect, unSelect);
 	TEST_HANDLER(EndSprite, endSprite);
+        TEST_HANDLER(EndAction, endAction);
 #       undef TEST_HANDLER
 
 	// set rotation speed
@@ -174,6 +175,19 @@ TEST_SECTION(Element){
 	TEST_UNARY(CoordX, x);
 	TEST_UNARY(CoordY, y);
 #       undef TEST_UNARY
+
+        // set action list
+        REQUIRE(setActionListElement(NULL, NULL));
+        REQUIRE(!setActionListElement(&e, (ListAction*)1));
+        REQUIRE(e.actions == (ListAction*)1);
+        e.actions = NULL;
+
+        // set alpha
+        REQUIRE(setAlphaElement(NULL, 30));
+        REQUIRE(!setAlphaElement(&e, 30));
+        REQUIRE(e.coulBlock[3] == 30);
+        REQUIRE(!setAlphaElement(&e, 1));
+        REQUIRE(e.coulBlock[3] == 1);
 
 	// set entry : size
 	e.entry = &entry;
@@ -316,6 +330,14 @@ TEST_SECTION(Element){
 	REQUIRE(!getCoordYElement(&e, &y));
 	EQ(e.y, y);
 	EQ(e.y, 2.);
+
+        // get alpha
+        int alpha = 0;
+        REQUIRE(getAlphaElement(NULL, NULL));
+        REQUIRE(getAlphaElement(&e, NULL));
+        REQUIRE(getAlphaElement(NULL, &alpha));
+        REQUIRE(!getAlphaElement(&e, &alpha));
+        REQUIRE(alpha == 1);
     }
 
     TEST_CASE(otherModifiers){
@@ -520,6 +542,10 @@ TEST_SECTION(ListElement){
 	TEST_ELEMENT(e, color, 1, 0, 1, 0, 0, 0);
 	// element, block color, text size (0 if no test), image not NULL, font not NULL, entry not NULL
 	delElement(e);
+
+	e = createImageBlock(DIM, color, DC);
+	TEST_ELEMENT(e, noColor, 0, 1, 0, 0, 0, 0);
+	// element, block color, text size (0 if no test), image not NULL, font not NULL, entry not NULL
 
 	e = createImage(DIM, IMG, DC);
 	TEST_ELEMENT(e, noColor, 0, 1, 0, 0, 0, 0);

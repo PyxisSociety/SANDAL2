@@ -2,7 +2,7 @@
 
 cd tests 2> /dev/null
 
-dirs=`ls --hide=LAsser --hide=build`
+dirs=`ls --hide=LAssert --hide=build`
 exeCode=0
 
 totalPercent=0
@@ -13,7 +13,6 @@ subpath=`(cd ../..;pwd)`
 for d in $dirs; do
     if [ -d "../$d" ]; then
         executable=SANDAL2_test_${d}
-        echo ${executable}
 	if [ -f "${executable}" ]; then
 	    echo "=============================================================="
 	    echo "Start $d"

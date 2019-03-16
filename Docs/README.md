@@ -76,43 +76,44 @@ From this "read-me", you can either go to :
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bug corrected when closing a window (multi window mode)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Updating makefile to hide some command executed (copy of documentation in package)<br/>
 1.4.0 : adding Action.h/.c to help handle basic actions on elements<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adding pre made actions<br/>
 
 ## Project's size
 
-Action.c      : 154 lines<br/>
+Action.c      : 537 lines<br/>
 Clickable.c   : 349 lines<br/>
 DisplayCode.c : 80 lines<br/>
-Element.c     : 1,978 lines<br/>
+Element.c     : 2,061 lines<br/>
 Font.c        : 319 lines<br/>
-SANDAL2.c     : 1,313 lines<br/>
+SANDAL2.c     : 1,212 lines<br/>
 Sprite.c      : 344 lines<br/>
 Window.c      : 446 lines<br/>
 <br/>
-Total for source files : 4,882 lines<br/>
+Total for source files : 5,348 lines<br/>
 <br/>
-Action.h      : 118 lines<br/>
+Action.h      : 275 lines<br/>
 Clickable.h   : 230 lines<br/>
 DisplayCode.h : 78 lines<br/>
-Element.h     : 968 lines<br/>
+Element.h     : 993 lines<br/>
 Font.h        : 115 lines<br/>
 SANDAL2.h     : 217 lines<br/>
 Sprite.h      : 195 lines<br/>
 Window.h      : 334 lines<br/>
 <br/>
-Total for header files : 2,255 lines<br/>
+Total for header files : 2,437 lines<br/>
 <br/>
-Total without tests : 7137 lines<br/>
+Total without tests : 7,785 lines<br/>
 <br/>
-tests for Action      : 0 lines<br/>
+tests for Action      : 181 lines<br/>
 tests for Clickable   : 274 lines<br/>
 tests for DisplayCode : 67 lines<br/>
-tests for Element     : 752 lines<br/>
+tests for Element     : 774 lines<br/>
 tests for Font        : 115 lines<br/>
 tests for SANDAL2     : 91 lines<br/>
 tests for Sprite      : 216 lines<br/>
 tests for Window      : 182 lines<br/>
 <br/>
-Total for test files : 1697 lines<br/>
+Total for test files : 1900 lines<br/>
 <br/>
 <br/>
-Total with tests : 8834 lines<br/>
+Total with tests : 9,685 lines<br/>
