@@ -206,7 +206,21 @@ void fadeOutActionFunction(struct Element * e, void * data, float spentTime);
 /* -------------------------------------------------------
  * Action pre made actions
  */
+/**
+ * @brief Generate a ListAction doing a translation during a given time
+ * @param x : x offset
+ * @param y : y offset
+ * @param time : duration of the action
+ * @return the list action generated
+ */
 ListAction * moveByAction(float x, float y, float time);
+/**
+ * @brief Generate a ListAction doing a translation during a given time
+ * @param x : new x value
+ * @param y : new y value
+ * @param time : duration of the action
+ * @return the list action generated
+ */
 ListAction * moveToAction(float x, float y, float time);
 /**
  * @brief Generate a ListAction doing a scale XY (only X if y == 0, only Y if x == 0) during a given time
@@ -216,10 +230,41 @@ ListAction * moveToAction(float x, float y, float time);
  * @return the list action generated
  */
 ListAction * scaleByAction(float x, float y, float time);
+/**
+ * @brief Generate a ListAction doing a scale XY (only X if y == 0, only Y if x == 0) during a given time
+ * @param w : new value of width
+ * @param h : new value of height
+ * @param time : duration of the action
+ * @return the list action generated
+ */
 ListAction * scaleToAction(float w, float h, float time);
+/**
+ * @brief Generate a ListAction doing a rotation during a given time
+ * @param angle : angle offset
+ * @param time : duration of the action
+ * @return the list action generated
+ */
 ListAction * rotateByAction(float angle, float time);
+/**
+ * @brief Generate a ListAction doing a rotation during a given time
+ * @param angle : new angle
+ * @param time : duration of the action
+ * @return the list action generated
+ */
 ListAction * rotateToAction(float angle, float time);
+/**
+ * @brief Generate a ListAction doing a fade in during a given time
+ * @param alpha : value to reduce the element's alpha of
+ * @param time : duration of the action
+ * @return the list action generated
+ */
 ListAction * fadeInAction(int alpha, float time);
+/**
+ * @brief Generate a ListAction doing a fade out during a given time
+ * @param alpha : value to increase the element's alpha of
+ * @param time : duration of the action
+ * @return the list action generated
+ */
 ListAction * fadeOutAction(int alpha, float time);
 /* ------------------------------------------------------- */
 
