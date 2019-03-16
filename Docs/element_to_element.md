@@ -3,6 +3,7 @@
 * go back to [Tutorial](Tutorial.md)
 * go back to the [main read-me](../README.md)
 * go back to the previous tutorial about [Display Code and Plan handling](dc_plan.md)
+* go to the next tutorial about [automatic actions on an element](action_list_element.md)
 * report an issue about a tutorial lacking things, an update that could be done or anything that comes to your mind [here](https://github.com/Klevh/SANDAL2/issues/new)
 
 ## Modifying an Element in another's event function
@@ -146,4 +147,6 @@ void click(Element * this, SDL_Keycode c){
 ```
 You can download this code [here](https://github.com/Klevh/SANDAL2/raw/master/downloadable/element_to_element.zip).
 
-## New tutorials coming soon ...
+## What's next ?
+
+Next, you will need to learn how to add some [automatic actions on elements](action_list_element.md) and either self made or pre made.

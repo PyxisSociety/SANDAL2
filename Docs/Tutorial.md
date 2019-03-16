@@ -23,3 +23,4 @@ If you follow those steps, you should be able to use SANDAL2 with ease :
 * [Adding some animations](animations.md)
 * [Display code and Plan manipulations](dc_plan.md)
 * [Modifying an element in another's event function](element_to_element.md)
+* [Automation of actions on elements](action_list_element.md)
