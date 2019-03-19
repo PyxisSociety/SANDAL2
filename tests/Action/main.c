@@ -48,15 +48,65 @@ TEST_SECTION(ListAction){
     REQUIRE(pla->isParallel == 0);
     freeListAction(pla);
 
-    // generate parallel action
-    pla = generateParallelAction(&la1, &la2, &la3, NULL);
-    REQUIRE_NOT_NULL(pla);
-    REQUIRE_NOT_NULL(pla->first);
-    REQUIRE_NOT_NULL(pla->first->next);
-    REQUIRE_NOT_NULL(pla->first->next->next);
-    REQUIRE(pla->first->next->next->next == NULL);
-    REQUIRE(pla->isParallel == 1);
-    freeListAction(pla);
+
+    TEST_CASE(Parallel){
+        // list creation
+        ListAction * pla = generateParallelAction(moveByAction(10, 10, 1), scaleByAction(10, 10, 1), scaleToAction(10, 10, 2), NULL);
+        REQUIRE_NOT_NULL(pla);
+        REQUIRE(pla->isParallel);
+        REQUIRE(!pla->isForever);
+        REQUIRE_NOT_NULL(pla->first);
+        REQUIRE_NOT_NULL(pla->first->next);
+        REQUIRE_NOT_NULL(pla->first->next->next);
+        REQUIRE(pla->first->next->next->next == NULL);
+
+        // list execution
+        Element e = {0};
+        REQUIRE(!executeListAction(pla, &e, 1));
+        REQUIRE(pla->first->isFinished);
+        REQUIRE(pla->first->next->isFinished);
+        REQUIRE(!pla->first->next->next->isFinished);
+        
+        REQUIRE(executeListAction(pla, &e, 1));
+        REQUIRE(pla->first->isFinished);
+        REQUIRE(pla->first->next->isFinished);
+        REQUIRE(pla->first->next->next->isFinished);
+
+        // freeing list
+        freeListAction(pla);
+    }
+
+    TEST_CASE(Chained){
+        // list creation
+        ListAction * pla = generateChainedAction(moveByAction(10, 10, 1), scaleByAction(10, 10, 1), scaleToAction(10, 10, 2), NULL);
+        REQUIRE_NOT_NULL(pla);
+        REQUIRE(!pla->isParallel);
+        REQUIRE(!pla->isForever);
+        REQUIRE_NOT_NULL(pla->first);
+        REQUIRE_NOT_NULL(pla->first->next);
+        REQUIRE_NOT_NULL(pla->first->next->next);
+        REQUIRE(pla->first->next->next->next == NULL);
+
+        // list execution
+        Element e = {0};
+        REQUIRE(!executeListAction(pla, &e, 1));
+        REQUIRE(pla->first->isFinished);
+        REQUIRE(!pla->first->next->isFinished);
+        REQUIRE(!pla->first->next->next->isFinished);
+        
+        REQUIRE(!executeListAction(pla, &e, 1));
+        REQUIRE(pla->first->isFinished);
+        REQUIRE(pla->first->next->isFinished);
+        REQUIRE(!pla->first->next->next->isFinished);
+        
+        REQUIRE(executeListAction(pla, &e, 2));
+        REQUIRE(pla->first->isFinished);
+        REQUIRE(pla->first->next->isFinished);
+        REQUIRE(pla->first->next->next->isFinished);
+
+        // freeing list
+        freeListAction(pla);
+    }
 }
 
 
