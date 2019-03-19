@@ -7,55 +7,52 @@
 
 TEST_SECTION(Action){
     // init action
-    Action * a = initAction(NULL, 30);
-    REQUIRE_NOT_NULL(a);
-    REQUIRE(a->timing == 30);
-    REQUIRE(a->timeSpent == 0);
-    REQUIRE(a->action == NULL);
-    REQUIRE(a->data == NULL);
-    REQUIRE(a->shouldBeFreed == 0);
+    ListAction * la = initAction(NULL, 30);
+    REQUIRE_NOT_NULL(la);
+    REQUIRE_NOT_NULL(la->first);
+    REQUIRE(la->first->isList == 0);
+    Action a = la->first->action.action;
+    REQUIRE(a.timing == 30);
+    REQUIRE(a.timing == 30);
+    REQUIRE(a.timeSpent == 0);
+    REQUIRE(a.action == NULL);
+    REQUIRE(a.data == NULL);
+    REQUIRE(a.shouldBeFreed == 0);
 
     // set data
-    REQUIRE(a == setDataAction(a, (void*)1, 1));
-    REQUIRE(a->shouldBeFreed == 1);
-    REQUIRE(a->data == (void*)1);
+    REQUIRE(la == setDataAction(la, (void*)1, 1));
+    REQUIRE(la->first->action.action.shouldBeFreed == 1);
+    REQUIRE(la->first->action.action.data == (void*)1);
 
     // free action
-    a->shouldBeFreed = 0;
-    freeAction(a);
+    la->first->action.action.shouldBeFreed = 0;
+    freeListAction(la);
 }
 
 
 
 
 TEST_SECTION(ListAction){
-    // action as list
-    Action a;
-    ListAction * pla = actionAsList(&a);
-    REQUIRE_NOT_NULL(pla);
-    REQUIRE(pla->action == &a);
-    REQUIRE(pla->chained == NULL);
-    REQUIRE(pla->parallel == NULL);
-    REQUIRE(pla->isParallel == 0);
-    pla->action = NULL;
-    freeListAction(pla);
-    pla = NULL;
-
     // generate chained action
-    ListAction la1, la2, la3;
-    pla = generateChainedAction(&la1, &la2, &la3, NULL);
-    REQUIRE(pla == &la1);
-    REQUIRE(la1.chained == &la2);
-    REQUIRE(la1.parallel == NULL);
-    REQUIRE(la2.chained == &la3);
-    REQUIRE(la3.chained == NULL);
+    ListAction la1 = {0}, la2 = {0}, la3 = {0};
+    ListAction * pla = generateChainedAction(&la1, &la2, &la3, NULL);
+    REQUIRE_NOT_NULL(pla);
+    REQUIRE_NOT_NULL(pla->first);
+    REQUIRE_NOT_NULL(pla->first->next);
+    REQUIRE_NOT_NULL(pla->first->next->next);
+    REQUIRE(pla->first->next->next->next == NULL);
+    REQUIRE(pla->isParallel == 0);
+    freeListAction(pla);
 
     // generate parallel action
     pla = generateParallelAction(&la1, &la2, &la3, NULL);
-    REQUIRE(pla == &la1);
-    REQUIRE(la1.parallel == &la2);
-    REQUIRE(la2.parallel == &la3);
-    REQUIRE(la3.parallel == NULL);
+    REQUIRE_NOT_NULL(pla);
+    REQUIRE_NOT_NULL(pla->first);
+    REQUIRE_NOT_NULL(pla->first->next);
+    REQUIRE_NOT_NULL(pla->first->next->next);
+    REQUIRE(pla->first->next->next->next == NULL);
+    REQUIRE(pla->isParallel == 1);
+    freeListAction(pla);
 }
 
 
@@ -63,12 +60,12 @@ TEST_SECTION(ListAction){
 
 TEST_SECTION(PreMadeAction){
     ListAction * pla;
-#define TEST_ACTION(name, ...)                                  \
-    pla = name##Action(__VA_ARGS__);                            \
-    REQUIRE_NOT_NULL(pla);                                      \
-    REQUIRE_NOT_NULL(pla->action);                              \
-    REQUIRE_NOT_NULL(pla->action->data);                        \
-    REQUIRE(pla->action->action == name##ActionFunction);       \
+#define TEST_ACTION(name, ...)                                          \
+    pla = name##Action(__VA_ARGS__);                                    \
+    REQUIRE_NOT_NULL(pla);                                              \
+    REQUIRE_NOT_NULL(pla->first);                                       \
+    REQUIRE_NOT_NULL(pla->first->action.action.data);                   \
+    REQUIRE(pla->first->action.action.action == name##ActionFunction);  \
     freeListAction(pla)
 #define P3 0, 0, 2
 #define P2 0, 2

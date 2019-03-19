@@ -452,9 +452,12 @@ int updateWindow(){
 
                         // exec action list on element
                         if((*ele)->element->actions){
-                            (*ele)->element->actions = executeListAction((*ele)->element->actions, (*ele)->element, (float)(time - _windows_SANDAL2->currentDisplay->ticks) / 1000.f);
-                            if(!(*ele)->element->actions && (*ele)->element->events.endAction){
-                                (*ele)->element->events.endAction((*ele)->element);
+                            if(executeListAction((*ele)->element->actions, (*ele)->element, (float)(time - _windows_SANDAL2->currentDisplay->ticks) / 1000.f)){
+                                freeListAction((*ele)->element->actions);
+                                (*ele)->element->actions = NULL;
+                                if((*ele)->element->events.endAction){
+                                    (*ele)->element->events.endAction((*ele)->element);
+                                }
                             }
                         }
 

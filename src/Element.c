@@ -1892,6 +1892,12 @@ int setAlphaElement(Element * e, int alpha){
     if(e){
         error = 0;
 
+        if(alpha < 0){
+            alpha = 0;
+        }else if(alpha > 255){
+            alpha = 255;
+        }
+
         if(alpha != e->coulBlock[3] && e->image){
             error = SDL_SetTextureAlphaMod(e->image, alpha);
         }

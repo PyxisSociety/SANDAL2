@@ -9,25 +9,41 @@
 /* -------------------------------------------------------
  * Action functions
  */
-Action * initAction(void (*action)(struct Element *, void *, float), float timing){
-    Action * a = NULL;
+ListAction * initAction(void (*action)(struct Element *, void *, float), float timing){
+    ListAction * la = NULL;
+    ActionNode * an = NULL;
 
-    if(timing){
-        a = malloc(sizeof(*a));
+    if(timing > 0){
+        la = malloc(sizeof(*la));
 
-        if(a){
-            a->timing = timing;
-            a->timeSpent = 0;
-            a->action = action;
-            a->data = NULL;
-            a->shouldBeFreed = 0;
+        if(la){
+            an = malloc(sizeof(*an));
+
+            if(an){
+                la->first = an;
+                la->isParallel = 0;
+                la->isForever = 0;
+
+                an->isList = 0;
+                an->next = NULL;
+                an->isFinished = 0;
+                
+                an->action.action.timing = timing;
+                an->action.action.timeSpent = 0;
+                an->action.action.action = action;
+                an->action.action.data = NULL;
+                an->action.action.shouldBeFreed = 0;
+            }else{
+                free(la);
+                la = NULL;
+            }
         }
     }
 
-    return a;
+    return la;
 }
 
-void freeAction(Action * action){
+static void freeAction(Action * action){
     if(action){
         if(action->data && action->shouldBeFreed){
             free(action->data);
@@ -36,10 +52,26 @@ void freeAction(Action * action){
     }
 }
 
-Action * setDataAction(Action * action, void * data, int shouldBeFreed){
-    if(action){
-        action->data = data;
-        action->shouldBeFreed = shouldBeFreed;
+static void freeActionNode(ActionNode * actionNode){
+    ActionNode * tmp = NULL;
+    
+    while(actionNode){
+        if(actionNode->isList){
+            freeActionNode(actionNode->action.list.first);
+        }else if(actionNode->action.action.shouldBeFreed){
+            free(actionNode->action.action.data);
+        }
+
+        tmp = actionNode->next;
+        free(actionNode);
+        actionNode = tmp;
+    }
+}
+
+ListAction * setDataAction(ListAction * action, void * data, int shouldBeFreed){
+    if(action && action->first && !action->first->next && !action->first->isList){
+        action->first->action.action.data = data;
+        action->first->action.action.shouldBeFreed = shouldBeFreed;
     }
     return action;
 }
@@ -52,113 +84,195 @@ Action * setDataAction(Action * action, void * data, int shouldBeFreed){
 /* -------------------------------------------------------
  * Action generation functions
  */
-ListAction * actionAsList(Action * action){
-    ListAction * list = NULL;
-
-    if(action){
-        list = malloc(sizeof(*list));
-        if(list){
-            list->action = action;
-            list->chained = NULL;
-            list->parallel = NULL;
-            list->isParallel = 0;
-        }
-    }
-
-    return list;
-}
 
 void freeListAction(ListAction * action){
-    ListAction * tmp;
-
-    while(action){
-        tmp = action->chained;
-        freeAction(action->action);
-        freeListAction(action->parallel);
+    if(action){
+        freeActionNode(action->first);
         free(action);
-        action = tmp;
     }
 }
 
-static void executeOneAction(Action ** action, struct Element * e, float time){
+static int executeOneAction(Action * action, struct Element * e, float time){
     // doing behavior, if any
-    if((*action)->action){
-        (*action)->action(e, (*action)->data, (*action)->timeSpent + time);
+    if(action->action){
+        action->action(e, action->data, action->timeSpent + time);
     }
 
     // incrementing time
-    if((*action)->timing >= 0){
-        (*action)->timeSpent += time;
+    action->timeSpent += time;
 
-        // if action finished
-        if((*action)->timing <= (*action)->timeSpent){
-            freeAction(*action);
-            *action = NULL;
+    return action->timing <= action->timeSpent;
+}
+
+static void rewindListAction(ListAction * action){
+    ActionNode * node = action->first;
+
+    while(node){
+        node->isFinished = 0;
+
+        if(node->isList){
+            rewindListAction(&(node->action.list));
         }
+
+        node = node->next;
     }
 }
 
-ListAction * executeListAction(ListAction * action, struct Element * e, float time){
-    ListAction * tmp;
+int executeListAction(ListAction * action, struct Element * e, float time){
+    ActionNode * node;
+    int          isFinished = 1;
     
     if(action){
-        if(action->action){
-            executeOneAction(&(action->action), e, time);
-        }
+        node = action->first;
 
-        action->parallel = executeListAction(action->parallel, e, time);
+        if(node){
+            if(action->isParallel){
+                do{
+                    if(!node->isFinished){
+                        if(node->isList){
+                            node->isFinished = executeListAction(&(node->action.list), e, time);
+                        }else{
+                            node->isFinished = executeOneAction(&(node->action.action), e, time);
+                        }
 
-        if(!action->action){
-            if(!action->parallel){
-                tmp = action;
-                action = action->chained;
-                free(tmp);
-            }else if(action->isParallel){
-                tmp = action;
-                action = action->chained;
-                action->parallel = tmp->parallel;
-                action->isParallel = 1;
-                free(tmp);
+                        isFinished = isFinished && node->isFinished;
+                    }
+
+                    node = node->next;
+                }while(node);
+            }else{
+                isFinished = 0; 
+                while(node && node->isFinished){
+                    node = node->next;
+                }
+
+                if(node){
+                    if(node->isList){
+                        node->isFinished = executeListAction(&(node->action.list), e, time);
+                    }else{
+                        node->isFinished = executeOneAction(&(node->action.action), e, time);
+                    }
+                    isFinished = node->isFinished && !node->next;
+                }else{
+                    isFinished = 1;
+                }
             }
         }
+
+        if(isFinished && action->isForever){
+            rewindListAction(action);
+            isFinished = 0;
+        }
     }
 
-    return action;
+    return isFinished;
 }
 
-ListAction * generateChainedAction(ListAction * action, ...){
-    ListAction * result = action;
-    ListAction * tmp    = NULL;
-    va_list      vl;
+static int goThroughParameters(ListAction * action, ActionNode * node, va_list vl){
+    int error = 0;
+    
+    do{
+        node->isList = 1;
+        node->isFinished = 0;
+
+        node->action.list.first      = action->first;
+        node->action.list.isParallel = action->isParallel;
+        node->action.list.isForever  = action->isForever;
+        node->next = NULL;
+#ifndef DEBUG_SDL2_NO_VIDEO
+        free(action);
+#endif
+
+        action = va_arg(vl, ListAction *);
+        if(action){
+            node->next = malloc(sizeof(*(node->next)));
+            node = node->next;
+            error = !node;
+        }
+    }while(action && !error);
+
+    if(error && action){
+        freeListAction(action);
+        error = 2;
+    }
+
+    return error;
+}
+
+static ListAction * genericGenerateAction(ListAction * action, int isParallel, va_list vl){
+    ListAction * result = NULL;
+    ActionNode * node   = NULL;
+    int          error  = 0;
     
     if(action){
-        va_start(vl, action);
-        while(action){
-            tmp = va_arg(vl, ListAction*);
-            action->chained = tmp;
-            action = tmp;
+        result = malloc(sizeof(*result));
+
+        if(result){
+            node = malloc(sizeof(*node));
+
+            if(node){
+                result->first = node;
+                result->isParallel = isParallel;
+                result->isForever = 0;
+
+                // going through parameters
+                error = goThroughParameters(action, node, vl);
+
+                // if an allocation failed
+                if(error){
+                    freeListAction(result);
+                    result = NULL;
+
+                    if(error == 2){
+                        action = va_arg(vl, ListAction *);
+                        while(action){
+                            freeListAction(action);
+                            action = va_arg(vl, ListAction *);
+                        }
+                    }
+
+                    error = 0;
+                }
+            }else{
+                // if first node allocation failed
+                free(result);
+                result = NULL;
+
+                error = 1;
+            }
+        }else{
+            error = 1;
         }
-        va_end(vl);
+
+        if(error){
+            do{
+                freeListAction(action);
+                action = va_arg(vl, ListAction *);
+            }while(action && !error);
+        }
     }
 
     return result;
 }
 
-ListAction * generateParallelAction(ListAction * action, ...){
-    ListAction * result = action;
-    ListAction * tmp;
+ListAction * generateChainedAction(ListAction * action, ...){
+    ListAction * result;
     va_list      vl;
-    
-    if(action){
-        va_start(vl, action);
-        while(action){
-            tmp = va_arg(vl, ListAction *);
-            action->parallel = tmp;
-            action->isParallel = 1;
-            action = tmp;
-        }
-        va_end(vl);
-    }
+
+    va_start(vl, action);
+    result = genericGenerateAction(action, 0, vl);
+    va_end(vl);
+
+    return result;
+}
+
+ListAction * generateParallelAction(ListAction * action, ...){
+    ListAction * result;
+    va_list      vl;
+
+    va_start(vl, action);
+    result = genericGenerateAction(action, 1, vl);
+    va_end(vl);
 
     return result;
 }
@@ -342,7 +456,7 @@ void fadeInActionFunction(struct Element * e, void * data, float spentTime){
         }else{        
             oldAlpha = infos[2];
         }
-        
+
         setAlphaElement(e, oldAlpha - newAlpha * ratio);
     }
 }
@@ -386,7 +500,7 @@ ListAction * moveByAction(float x, float y, float time){
         data[3] = 0;
         data[4] = 0;
             
-        result = actionAsList(setDataAction(initAction(moveByActionFunction, time), data, 1));
+        result = setDataAction(initAction(moveByActionFunction, time), data, 1);
         
         if(!result){
             free(data);
@@ -407,7 +521,7 @@ ListAction * moveToAction(float x, float y, float time){
         data[3] = 0;
         data[4] = 0;
             
-        result = actionAsList(setDataAction(initAction(moveToActionFunction, time), data, 1));
+        result = setDataAction(initAction(moveToActionFunction, time), data, 1);
         
         if(!result){
             free(data);
@@ -428,7 +542,7 @@ ListAction * scaleByAction(float x, float y, float time){
         data[3] = 0;
         data[4] = 0;
             
-        result = actionAsList(setDataAction(initAction(scaleByActionFunction, time), data, 1));
+        result = setDataAction(initAction(scaleByActionFunction, time), data, 1);
         
         if(!result){
             free(data);
@@ -449,7 +563,7 @@ ListAction * scaleToAction(float w, float h, float time){
         data[3] = 0;
         data[4] = 0;
             
-        result = actionAsList(setDataAction(initAction(scaleToActionFunction, time), data, 1));
+        result = setDataAction(initAction(scaleToActionFunction, time), data, 1);
         
         if(!result){
             free(data);
@@ -468,7 +582,7 @@ ListAction * rotateByAction(float angle, float time){
         data[1] = angle;
         data[2] = 0;
             
-        result = actionAsList(setDataAction(initAction(rotateByActionFunction, time), data, 1));
+        result = setDataAction(initAction(rotateByActionFunction, time), data, 1);
         
         if(!result){
             free(data);
@@ -487,7 +601,7 @@ ListAction * rotateToAction(float angle, float time){
         data[1] = angle;
         data[2] = 0;
             
-        result = actionAsList(setDataAction(initAction(rotateToActionFunction, time), data, 1));
+        result = setDataAction(initAction(rotateToActionFunction, time), data, 1);
         
         if(!result){
             free(data);
@@ -506,7 +620,7 @@ ListAction * fadeInAction(int alpha, float time){
         data[1] = (float)alpha;
         data[2] = -1;
             
-        result = actionAsList(setDataAction(initAction(fadeInActionFunction, time), data, 1));
+        result = setDataAction(initAction(fadeInActionFunction, time), data, 1);
         
         if(!result){
             free(data);
@@ -525,7 +639,7 @@ ListAction * fadeOutAction(int alpha, float time){
         data[1] = (float)alpha;
         data[2] = -1;
             
-        result = actionAsList(setDataAction(initAction(fadeOutActionFunction, time), data, 1));
+        result = setDataAction(initAction(fadeOutActionFunction, time), data, 1);
         
         if(!result){
             free(data);
