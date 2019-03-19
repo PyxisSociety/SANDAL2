@@ -8,16 +8,22 @@ set(CMAKE_BUILD_TYPE Debug)
 
 
 
+# directory name
+get_filename_component(ENTITY ${CMAKE_SOURCE_DIR} NAME)
+MESSAGE(INFO " ${ENTITY}")
+
+
+
 # project name
 
-project(SANDAL2_test C)
+project(SANDAL2_test_${ENTITY} C)
 
 
 
 # file helpers
 
 file(GLOB SANDAL2_src
-  "../src/*.c")
+  "../../src/*.c")
 
 
 
@@ -30,7 +36,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -fprofile-arcs -ftest-coverage -D DEB
 
 # find packages
 
-set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/../downloadable/cmake")
+set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/../../downloadable/cmake")
 
 find_package(SDL2 REQUIRED)
 IF(SDL2_FOUND)
@@ -55,25 +61,33 @@ ENDIF()
 
 
 
-# iterating for each test file
-set(test_files Action Clickable DisplayCode Element Font SANDAL2 Sprite Window)
-foreach(test_file ${test_files})
-  # creating executable
-  add_executable(
-    ${PROJECT_NAME}_${test_file}
-    ${test_file}/main.c
-    ${SANDAL2_src})
+# creating executable
+add_executable(
+  ${PROJECT_NAME}
+  main.c
+  ${SANDAL2_src})
 
-  # linking external librairies
-  target_link_libraries(
-    ${PROJECT_NAME}_${test_file}
-    -lSDL2
-    -lSDL2_ttf
-    -lSDL2_image
-    -lm)
-  
-  # adding include dir
-  target_include_directories(
-    ${PROJECT_NAME}_${test_file}
-    PUBLIC ../headers/)
-endforeach()
+
+
+# linking external librairies
+target_link_libraries(
+  ${PROJECT_NAME}
+  -lSDL2
+  -lSDL2_ttf
+  -lSDL2_image
+  -lm)
+
+
+
+# adding include dir
+target_include_directories(
+  ${PROJECT_NAME}
+  PUBLIC ../../headers/)
+
+
+
+# copying resource files
+
+file(GLOB RESOURCES "${PROJECT_SOURCE_DIR}/../../downloadable/*")
+
+file(COPY ${RESOURCES} DESTINATION ${PROJECT_BINARY_DIR}/downloadable)

@@ -1,0 +1,5 @@
+gcov build/CMakeFiles/SANDAL2_test_Font.dir/home/baptiste/Programmation/C/Librairies/SANDAL2/src/Font.c.o
+File '/home/baptiste/Programmation/C/Librairies/SANDAL2/src/Font.c'
+Lines executed:94.02% of 184
+Creating 'Font.c.gcov'
+

@@ -1,0 +1,5 @@
+gcov build/CMakeFiles/SANDAL2_test_Window.dir/home/baptiste/Programmation/C/Librairies/SANDAL2/src/Window.c.o
+File '/home/baptiste/Programmation/C/Librairies/SANDAL2/src/Window.c'
+Lines executed:97.06% of 238
+Creating 'Window.c.gcov'
+

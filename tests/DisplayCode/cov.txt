@@ -1,0 +1,5 @@
+gcov build/CMakeFiles/SANDAL2_test_DisplayCode.dir/home/baptiste/Programmation/C/Librairies/SANDAL2/src/DisplayCode.c.o
+File '/home/baptiste/Programmation/C/Librairies/SANDAL2/src/DisplayCode.c'
+Lines executed:91.67% of 48
+Creating 'DisplayCode.c.gcov'
+

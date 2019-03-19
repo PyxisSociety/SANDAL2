@@ -28,7 +28,7 @@ TEST_SECTION(Window){
 	// set icon
 	REQUIRE(setIconWindow(NULL));
 	REQUIRE(setIconWindow("not/foundable/image"));
-	REQUIRE(!setIconWindow("../../downloadable/img.jpg"));
+	REQUIRE(!setIconWindow("downloadable/img.jpg"));
 
 	// set origin
 	REQUIRE(!setOriginWindow(25, 25));

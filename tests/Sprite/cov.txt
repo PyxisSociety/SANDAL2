@@ -1,0 +1,5 @@
+gcov build/CMakeFiles/SANDAL2_test_Sprite.dir/home/baptiste/Programmation/C/Librairies/SANDAL2/src/Sprite.c.o
+File '/home/baptiste/Programmation/C/Librairies/SANDAL2/src/Sprite.c'
+Lines executed:98.58% of 211
+Creating 'Sprite.c.gcov'
+

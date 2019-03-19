@@ -1,55 +1,23 @@
 #!/bin/makefile
+SANDAL2_PATH=$(shell (cd ../..; pwd))
+CURRENT_PATH=$(shell pwd)
+ENTITY=$(shell basename $(CURRENT_PATH))
 
-#change this variable to match the path from the current directory to where SANDAL2 is store 
-#without the last '/'
-SANDAL2PATH=../..
+all:
+	@make clear --no-print-directory
+	@mkdir build
+	@cd build && cmake ..
+	@cd build && make --no-print-directory
 
-#in this part, nothing for you to be done, it is the inclusion of SANDAL2's files and LDFLAGS
-#SANDAL2's files
-SANDAL2SRC=$(wildcard $(SANDAL2PATH)/*.c)
-SANDAL2=$(SANDAL2SRC:.c=.o)
-#SANDAL2's LDFLAGS
-LDFLAGS=-lSDL2 -lSDL2_ttf -lSDL2_image -lm
-#added because .o files are made in your directory
+run:
+	@(cd build; ./SANDAL2_test_$(ENTITY))
 
-#add to this variables all the '.c' files for your program 
-#$(wildcard *.c) is equivalent to all the .c files in the current folder
-SRC=$(wildcard *.c)
-OFILES=$(SRC:.c=.o)
-
-#add the LDFLAGS you need (such as -g or -O), lm already added 
-#-ansi or -std=gnu89 is not compatible with lm on gcc
-LDFLAGS+=-fprofile-arcs -ftest-coverage
-
-#your compilation flags, 
-#-ansi or -std=gnu89 are not compatible with -lm on gcc
-CFLAGS=-g -std=gnu99 -fprofile-arcs -ftest-coverage -D DEBUG_SDL2_NO_VIDEO
-
-#your program's name
-EXEC=a.out
-
-#your compiler
-CC=gcc
-
-
-all:$(EXEC)
-
-$(EXEC):$(OFILES) $(SANDAL2)
-	$(CC) $^ -o $(EXEC) $(LDFLAGS) $(DEBUG)
-
-$(SANDAL2PATH)/%.o:$(SANDAL2PATH)/%.c
-	$(CC) -c $< -o $@ $(CFLAGS)
-
-%.o:%.c
-	$(CC) -c $< -o $@ $(CFLAGS)
+cov:
+	gcov build/CMakeFiles/SANDAL2_test_$(ENTITY).dir$(SANDAL2_PATH)/src/$(ENTITY).c.o
 
 clear:
-	rm *.o
+	@rm -rf build
+	@rm -f *.o*
+	@rm -f *.gc*
 
 clean: clear
-
-cleaner:
-	rm *.o $(EXEC)
-
-coverage:
-	gcov ../../Clickable.c -m

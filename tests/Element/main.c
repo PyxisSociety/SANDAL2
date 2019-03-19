@@ -12,7 +12,7 @@ TEST_SECTION(Element){
     TEST_CASE(set){
 	// set font
 	int color[4] = {1, 1, 1, 1};
-	const char * fontPath = "../../downloadable/arial.ttf";
+	const char * fontPath = "downloadable/arial.ttf";
 	e.font = createFont(fontPath, "txt", color, SANDAL2_SOLID);
 	REQUIRE_NOT_NULL(e.font);
 
@@ -55,7 +55,7 @@ TEST_SECTION(Element){
 	REQUIRE(setImageElement(NULL, ""));
 	REQUIRE(setImageElement(&e, "image/path/that/do/not/exist"));
 	REQUIRE(!setImageElement(&e, NULL));
-	REQUIRE(!setImageElement(&e, "../../downloadable/img.jpg"));
+	REQUIRE(!setImageElement(&e, "downloadable/img.jpg"));
 	REQUIRE_NOT_NULL(e.image);
 
 	// set image surface
@@ -515,8 +515,8 @@ TEST_SECTION(ListElement){
 	REQUIRE(e->events.endSprite == NULL);				\
 	REQUIRE(e->events.onMouseMotion == NULL);			\
 	REQUIRE(e->events.unMouseMotion == NULL)
-#       define FONT "../../downloadable/arial.ttf", "coucou"
-#       define IMG "../../downloadable/img.jpg"
+#       define FONT "downloadable/arial.ttf", "coucou"
+#       define IMG "downloadable/img.jpg"
 #       define DIM 0, 0, 1, 1
 #       define DC 0, 0
 	

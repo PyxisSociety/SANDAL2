@@ -20,7 +20,7 @@ TEST_SECTION(Font){
 
 	    REQUIRE(!dumb);
 
-	    font = createFont("../../downloadable/arial.ttf", "yes", color, qualities[i]);
+	    font = createFont("downloadable/arial.ttf", "yes", color, qualities[i]);
 
 	    REQUIRE_NOT_NULL(font);
 	

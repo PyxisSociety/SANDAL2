@@ -1,0 +1,5 @@
+gcov build/CMakeFiles/SANDAL2_test_Clickable.dir/home/baptiste/Programmation/C/Librairies/SANDAL2/src/Clickable.c.o
+File '/home/baptiste/Programmation/C/Librairies/SANDAL2/src/Clickable.c'
+Lines executed:92.16% of 204
+Creating 'Clickable.c.gcov'
+

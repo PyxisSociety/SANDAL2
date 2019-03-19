@@ -1,0 +1,5 @@
+gcov build/CMakeFiles/SANDAL2_test_SANDAL2.dir/home/baptiste/Programmation/C/Librairies/SANDAL2/src/SANDAL2.c.o
+File '/home/baptiste/Programmation/C/Librairies/SANDAL2/src/SANDAL2.c'
+Lines executed:20.61% of 723
+Creating 'SANDAL2.c.gcov'
+
