@@ -133,7 +133,6 @@ void click(Element * this){
      puts("Clicked !");
 }
 ```
-You can download this code [here](https://github.com/Klevh/SANDAL2/raw/master/downloadable/events.zip).
   
 They are some events that I did not mentioned but here is a list of all the one you can use :
 * action : done each updateWindow() call
@@ -143,6 +142,7 @@ They are some events that I did not mentioned but here is a list of all the one 
 * keyReleased : each time you release a key
 * unSelect : each time your element is unselected (you click or unclick elsewhere)
 * endSprite : each time an animation end (we will see animations later)
+* endAction : end of all actions bound to an element (see chapter about [actions](action_list_element.md)
 
 
 If you want to modify your element further, go to the [Element's documentation](https://klevh.github.io/SANDAL2_Documentation/Element_8h.html).

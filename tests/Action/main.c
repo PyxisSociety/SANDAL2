@@ -107,6 +107,53 @@ TEST_SECTION(ListAction){
         // freeing list
         freeListAction(pla);
     }
+
+    TEST_CASE(Modification){
+        // fake list
+        ListAction la = {0};
+        ListAction toAdd = {0};
+        int i;
+        ActionNode * last = NULL;
+        long long id;
+
+        // insertion
+        REQUIRE(addActionAtEndAction(NULL, NULL) < 0);
+        REQUIRE(addActionAtEndAction(&la, NULL) < 0);
+        REQUIRE(addActionAtEndAction(NULL, &toAdd) < 0);
+        
+        for(i = 0; i < 3; ++i){
+            id = addActionAtEndAction(&la, &toAdd);
+            REQUIRE(id >= 0);
+
+            last = la.first;
+            while(last && id){
+                last = last->next;
+                --id;
+            }
+            REQUIRE(!id);
+            REQUIRE_NOT_NULL(last);
+        }
+
+        // deletion
+        int ids[] = {1, 1, 0};
+        
+        REQUIRE(!delActionToAction(&la, 42));
+        REQUIRE(!delActionToAction(&la, -32));
+        REQUIRE(!delActionToAction(NULL, 0));
+        
+        for(i = 0; i < 3; ++i){
+            REQUIRE(delActionToAction(&la, ids[i]));
+
+            id = 2 - i;
+            last = la.first;
+            while(last && id){
+                last = last->next;
+                --id;
+            }
+            REQUIRE(!id);
+            REQUIRE(last == NULL);
+        }
+    }
 }
 
 

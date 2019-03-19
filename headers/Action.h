@@ -103,23 +103,37 @@ void freeListAction(ListAction * action);
 int executeListAction(ListAction * action, struct Element * e, float time);
 /**
  * @brief Generate a list of chained action (the nth action execute after the (n - 1)th ended)
- * @param action... : all list action of the list, needs to end by NULL. Passing the result of generateChainedAction() as one of its parameters will cause errors when executing them
+ * @param action... : all list action of the list, needs to end by NULL
  * @return the first action passed as parameter of action... after setting its chained actions
  */
 ListAction * generateChainedAction(ListAction * action, ...);
 /**
  * @brief Generate a list of parallel action
- * @param action... : all list action of the list, needs to end by NULL. Passing the result of generateParallelAction() as one of its parameters will cause errors when executing them
+ * @param action... : all list action of the list, needs to end by NULL
  * @return the first action passed as parameter of action... after setting its parallel actions
  */
 ListAction * generateParallelAction(ListAction * action, ...);
 /**
  * @brief Tells that the action should run forever or not (by default, an action does not run forever)
- * @param action: action to be modified
- * @param isForever: flag to set to the action
+ * @param action : action to be modified
+ * @param isForever : flag to set to the action
  * @return the action parameter
  */
 ListAction * setForeverAction(ListAction * action, int isForever);
+/**
+ * @brief add an action at the end of another one
+ * @param action : action to add another one to
+ * @param toAdd : action to be added, it will be freed if the add succeeded
+ * @return the index of the action added in the action list if it was added, -1 if it could not
+ */
+long long addActionAtEndAction(ListAction * action, ListAction * toAdd);
+/**
+ * @brief remove an action inside another
+ * @param action : action to be modified
+ * @param index : index of the action to be removed
+ * @return 1 if it failed, 0 if not
+ */
+int delActionToAction(ListAction * action, long long index);
 /* ------------------------------------------------------- */
 
 

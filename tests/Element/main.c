@@ -418,6 +418,23 @@ TEST_SECTION(Element){
 	REQUIRE(!delCharEntry(&e));
 	REQUIRE(!strcmp(e.font->text, "coucou                             "),
 		"%s\n", e.font->text);
+
+        // add action
+        ListAction la = {0};
+        REQUIRE(addActionToElement(NULL, NULL) < 0);
+        REQUIRE(addActionToElement(NULL, &la) < 0);
+        REQUIRE(addActionToElement(&e, NULL) < 0);
+        REQUIRE(addActionToElement(&e, &la) == 0);
+        REQUIRE(addActionToElement(&e, &la) == 1);
+        REQUIRE(addActionToElement(&e, &la) == 2);
+
+        // del action
+        REQUIRE(delActionToElement(NULL, 0));
+        REQUIRE(delActionToElement(&e, -38));
+        REQUIRE(delActionToElement(&e, 42));
+        REQUIRE(!delActionToElement(&e, 1));
+        REQUIRE(!delActionToElement(&e, 1));
+        REQUIRE(!delActionToElement(&e, 0));
     }
 
     if(e.codes){
@@ -436,6 +453,10 @@ TEST_SECTION(Element){
     if(e.interactions){
 	free(e.interactions);
 	e.interactions = NULL;
+    }
+    if(e.actions){
+        freeListAction(e.actions);
+        e.actions = NULL;
     }
     if(e.hitboxes){
 	freeListClickable(e.hitboxes);

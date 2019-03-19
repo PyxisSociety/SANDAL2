@@ -33,9 +33,11 @@ ListAction * otherAction = setForeverAction(initAction(actionFunction, duration)
 
 Note that `setDataAction` and `setForeverAction` return the action passed as their first parameter to enable one line such as shown upon.
 
+An element has a collection of actions that can be done in parallel. You can add or delete them with `addActionToElement` and `delActionToElement`. See the code in the next subchapter to see an example.
+
 ## Pre made automatic actions
 
-The following code show some simple availables pre made actions that you can use as is:
+The following code show some simple availables pre made actions that you can use as is, and all functionnality that we spoke of in the previous subchapter:
 
 ```c
 #include <stdio.h>
@@ -118,20 +120,20 @@ void endAction1(Element * e){
         e,
         generateParallelAction(
             generateChainedAction(
-                scaleByAction(-0.5, 0, 2),
-                scaleByAction(1, 0, 2),
+                scaleByAction(-0.5, 0, 1),
+                scaleByAction(1, 0, 1),
                 NULL),
             generateChainedAction(
-                scaleToAction(0, h / 2, 2),
-                scaleToAction(0, h, 2),
+                scaleToAction(0, h / 2, 1),
+                scaleToAction(0, h, 1),
                 NULL),
             generateChainedAction(
-                moveByAction(w / 4, 0, 2),
-                moveByAction(-w / 4, 0, 2),
+                moveByAction(w / 4, 0, 1),
+                moveByAction(-w / 4, 0, 1),
                 NULL),
             generateChainedAction(
-                moveToAction(0, y + h / 4, 2),
-                moveToAction(0, y, 2),
+                moveToAction(0, y + h / 4, 1),
+                moveToAction(0, y, 1),
                 NULL),
             NULL)
         );
@@ -152,6 +154,7 @@ void endAction2(Element * e){
 
 void endAction3(Element * e){
     float h;
+    long long id;
     
     getHeightElement(e, &h);
     
@@ -163,6 +166,19 @@ void endAction3(Element * e){
             rotateToAction(0, 2),
             NULL)
         );
+
+    id = addActionToElement(e, scaleByAction(10, 10, 4));
+
+    addActionToElement(
+        e,
+        generateChainedAction(
+            moveByAction(-100, 0, 2),
+            moveByAction(100, 0, 2),
+            NULL)
+        );
+
+    // if you see the element being over sized, this line failed
+    delActionToElement(e, id);
 }
 
 void endAction4(Element * e){

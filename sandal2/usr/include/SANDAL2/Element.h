@@ -1,9 +1,5 @@
 #ifndef ELEMENTSDL2_SANDAL2_KLEVH
 #define ELEMENTSDL2_SANDAL2_KLEVH
-
-#ifdef __cplusplus
-extern "C" {
-#endif
     
 #include "Clickable.h"
 #include "Font.h"
@@ -905,6 +901,20 @@ int setActionListElement(Element * e, ListAction * actions);
  * @return 1 if there was an error, 0 if not
  */
 int setAlphaElement(Element * e, int alpha);
+/**
+ * @brief add an action at the end of the element action list
+ * @param e : element to add the action to
+ * @param action : action to be added, it will be freed if the add succeeded
+ * @return the index of the action added in the action list if it was added, -1 if it could not
+ */
+long long addActionToElement(Element * e, ListAction * action);
+/**
+ * @brief remove an action of the element action list
+ * @param e : element to be modified
+ * @param index : index of the action to be removed
+ * @return 1 if it failed, 0 if not
+ */
+int delActionToElement(Element * e, long long index);
 /* ------------------------------------------------------- */
 
 
@@ -924,13 +934,6 @@ int initIteratorElement(Element *e);
  * @return the current element
  */
 Element* nextIteratorElement(Element *e);
-/**
- * @brief Add an action to an element (can't be removed until its finished)
- * @param e : element to be modified
- * @param action : action to be added to the element
- * @return 1 if it succeeded, 0 if not
- */
-int addActionToElement(Element * e, Action * action);
 /* ------------------------------------------------------- */
 
 
@@ -985,9 +988,5 @@ int addCharEntry(Element *e,char c);
  */
 int delCharEntry(Element *e);
 /* ------------------------------------------------------- */
-
-#ifdef __cplusplus
-}
-#endif
     
 #endif

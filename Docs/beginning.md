@@ -39,7 +39,6 @@ int main(){
     return 0;
 }
 ```
-You can download this code [here](https://github.com/Klevh/SANDAL2/raw/master/downloadable/beginning1.zip).
 
 ```c
 #include <stdio.h>
@@ -58,7 +57,6 @@ int main(){
     return 0;
 }
 ```
-You can download this code [here](https://github.com/Klevh/SANDAL2/raw/master/downloadable/beginning2.zip).
   
 The first method has the advantage that the image and text initialisations can be omitted if you do not use those features while the second one is way shorter.
 
@@ -94,7 +92,6 @@ int main(){
     return 0;
 }
 ```
-You can download this code [here](https://github.com/Klevh/SANDAL2/raw/master/downloadable/first_window.zip).
   
 &nbsp;&nbsp;&nbsp;Options can be :
 * SDL_WINDOW_FULLSCREEN : fullscreen window

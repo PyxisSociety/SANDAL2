@@ -165,7 +165,6 @@ int main(){
     return 0;
 }
 ```
-You can download this code [here](https://github.com/Klevh/SANDAL2/raw/master/downloadable/element.zip).
 
 With all that, you can create a lot of different elements and ... do nothing with it.
 

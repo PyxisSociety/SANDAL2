@@ -1880,6 +1880,11 @@ int setActionListElement(Element * e, ListAction * actions){
         if(e->actions){
             freeListAction(e->actions);
         }
+        if(actions && !actions->isParallel){
+#ifndef DEBUG_SDL2_NO_VIDEO
+            actions = generateParallelAction(actions, NULL);
+#endif
+        }
         e->actions = actions;
     }
 
@@ -1903,6 +1908,31 @@ int setAlphaElement(Element * e, int alpha){
         }
 
         e->coulBlock[3] = alpha;
+    }
+
+    return error;
+}
+
+long long addActionToElement(Element * e, ListAction * action){
+    long long id = -1;
+
+    if(e && action){
+        if(!e->actions){
+            e->actions = generateParallelAction(action, NULL);
+            id = 0;
+        }else{
+            id = addActionAtEndAction(e->actions, action);
+        }
+    }
+
+    return id;
+}
+
+int delActionToElement(Element * e, long long index){
+    int error = 1;
+
+    if(e){
+        error = delActionToAction(e->actions, index);
     }
 
     return error;

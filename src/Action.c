@@ -289,6 +289,69 @@ ListAction * setForeverAction(ListAction * action, int isForever){
 
     return action;
 }
+
+long long addActionAtEndAction(ListAction * action, ListAction * toAdd){
+    long long     index = -1;
+    ActionNode ** node;
+    ActionNode  * newNode;
+    
+    if(action && toAdd){
+        newNode = malloc(sizeof(*newNode));
+
+        if(newNode){
+            newNode->isList = 1;
+            newNode->isFinished = 0;
+
+            newNode->action.list.first      = toAdd->first;
+            newNode->action.list.isParallel = toAdd->isParallel;
+            newNode->action.list.isForever  = toAdd->isForever;
+            newNode->next = NULL;
+#ifndef DEBUG_SDL2_NO_VIDEO
+            free(toAdd);
+#endif
+        
+            index = 0;
+            node = &(action->first);
+            while(*node){
+                ++index;
+                node = &((*node)->next);
+            }
+
+            *node = newNode;
+        }
+    }
+
+    return index;
+}
+
+int delActionToAction(ListAction * action, long long index){
+    ActionNode ** node;
+    ActionNode  * tmp;
+    int           succeeded = 0;
+
+    if(action && index >= 0){
+        node = &(action->first);
+        while(*node && index){
+            --index;
+            node = &((*node)->next);
+        }
+
+        if(*node){
+            succeeded = 1;
+            tmp = *node;
+            *node = (*node)->next;
+            tmp->next = NULL;
+            if(tmp->isList){
+                freeActionNode(tmp->action.list.first);
+            }else if(tmp->action.action.shouldBeFreed && tmp->action.action.data){
+                free(tmp->action.action.data);
+            }
+            free(tmp);
+        }
+    }
+
+    return !succeeded;
+}
 /* ------------------------------------------------------- */
 
 
