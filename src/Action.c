@@ -93,13 +93,16 @@ void freeListAction(ListAction * action){
 }
 
 static int executeOneAction(Action * action, struct Element * e, float time){
+    // incrementing time
+    action->timeSpent += time;
+    if(action->timeSpent > action->timing){
+        action->timeSpent = action->timing;
+    }
+    
     // doing behavior, if any
     if(action->action){
         action->action(e, action->data, action->timeSpent + time);
     }
-
-    // incrementing time
-    action->timeSpent += time;
 
     return action->timing <= action->timeSpent;
 }

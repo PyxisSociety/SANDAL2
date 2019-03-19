@@ -4,13 +4,101 @@ before_script:
  - apt-get update -qq
  - apt-get install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev -y
  - export XDG_RUNTIME_DIR="$(mktemp -p $(pwd) -d xdg-runtime-XXXXXX)"
- - apt-get install bc -y
  - apt-get install cmake -y
- - apt-get install wget -y
 
-tests:
+test_action:
     script:
-        - tests/build.sh
-        - tests/run.sh
+        - cd tests/Action
+        - make
+        - ../run.sh
+    artifacts:
+        paths:
+            - tests/Action/cov.txt
     stage: test
+
+test_click:
+    script:
+        - cd tests/Clickable
+        - make
+        - ../run.sh
+    artifacts:
+        paths:
+            - tests/Clickable/cov.txt
+    stage: test
+
+test_dc:
+    script:
+        - cd tests/DisplayCode
+        - make
+        - ../run.sh
+    artifacts:
+        paths:
+            - tests/DisplayCode/cov.txt
+    stage: test
+
+test_element:
+    script:
+        - cd tests/Element
+        - make
+        - ../run.sh
+    artifacts:
+        paths:
+            - tests/Element/cov.txt
+    stage: test
+
+test_font:
+    script:
+        - cd tests/Font
+        - make
+        - ../run.sh
+    artifacts:
+        paths:
+            - tests/Font/cov.txt
+    stage: test
+
+test_sandal2:
+    script:
+        - cd tests/SANDAL2
+        - make
+        - ../run.sh
+    artifacts:
+        paths:
+            - tests/SANDAL2/cov.txt
+    stage: test
+
+test_sprite:
+    script:
+        - cd tests/Sprite
+        - make
+        - ../run.sh
+    artifacts:
+        paths:
+            - tests/Sprite/cov.txt
+    stage: test
+
+test_window:
+    script:
+        - cd tests/Window
+        - make
+        - ../run.sh
+    artifacts:
+        paths:
+            - tests/Window/cov.txt
+    stage: test
+
+coverage:
+    script:
+        - apt-get install bc -y
+        - cd tests
+        - ./coverage.sh
+    stage: deploy
+    dependencies:
+        - test_action
+        - test_click
+        - test_dc
+        - test_element
+        - test_font
+        - test_sandal2
+        - test_sprite
+        - test_window
     coverage: /coverage[:] ([0-9,\.]+%)/
