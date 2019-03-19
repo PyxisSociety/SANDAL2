@@ -27,7 +27,3 @@ build/*
 */build/*
 */*/build/
 */*/build/*
-
-# gitlab yml file auto generation
-yml_build.sh
-*.yml.template

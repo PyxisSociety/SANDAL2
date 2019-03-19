@@ -1,0 +1,31 @@
+image: gcc
+
+before_script:
+ - apt-get update -qq
+ - apt-get install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev -y
+ - export XDG_RUNTIME_DIR="$(mktemp -p $(pwd) -d xdg-runtime-XXXXXX)"
+ - apt-get install cmake -y
+
+BEGIN
+
+test_@ENTITY@:
+    script:
+        - cd tests/@ENTITY@
+        - make
+        - ../run.sh
+    artifacts:
+        paths:
+            - tests/@ENTITY@/cov.txt
+    stage: test
+
+END
+
+coverage:
+    script:
+        - apt-get install bc -y
+        - cd tests
+        - ./coverage.sh
+    stage: deploy
+    dependencies:
+        - ENTITY_LIST(test_@ENTITY@)
+    coverage: /coverage[:] ([0-9,\.]+%)/
