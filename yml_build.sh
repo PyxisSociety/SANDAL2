@@ -1,6 +1,6 @@
 #!/bin/bash
 
-template_file=".gitlab-ci.yml.template"
+template_file="gitlab-ci.yml.template"
 final_file=".gitlab-ci.yml"
 
 if [ -f "${template_file}" ]; then
