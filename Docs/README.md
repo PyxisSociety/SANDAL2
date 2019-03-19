@@ -77,21 +77,22 @@ From this "read-me", you can either go to :
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Updating makefile to hide some command executed (copy of documentation in package)<br/>
 1.4.0 : adding Action.h/.c to help handle basic actions on elements<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adding pre made actions<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adding a 'forever' mode for an action list<br/>
 
 ## Project's size
 
-Action.c      : 537 lines<br/>
+Action.c      : 661 lines<br/>
 Clickable.c   : 349 lines<br/>
 DisplayCode.c : 80 lines<br/>
-Element.c     : 2,061 lines<br/>
+Element.c     : 2,067 lines<br/>
 Font.c        : 319 lines<br/>
-SANDAL2.c     : 1,212 lines<br/>
+SANDAL2.c     : 1,215 lines<br/>
 Sprite.c      : 344 lines<br/>
 Window.c      : 446 lines<br/>
 <br/>
-Total for source files : 5,348 lines<br/>
+Total for source files : 5,481 lines<br/>
 <br/>
-Action.h      : 275 lines<br/>
+Action.h      : 287 lines<br/>
 Clickable.h   : 230 lines<br/>
 DisplayCode.h : 78 lines<br/>
 Element.h     : 993 lines<br/>
@@ -100,11 +101,11 @@ SANDAL2.h     : 217 lines<br/>
 Sprite.h      : 195 lines<br/>
 Window.h      : 334 lines<br/>
 <br/>
-Total for header files : 2,437 lines<br/>
+Total for header files : 2,449 lines<br/>
 <br/>
-Total without tests : 7,785 lines<br/>
+Total without tests : 7,930 lines<br/>
 <br/>
-tests for Action      : 181 lines<br/>
+tests for Action      : 182 lines<br/>
 tests for Clickable   : 274 lines<br/>
 tests for DisplayCode : 67 lines<br/>
 tests for Element     : 774 lines<br/>
@@ -113,7 +114,7 @@ tests for SANDAL2     : 91 lines<br/>
 tests for Sprite      : 216 lines<br/>
 tests for Window      : 182 lines<br/>
 <br/>
-Total for test files : 1900 lines<br/>
+Total for test files : 1901 lines<br/>
 <br/>
 <br/>
-Total with tests : 9,685 lines<br/>
+Total with tests : 9,831 lines<br/>

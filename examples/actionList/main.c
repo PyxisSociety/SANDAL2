@@ -35,7 +35,10 @@ int main(){
 
             /* definition des comportements de l'element */
             action[i * 2 + j](objet);
-            setEndActionElement(objet, action[i * 2 + j]);
+            if(action[i * 2 + j] != endAction2){
+                printf("Setting end action event for element %d\n", i * 2 + j);
+                setEndActionElement(objet, action[i * 2 + j]);
+            }
         }
     }
     
@@ -98,11 +101,11 @@ void endAction2(Element * e){
     float h;
     
     getHeightElement(e, &h);
-    
+
     /* creating the action list and passing it to the element */
     setActionListElement(
         e,
-        rotateByAction(360, 2)
+        setForeverAction(rotateByAction(360, 2), 1)
         );
 }
 

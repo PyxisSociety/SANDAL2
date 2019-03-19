@@ -49,9 +49,13 @@ typedef struct ActionNode {
         Action action;
         ListAction list;
     } action;
+    /**< action of the node (either an actual action or a list of actions) */
     int isList;
+    /**< tells whether the node is an actual action or a list of actions */
     int isFinished;
+    /**< tells whether or not the node is finished */
     struct ActionNode * next;
+    /**< next node of the action list */
 } ActionNode;
 
 
@@ -109,6 +113,13 @@ ListAction * generateChainedAction(ListAction * action, ...);
  * @return the first action passed as parameter of action... after setting its parallel actions
  */
 ListAction * generateParallelAction(ListAction * action, ...);
+/**
+ * @brief Tells that the action should run forever or not (by default, an action does not run forever)
+ * @param action: action to be modified
+ * @param isForever: flag to set to the action
+ * @return the action parameter
+ */
+ListAction * setForeverAction(ListAction * action, int isForever);
 /* ------------------------------------------------------- */
 
 

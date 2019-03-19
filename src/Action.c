@@ -112,6 +112,8 @@ static void rewindListAction(ListAction * action){
 
         if(node->isList){
             rewindListAction(&(node->action.list));
+        }else{
+            node->action.action.timeSpent = 0.f;
         }
 
         node = node->next;
@@ -275,6 +277,14 @@ ListAction * generateParallelAction(ListAction * action, ...){
     va_end(vl);
 
     return result;
+}
+
+ListAction * setForeverAction(ListAction * action, int isForever){
+    if(action){
+        action->isForever = isForever;
+    }
+
+    return action;
 }
 /* ------------------------------------------------------- */
 

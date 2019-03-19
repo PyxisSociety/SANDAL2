@@ -24,6 +24,10 @@ TEST_SECTION(Action){
     REQUIRE(la->first->action.action.shouldBeFreed == 1);
     REQUIRE(la->first->action.action.data == (void*)1);
 
+    // set forever
+    REQUIRE(la == setForeverAction(la, 1));
+    REQUIRE(la->isForever == 1);
+
     // free action
     la->first->action.action.shouldBeFreed = 0;
     freeListAction(la);

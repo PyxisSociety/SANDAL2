@@ -15,14 +15,23 @@ An action function needs to have to following prototype: `void(Element * element
 
 You then can generate an action like this:
 ```c
-Action * action = initAction(actionFunction, duration);
+ListAction * action = initAction(actionFunction, duration);
 //optional: setDataAction(action, data, 0); // 0 means data should not be freed when the action is destroied
-ListAction * listAction = actionAsList(action);
 
 // one line equivalent
-ListAction * otherListAction = actionAsList(setDataAction(initAction(actionFunction, duration), data, 0));
+ListAction * otherAction = setDataAction(initAction(actionFunction, duration), data, 0);
 ```
-Note that `setDataAction` returns the action passed as its first parameter to enable one line such as shown upon.
+
+You can also tells that an action should never end. When you do so, the action list will start back when it has finished all its actions. You can do so by simply using the `setForeverAction` function as shown bellow.
+```c
+ListAction * action = initAction(actionFunction, duration);
+//optional: setForeverAction(action, 1);
+
+// one line equivalent
+ListAction * otherAction = setForeverAction(initAction(actionFunction, duration), 1);
+```
+
+Note that `setDataAction` and `setForeverAction` return the action passed as their first parameter to enable one line such as shown upon.
 
 ## Pre made automatic actions
 
@@ -66,7 +75,10 @@ int main(){
 
             /* definition des comportements de l'element */
             action[i * 2 + j](objet);
-            setEndActionElement(objet, action[i * 2 + j]);
+            if(action[i * 2 + j] != endAction2){
+                printf("Setting end action event for element %d\n", i * 2 + j);
+                setEndActionElement(objet, action[i * 2 + j]);
+            }
         }
     }
     
@@ -129,11 +141,11 @@ void endAction2(Element * e){
     float h;
     
     getHeightElement(e, &h);
-    
+
     /* creating the action list and passing it to the element */
     setActionListElement(
         e,
-        rotateByAction(360, 2)
+        setForeverAction(rotateByAction(360, 2), 1)
         );
 }
 
