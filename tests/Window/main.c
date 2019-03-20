@@ -76,8 +76,11 @@ TEST_SECTION(Window){
 	// set unclick
 	TEST_ACTION(UnClick, unClick);
 
-	// set wheel
-	TEST_ACTION(Wheel, wheel);
+	// set onWheel
+	TEST_ACTION(OnWheel, onWheel);
+
+	// set onMouseMotion
+	TEST_ACTION(OnMouseMotion, onMouseMotion);
 
 	// set on focused
 	TEST_ACTION(OnFocused, onFocus);

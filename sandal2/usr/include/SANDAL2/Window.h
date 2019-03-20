@@ -53,12 +53,14 @@ typedef struct{
     /**< function called when a key is pressed*/
     void (*keyReleased)(SDL_Keycode c);
     /**< function called when a key is released*/
-    void (*wheel)(int);
+    void (*onWheel)(int);
     /**< function called when a wheel motion occures */
     void (*onFocus)(void);
     /**< function called when window gain focus */
     void (*unFocus)(void);
     /**< function called when window lose focus */
+    void (*onMouseMotion)(int, int);
+    /**< function called when the mouse move on the window */
 }EventWindow;
 
 /**
@@ -265,10 +267,16 @@ int setOnClickWindow(void (*onCLick)(int));
 int setUnClickWindow(void (*unCLick)(int));
 /**
  * @brief set behavior of window when a wheel event occure
+ * @param onWheel : function to be called when a wheel event occure
+ * @return 1 if it failed, 0 if not
+ */
+int setOnWheelWindow(void (*onWheel)(int));
+/**
+ * @brief set behavior of window when a wheel event occure
  * @param wheel : function to be called
  * @return 1 if it failed, 0 if not
  */
-int setWheelWindow(void (*wheel)(int));
+int setOnMouseMotionWindow(void (*onMouseMotion)(int, int));
 /**
  * @brief set behavior of window when the window gain focus
  * @param onFocus : function to be called

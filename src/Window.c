@@ -341,12 +341,23 @@ int setUnClickWindow(void (*unClick)(int)){
     return error;
 }
 
-int setWheelWindow(void (*wheel)(int)){
+int setOnWheelWindow(void (*onWheel)(int)){
     int error = 1;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
 	error = 0;
-	_windows_SANDAL2->current->events.wheel=wheel;
+	_windows_SANDAL2->current->events.onWheel = onWheel;
+    }
+
+    return error;
+}
+
+int setOnMouseMotionWindow(void (*onMouseMotion)(int, int)){
+    int error = 1;
+
+    if(_windows_SANDAL2 && _windows_SANDAL2->current){
+        error = 0;
+        _windows_SANDAL2->current->events.onMouseMotion = onMouseMotion;
     }
 
     return error;

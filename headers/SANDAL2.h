@@ -148,11 +148,18 @@ int keyPressedWindow(int c);
  */
 int keyReleasedWindow(int c);
 /**
- * @brief activation of the mouseWheel event on the window
+ * @brief activate the mouse motion events on the current window
+ * @param x : new x coordinate of the mouse
+ * @param y : new y coordinate of the mouse
+ * @return 1 if it failed, 0 if not
+ */
+int onMouseMotionWindow(int x, int y);
+/**
+ * @brief activation of the mouseWheel event on the current window
  * @param y : direction of the wheel
  * @return 1 if it failed, 0 if not
  */
-int wheelWindow(int y);
+int onWheelWindow(int y);
 /**
  * @brief activation of the gaining focus event
  * @return 1 if it faied, 0 if not
@@ -173,30 +180,6 @@ unsigned long updateAllWindow(void);
  * @return 0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one
  */
 unsigned long displayAllWindow(void);
-/**
- * @brief activation of click events on all the windows
- * @param button : Event informations of the button
- * @return 0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one
- */
-unsigned long clickAllWindow(SDL_MouseButtonEvent button);
-/**
- * @brief activation of unclick events on all the windows
- * @param button : Event informations of the button
- * @return 0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one
- */
-unsigned long unclickAllWindow(SDL_MouseButtonEvent button);
-/**
- * @brief activation of the key pressed events on all windows
- * @param c : key which was pressed
- * @return 0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one
- */
-unsigned long keyPressedAllWindow(char c);
-/**
- * @brief activation of the key released events on all windows
- * @param c : key which was released
- * @return 0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one
- */
-unsigned long keyReleasedAllWindow(char c);
 /* ------------------------------------------------------- */
 
 /* ------------------------------------------------------- 
