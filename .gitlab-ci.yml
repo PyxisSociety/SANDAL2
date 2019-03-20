@@ -8,6 +8,7 @@ before_script:
 
 
 
+
 test_Action:
     script:
         - cd tests/Action
@@ -17,8 +18,6 @@ test_Action:
         paths:
             - tests/Action/cov.txt
     stage: test
-
-
 
 
 test_Clickable:
@@ -32,8 +31,6 @@ test_Clickable:
     stage: test
 
 
-
-
 test_DisplayCode:
     script:
         - cd tests/DisplayCode
@@ -43,8 +40,6 @@ test_DisplayCode:
         paths:
             - tests/DisplayCode/cov.txt
     stage: test
-
-
 
 
 test_Element:
@@ -58,8 +53,6 @@ test_Element:
     stage: test
 
 
-
-
 test_Font:
     script:
         - cd tests/Font
@@ -69,8 +62,6 @@ test_Font:
         paths:
             - tests/Font/cov.txt
     stage: test
-
-
 
 
 test_SANDAL2:
@@ -84,8 +75,6 @@ test_SANDAL2:
     stage: test
 
 
-
-
 test_Sprite:
     script:
         - cd tests/Sprite
@@ -97,8 +86,6 @@ test_Sprite:
     stage: test
 
 
-
-
 test_Window:
     script:
         - cd tests/Window
@@ -108,7 +95,6 @@ test_Window:
         paths:
             - tests/Window/cov.txt
     stage: test
-
 
 
 coverage:

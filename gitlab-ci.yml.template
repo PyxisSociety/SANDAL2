@@ -6,8 +6,9 @@ before_script:
  - export XDG_RUNTIME_DIR="$(mktemp -p $(pwd) -d xdg-runtime-XXXXXX)"
  - apt-get install cmake -y
 
-BEGIN
 
+
+@BEGIN@
 test_@ENTITY@:
     script:
         - cd tests/@ENTITY@
@@ -17,8 +18,7 @@ test_@ENTITY@:
         paths:
             - tests/@ENTITY@/cov.txt
     stage: test
-
-END
+@END@
 
 coverage:
     script:
@@ -27,5 +27,5 @@ coverage:
         - ./coverage.sh
     stage: deploy
     dependencies:
-        - ENTITY_LIST(test_@ENTITY@)
+        - @ENTITY_LIST(test_@ENTITY@)
     coverage: /coverage[:] ([0-9,\.]+%)/

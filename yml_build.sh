@@ -3,6 +3,12 @@
 template_file="gitlab-ci.yml.template"
 final_file=".gitlab-ci.yml"
 
+BEGIN_MARK="@BEGIN@"
+END_MARK="@END@"
+ENTITY_MARK="@ENTITY@"
+ENTITY_LIST_MARK="@ENTITY_LIST"
+ENTITY_LIST_REGEX="@ENTITY_LIST(.*)"
+
 if [ -f "${template_file}" ]; then
     content=`cat ${template_file}`
     rm -f ${final_file}
@@ -24,28 +30,28 @@ if [ -f "${template_file}" ]; then
     block=""
     IFS=$'\n'
     while read -r line; do
-        if [ "$line" == "BEGIN" ]; then
+        if [ "$line" == "${BEGIN_MARK}" ]; then
             isInBlock=1
-        elif [ "$line" == "END" ]; then
+        elif [ "$line" == "${END_MARK}" ]; then
             isInBlock=0
             for entity in `cat ${entity_file}`; do
                 for bl in "${block}"; do
-                    echo -e "${bl//@ENTITY@/$entity}" >> ${final_file}
+                    echo -e "${bl//${ENTITY_MARK}/$entity}" >> ${final_file}
                 done
                 echo "" >> ${final_file}
             done
             block=""
         elif [ "$isInBlock" == "1" ]; then
             block="${block}\n${line}"
-        elif [[ "${line}" =~ ENTITY_LIST(.*) ]]; then
+        elif [[ "${line}" =~ ${ENTITY_LIST_REGEX} ]]; then
             p1=`echo "${line}" | cut -d'(' -f 1`
-            p1="${p1//ENTITY_LIST/}"
+            p1="${p1//${ENTITY_LIST_MARK}/}"
             p2=`echo "${line}" | cut -d'(' -f 2`
             parameter=`echo "${p2}" | cut -d')' -f 1`
             p2=`echo "${p2}" | cut -d')' -f 2`
             result=""
             for entity in `cat ${entity_file}`; do
-                result="${p1}${parameter//@ENTITY@/$entity}${p2}\n${result}"
+                result="${p1}${parameter//${ENTITY_MARK}/$entity}${p2}\n${result}"
             done
             echo -e "${result}" >> ${final_file}
         else
