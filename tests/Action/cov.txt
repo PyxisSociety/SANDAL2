@@ -1,5 +1,5 @@
 gcov build/CMakeFiles/SANDAL2_test_Action.dir/home/baptiste/Programmation/C/Librairies/SANDAL2/src/Action.c.o
 File '/home/baptiste/Programmation/C/Librairies/SANDAL2/src/Action.c'
-Lines executed:86.08% of 352
+Lines executed:85.05% of 388
 Creating 'Action.c.gcov'
 

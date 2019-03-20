@@ -1,5 +1,5 @@
 gcov build/CMakeFiles/SANDAL2_test_Element.dir/home/baptiste/Programmation/C/Librairies/SANDAL2/src/Element.c.o
 File '/home/baptiste/Programmation/C/Librairies/SANDAL2/src/Element.c'
-Lines executed:92.32% of 1224
+Lines executed:92.41% of 1238
 Creating 'Element.c.gcov'
 
