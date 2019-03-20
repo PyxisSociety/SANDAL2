@@ -117,9 +117,9 @@ int initAllSANDAL2(int imageFlags){
 
 void closeAllSANDAL2(){
     closeAllWindow();
-    IMG_Quit();
-    TTF_Quit();
-    SDL_Quit();
+    closeImageSANDAL2();
+    closeTextSANDAL2();
+    closeSANDAL2();
 }
 
 int initSANDAL2(){
@@ -386,18 +386,18 @@ int toggleFullScreenWindow(void){
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
 	if(_windows_SANDAL2->current->state == SDL_WINDOW_FULLSCREEN){
 	    SDL_SetWindowFullscreen(_windows_SANDAL2->current->window, 0);
-	    _windows_SANDAL2->current->state = 0;
+	    _windows_SANDAL2->current->state &= ~SDL_WINDOW_FULLSCREEN;
 	}else{
 	    SDL_SetWindowFullscreen(_windows_SANDAL2->current->window, SDL_WINDOW_FULLSCREEN);
-	    _windows_SANDAL2->current->state = SDL_WINDOW_FULLSCREEN;
+	    _windows_SANDAL2->current->state |= SDL_WINDOW_FULLSCREEN;
 	}
     }
 
-    return _windows_SANDAL2 && _windows_SANDAL2->current;
+    return !_windows_SANDAL2 || !_windows_SANDAL2->current;
 }
 
 int isFullScreenWindow(void){
-    return _windows_SANDAL2 && _windows_SANDAL2->current && _windows_SANDAL2->current->state == SDL_WINDOW_FULLSCREEN;
+    return _windows_SANDAL2 && _windows_SANDAL2->current && (_windows_SANDAL2->current->state & SDL_WINDOW_FULLSCREEN);
 }
 /* ------------------------------------------------------- */
 
@@ -496,11 +496,11 @@ int updateWindow(){
             }
             _windows_SANDAL2->currentDisplay->ticks = time;
 	    _windows_SANDAL2->currentDisplay->stop = 0;
-            if(_windows_SANDAL2->currentDisplay->close){
-                closeWindow();
-            }else{
-                _cleanElement();
-            }
+        }
+        if(_windows_SANDAL2->currentDisplay->close){
+            closeWindow();
+        }else{
+            _cleanElement();
         }
     }
 
@@ -657,11 +657,11 @@ int clickWindow(SDL_MouseButtonEvent button){
                 }
                 lp=lp->next;
             }
-            if(_windows_SANDAL2->currentDisplay->close){
-                closeWindow();
-            }else
-		_cleanElement();
         }
+        if(_windows_SANDAL2->currentDisplay->close){
+            closeWindow();
+        }else
+            _cleanElement();
     }
 
     return error;
@@ -731,11 +731,11 @@ int onMouseMotion(int x, int y){
                 }
                 lp=lp->next;
             }
-            if(_windows_SANDAL2->currentDisplay->close){
-                closeWindow();
-            }else
-		_cleanElement();
         }
+        if(_windows_SANDAL2->currentDisplay->close){
+            closeWindow();
+        }else
+            _cleanElement();
     }
 
     return error;
@@ -793,11 +793,11 @@ int unclickWindow(SDL_MouseButtonEvent button){
                 }
                 lp=lp->next;
             }
-            if(_windows_SANDAL2->currentDisplay->close){
-                closeWindow();
-            }else
-		_cleanElement();
         }
+        if(_windows_SANDAL2->currentDisplay->close){
+            closeWindow();
+        }else
+            _cleanElement();
     }
 
     return error;
@@ -830,11 +830,11 @@ int keyPressedWindow(int c){
                 }
                 lp=lp->next;
             }
-            if(_windows_SANDAL2->currentDisplay->close){
-                closeWindow();
-            }else
-		_cleanElement();
         }
+        if(_windows_SANDAL2->currentDisplay->close){
+            closeWindow();
+        }else
+            _cleanElement();
     }
 
     return error;
@@ -867,11 +867,11 @@ int keyReleasedWindow(int c){
                 }
                 lp=lp->next;
             }
-            if(_windows_SANDAL2->currentDisplay->close){
-                closeWindow();
-            }else
-		_cleanElement();
         }
+        if(_windows_SANDAL2->currentDisplay->close){
+            closeWindow();
+        }else
+            _cleanElement();
     }
 
     return error;
@@ -937,7 +937,7 @@ unsigned long updateAllWindow(){
     int err;
     int bit = 2;
   
-    if(_windows_SANDAL2){
+    if(_windows_SANDAL2 && _windows_SANDAL2->first){
         error = 0;
         w = _windows_SANDAL2->first;
 	tmp = _windows_SANDAL2->currentDisplay;
@@ -966,7 +966,7 @@ unsigned long displayAllWindow(){
     int err;
     int bit = 2;
   
-    if(_windows_SANDAL2){
+    if(_windows_SANDAL2 && _windows_SANDAL2->first){
         error = 0;
         w = _windows_SANDAL2->first;
 	tmp = _windows_SANDAL2->currentDisplay;
@@ -992,7 +992,7 @@ unsigned long clickAllWindow(SDL_MouseButtonEvent button){
     int err;
     int bit = 2;
   
-    if(_windows_SANDAL2){
+    if(_windows_SANDAL2 && _windows_SANDAL2->first){
         error = 0;
         w = _windows_SANDAL2->first;
 	tmp = _windows_SANDAL2->currentDisplay;
@@ -1021,7 +1021,7 @@ unsigned long unclickAllWindow(SDL_MouseButtonEvent button){
     int err;
     int bit = 2;
   
-    if(_windows_SANDAL2){
+    if(_windows_SANDAL2 && _windows_SANDAL2->first){
         error = 0;
         w = _windows_SANDAL2->first;
 	tmp = _windows_SANDAL2->currentDisplay;
@@ -1050,7 +1050,7 @@ unsigned long keyPressedAllWindow(char c){
     int err;
     int bit = 2;
   
-    if(_windows_SANDAL2){
+    if(_windows_SANDAL2 && _windows_SANDAL2->first){
         error = 0;
         w = _windows_SANDAL2->first;
 	tmp = _windows_SANDAL2->currentDisplay;
@@ -1079,7 +1079,7 @@ unsigned long keyReleasedAllWindow(char c){
     int err;
     int bit = 2;
   
-    if(_windows_SANDAL2){
+    if(_windows_SANDAL2 && _windows_SANDAL2->first){
         error = 0;
         w = _windows_SANDAL2->first;
 	tmp = _windows_SANDAL2->currentDisplay;
