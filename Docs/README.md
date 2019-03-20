@@ -15,7 +15,7 @@ website](https://klevh.github.io/SANDAL2/).
 
 Huge thanks to dabaldassi for the contribution he had for this project : biggest tester, user and promoter of SANDAL2.  
 
-dabaldassi : version 1.2.3  
+[dabaldassi](https://github.com/dabaldassi) : version 1.2.3  
 
 ## Useful links
 

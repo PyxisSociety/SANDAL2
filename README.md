@@ -23,7 +23,7 @@ and tell me (by posting an issue [here](https://github.com/Klevh/SANDAL2/issues/
 
 Huge thanks to dabaldassi for the contribution he had for this project : biggest tester, user and promoter of SANDAL2.  
 
-dabaldassi : version 1.2.3  
+[dabaldassi](https://github.com/dabaldassi) : version 1.2.3  
 
 ## Useful links
 
