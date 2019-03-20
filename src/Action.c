@@ -93,18 +93,27 @@ void freeListAction(ListAction * action){
 }
 
 static int executeOneAction(Action * action, struct Element * e, float time){
+    float ratio;
+    
     // incrementing time
     action->timeSpent += time;
     if(action->timeSpent > action->timing){
         action->timeSpent = action->timing;
     }
+
+    // calculating the ratio
+    if(action->timeSpent + 1e-7 >= action->timing){
+        ratio = 1;
+    }else{
+        ratio = (action->timing - (action->timing - action->timeSpent)) / action->timing;
+    }
     
     // doing behavior, if any
     if(action->action){
-        action->action(e, action->data, action->timeSpent + time);
+        action->action(e, action->data, ratio);
     }
 
-    return action->timing <= action->timeSpent;
+    return ratio >= 1;
 }
 
 static void rewindListAction(ListAction * action){
@@ -368,25 +377,23 @@ void moveByActionFunction(struct Element * e, void * data, float spentTime){
     float   moveY;
     float   x;
     float   y;
-    float   ratio;
     
     if(e && data){
-        ratio = (infos[0] - (infos[0] - spentTime)) / infos[0];
-        moveX = infos[1];
-        moveY = infos[2];
+        moveX = infos[0];
+        moveY = infos[1];
 
-        if(!infos[3] && !infos[4]){
-            getCoordElement(e, infos + 3, infos + 4);
+        if(!infos[2] && !infos[3]){
+            getCoordElement(e, infos + 2, infos + 3);
         }
         
-        x     = infos[3];
-        y     = infos[4];
+        x     = infos[2];
+        y     = infos[3];
 
         if(moveX){
-            setCoordXElement(e, x + moveX * ratio);
+            setCoordXElement(e, x + moveX * spentTime);
         }
         if(moveY){
-            setCoordYElement(e, y + moveY * ratio);
+            setCoordYElement(e, y + moveY * spentTime);
         }
     }
 }
@@ -397,25 +404,23 @@ void moveToActionFunction(struct Element * e, void * data, float spentTime){
     float   newY;
     float   oldX;
     float   oldY;
-    float   ratio;
     
     if(e && data){
-        ratio = (infos[0] - (infos[0] - spentTime)) / infos[0];
-        newX  = infos[1];
-        newY  = infos[2];
+        newX  = infos[0];
+        newY  = infos[1];
 
-        if(!infos[3] && !infos[4]){
-            getCoordElement(e, infos + 3, infos + 4);
+        if(!infos[2] && !infos[3]){
+            getCoordElement(e, infos + 2, infos + 3);
         }
         
-        oldX  = infos[3];
-        oldY  = infos[4];
+        oldX  = infos[2];
+        oldY  = infos[3];
 
         if(newX){
-            setCoordXElement(e, oldX + (newX - oldX) * ratio);
+            setCoordXElement(e, oldX + (newX - oldX) * spentTime);
         }
         if(newY){
-            setCoordYElement(e, oldY + (newY - oldY) * ratio);
+            setCoordYElement(e, oldY + (newY - oldY) * spentTime);
         }
     }
 }
@@ -426,25 +431,23 @@ void scaleByActionFunction(struct Element * e, void * data, float spentTime){
     float   y;
     float   w;
     float   h;
-    float   ratio;
     
     if(e && data){
-        ratio = (infos[0] - (infos[0] - spentTime)) / infos[0];
-        x     = infos[1];
-        y     = infos[2];
+        x     = infos[0];
+        y     = infos[1];
 
-        if(!infos[3] && !infos[4]){
-            getDimensionElement(e, infos + 3, infos + 4);
+        if(!infos[2] && !infos[3]){
+            getDimensionElement(e, infos + 2, infos + 3);
         }
         
-        w     = infos[3];
-        h     = infos[4];
+        w     = infos[2];
+        h     = infos[3];
 
         if(x){
-            setWidthElement(e, w + w * x * ratio);
+            setWidthElement(e, w + w * x * spentTime);
         }
         if(y){
-            setHeightElement(e, h + h * y * ratio);
+            setHeightElement(e, h + h * y * spentTime);
         }
     }
 }
@@ -455,25 +458,23 @@ void scaleToActionFunction(struct Element * e, void * data, float spentTime){
     float   newH;
     float   oldW;
     float   oldH;
-    float   ratio;
     
     if(e && data){
-        ratio = (infos[0] - (infos[0] - spentTime)) / infos[0];
-        newW  = infos[1];
-        newH  = infos[2];
+        newW  = infos[0];
+        newH  = infos[1];
 
-        if(!infos[3] && !infos[4]){
-            getDimensionElement(e, infos + 3, infos + 4);
+        if(!infos[2] && !infos[3]){
+            getDimensionElement(e, infos + 2, infos + 3);
         }
         
-        oldW  = infos[3];
-        oldH  = infos[4];
+        oldW  = infos[2];
+        oldH  = infos[3];
 
         if(newW){
-            setWidthElement(e, oldW + (newW - oldW) * ratio);
+            setWidthElement(e, oldW + (newW - oldW) * spentTime);
         }
         if(newH){
-            setHeightElement(e, oldH + (newH - oldH) * ratio);
+            setHeightElement(e, oldH + (newH - oldH) * spentTime);
         }
     }
 }
@@ -482,18 +483,16 @@ void rotateByActionFunction(struct Element * e, void * data, float spentTime){
     float * infos = (float*)data;
     float   toAdd;
     float   angle;
-    float   ratio;
     
     if(e && data){
-        ratio = (infos[0] - (infos[0] - spentTime)) / infos[0];
-        toAdd = infos[1];
+        toAdd = infos[0];
 
-        if(!infos[2]){
-            getAngleElement(e, infos + 2);
+        if(!infos[1]){
+            getAngleElement(e, infos + 1);
         }
 
-        angle = infos[2];
-        setAngleElement(e, angle + toAdd * ratio);
+        angle = infos[1];
+        setAngleElement(e, angle + toAdd * spentTime);
     }
 }
 
@@ -501,59 +500,53 @@ void rotateToActionFunction(struct Element * e, void * data, float spentTime){
     float * infos = (float*)data;
     float   newAngle;
     float   oldAngle;
-    float   ratio;
     
     if(e && data){
-        ratio    = (infos[0] - (infos[0] - spentTime)) / infos[0];
-        newAngle = infos[1];
+        newAngle = infos[0];
 
-        if(!infos[2]){
-            getAngleElement(e, infos + 2);
+        if(!infos[1]){
+            getAngleElement(e, infos + 1);
         }
         
-        oldAngle = infos[2];
+        oldAngle = infos[1];
 
-        setAngleElement(e, oldAngle + (newAngle - oldAngle) * ratio);
+        setAngleElement(e, oldAngle + (newAngle - oldAngle) * spentTime);
     }
 }
 void fadeInActionFunction(struct Element * e, void * data, float spentTime){
     float * infos = (float*)data;
     int     oldAlpha;
     int     newAlpha;
-    float   ratio;
     
     if(e && data){
-        ratio    = (infos[0] - (infos[0] - spentTime)) / infos[0];
-        newAlpha = (int)infos[1];
+        newAlpha = (int)infos[0];
 
-        if(infos[2] < 0){
+        if(infos[1] < 0){
             getAlphaElement(e, &oldAlpha);
-            infos[2] = (float)oldAlpha;
+            infos[1] = (float)oldAlpha;
         }else{        
-            oldAlpha = infos[2];
+            oldAlpha = infos[1];
         }
 
-        setAlphaElement(e, oldAlpha - newAlpha * ratio);
+        setAlphaElement(e, oldAlpha - newAlpha * spentTime);
     }
 }
 void fadeOutActionFunction(struct Element * e, void * data, float spentTime){
     float * infos = (float*)data;
     int     oldAlpha;
     int     newAlpha;
-    float   ratio;
     
     if(e && data){
-        ratio    = (infos[0] - (infos[0] - spentTime)) / infos[0];
-        newAlpha = (int)infos[1];
+        newAlpha = (int)infos[0];
 
-        if(infos[2] < 0){
+        if(infos[1] < 0){
             getAlphaElement(e, &oldAlpha);
-            infos[2] = (float)oldAlpha;
+            infos[1] = (float)oldAlpha;
         }else{        
-            oldAlpha = infos[2];
+            oldAlpha = infos[1];
         }
         
-        setAlphaElement(e, oldAlpha + newAlpha * ratio);
+        setAlphaElement(e, oldAlpha + newAlpha * spentTime);
     }
 }
 /* ------------------------------------------------------- */
@@ -567,14 +560,13 @@ void fadeOutActionFunction(struct Element * e, void * data, float spentTime){
  */
 ListAction * moveByAction(float x, float y, float time){
     ListAction * result = NULL;
-    float      * data   = malloc(5 * sizeof(*data));
+    float      * data   = malloc(4 * sizeof(*data));
 
     if(data){
-        data[0] = time;
-        data[1] = x;
-        data[2] = y;
+        data[0] = x;
+        data[1] = y;
+        data[2] = 0;
         data[3] = 0;
-        data[4] = 0;
             
         result = setDataAction(initAction(moveByActionFunction, time), data, 1);
         
@@ -588,14 +580,13 @@ ListAction * moveByAction(float x, float y, float time){
 
 ListAction * moveToAction(float x, float y, float time){
     ListAction * result = NULL;
-    float      * data   = malloc(5 * sizeof(*data));
+    float      * data   = malloc(4 * sizeof(*data));
 
     if(data){
-        data[0] = time;
-        data[1] = x;
-        data[2] = y;
+        data[0] = x;
+        data[1] = y;
+        data[2] = 0;
         data[3] = 0;
-        data[4] = 0;
             
         result = setDataAction(initAction(moveToActionFunction, time), data, 1);
         
@@ -609,14 +600,13 @@ ListAction * moveToAction(float x, float y, float time){
 
 ListAction * scaleByAction(float x, float y, float time){
     ListAction * result = NULL;
-    float      * data   = malloc(5 * sizeof(*data));
+    float      * data   = malloc(4 * sizeof(*data));
 
     if(data){
-        data[0] = time;
-        data[1] = x;
-        data[2] = y;
+        data[0] = x;
+        data[1] = y;
+        data[2] = 0;
         data[3] = 0;
-        data[4] = 0;
             
         result = setDataAction(initAction(scaleByActionFunction, time), data, 1);
         
@@ -630,14 +620,13 @@ ListAction * scaleByAction(float x, float y, float time){
 
 ListAction * scaleToAction(float w, float h, float time){
     ListAction * result = NULL;
-    float      * data   = malloc(5 * sizeof(*data));
+    float      * data   = malloc(4 * sizeof(*data));
 
     if(data){
-        data[0] = time;
-        data[1] = w;
-        data[2] = h;
+        data[0] = w;
+        data[1] = h;
+        data[2] = 0;
         data[3] = 0;
-        data[4] = 0;
             
         result = setDataAction(initAction(scaleToActionFunction, time), data, 1);
         
@@ -651,12 +640,11 @@ ListAction * scaleToAction(float w, float h, float time){
 
 ListAction * rotateByAction(float angle, float time){
     ListAction * result = NULL;
-    float      * data   = malloc(3 * sizeof(*data));
+    float      * data   = malloc(2 * sizeof(*data));
 
     if(data){
-        data[0] = time;
-        data[1] = angle;
-        data[2] = 0;
+        data[0] = angle;
+        data[1] = 0;
             
         result = setDataAction(initAction(rotateByActionFunction, time), data, 1);
         
@@ -670,12 +658,11 @@ ListAction * rotateByAction(float angle, float time){
 
 ListAction * rotateToAction(float angle, float time){
     ListAction * result = NULL;
-    float      * data   = malloc(3 * sizeof(*data));
+    float      * data   = malloc(2 * sizeof(*data));
 
     if(data){
-        data[0] = time;
-        data[1] = angle;
-        data[2] = 0;
+        data[0] = angle;
+        data[1] = 0;
             
         result = setDataAction(initAction(rotateToActionFunction, time), data, 1);
         
@@ -692,9 +679,8 @@ ListAction * fadeInAction(int alpha, float time){
     float      * data   = malloc(3 * sizeof(*data));
 
     if(data){
-        data[0] = time;
-        data[1] = (float)alpha;
-        data[2] = -1;
+        data[0] = (float)alpha;
+        data[1] = -1;
             
         result = setDataAction(initAction(fadeInActionFunction, time), data, 1);
         
@@ -711,9 +697,8 @@ ListAction * fadeOutAction(int alpha, float time){
     float      * data   = malloc(3 * sizeof(*data));
 
     if(data){
-        data[0] = time;
-        data[1] = (float)alpha;
-        data[2] = -1;
+        data[0] = (float)alpha;
+        data[1] = -1;
             
         result = setDataAction(initAction(fadeOutActionFunction, time), data, 1);
         

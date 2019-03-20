@@ -137,12 +137,12 @@ TEST_SECTION(ListAction){
         // deletion
         int ids[] = {1, 1, 0};
         
-        REQUIRE(!delActionToAction(&la, 42));
-        REQUIRE(!delActionToAction(&la, -32));
-        REQUIRE(!delActionToAction(NULL, 0));
+        REQUIRE(delActionToAction(&la, 42));
+        REQUIRE(delActionToAction(&la, -32));
+        REQUIRE(delActionToAction(NULL, 0));
         
         for(i = 0; i < 3; ++i){
-            REQUIRE(delActionToAction(&la, ids[i]));
+            REQUIRE(!delActionToAction(&la, ids[i]));
 
             id = 2 - i;
             last = la.first;
@@ -190,90 +190,90 @@ TEST_SECTION(PreMadeAction){
 
 TEST_SECTION(PreMadeActionFunction){
     Element e = {0};
-    float data[] = {2, 0, 0, 0, 0};
+    float data[] = {0, 0, 0, 0};
     e.coulBlock[0] = -1;
 
     // move by
     e.x = 10;
     e.y = 10;
-    data[1] = 10;
-    data[2] = -10;
+    data[0] = 10;
+    data[1] = -10;
+    data[2] = 0;
     data[3] = 0;
-    data[4] = 0;
     moveByActionFunction(&e, (void*)data, 0.5f);
+    EQ(data[2], 10);
     EQ(data[3], 10);
-    EQ(data[4], 10);
-    EQ(e.x, 12.5f);
-    EQ(e.y, 7.5f);
+    EQ(e.x, 15.f);
+    EQ(e.y, 5.f);
     
     // move to
     e.x = 10;
     e.y = 10;
-    data[1] = 20;
-    data[2] = -10;
+    data[0] = 20;
+    data[1] = -10;
+    data[2] = 0;
     data[3] = 0;
-    data[4] = 0;
     moveToActionFunction(&e, (void*)data, 0.5f);
+    EQ(data[2], 10);
     EQ(data[3], 10);
-    EQ(data[4], 10);
-    EQ(e.x, 12.5f);
-    EQ(e.y, 5.f);
+    EQ(e.x, 15.f);
+    EQ(e.y, 0.f);
 
     // scale by
     e.width = 10;
     e.height = 10;
-    data[1] = 1.f;
-    data[2] = -1.f;
+    data[0] = 1.f;
+    data[1] = -1.f;
+    data[2] = 0;
     data[3] = 0;
-    data[4] = 0;
     scaleByActionFunction(&e, (void*)data, 0.5f);
+    EQ(data[2], 10);
     EQ(data[3], 10);
-    EQ(data[4], 10);
-    EQ(e.width, 12.5f);
-    EQ(e.height, 7.5f);
+    EQ(e.width, 15.f);
+    EQ(e.height, 5.f);
 
     // scale to
     e.width = 10;
     e.height = 10;
-    data[1] = 14.f;
-    data[2] = 6.f;
+    data[0] = 14.f;
+    data[1] = 6.f;
+    data[2] = 0;
     data[3] = 0;
-    data[4] = 0;
     scaleToActionFunction(&e, (void*)data, 0.5f);
+    EQ(data[2], 10);
     EQ(data[3], 10);
-    EQ(data[4], 10);
-    EQ(e.width, 11);
-    EQ(e.height, 9);
+    EQ(e.width, 12);
+    EQ(e.height, 8);
 
     // rotate by
     e.rotation = 30;
-    data[1] = 10;
-    data[2] = 0;
+    data[0] = 10;
+    data[1] = 0;
     rotateByActionFunction(&e, (void*)data, 0.5f);
-    EQ(data[2], 30);
-    EQ(e.rotation, 32.5f);
+    EQ(data[1], 30);
+    EQ(e.rotation, 35.f);
 
     // rotate to
     e.rotation = 30;
-    data[1] = 10;
-    data[2] = 0;
+    data[0] = 10;
+    data[1] = 0;
     rotateToActionFunction(&e, (void*)data, 0.5f);
-    EQ(data[2], 30);
-    EQ(e.rotation, 25.f);
+    EQ(data[1], 30);
+    EQ(e.rotation, 20.f);
 
     // fade in
     e.coulBlock[3] = 20;
-    data[1] = 20;
-    data[2] = -1;
+    data[0] = 20;
+    data[1] = -1;
     fadeInActionFunction(&e, (void*)data, 0.5f);
-    EQ(data[2], 20);
-    REQUIRE(e.coulBlock[3] == 15);
+    EQ(data[0], 20);
+    REQUIRE(e.coulBlock[3] == 10);
 
     // fade out
     e.coulBlock[3] = 20;
-    data[1] = 20;
-    data[2] = -1;
+    data[0] = 20;
+    data[1] = -1;
     fadeOutActionFunction(&e, (void*)data, 0.5f);
-    EQ(data[2], 20);
-    REQUIRE(e.coulBlock[3] == 25);
+    EQ(data[1], 20);
+    REQUIRE(e.coulBlock[3] == 30);
 }

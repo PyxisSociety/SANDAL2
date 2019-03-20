@@ -11,7 +11,7 @@ You can define behaviors on your element with a certain timing, for example, you
 An action function needs to have to following prototype: `void(Element * element, void * data, float time)`. Its parameters coresponds to:
 * element: the element to be impacted by the action
 * data: data used during the action
-* time: time spent since the beginning of the action
+* time: time spent since the beginning of the action, in percentage from 0 to 1
 
 You then can generate an action like this:
 ```c

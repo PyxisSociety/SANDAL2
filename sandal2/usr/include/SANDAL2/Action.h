@@ -66,7 +66,7 @@ typedef struct ActionNode {
  */
 /**
  * @brief Create an action based on its behavior and the time it should take
- * @param action : behavior of the action, takes 3 parameters : the element on which it will be applied, the data of the action and the total time elapsed since its beginning
+ * @param action : behavior of the action, takes 3 parameters : the element on which it will be applied, the data of the action and the total time elapsed since its beginning (in percent from 0 to 1)
  * @param timing : duration of the action, it needs to be greater than 0
  * @return the created action (NULL on failure)
  */
@@ -146,81 +146,81 @@ int delActionToAction(ListAction * action, long long index);
 /**
  * @brief function used by moveByAction() and left public to be used in self made action functions
  * @param e : element on which the action is called
- * @param data : a float* array of size 5 casted to void*. It MUST have the following format:
- *               [the duration of the action, the x delta, the y delta, 0, 0]
+ * @param data : a float* array of size 4 casted to void*. It MUST have the following format:
+ *               [the x delta, the y delta, 0, 0]
  *               the last two values MUST be set to 0 before the first call, they will be modified inside the function
  *               those modifications NEEDS to be saved for the following calls
- * @param spentTime : total spent time since the beginning of the action
+ * @param spentTime : total spent time since the beginning of the action (in percent from 0 to 1)
  */
 void moveByActionFunction(struct Element * e, void * data, float spentTime);
 /**
  * @brief function used by moveToAction() and left public to be used in self made action functions
  * @param e : element on which the action is called
- * @param data : a float* array of size 5 casted to void*. It MUST have the following format:
- *               [the duration of the action, the x new value, the y new value, 0, 0]
+ * @param data : a float* array of size 4 casted to void*. It MUST have the following format:
+ *               [the x new value, the y new value, 0, 0]
  *               the last two values MUST be set to 0 before the first call, they will be modified inside the function
  *               those modifications NEEDS to be saved for the following calls
- * @param spentTime : total spent time since the beginning of the action
+ * @param spentTime : total spent time since the beginning of the action (in percent from 0 to 1)
  */
 void moveToActionFunction(struct Element * e, void * data, float spentTime);
 /**
  * @brief function used by scaleByAction() and left public to be used in self made action functions
  * @param e : element on which the action is called
- * @param data : a float* array of size 5 casted to void*. It MUST have the following format:
- *               [the duration of the action, the x scale value, the y scale value, 0, 0]
+ * @param data : a float* array of size 4 casted to void*. It MUST have the following format:
+ *               [the x scale value, the y scale value, 0, 0]
  *               the last two values MUST be set to 0 before the first call, they will be modified inside the function
  *               those modifications NEEDS to be saved for the following calls
- * @param spentTime : total spent time since the beginning of the action
+ * @param spentTime : total spent time since the beginning of the action (in percent from 0 to 1)
  */
 void scaleByActionFunction(struct Element * e, void * data, float spentTime);
 /**
  * @brief function used by scaleToAction() and left public to be used in self made action functions
  * @param e : element on which the action is called
- * @param data : a float* array of size 5 casted to void*. It MUST have the following format:
- *               [the duration of the action, the x scale value, the y scale value, 0, 0]
+ * @param data : a float* array of size 4 casted to void*. It MUST have the following format:
+ *               [the x scale value, the y scale value, 0, 0]
  *               the last two values MUST be set to 0 before the first call, they will be modified inside the function
  *               those modifications NEEDS to be saved for the following calls
- * @param spentTime : total spent time since the beginning of the action
+ * @param spentTime : total spent time since the beginning of the action (in percent from 0 to 1)
  */
 void scaleToActionFunction(struct Element * e, void * data, float spentTime);
 /**
  * @brief function used by rotateByAction() and left public to be used in self made action functions
  * @param e : element on which the action is called
- * @param data : a float* array of size 3 casted to void*. It MUST have the following format:
- *               [the duration of the action, the angle delta, 0]
+ * @param data : a float* array of size 2 casted to void*. It MUST have the following format:
+ *               [the angle delta, 0]
  *               the last value MUST be set to 0 before the first call, it will be modified inside the function
  *               those modifications NEEDS to be saved for the following calls
- * @param spentTime : total spent time since the beginning of the action
+ * @param spentTime : total spent time since the beginning of the action (in percent from 0 to 1)
  */
 void rotateByActionFunction(struct Element * e, void * data, float spentTime);
 /**
  * @brief function used by rotateToAction() and left public to be used in self made action functions
  * @param e : element on which the action is called
- * @param data : a float* array of size 3 casted to void*. It MUST have the following format:
- *               [the duration of the action, the new angle, 0]
+ * @param data : a float* array of size 2 casted to void*. It MUST have the following format:
+ *               [the new angle, 0]
  *               the last value MUST be set to 0 before the first call, it will be modified inside the function
  *               those modifications NEEDS to be saved for the following calls
- * @param spentTime : total spent time since the beginning of the action
+ * @param spentTime : total spent time since the beginning of the action (in percent from 0 to 1)
  */
 void rotateToActionFunction(struct Element * e, void * data, float spentTime);
 /**
  * @brief function used by fadeInAction() and left public to be used in self made action functions
  * @param e : element on which the action is called
- * @param data : a float* array of size 3 casted to void*. It MUST have the following format:
- *               [the duration of the action, the delta to decrement alpha with, -1]
+ * @param data : a float* array of size 2 casted to void*. It MUST have the following format:
+ *               [the delta to decrement alpha with, -1]
  *               the last value MUST be set to -1 before the first call, it will be modified inside the function
  *               those modifications NEEDS to be saved for the following calls
- * @param spentTime : total spent time since the beginning of the action
+ * @param spentTime : total spent time since the beginning of the action (in percent from 0 to 1)
  */
 void fadeInActionFunction(struct Element * e, void * data, float spentTime);
 /**
  * @brief function used by fadeOutAction() and left public to be used in self made action functions
  * @param e : element on which the action is called
- * @param data : a float* array of size 3 casted to void*. It MUST have the following format:
- *               [the duration of the action, the delta to increment alpha with, -1]
+ * @param data : a float* array of size 2 casted to void*. It MUST have the following format:
+ *               [the delta to increment alpha with, -1]
  *               the last value MUST be set to -1 before the first call, it will be modified inside the function
  *               those modifications NEEDS to be saved for the following calls
- * @param spentTime : total spent time since the beginning of the action
+ * @param spentTime : total spent time since the beginning of the action (in percent from 0 to 1)
  */
 void fadeOutActionFunction(struct Element * e, void * data, float spentTime);
 /* ------------------------------------------------------- */
