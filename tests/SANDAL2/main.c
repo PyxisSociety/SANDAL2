@@ -12,10 +12,29 @@ typedef enum{
     MOUSEBUTTONUP,
     MOUSEMOTION,
     MOUSEWHEEL,
+    ACTION,
     COUNT
 } EVENT_MARKERS;
 int markers[COUNT] = {0};
 // -----------
+
+void onFocus(void);
+void unFocus(void);
+void onKeyUp(SDL_Keycode c);
+void onKeyDown(SDL_Keycode c);
+void onClick(int button);
+void unClick(int button);
+void onMouseMotion(int x, int y);
+void onMouseWheel(int y);
+void onAction(void);
+
+void onKeyUpElement(Element * e, SDL_Keycode c);
+void onKeyDownElement(Element * e, SDL_Keycode c);
+void onClickElement(Element * e, int button);
+void unClickElement(Element * e, int button);
+void onMouseMotionElement(Element * e);
+void unMouseMotionElement(Element * e);
+void onActionElement(Element * e);
 
 
 
@@ -88,6 +107,11 @@ TEST_SECTION(WindowEvent){
         TEST_EVENT(MOUSEWHEEL);
         
 #       undef TEST_EVENT
+
+        // action
+        count = markers[ACTION];
+        REQUIRE(!updateWindow());
+        REQUIRE(markers[ACTION] == count + 1);
     }
 
 
@@ -168,14 +192,85 @@ TEST_SECTION(WindowManagement){
 
 
 
-void onFocus(void);
-void unFocus(void);
-void onKeyUp(SDL_Keycode c);
-void onKeyDown(SDL_Keycode c);
-void onClick(int button);
-void unClick(int button);
-void onMouseMotion(int x, int y);
-void onMouseWheel(int y);
+TEST_SECTION(FunctionalTests){
+    int bg[4]  = {0};
+    ONCE REQUIRE(createWindow(100, 100, "w", 0, bg, 0));
+    static Element * e1 = NULL;
+    static Element * e2 = NULL;
+
+    ONCE { // elements creation
+        e1 = createBlock(0, 0, 10, 10, bg, 0, 0);
+        e2 = createBlock(-1, -1, 10, 10, bg, 1, 0);
+    }
+
+    REQUIRE_NOT_NULL(e1);
+    REQUIRE_NOT_NULL(e2);
+
+    ONCE { // elements initialisation
+        setOnClickElement(e2, onClickElement);
+        setUnClickElement(e2, unClickElement);
+        setKeyPressedElement(e2, onKeyDownElement);
+        setKeyReleasedElement(e2, onKeyUpElement);
+        setOnMouseMotionElement(e2, onMouseMotionElement);
+        setActionElement(e2, onActionElement);
+
+        addClickableElement(e2, rectangleClickable(0, 0, 1, 1), 0);
+        e2->rotation = 90.f;
+        e2->coulBlock[0] = -1;
+    }
+
+    ONCE { // graphic parts, ignored by UT
+        displayWindow();
+        displayAllWindow();
+    }
+
+    TEST_CASE(on_window){
+        // set dc on window
+        REQUIRE(!setDisplayCodeWindow(1));
+        REQUIRE(!updateAllWindow());
+        REQUIRE(_windows_SANDAL2->current->current->code == 1);
+    }
+
+    TEST_CASE(on_element){
+        SDL_Event event = {0};
+        int count = 0;
+
+        _windows_SANDAL2->currentDisplay = _windows_SANDAL2->current;
+        
+#       define TEST_EVENT(index)                                        \
+        count = markers[index];                                         \
+        event.type = SDL_##index;                                       \
+        REQUIRE(SDL_PeepEvents(&event, 1, SDL_ADDEVENT, SDL_FIRSTEVENT, SDL_LASTEVENT) >= 0); \
+        REQUIRE(!PollEvent(NULL));                                      \
+        REQUIRE(markers[index] == count + 1,                            \
+                #index " : expected (%d) != result (%d)\n", count + 1, markers[index])
+        
+        // click
+        TEST_EVENT(MOUSEBUTTONDOWN);
+
+        // unclick
+        TEST_EVENT(MOUSEBUTTONUP);
+
+        // onMouse
+        TEST_EVENT(MOUSEMOTION);
+
+        // keyPressed
+        TEST_EVENT(KEYUP);
+
+        // keyReleased
+        TEST_EVENT(KEYDOWN);
+#       undef TEST_EVENT
+
+        // action
+        count = markers[ACTION];
+        REQUIRE(!updateAllWindow());
+        REQUIRE(markers[ACTION] == count + 1);
+    }
+}
+
+
+
+
 
 int main(){
     int rc     = 0;
@@ -196,6 +291,7 @@ int main(){
                 setKeyReleasedWindow(onKeyUp);
                 setOnWheelWindow(onMouseWheel);
                 setOnMouseMotionWindow(onMouseMotion);
+                setActionWindow(onAction);
 	    }
 	}
 
@@ -204,21 +300,11 @@ int main(){
             
             for(i = 0; i < 4 && rc; ++i){
                 rc = createWindow(10, 10, "w", 0, bg, 0);
-                if(rc){
-                    setDataWindow((void*)(data + i));
-                    setOnFocusedWindow(onFocus);
-                    setUnFocusedWindow(unFocus);
-                    setOnClickWindow(onClick);
-                    setUnClickWindow(unClick);
-                    setKeyPressedWindow(onKeyDown);
-                    setKeyReleasedWindow(onKeyUp);
-                    setOnWheelWindow(onMouseWheel);
-                    setOnMouseMotionWindow(onMouseMotion);
-                }
             }
 
             if(rc){
                 RUN_SECTION(WindowManagement);
+                RUN_SECTION(FunctionalTests);
                 rc = 0;
             }else{
                 rc += 10;
@@ -282,4 +368,47 @@ void onMouseMotion(int x, int y){
 void onMouseWheel(int y){
     (void)y;
     ++markers[MOUSEWHEEL];
+}
+
+void onAction(){
+    ++markers[ACTION];
+}
+
+
+
+
+
+void onKeyUpElement(Element * e, SDL_Keycode c){
+    (void)e;
+    onKeyUp(c);
+}
+
+void onKeyDownElement(Element * e, SDL_Keycode c){
+    (void)e;
+    onKeyDown(c);
+}
+
+void onClickElement(Element * e, int button){
+    (void)e;
+    onClick(button);
+}
+
+void unClickElement(Element * e, int button){
+    (void)e;
+    unClick(button);
+}
+
+void onMouseMotionElement(Element * e){
+    (void)e;
+    onMouseMotion(0, 0);
+}
+
+void unMouseMotionElement(Element * e){
+    (void)e;
+    onMouseMotion(0, 0);
+}
+
+void onActionElement(Element * e){
+    (void)e;
+    onAction();
 }
