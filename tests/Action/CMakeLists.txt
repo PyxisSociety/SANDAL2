@@ -16,7 +16,7 @@ MESSAGE(INFO " ${ENTITY}")
 
 # project name
 
-project(SANDAL2_test_${ENTITY} C)
+project(${ENTITY} C)
 
 
 

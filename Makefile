@@ -9,14 +9,14 @@ CC=gcc
 BUILD_TYPE?=Release
 
 
-all:
+all: doc man
 	@rm -rf build
 	@mkdir build
 	@cd build && cmake -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) .. 
 	@cd build && make --no-print-directory
 	@cp build/lib* sandal2/usr/lib
 	@cp headers/*.h sandal2/usr/include/SANDAL2
-	@cp Doxdoc/Doc/man/man3/*.gz sandal2/usr/share/man/man3
+	@cp docs/man/man3/*.gz sandal2/usr/share/man/man3
 	@echo "\033[0;33mThe installation needs sudo rights, CTRL+C to cancel installation\033[0m"
 	@cd build && sudo make install --no-print-directory
 
@@ -30,11 +30,15 @@ package:
 	mv sandal2.deb downloadable
 
 man:
-	(cd Doxdoc/Doc/man/man3; gzip -f *.3$ )
+	(cd docs/man/man3; gzip -f *.3$ )
 
 doc:
+	rm -rf docs/*
+	cp downloadable/pixel.png docs
 	doxygen Doxyfile
-	(cd Doxdoc/Doc/html; git add .; git commit -m "updating doc"; git push)
+	rm -rf docs/latex
+	mv docs/html/* docs
+	rmdir docs/html
 
 install:
 	dpkg -i downloadable/sandal2.deb
