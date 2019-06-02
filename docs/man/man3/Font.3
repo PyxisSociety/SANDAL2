@@ -1,0 +1,49 @@
+.TH "Font" 3 "Sun Jun 2 2019" "SANDAL2" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Font \- Informations about font\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Font\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "TTF_Font * \fBfont\fP"
+.br
+.ti -1c
+.RI "int \fBquality\fP"
+.br
+.ti -1c
+.RI "char * \fBtext\fP"
+.br
+.ti -1c
+.RI "SDL_Color \fBcolor\fP"
+.br
+.ti -1c
+.RI "SDL_Texture * \fBtexture\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Informations about font\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "SDL_Color Font::color"
+color of the text 
+.SS "TTF_Font* Font::font"
+SDL font object 
+.SS "int Font::quality"
+quality of the texture : SANDAL2_SOLID, SANDAL2_SHADED or SANDAL2_BLENDED (same meaning as for SDL2 functions TTF_RenderText_Solid, Shaded or Blended) 
+.SS "char* Font::text"
+text 
+.SS "SDL_Texture* Font::texture"
+SDL texture 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for SANDAL2 from the source code\&.

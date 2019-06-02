@@ -1,0 +1,43 @@
+.TH "Action" 3 "Sun Jun 2 2019" "SANDAL2" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Action
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "float \fBtiming\fP"
+.br
+.ti -1c
+.RI "float \fBtimeSpent\fP"
+.br
+.ti -1c
+.RI "void(* \fBaction\fP )(struct \fBElement\fP *, void *, float)"
+.br
+.ti -1c
+.RI "void * \fBdata\fP"
+.br
+.ti -1c
+.RI "int \fBshouldBeFreed\fP"
+.br
+.in -1c
+.SH "Member Data Documentation"
+.PP 
+.SS "void(* Action::action) (struct \fBElement\fP *, void *, float)"
+action to be executed 
+.SS "void* Action::data"
+data of the action 
+.SS "int Action::shouldBeFreed"
+tells whether or not the data should be freed 
+.SS "float Action::timeSpent"
+time already spent for the action (in seconds), it stays at 0 if timing is < 0 
+.SS "float Action::timing"
+time for the action to be executed (in seconds), value inferior to 0 for infinite action 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for SANDAL2 from the source code\&.

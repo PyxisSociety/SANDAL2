@@ -1,0 +1,477 @@
+.TH "headers/SANDAL2.h" 3 "Sun Jun 2 2019" "SANDAL2" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+headers/SANDAL2.h \- \fBSANDAL2\&.h\fP is the file to include which includes everything else\&. Compilation flags to use : -lSDL2 -lSDL2_ttf -lSDL2_image -lm\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'Element\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBinitAllSANDAL2\fP (int imageFlags)"
+.br
+.RI "Initialisation of SANDAL2, its image and fonts (return 1 if initialisation error, 2 if image initialisation error, 3 if font initialisation error, 0 if not) using SDL2's image flags\&. "
+.ti -1c
+.RI "void \fBcloseAllSANDAL2\fP (void)"
+.br
+.RI "Close SANDAL2, images and font\&. "
+.ti -1c
+.RI "int \fBinitSANDAL2\fP (void)"
+.br
+.RI "Initialisation of SANDAL2 alone\&. "
+.ti -1c
+.RI "int \fBinitImageSANDAL2\fP (int imageFlags)"
+.br
+.RI "Initialisation of images alone\&. "
+.ti -1c
+.RI "int \fBinitTextSANDAL2\fP (void)"
+.br
+.RI "Initialisation of text alone\&. "
+.ti -1c
+.RI "void \fBcloseSANDAL2\fP (void)"
+.br
+.RI "Close SDL2\&. "
+.ti -1c
+.RI "void \fBcloseImageSANDAL2\fP (void)"
+.br
+.RI "Close images\&. "
+.ti -1c
+.RI "void \fBcloseTextSANDAL2\fP (void)"
+.br
+.RI "Close font\&. "
+.ti -1c
+.RI "Uint32 \fBcreateWindow\fP (int width, int height, const char *title, int SDLFlags, int background[4], int displayCode)"
+.br
+.RI "Add a window to the list of windows\&. "
+.ti -1c
+.RI "int \fBcloseWindow\fP (void)"
+.br
+.RI "close the current windows and go to the next, do not use this one in elements' or windows' binded functions, use \fBshouldCloseWindow()\fP instead "
+.ti -1c
+.RI "int \fBshouldCloseWindow\fP (void)"
+.br
+.RI "tells that the current window should be closed, do not use this one in functions that are not binded to windows or elements, use \fBcloseWindow()\fP instead "
+.ti -1c
+.RI "int \fBcloseAllWindow\fP (void)"
+.br
+.RI "close all windows "
+.ti -1c
+.RI "int \fBtoggleFullScreenWindow\fP (void)"
+.br
+.RI "Toggle the full screen mode of the current window\&. "
+.ti -1c
+.RI "int \fBisFullScreenWindow\fP (void)"
+.br
+.RI "Tells whether or not the window is in full screen mode\&. "
+.ti -1c
+.RI "int \fBupdateWindow\fP (void)"
+.br
+.RI "update all the elements of the current window "
+.ti -1c
+.RI "int \fBdisplayWindow\fP (void)"
+.br
+.RI "actualise the display of the current window "
+.ti -1c
+.RI "int \fBclickWindow\fP (SDL_MouseButtonEvent button)"
+.br
+.RI "activation of click events on the current window "
+.ti -1c
+.RI "int \fBunclickWindow\fP (SDL_MouseButtonEvent button)"
+.br
+.RI "activation of unclick events on the current window "
+.ti -1c
+.RI "int \fBkeyPressedWindow\fP (int c)"
+.br
+.RI "activation of the key pressed events on the current window "
+.ti -1c
+.RI "int \fBkeyReleasedWindow\fP (int c)"
+.br
+.RI "activation of the key released events on the current window "
+.ti -1c
+.RI "int \fBonMouseMotionWindow\fP (int x, int y)"
+.br
+.RI "activate the mouse motion events on the current window "
+.ti -1c
+.RI "int \fBonWheelWindow\fP (int y)"
+.br
+.RI "activation of the mouseWheel event on the current window "
+.ti -1c
+.RI "int \fBonFocusedWindow\fP (void)"
+.br
+.RI "activation of the gaining focus event "
+.ti -1c
+.RI "int \fBunFocusedWindow\fP (void)"
+.br
+.RI "activation of the losing focus event "
+.ti -1c
+.RI "unsigned long \fBupdateAllWindow\fP (void)"
+.br
+.RI "update all the elements of all the windows "
+.ti -1c
+.RI "unsigned long \fBdisplayAllWindow\fP (void)"
+.br
+.RI "actualise the display of all the windows "
+.ti -1c
+.RI "int \fBPollEvent\fP (unsigned long *error)"
+.br
+.RI "Get the event (if there is one) and apply the corresponding functions\&. "
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fBListWindow\fP * \fB_windows_SANDAL2\fP"
+.br
+.RI "list of windows WARNING : do not touch this variable, never \&.\&.\&. trust me "
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBSANDAL2\&.h\fP is the file to include which includes everything else\&. Compilation flags to use : -lSDL2 -lSDL2_ttf -lSDL2_image -lm\&. 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Baptiste PRUNIER (KLEVH) 
+.RE
+.PP
+\fBVersion:\fP
+.RS 4
+1\&.4\&.0 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "int clickWindow (SDL_MouseButtonEvent button)"
+
+.PP
+activation of click events on the current window 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIbutton\fP : Event informations of the button 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it failed, 0 if not 
+.RE
+.PP
+
+.SS "int closeAllWindow (void)"
+
+.PP
+close all windows 
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it failed, 0 if not 
+.RE
+.PP
+
+.SS "int closeWindow (void)"
+
+.PP
+close the current windows and go to the next, do not use this one in elements' or windows' binded functions, use \fBshouldCloseWindow()\fP instead 
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it failed, 0 if not 
+.RE
+.PP
+
+.SS "Uint32 createWindow (int width, int height, const char * title, int SDLFlags, int background[4], int displayCode)"
+
+.PP
+Add a window to the list of windows\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIwidth\fP : width of the window 
+.br
+\fIheight\fP : height of the window 
+.br
+\fItitle\fP : title of the window 
+.br
+\fISDLFlags\fP : flags of SDL2 
+.br
+\fIbackground\fP : color of the background 
+.br
+\fIdisplayCode\fP : display code of the window 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if it failed, the window ID if not 
+.RE
+.PP
+
+.SS "unsigned long displayAllWindow (void)"
+
+.PP
+actualise the display of all the windows 
+.PP
+\fBReturns:\fP
+.RS 4
+0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one 
+.RE
+.PP
+
+.SS "int displayWindow (void)"
+
+.PP
+actualise the display of the current window 
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it failed, 0 if not 
+.RE
+.PP
+
+.SS "int initAllSANDAL2 (int imageFlags)"
+
+.PP
+Initialisation of SANDAL2, its image and fonts (return 1 if initialisation error, 2 if image initialisation error, 3 if font initialisation error, 0 if not) using SDL2's image flags\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIimageFlags\fP : SDL2's image flags 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if success, 1 if failed 
+.RE
+.PP
+
+.SS "int initImageSANDAL2 (int imageFlags)"
+
+.PP
+Initialisation of images alone\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIimageFlags\fP : SDL2's image flags 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if success, 1 if failed 
+.RE
+.PP
+
+.SS "int initSANDAL2 (void)"
+
+.PP
+Initialisation of SANDAL2 alone\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+0 if success, 1 if failed 
+.RE
+.PP
+
+.SS "int initTextSANDAL2 (void)"
+
+.PP
+Initialisation of text alone\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+0 if success, 1 if failed 
+.RE
+.PP
+
+.SS "int isFullScreenWindow (void)"
+
+.PP
+Tells whether or not the window is in full screen mode\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+1 if the current window is in full screen mode, 0 if not or if there is no current window 
+.RE
+.PP
+
+.SS "int keyPressedWindow (int c)"
+
+.PP
+activation of the key pressed events on the current window 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIc\fP : key which was pressed 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it failed, 0 if not 
+.RE
+.PP
+
+.SS "int keyReleasedWindow (int c)"
+
+.PP
+activation of the key released events on the current window 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIc\fP : key which was released 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it failed, 0 if not 
+.RE
+.PP
+
+.SS "int onFocusedWindow (void)"
+
+.PP
+activation of the gaining focus event 
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it faied, 0 if not 
+.RE
+.PP
+
+.SS "int onMouseMotionWindow (int x, int y)"
+
+.PP
+activate the mouse motion events on the current window 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP : new x coordinate of the mouse 
+.br
+\fIy\fP : new y coordinate of the mouse 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it failed, 0 if not 
+.RE
+.PP
+
+.SS "int onWheelWindow (int y)"
+
+.PP
+activation of the mouseWheel event on the current window 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIy\fP : direction of the wheel 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it failed, 0 if not 
+.RE
+.PP
+
+.SS "int PollEvent (unsigned long * error)"
+
+.PP
+Get the event (if there is one) and apply the corresponding functions\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIerror\fP where to store the error flag (0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one) 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if the user asked to close the window, 0 if not 
+.RE
+.PP
+
+.SS "int shouldCloseWindow (void)"
+
+.PP
+tells that the current window should be closed, do not use this one in functions that are not binded to windows or elements, use \fBcloseWindow()\fP instead 
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it failed, 0 if not 
+.RE
+.PP
+
+.SS "int toggleFullScreenWindow (void)"
+
+.PP
+Toggle the full screen mode of the current window\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+0 if succeeded, 1 if not 
+.RE
+.PP
+
+.SS "int unclickWindow (SDL_MouseButtonEvent button)"
+
+.PP
+activation of unclick events on the current window 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIbutton\fP : Event informations of the button 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it failed, 0 if not 
+.RE
+.PP
+
+.SS "int unFocusedWindow (void)"
+
+.PP
+activation of the losing focus event 
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it failed, 0 if not 
+.RE
+.PP
+
+.SS "unsigned long updateAllWindow (void)"
+
+.PP
+update all the elements of all the windows 
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it failed, 0 if not 
+.RE
+.PP
+
+.SS "int updateWindow (void)"
+
+.PP
+update all the elements of the current window 
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it failed, 0 if not 
+.RE
+.PP
+
+.SH "Variable Documentation"
+.PP 
+.SS "\fBListWindow\fP* _windows_SANDAL2"
+
+.PP
+list of windows WARNING : do not touch this variable, never \&.\&.\&. trust me list of windows WARNING : do not touch this variable, never \&.\&.\&. trust me
+.PP
+List of the windows WARNING : do not touch it \&.\&.\&. trust me\&. 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for SANDAL2 from the source code\&.

@@ -1,0 +1,391 @@
+.TH "headers/Sprite.h" 3 "Sun Jun 2 2019" "SANDAL2" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+headers/Sprite.h \- \fBSprite\fP manager for SANDAL2\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdlib\&.h>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBSprite\fP"
+.br
+.RI "informations about a step of an animation "
+.ti -1c
+.RI "struct \fBListSprite\fP"
+.br
+.RI "all steps of an animation "
+.ti -1c
+.RI "struct \fBListAnimation\fP"
+.br
+.RI "a list of animations "
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef struct \fBSprite\fP \fBSprite\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBListSprite\fP \fBListSprite\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBListSprite\fP * \fBinitListSprite\fP (int code)"
+.br
+.RI "create an empty list of sprite "
+.ti -1c
+.RI "void \fBfreeListSprite\fP (\fBListSprite\fP *l)"
+.br
+.RI "free the memory of a list of sprite "
+.ti -1c
+.RI "int \fBaddSprite\fP (\fBListSprite\fP *l, int x, int y, int width, int height, unsigned lifespan, int code)"
+.br
+.RI "add a \fBSprite\fP to the list "
+.ti -1c
+.RI "int \fBdelSprite\fP (\fBListSprite\fP *l, int code)"
+.br
+.RI "remove a \fBSprite\fP to the list "
+.ti -1c
+.RI "int \fBsetLifeSpanSprite\fP (\fBListSprite\fP *l, int code, unsigned lifespan)"
+.br
+.RI "set the lifespan of a sprite "
+.ti -1c
+.RI "int \fBsetSprite\fP (\fBListSprite\fP *l, int code)"
+.br
+.RI "change the current sprite in a given list of sprite "
+.ti -1c
+.RI "\fBListAnimation\fP * \fBinitListAnimation\fP ()"
+.br
+.RI "create an empty list of animation "
+.ti -1c
+.RI "void \fBfreeListAnimation\fP (\fBListAnimation\fP *l)"
+.br
+.RI "free the memory of a list of animation "
+.ti -1c
+.RI "int \fBcreateAnimation\fP (\fBListAnimation\fP *l, int code)"
+.br
+.RI "add an empty animation to the list "
+.ti -1c
+.RI "int \fBdelAnimation\fP (\fBListAnimation\fP *l, int code)"
+.br
+.RI "remove an empty animation from the list "
+.ti -1c
+.RI "int \fBaddSpriteAnimation\fP (\fBListAnimation\fP *l, int code, int x, int y, int width, int height, unsigned lifespan, int codeS)"
+.br
+.RI "add a \fBSprite\fP to an animation "
+.ti -1c
+.RI "int \fBdelSpriteAnimation\fP (\fBListAnimation\fP *l, int code, int codeS)"
+.br
+.RI "remove a \fBSprite\fP to an animation "
+.ti -1c
+.RI "int \fBsetLifeSpanSpriteAnimation\fP (\fBListAnimation\fP *l, int code, int codeS, unsigned lifespan)"
+.br
+.RI "set the lifespan of a sprite "
+.ti -1c
+.RI "int \fBsetAnimation\fP (\fBListAnimation\fP *l, int code)"
+.br
+.RI "set the current animation of a list of animations "
+.ti -1c
+.RI "int \fBsetSpriteAnimation\fP (\fBListAnimation\fP *l, int codeS)"
+.br
+.RI "change the current sprite in the current list of sprite in a given list of animation "
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBSprite\fP manager for SANDAL2\&. 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Baptiste PRUNIER (KLEVH) 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "int addSprite (\fBListSprite\fP * l, int x, int y, int width, int height, unsigned lifespan, int code)"
+
+.PP
+add a \fBSprite\fP to the list 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIl\fP : list of sprite 
+.br
+\fIx\fP : abscissa coordinate of the top left corner of the sprite in its image 
+.br
+\fIy\fP : ordinate coordinate of the top left corner of the sprite in its image 
+.br
+\fIwidth\fP : width of the sprite in its image 
+.br
+\fIheight\fP : height of the sprite in its image 
+.br
+\fIlifespan\fP : number of time the sprite should be displaied before going to the next sprite 
+.br
+\fIcode\fP : identifier of the \fBSprite\fP to add 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if the sprite was correctly added, 1 if not 
+.RE
+.PP
+
+.SS "int addSpriteAnimation (\fBListAnimation\fP * l, int code, int x, int y, int width, int height, unsigned lifespan, int codeS)"
+
+.PP
+add a \fBSprite\fP to an animation 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIl\fP : list of animations 
+.br
+\fIcode\fP : code of the animation to add the sprite 
+.br
+\fIx\fP : abscissa coordinate of the top left corner of the sprite in its image 
+.br
+\fIy\fP : ordinate coordinate of the top left corner of the sprite in its image 
+.br
+\fIwidth\fP : width of the sprite in its image 
+.br
+\fIheight\fP : height of the sprite in its image 
+.br
+\fIlifespan\fP : number of time the sprite should be displaied before going to the next sprite 
+.br
+\fIcodeS\fP : code of the \fBSprite\fP to be added 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if the sprite was correctly added, 1 if not 
+.RE
+.PP
+
+.SS "int createAnimation (\fBListAnimation\fP * l, int code)"
+
+.PP
+add an empty animation to the list 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIl\fP : list of animation 
+.br
+\fIcode\fP : code of the new animation 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if the animation could be added, 1 if not 
+.RE
+.PP
+
+.SS "int delAnimation (\fBListAnimation\fP * l, int code)"
+
+.PP
+remove an empty animation from the list 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIl\fP : list of animation 
+.br
+\fIcode\fP : code of the animation to be removed 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if the animation could be removed, 1 if not 
+.RE
+.PP
+
+.SS "int delSprite (\fBListSprite\fP * l, int code)"
+
+.PP
+remove a \fBSprite\fP to the list 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIl\fP : list of sprite 
+.br
+\fIcode\fP : code of the sprite to be removed 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if the sprite was correctly removed, 1 if not 
+.RE
+.PP
+
+.SS "int delSpriteAnimation (\fBListAnimation\fP * l, int code, int codeS)"
+
+.PP
+remove a \fBSprite\fP to an animation 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIl\fP : list of animations 
+.br
+\fIcode\fP : code of the animation to remove the sprite 
+.br
+\fIcodeS\fP : code of the sprite to be removed 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if the sprite was correctly removed, 1 if not 
+.RE
+.PP
+
+.SS "void freeListAnimation (\fBListAnimation\fP * l)"
+
+.PP
+free the memory of a list of animation 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIl\fP : list to be freed 
+.RE
+.PP
+
+.SS "void freeListSprite (\fBListSprite\fP * l)"
+
+.PP
+free the memory of a list of sprite 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIl\fP : list to be freed 
+.RE
+.PP
+
+.SS "\fBListAnimation\fP* initListAnimation ()"
+
+.PP
+create an empty list of animation 
+.PP
+\fBReturns:\fP
+.RS 4
+the empty list of animation 
+.RE
+.PP
+
+.SS "\fBListSprite\fP* initListSprite (int code)"
+
+.PP
+create an empty list of sprite 
+.PP
+\fBReturns:\fP
+.RS 4
+the empty list of sprite 
+.RE
+.PP
+
+.SS "int setAnimation (\fBListAnimation\fP * l, int code)"
+
+.PP
+set the current animation of a list of animations 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIl\fP : list of animations 
+.br
+\fIcode\fP : code of the animation to be set as current 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if the animation could be set as current, 1 if not 
+.RE
+.PP
+
+.SS "int setLifeSpanSprite (\fBListSprite\fP * l, int code, unsigned lifespan)"
+
+.PP
+set the lifespan of a sprite 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIl\fP : list of sprite 
+.br
+\fIcode\fP : code of the sprite to be changed 
+.br
+\fIlifespan\fP : new number of time the sprite should be displaied before going to the next sprite 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if the lifespan could be set, 1 if not 
+.RE
+.PP
+
+.SS "int setLifeSpanSpriteAnimation (\fBListAnimation\fP * l, int code, int codeS, unsigned lifespan)"
+
+.PP
+set the lifespan of a sprite 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIl\fP : list of animations 
+.br
+\fIcode\fP : code of the animation to set the sprite 
+.br
+\fIcodeS\fP : code of the sprite to be modified 
+.br
+\fIlifespan\fP : new number of time the sprite should be displaied before going to the next sprite 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if the lifespan could be set, 1 if not 
+.RE
+.PP
+
+.SS "int setSprite (\fBListSprite\fP * l, int code)"
+
+.PP
+change the current sprite in a given list of sprite 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIl\fP : list of sprite 
+.br
+\fIcode\fP : code of the sprite to be set 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if the sprite could be set, 1 if not 
+.RE
+.PP
+
+.SS "int setSpriteAnimation (\fBListAnimation\fP * l, int codeS)"
+
+.PP
+change the current sprite in the current list of sprite in a given list of animation 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIl\fP : list of animation 
+.br
+\fIcodeS\fP : code of the sprite to be set 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if the sprite could be set, 1 if not 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for SANDAL2 from the source code\&.

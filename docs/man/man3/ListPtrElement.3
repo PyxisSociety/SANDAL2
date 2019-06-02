@@ -1,0 +1,49 @@
+.TH "ListPtrElement" 3 "Sun Jun 2 2019" "SANDAL2" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ListPtrElement \- List of \fBPtrElement\fP\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Element\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBPtrElement\fP * \fBfirst\fP"
+.br
+.ti -1c
+.RI "\fBPtrElement\fP * \fBlast\fP"
+.br
+.ti -1c
+.RI "\fBPtrElement\fP * \fBcurrent\fP"
+.br
+.ti -1c
+.RI "struct \fBListPtrElement\fP * \fBnext\fP"
+.br
+.ti -1c
+.RI "int \fBcode\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+List of \fBPtrElement\fP\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "int ListPtrElement::code"
+plan of the list 
+.SS "\fBPtrElement\fP* ListPtrElement::current"
+current \fBPtrElement\fP of the list (used for iterator) 
+.SS "\fBPtrElement\fP* ListPtrElement::first"
+first \fBPtrElement\fP of the list 
+.SS "\fBPtrElement\fP* ListPtrElement::last"
+last \fBPtrElement\fP of the list 
+.SS "struct \fBListPtrElement\fP* ListPtrElement::next"
+next List of \fBPtrElement\fP 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for SANDAL2 from the source code\&.

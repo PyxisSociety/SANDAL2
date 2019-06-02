@@ -1,0 +1,583 @@
+.TH "headers/Action.h" 3 "Sun Jun 2 2019" "SANDAL2" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+headers/Action.h \- Contains all structures related to actions on element\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBAction\fP"
+.br
+.ti -1c
+.RI "struct \fBListAction\fP"
+.br
+.ti -1c
+.RI "struct \fBActionNode\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef struct \fBAction\fP \fBAction\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBListAction\fP \fBListAction\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBActionNode\fP \fBActionNode\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBListAction\fP * \fBinitAction\fP (void(*action)(struct \fBElement\fP *, void *, float), float timing)"
+.br
+.RI "Create an action based on its behavior and the time it should take\&. "
+.ti -1c
+.RI "\fBListAction\fP * \fBsetDataAction\fP (\fBListAction\fP *action, void *data, int shouldBeFreed)"
+.br
+.RI "Set the data bound to an action, if the action list contains more than one action, this call will fail\&. "
+.ti -1c
+.RI "void \fBfreeListAction\fP (\fBListAction\fP *action)"
+.br
+.RI "Free the memory of a list action\&. "
+.ti -1c
+.RI "int \fBexecuteListAction\fP (\fBListAction\fP *action, struct \fBElement\fP *e, float time)"
+.br
+.RI "Execute a list action\&. "
+.ti -1c
+.RI "\fBListAction\fP * \fBgenerateChainedAction\fP (\fBListAction\fP *action,\&.\&.\&.)"
+.br
+.RI "Generate a list of chained action (the nth action execute after the (n - 1)th ended) "
+.ti -1c
+.RI "\fBListAction\fP * \fBgenerateParallelAction\fP (\fBListAction\fP *action,\&.\&.\&.)"
+.br
+.RI "Generate a list of parallel action\&. "
+.ti -1c
+.RI "\fBListAction\fP * \fBsetForeverAction\fP (\fBListAction\fP *action, int isForever)"
+.br
+.RI "Tells that the action should run forever or not (by default, an action does not run forever) "
+.ti -1c
+.RI "long long \fBaddActionAtEndAction\fP (\fBListAction\fP *action, \fBListAction\fP *toAdd)"
+.br
+.RI "add an action at the end of another one "
+.ti -1c
+.RI "int \fBdelActionToAction\fP (\fBListAction\fP *action, long long index)"
+.br
+.RI "remove an action inside another "
+.ti -1c
+.RI "void \fBmoveByActionFunction\fP (struct \fBElement\fP *e, void *data, float spentTime)"
+.br
+.RI "function used by \fBmoveByAction()\fP and left public to be used in self made action functions "
+.ti -1c
+.RI "void \fBmoveToActionFunction\fP (struct \fBElement\fP *e, void *data, float spentTime)"
+.br
+.RI "function used by \fBmoveToAction()\fP and left public to be used in self made action functions "
+.ti -1c
+.RI "void \fBscaleByActionFunction\fP (struct \fBElement\fP *e, void *data, float spentTime)"
+.br
+.RI "function used by \fBscaleByAction()\fP and left public to be used in self made action functions "
+.ti -1c
+.RI "void \fBscaleToActionFunction\fP (struct \fBElement\fP *e, void *data, float spentTime)"
+.br
+.RI "function used by \fBscaleToAction()\fP and left public to be used in self made action functions "
+.ti -1c
+.RI "void \fBrotateByActionFunction\fP (struct \fBElement\fP *e, void *data, float spentTime)"
+.br
+.RI "function used by \fBrotateByAction()\fP and left public to be used in self made action functions "
+.ti -1c
+.RI "void \fBrotateToActionFunction\fP (struct \fBElement\fP *e, void *data, float spentTime)"
+.br
+.RI "function used by \fBrotateToAction()\fP and left public to be used in self made action functions "
+.ti -1c
+.RI "void \fBfadeInActionFunction\fP (struct \fBElement\fP *e, void *data, float spentTime)"
+.br
+.RI "function used by \fBfadeInAction()\fP and left public to be used in self made action functions "
+.ti -1c
+.RI "void \fBfadeOutActionFunction\fP (struct \fBElement\fP *e, void *data, float spentTime)"
+.br
+.RI "function used by \fBfadeOutAction()\fP and left public to be used in self made action functions "
+.ti -1c
+.RI "\fBListAction\fP * \fBmoveByAction\fP (float x, float y, float time)"
+.br
+.RI "Generate a \fBListAction\fP doing a translation during a given time\&. "
+.ti -1c
+.RI "\fBListAction\fP * \fBmoveToAction\fP (float x, float y, float time)"
+.br
+.RI "Generate a \fBListAction\fP doing a translation during a given time\&. "
+.ti -1c
+.RI "\fBListAction\fP * \fBscaleByAction\fP (float x, float y, float time)"
+.br
+.RI "Generate a \fBListAction\fP doing a scale XY (only X if y == 0, only Y if x == 0) during a given time\&. "
+.ti -1c
+.RI "\fBListAction\fP * \fBscaleToAction\fP (float w, float h, float time)"
+.br
+.RI "Generate a \fBListAction\fP doing a scale XY (only X if y == 0, only Y if x == 0) during a given time\&. "
+.ti -1c
+.RI "\fBListAction\fP * \fBrotateByAction\fP (float angle, float time)"
+.br
+.RI "Generate a \fBListAction\fP doing a rotation during a given time\&. "
+.ti -1c
+.RI "\fBListAction\fP * \fBrotateToAction\fP (float angle, float time)"
+.br
+.RI "Generate a \fBListAction\fP doing a rotation during a given time\&. "
+.ti -1c
+.RI "\fBListAction\fP * \fBfadeInAction\fP (int alpha, float time)"
+.br
+.RI "Generate a \fBListAction\fP doing a fade in during a given time\&. "
+.ti -1c
+.RI "\fBListAction\fP * \fBfadeOutAction\fP (int alpha, float time)"
+.br
+.RI "Generate a \fBListAction\fP doing a fade out during a given time\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Contains all structures related to actions on element\&. 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Baptiste PRUNIER (KLEVH) 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "long long addActionAtEndAction (\fBListAction\fP * action, \fBListAction\fP * toAdd)"
+
+.PP
+add an action at the end of another one 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIaction\fP : action to add another one to 
+.br
+\fItoAdd\fP : action to be added, it will be freed if the add succeeded 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the index of the action added in the action list if it was added, -1 if it could not 
+.RE
+.PP
+
+.SS "int delActionToAction (\fBListAction\fP * action, long long index)"
+
+.PP
+remove an action inside another 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIaction\fP : action to be modified 
+.br
+\fIindex\fP : index of the action to be removed 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it failed, 0 if not 
+.RE
+.PP
+
+.SS "int executeListAction (\fBListAction\fP * action, struct \fBElement\fP * e, float time)"
+
+.PP
+Execute a list action\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIaction\fP : list to be executed 
+.br
+\fIe\fP : element to call actions on 
+.br
+\fItime\fP : time elapsed since last call of this function 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if the action list is finished, 0 if not 
+.RE
+.PP
+
+.SS "\fBListAction\fP* fadeInAction (int alpha, float time)"
+
+.PP
+Generate a \fBListAction\fP doing a fade in during a given time\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIalpha\fP : value to reduce the element's alpha of 
+.br
+\fItime\fP : duration of the action 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the list action generated 
+.RE
+.PP
+
+.SS "void fadeInActionFunction (struct \fBElement\fP * e, void * data, float spentTime)"
+
+.PP
+function used by \fBfadeInAction()\fP and left public to be used in self made action functions 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element on which the action is called 
+.br
+\fIdata\fP : a float* array of size 2 casted to void*\&. It MUST have the following format: [the delta to decrement alpha with, -1] the last value MUST be set to -1 before the first call, it will be modified inside the function those modifications NEEDS to be saved for the following calls 
+.br
+\fIspentTime\fP : total spent time since the beginning of the action (in percent from 0 to 1) 
+.RE
+.PP
+
+.SS "\fBListAction\fP* fadeOutAction (int alpha, float time)"
+
+.PP
+Generate a \fBListAction\fP doing a fade out during a given time\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIalpha\fP : value to increase the element's alpha of 
+.br
+\fItime\fP : duration of the action 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the list action generated 
+.RE
+.PP
+
+.SS "void fadeOutActionFunction (struct \fBElement\fP * e, void * data, float spentTime)"
+
+.PP
+function used by \fBfadeOutAction()\fP and left public to be used in self made action functions 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element on which the action is called 
+.br
+\fIdata\fP : a float* array of size 2 casted to void*\&. It MUST have the following format: [the delta to increment alpha with, -1] the last value MUST be set to -1 before the first call, it will be modified inside the function those modifications NEEDS to be saved for the following calls 
+.br
+\fIspentTime\fP : total spent time since the beginning of the action (in percent from 0 to 1) 
+.RE
+.PP
+
+.SS "void freeListAction (\fBListAction\fP * action)"
+
+.PP
+Free the memory of a list action\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIaction\fP : list to be freed 
+.RE
+.PP
+
+.SS "\fBListAction\fP* generateChainedAction (\fBListAction\fP * action,  \&.\&.\&.)"
+
+.PP
+Generate a list of chained action (the nth action execute after the (n - 1)th ended) 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIaction\&.\&.\&.\fP : all list action of the list, needs to end by NULL 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the first action passed as parameter of action\&.\&.\&. after setting its chained actions 
+.RE
+.PP
+
+.SS "\fBListAction\fP* generateParallelAction (\fBListAction\fP * action,  \&.\&.\&.)"
+
+.PP
+Generate a list of parallel action\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIaction\&.\&.\&.\fP : all list action of the list, needs to end by NULL 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the first action passed as parameter of action\&.\&.\&. after setting its parallel actions 
+.RE
+.PP
+
+.SS "\fBListAction\fP* initAction (void(*)(struct \fBElement\fP *, void *, float) action, float timing)"
+
+.PP
+Create an action based on its behavior and the time it should take\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIaction\fP : behavior of the action, takes 3 parameters : the element on which it will be applied, the data of the action and the total time elapsed since its beginning (in percent from 0 to 1) 
+.br
+\fItiming\fP : duration of the action, it needs to be greater than 0 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the created action (NULL on failure) 
+.RE
+.PP
+
+.SS "\fBListAction\fP* moveByAction (float x, float y, float time)"
+
+.PP
+Generate a \fBListAction\fP doing a translation during a given time\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP : x offset 
+.br
+\fIy\fP : y offset 
+.br
+\fItime\fP : duration of the action 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the list action generated 
+.RE
+.PP
+
+.SS "void moveByActionFunction (struct \fBElement\fP * e, void * data, float spentTime)"
+
+.PP
+function used by \fBmoveByAction()\fP and left public to be used in self made action functions 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element on which the action is called 
+.br
+\fIdata\fP : a float* array of size 4 casted to void*\&. It MUST have the following format: [the x delta, the y delta, 0, 0] the last two values MUST be set to 0 before the first call, they will be modified inside the function those modifications NEEDS to be saved for the following calls 
+.br
+\fIspentTime\fP : total spent time since the beginning of the action (in percent from 0 to 1) 
+.RE
+.PP
+
+.SS "\fBListAction\fP* moveToAction (float x, float y, float time)"
+
+.PP
+Generate a \fBListAction\fP doing a translation during a given time\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP : new x value 
+.br
+\fIy\fP : new y value 
+.br
+\fItime\fP : duration of the action 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the list action generated 
+.RE
+.PP
+
+.SS "void moveToActionFunction (struct \fBElement\fP * e, void * data, float spentTime)"
+
+.PP
+function used by \fBmoveToAction()\fP and left public to be used in self made action functions 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element on which the action is called 
+.br
+\fIdata\fP : a float* array of size 4 casted to void*\&. It MUST have the following format: [the x new value, the y new value, 0, 0] the last two values MUST be set to 0 before the first call, they will be modified inside the function those modifications NEEDS to be saved for the following calls 
+.br
+\fIspentTime\fP : total spent time since the beginning of the action (in percent from 0 to 1) 
+.RE
+.PP
+
+.SS "\fBListAction\fP* rotateByAction (float angle, float time)"
+
+.PP
+Generate a \fBListAction\fP doing a rotation during a given time\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIangle\fP : angle offset 
+.br
+\fItime\fP : duration of the action 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the list action generated 
+.RE
+.PP
+
+.SS "void rotateByActionFunction (struct \fBElement\fP * e, void * data, float spentTime)"
+
+.PP
+function used by \fBrotateByAction()\fP and left public to be used in self made action functions 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element on which the action is called 
+.br
+\fIdata\fP : a float* array of size 2 casted to void*\&. It MUST have the following format: [the angle delta, 0] the last value MUST be set to 0 before the first call, it will be modified inside the function those modifications NEEDS to be saved for the following calls 
+.br
+\fIspentTime\fP : total spent time since the beginning of the action (in percent from 0 to 1) 
+.RE
+.PP
+
+.SS "\fBListAction\fP* rotateToAction (float angle, float time)"
+
+.PP
+Generate a \fBListAction\fP doing a rotation during a given time\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIangle\fP : new angle 
+.br
+\fItime\fP : duration of the action 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the list action generated 
+.RE
+.PP
+
+.SS "void rotateToActionFunction (struct \fBElement\fP * e, void * data, float spentTime)"
+
+.PP
+function used by \fBrotateToAction()\fP and left public to be used in self made action functions 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element on which the action is called 
+.br
+\fIdata\fP : a float* array of size 2 casted to void*\&. It MUST have the following format: [the new angle, 0] the last value MUST be set to 0 before the first call, it will be modified inside the function those modifications NEEDS to be saved for the following calls 
+.br
+\fIspentTime\fP : total spent time since the beginning of the action (in percent from 0 to 1) 
+.RE
+.PP
+
+.SS "\fBListAction\fP* scaleByAction (float x, float y, float time)"
+
+.PP
+Generate a \fBListAction\fP doing a scale XY (only X if y == 0, only Y if x == 0) during a given time\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP : scale value of x (percentage of modification with 1\&.0 == +100%) 
+.br
+\fIy\fP : scale value of y (percentage of modification with 1\&.0 == +100%) 
+.br
+\fItime\fP : duration of the action 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the list action generated 
+.RE
+.PP
+
+.SS "void scaleByActionFunction (struct \fBElement\fP * e, void * data, float spentTime)"
+
+.PP
+function used by \fBscaleByAction()\fP and left public to be used in self made action functions 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element on which the action is called 
+.br
+\fIdata\fP : a float* array of size 4 casted to void*\&. It MUST have the following format: [the x scale value, the y scale value, 0, 0] the last two values MUST be set to 0 before the first call, they will be modified inside the function those modifications NEEDS to be saved for the following calls 
+.br
+\fIspentTime\fP : total spent time since the beginning of the action (in percent from 0 to 1) 
+.RE
+.PP
+
+.SS "\fBListAction\fP* scaleToAction (float w, float h, float time)"
+
+.PP
+Generate a \fBListAction\fP doing a scale XY (only X if y == 0, only Y if x == 0) during a given time\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIw\fP : new value of width 
+.br
+\fIh\fP : new value of height 
+.br
+\fItime\fP : duration of the action 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the list action generated 
+.RE
+.PP
+
+.SS "void scaleToActionFunction (struct \fBElement\fP * e, void * data, float spentTime)"
+
+.PP
+function used by \fBscaleToAction()\fP and left public to be used in self made action functions 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element on which the action is called 
+.br
+\fIdata\fP : a float* array of size 4 casted to void*\&. It MUST have the following format: [the x scale value, the y scale value, 0, 0] the last two values MUST be set to 0 before the first call, they will be modified inside the function those modifications NEEDS to be saved for the following calls 
+.br
+\fIspentTime\fP : total spent time since the beginning of the action (in percent from 0 to 1) 
+.RE
+.PP
+
+.SS "\fBListAction\fP* setDataAction (\fBListAction\fP * action, void * data, int shouldBeFreed)"
+
+.PP
+Set the data bound to an action, if the action list contains more than one action, this call will fail\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIaction\fP : action to bind data to 
+.br
+\fIdata\fP : data to be bound to the action 
+.br
+\fIshouldBeFreed\fP : flag to tell whether or not the data should be freed 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the action passed as first parameter 
+.RE
+.PP
+
+.SS "\fBListAction\fP* setForeverAction (\fBListAction\fP * action, int isForever)"
+
+.PP
+Tells that the action should run forever or not (by default, an action does not run forever) 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIaction\fP : action to be modified 
+.br
+\fIisForever\fP : flag to set to the action 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the action parameter 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for SANDAL2 from the source code\&.

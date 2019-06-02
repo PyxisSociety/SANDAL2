@@ -1,0 +1,154 @@
+.TH "Element" 3 "Sun Jun 2 2019" "SANDAL2" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Element \- All the informations of an element\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Element\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "float \fBx\fP"
+.br
+.ti -1c
+.RI "float \fBy\fP"
+.br
+.ti -1c
+.RI "float \fBwidth\fP"
+.br
+.ti -1c
+.RI "float \fBheight\fP"
+.br
+.ti -1c
+.RI "float \fBprX\fP"
+.br
+.ti -1c
+.RI "float \fBprY\fP"
+.br
+.ti -1c
+.RI "float \fBrotation\fP"
+.br
+.ti -1c
+.RI "float \fBrotSpeed\fP"
+.br
+.ti -1c
+.RI "SANDAL2_FLIP \fBflip\fP"
+.br
+.ti -1c
+.RI "int \fBcoulBlock\fP [4]"
+.br
+.ti -1c
+.RI "float \fBtextSize\fP"
+.br
+.ti -1c
+.RI "\fBListDisplayCode\fP * \fBcodes\fP"
+.br
+.ti -1c
+.RI "\fBEventElement\fP \fBevents\fP"
+.br
+.ti -1c
+.RI "SDL_Texture * \fBimage\fP"
+.br
+.ti -1c
+.RI "\fBListAnimation\fP * \fBanimation\fP"
+.br
+.ti -1c
+.RI "\fBFont\fP * \fBfont\fP"
+.br
+.ti -1c
+.RI "\fBEntry\fP * \fBentry\fP"
+.br
+.ti -1c
+.RI "struct \fBListPtrElement\fP * \fBinteractions\fP"
+.br
+.ti -1c
+.RI "\fBListClickable\fP * \fBhitboxes\fP"
+.br
+.ti -1c
+.RI "void * \fBdata\fP"
+.br
+.ti -1c
+.RI "void(* \fBfreeData\fP )(void *)"
+.br
+.ti -1c
+.RI "int \fBdeleted\fP"
+.br
+.ti -1c
+.RI "int \fBdeleteCode\fP"
+.br
+.ti -1c
+.RI "int \fBselected\fP"
+.br
+.ti -1c
+.RI "\fBWindow\fP * \fBparent\fP"
+.br
+.ti -1c
+.RI "\fBListAction\fP * \fBactions\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+All the informations of an element\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBListAction\fP* Element::actions"
+list of actions to be done on this element 
+.SS "\fBListAnimation\fP* Element::animation"
+animation of the image 
+.SS "\fBListDisplayCode\fP* Element::codes"
+list of display code of the element 
+.SS "int Element::coulBlock[4]"
+color of the block of the element (if first value -1, there is no block) 
+.SS "void* Element::data"
+data available for the user 
+.SS "int Element::deleteCode"
+plan or display code to be removed from 
+.SS "int Element::deleted"
+tells whether or not the element should be deleted (1 for completely deleted, 2 for display remove, 3 for plan change) 
+.SS "\fBEntry\fP* Element::entry"
+informations about the entry (NULL if no entry) 
+.SS "\fBEventElement\fP Element::events"
+behavior of the element to events 
+.SS "SANDAL2_FLIP Element::flip"
+tells whether or not the element should be flipped, can be SANDAL2_FLIP_VER, SANDAL2_FLIP_HOR, SANDAL2_FLIP_NONE or a combinaison of those 
+.SS "\fBFont\fP* Element::font"
+informations about the text (NULL if no text) 
+.SS "void(* Element::freeData) (void *)"
+function to be called to free the data 
+.SS "float Element::height"
+height of the element 
+.SS "\fBListClickable\fP* Element::hitboxes"
+list of clickable zones 
+.SS "SDL_Texture* Element::image"
+texture of the image (NULL if no image) 
+.SS "struct \fBListPtrElement\fP* Element::interactions"
+list of elements that this element can modifie 
+.SS "\fBWindow\fP* Element::parent"
+parent window of the element 
+.SS "float Element::prX"
+abscissa coordinate of the rotation point (if from 0 to 1, in the element) 
+.SS "float Element::prY"
+ordinate coordinate of the rotation point (if from 0 to 1, in the element) 
+.SS "float Element::rotation"
+rotation angle of the element 
+.SS "float Element::rotSpeed"
+speed rotation (degree / update) of the element 
+.SS "int Element::selected"
+tells whether or not the element is selected 
+.SS "float Element::textSize"
+text proportion in the block 
+.SS "float Element::width"
+width of the element 
+.SS "float Element::x"
+abscissa coordinate of the top left of the element 
+.SS "float Element::y"
+ordinate coordinate of the top left of the element 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for SANDAL2 from the source code\&.

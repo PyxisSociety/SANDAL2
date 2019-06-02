@@ -1,0 +1,2385 @@
+.TH "headers/Element.h" 3 "Sun Jun 2 2019" "SANDAL2" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+headers/Element.h \- Contains all structures related to Elements\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'Clickable\&.h'\fP
+.br
+\fC#include 'Font\&.h'\fP
+.br
+\fC#include 'Window\&.h'\fP
+.br
+\fC#include 'DisplayCode\&.h'\fP
+.br
+\fC#include 'Sprite\&.h'\fP
+.br
+\fC#include 'Action\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBEntry\fP"
+.br
+.RI "More informations about entry\&. "
+.ti -1c
+.RI "struct \fBEventElement\fP"
+.br
+.RI "Behaviors of an element to events\&. "
+.ti -1c
+.RI "struct \fBElement\fP"
+.br
+.RI "All the informations of an element\&. "
+.ti -1c
+.RI "struct \fBPtrElement\fP"
+.br
+.RI "Structure used to store elements' pointers in a list of element\&. "
+.ti -1c
+.RI "struct \fBListPtrElement\fP"
+.br
+.RI "List of \fBPtrElement\fP\&. "
+.ti -1c
+.RI "struct \fBListDCElement\fP"
+.br
+.RI "List (display code) of list (plan) of element\&. "
+.ti -1c
+.RI "struct \fBListElement\fP"
+.br
+.RI "List of list (display code) of list (plan) of elements\&. "
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBSANDAL2_FLIP_HOR\fP   SDL_FLIP_HORIZONTAL"
+.br
+.ti -1c
+.RI "#define \fBSANDAL2_FLIP_VER\fP   SDL_FLIP_VERTICAL"
+.br
+.ti -1c
+.RI "#define \fBSANDAL2_FLIP_NONE\fP   SDL_FLIP_NONE"
+.br
+.ti -1c
+.RI "#define \fBSANDAL2_FLIP\fP   SDL_RendererFlip"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef struct \fBElement\fP \fBElement\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBPtrElement\fP \fBPtrElement\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBListPtrElement\fP \fBListPtrElement\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBListDCElement\fP \fBListDCElement\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBListElement\fP \fBListElement\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBListElement\fP * \fB_initListElement\fP (void)"
+.br
+.RI "Initialise a list of lists (display code) of lists (plan) of elements\&. "
+.ti -1c
+.RI "void \fB_freeListElement\fP (\fBListElement\fP *l)"
+.br
+.RI "free the memory of a list of lists (display code) of lists (plan) of elements "
+.ti -1c
+.RI "int \fBaddElement\fP (\fBElement\fP *e)"
+.br
+.RI "add an element to a list of lists (display code) of lists (plan) of elements "
+.ti -1c
+.RI "void \fB_cleanElement\fP (void)"
+.br
+.RI "remove all elements that are marked as deletable (do not use it yourself, used in update) "
+.ti -1c
+.RI "int \fBdelElement\fP (\fBElement\fP *e)"
+.br
+.RI "mark an element as removable "
+.ti -1c
+.RI "void \fB_freeElement\fP (\fBElement\fP *e)"
+.br
+.RI "Free the memory used by an element\&. "
+.ti -1c
+.RI "\fBElement\fP * \fBcreateBlock\fP (float x, float y, float width, float height, int color[4], int displayCode, int plan)"
+.br
+.RI "Generate a non rotable rectangle like element\&. "
+.ti -1c
+.RI "\fBElement\fP * \fBcreateText\fP (float x, float y, float width, float height, float textSize, const char *font, const char *text, int textColor[4], int quality, int displayCode, int plan)"
+.br
+.RI "Generate a text like element\&. "
+.ti -1c
+.RI "\fBElement\fP * \fBcreateImage\fP (float x, float y, float width, float height, const char *image, int displayCode, int plan)"
+.br
+.RI "Generate an image like element\&. "
+.ti -1c
+.RI "\fBElement\fP * \fBcreateImageBlock\fP (float x, float y, float width, float height, int color[4], int displayCode, int plan)"
+.br
+.RI "Generate a rotable rectangle like element (slower than \fBcreateBlock()\fP) "
+.ti -1c
+.RI "\fBElement\fP * \fBcreateButton\fP (float x, float y, float width, float height, float texteSize, const char *font, const char *text, int textColor[4], int quality, int colorBlock[4], int displayCode, int plan)"
+.br
+.RI "Generate a button like element\&. "
+.ti -1c
+.RI "\fBElement\fP * \fBcreateButtonImage\fP (float x, float y, float width, float height, float texteSize, const char *font, const char *text, int textColor[4], int quality, const char *image, int displayCode, int plan)"
+.br
+.RI "Generate a button like element with an image\&. "
+.ti -1c
+.RI "\fBElement\fP * \fBcreateEntry\fP (float x, float y, float width, float height, float texteSize, const char *font, const char *text, int textColor[4], int quality, int colorBlock[4], int displayCode, int plan, int min, int max, int isScripted)"
+.br
+.RI "Generate a prompt like element\&. "
+.ti -1c
+.RI "\fBElement\fP * \fBcreateEntryImage\fP (float x, float y, float width, float height, float texteSize, const char *font, const char *text, int textColor[4], int quality, const char *image, int displayCode, int plan, int min, int max, int isScripted)"
+.br
+.RI "Generate a prompt like element with an image\&. "
+.ti -1c
+.RI "int \fBisDisplaiedElement\fP (\fBElement\fP *e)"
+.br
+.RI "tell whether or not the element can be displaied "
+.ti -1c
+.RI "int \fBclearDisplayCode\fP (int code)"
+.br
+.RI "clear all elements of a display code in the current window "
+.ti -1c
+.RI "int \fBgetFlipStateElement\fP (\fBElement\fP *e, SANDAL2_FLIP *flip)"
+.br
+.RI "get the flip state of an element "
+.ti -1c
+.RI "int \fBgetCoordElement\fP (\fBElement\fP *e, float *x, float *y)"
+.br
+.RI "getter for the \fBElement\fP's coordinates "
+.ti -1c
+.RI "int \fBgetAngleElement\fP (\fBElement\fP *e, float *a)"
+.br
+.RI "getter for the \fBElement\fP's angle "
+.ti -1c
+.RI "int \fBgetDimensionElement\fP (\fBElement\fP *e, float *w, float *h)"
+.br
+.RI "getter for the \fBElement\fP's dimensions "
+.ti -1c
+.RI "int \fBgetRotationPointElement\fP (\fBElement\fP *e, float *x, float *y)"
+.br
+.RI "getter for the \fBElement\fP's rotation point "
+.ti -1c
+.RI "int \fBgetRotationSpeedElement\fP (\fBElement\fP *e, float *s)"
+.br
+.RI "getter for the element's rotation speed "
+.ti -1c
+.RI "int \fBgetDataElement\fP (\fBElement\fP *e, void **data)"
+.br
+.RI "getter for the element's data "
+.ti -1c
+.RI "int \fBisSelectedElement\fP (\fBElement\fP *e, int *select)"
+.br
+.RI "tells whether or not the element is selected "
+.ti -1c
+.RI "int \fBgetTextStyleElement\fP (\fBElement\fP *e, int *style)"
+.br
+.ti -1c
+.RI "int \fBgetTextElement\fP (\fBElement\fP *e, char **s)"
+.br
+.RI "get the text of an element "
+.ti -1c
+.RI "int \fBgetColorElement\fP (\fBElement\fP *e, int color[4])"
+.br
+.RI "get the element's block color "
+.ti -1c
+.RI "int \fBgetWidthElement\fP (\fBElement\fP *e, float *w)"
+.br
+.RI "get the element's width "
+.ti -1c
+.RI "int \fBgetHeightElement\fP (\fBElement\fP *e, float *h)"
+.br
+.RI "get the element's height "
+.ti -1c
+.RI "int \fBgetCoordXElement\fP (\fBElement\fP *e, float *x)"
+.br
+.RI "get the element's x coordinate "
+.ti -1c
+.RI "int \fBgetCoordYElement\fP (\fBElement\fP *e, float *y)"
+.br
+.RI "get the element's y coordinate "
+.ti -1c
+.RI "int \fBgetAlphaElement\fP (\fBElement\fP *e, int *alpha)"
+.br
+.RI "get the element's color alpha value (from 0 for transparent to 255 for fully visible) "
+.ti -1c
+.RI "int \fBsetFontElement\fP (\fBElement\fP *e, const char *font)"
+.br
+.RI "set the element's font "
+.ti -1c
+.RI "int \fBsetTextElement\fP (\fBElement\fP *e, const char *text)"
+.br
+.RI "set the element's text "
+.ti -1c
+.RI "int \fBsetTextStyleElement\fP (\fBElement\fP *e, int style)"
+.br
+.RI "set the element's text font style "
+.ti -1c
+.RI "int \fBsetColorElement\fP (\fBElement\fP *e, int color[4])"
+.br
+.RI "set the element's block color "
+.ti -1c
+.RI "int \fBsetTextColorElement\fP (\fBElement\fP *e, int color[4])"
+.br
+.RI "set the element's text color "
+.ti -1c
+.RI "int \fBsetTextQualityElement\fP (\fBElement\fP *e, int quality)"
+.br
+.RI "set the element's text color "
+.ti -1c
+.RI "int \fBsetImageElement\fP (\fBElement\fP *e, const char *image)"
+.br
+.RI "set the element's image "
+.ti -1c
+.RI "int \fBsetImageSurfaceElement\fP (\fBElement\fP *e, SDL_Surface *image)"
+.br
+.RI "set the element's image with a 's texture "
+.ti -1c
+.RI "int \fBreplaceElement\fP (\fBElement\fP *e, float x, float y)"
+.br
+.RI "set the element's coordinates "
+.ti -1c
+.RI "int \fBmoveElement\fP (\fBElement\fP *e, float x, float y)"
+.br
+.RI "move an element "
+.ti -1c
+.RI "int \fBsetDimensionElement\fP (\fBElement\fP *e, float width, float height)"
+.br
+.RI "resize an element "
+.ti -1c
+.RI "int \fBsetTextSize\fP (\fBElement\fP *e, float textSize)"
+.br
+.RI "set the text size of the text of an element in this element "
+.ti -1c
+.RI "int \fBaddDisplayCodeElement\fP (\fBElement\fP *e, int displayCode, int plan)"
+.br
+.RI "add a display code to an element (if it did not already had it) "
+.ti -1c
+.RI "int \fBdelDisplayCodeElement\fP (\fBElement\fP *e, int displayCode)"
+.br
+.RI "remove a display code to an element (if it has it) "
+.ti -1c
+.RI "int \fBsetDisplayCodeElement\fP (\fBElement\fP *e, int displayCode, int isDisplaied)"
+.br
+.RI "set the isDisplaied option of a display code (if the element has it) "
+.ti -1c
+.RI "int \fBsetPlanElement\fP (\fBElement\fP *e, int \fBDisplayCode\fP, int plan)"
+.br
+.RI "set the plan of a display code (if the element has it) "
+.ti -1c
+.RI "int \fBclearPlanDisplayCode\fP (int code, int plan)"
+.br
+.RI "clear all elements of a plan in a display code of the current window "
+.ti -1c
+.RI "int \fBsetActionElement\fP (\fBElement\fP *e, void(*action)(\fBElement\fP *))"
+.br
+.RI "set the continuous behaviour of an element "
+.ti -1c
+.RI "int \fBsetKeyPressedElement\fP (\fBElement\fP *e, void(*keyPress)(\fBElement\fP *, SDL_Keycode c))"
+.br
+.RI "set the behaviour of an element when a key is pressed "
+.ti -1c
+.RI "int \fBsetKeyReleasedElement\fP (\fBElement\fP *e, void(*keyReleased)(\fBElement\fP *, SDL_Keycode c))"
+.br
+.RI "set the behaviour of an element when a key is released "
+.ti -1c
+.RI "int \fBsetOnClickElement\fP (\fBElement\fP *e, void(*onCLick)(\fBElement\fP *, int button))"
+.br
+.RI "set the behaviour of an element when it is clicked "
+.ti -1c
+.RI "int \fBsetOnMouseMotionElement\fP (\fBElement\fP *e, void(*onMouseMotion)(\fBElement\fP *))"
+.br
+.RI "set the behaviour of an element when the mouse move on it "
+.ti -1c
+.RI "int \fBsetUnMouseMotionElement\fP (\fBElement\fP *e, void(*unMouseMotion)(\fBElement\fP *))"
+.br
+.RI "set the behaviour of an element when the mouse move out of it "
+.ti -1c
+.RI "int \fBsetUnClickElement\fP (\fBElement\fP *e, void(*unCLick)(\fBElement\fP *, int button))"
+.br
+.RI "set the behaviour of an element when it is unclicked "
+.ti -1c
+.RI "int \fBsetUnSelectElement\fP (\fBElement\fP *e, void(*unSelect)(\fBElement\fP *))"
+.br
+.RI "set the behaiour of an element when it is unselect "
+.ti -1c
+.RI "int \fBsetEndSpriteElement\fP (\fBElement\fP *e, void(*endSprite)(\fBElement\fP *, int currentCode))"
+.br
+.RI "set the behaviour of an element when it ends a sprite "
+.ti -1c
+.RI "int \fBsetEndActionElement\fP (\fBElement\fP *e, void(*endAction)(\fBElement\fP *))"
+.br
+.RI "set the behaviour of an element when its action list ends "
+.ti -1c
+.RI "int \fBaddElementToElement\fP (\fBElement\fP *e, \fBElement\fP *add)"
+.br
+.RI "add an element to another so that this other can modifie the first one "
+.ti -1c
+.RI "int \fBdelElementToElement\fP (\fBElement\fP *e, \fBElement\fP *del)"
+.br
+.RI "remove an element to another so that this other can not modifie the first one "
+.ti -1c
+.RI "int \fBclearElementToElement\fP (\fBElement\fP *e)"
+.br
+.RI "remove all elements binded to an element "
+.ti -1c
+.RI "int \fBaddClickableElement\fP (\fBElement\fP *e, \fBClickable\fP *hb, int blocking)"
+.br
+.RI "add a clickable zone to the element (or a blocking one) "
+.ti -1c
+.RI "int \fBaddRotationSpeedElement\fP (\fBElement\fP *e, float s)"
+.br
+.RI "increase the rotation speed of an element "
+.ti -1c
+.RI "int \fBsetRotationSpeedElement\fP (\fBElement\fP *e, float s)"
+.br
+.RI "set the rotation speed of an element "
+.ti -1c
+.RI "int \fBaddAngleElement\fP (\fBElement\fP *e, float a)"
+.br
+.RI "increase the angle of an element "
+.ti -1c
+.RI "int \fBsetAngleElement\fP (\fBElement\fP *e, float a)"
+.br
+.RI "set the angle of an element "
+.ti -1c
+.RI "int \fBsetRotationPointElement\fP (\fBElement\fP *e, float x, float y)"
+.br
+.RI "set the rotation point's coordinates of an element "
+.ti -1c
+.RI "int \fBsetDataElement\fP (\fBElement\fP *e, void *data)"
+.br
+.RI "set the element's data "
+.ti -1c
+.RI "int \fBsetFreeDataElement\fP (\fBElement\fP *e, void(*freeData)(void *))"
+.br
+.RI "set the element's freeing data's function (by default, set to free) "
+.ti -1c
+.RI "int \fBfreeDataElement\fP (\fBElement\fP *e)"
+.br
+.RI "free the element's data according to the element's freeing data behavior "
+.ti -1c
+.RI "int \fBaddAnimationElement\fP (\fBElement\fP *e, int code)"
+.br
+.RI "add an empty animation to the element "
+.ti -1c
+.RI "int \fBdelAnimationElement\fP (\fBElement\fP *e, int code)"
+.br
+.RI "remove an empty animation from the list "
+.ti -1c
+.RI "int \fBaddSpriteAnimationElement\fP (\fBElement\fP *e, int code, int x, int y, int width, int height, int lifespan, int codeS)"
+.br
+.RI "add a \fBSprite\fP to the element "
+.ti -1c
+.RI "int \fBdelSpriteAnimationElement\fP (\fBElement\fP *e, int code, int codeS)"
+.br
+.RI "remove a \fBSprite\fP in the element "
+.ti -1c
+.RI "int \fBsetLifeSpanSpriteAnimationElement\fP (\fBElement\fP *e, int code, int codeS, unsigned lifespan)"
+.br
+.RI "set the lifespan of a sprite "
+.ti -1c
+.RI "int \fBnextSpriteElement\fP (\fBElement\fP *e)"
+.br
+.RI "go to te next sprite of the current animation of an element "
+.ti -1c
+.RI "int \fBpreviousSpriteElement\fP (\fBElement\fP *e)"
+.br
+.RI "go to the previous sprite of the current animation of an element "
+.ti -1c
+.RI "int \fBsetWaySpriteAnimationElement\fP (\fBElement\fP *e, int code, int side)"
+.br
+.RI "set the way to go from a sprite to another (forward (1), backward (-1), no move (0)) "
+.ti -1c
+.RI "int \fBnextAnimationElement\fP (\fBElement\fP *e)"
+.br
+.RI "go to te next animation of an element "
+.ti -1c
+.RI "int \fBpreviousAnimationElement\fP (\fBElement\fP *e)"
+.br
+.RI "go to the previous animation of an element "
+.ti -1c
+.RI "int \fBsetAnimationElement\fP (\fBElement\fP *e, int code)"
+.br
+.RI "set the animation of an element "
+.ti -1c
+.RI "int \fBsetSpriteAnimationElement\fP (\fBElement\fP *e, int codeS)"
+.br
+.RI "set the sprite in the current animation of an element "
+.ti -1c
+.RI "int \fBclearWindow\fP (void)"
+.br
+.RI "remove all elements from the current window "
+.ti -1c
+.RI "int \fBsetFlipStateElement\fP (\fBElement\fP *e, SANDAL2_FLIP flip)"
+.br
+.RI "set the flip state of an element "
+.ti -1c
+.RI "int \fBsetWidthElement\fP (\fBElement\fP *e, float width)"
+.br
+.RI "set the element's width "
+.ti -1c
+.RI "int \fBsetHeightElement\fP (\fBElement\fP *e, float height)"
+.br
+.RI "set the element's height "
+.ti -1c
+.RI "int \fBsetCoordXElement\fP (\fBElement\fP *e, float x)"
+.br
+.RI "set the element's x coordinate "
+.ti -1c
+.RI "int \fBsetCoordYElement\fP (\fBElement\fP *e, float y)"
+.br
+.RI "set the element's y coordinate "
+.ti -1c
+.RI "int \fBsetActionListElement\fP (\fBElement\fP *e, \fBListAction\fP *actions)"
+.br
+.RI "Define a list of actions to apply to an element\&. "
+.ti -1c
+.RI "int \fBsetAlphaElement\fP (\fBElement\fP *e, int alpha)"
+.br
+.RI "set alpha of the element (255: completly visible, 0: completly transparent) "
+.ti -1c
+.RI "long long \fBaddActionToElement\fP (\fBElement\fP *e, \fBListAction\fP *action)"
+.br
+.RI "add an action at the end of the element action list "
+.ti -1c
+.RI "int \fBdelActionToElement\fP (\fBElement\fP *e, long long index)"
+.br
+.RI "remove an action of the element action list "
+.ti -1c
+.RI "int \fBinitIteratorElement\fP (\fBElement\fP *e)"
+.br
+.RI "initialize the element's iterator on all the elements it can modifie "
+.ti -1c
+.RI "\fBElement\fP * \fBnextIteratorElement\fP (\fBElement\fP *e)"
+.br
+.RI "gives the current element's iterator's value and go to the next one "
+.ti -1c
+.RI "int \fBinitIterator\fP (int displayCode)"
+.br
+.RI "initialise the iterator of all elements having a common display code "
+.ti -1c
+.RI "\fBElement\fP * \fBnextElement\fP ()"
+.br
+.RI "gives the current iterator's value and go to the next one "
+.ti -1c
+.RI "int \fBsetSizeEntry\fP (\fBElement\fP *e, int size_min, int size_max)"
+.br
+.RI "change the minimum and maximum size of a prompt (if a value is negative, it is not modified) "
+.ti -1c
+.RI "int \fBsetScriptedEntry\fP (\fBElement\fP *e, int isScripted)"
+.br
+.RI "set an element to crypted or uncrypted "
+.ti -1c
+.RI "int \fBaddCharEntry\fP (\fBElement\fP *e, char c)"
+.br
+.RI "add a character to a prompt "
+.ti -1c
+.RI "int \fBdelCharEntry\fP (\fBElement\fP *e)"
+.br
+.RI "remove a character to a prompt "
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fBListWindow\fP * \fB_windows_SANDAL2\fP"
+.br
+.RI "List of windows WARNING : Do not touch this list \&.\&.\&. trust me\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Contains all structures related to Elements\&. 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Baptiste PRUNIER (KLEVH) 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "void _freeElement (\fBElement\fP * e)"
+
+.PP
+Free the memory used by an element\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be freed 
+.RE
+.PP
+
+.SS "void _freeListElement (\fBListElement\fP * l)"
+
+.PP
+free the memory of a list of lists (display code) of lists (plan) of elements 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIl\fP : list to be freed 
+.RE
+.PP
+
+.SS "\fBListElement\fP* _initListElement (void)"
+
+.PP
+Initialise a list of lists (display code) of lists (plan) of elements\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+An empty list of lists (display code) of lists (plan) of elements 
+.RE
+.PP
+
+.SS "long long addActionToElement (\fBElement\fP * e, \fBListAction\fP * action)"
+
+.PP
+add an action at the end of the element action list 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to add the action to 
+.br
+\fIaction\fP : action to be added, it will be freed if the add succeeded 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the index of the action added in the action list if it was added, -1 if it could not 
+.RE
+.PP
+
+.SS "int addAngleElement (\fBElement\fP * e, float a)"
+
+.PP
+increase the angle of an element 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIa\fP : angle increment 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int addAnimationElement (\fBElement\fP * e, int code)"
+
+.PP
+add an empty animation to the element 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element 
+.br
+\fIcode\fP : code of the new animation 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if the animation could be added, 1 if not 
+.RE
+.PP
+
+.SS "int addCharEntry (\fBElement\fP * e, char c)"
+
+.PP
+add a character to a prompt 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIc\fP : character to be added 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if it was possible, 1 if not 
+.RE
+.PP
+
+.SS "int addClickableElement (\fBElement\fP * e, \fBClickable\fP * hb, int blocking)"
+
+.PP
+add a clickable zone to the element (or a blocking one) 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIhb\fP : clickable zone to be add 
+.br
+\fIblocking\fP : tells whether or not the clickable zone is a blocking one 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int addDisplayCodeElement (\fBElement\fP * e, int displayCode, int plan)"
+
+.PP
+add a display code to an element (if it did not already had it) 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIdisplayCode\fP : new display code 
+.br
+\fIplan\fP : plan linked to the new display code 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int addElement (\fBElement\fP * e)"
+
+.PP
+add an element to a list of lists (display code) of lists (plan) of elements 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be add 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if it could be done, 1 if not 
+.RE
+.PP
+
+.SS "int addElementToElement (\fBElement\fP * e, \fBElement\fP * add)"
+
+.PP
+add an element to another so that this other can modifie the first one 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIadd\fP : element to be add 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int addRotationSpeedElement (\fBElement\fP * e, float s)"
+
+.PP
+increase the rotation speed of an element 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIs\fP : rotation speed increment 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int addSpriteAnimationElement (\fBElement\fP * e, int code, int x, int y, int width, int height, int lifespan, int codeS)"
+
+.PP
+add a \fBSprite\fP to the element 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element 
+.br
+\fIx\fP : abscissa coordinate of the top left corner of the sprite in its image 
+.br
+\fIy\fP : ordinate coordinate of the top left corner of the sprite in its image 
+.br
+\fIwidth\fP : width of the sprite in its image 
+.br
+\fIheight\fP : height of the sprite in its image 
+.br
+\fIlifespan\fP : number of time the sprite should be displaied before going to the next sprite 
+.br
+\fIcodeS\fP : identifier of the sprite to be added 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if the sprite was correctly added, 1 if not 
+.RE
+.PP
+
+.SS "int clearDisplayCode (int code)"
+
+.PP
+clear all elements of a display code in the current window 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcode\fP : display code to be cleared 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int clearElementToElement (\fBElement\fP * e)"
+
+.PP
+remove all elements binded to an element 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int clearPlanDisplayCode (int code, int plan)"
+
+.PP
+clear all elements of a plan in a display code of the current window 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcode\fP : display code to be modified 
+.br
+\fIplan\fP : plan to be removed 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if it succeeded, 1 if not 
+.RE
+.PP
+
+.SS "int clearWindow (void)"
+
+.PP
+remove all elements from the current window 
+.PP
+\fBReturns:\fP
+.RS 4
+0 if it was possible, 1 if not 
+.RE
+.PP
+
+.SS "\fBElement\fP* createBlock (float x, float y, float width, float height, int color[4], int displayCode, int plan)"
+
+.PP
+Generate a non rotable rectangle like element\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP : abscissa coordinate of its top left corner 
+.br
+\fIy\fP : ordinate coordinate of its top left corner 
+.br
+\fIwidth\fP : width of the element 
+.br
+\fIheight\fP : height of the element 
+.br
+\fIcolor\fP : color of the rectangle (RGBA) 
+.br
+\fIdisplayCode\fP : display code of the rectangle 
+.br
+\fIplan\fP : plan of the rectangle 
+.RE
+.PP
+
+.SS "\fBElement\fP* createButton (float x, float y, float width, float height, float texteSize, const char * font, const char * text, int textColor[4], int quality, int colorBlock[4], int displayCode, int plan)"
+
+.PP
+Generate a button like element\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP : abscissa coordinate of its top left corner 
+.br
+\fIy\fP : ordinate coordinate of its top left corner 
+.br
+\fIwidth\fP : width of the element 
+.br
+\fIheight\fP : height of the element 
+.br
+\fItexteSize\fP : proportion of the text in the rectangle (it is centered) 
+.br
+\fIfont\fP : path to load the font to be used by the element 
+.br
+\fItext\fP : text of the element 
+.br
+\fItextColor\fP : color of the text (RGBA) 
+.br
+\fIquality\fP : quality of the text's texture (blended, shaded or solid) 
+.br
+\fIcolorBlock\fP : color of the rectangle (RGBA) 
+.br
+\fIdisplayCode\fP : display code of the button 
+.br
+\fIplan\fP : plan of the button 
+.RE
+.PP
+
+.SS "\fBElement\fP* createButtonImage (float x, float y, float width, float height, float texteSize, const char * font, const char * text, int textColor[4], int quality, const char * image, int displayCode, int plan)"
+
+.PP
+Generate a button like element with an image\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP : abscissa coordinate of its top left corner 
+.br
+\fIy\fP : ordinate coordinate of its top left corner 
+.br
+\fIwidth\fP : width of the element 
+.br
+\fIheight\fP : height of the element 
+.br
+\fItexteSize\fP : proportion of the text in the rectangle (it is centered) 
+.br
+\fIfont\fP : path to load the font to be used by the element 
+.br
+\fItext\fP : text of the element 
+.br
+\fItextColor\fP : color of the text (RGBA) 
+.br
+\fIquality\fP : quality of the text's texture (blended, shaded or solid) 
+.br
+\fIimage\fP : path to load the image to be used by the element 
+.br
+\fIdisplayCode\fP : display code of the button 
+.br
+\fIplan\fP : plan of the button 
+.RE
+.PP
+
+.SS "\fBElement\fP* createEntry (float x, float y, float width, float height, float texteSize, const char * font, const char * text, int textColor[4], int quality, int colorBlock[4], int displayCode, int plan, int min, int max, int isScripted)"
+
+.PP
+Generate a prompt like element\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP : abscissa coordinate of its top left corner 
+.br
+\fIy\fP : ordinate coordinate of its top left corner 
+.br
+\fIwidth\fP : width of the element 
+.br
+\fIheight\fP : height of the element 
+.br
+\fItexteSize\fP : proportion of the text in the rectangle (it is centered) 
+.br
+\fIfont\fP : path to load the font to be used by the element 
+.br
+\fItext\fP : text of the element 
+.br
+\fItextColor\fP : color of the text (RGBA) 
+.br
+\fIquality\fP : quality of the text's texture (blended, shaded or solid) 
+.br
+\fIcolorBlock\fP : color of the rectangle (RGBA) 
+.br
+\fIdisplayCode\fP : display code of the button 
+.br
+\fIplan\fP : plan of the button 
+.br
+\fImin\fP : minimum number of character for the prompt to be validate 
+.br
+\fImax\fP : maximum number of character for the prompt to be validate 
+.br
+\fIisScripted\fP : flag which tells whether or not the prompt is cripted 
+.RE
+.PP
+
+.SS "\fBElement\fP* createEntryImage (float x, float y, float width, float height, float texteSize, const char * font, const char * text, int textColor[4], int quality, const char * image, int displayCode, int plan, int min, int max, int isScripted)"
+
+.PP
+Generate a prompt like element with an image\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP : abscissa coordinate of its top left corner 
+.br
+\fIy\fP : ordinate coordinate of its top left corner 
+.br
+\fIwidth\fP : width of the element 
+.br
+\fIheight\fP : height of the element 
+.br
+\fItexteSize\fP : proportion of the text in the rectangle (it is centered) 
+.br
+\fIfont\fP : path to load the font to be used by the element 
+.br
+\fItext\fP : text of the element 
+.br
+\fItextColor\fP : color of the text (RGBA) 
+.br
+\fIquality\fP : quality of the text's texture (blended, shaded or solid) 
+.br
+\fIimage\fP : path to load the image to be used by the element 
+.br
+\fIdisplayCode\fP : display code of the button 
+.br
+\fIplan\fP : plan of the button 
+.br
+\fImin\fP : minimum number of character for the prompt to be validate 
+.br
+\fImax\fP : maximum number of character for the prompt to be validate 
+.br
+\fIisScripted\fP : flag which tells whether or not the prompt is cripted 
+.RE
+.PP
+
+.SS "\fBElement\fP* createImage (float x, float y, float width, float height, const char * image, int displayCode, int plan)"
+
+.PP
+Generate an image like element\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP : abscissa coordinate of its top left corner 
+.br
+\fIy\fP : ordinate coordinate of its top left corner 
+.br
+\fIwidth\fP : width of the element 
+.br
+\fIheight\fP : height of the element 
+.br
+\fIimage\fP : path to load the image to be used by the element 
+.br
+\fIdisplayCode\fP : display code of the image 
+.br
+\fIplan\fP : plan of the image 
+.RE
+.PP
+
+.SS "\fBElement\fP* createImageBlock (float x, float y, float width, float height, int color[4], int displayCode, int plan)"
+
+.PP
+Generate a rotable rectangle like element (slower than \fBcreateBlock()\fP) 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP : abscissa coordinate of its top left corner 
+.br
+\fIy\fP : ordinate coordinate of its top left corner 
+.br
+\fIwidth\fP : width of the element 
+.br
+\fIheight\fP : height of the element 
+.br
+\fIcolor\fP : color of the rectangle (RGBA) 
+.br
+\fIdisplayCode\fP : display code of the rectangle 
+.br
+\fIplan\fP : plan of the rectangle 
+.RE
+.PP
+
+.SS "\fBElement\fP* createText (float x, float y, float width, float height, float textSize, const char * font, const char * text, int textColor[4], int quality, int displayCode, int plan)"
+
+.PP
+Generate a text like element\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP : abscissa coordinate of its top left corner 
+.br
+\fIy\fP : ordinate coordinate of its top left corner 
+.br
+\fIwidth\fP : width of the element 
+.br
+\fIheight\fP : height of the element 
+.br
+\fIfont\fP : path to load the font to be used by the element 
+.br
+\fItext\fP : text of the element 
+.br
+\fItextColor\fP : color of the text (RGBA) 
+.br
+\fIquality\fP : quality of the text's texture (blended, shaded or solid) 
+.br
+\fIdisplayCode\fP : display code of the text 
+.br
+\fIplan\fP : plan of the text 
+.RE
+.PP
+
+.SS "int delActionToElement (\fBElement\fP * e, long long index)"
+
+.PP
+remove an action of the element action list 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIindex\fP : index of the action to be removed 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it failed, 0 if not 
+.RE
+.PP
+
+.SS "int delAnimationElement (\fBElement\fP * e, int code)"
+
+.PP
+remove an empty animation from the list 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIl\fP : list of animation 
+.br
+\fIcode\fP : code of the animation to be removed 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if the animation could be removed, 1 if not 
+.RE
+.PP
+
+.SS "int delCharEntry (\fBElement\fP * e)"
+
+.PP
+remove a character to a prompt 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if it was possible, 1 if not 
+.RE
+.PP
+
+.SS "int delDisplayCodeElement (\fBElement\fP * e, int displayCode)"
+
+.PP
+remove a display code to an element (if it has it) 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIdisplayCode\fP : display code to be removed 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int delElement (\fBElement\fP * e)"
+
+.PP
+mark an element as removable 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be removed 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if it could be done, 1 if not 
+.RE
+.PP
+
+.SS "int delElementToElement (\fBElement\fP * e, \fBElement\fP * del)"
+
+.PP
+remove an element to another so that this other can not modifie the first one 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIdel\fP : element to be removed 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int delSpriteAnimationElement (\fBElement\fP * e, int code, int codeS)"
+
+.PP
+remove a \fBSprite\fP in the element 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element 
+.br
+\fIcodeS\fP : code of the sprite to be removed 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if the sprite was correctly removed, 1 if not 
+.RE
+.PP
+
+.SS "int freeDataElement (\fBElement\fP * e)"
+
+.PP
+free the element's data according to the element's freeing data behavior 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int getAlphaElement (\fBElement\fP * e, int * alpha)"
+
+.PP
+get the element's color alpha value (from 0 for transparent to 255 for fully visible) 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to get the informations from 
+.br
+\fIalpha\fP : where to store the alpha value 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int getAngleElement (\fBElement\fP * e, float * a)"
+
+.PP
+getter for the \fBElement\fP's angle 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to get the angle 
+.br
+\fIa\fP : where the angle will be store 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int getColorElement (\fBElement\fP * e, int color[4])"
+
+.PP
+get the element's block color 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to get the informations from 
+.br
+\fIcolor\fP : where to store the block color 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int getCoordElement (\fBElement\fP * e, float * x, float * y)"
+
+.PP
+getter for the \fBElement\fP's coordinates 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to get the coordinates 
+.br
+\fIx\fP : where the abscissa coordinate will be store 
+.br
+\fIy\fP : where the ordinate coordinate will be store 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int getCoordXElement (\fBElement\fP * e, float * x)"
+
+.PP
+get the element's x coordinate 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to get the informations from 
+.br
+\fIx\fP : where to store the x coordinate 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int getCoordYElement (\fBElement\fP * e, float * y)"
+
+.PP
+get the element's y coordinate 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to get the informations from 
+.br
+\fIy\fP : where to store the y coordinate 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int getDataElement (\fBElement\fP * e, void ** data)"
+
+.PP
+getter for the element's data 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to get its data 
+.br
+\fIdata\fP : where to store the element's data 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if it could be done, 1 if not 
+.RE
+.PP
+
+.SS "int getDimensionElement (\fBElement\fP * e, float * w, float * h)"
+
+.PP
+getter for the \fBElement\fP's dimensions 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to get the dimensions 
+.br
+\fIw\fP : where the width will be store 
+.br
+\fIh\fP : where the height will be store 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int getFlipStateElement (\fBElement\fP * e, SANDAL2_FLIP * flip)"
+
+.PP
+get the flip state of an element 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to get the flip state 
+.br
+\fIflip\fP : where to store the flip state 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if it succeeded, 1 if not 
+.RE
+.PP
+
+.SS "int getHeightElement (\fBElement\fP * e, float * h)"
+
+.PP
+get the element's height 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to get the informations from 
+.br
+\fIh\fP : where to store the height 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int getRotationPointElement (\fBElement\fP * e, float * x, float * y)"
+
+.PP
+getter for the \fBElement\fP's rotation point 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to get the rotation point's coordinate 
+.br
+\fIx\fP : where the abscissa coordinate of the rotation point will be store 
+.br
+\fIy\fP : where the ordinate coordinate of the rotation point will be store 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int getRotationSpeedElement (\fBElement\fP * e, float * s)"
+
+.PP
+getter for the element's rotation speed 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to get the rotation speed 
+.br
+\fIs\fP : where the rotation speed will be store 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int getTextElement (\fBElement\fP * e, char ** s)"
+
+.PP
+get the text of an element 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : the element to get the text from 
+.br
+\fIs\fP : where to store the text 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it failed, 0 if not 
+.RE
+.PP
+
+.SS "int getTextStyleElement (\fBElement\fP * e, int * style)"
+get the element's text font style 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : the element to get the font style 
+.br
+\fIstyle\fP : where to store the style 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int getWidthElement (\fBElement\fP * e, float * w)"
+
+.PP
+get the element's width 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to get the informations from 
+.br
+\fIw\fP : where to store the width 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int initIterator (int displayCode)"
+
+.PP
+initialise the iterator of all elements having a common display code 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdisplayCode\fP : common display code of the elements 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it succeeded, 0 if not 
+.RE
+.PP
+
+.SS "int initIteratorElement (\fBElement\fP * e)"
+
+.PP
+initialize the element's iterator on all the elements it can modifie 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element from which to initialise the iterator 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it succeeded, 0 if not 
+.RE
+.PP
+
+.SS "int isDisplaiedElement (\fBElement\fP * e)"
+
+.PP
+tell whether or not the element can be displaied 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if the element is displaied (even outside the window), 0 if not 
+.RE
+.PP
+
+.SS "int isSelectedElement (\fBElement\fP * e, int * select)"
+
+.PP
+tells whether or not the element is selected 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to get the information from 
+.br
+\fIselect\fP : where to store the information 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int moveElement (\fBElement\fP * e, float x, float y)"
+
+.PP
+move an element 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIx\fP : abscissa increment 
+.br
+\fIy\fP : ordinate increment 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int nextAnimationElement (\fBElement\fP * e)"
+
+.PP
+go to te next animation of an element 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if it was possible, 1 if not 
+.RE
+.PP
+
+.SS "\fBElement\fP* nextElement ()"
+
+.PP
+gives the current iterator's value and go to the next one 
+.PP
+\fBReturns:\fP
+.RS 4
+the current element 
+.RE
+.PP
+
+.SS "\fBElement\fP* nextIteratorElement (\fBElement\fP * e)"
+
+.PP
+gives the current element's iterator's value and go to the next one 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the current element 
+.RE
+.PP
+
+.SS "int nextSpriteElement (\fBElement\fP * e)"
+
+.PP
+go to te next sprite of the current animation of an element 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if it was possible, 1 if not 
+.RE
+.PP
+
+.SS "int previousAnimationElement (\fBElement\fP * e)"
+
+.PP
+go to the previous animation of an element 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if it was possible, 1 if not 
+.RE
+.PP
+
+.SS "int previousSpriteElement (\fBElement\fP * e)"
+
+.PP
+go to the previous sprite of the current animation of an element 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if it was possible, 1 if not 
+.RE
+.PP
+
+.SS "int replaceElement (\fBElement\fP * e, float x, float y)"
+
+.PP
+set the element's coordinates 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIx\fP : new abscissa coordinate 
+.br
+\fIy\fP : new ordinate coordinate 
+.RE
+.PP
+
+.SS "int setActionElement (\fBElement\fP * e, void(*)(\fBElement\fP *) action)"
+
+.PP
+set the continuous behaviour of an element 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIaction\fP : function to be called on each update call 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int setActionListElement (\fBElement\fP * e, \fBListAction\fP * actions)"
+
+.PP
+Define a list of actions to apply to an element\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIactions\fP : list of actions to set on the element (do not free it yourself) 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int setAlphaElement (\fBElement\fP * e, int alpha)"
+
+.PP
+set alpha of the element (255: completly visible, 0: completly transparent) 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to modify 
+.br
+\fIalpha\fP : new alpha value of the element 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int setAngleElement (\fBElement\fP * e, float a)"
+
+.PP
+set the angle of an element 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIa\fP : new angle of the element 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int setAnimationElement (\fBElement\fP * e, int code)"
+
+.PP
+set the animation of an element 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIcode\fP : code of the animation to set 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if the animation is set, 1 if not 
+.RE
+.PP
+
+.SS "int setColorElement (\fBElement\fP * e, int color[4])"
+
+.PP
+set the element's block color 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIcolor\fP : new block color 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int setCoordXElement (\fBElement\fP * e, float x)"
+
+.PP
+set the element's x coordinate 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIx\fP : new x coordinate 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int setCoordYElement (\fBElement\fP * e, float y)"
+
+.PP
+set the element's y coordinate 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIy\fP : new y coordinate 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int setDataElement (\fBElement\fP * e, void * data)"
+
+.PP
+set the element's data 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIdata\fP : new data of the element 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int setDimensionElement (\fBElement\fP * e, float width, float height)"
+
+.PP
+resize an element 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIwidth\fP : new width 
+.br
+\fIheight\fP : new height 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int setDisplayCodeElement (\fBElement\fP * e, int displayCode, int isDisplaied)"
+
+.PP
+set the isDisplaied option of a display code (if the element has it) 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIdisplayCode\fP : display code to be modified 
+.br
+\fIisDisplaied\fP : new isDisplaied option 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int setEndActionElement (\fBElement\fP * e, void(*)(\fBElement\fP *) endAction)"
+
+.PP
+set the behaviour of an element when its action list ends 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIunSelect\fP : new behaviour 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int setEndSpriteElement (\fBElement\fP * e, void(*)(\fBElement\fP *, int currentCode) endSprite)"
+
+.PP
+set the behaviour of an element when it ends a sprite 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIendSprite\fP : new behaviour 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int setFlipStateElement (\fBElement\fP * e, SANDAL2_FLIP flip)"
+
+.PP
+set the flip state of an element 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIflip\fP : new flip state of the element 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if it was possible, 1 if not 
+.RE
+.PP
+
+.SS "int setFontElement (\fBElement\fP * e, const char * font)"
+
+.PP
+set the element's font 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIfont\fP : path of the new font 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int setFreeDataElement (\fBElement\fP * e, void(*)(void *) freeData)"
+
+.PP
+set the element's freeing data's function (by default, set to free) 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIfreeData\fP : new data freeing behavior 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int setHeightElement (\fBElement\fP * e, float height)"
+
+.PP
+set the element's height 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIheight\fP : new height 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int setImageElement (\fBElement\fP * e, const char * image)"
+
+.PP
+set the element's image 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIimage\fP : path of the new image 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it failed, 0 if it succeeded 
+.RE
+.PP
+
+.SS "int setImageSurfaceElement (\fBElement\fP * e, SDL_Surface * image)"
+
+.PP
+set the element's image with a 's texture 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIimage\fP : surface of the new image 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it failed, 0 if it succeeded 
+.RE
+.PP
+
+.SS "int setKeyPressedElement (\fBElement\fP * e, void(*)(\fBElement\fP *, SDL_Keycode c) keyPress)"
+
+.PP
+set the behaviour of an element when a key is pressed 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIkeyPress\fP : function to be called when a key is pressed 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int setKeyReleasedElement (\fBElement\fP * e, void(*)(\fBElement\fP *, SDL_Keycode c) keyReleased)"
+
+.PP
+set the behaviour of an element when a key is released 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIkeyReleased\fP : function to be called when a key is released 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int setLifeSpanSpriteAnimationElement (\fBElement\fP * e, int code, int codeS, unsigned lifespan)"
+
+.PP
+set the lifespan of a sprite 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element 
+.br
+\fIcodeS\fP : code of the sprite to be changed 
+.br
+\fIlifespan\fP : new number of time the sprite should be displaied before going to the next sprite 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if the lifespan could be set, 1 if not 
+.RE
+.PP
+
+.SS "int setOnClickElement (\fBElement\fP * e, void(*)(\fBElement\fP *, int button) onCLick)"
+
+.PP
+set the behaviour of an element when it is clicked 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIonCLick\fP : function to be called when it is clicked 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int setOnMouseMotionElement (\fBElement\fP * e, void(*)(\fBElement\fP *) onMouseMotion)"
+
+.PP
+set the behaviour of an element when the mouse move on it 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIonMouseMotion\fP : function to be called when the mouse move on it 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int setPlanElement (\fBElement\fP * e, int DisplayCode, int plan)"
+
+.PP
+set the plan of a display code (if the element has it) 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIdisplayCode\fP : display code to be modified 
+.br
+\fIplan\fP : new plan linked to the display code 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int setRotationPointElement (\fBElement\fP * e, float x, float y)"
+
+.PP
+set the rotation point's coordinates of an element 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIx\fP : new abscissa coordinate of the rotation point 
+.br
+\fIy\fP : new ordinate coordinate of the rotation point 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int setRotationSpeedElement (\fBElement\fP * e, float s)"
+
+.PP
+set the rotation speed of an element 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIs\fP : new rotation speed of the element 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int setScriptedEntry (\fBElement\fP * e, int isScripted)"
+
+.PP
+set an element to crypted or uncrypted 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIisScripted\fP : crypted option 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if it was possible, 1 if not 
+.RE
+.PP
+
+.SS "int setSizeEntry (\fBElement\fP * e, int size_min, int size_max)"
+
+.PP
+change the minimum and maximum size of a prompt (if a value is negative, it is not modified) 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIsize_min\fP : new minimum size of the prompt 
+.br
+\fIsize_max\fP : new maximum size of the prompt 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if it was possible, 1 if not 
+.RE
+.PP
+
+.SS "int setSpriteAnimationElement (\fBElement\fP * e, int codeS)"
+
+.PP
+set the sprite in the current animation of an element 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIcodeS\fP : code of the sprite to set 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if the sprite is set, 1 if not 
+.RE
+.PP
+
+.SS "int setTextColorElement (\fBElement\fP * e, int color[4])"
+
+.PP
+set the element's text color 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIcolor\fP : new text color 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int setTextElement (\fBElement\fP * e, const char * text)"
+
+.PP
+set the element's text 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fItext\fP : the new text 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int setTextQualityElement (\fBElement\fP * e, int quality)"
+
+.PP
+set the element's text color 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIquality\fP : new text quality 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int setTextSize (\fBElement\fP * e, float textSize)"
+
+.PP
+set the text size of the text of an element in this element 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fItextSize\fP : new size of the text (in percent) 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int setTextStyleElement (\fBElement\fP * e, int style)"
+
+.PP
+set the element's text font style 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : the element to be modified 
+.br
+\fIstyle\fP : the style to apply 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int setUnClickElement (\fBElement\fP * e, void(*)(\fBElement\fP *, int button) unCLick)"
+
+.PP
+set the behaviour of an element when it is unclicked 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIunCLick\fP : function to be called when it is unclicked 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int setUnMouseMotionElement (\fBElement\fP * e, void(*)(\fBElement\fP *) unMouseMotion)"
+
+.PP
+set the behaviour of an element when the mouse move out of it 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIunMouseMotion\fP : function to be called when the mouse move out it 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int setUnSelectElement (\fBElement\fP * e, void(*)(\fBElement\fP *) unSelect)"
+
+.PP
+set the behaiour of an element when it is unselect 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIunSelect\fP : new behaviour 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int setWaySpriteAnimationElement (\fBElement\fP * e, int code, int side)"
+
+.PP
+set the way to go from a sprite to another (forward (1), backward (-1), no move (0)) 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element 
+.br
+\fIside\fP : new way 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if the way could be set, 1 if not 
+.RE
+.PP
+
+.SS "int setWidthElement (\fBElement\fP * e, float width)"
+
+.PP
+set the element's width 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIe\fP : element to be modified 
+.br
+\fIwidth\fP : new width 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for SANDAL2 from the source code\&.

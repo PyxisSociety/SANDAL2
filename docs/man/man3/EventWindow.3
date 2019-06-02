@@ -1,0 +1,69 @@
+.TH "EventWindow" 3 "Sun Jun 2 2019" "SANDAL2" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+EventWindow \- Behaviors of a window to events\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Window\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "void(* \fBaction\fP )(void)"
+.br
+.ti -1c
+.RI "void(* \fBonClick\fP )(int)"
+.br
+.ti -1c
+.RI "void(* \fBunClick\fP )(int)"
+.br
+.ti -1c
+.RI "void(* \fBkeyPress\fP )(SDL_Keycode c)"
+.br
+.ti -1c
+.RI "void(* \fBkeyReleased\fP )(SDL_Keycode c)"
+.br
+.ti -1c
+.RI "void(* \fBonWheel\fP )(int)"
+.br
+.ti -1c
+.RI "void(* \fBonFocus\fP )(void)"
+.br
+.ti -1c
+.RI "void(* \fBunFocus\fP )(void)"
+.br
+.ti -1c
+.RI "void(* \fBonMouseMotion\fP )(int, int)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Behaviors of a window to events\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "void(* EventWindow::action) (void)"
+function called when update 
+.SS "void(* EventWindow::keyPress) (SDL_Keycode c)"
+function called when a key is pressed 
+.SS "void(* EventWindow::keyReleased) (SDL_Keycode c)"
+function called when a key is released 
+.SS "void(* EventWindow::onClick) (int)"
+function called when the element is clicked 
+.SS "void(* EventWindow::onFocus) (void)"
+function called when window gain focus 
+.SS "void(* EventWindow::onMouseMotion) (int, int)"
+function called when the mouse move on the window 
+.SS "void(* EventWindow::onWheel) (int)"
+function called when a wheel motion occures 
+.SS "void(* EventWindow::unClick) (int)"
+function called when the element is unclicked 
+.SS "void(* EventWindow::unFocus) (void)"
+function called when window lose focus 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for SANDAL2 from the source code\&.

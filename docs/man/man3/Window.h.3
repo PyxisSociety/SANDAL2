@@ -1,0 +1,710 @@
+.TH "headers/Window.h" 3 "Sun Jun 2 2019" "SANDAL2" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+headers/Window.h \- Contains all structures related to windows but only those unrelated to Elements\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <string\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <SDL2/SDL\&.h>\fP
+.br
+\fC#include <SDL2/SDL_ttf\&.h>\fP
+.br
+\fC#include <SDL2/SDL_image\&.h>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBEventWindow\fP"
+.br
+.RI "Behaviors of a window to events\&. "
+.ti -1c
+.RI "struct \fBWindow\fP"
+.br
+.RI "SANDAL2 window\&. "
+.ti -1c
+.RI "struct \fBListWindow\fP"
+.br
+.RI "list of windows "
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBabsolu\fP(a)   ((a>0)?a:\-a)"
+.br
+.RI "Get the absolute value of a variable\&. "
+.ti -1c
+.RI "#define \fBPFREE\fP(p)"
+.br
+.RI "free p if it is not NULL "
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef struct \fBWindow\fP \fBWindow\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBresizeWindow\fP (unsigned width, unsigned height)"
+.br
+.RI "Resize the current window\&. "
+.ti -1c
+.RI "int \fBsetDisplayCodeWindow\fP (int displayCode)"
+.br
+.RI "Change the display code of the current window\&. "
+.ti -1c
+.RI "Uint32 \fBinitIteratorWindow\fP ()"
+.br
+.RI "Initialise the iterator of the windows' list\&. "
+.ti -1c
+.RI "Uint32 \fBnextWindow\fP ()"
+.br
+.RI "Go to the next window\&. "
+.ti -1c
+.RI "int \fBgetDimensionWindow\fP (int *w, int *h)"
+.br
+.RI "Put the width of the current window in w (if not NULL) and its height in h (if not NULL) "
+.ti -1c
+.RI "int \fBgetDisplayCodeWindow\fP (int *d)"
+.br
+.RI "Put the display code of the current window in d (if not NULL) "
+.ti -1c
+.RI "int \fBgetColorWindow\fP (int color[4])"
+.br
+.RI "Put the background color of the current window in color\&. "
+.ti -1c
+.RI "int \fBsetColorWindow\fP (const int color[4])"
+.br
+.RI "Change the background color of the current window\&. "
+.ti -1c
+.RI "int \fBgetCoordWindow\fP (int *x, int *y)"
+.br
+.RI "Getter for the current window position\&. "
+.ti -1c
+.RI "int \fBsetCoordWindow\fP (int x, int y)"
+.br
+.RI "Set for the current window position\&. "
+.ti -1c
+.RI "int \fBgetRealDimensionWindow\fP (int *width, int *height)"
+.br
+.RI "Getter for the real dimension of the current window (do not use this function to calculate elements' size or coordinates, use getDimensionWindow instead) "
+.ti -1c
+.RI "int \fBgetIDWindow\fP (Uint32 *ID)"
+.br
+.RI "Getter for the currently displaied window ID\&. "
+.ti -1c
+.RI "int \fBgetIDCurrentWindow\fP (Uint32 *ID)"
+.br
+.RI "Getter for the current window ID\&. "
+.ti -1c
+.RI "int \fBsetIconWindow\fP (const char *icon_path)"
+.br
+.RI "Set the current window's icon\&. "
+.ti -1c
+.RI "int \fBsetActionWindow\fP (void(*action)(void))"
+.br
+.RI "set the continuous behaviour of the current window "
+.ti -1c
+.RI "int \fBsetKeyPressedWindow\fP (void(*keyPress)(SDL_Keycode c))"
+.br
+.RI "set the behaviour of the current window when a key is pressed "
+.ti -1c
+.RI "int \fBsetKeyReleasedWindow\fP (void(*keyReleased)(SDL_Keycode c))"
+.br
+.RI "set the behaviour of the current window when a key is released "
+.ti -1c
+.RI "int \fBsetOnClickWindow\fP (void(*onCLick)(int))"
+.br
+.RI "set the behaviour of the current window when it is clicked "
+.ti -1c
+.RI "int \fBsetUnClickWindow\fP (void(*unCLick)(int))"
+.br
+.RI "set the behaviour of the current window when it is unclicked "
+.ti -1c
+.RI "int \fBsetOnWheelWindow\fP (void(*onWheel)(int))"
+.br
+.RI "set behavior of window when a wheel event occure "
+.ti -1c
+.RI "int \fBsetOnMouseMotionWindow\fP (void(*onMouseMotion)(int, int))"
+.br
+.RI "set behavior of window when a wheel event occure "
+.ti -1c
+.RI "int \fBsetOnFocusedWindow\fP (void(*onFocus)(void))"
+.br
+.RI "set behavior of window when the window gain focus "
+.ti -1c
+.RI "int \fBsetUnFocusedWindow\fP (void(*unFocus)(void))"
+.br
+.RI "set behavior of window when the window lose focus "
+.ti -1c
+.RI "int \fBgetOriginWindow\fP (int *x, int *y)"
+.br
+.RI "get the origin point of the current window "
+.ti -1c
+.RI "int \fBsetOriginWindow\fP (int x, int y)"
+.br
+.RI "set the origin point of the current window "
+.ti -1c
+.RI "int \fBsetXOriginWindow\fP (int x)"
+.br
+.RI "set the x coordinate of the origin point of the current window "
+.ti -1c
+.RI "int \fBsetYOriginWindow\fP (int y)"
+.br
+.RI "set the y coordinate of the origin point of the current window "
+.ti -1c
+.RI "int \fBsetDataWindow\fP (void *data)"
+.br
+.RI "set the data package of a window "
+.ti -1c
+.RI "int \fBgetDataWindow\fP (void **data)"
+.br
+.RI "get the data package of a window "
+.ti -1c
+.RI "int \fBsetDisplayWindow\fP (Uint32 windowID)"
+.br
+.RI "set the window to be displaied and the current window "
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fBListWindow\fP * \fB_windows_SANDAL2\fP"
+.br
+.RI "list of windows WARNING : do not touch this variable, never \&.\&.\&. trust me "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Contains all structures related to windows but only those unrelated to Elements\&. 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Baptiste PRUNIER (KLEVH) 
+.RE
+.PP
+
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define PFREE(p)"
+\fBValue:\fP
+.PP
+.nf
+{               \
+        if(p){                  \
+            free(p);                            \
+        }                                       \
+    }
+.fi
+.PP
+free p if it is not NULL 
+.SH "Function Documentation"
+.PP 
+.SS "int getColorWindow (int color[4])"
+
+.PP
+Put the background color of the current window in color\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcolor\fP : where the background color of the current window should be store 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int getCoordWindow (int * x, int * y)"
+
+.PP
+Getter for the current window position\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP : where the abscissa coordinate of the window will be store 
+.br
+\fIy\fP : where the ordinate coordinate of the window will be store 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int getDataWindow (void ** data)"
+
+.PP
+get the data package of a window 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdata\fP : where to store the package of the window 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if it was possible, 1 if not 
+.RE
+.PP
+
+.SS "int getDimensionWindow (int * w, int * h)"
+
+.PP
+Put the width of the current window in w (if not NULL) and its height in h (if not NULL) 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIw\fP : where the width of the current window should be store 
+.br
+\fIh\fP : where the height of the current window should be store 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int getDisplayCodeWindow (int * d)"
+
+.PP
+Put the display code of the current window in d (if not NULL) 
+.PP
+\fBParameters:\fP
+.RS 4
+\fId\fP : where the display code of the current window should be store 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int getIDCurrentWindow (Uint32 * ID)"
+
+.PP
+Getter for the current window ID\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIID\fP : where to store the ID 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int getIDWindow (Uint32 * ID)"
+
+.PP
+Getter for the currently displaied window ID\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIID\fP : where to store the ID 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int getOriginWindow (int * x, int * y)"
+
+.PP
+get the origin point of the current window 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP : where to store the x coordinate 
+.br
+\fIy\fP : where to store the y coordinate 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int getRealDimensionWindow (int * width, int * height)"
+
+.PP
+Getter for the real dimension of the current window (do not use this function to calculate elements' size or coordinates, use getDimensionWindow instead) 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIwidth\fP : where the real width of the window will be store 
+.br
+\fIheight\fP : where the real height of the window will be store 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "Uint32 initIteratorWindow ()"
+
+.PP
+Initialise the iterator of the windows' list\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+0 if the iterator could not be initialised, the window ID if it could 
+.RE
+.PP
+
+.SS "Uint32 nextWindow ()"
+
+.PP
+Go to the next window\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+the window ID if it was possible, 0 if not 
+.RE
+.PP
+
+.SS "int resizeWindow (unsigned width, unsigned height)"
+
+.PP
+Resize the current window\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIwidth\fP : new width of the current window 
+.br
+\fIheight\fP : new height of the current window 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if it was possible, 1 if not 
+.RE
+.PP
+
+.SS "int setActionWindow (void(*)(void) action)"
+
+.PP
+set the continuous behaviour of the current window 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIaction\fP : function to be called on each update call 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int setColorWindow (const int color[4])"
+
+.PP
+Change the background color of the current window\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcolor\fP : new color of the background of the current window 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int setCoordWindow (int x, int y)"
+
+.PP
+Set for the current window position\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP : new abscissa coordinate of the window 
+.br
+\fIy\fP : new ordinate coordinate of the window 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int setDataWindow (void * data)"
+
+.PP
+set the data package of a window 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdata\fP : new package of the window 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if it was possible, 1 if not 
+.RE
+.PP
+
+.SS "int setDisplayCodeWindow (int displayCode)"
+
+.PP
+Change the display code of the current window\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdisplayCode\fP : new display code of the current window 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if it was possible, 1 if not 
+.RE
+.PP
+
+.SS "int setDisplayWindow (Uint32 windowID)"
+
+.PP
+set the window to be displaied and the current window 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIwindowID\fP : ID of the window to be displaied and to become current 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if it was possible, 1 if not 
+.RE
+.PP
+
+.SS "int setIconWindow (const char * icon_path)"
+
+.PP
+Set the current window's icon\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIicon_path\fP : path of the image to be used 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if there was an error, 0 if not 
+.RE
+.PP
+
+.SS "int setKeyPressedWindow (void(*)(SDL_Keycode c) keyPress)"
+
+.PP
+set the behaviour of the current window when a key is pressed 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIkeyPress\fP : function to be called when a key is pressed 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int setKeyReleasedWindow (void(*)(SDL_Keycode c) keyReleased)"
+
+.PP
+set the behaviour of the current window when a key is released 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIkeyReleased\fP : function to be called when a key is released 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int setOnClickWindow (void(*)(int) onCLick)"
+
+.PP
+set the behaviour of the current window when it is clicked 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIonCLick\fP : function to be called when it is clicked 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int setOnFocusedWindow (void(*)(void) onFocus)"
+
+.PP
+set behavior of window when the window gain focus 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIonFocus\fP : function to be called 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it failed, 0 if not 
+.RE
+.PP
+
+.SS "int setOnMouseMotionWindow (void(*)(int, int) onMouseMotion)"
+
+.PP
+set behavior of window when a wheel event occure 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIwheel\fP : function to be called 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it failed, 0 if not 
+.RE
+.PP
+
+.SS "int setOnWheelWindow (void(*)(int) onWheel)"
+
+.PP
+set behavior of window when a wheel event occure 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIonWheel\fP : function to be called when a wheel event occure 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it failed, 0 if not 
+.RE
+.PP
+
+.SS "int setOriginWindow (int x, int y)"
+
+.PP
+set the origin point of the current window 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP : new x coordinate 
+.br
+\fIy\fP : new y coordinate 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int setUnClickWindow (void(*)(int) unCLick)"
+
+.PP
+set the behaviour of the current window when it is unclicked 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIunCLick\fP : function to be called when it is unclicked 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int setUnFocusedWindow (void(*)(void) unFocus)"
+
+.PP
+set behavior of window when the window lose focus 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIunFocus\fP : function to be called 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it failed, 0 if not 
+.RE
+.PP
+
+.SS "int setXOriginWindow (int x)"
+
+.PP
+set the x coordinate of the origin point of the current window 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP : new x coordinate 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SS "int setYOriginWindow (int y)"
+
+.PP
+set the y coordinate of the origin point of the current window 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIy\fP : new y coordinate 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if it was impossible, 0 if not 
+.RE
+.PP
+
+.SH "Variable Documentation"
+.PP 
+.SS "\fBListWindow\fP* _windows_SANDAL2"
+
+.PP
+list of windows WARNING : do not touch this variable, never \&.\&.\&. trust me list of windows WARNING : do not touch this variable, never \&.\&.\&. trust me
+.PP
+List of the windows WARNING : do not touch it \&.\&.\&. trust me\&. 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for SANDAL2 from the source code\&.

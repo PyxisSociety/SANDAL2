@@ -1,0 +1,462 @@
+.TH "headers/Clickable.h" 3 "Sun Jun 2 2019" "SANDAL2" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+headers/Clickable.h \- Generic hitboxes either polygonial, elliptic or a mixe of both\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <math\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBLine\fP"
+.br
+.RI "Represente a line which delimitate a hittable surface from a none hittable one\&. "
+.ti -1c
+.RI "struct \fBCircle\fP"
+.br
+.RI "Represente a hittable ellipse\&. "
+.ti -1c
+.RI "struct \fBClickable\fP"
+.br
+.RI "Represente a hit boxe which is a collection of \fBLine\fP (defining a convexe polygon) and \fBCircle\fP\&. "
+.ti -1c
+.RI "struct \fBListClickable\fP"
+.br
+.RI "Collection of hit boxes\&. "
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef struct \fBLine\fP \fBLine\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBCircle\fP \fBCircle\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBClickable\fP \fBClickable\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBClickable\fP * \fBinitClickable\fP ()"
+.br
+.RI "Generate an empty hitbox\&. "
+.ti -1c
+.RI "int \fBaddLine\fP (\fBClickable\fP *hb, float a, float b, float c, int side)"
+.br
+.RI "add a line to the hitbox side*(ax+by) > side*c "
+.ti -1c
+.RI "int \fBaddCircle\fP (\fBClickable\fP *hb, float x, float y, float rX, float rY, float theta)"
+.br
+.RI "add an ellipse to the hitbox "
+.ti -1c
+.RI "int \fBdelLine\fP (\fBClickable\fP *hb, float a, float b, float c, int side)"
+.br
+.RI "remove a line from the hitbox "
+.ti -1c
+.RI "int \fBdelCircle\fP (\fBClickable\fP *hb, float x, float y, float rX, float rY, float theta)"
+.br
+.RI "remove an ellipse from the hitbox "
+.ti -1c
+.RI "int \fBhitClickable\fP (\fBClickable\fP *hb, float x, float y)"
+.br
+.RI "tells if (x,y) touch the hitbox "
+.ti -1c
+.RI "\fBClickable\fP * \fBrectangleClickable\fP (float x1, float y1, float x2, float y2)"
+.br
+.RI "generate a rectangulare shapped \fBClickable\fP "
+.ti -1c
+.RI "\fBClickable\fP * \fBellipseClickable\fP (float x, float y, float rX, float rY, float theta)"
+.br
+.RI "generate an ellipse shapped \fBClickable\fP "
+.ti -1c
+.RI "void \fBfreeClickable\fP (\fBClickable\fP *hb)"
+.br
+.RI "free a hit boxe's memory "
+.ti -1c
+.RI "void \fBfreeListClickable\fP (\fBListClickable\fP *l)"
+.br
+.RI "free the memory of a list of hit boxe "
+.ti -1c
+.RI "\fBListClickable\fP * \fBinitListClickable\fP ()"
+.br
+.RI "initialise an empty list of hit boxes "
+.ti -1c
+.RI "int \fBaddClickable\fP (\fBListClickable\fP *l, \fBClickable\fP *hb, int blocking)"
+.br
+.RI "add a hit boxe to a list of hit boxes "
+.ti -1c
+.RI "int \fBdelClickable\fP (\fBListClickable\fP *l, \fBClickable\fP *hb, int blocking)"
+.br
+.RI "remove a hit boxe to a list of hit boxes "
+.ti -1c
+.RI "int \fBinitIteratorListClickable\fP (\fBListClickable\fP *l)"
+.br
+.RI "initialise the iterator of the list of non blocking hit boxes "
+.ti -1c
+.RI "\fBClickable\fP * \fBnextClickable\fP (\fBListClickable\fP *l)"
+.br
+.RI "getter of the current non blocking element of the iterator and setter of the next element "
+.ti -1c
+.RI "int \fBinitIteratorListClickableBlocking\fP (\fBListClickable\fP *l)"
+.br
+.RI "initialise the iterator of the list of blocking hit boxes "
+.ti -1c
+.RI "\fBClickable\fP * \fBnextClickableBlocking\fP (\fBListClickable\fP *l)"
+.br
+.RI "getter of the current blocking element of the iterator and setter of the next element "
+.ti -1c
+.RI "int \fBhitListClickable\fP (\fBListClickable\fP *l, float x, float y)"
+.br
+.RI "tells if (x,y) touch one of the hitboxes "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Generic hitboxes either polygonial, elliptic or a mixe of both\&. 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Baptiste PRUNIER (KLEVH) 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "int addCircle (\fBClickable\fP * hb, float x, float y, float rX, float rY, float theta)"
+
+.PP
+add an ellipse to the hitbox 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhb\fP : hit boxe to which the line will be added 
+.br
+\fIx\fP : abscissa coordinate of the center of the ellipse 
+.br
+\fIy\fP : ordinate coordinate of the center of the ellipse 
+.br
+\fIrX\fP : size of the radius parallel to the abscissa axis 
+.br
+\fIrY\fP : size of the radius parallel to the ordinate axis 
+.br
+\fItheta\fP : rotation of the ellipse (in degree) 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if the ellipse was correctly added, 1 in the other case 
+.RE
+.PP
+
+.SS "int addClickable (\fBListClickable\fP * l, \fBClickable\fP * hb, int blocking)"
+
+.PP
+add a hit boxe to a list of hit boxes 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIl\fP : list of hit boxes 
+.br
+\fIhb\fP : hit boxe 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if the hit boxe was succesfully added, 1 if not 
+.RE
+.PP
+
+.SS "int addLine (\fBClickable\fP * hb, float a, float b, float c, int side)"
+
+.PP
+add a line to the hitbox side*(ax+by) > side*c 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhb\fP : hit boxe to which the line will be added 
+.br
+\fIa\fP : a in the equation of the line ax+by=c 
+.br
+\fIb\fP : b in the equation of the line ax+by=c 
+.br
+\fIc\fP : c in the equation of the line ax+by=c 
+.br
+\fIside\fP : indicator of the side of the line which is hittable (-1 : ax+by<c, 1 : ax+by>c) 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if the line was correctly added, 1 in the other case 
+.RE
+.PP
+
+.SS "int delCircle (\fBClickable\fP * hb, float x, float y, float rX, float rY, float theta)"
+
+.PP
+remove an ellipse from the hitbox 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhb\fP : hit boxe to which the line will be removed 
+.br
+\fIx\fP : abscissa coordinate of the center of the ellipse 
+.br
+\fIy\fP : ordinate coordinate of the center of the ellipse 
+.br
+\fIrX\fP : size of the radius parallel to the abscissa axis 
+.br
+\fIrY\fP : size of the radius parallel to the ordinate axis 
+.br
+\fItheta\fP : rotation of the ellipse (in degree) 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if the ellipse was correctly removed, 1 in the other case 
+.RE
+.PP
+
+.SS "int delClickable (\fBListClickable\fP * l, \fBClickable\fP * hb, int blocking)"
+
+.PP
+remove a hit boxe to a list of hit boxes 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIl\fP : list of hit boxes 
+.br
+\fIhb\fP : hit boxe 
+.br
+\fIblocking\fP : 0 if the hit boxe is hittable, 1 if it block other hit boxes 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if the hit boxe was succesfully removed, 1 if not 
+.RE
+.PP
+
+.SS "int delLine (\fBClickable\fP * hb, float a, float b, float c, int side)"
+
+.PP
+remove a line from the hitbox 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhb\fP : hit boxe to which the line will be removed 
+.br
+\fIa\fP : a in the equation of the line ax+by=c 
+.br
+\fIb\fP : b in the equation of the line ax+by=c 
+.br
+\fIc\fP : c in the equation of the line ax+by=c 
+.br
+\fIside\fP : indicator of the side of the line which is hittable (-1 : ax+by<c, 1 : ax+by>c) 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 if the line was correctly removed, 1 in the other case 
+.RE
+.PP
+
+.SS "\fBClickable\fP* ellipseClickable (float x, float y, float rX, float rY, float theta)"
+
+.PP
+generate an ellipse shapped \fBClickable\fP 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP : abscissa coordinate of the center of the ellipse 
+.br
+\fIy\fP : ordinate coordinate of the center of the ellipse 
+.br
+\fIrX\fP : size of the radius parallel to the abscissa axis 
+.br
+\fIrY\fP : size of the radius parallel to the ordinate axis 
+.br
+\fItheta\fP : rotation of the ellipse (in degree) 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+An elliptical hit boxe 
+.RE
+.PP
+
+.SS "void freeClickable (\fBClickable\fP * hb)"
+
+.PP
+free a hit boxe's memory 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhb\fP : hit boxe to be freed 
+.RE
+.PP
+
+.SS "void freeListClickable (\fBListClickable\fP * l)"
+
+.PP
+free the memory of a list of hit boxe 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIl\fP : list of hit boxe to be freed 
+.RE
+.PP
+
+.SS "int hitClickable (\fBClickable\fP * hb, float x, float y)"
+
+.PP
+tells if (x,y) touch the hitbox 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhb\fP : hit boxe that you are trying to touch 
+.br
+\fIx\fP : abscissa coordinate of the point trying to touch the hit boxe 
+.br
+\fIy\fP : ordinate coordinate of the point trying to touch the hit boxe 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if the hit boxe is hit, 0 in the other case 
+.RE
+.PP
+
+.SS "int hitListClickable (\fBListClickable\fP * l, float x, float y)"
+
+.PP
+tells if (x,y) touch one of the hitboxes 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIl\fP : list of hit boxes 
+.br
+\fIx\fP : abscissa coordinate of the point trying to touch the hit boxe 
+.br
+\fIy\fP : ordinate coordinate of the point trying to touch the hit boxe 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if one of the hit boxes was hit, 0 if not 
+.RE
+.PP
+
+.SS "\fBClickable\fP* initClickable ()"
+
+.PP
+Generate an empty hitbox\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+return an empty hitbox 
+.RE
+.PP
+
+.SS "int initIteratorListClickable (\fBListClickable\fP * l)"
+
+.PP
+initialise the iterator of the list of non blocking hit boxes 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIl\fP : list of hit boxes 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if the iterator was succesfully initialised, 0 if not 
+.RE
+.PP
+
+.SS "int initIteratorListClickableBlocking (\fBListClickable\fP * l)"
+
+.PP
+initialise the iterator of the list of blocking hit boxes 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIl\fP : list of hit boxes 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+1 if the iterator was succesfully initialised, 0 if not 
+.RE
+.PP
+
+.SS "\fBListClickable\fP* initListClickable ()"
+
+.PP
+initialise an empty list of hit boxes 
+.PP
+\fBReturns:\fP
+.RS 4
+an empty list of hit boxes 
+.RE
+.PP
+
+.SS "\fBClickable\fP* nextClickable (\fBListClickable\fP * l)"
+
+.PP
+getter of the current non blocking element of the iterator and setter of the next element 
+.PP
+\fBReturns:\fP
+.RS 4
+the current hit boxes 
+.RE
+.PP
+
+.SS "\fBClickable\fP* nextClickableBlocking (\fBListClickable\fP * l)"
+
+.PP
+getter of the current blocking element of the iterator and setter of the next element 
+.PP
+\fBReturns:\fP
+.RS 4
+the current hit boxes 
+.RE
+.PP
+
+.SS "\fBClickable\fP* rectangleClickable (float x1, float y1, float x2, float y2)"
+
+.PP
+generate a rectangulare shapped \fBClickable\fP 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx1\fP : abscissa coordinate of the top left point of the rectangle 
+.br
+\fIy1\fP : ordinate coordinate of the top left point of the rectangle 
+.br
+\fIx2\fP : abscissa coordinate of the bottom right point of the rectangle 
+.br
+\fIy2\fP : ordinate coordinate of the bottom right point of the rectangle 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A rectangulare hit boxe defined by the points (x1,y1) and (x2,y2) 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for SANDAL2 from the source code\&.

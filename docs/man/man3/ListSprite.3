@@ -1,0 +1,64 @@
+.TH "ListSprite" 3 "Sun Jun 2 2019" "SANDAL2" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ListSprite \- all steps of an animation  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Sprite\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBSprite\fP * \fBfirst\fP"
+.br
+.ti -1c
+.RI "\fBSprite\fP * \fBcurrent\fP"
+.br
+.ti -1c
+.RI "unsigned \fBsize\fP"
+.br
+.ti -1c
+.RI "int \fBside\fP"
+.br
+.ti -1c
+.RI "unsigned \fBwasChanged\fP"
+.br
+.ti -1c
+.RI "int \fBcode\fP"
+.br
+.ti -1c
+.RI "struct \fBListSprite\fP * \fBnext\fP"
+.br
+.ti -1c
+.RI "struct \fBListSprite\fP * \fBprev\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+all steps of an animation 
+.SH "Member Data Documentation"
+.PP 
+.SS "int ListSprite::code"
+identifier of the animation 
+.SS "\fBSprite\fP* ListSprite::current"
+current step of the animation 
+.SS "\fBSprite\fP* ListSprite::first"
+first step of the animation 
+.SS "struct \fBListSprite\fP* ListSprite::next"
+next animation 
+.SS "struct \fBListSprite\fP* ListSprite::prev"
+previous animation 
+.SS "int ListSprite::side"
+tells whether to go forward (1), backward (-1) or not to move (0) 
+.SS "unsigned ListSprite::size"
+number of steps in the animation 
+.SS "unsigned ListSprite::wasChanged"
+tells how many time the current sprite was displaied 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for SANDAL2 from the source code\&.

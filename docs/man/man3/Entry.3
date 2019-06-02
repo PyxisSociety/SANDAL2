@@ -1,0 +1,49 @@
+.TH "Entry" 3 "Sun Jun 2 2019" "SANDAL2" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Entry \- More informations about entry\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Element\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBsize_min\fP"
+.br
+.ti -1c
+.RI "int \fBsize_max\fP"
+.br
+.ti -1c
+.RI "int \fBsize\fP"
+.br
+.ti -1c
+.RI "int \fBisSelect\fP"
+.br
+.ti -1c
+.RI "int \fBisScripted\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+More informations about entry\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "int Entry::isScripted"
+tells whether or not the \fBEntry\fP is crypted (1 for yes, 0 for no) 
+.SS "int Entry::isSelect"
+tells whether or not the \fBEntry\fP is selected (1 for yes, 0 for no) 
+.SS "int Entry::size"
+actual size of the text of the entry 
+.SS "int Entry::size_max"
+maximum size of the text of the entry 
+.SS "int Entry::size_min"
+minimum size of the text of the entry 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for SANDAL2 from the source code\&.

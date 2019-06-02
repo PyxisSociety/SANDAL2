@@ -1,4 +1,4 @@
-# SANDAL2
+# More informations about SANDAL2
 
 Tests: [![tests status](https://gitlab.com/BaptistePR/SANDAL2/badges/master/pipeline.svg)](https://gitlab.com/BaptistePR/SANDAL2/commits/master)
   

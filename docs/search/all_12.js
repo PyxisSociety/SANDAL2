@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['sandal2',['SANDAL2',['../index.html',1,'']]],
   ['sandal2_2eh',['SANDAL2.h',['../SANDAL2_8h.html',1,'']]],
   ['sandal2_5fblended',['SANDAL2_BLENDED',['../Font_8h.html#a309b5312ea3d473024ee6895a8ceb8df',1,'Font.h']]],
   ['sandal2_5fbold',['SANDAL2_BOLD',['../Font_8h.html#ab7a11b783295b5115a5e05ef3a3287ed',1,'Font.h']]],
