@@ -1,0 +1,8 @@
+<map id="headers/Element.h" name="headers/Element.h">
+<area shape="rect" id="node2" href="$Clickable_8h.html" title="Generic hitboxes either polygonial, elliptic or a mixe of both. " alt="" coords="407,80,493,107"/>
+<area shape="rect" id="node5" href="$Font_8h.html" title="Information about TTF objects. " alt="" coords="273,80,331,107"/>
+<area shape="rect" id="node6" href="$Window_8h.html" title="Contains all structures related to windows but only those unrelated to Elements. " alt="" coords="262,155,342,181"/>
+<area shape="rect" id="node11" href="$DisplayCode_8h.html" title="Contains display code and list of display codes. " alt="" coords="517,80,625,107"/>
+<area shape="rect" id="node13" href="$Sprite_8h.html" title="Sprite manager for SANDAL2. " alt="" coords="655,155,722,181"/>
+<area shape="rect" id="node14" href="$Action_8h.html" title="Contains all structures related to actions on element. " alt="" coords="701,80,772,107"/>
+</map>

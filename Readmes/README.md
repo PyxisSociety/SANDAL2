@@ -8,8 +8,6 @@ graphic display easier.
 To generate the Doxygen documentation, use the command:  
 `doxygen Doxyfile`  
 <br/>
-To see this read me file with a better display, you can go to [this project's
-website](https://klevh.github.io/SANDAL2/).
 
 ## Contributors
 

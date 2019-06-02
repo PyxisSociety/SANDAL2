@@ -1,0 +1,23 @@
+<map id="ListDCElement" name="ListDCElement">
+<area shape="rect" id="node20" href="$structWindow.html" title="SANDAL2 window. " alt="" coords="162,248,231,275"/>
+<area shape="rect" id="node21" href="$structListElement.html" title="List of list (display code) of list (plan) of elements. " alt="" coords="158,652,249,679"/>
+<area shape="rect" id="node2" href="$structListPtrElement.html" title="List of PtrElement. " alt="" coords="252,563,360,589"/>
+<area shape="rect" id="node4" href="$structElement.html" title="All the informations of an element. " alt="" coords="471,339,541,365"/>
+<area shape="rect" id="node3" href="$structPtrElement.html" title="Structure used to store elements&#39; pointers in a list of element. " alt="" coords="411,444,497,471"/>
+<area shape="rect" id="node5" href="$structListClickable.html" title="Collection of hit boxes. " alt="" coords="507,248,604,275"/>
+<area shape="rect" id="node6" href="$structClickable.html" title="Represente a hit boxe which is a collection of Line (defining a convexe polygon) and Circle..." alt="" coords="517,113,593,140"/>
+<area shape="rect" id="node7" href="$structLine.html" title="Represente a line which delimitate a hittable surface from a none hittable one. " alt="" coords="629,7,676,33"/>
+<area shape="rect" id="node8" href="$structCircle.html" title="Represente a hittable ellipse. " alt="" coords="495,7,551,33"/>
+<area shape="rect" id="node9" href="$structEventElement.html" title="Behaviors of an element to events. " alt="" coords="706,248,810,275"/>
+<area shape="rect" id="node10" href="$structListAction.html" title="ListAction" alt="" coords="1059,248,1139,275"/>
+<area shape="rect" id="node11" href="$structActionNode.html" title="ActionNode" alt="" coords="1031,339,1122,365"/>
+<area shape="rect" id="node12" href="$structAction.html" title="Action" alt="" coords="977,248,1035,275"/>
+<area shape="rect" id="node13" href="$structListDisplayCode.html" title="List of display codes. " alt="" coords="835,248,953,275"/>
+<area shape="rect" id="node14" href="$structDisplayCode.html" title="Display code containing the plan and a flag to indicate if it is displaied. " alt="" coords="845,113,943,140"/>
+<area shape="rect" id="node15" href="$structListAnimation.html" title="a list of animations " alt="" coords="309,248,410,275"/>
+<area shape="rect" id="node16" href="$structListSprite.html" title="all steps of an animation " alt="" coords="321,113,398,140"/>
+<area shape="rect" id="node17" href="$structSprite.html" title="informations about a step of an animation " alt="" coords="331,7,387,33"/>
+<area shape="rect" id="node18" href="$structFont.html" title="Informations about font. " alt="" coords="434,248,482,275"/>
+<area shape="rect" id="node19" href="$structEntry.html" title="More informations about entry. " alt="" coords="629,248,682,275"/>
+<area shape="rect" id="node22" href="$structEventWindow.html" title="Behaviors of a window to events. " alt="" coords="193,113,296,140"/>
+</map>

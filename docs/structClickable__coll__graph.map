@@ -1,0 +1,4 @@
+<map id="Clickable" name="Clickable">
+<area shape="rect" id="node2" href="$structLine.html" title="Represente a line which delimitate a hittable surface from a none hittable one. " alt="" coords="5,5,52,32"/>
+<area shape="rect" id="node3" href="$structCircle.html" title="Represente a hittable ellipse. " alt="" coords="130,5,186,32"/>
+</map>

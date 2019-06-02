@@ -1,0 +1,4 @@
+<map id="ListAnimation" name="ListAnimation">
+<area shape="rect" id="node2" href="$structListSprite.html" title="all steps of an animation " alt="" coords="17,113,95,140"/>
+<area shape="rect" id="node3" href="$structSprite.html" title="informations about a step of an animation " alt="" coords="28,7,84,33"/>
+</map>
