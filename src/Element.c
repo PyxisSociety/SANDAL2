@@ -40,7 +40,7 @@ static void rotateChildren(ListPtrElement l, double a){
     PtrElement * p = l.first;
     double x, y, newX, newY, prX, prY;
     double c, s, ac, as;
-    double hyp, hypX, hypY;
+    double hyp;
     double op;
     double adj;
 
@@ -49,34 +49,36 @@ static void rotateChildren(ListPtrElement l, double a){
         prY = p->element->elementParent->prY * p->element->elementParent->height + p->element->elementParent->y;
         
         while(p){
-            hypX = (p->element->prX - p->element->elementParent->x)
-                * (p->element->prX - p->element->elementParent->x);
-            hypY = (p->element->prY - p->element->elementParent->y)
-                * (p->element->prY - p->element->elementParent->y);
-            hyp = sqrt(hypX + hypY);
-            op = sqrt(hypY);
-            adj = sqrt(hypX);
-        
-            ac = acos(adj / hyp);
-            as = asin(op / hyp);
-        
-            c = cos(-(M_PI * a / 180. + ac));
-            s = sin(-(M_PI * a / 180. + as));
-
             x = p->element->prX * p->element->width + p->element->x;
             y = p->element->prY * p->element->height + p->element->y;
+            
+            op = dabs(prX - x);
+            adj = dabs(prY - y);
+            hyp = sqrt(op * op + adj * adj);
+        
+            ac = acos(adj / hyp);
+        
+            c = cos(-(M_PI * a / 180. + ac) / 2);
+            s = sin(-(M_PI * a / 180. + ac) / 2);
 
-            x = c*x - s*y + (1 - c)*prX + s*prY;
-            y = s*x + c*y - s*prX + (1 - c)*prY;
+            x -= prX;
+            y -= prY;
 
-            newX = x - p->element->prX * p->element->width;
-            newY = y - p->element->prY * p->element->width;
+            newX = c*x - s*y;
+            newY = s*x + c*y;
+
+            newX += prX;
+            newY += prY;
+
+            newX = newX - p->element->prX * p->element->width;
+            newY = newY - p->element->prY * p->element->width;
 
             replaceChildren(p->element->elementChildren, newX - p->element->x, newY - p->element->y);
             rotateChildren(p->element->elementChildren, a);
 
             p->element->x = newX;
             p->element->y = newY;
+            p->element->rotation += a;
             
             p = p->next;
         }
@@ -1726,7 +1728,7 @@ int addAngleElement(Element *e,double a){
     int error = 1;
 
     if(e && e->coulBlock[0]==-1){
-        e->rotation+=a;
+        e->rotation += a;
         rotateChildren(e->elementChildren, a);
         error = 0;
     }

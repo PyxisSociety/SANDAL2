@@ -2,7 +2,10 @@
 
 #include <SANDAL2/SANDAL2.h>
 
-
+void onClick(Element * e, int b){
+    addAngleElement(e, 45.);
+    (void)b;
+}
 
 int main(){
     Element * parent, * child;
@@ -26,11 +29,16 @@ int main(){
 
     /* initializing elements */
     parent = createImageBlock(150, 150, 100, 100, red, 0, 0);
-    setActionListElement(parent,
-                         setForeverAction(rotateByAction(360, 2000), 1)
+    /*
+      setActionListElement(parent,
+                         setForeverAction(rotateByAction(360, 2), 1)
                          );
+    */
     child = createImageBlock(80, 80, 20, 20, red, 0, 0);
     setParentElement(parent, child);
+
+    addClickableElement(parent, rectangleClickable(0, 0, 1, 1), 0);
+    setOnClickElement(parent, onClick);
     
     /* display the window */
     while(run){
