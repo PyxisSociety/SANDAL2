@@ -1,6 +1,6 @@
 #include "Element.h"
 
-#include <limits.h>
+#include <math.h>
 
 /* -------------------------------------------------------
  * Other functions
@@ -10,6 +10,77 @@ static void copyColor(int to[4],int from[4]){
     to[1]=from[1];
     to[2]=from[2];
     to[3]=from[3];
+}
+
+static double dabs(double d){
+    return d < 0 ? -d : d;
+}
+
+static double dmax(double a, double b){
+    return a < b ? b : a;
+}
+
+static double dmin(double a, double b){
+    return a > b ? b : a;
+}
+
+static void replaceChildren(ListPtrElement l, double x, double y){
+    PtrElement * p = l.first;
+
+    while(p){
+        p->element->x += x;
+        p->element->y += y;
+        replaceChildren(p->element->elementChildren, x, y);
+
+        p = p->next;
+    }
+}
+
+static void rotateChildren(ListPtrElement l, double a){
+    PtrElement * p = l.first;
+    double x, y, newX, newY, prX, prY;
+    double c, s, ac, as;
+    double hyp, hypX, hypY;
+    double op;
+    double adj;
+
+    if(p){
+        prX = p->element->elementParent->prX * p->element->elementParent->width + p->element->elementParent->x;
+        prY = p->element->elementParent->prY * p->element->elementParent->height + p->element->elementParent->y;
+        
+        while(p){
+            hypX = (p->element->prX - p->element->elementParent->x)
+                * (p->element->prX - p->element->elementParent->x);
+            hypY = (p->element->prY - p->element->elementParent->y)
+                * (p->element->prY - p->element->elementParent->y);
+            hyp = sqrt(hypX + hypY);
+            op = sqrt(hypY);
+            adj = sqrt(hypX);
+        
+            ac = acos(adj / hyp);
+            as = asin(op / hyp);
+        
+            c = cos(-(M_PI * a / 180. + ac));
+            s = sin(-(M_PI * a / 180. + as));
+
+            x = p->element->prX * p->element->width + p->element->x;
+            y = p->element->prY * p->element->height + p->element->y;
+
+            x = c*x - s*y + (1 - c)*prX + s*prY;
+            y = s*x + c*y - s*prX + (1 - c)*prY;
+
+            newX = x - p->element->prX * p->element->width;
+            newY = y - p->element->prY * p->element->width;
+
+            replaceChildren(p->element->elementChildren, newX - p->element->x, newY - p->element->y);
+            rotateChildren(p->element->elementChildren, a);
+
+            p->element->x = newX;
+            p->element->y = newY;
+            
+            p = p->next;
+        }
+    }
 }
 /* ------------------------------------------------------- */
 
@@ -351,7 +422,7 @@ void _freeElement(Element *e){
     }    
 }
 
-Element* createBlock(float x,float y,float width,float height,int color[4],int displayCode,int plan){
+Element* createBlock(double x,double y,double width,double height,int color[4],int displayCode,int plan){
     Element *e = NULL;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
@@ -364,10 +435,10 @@ Element* createBlock(float x,float y,float width,float height,int color[4],int d
             e->y=y;
             e->width=width;
             e->height=height;
-            e->prX=.5f;
-            e->prY=.5f;
-            e->rotation=0.f;
-            e->rotSpeed=0.f;
+            e->prX=.5;
+            e->prY=.5;
+            e->rotation=0.;
+            e->rotSpeed=0.;
 	    e->flip = SANDAL2_FLIP_NONE;
             copyColor(e->coulBlock,color);
             e->codes=initListDisplayCode();
@@ -391,6 +462,13 @@ Element* createBlock(float x,float y,float width,float height,int color[4],int d
             e->hitboxes = initListClickable();
             e->data=NULL;
             e->actions = NULL;
+            e->elementParent = NULL;
+            e->elementChildren.first = NULL;
+            e->elementChildren.last = NULL;
+            e->relativeWidth = 0.;
+            e->relativeHeight = 0.;
+            e->relativeX = 0.;
+            e->relativeY = 0.;
             if(addElement(e)){
                 _freeElement(e);
                 e=NULL;
@@ -401,7 +479,7 @@ Element* createBlock(float x,float y,float width,float height,int color[4],int d
     return e;
 }
 
-Element* createText(float x,float y,float width,float height,float textSize, const char * font,const char * text,int textColor[4],int quality,int displayCode,int plan){
+Element* createText(double x,double y,double width,double height,double textSize, const char * font,const char * text,int textColor[4],int quality,int displayCode,int plan){
     Element *e=NULL;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->current){
@@ -414,12 +492,12 @@ Element* createText(float x,float y,float width,float height,float textSize, con
             e->y=y;
             e->width=width;
             e->height=height;
-            e->prX=.5f;
-            e->prY=.5f;
-            e->rotation=0.f;
-            e->rotSpeed=0.f;
+            e->prX=.5;
+            e->prY=.5;
+            e->rotation=0.;
+            e->rotSpeed=0.;
 	    e->flip = SANDAL2_FLIP_NONE;
-            e->textSize=textSize/100.f;
+            e->textSize=textSize/100.;
             e->animation=initListAnimation();
             e->image=NULL;
             e->entry=NULL;
@@ -444,6 +522,13 @@ Element* createText(float x,float y,float width,float height,float textSize, con
 		e->events.onMouseMotion=NULL;
 		e->events.unMouseMotion=NULL;
                 e->events.endAction=NULL;
+                e->elementParent = NULL;
+                e->elementChildren.first = NULL;
+                e->elementChildren.last = NULL;
+                e->relativeWidth = 0.;
+                e->relativeHeight = 0.;
+                e->relativeX = 0.;
+                e->relativeY = 0.;
                 if(addElement(e)){
                     _freeElement(e);
                     e=NULL;
@@ -458,7 +543,7 @@ Element* createText(float x,float y,float width,float height,float textSize, con
     return e;
 }
 
-Element* createImage(float x,float y,float width,float height,const char *image,int displayCode,int plan){
+Element* createImage(double x,double y,double width,double height,const char *image,int displayCode,int plan){
     Element *e=NULL;
     SDL_Surface *s;
 
@@ -475,10 +560,10 @@ Element* createImage(float x,float y,float width,float height,const char *image,
                 e->y=y;
                 e->width=width;
                 e->height=height;
-                e->prX=.5f;
-                e->prY=.5f;
-                e->rotation=0.f;
-                e->rotSpeed=0.f;
+                e->prX=.5;
+                e->prY=.5;
+                e->rotation=0.;
+                e->rotSpeed=0.;
 		e->flip = SANDAL2_FLIP_NONE;
                 e->animation=initListAnimation();
 #ifndef DEBUG_SDL2_NO_VIDEO
@@ -507,6 +592,13 @@ Element* createImage(float x,float y,float width,float height,const char *image,
                 e->hitboxes = initListClickable();
                 e->data=NULL;
                 e->actions = NULL;
+                e->elementParent = NULL;
+                e->elementChildren.first = NULL;
+                e->elementChildren.last = NULL;
+                e->relativeWidth = 0.;
+                e->relativeHeight = 0.;
+                e->relativeX = 0.;
+                e->relativeY = 0.;
                 if(addElement(e)){
                     _freeElement(e);
                     e=NULL;
@@ -519,7 +611,7 @@ Element* createImage(float x,float y,float width,float height,const char *image,
     return e;
 }
 
-Element* createImageBlock(float x,float y,float width,float height,int color[4],int displayCode,int plan){
+Element* createImageBlock(double x,double y,double width,double height,int color[4],int displayCode,int plan){
     Element     * e       = createBlock(x, y, width, height, color, displayCode, plan);
     Uint32        rmask;
     Uint32        gmask;
@@ -561,7 +653,7 @@ Element* createImageBlock(float x,float y,float width,float height,int color[4],
     return e;
 }
 
-Element* createButton(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,int colorBlock[4],int displayCode,int plan){
+Element* createButton(double x,double y,double width,double height,double texteSize,const char * font,const char * text,int textColor[4],int quality,int colorBlock[4],int displayCode,int plan){
     Element *e = NULL;
     Font * f;
 
@@ -583,7 +675,7 @@ Element* createButton(float x,float y,float width,float height,float texteSize,c
     return e;
 }
 
-Element* createButtonImage(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,const char *image,int displayCode,int plan){
+Element* createButtonImage(double x,double y,double width,double height,double texteSize,const char * font,const char * text,int textColor[4],int quality,const char *image,int displayCode,int plan){
     Element *e = NULL;
     Font * f;
   
@@ -605,7 +697,7 @@ Element* createButtonImage(float x,float y,float width,float height,float texteS
     return e;
 }
 
-Element* createEntry(float x,float y,float width,float height,float texteSize,const char * font, const char * text,int textColor[4],int quality,int colorBlock[4],int displayCode,int plan,int min,int max,int isScripted){
+Element* createEntry(double x,double y,double width,double height,double texteSize,const char * font, const char * text,int textColor[4],int quality,int colorBlock[4],int displayCode,int plan,int min,int max,int isScripted){
     Element *e = NULL;
     Entry *ent;
     int i;
@@ -652,7 +744,7 @@ Element* createEntry(float x,float y,float width,float height,float texteSize,co
     return e;  
 }
 
-Element* createEntryImage(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,const char *image,int displayCode,int plan,int min,int max,int isScripted){
+Element* createEntryImage(double x,double y,double width,double height,double texteSize,const char * font,const char * text,int textColor[4],int quality,const char *image,int displayCode,int plan,int min,int max,int isScripted){
     Element *e = NULL;
     Entry *ent;
     int i;
@@ -751,7 +843,7 @@ int getFlipStateElement(Element * e,SANDAL2_FLIP * flip){
     return !e;
 }
 
-int getCoordElement(Element* e,float* x,float* y){
+int getCoordElement(Element* e,double* x,double* y){
     int error = 1;
 
     if(e){
@@ -767,7 +859,7 @@ int getCoordElement(Element* e,float* x,float* y){
     return error;
 }
 
-int getAngleElement(Element* e,float* a){
+int getAngleElement(Element* e,double* a){
     int error = 1;
 
     if(e){
@@ -780,7 +872,7 @@ int getAngleElement(Element* e,float* a){
     return error;
 }
 
-int getDimensionElement(Element* e,float* w,float * h){
+int getDimensionElement(Element* e,double* w,double * h){
     int error = 1;
 
     if(e){
@@ -796,7 +888,7 @@ int getDimensionElement(Element* e,float* w,float * h){
     return error;
 }
 
-int getRotationPointElement(Element* e,float *x,float *y){
+int getRotationPointElement(Element* e,double *x,double *y){
     int error = 1;
 
     if(e){
@@ -812,7 +904,7 @@ int getRotationPointElement(Element* e,float *x,float *y){
     return error;
 }
 
-int getRotationSpeedElement(Element* e,float* s){
+int getRotationSpeedElement(Element* e,double* s){
     int error = 1;
 
     if(e){
@@ -897,7 +989,7 @@ int getColorElement(Element * e, int color[4]){
     return error;
 }
 
-int getWidthElement(Element * e,float * w){
+int getWidthElement(Element * e,double * w){
     int error = 1;
 
     if(e && w){
@@ -908,7 +1000,7 @@ int getWidthElement(Element * e,float * w){
     return error;
 }
 
-int getHeightElement(Element * e,float * h){
+int getHeightElement(Element * e,double * h){
     int error = 1;
 
     if(e && h){
@@ -919,7 +1011,7 @@ int getHeightElement(Element * e,float * h){
     return error;
 }
 
-int getCoordXElement(Element * e,float * x){
+int getCoordXElement(Element * e,double * x){
     int error = 1;
 
     if(e && x){
@@ -930,7 +1022,7 @@ int getCoordXElement(Element * e,float * x){
     return error;
 }
 
-int getCoordYElement(Element * e,float * y){
+int getCoordYElement(Element * e,double * y){
     int error = 1;
 
     if(e && y){
@@ -1109,31 +1201,47 @@ int setImageSurfaceElement(Element * e, SDL_Surface * image){
     return error;
 }
 
-int replaceElement(Element *e,float x,float y){
+int replaceElement(Element *e,double x,double y){
     int error = 1;
 
     if(e && _windows_SANDAL2 && _windows_SANDAL2->current){
-        e->x=x;
-        e->y=y;
+        replaceChildren(e->elementChildren, x - e->x, y - e->y);
+        
+        e->x = x;
+        e->y = y;
+        
+        if(e->elementParent){
+            e->relativeX = e->x / e->elementParent->x;
+            e->relativeY = e->y / e->elementParent->y;
+        }
+        
         error = 0;
     }
 
     return error;
 }
 
-int moveElement(Element *e,float x,float y){
+int moveElement(Element *e,double x,double y){
     int error = 1;
 
     if(e && _windows_SANDAL2 && _windows_SANDAL2->current){
-        e->x+=x;
-        e->y+=y;
+        e->x += x;
+        e->y += y;
+        
+        replaceChildren(e->elementChildren, x, y);
+        
+        if(e->elementParent){
+            e->relativeX = e->x / e->elementParent->x;
+            e->relativeY = e->y / e->elementParent->y;
+        }
+        
         error = 0;
     }
 
     return error;
 }
 
-int setDimensionElement(Element *e,float width,float height){
+int setDimensionElement(Element *e,double width,double height){
     int error = 1;
 
     if(e){
@@ -1145,7 +1253,7 @@ int setDimensionElement(Element *e,float width,float height){
     return error;
 }
 
-int setTextSize(Element *e,float textSize){
+int setTextSize(Element *e,double textSize){
     int error = 1;
 
     if(e){
@@ -1592,7 +1700,7 @@ int addClickableElement(Element *e,Clickable *hb,int blocking){
     return error;
 }
 
-int addRotationSpeedElement(Element *e,float s){
+int addRotationSpeedElement(Element *e,double s){
     int error = 1;
 
     if(e && e->coulBlock[0]==-1){
@@ -1603,7 +1711,7 @@ int addRotationSpeedElement(Element *e,float s){
     return error;
 }
 
-int setRotationSpeedElement(Element *e,float s){
+int setRotationSpeedElement(Element *e,double s){
     int error = 1;
 
     if(e && e->coulBlock[0]==-1){
@@ -1614,29 +1722,29 @@ int setRotationSpeedElement(Element *e,float s){
     return error;
 }
 
-int addAngleElement(Element *e,float a){
+int addAngleElement(Element *e,double a){
     int error = 1;
 
     if(e && e->coulBlock[0]==-1){
         e->rotation+=a;
+        rotateChildren(e->elementChildren, a);
         error = 0;
     }
 
     return error;
 }
 
-int setAngleElement(Element *e,float a){
+int setAngleElement(Element *e,double a){
     int error = 1;
 
     if(e && e->coulBlock[0]==-1){
-        e->rotation=a;
-        error = 0;
+        error = addAngleElement(e, a - e->rotation);
     }
 
     return error;
 }
 
-int setRotationPointElement(Element *e,float x,float y){
+int setRotationPointElement(Element *e,double x,double y){
     int error = 1;
 
     if(e && e->coulBlock[0]==-1){
@@ -1847,30 +1955,34 @@ int setFlipStateElement(Element * e, SANDAL2_FLIP flip){
     return !e;
 }
 
-int setWidthElement(Element * e, float width){
+int setWidthElement(Element * e, double width){
     if(e)
 	e->width = width;
 
     return !e;
 }
 
-int setHeightElement(Element * e, float height){
+int setHeightElement(Element * e, double height){
     if(e)
 	e->height = height;
 
     return !e;
 }
 
-int setCoordXElement(Element * e, float x){
-    if(e)
+int setCoordXElement(Element * e, double x){
+    if(e){
+        replaceChildren(e->elementChildren, x - e->x, 0);
 	e->x = x;
+    }
 
     return !e;
 }
 
-int setCoordYElement(Element * e, float y){
-    if(e)
+int setCoordYElement(Element * e, double y){
+    if(e){
+        replaceChildren(e->elementChildren, 0, y - e->y);
 	e->y = y;
+    }
 
     return !e;
 }
@@ -1935,6 +2047,72 @@ int delActionToElement(Element * e, long long index){
         error = delActionToAction(e->actions, index);
     }
 
+    return error;
+}
+
+int setParentElement(Element * parent, Element * child){
+    int error = 1;
+    PtrElement ** pE, * next;
+
+    if(parent && child){
+        error = 0;
+
+        if(child->elementParent != parent){
+            if(child->elementParent){
+                error = delParentElement(child);
+            }
+
+            if(!error){
+                next = (PtrElement*)malloc(sizeof(PtrElement));
+
+                if(!next){
+                    error = 1;
+                }else{
+                    pE = &(parent->elementChildren.last);
+                    if(*pE){
+                        pE = &((*pE)->next);
+                    }else{
+                        parent->elementChildren.first = next;
+                    }
+                    next->next = NULL;
+                    next->element = child;
+                    *pE = next;
+
+                    child->elementParent = parent;
+                    child->relativeWidth = child->width / parent->width;
+                    child->relativeHeight = child->height / parent->height;
+                    child->relativeX = child->x / parent->x;
+                    child->relativeY = child->y / parent->y;
+                }
+            }
+        }
+    }
+
+    return error;
+}
+
+int delParentElement(Element * child){
+    int error = 1;
+    PtrElement ** pE, * tmp;
+    
+    if(child){
+        error = 0;
+
+        if(child->elementParent){
+            pE = &(child->elementParent->elementChildren.first);
+            while(*pE && (*pE)->element != child){
+                pE = &((*pE)->next);
+            }
+
+            if(*pE){
+                tmp = *pE;
+                *pE = (*pE)->next;
+                free(tmp);
+            }
+            child->elementParent = NULL;
+        }
+    }
+    
     return error;
 }
 /* ------------------------------------------------------- */

@@ -8,56 +8,57 @@ void endAction3(Element * e);
 void endAction4(Element * e);
 
 int main(){
-    Element * objet;
+    Element * object;
     int run = 1;
     int tps = 0, ticks = 0;
-    int noir[4] = {0,0,0,255};
-    int rouge[4] = {255, 0, 0, 255};
+    int black[4] = {0,0,0,255};
+    int red[4] = {255, 0, 0, 255};
     int i, j;
     void (*action[4])(Element *) = {endAction1, endAction2, endAction3, endAction4};
   
     if(initAllSANDAL2(IMG_INIT_JPG)){
-	fprintf(stderr,"Erreur d'initialisation de la bibliotheque graphique.\n");
+        fputs("SANDAL2 Initializing error.\n", stderr);
 	exit(-1);
     }
 
-    /* initialisation de la fenetre */
-    if(!createWindow(400,400,"test",SDL_WINDOW_RESIZABLE,noir,1)){
+    /* initializing window */
+    if(!createWindow(400,400,"test",SDL_WINDOW_RESIZABLE,black,1)){
 	closeAllSANDAL2();
-	fprintf(stderr,"Erreur d'ouverture de la fenetre.\n");
+	fputs("Error while opening the window.\n", stderr);
 	exit(-1);
     }
 
     for(i = 0; i < 2; ++i){
         for(j = 0; j < 2; ++j){
-            /* creation de l'element */
-            objet = createImageBlock(60 + i * 200, 60 + j * 200, 80, 80, rouge, 1, 0);
+            /* creation of the element */
+            object = createImageBlock(60 + i * 200, 60 + j * 200, 80, 80, red, 1, 0);
 
-            /* definition des comportements de l'element */
-            action[i * 2 + j](objet);
+            /* defining the element's behavior */
+            action[i * 2 + j](object);
             if(action[i * 2 + j] != endAction2){
                 printf("Setting end action event for element %d\n", i * 2 + j);
-                setEndActionElement(objet, action[i * 2 + j]);
+                setEndActionElement(object, action[i * 2 + j]);
             }
         }
     }
     
-    /* display de la fenetre */
+    /* display the window */
     while(run){
 	tps = SDL_GetTicks();
         
-	/* gestion d'evenement */
+	/* event handling */
 	run=!PollEvent(NULL) && run;
 
-	/* update de la fenetre */
+	/* update the window */
 	updateWindow();
-	/* affichage de la fenetre */
+	/* display it */
 	displayWindow();
         
-	/* delai pour 60 frames/secondes */
+	/* 60 frames/secondes delay */
 	ticks = 16 - SDL_GetTicks() + tps;
-	if(ticks>0)
+	if(ticks>0){
 	    SDL_Delay(ticks);
+        }
     }
     
     closeAllSANDAL2();

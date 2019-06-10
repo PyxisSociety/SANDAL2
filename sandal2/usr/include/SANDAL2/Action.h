@@ -18,11 +18,11 @@ extern "C" {
 
 struct Element;
 typedef struct Action{
-    float timing;
+    double timing;
     /**< time for the action to be executed (in seconds), value inferior to 0 for infinite action */
-    float timeSpent;
+    double timeSpent;
     /**< time already spent for the action (in seconds), it stays at 0 if timing is < 0 */
-    void (*action)(struct Element *, void *, float);
+    void (*action)(struct Element *, void *, double);
     /**< action to be executed */
     void * data;
     /**< data of the action */
@@ -70,7 +70,7 @@ typedef struct ActionNode {
  * @param timing : duration of the action, it needs to be greater than 0
  * @return the created action (NULL on failure)
  */
-ListAction * initAction(void (*action)(struct Element *, void *, float), float timing);
+ListAction * initAction(void (*action)(struct Element *, void *, double), double timing);
 /**
  * @brief Set the data bound to an action, if the action list contains more than one action, this call will fail
  * @param action : action to bind data to
@@ -100,7 +100,7 @@ void freeListAction(ListAction * action);
  * @param time : time elapsed since last call of this function
  * @return 1 if the action list is finished, 0 if not
  */
-int executeListAction(ListAction * action, struct Element * e, float time);
+int executeListAction(ListAction * action, struct Element * e, double time);
 /**
  * @brief Generate a list of chained action (the nth action execute after the (n - 1)th ended)
  * @param action... : all list action of the list, needs to end by NULL
@@ -146,83 +146,83 @@ int delActionToAction(ListAction * action, long long index);
 /**
  * @brief function used by moveByAction() and left public to be used in self made action functions
  * @param e : element on which the action is called
- * @param data : a float* array of size 4 casted to void*. It MUST have the following format:
+ * @param data : a double* array of size 4 casted to void*. It MUST have the following format:
  *               [the x delta, the y delta, 0, 0]
  *               the last two values MUST be set to 0 before the first call, they will be modified inside the function
  *               those modifications NEEDS to be saved for the following calls
  * @param spentTime : total spent time since the beginning of the action (in percent from 0 to 1)
  */
-void moveByActionFunction(struct Element * e, void * data, float spentTime);
+void moveByActionFunction(struct Element * e, void * data, double spentTime);
 /**
  * @brief function used by moveToAction() and left public to be used in self made action functions
  * @param e : element on which the action is called
- * @param data : a float* array of size 4 casted to void*. It MUST have the following format:
+ * @param data : a double* array of size 4 casted to void*. It MUST have the following format:
  *               [the x new value, the y new value, 0, 0]
  *               the last two values MUST be set to 0 before the first call, they will be modified inside the function
  *               those modifications NEEDS to be saved for the following calls
  * @param spentTime : total spent time since the beginning of the action (in percent from 0 to 1)
  */
-void moveToActionFunction(struct Element * e, void * data, float spentTime);
+void moveToActionFunction(struct Element * e, void * data, double spentTime);
 /**
  * @brief function used by scaleByAction() and left public to be used in self made action functions
  * @param e : element on which the action is called
- * @param data : a float* array of size 4 casted to void*. It MUST have the following format:
+ * @param data : a double* array of size 4 casted to void*. It MUST have the following format:
  *               [the x scale value, the y scale value, 0, 0]
  *               the last two values MUST be set to 0 before the first call, they will be modified inside the function
  *               those modifications NEEDS to be saved for the following calls
  * @param spentTime : total spent time since the beginning of the action (in percent from 0 to 1)
  */
-void scaleByActionFunction(struct Element * e, void * data, float spentTime);
+void scaleByActionFunction(struct Element * e, void * data, double spentTime);
 /**
  * @brief function used by scaleToAction() and left public to be used in self made action functions
  * @param e : element on which the action is called
- * @param data : a float* array of size 4 casted to void*. It MUST have the following format:
+ * @param data : a double* array of size 4 casted to void*. It MUST have the following format:
  *               [the x scale value, the y scale value, 0, 0]
  *               the last two values MUST be set to 0 before the first call, they will be modified inside the function
  *               those modifications NEEDS to be saved for the following calls
  * @param spentTime : total spent time since the beginning of the action (in percent from 0 to 1)
  */
-void scaleToActionFunction(struct Element * e, void * data, float spentTime);
+void scaleToActionFunction(struct Element * e, void * data, double spentTime);
 /**
  * @brief function used by rotateByAction() and left public to be used in self made action functions
  * @param e : element on which the action is called
- * @param data : a float* array of size 2 casted to void*. It MUST have the following format:
+ * @param data : a double* array of size 2 casted to void*. It MUST have the following format:
  *               [the angle delta, 0]
  *               the last value MUST be set to 0 before the first call, it will be modified inside the function
  *               those modifications NEEDS to be saved for the following calls
  * @param spentTime : total spent time since the beginning of the action (in percent from 0 to 1)
  */
-void rotateByActionFunction(struct Element * e, void * data, float spentTime);
+void rotateByActionFunction(struct Element * e, void * data, double spentTime);
 /**
  * @brief function used by rotateToAction() and left public to be used in self made action functions
  * @param e : element on which the action is called
- * @param data : a float* array of size 2 casted to void*. It MUST have the following format:
+ * @param data : a double* array of size 2 casted to void*. It MUST have the following format:
  *               [the new angle, 0]
  *               the last value MUST be set to 0 before the first call, it will be modified inside the function
  *               those modifications NEEDS to be saved for the following calls
  * @param spentTime : total spent time since the beginning of the action (in percent from 0 to 1)
  */
-void rotateToActionFunction(struct Element * e, void * data, float spentTime);
+void rotateToActionFunction(struct Element * e, void * data, double spentTime);
 /**
  * @brief function used by fadeInAction() and left public to be used in self made action functions
  * @param e : element on which the action is called
- * @param data : a float* array of size 2 casted to void*. It MUST have the following format:
+ * @param data : a double* array of size 2 casted to void*. It MUST have the following format:
  *               [the delta to decrement alpha with, -1]
  *               the last value MUST be set to -1 before the first call, it will be modified inside the function
  *               those modifications NEEDS to be saved for the following calls
  * @param spentTime : total spent time since the beginning of the action (in percent from 0 to 1)
  */
-void fadeInActionFunction(struct Element * e, void * data, float spentTime);
+void fadeInActionFunction(struct Element * e, void * data, double spentTime);
 /**
  * @brief function used by fadeOutAction() and left public to be used in self made action functions
  * @param e : element on which the action is called
- * @param data : a float* array of size 2 casted to void*. It MUST have the following format:
+ * @param data : a double* array of size 2 casted to void*. It MUST have the following format:
  *               [the delta to increment alpha with, -1]
  *               the last value MUST be set to -1 before the first call, it will be modified inside the function
  *               those modifications NEEDS to be saved for the following calls
  * @param spentTime : total spent time since the beginning of the action (in percent from 0 to 1)
  */
-void fadeOutActionFunction(struct Element * e, void * data, float spentTime);
+void fadeOutActionFunction(struct Element * e, void * data, double spentTime);
 /* ------------------------------------------------------- */
 
 
@@ -239,7 +239,7 @@ void fadeOutActionFunction(struct Element * e, void * data, float spentTime);
  * @param time : duration of the action
  * @return the list action generated
  */
-ListAction * moveByAction(float x, float y, float time);
+ListAction * moveByAction(double x, double y, double time);
 /**
  * @brief Generate a ListAction doing a translation during a given time
  * @param x : new x value
@@ -247,7 +247,7 @@ ListAction * moveByAction(float x, float y, float time);
  * @param time : duration of the action
  * @return the list action generated
  */
-ListAction * moveToAction(float x, float y, float time);
+ListAction * moveToAction(double x, double y, double time);
 /**
  * @brief Generate a ListAction doing a scale XY (only X if y == 0, only Y if x == 0) during a given time
  * @param x : scale value of x (percentage of modification with 1.0 == +100%)
@@ -255,7 +255,7 @@ ListAction * moveToAction(float x, float y, float time);
  * @param time : duration of the action
  * @return the list action generated
  */
-ListAction * scaleByAction(float x, float y, float time);
+ListAction * scaleByAction(double x, double y, double time);
 /**
  * @brief Generate a ListAction doing a scale XY (only X if y == 0, only Y if x == 0) during a given time
  * @param w : new value of width
@@ -263,35 +263,35 @@ ListAction * scaleByAction(float x, float y, float time);
  * @param time : duration of the action
  * @return the list action generated
  */
-ListAction * scaleToAction(float w, float h, float time);
+ListAction * scaleToAction(double w, double h, double time);
 /**
  * @brief Generate a ListAction doing a rotation during a given time
  * @param angle : angle offset
  * @param time : duration of the action
  * @return the list action generated
  */
-ListAction * rotateByAction(float angle, float time);
+ListAction * rotateByAction(double angle, double time);
 /**
  * @brief Generate a ListAction doing a rotation during a given time
  * @param angle : new angle
  * @param time : duration of the action
  * @return the list action generated
  */
-ListAction * rotateToAction(float angle, float time);
+ListAction * rotateToAction(double angle, double time);
 /**
  * @brief Generate a ListAction doing a fade in during a given time
  * @param alpha : value to reduce the element's alpha of
  * @param time : duration of the action
  * @return the list action generated
  */
-ListAction * fadeInAction(int alpha, float time);
+ListAction * fadeInAction(int alpha, double time);
 /**
  * @brief Generate a ListAction doing a fade out during a given time
  * @param alpha : value to increase the element's alpha of
  * @param time : duration of the action
  * @return the list action generated
  */
-ListAction * fadeOutAction(int alpha, float time);
+ListAction * fadeOutAction(int alpha, double time);
 /* ------------------------------------------------------- */
 
 #ifdef __cplusplus

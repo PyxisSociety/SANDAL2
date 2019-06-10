@@ -2,49 +2,56 @@
 
 #include <SANDAL2/SANDAL2.h>
 
-#include <math.h>
 
-typedef struct L{
-    struct L son;
-    struct L brother;
-    float x;
-    float y;
-    float w;
-    float h;
-    float a;
-}list;
-
-void rotate(list * l, float a);
-
-#define p(l) printf(#l "\n\tx: %f\n\ty: %f\n\tw: %f\n\th: %f\n\ta: %f\n", l->x, l->y, l->w, l->h, l->a)
 
 int main(){
-    list grandson = {NULL, NULL, 15, 15, 3, 3, 45.f};
-    list son = {&grandson, NULL, 5, 5, 6, 6, 0.f};
-    list daughter = {NULL, &son, 0, 0, 4, 4, 0.f};
-    list parent = {&daughter, 25, 25, 10, 10, 0.f};
+    Element * parent, * child;
+    int run = 1;
+    int tps = 0, ticks = 0;
+    int black[4] = {0,0,0,255};
+    int red[4] = {255, 0, 0, 255};
+    int order = 1;
+    
+    if(initAllSANDAL2(0)){
+        fputs("SANDAL2 Initializing error.\n", stderr);
+        exit(-1);
+    }
 
-    // rotation / translation tests
-    rotate(&parent, 45.f);
+    /* initializing window */
+    if(!createWindow(400, 400, "test", 0, black, 0)){
+	closeAllSANDAL2();
+	fputs("Error while opening the window.\n", stderr);
+	exit(-1);
+    }
 
-    p(parent);
-    p(daughter);
-    p(son);
-    p(grandson);
+    /* initializing elements */
+    parent = createImageBlock(150, 150, 100, 100, red, 0, 0);
+    setActionListElement(parent,
+                         setForeverAction(rotateByAction(360, 2000), 1)
+                         );
+    child = createImageBlock(80, 80, 20, 20, red, 0, 0);
+    setParentElement(parent, child);
+    
+    /* display the window */
+    while(run){
+	tps = SDL_GetTicks();
+        
+	/* event handling */
+	run=!PollEvent(NULL) && run;
+
+	/* update the window */
+	updateWindow();
+	/* display it */
+	displayWindow();
+        
+	/* 60 frames/secondes delay */
+	ticks = 16 - SDL_GetTicks() + tps;
+	if(ticks>0){
+	    SDL_Delay(ticks);
+        }
+    }
+    
+    closeAllSANDAL2();
     
     return 0;
-}
-
-static void rotateAround(list * l, float a, float x, float y){
-
-    if(l->brother){
-        rotateAround(l->brother, a, x, y);
-    }
-    if(l->son){
-        rotateAround(l->son, a, x, y);
-    }
-}
-void rotate(list * l, float a){
-    if(!l) return;
-    rotateAround(l, a, l->x + l->w / 2, l->y + l->h / 2);
 }

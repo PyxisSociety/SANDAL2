@@ -17,7 +17,7 @@ Clickable * initClickable(){
     return hb;
 }
 
-int addLine(Clickable * hb,float a,float b,float c,int side){
+int addLine(Clickable * hb,double a,double b,double c,int side){
     Line * l;
     int error = 1;
 
@@ -37,7 +37,7 @@ int addLine(Clickable * hb,float a,float b,float c,int side){
     return error;
 }
 
-int addCircle(Clickable * hb,float x,float y,float rX,float rY,float theta){
+int addCircle(Clickable * hb,double x,double y,double rX,double rY,double theta){
     Circle *c;
     int error = 1;
 
@@ -58,7 +58,7 @@ int addCircle(Clickable * hb,float x,float y,float rX,float rY,float theta){
     return error;
 }
 
-int delLine(Clickable * hb,float a,float b,float c,int side){
+int delLine(Clickable * hb,double a,double b,double c,int side){
     int error = 1;
     Line ** l, *tmp;
 
@@ -78,7 +78,7 @@ int delLine(Clickable * hb,float a,float b,float c,int side){
     return error;
 }
 
-int delCircle(Clickable * hb,float x,float y,float rX,float rY,float theta){
+int delCircle(Clickable * hb,double x,double y,double rX,double rY,double theta){
     int error = 1;
     Circle ** c, *tmp;
 
@@ -98,11 +98,11 @@ int delCircle(Clickable * hb,float x,float y,float rX,float rY,float theta){
     return error;
 }
 
-int hitClickable(Clickable * hb,float x,float y){
+int hitClickable(Clickable * hb,double x,double y){
     int h = 0;
     Line * l;
     Circle * c;
-    float cs,sn;
+    double cs,sn;
   
     if(hb){
 	l=hb->firstL;
@@ -135,9 +135,9 @@ int hitClickable(Clickable * hb,float x,float y){
     return h;
 }
 
-Clickable * rectangleClickable(float x1,float y1,float x2,float y2){
+Clickable * rectangleClickable(double x1,double y1,double x2,double y2){
     Clickable * hb = initClickable();
-    float tmp;
+    double tmp;
 
     if(hb){
 	if(x1 > x2){
@@ -174,7 +174,7 @@ Clickable * rectangleClickable(float x1,float y1,float x2,float y2){
     return hb;
 }
 
-Clickable * ellipseClickable(float x,float y,float rX,float rY,float theta){
+Clickable * ellipseClickable(double x,double y,double rX,double rY,double theta){
     Clickable * hb=initClickable();
 
     if(hb){
@@ -325,7 +325,7 @@ Clickable * nextClickable(ListClickable * l){
     return hb;
 }
 
-int hitListClickable(ListClickable * l,float x,float y){
+int hitListClickable(ListClickable * l,double x,double y){
     Clickable * hb;
     int hit = 0;
 

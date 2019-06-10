@@ -21,11 +21,11 @@ extern "C" {
 typedef struct Line{
   struct Line * next;
   /**< next element*/
-  float a;
+  double a;
   /**< a in the equation of the line ax+by=c*/
-  float b;
+  double b;
   /**< b in the equation of the line ax+by=c*/
-  float c;
+  double c;
   /**< c in the equation of the line ax+by=c*/
   int side;
   /**< side of the line that is hittable (-1 : ax+by<c, 1 : ax+by>c)*/
@@ -38,15 +38,15 @@ typedef struct Line{
 typedef struct Circle{
   struct Circle * next;
   /**< next ellipse*/
-  float x;
+  double x;
   /**< abscissa coordinate of the center of the ellipse*/
-  float y;
+  double y;
   /**< ordinate coordinate of the center of the ellipse*/
-  float rY;
+  double rY;
   /**< size of the radius parallel to the ordinate axis*/
-  float rX;
+  double rX;
   /**< size of the radius parallel to the abscissa axis*/
-  float theta;
+  double theta;
   /**< degree of rotation*/
 }Circle;
 
@@ -95,7 +95,7 @@ Clickable * initClickable();
  * @param side : indicator of the side of the line which is hittable (-1 : ax+by<c, 1 : ax+by>c)
  * @return 0 if the line was correctly added, 1 in the other case
  */
-int addLine(Clickable * hb,float a,float b,float c,int side);
+int addLine(Clickable * hb,double a,double b,double c,int side);
 /**
  * @brief add an ellipse to the hitbox
  * @param hb : hit boxe to which the line will be added
@@ -106,7 +106,7 @@ int addLine(Clickable * hb,float a,float b,float c,int side);
  * @param theta : rotation of the ellipse (in degree)
  * @return 0 if the ellipse was correctly added, 1 in the other case
  */
-int addCircle(Clickable * hb,float x,float y,float rX,float rY,float theta);
+int addCircle(Clickable * hb,double x,double y,double rX,double rY,double theta);
 /**
  * @brief remove a line from the hitbox 
  * @param hb : hit boxe to which the line will be removed
@@ -116,7 +116,7 @@ int addCircle(Clickable * hb,float x,float y,float rX,float rY,float theta);
  * @param side : indicator of the side of the line which is hittable (-1 : ax+by<c, 1 : ax+by>c)
  * @return 0 if the line was correctly removed, 1 in the other case
  */
-int delLine(Clickable * hb,float a,float b,float c,int side);
+int delLine(Clickable * hb,double a,double b,double c,int side);
 /**
  * @brief remove an ellipse from the hitbox
  * @param hb : hit boxe to which the line will be removed
@@ -127,7 +127,7 @@ int delLine(Clickable * hb,float a,float b,float c,int side);
  * @param theta : rotation of the ellipse (in degree)
  * @return 0 if the ellipse was correctly removed, 1 in the other case
  */
-int delCircle(Clickable * hb,float x,float y,float rX,float rY,float theta);
+int delCircle(Clickable * hb,double x,double y,double rX,double rY,double theta);
 /**
  * @brief tells if (x,y) touch the hitbox 
  * @param hb : hit boxe that you are trying to touch
@@ -135,7 +135,7 @@ int delCircle(Clickable * hb,float x,float y,float rX,float rY,float theta);
  * @param y : ordinate coordinate of the point trying to touch the hit boxe
  * @return 1 if the hit boxe is hit, 0 in the other case
  */
-int hitClickable(Clickable * hb,float x,float y);
+int hitClickable(Clickable * hb,double x,double y);
 /**
  * @brief generate a rectangulare shapped Clickable 
  * @param x1 : abscissa coordinate of the top left point of the rectangle
@@ -144,7 +144,7 @@ int hitClickable(Clickable * hb,float x,float y);
  * @param y2 : ordinate coordinate of the bottom right point of the rectangle
  * @return A rectangulare hit boxe defined by the points (x1,y1) and (x2,y2)
  */
-Clickable * rectangleClickable(float x1,float y1,float x2,float y2);
+Clickable * rectangleClickable(double x1,double y1,double x2,double y2);
 /**
  * @brief generate an ellipse shapped Clickable 
  * @param x : abscissa coordinate of the center of the ellipse
@@ -154,7 +154,7 @@ Clickable * rectangleClickable(float x1,float y1,float x2,float y2);
  * @param theta : rotation of the ellipse (in degree)
  * @return An elliptical hit boxe
  */
-Clickable * ellipseClickable(float x,float y,float rX,float rY,float theta);
+Clickable * ellipseClickable(double x,double y,double rX,double rY,double theta);
 /**
  * @brief free a hit boxe's memory
  * @param hb : hit boxe to be freed
@@ -220,7 +220,7 @@ Clickable * nextClickableBlocking(ListClickable * l);
  * @param y : ordinate coordinate of the point trying to touch the hit boxe
  * @return 1 if one of the hit boxes was hit, 0 if not
  */
-int hitListClickable(ListClickable * l,float x,float y);
+int hitListClickable(ListClickable * l,double x,double y);
 /* ---------------------------------------------------------- */
 
 #ifdef __cplusplus

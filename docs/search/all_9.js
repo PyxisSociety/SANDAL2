@@ -1,7 +1,7 @@
 var searchData=
 [
   ['image',['image',['../structElement.html#a88c92b0b408bf6688940096775727962',1,'Element']]],
-  ['initaction',['initAction',['../Action_8h.html#af4aac1095804ea0a598f3dfa95b29a3e',1,'Action.c']]],
+  ['initaction',['initAction',['../Action_8h.html#ac99f1a6b3fc80331b2746a7c67328771',1,'Action.c']]],
   ['initallsandal2',['initAllSANDAL2',['../SANDAL2_8h.html#a0c4a25c629cd8f5577495a32c76a7209',1,'SANDAL2.c']]],
   ['initclickable',['initClickable',['../Clickable_8h.html#aad36bd812e8888afd684e831052a3cd1',1,'Clickable.c']]],
   ['initheight',['initHeight',['../structWindow.html#ad591a6706e12f424a6b24631b450dc18',1,'Window']]],
