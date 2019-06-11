@@ -60,11 +60,11 @@ static void rotateChildren(ListPtrElement l, double a){
                 }
 
                 hyp = sqrt((prX - x)*(prX - x) + (prY - y)*(prY - y));
-                newX = prX + hyp*cos(oldA + a);
-                newY = prY + hyp*sin(oldA + a);
+                newX = prX + hyp*cos(oldA + M_PI * a / 180);
+                newY = prY + hyp*sin(oldA + M_PI * a / 180);
             
                 newX = newX - p->element->prX * p->element->width;
-                newY = newY - p->element->prY * p->element->width;
+                newY = newY - p->element->prY * p->element->height;
             
                 replaceChildren(p->element->elementChildren, newX - p->element->x, newY - p->element->y);
                 rotateChildren(p->element->elementChildren, a);
