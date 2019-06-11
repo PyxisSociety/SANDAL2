@@ -35,14 +35,11 @@ static void replaceChildren(ListPtrElement l, double x, double y){
         p = p->next;
     }
 }
-#include <stdio.h>
+
 static void rotateChildren(ListPtrElement l, double a){
     PtrElement * p = l.first;
     double x, y, newX, newY, prX, prY;
-    double c, s, oldA;
-    double hyp;
-    double op;
-    double adj;
+    double c, s, oldA, hyp;
 
     if(p){
         prX = p->element->elementParent->prX * p->element->elementParent->width + p->element->elementParent->x;
@@ -53,63 +50,18 @@ static void rotateChildren(ListPtrElement l, double a){
             y = p->element->prY * p->element->height + p->element->y;
 
             if(prX != x || prY != y){
-                op = dabs(prX - x);
-                adj = dabs(prY - y);
-                hyp = sqrt(op * op + adj * adj);
-
-                oldA = asin(op / hyp);
-
-                printf("parent pr: %lf, %lf\n", prX, prY);
-                printf("son pr: %lf, %lf\n", x, y);
-                printf("old angle (before): %lf\n", oldA * 180 / M_PI);
-                if(prX > x || prY > y){
-                    if(prY < y){
-                        puts("-X, +Y");
-                        oldA = oldA - M_PI;
-                    }else{
-                        puts("-X, -Y");
-                        oldA = oldA + M_PI;
-                    }
-                }else if(prY <= y && prX <= x){
-                    puts("+X, +Y");
-                    oldA = oldA - M_PI / 2;
-                }else puts("+X, -Y");
-                /*
-                  c = cos(-(M_PI * a / 180. + ac) / 2);
-                  s = sin(-(M_PI * a / 180. + ac) / 2);
-
-                  x -= prX;
-                  y -= prY;
-
-                  newX = c*x - s*y;
-                  newY = s*x + c*y;
-
-                  newX += prX;
-                  newY += prY;
-                */
-                printf("old angle: %lf\n", oldA * 180 / M_PI);
-                newX = prX + hyp * cos(M_PI * a / 180. - oldA);
-                if(prX > x || prY > y){
-                    if(prY < y){
-                        puts("-X, +Y");
-                        newY = prY - hyp * sin(M_PI * a / 180. - oldA);
-                        printf("new angle: %lf\n", a - 180 * oldA / M_PI);
-                    }else{
-                        puts("-X, -Y");
-                        newY = prY - hyp * sin(M_PI * a / 180. - oldA);
-                        printf("new angle: %lf\n", - a - 180 * oldA / M_PI);
-                    }
-                }else if(prY <= y && prX <= x){
-                    puts("+X, +Y");
-                    newY = prY - hyp * sin(M_PI * a / 180. - oldA);
-                    printf("new angle: %lf\n", a - 180 * oldA / M_PI);
+                if(prX != x){
+                    oldA = atan((y - prY) / (x - prX));
                 }else{
-                    puts("+X, -Y");
-                    newY = prY - hyp * sin(M_PI * a / 180. - oldA);
-                    printf("new angle: %lf\n", a - 180 * oldA / M_PI);
+                    oldA = M_PI / 2;
                 }
-            
-                printf("new pr: %lf - %lf\n\n", newX, newY);
+                if(y - prY < 0){
+                    oldA = M_PI - oldA;
+                }
+
+                hyp = sqrt((prX - x)*(prX - x) + (prY - y)*(prY - y));
+                newX = prX + hyp*cos(oldA + a);
+                newY = prY + hyp*sin(oldA + a);
             
                 newX = newX - p->element->prX * p->element->width;
                 newY = newY - p->element->prY * p->element->width;
