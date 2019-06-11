@@ -3,7 +3,7 @@
 #include <SANDAL2/SANDAL2.h>
 
 void onClick(Element * e, int b){
-    addAngleElement(e, 45.);
+    addAngleElement(e, 5);
     (void)b;
 }
 

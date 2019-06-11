@@ -35,11 +35,11 @@ static void replaceChildren(ListPtrElement l, double x, double y){
         p = p->next;
     }
 }
-
+#include <stdio.h>
 static void rotateChildren(ListPtrElement l, double a){
     PtrElement * p = l.first;
     double x, y, newX, newY, prX, prY;
-    double c, s, ac, as;
+    double c, s, oldA;
     double hyp;
     double op;
     double adj;
@@ -51,33 +51,76 @@ static void rotateChildren(ListPtrElement l, double a){
         while(p){
             x = p->element->prX * p->element->width + p->element->x;
             y = p->element->prY * p->element->height + p->element->y;
+
+            if(prX != x || prY != y){
+                op = dabs(prX - x);
+                adj = dabs(prY - y);
+                hyp = sqrt(op * op + adj * adj);
+
+                oldA = asin(op / hyp);
+
+                printf("parent pr: %lf, %lf\n", prX, prY);
+                printf("son pr: %lf, %lf\n", x, y);
+                printf("old angle (before): %lf\n", oldA * 180 / M_PI);
+                if(prX > x || prY > y){
+                    if(prY < y){
+                        puts("-X, +Y");
+                        oldA = oldA - M_PI;
+                    }else{
+                        puts("-X, -Y");
+                        oldA = oldA + M_PI;
+                    }
+                }else if(prY <= y && prX <= x){
+                    puts("+X, +Y");
+                    oldA = oldA - M_PI / 2;
+                }else puts("+X, -Y");
+                /*
+                  c = cos(-(M_PI * a / 180. + ac) / 2);
+                  s = sin(-(M_PI * a / 180. + ac) / 2);
+
+                  x -= prX;
+                  y -= prY;
+
+                  newX = c*x - s*y;
+                  newY = s*x + c*y;
+
+                  newX += prX;
+                  newY += prY;
+                */
+                printf("old angle: %lf\n", oldA * 180 / M_PI);
+                newX = prX + hyp * cos(M_PI * a / 180. - oldA);
+                if(prX > x || prY > y){
+                    if(prY < y){
+                        puts("-X, +Y");
+                        newY = prY - hyp * sin(M_PI * a / 180. - oldA);
+                        printf("new angle: %lf\n", a - 180 * oldA / M_PI);
+                    }else{
+                        puts("-X, -Y");
+                        newY = prY - hyp * sin(M_PI * a / 180. - oldA);
+                        printf("new angle: %lf\n", - a - 180 * oldA / M_PI);
+                    }
+                }else if(prY <= y && prX <= x){
+                    puts("+X, +Y");
+                    newY = prY - hyp * sin(M_PI * a / 180. - oldA);
+                    printf("new angle: %lf\n", a - 180 * oldA / M_PI);
+                }else{
+                    puts("+X, -Y");
+                    newY = prY - hyp * sin(M_PI * a / 180. - oldA);
+                    printf("new angle: %lf\n", a - 180 * oldA / M_PI);
+                }
             
-            op = dabs(prX - x);
-            adj = dabs(prY - y);
-            hyp = sqrt(op * op + adj * adj);
-        
-            ac = acos(adj / hyp);
-        
-            c = cos(-(M_PI * a / 180. + ac) / 2);
-            s = sin(-(M_PI * a / 180. + ac) / 2);
+                printf("new pr: %lf - %lf\n\n", newX, newY);
+            
+                newX = newX - p->element->prX * p->element->width;
+                newY = newY - p->element->prY * p->element->width;
+            
+                replaceChildren(p->element->elementChildren, newX - p->element->x, newY - p->element->y);
+                rotateChildren(p->element->elementChildren, a);
 
-            x -= prX;
-            y -= prY;
-
-            newX = c*x - s*y;
-            newY = s*x + c*y;
-
-            newX += prX;
-            newY += prY;
-
-            newX = newX - p->element->prX * p->element->width;
-            newY = newY - p->element->prY * p->element->width;
-
-            replaceChildren(p->element->elementChildren, newX - p->element->x, newY - p->element->y);
-            rotateChildren(p->element->elementChildren, a);
-
-            p->element->x = newX;
-            p->element->y = newY;
+                p->element->x = newX;
+                p->element->y = newY;
+            }
+            
             p->element->rotation += a;
             
             p = p->next;
