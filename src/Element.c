@@ -12,18 +12,6 @@ static void copyColor(int to[4],int from[4]){
     to[3]=from[3];
 }
 
-static double dabs(double d){
-    return d < 0 ? -d : d;
-}
-
-static double dmax(double a, double b){
-    return a < b ? b : a;
-}
-
-static double dmin(double a, double b){
-    return a > b ? b : a;
-}
-
 static void replaceChildren(ListPtrElement l, double x, double y){
     PtrElement * p = l.first;
 
@@ -84,6 +72,33 @@ static void rotateChildren(ListPtrElement l, double a){
             
             p = p->next;
         }
+    }
+}
+
+static void redimChildren(ListPtrElement l, double percentX, double percentY){
+    PtrElement * p = l.first;
+    double newW, newH;
+    double newX, newY;
+    double centerX, centerY;
+    double x, y;
+
+    while(p){
+        newW = p->element->width * percentX;
+        newH = p->element->height * percentY;
+
+        centerX = p->element->elementParent->x;
+        centerY = p->element->elementParent->y;
+
+        x = p->element->x;
+        y = p->element->y;
+
+        newX = centerX + (x - centerX) * percentX;
+        newY = centerY + (y - centerY) * percentY;
+        
+        replaceElement(p->element, newX, newY);
+        setDimensionElement(p->element, newW, newH);
+
+        p = p->next;
     }
 }
 /* ------------------------------------------------------- */
@@ -468,10 +483,6 @@ Element* createBlock(double x,double y,double width,double height,int color[4],i
             e->elementParent = NULL;
             e->elementChildren.first = NULL;
             e->elementChildren.last = NULL;
-            e->relativeWidth = 0.;
-            e->relativeHeight = 0.;
-            e->relativeX = 0.;
-            e->relativeY = 0.;
             if(addElement(e)){
                 _freeElement(e);
                 e=NULL;
@@ -527,10 +538,6 @@ Element* createText(double x,double y,double width,double height,double textSize
                 e->elementParent = NULL;
                 e->elementChildren.first = NULL;
                 e->elementChildren.last = NULL;
-                e->relativeWidth = 0.;
-                e->relativeHeight = 0.;
-                e->relativeX = 0.;
-                e->relativeY = 0.;
                 if(addElement(e)){
                     _freeElement(e);
                     e=NULL;
@@ -596,10 +603,6 @@ Element* createImage(double x,double y,double width,double height,const char *im
                 e->elementParent = NULL;
                 e->elementChildren.first = NULL;
                 e->elementChildren.last = NULL;
-                e->relativeWidth = 0.;
-                e->relativeHeight = 0.;
-                e->relativeX = 0.;
-                e->relativeY = 0.;
                 if(addElement(e)){
                     _freeElement(e);
                     e=NULL;
@@ -1198,11 +1201,6 @@ int replaceElement(Element *e,double x,double y){
         e->x = x;
         e->y = y;
         
-        if(e->elementParent){
-            e->relativeX = e->x / e->elementParent->x;
-            e->relativeY = e->y / e->elementParent->y;
-        }
-        
         error = 0;
     }
 
@@ -1218,11 +1216,6 @@ int moveElement(Element *e,double x,double y){
         
         replaceChildren(e->elementChildren, x, y);
         
-        if(e->elementParent){
-            e->relativeX = e->x / e->elementParent->x;
-            e->relativeY = e->y / e->elementParent->y;
-        }
-        
         error = 0;
     }
 
@@ -1233,6 +1226,7 @@ int setDimensionElement(Element *e,double width,double height){
     int error = 1;
 
     if(e){
+        redimChildren(e->elementChildren, width / e->width, height / e->height);
         e->width=width;
         e->height=height;
         error = 0;
@@ -1925,15 +1919,19 @@ int setFlipStateElement(Element * e, SANDAL2_FLIP flip){
 }
 
 int setWidthElement(Element * e, double width){
-    if(e)
+    if(e){
+        redimChildren(e->elementChildren, width / e->width, 1);
 	e->width = width;
+    }
 
     return !e;
 }
 
 int setHeightElement(Element * e, double height){
-    if(e)
+    if(e){
+        redimChildren(e->elementChildren, 1, height / e->height);
 	e->height = height;
+    }
 
     return !e;
 }
@@ -2046,12 +2044,9 @@ int setParentElement(Element * parent, Element * child){
                     next->next = NULL;
                     next->element = child;
                     *pE = next;
+                    parent->elementChildren.last = next;
 
                     child->elementParent = parent;
-                    child->relativeWidth = child->width / parent->width;
-                    child->relativeHeight = child->height / parent->height;
-                    child->relativeX = child->x / parent->x;
-                    child->relativeY = child->y / parent->y;
                 }
             }
         }

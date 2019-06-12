@@ -158,10 +158,6 @@ typedef struct Element{
     /**< list of actions to be done on this element */
     struct Element * elementParent;
     struct ListPtrElement elementChildren;
-    double relativeWidth;
-    double relativeHeight;
-    double relativeX;
-    double relativeY;
 }Element;
 
 /**
