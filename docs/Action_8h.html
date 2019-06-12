@@ -694,7 +694,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">e</td><td>: element on which the action is called </td></tr>
-    <tr><td class="paramname">data</td><td>: a double* array of size 4 casted to void*. It MUST have the following format: [the x delta, the y delta, 0, 0] the last two values MUST be set to 0 before the first call, they will be modified inside the function those modifications NEEDS to be saved for the following calls </td></tr>
+    <tr><td class="paramname">data</td><td>: a double* array of size 7 casted to void*. It MUST have the following format: [the x delta, the y delta, 0, 0, 0, 0, 0] the last values MUST be set to 0 before the first call, they will be modified inside the function those modifications NEEDS to be saved for the following calls </td></tr>
     <tr><td class="paramname">spentTime</td><td>: total spent time since the beginning of the action (in percent from 0 to 1) </td></tr>
   </table>
   </dd>
@@ -865,7 +865,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">e</td><td>: element on which the action is called </td></tr>
-    <tr><td class="paramname">data</td><td>: a double* array of size 2 casted to void*. It MUST have the following format: [the angle delta, 0] the last value MUST be set to 0 before the first call, it will be modified inside the function those modifications NEEDS to be saved for the following calls </td></tr>
+    <tr><td class="paramname">data</td><td>: a double* array of size 2 casted to void*. It MUST have the following format: [the angle delta, 0, 0, 0] the last values MUST be set to 0 before the first call, it will be modified inside the function those modifications NEEDS to be saved for the following calls </td></tr>
     <tr><td class="paramname">spentTime</td><td>: total spent time since the beginning of the action (in percent from 0 to 1) </td></tr>
   </table>
   </dd>

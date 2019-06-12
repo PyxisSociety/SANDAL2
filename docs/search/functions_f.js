@@ -50,7 +50,6 @@ var searchData=
   ['setoriginwindow',['setOriginWindow',['../Window_8h.html#a14943c3217c279173641a6d87d6adac9',1,'Window.c']]],
   ['setplanelement',['setPlanElement',['../Element_8h.html#aa7a21b58f92f4fef89209f1a6a445e16',1,'Element.c']]],
   ['setrotationpointelement',['setRotationPointElement',['../Element_8h.html#a633d6bb08d73846c7a4612c74d6fe449',1,'Element.c']]],
-  ['setrotationspeedelement',['setRotationSpeedElement',['../Element_8h.html#a14d327f6f64df1f986d3692bfdea6951',1,'Element.c']]],
   ['setscriptedentry',['setScriptedEntry',['../Element_8h.html#ae5ee1d9081efe185869da6417fc58a93',1,'Element.c']]],
   ['setsizeentry',['setSizeEntry',['../Element_8h.html#a1c0524c3f9cbd5a9766701cad5847ba1',1,'Element.c']]],
   ['setsprite',['setSprite',['../Sprite_8h.html#af4c1a2e3ec8112379c1924c123617c36',1,'Sprite.c']]],

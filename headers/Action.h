@@ -146,9 +146,9 @@ int delActionToAction(ListAction * action, long long index);
 /**
  * @brief function used by moveByAction() and left public to be used in self made action functions
  * @param e : element on which the action is called
- * @param data : a double* array of size 4 casted to void*. It MUST have the following format:
- *               [the x delta, the y delta, 0, 0]
- *               the last two values MUST be set to 0 before the first call, they will be modified inside the function
+ * @param data : a double* array of size 7 casted to void*. It MUST have the following format:
+ *               [the x delta, the y delta, 0, 0, 0, 0, 0]
+ *               the last values MUST be set to 0 before the first call, they will be modified inside the function
  *               those modifications NEEDS to be saved for the following calls
  * @param spentTime : total spent time since the beginning of the action (in percent from 0 to 1)
  */
@@ -187,8 +187,8 @@ void scaleToActionFunction(struct Element * e, void * data, double spentTime);
  * @brief function used by rotateByAction() and left public to be used in self made action functions
  * @param e : element on which the action is called
  * @param data : a double* array of size 2 casted to void*. It MUST have the following format:
- *               [the angle delta, 0]
- *               the last value MUST be set to 0 before the first call, it will be modified inside the function
+ *               [the angle delta, 0, 0, 0]
+ *               the last values MUST be set to 0 before the first call, it will be modified inside the function
  *               those modifications NEEDS to be saved for the following calls
  * @param spentTime : total spent time since the beginning of the action (in percent from 0 to 1)
  */

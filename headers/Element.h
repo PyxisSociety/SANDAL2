@@ -120,8 +120,6 @@ typedef struct Element{
     /**< ordinate coordinate of the rotation point (if from 0 to 1, in the element)*/
     double rotation;
     /**< rotation angle of the element*/
-    double rotSpeed;
-    /**< speed rotation (degree / update) of the element*/
     SANDAL2_FLIP flip;
     /**< tells whether or not the element should be flipped, can be SANDAL2_FLIP_VER, SANDAL2_FLIP_HOR, SANDAL2_FLIP_NONE or a combinaison of those  */
     int coulBlock[4];
@@ -404,13 +402,6 @@ int getDimensionElement(Element* e,double* w,double * h);
  * @return 1 if there was an error, 0 if not
  */
 int getRotationPointElement(Element* e,double *x,double *y);
-/**
- * @brief getter for the element's rotation speed
- * @param e : element to get the rotation speed
- * @param s : where the rotation speed will be store
- * @return 1 if there was an error, 0 if not
- */
-int getRotationSpeedElement(Element* e,double* s);
 /**
  * @brief getter for the element's data
  * @param e : element to get its data
@@ -710,20 +701,6 @@ int clearElementToElement(Element *e);
  * @return 1 if it was impossible, 0 if not
  */
 int addClickableElement(Element *e,Clickable *hb,int blocking);
-/**
- * @brief increase the rotation speed of an element
- * @param e : element to be modified
- * @param s : rotation speed increment
- * @return 1 if it was impossible, 0 if not
- */
-int addRotationSpeedElement(Element *e,double s);
-/**
- * @brief set the rotation speed of an element
- * @param e : element to be modified
- * @param s : new rotation speed of the element
- * @return 1 if it was impossible, 0 if not
- */
-int setRotationSpeedElement(Element *e,double s);
 /**
  * @brief increase the angle of an element
  * @param e : element to be modified

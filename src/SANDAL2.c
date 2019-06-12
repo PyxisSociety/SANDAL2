@@ -481,9 +481,6 @@ int updateWindow(){
                                 (*ele)->element->animation->current->wasChanged = 0;
                             }
                         }
-                        if((*ele)->element->rotSpeed != 0.f){
-                            (*ele)->element->rotation = ((*ele)->element->rotation + (*ele)->element->rotSpeed > 360.f ? (*ele)->element->rotation + (*ele)->element->rotSpeed - 360.f : (*ele)->element->rotation + (*ele)->element->rotSpeed);
-                        }
                     }
 		    if(_windows_SANDAL2->currentDisplay->stop)
 			break;

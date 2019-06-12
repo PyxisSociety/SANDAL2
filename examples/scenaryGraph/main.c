@@ -22,16 +22,20 @@ int main(){
 	exit(-1);
     }
 
-    /* initializing elements */
-    parent = createImageBlock(150, 150, 100, 100, red, 0, 0);
+    /* initializing rotating elements */
+    parent = createImageBlock(70, 150, 100, 100, red, 0, 0);
     
     setActionListElement(parent,
                          setForeverAction(rotateByAction(360, 10), 1)
         );
     
-    child = createImageBlock(300, 190, 20, 20, red, 0, 0);
+    child = createImageBlock(220, 190, 20, 20, red, 0, 0);
     setParentElement(parent, child);
-    otherChild = createImageBlock(300, 220, 20, 20, red, 0, 0);
+    setActionListElement(child,
+                         setForeverAction(rotateByAction(360, 10), 1)
+        );
+    
+    otherChild = createImageBlock(220, 220, 20, 20, red, 0, 0);
     setParentElement(child, otherChild);
     
     /* display the window */

@@ -22,7 +22,6 @@ var searchData=
   ['getoriginwindow',['getOriginWindow',['../Window_8h.html#ac185610d83de6fb4a5373769a900eba4',1,'Window.c']]],
   ['getrealdimensionwindow',['getRealDimensionWindow',['../Window_8h.html#a46fea2761240c3e3d587b70671098220',1,'Window.c']]],
   ['getrotationpointelement',['getRotationPointElement',['../Element_8h.html#ae763890cfa18024d910385a6f8bdf950',1,'Element.c']]],
-  ['getrotationspeedelement',['getRotationSpeedElement',['../Element_8h.html#a44a76457859f6b0303f52aabeedbbc34',1,'Element.c']]],
   ['getstylefont',['getStyleFont',['../Font_8h.html#a153346da4fd0f144942fd47571c7cca5',1,'Font.c']]],
   ['gettextelement',['getTextElement',['../Element_8h.html#aa3b44f6a8afb7b6b2e8fab78c7adad93',1,'Element.c']]],
   ['gettextstyleelement',['getTextStyleElement',['../Element_8h.html#af5c558f3595816b663bc053f5ee529fb',1,'Element.c']]],

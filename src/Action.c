@@ -373,28 +373,36 @@ int delActionToAction(ListAction * action, long long index){
 
 void moveByActionFunction(struct Element * e, void * data, double spentTime){
     double * infos = (double*)data;
-    double   moveX;
-    double   moveY;
-    double   x;
-    double   y;
+    double moveX, moveY;
+    double x, y;
     
     if(e && data){
-        moveX = infos[0];
-        moveY = infos[1];
-
         if(!infos[2] && !infos[3]){
             getCoordElement(e, infos + 2, infos + 3);
         }
-        
-        x     = infos[2];
-        y     = infos[3];
+        getCoordElement(e, &x, &y);
 
+        moveX = infos[0] * (spentTime - infos[6]);
+        moveY = infos[1] * (spentTime - infos[6]);
+
+        if(moveX + infos[2] > infos[0]){
+            moveX = infos[0] - infos[2];
+        }
+        if(moveY + infos[3] > infos[1]){
+            moveY = infos[1] - infos[3];
+        }
+        
         if(moveX){
-            setCoordXElement(e, x + moveX * spentTime);
+            setCoordXElement(e, x + moveX);
         }
         if(moveY){
-            setCoordYElement(e, y + moveY * spentTime);
+            setCoordYElement(e, y + moveY);
         }
+
+        infos[2] += moveX;
+        infos[3] += moveY;
+
+        infos[6] = spentTime;
     }
 }
 
@@ -485,14 +493,21 @@ void rotateByActionFunction(struct Element * e, void * data, double spentTime){
     double   angle;
     
     if(e && data){
-        toAdd = infos[0];
-
         if(!infos[1]){
             getAngleElement(e, infos + 1);
         }
+        getAngleElement(e, &angle);
 
-        angle = infos[1];
-        setAngleElement(e, angle + toAdd * spentTime);
+        toAdd = infos[0] * (spentTime - infos[3]);
+
+        if(toAdd + infos[2] > infos[0]){
+            toAdd = infos[0] + infos[2];
+        }
+        
+        setAngleElement(e, angle + toAdd);
+
+        infos[2] += toAdd;
+        infos[3] = spentTime;
     }
 }
 
@@ -560,13 +575,16 @@ void fadeOutActionFunction(struct Element * e, void * data, double spentTime){
  */
 ListAction * moveByAction(double x, double y, double time){
     ListAction * result = NULL;
-    double      * data   = malloc(4 * sizeof(*data));
+    double      * data   = malloc(7 * sizeof(*data));
 
     if(data){
         data[0] = x;
         data[1] = y;
         data[2] = 0;
         data[3] = 0;
+        data[4] = 0;
+        data[5] = 0;
+        data[6] = 0;
             
         result = setDataAction(initAction(moveByActionFunction, time), data, 1);
         
@@ -640,11 +658,13 @@ ListAction * scaleToAction(double w, double h, double time){
 
 ListAction * rotateByAction(double angle, double time){
     ListAction * result = NULL;
-    double      * data   = malloc(2 * sizeof(*data));
+    double      * data   = malloc(4 * sizeof(*data));
 
     if(data){
         data[0] = angle;
         data[1] = 0;
+        data[2] = 0;
+        data[3] = 0;
             
         result = setDataAction(initAction(rotateByActionFunction, time), data, 1);
         

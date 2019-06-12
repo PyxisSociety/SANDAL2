@@ -442,7 +442,6 @@ Element* createBlock(double x,double y,double width,double height,int color[4],i
             e->prX=.5;
             e->prY=.5;
             e->rotation=0.;
-            e->rotSpeed=0.;
 	    e->flip = SANDAL2_FLIP_NONE;
             copyColor(e->coulBlock,color);
             e->codes=initListDisplayCode();
@@ -499,7 +498,6 @@ Element* createText(double x,double y,double width,double height,double textSize
             e->prX=.5;
             e->prY=.5;
             e->rotation=0.;
-            e->rotSpeed=0.;
 	    e->flip = SANDAL2_FLIP_NONE;
             e->textSize=textSize/100.;
             e->animation=initListAnimation();
@@ -567,7 +565,6 @@ Element* createImage(double x,double y,double width,double height,const char *im
                 e->prX=.5;
                 e->prY=.5;
                 e->rotation=0.;
-                e->rotSpeed=0.;
 		e->flip = SANDAL2_FLIP_NONE;
                 e->animation=initListAnimation();
 #ifndef DEBUG_SDL2_NO_VIDEO
@@ -901,19 +898,6 @@ int getRotationPointElement(Element* e,double *x,double *y){
         }
         if(y){
             *y=e->prY;
-        }
-        error = 0;
-    }
-
-    return error;
-}
-
-int getRotationSpeedElement(Element* e,double* s){
-    int error = 1;
-
-    if(e){
-        if(s){
-            *s=e->rotSpeed;
         }
         error = 0;
     }
@@ -1704,34 +1688,15 @@ int addClickableElement(Element *e,Clickable *hb,int blocking){
     return error;
 }
 
-int addRotationSpeedElement(Element *e,double s){
-    int error = 1;
-
-    if(e && e->coulBlock[0]==-1){
-        e->rotSpeed+=s;
-        error = 0;
-    }
-
-    return error;
-}
-
-int setRotationSpeedElement(Element *e,double s){
-    int error = 1;
-
-    if(e && e->coulBlock[0]==-1){
-        e->rotSpeed=s;
-        error = 0;
-    }
-
-    return error;
-}
-
 int addAngleElement(Element *e,double a){
     int error = 1;
 
     if(e && e->coulBlock[0]==-1){
         e->rotation += a;
         rotateChildren(e->elementChildren, a);
+        if(e->rotation > 360){
+            e->rotation -= 360;
+        }
         error = 0;
     }
 

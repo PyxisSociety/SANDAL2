@@ -101,11 +101,6 @@ TEST_SECTION(Element){
         TEST_HANDLER(EndAction, endAction);
 #       undef TEST_HANDLER
 
-	// set rotation speed
-	REQUIRE(setRotationSpeedElement(NULL, 10));
-	REQUIRE(!setRotationSpeedElement(&e, 10));
-	EQ(e.rotSpeed, 10);
-
 	// set angle
 	REQUIRE(setAngleElement(NULL, 10));
 	REQUIRE(!setAngleElement(&e, 10));
@@ -250,13 +245,6 @@ TEST_SECTION(Element){
 	EQ(e.prY, y);
 	EQ(e.prY, 42.);
 
-	// get rotation speed
-	e.rotSpeed = 12.;
-	REQUIRE(getRotationSpeedElement(NULL, NULL));
-	REQUIRE(!getRotationSpeedElement(&e, &x));
-	EQ(e.rotSpeed, x);
-	EQ(e.rotSpeed, 12.);
-
 	// get data
 	float * pX = NULL;
 	e.data = &x;
@@ -358,11 +346,6 @@ TEST_SECTION(Element){
 	REQUIRE(addClickableElement(NULL, NULL, 1));
 	REQUIRE(addClickableElement(&e, NULL, 1));
 	REQUIRE(!addClickableElement(&e, rectangleClickable(0, 0, 0, 0), 1));
-
-	// add rotation speed
-	REQUIRE(addRotationSpeedElement(NULL, 10));
-	REQUIRE(!addRotationSpeedElement(&e, 10));
-	EQ(e.rotSpeed, 22);
 
 	// add angle
 	REQUIRE(addAngleElement(NULL, 10));
@@ -479,7 +462,6 @@ TEST_SECTION(ListElement){
 	EQ(e->prX, 0.5f);						\
 	EQ(e->prY, 0.5f);						\
 	EQ(e->rotation, 0);						\
-	EQ(e->rotSpeed, 0);						\
 	EQ(e->flip, SANDAL2_FLIP_NONE);					\
 	if(color[0] == -1){						\
 	    REQUIRE(e->coulBlock[0] == -1);				\

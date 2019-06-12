@@ -20,7 +20,6 @@ var searchData=
   ['addelement',['addElement',['../Element_8h.html#a830654ea32c18cf35d7e441bec4be7df',1,'Element.c']]],
   ['addelementtoelement',['addElementToElement',['../Element_8h.html#a967721d639d8a153c3984cbcaf1c28a3',1,'Element.c']]],
   ['addline',['addLine',['../Clickable_8h.html#ab08c01440d76f78aa0e9d8670117ab75',1,'Clickable.c']]],
-  ['addrotationspeedelement',['addRotationSpeedElement',['../Element_8h.html#aa7a718d02cecb082433e0601cea9458d',1,'Element.c']]],
   ['addsprite',['addSprite',['../Sprite_8h.html#aa6c5c397eb5a5b640c3b0c710787fc83',1,'Sprite.c']]],
   ['addspriteanimation',['addSpriteAnimation',['../Sprite_8h.html#a76c3e9bfe5aa5760af87b1a47c873b14',1,'Sprite.c']]],
   ['addspriteanimationelement',['addSpriteAnimationElement',['../Element_8h.html#a918b659eb5547269e491dd459f4b5eec',1,'Element.c']]],
