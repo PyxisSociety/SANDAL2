@@ -55,8 +55,12 @@ static void rotateChildren(ListPtrElement l, double a){
                 }else{
                     oldA = M_PI / 2;
                 }
-                if(y - prY < 0){
-                    oldA = M_PI - oldA;
+                if(x < prX){
+                    if(y < prY){
+                        oldA = oldA - M_PI;
+                    }else{
+                        oldA = M_PI + oldA;
+                    }
                 }
 
                 hyp = sqrt((prX - x)*(prX - x) + (prY - y)*(prY - y));
@@ -65,12 +69,15 @@ static void rotateChildren(ListPtrElement l, double a){
             
                 newX = newX - p->element->prX * p->element->width;
                 newY = newY - p->element->prY * p->element->height;
-            
-                replaceChildren(p->element->elementChildren, newX - p->element->x, newY - p->element->y);
-                rotateChildren(p->element->elementChildren, a);
+
+                x = p->element->x;
+                y = p->element->y;
 
                 p->element->x = newX;
                 p->element->y = newY;
+                
+                replaceChildren(p->element->elementChildren, newX - x, newY - y);
+                rotateChildren(p->element->elementChildren, a);
             }
             
             p->element->rotation += a;
