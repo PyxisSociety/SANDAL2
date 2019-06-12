@@ -1,12 +1,12 @@
 var searchData=
 [
   ['text',['text',['../structFont.html#a85ea95741aec44ac27e338a574776233',1,'Font']]],
-  ['textsize',['textSize',['../structElement.html#aad381eb68c0d9aa3db36ab5ffde6d92d',1,'Element']]],
+  ['textsize',['textSize',['../structElement.html#afec55b4cbc9586b6a6e855628f4c6c37',1,'Element']]],
   ['texture',['texture',['../structFont.html#aa0658799bad6f0311447eb72be365a21',1,'Font']]],
-  ['theta',['theta',['../structCircle.html#adfa4a1f73441eee2adefcf12568269d4',1,'Circle']]],
+  ['theta',['theta',['../structCircle.html#aa79d1db534b6362ea2f463566c851cb7',1,'Circle']]],
   ['ticks',['ticks',['../structWindow.html#a45d52ea2677fe20888c0671204b4744a',1,'Window']]],
-  ['timespent',['timeSpent',['../structAction.html#ae982f20d976e1f7e81a95cf6923493ac',1,'Action']]],
-  ['timing',['timing',['../structAction.html#a5ad946295e64697e28078b1efa0604e2',1,'Action']]],
+  ['timespent',['timeSpent',['../structAction.html#a20ece8dac96a959532609da9cc7995c7',1,'Action']]],
+  ['timing',['timing',['../structAction.html#a9e71b454912e69e97e3af2dea12f9790',1,'Action']]],
   ['todelete',['toDelete',['../structWindow.html#ac31dd380eaa552ab5eefc439b412db6a',1,'Window']]],
   ['togglefullscreenwindow',['toggleFullScreenWindow',['../SANDAL2_8h.html#a61aeaf7d82335e91caf915a324b144a0',1,'SANDAL2.c']]]
 ];

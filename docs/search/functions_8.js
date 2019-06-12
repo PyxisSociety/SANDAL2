@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['initaction',['initAction',['../Action_8h.html#af4aac1095804ea0a598f3dfa95b29a3e',1,'Action.c']]],
+  ['initaction',['initAction',['../Action_8h.html#ac99f1a6b3fc80331b2746a7c67328771',1,'Action.c']]],
   ['initallsandal2',['initAllSANDAL2',['../SANDAL2_8h.html#a0c4a25c629cd8f5577495a32c76a7209',1,'SANDAL2.c']]],
   ['initclickable',['initClickable',['../Clickable_8h.html#aad36bd812e8888afd684e831052a3cd1',1,'Clickable.c']]],
   ['initimagesandal2',['initImageSANDAL2',['../SANDAL2_8h.html#a31addda7f399519679dae49f15801442',1,'SANDAL2.c']]],

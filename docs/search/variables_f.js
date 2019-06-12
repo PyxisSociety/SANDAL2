@@ -1,8 +1,7 @@
 var searchData=
 [
   ['renderer',['renderer',['../structWindow.html#a2b52309ef359b6392454a3bb57398b5d',1,'Window']]],
-  ['rotation',['rotation',['../structElement.html#a8017887a3b3703366de5949d3941cfe9',1,'Element']]],
-  ['rotspeed',['rotSpeed',['../structElement.html#ab135fff5d6e0fa8429b7c5c7a34fc2e2',1,'Element']]],
-  ['rx',['rX',['../structCircle.html#a4c6c919bdb6a94081d1dd5d7b905227f',1,'Circle']]],
-  ['ry',['rY',['../structCircle.html#a9a518a625146d3d13340bb4fe17b4c34',1,'Circle']]]
+  ['rotation',['rotation',['../structElement.html#a3eb278b00f06b2656e5bfbe37c7da665',1,'Element']]],
+  ['rx',['rX',['../structCircle.html#a62d2824f884b4bb6db8f94a1285d2bf2',1,'Circle']]],
+  ['ry',['rY',['../structCircle.html#a40aeef282f4b93bbbac2446705dfffdb',1,'Circle']]]
 ];

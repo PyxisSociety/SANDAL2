@@ -1,5 +1,5 @@
 <map id="Element" name="Element">
-<area shape="rect" id="node16" href="$structPtrElement.html" title="Structure used to store elements&#39; pointers in a list of element. " alt="" coords="787,280,873,307"/>
+<area shape="rect" id="node16" href="$structPtrElement.html" title="Structure used to store elements&#39; pointers in a list of element. " alt="" coords="793,280,879,307"/>
 <area shape="rect" id="node2" href="$structListClickable.html" title="Collection of hit boxes. " alt="" coords="380,179,477,205"/>
 <area shape="rect" id="node3" href="$structClickable.html" title="Represente a hit boxe which is a collection of Line (defining a convexe polygon) and Circle..." alt="" coords="161,177,237,204"/>
 <area shape="rect" id="node4" href="$structLine.html" title="Represente a line which delimitate a hittable surface from a none hittable one. " alt="" coords="10,177,57,204"/>
@@ -13,11 +13,11 @@
 <area shape="rect" id="node12" href="$structListAnimation.html" title="a list of animations " alt="" coords="378,280,479,307"/>
 <area shape="rect" id="node13" href="$structListSprite.html" title="all steps of an animation " alt="" coords="161,281,238,308"/>
 <area shape="rect" id="node14" href="$structSprite.html" title="informations about a step of an animation " alt="" coords="5,281,61,308"/>
-<area shape="rect" id="node15" href="$structListPtrElement.html" title="List of PtrElement. " alt="" coords="963,221,1071,248"/>
-<area shape="rect" id="node20" href="$structListElement.html" title="List of list (display code) of list (plan) of elements. " alt="" coords="1430,217,1521,244"/>
-<area shape="rect" id="node21" href="$structListDCElement.html" title="List (display code) of list (plan) of element. " alt="" coords="1160,269,1271,296"/>
+<area shape="rect" id="node15" href="$structListPtrElement.html" title="List of PtrElement. " alt="" coords="975,221,1083,248"/>
+<area shape="rect" id="node20" href="$structListElement.html" title="List of list (display code) of list (plan) of elements. " alt="" coords="1442,217,1533,244"/>
+<area shape="rect" id="node21" href="$structListDCElement.html" title="List (display code) of list (plan) of element. " alt="" coords="1172,269,1283,296"/>
 <area shape="rect" id="node17" href="$structFont.html" title="Informations about font. " alt="" coords="405,331,453,357"/>
 <area shape="rect" id="node18" href="$structEntry.html" title="More informations about entry. " alt="" coords="402,381,455,408"/>
-<area shape="rect" id="node19" href="$structWindow.html" title="SANDAL2 window. " alt="" coords="1619,244,1688,271"/>
-<area shape="rect" id="node22" href="$structEventWindow.html" title="Behaviors of a window to events. " alt="" coords="1424,167,1527,193"/>
+<area shape="rect" id="node19" href="$structWindow.html" title="SANDAL2 window. " alt="" coords="1631,244,1700,271"/>
+<area shape="rect" id="node22" href="$structEventWindow.html" title="Behaviors of a window to events. " alt="" coords="1436,167,1539,193"/>
 </map>

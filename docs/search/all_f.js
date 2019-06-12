@@ -7,7 +7,7 @@ var searchData=
   ['prev',['prev',['../structSprite.html#a2c09859f5f18f9d8272171eb43bf66e8',1,'Sprite::prev()'],['../structListSprite.html#a9ea0649f66bf1b779298adc3281ce8b8',1,'ListSprite::prev()']]],
   ['previousanimationelement',['previousAnimationElement',['../Element_8h.html#a788194a9d729a04e7222b1993ced3601',1,'Element.c']]],
   ['previousspriteelement',['previousSpriteElement',['../Element_8h.html#a19532aee81fea17237b055c5c4d91622',1,'Element.c']]],
-  ['prx',['prX',['../structElement.html#ac855c0d18f4cf4cd6e388746e4f29d3e',1,'Element']]],
-  ['pry',['prY',['../structElement.html#afae4d3fc624bbd49dcaa4ab236dcce00',1,'Element']]],
+  ['prx',['prX',['../structElement.html#a0329e6a24361f11518cea248a2da3312',1,'Element']]],
+  ['pry',['prY',['../structElement.html#ab583dce4ae9086bc3f9f3842659d3fe3',1,'Element']]],
   ['ptrelement',['PtrElement',['../structPtrElement.html',1,'']]]
 ];

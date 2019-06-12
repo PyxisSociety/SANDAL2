@@ -42,8 +42,37 @@ typedef struct{
     /**< tells whether or not the Entry is crypted (1 for yes, 0 for no)*/
 }Entry;
 
-struct ListPtrElement;
 struct Element;
+
+/**
+ * @struct PtrElement
+ * @brief Structure used to store elements' pointers in a list of element
+ */
+typedef struct PtrElement{
+    struct Element *element;
+    /**< pointer of the element*/
+    struct PtrElement *next;
+    /**< next PtrElement in the list*/
+    int deleted;
+    /**< tells whether or not this PtrElement should be deleted */
+}PtrElement;
+
+/**
+ * @struct ListPtrElement
+ * @brief List of PtrElement
+ */
+typedef struct ListPtrElement{
+    PtrElement * first;
+    /**< first PtrElement of the list*/
+    PtrElement * last;
+    /**< last PtrElement of the list*/
+    PtrElement * current;
+    /**< current PtrElement of the list (used for iterator)*/
+    struct ListPtrElement * next;
+    /**< next List of PtrElement*/
+    int code;
+    /**< plan of the list*/
+}ListPtrElement;
 
 /**
  * @struct EventElement
@@ -77,27 +106,25 @@ typedef struct{
  * @brief All the informations of an element
  */
 typedef struct Element{
-    float x;
+    double x;
     /**< abscissa coordinate of the top left of the element*/
-    float y;
+    double y;
     /**< ordinate coordinate of the top left of the element*/
-    float width;
+    double width;
     /**< width of the element*/
-    float height;
+    double height;
     /**< height of the element*/
-    float prX;
+    double prX;
     /**< abscissa coordinate of the rotation point (if from 0 to 1, in the element)*/
-    float prY;
+    double prY;
     /**< ordinate coordinate of the rotation point (if from 0 to 1, in the element)*/
-    float rotation;
+    double rotation;
     /**< rotation angle of the element*/
-    float rotSpeed;
-    /**< speed rotation (degree / update) of the element*/
     SANDAL2_FLIP flip;
     /**< tells whether or not the element should be flipped, can be SANDAL2_FLIP_VER, SANDAL2_FLIP_HOR, SANDAL2_FLIP_NONE or a combinaison of those  */
     int coulBlock[4];
     /**< color of the block of the element (if first value -1, there is no block)*/
-    float textSize;
+    double textSize;
     /**< text proportion in the block*/
     ListDisplayCode *codes;
     /**< list of display code of the element*/
@@ -129,37 +156,9 @@ typedef struct Element{
     /**< parent window of the element */
     ListAction * actions;
     /**< list of actions to be done on this element */
+    struct Element * elementParent;
+    struct ListPtrElement elementChildren;
 }Element;
-
-/**
- * @struct PtrElement
- * @brief Structure used to store elements' pointers in a list of element
- */
-typedef struct PtrElement{
-    Element *element;
-    /**< pointer of the element*/
-    struct PtrElement *next;
-    /**< next PtrElement in the list*/
-    int deleted;
-    /**< tells whether or not this PtrElement should be deleted */
-}PtrElement;
-
-/**
- * @struct ListPtrElement
- * @brief List of PtrElement
- */
-typedef struct ListPtrElement{
-    PtrElement *first;
-    /**< first PtrElement of the list*/
-    PtrElement *last;
-    /**< last PtrElement of the list*/
-    PtrElement *current;
-    /**< current PtrElement of the list (used for iterator)*/
-    struct ListPtrElement * next;
-    /**< next List of PtrElement*/
-    int code;
-    /**< plan of the list*/
-}ListPtrElement;
 
 /**
  * @struct ListDCElement
@@ -242,7 +241,7 @@ void _freeElement(Element *e);
  * @param displayCode : display code of the rectangle
  * @param plan : plan of the rectangle
  */
-Element* createBlock(float x,float y,float width,float height,int color[4],int displayCode,int plan);
+Element* createBlock(double x,double y,double width,double height,int color[4],int displayCode,int plan);
 /**
  * @brief Generate a text like element
  * @param x : abscissa coordinate of its top left corner
@@ -256,7 +255,7 @@ Element* createBlock(float x,float y,float width,float height,int color[4],int d
  * @param displayCode : display code of the text
  * @param plan : plan of the text
  */
-  Element* createText(float x,float y,float width,float height,float textSize, const char * font,const char * text,int textColor[4],int quality,int displayCode,int plan);
+  Element* createText(double x,double y,double width,double height,double textSize, const char * font,const char * text,int textColor[4],int quality,int displayCode,int plan);
 /**
  * @brief Generate an image like element
  * @param x : abscissa coordinate of its top left corner
@@ -267,7 +266,7 @@ Element* createBlock(float x,float y,float width,float height,int color[4],int d
  * @param displayCode : display code of the image
  * @param plan : plan of the image
  */
-Element* createImage(float x,float y,float width,float height,const char *image,int displayCode,int plan);
+Element* createImage(double x,double y,double width,double height,const char *image,int displayCode,int plan);
 /**
  * @brief Generate a rotable rectangle like element (slower than createBlock())
  * @param x : abscissa coordinate of its top left corner
@@ -278,7 +277,7 @@ Element* createImage(float x,float y,float width,float height,const char *image,
  * @param displayCode : display code of the rectangle
  * @param plan : plan of the rectangle
  */
-Element* createImageBlock(float x,float y,float width,float height,int color[4],int displayCode,int plan);
+Element* createImageBlock(double x,double y,double width,double height,int color[4],int displayCode,int plan);
 /**
  * @brief Generate a button like element
  * @param x : abscissa coordinate of its top left corner
@@ -294,7 +293,7 @@ Element* createImageBlock(float x,float y,float width,float height,int color[4],
  * @param displayCode : display code of the button
  * @param plan : plan of the button
  */
-Element* createButton(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,int colorBlock[4],int displayCode,int plan);
+Element* createButton(double x,double y,double width,double height,double texteSize,const char * font,const char * text,int textColor[4],int quality,int colorBlock[4],int displayCode,int plan);
 /**
  * @brief Generate a button like element with an image
  * @param x : abscissa coordinate of its top left corner
@@ -310,7 +309,7 @@ Element* createButton(float x,float y,float width,float height,float texteSize,c
  * @param displayCode : display code of the button
  * @param plan : plan of the button
  */
-Element* createButtonImage(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,const char *image,int displayCode,int plan);
+Element* createButtonImage(double x,double y,double width,double height,double texteSize,const char * font,const char * text,int textColor[4],int quality,const char *image,int displayCode,int plan);
 /**
  * @brief Generate a prompt like element
  * @param x : abscissa coordinate of its top left corner
@@ -329,7 +328,7 @@ Element* createButtonImage(float x,float y,float width,float height,float texteS
  * @param max : maximum number of character for the prompt to be validate
  * @param isScripted : flag which tells whether or not the prompt is cripted
  */
-Element* createEntry(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,int colorBlock[4],int displayCode,int plan,int min,int max, int isScripted);
+Element* createEntry(double x,double y,double width,double height,double texteSize,const char * font,const char * text,int textColor[4],int quality,int colorBlock[4],int displayCode,int plan,int min,int max, int isScripted);
 /**
  * @brief Generate a prompt like element with an image
  * @param x : abscissa coordinate of its top left corner
@@ -348,7 +347,7 @@ Element* createEntry(float x,float y,float width,float height,float texteSize,co
  * @param max : maximum number of character for the prompt to be validate
  * @param isScripted : flag which tells whether or not the prompt is cripted
  */
-Element* createEntryImage(float x,float y,float width,float height,float texteSize,const char * font,const char * text,int textColor[4],int quality,const char *image,int displayCode,int plan,int min,int max,int isScripted);
+Element* createEntryImage(double x,double y,double width,double height,double texteSize,const char * font,const char * text,int textColor[4],int quality,const char *image,int displayCode,int plan,int min,int max,int isScripted);
 /**
  * @brief tell whether or not the element can be displaied
  * @param e : element
@@ -375,14 +374,14 @@ int getFlipStateElement(Element * e,SANDAL2_FLIP * flip);
  * @param y : where the ordinate coordinate will be store
  * @return 1 if there was an error, 0 if not
  */
-int getCoordElement(Element* e,float* x,float* y);
+int getCoordElement(Element* e,double* x,double* y);
 /**
  * @brief getter for the Element's angle
  * @param e : element to get the angle
  * @param a : where the angle will be store
  * @return 1 if there was an error, 0 if not
  */
-int getAngleElement(Element* e,float* a);
+int getAngleElement(Element* e,double* a);
 /**
  * @brief getter for the Element's dimensions
  * @param e : element to get the dimensions
@@ -390,7 +389,7 @@ int getAngleElement(Element* e,float* a);
  * @param h : where the height will be store
  * @return 1 if there was an error, 0 if not
  */
-int getDimensionElement(Element* e,float* w,float * h);
+int getDimensionElement(Element* e,double* w,double * h);
 /**
  * @brief getter for the Element's rotation point
  * @param e : element to get the rotation point's coordinate
@@ -398,14 +397,7 @@ int getDimensionElement(Element* e,float* w,float * h);
  * @param y : where the ordinate coordinate of the rotation point will be store 
  * @return 1 if there was an error, 0 if not
  */
-int getRotationPointElement(Element* e,float *x,float *y);
-/**
- * @brief getter for the element's rotation speed
- * @param e : element to get the rotation speed
- * @param s : where the rotation speed will be store
- * @return 1 if there was an error, 0 if not
- */
-int getRotationSpeedElement(Element* e,float* s);
+int getRotationPointElement(Element* e,double *x,double *y);
 /**
  * @brief getter for the element's data
  * @param e : element to get its data
@@ -447,28 +439,28 @@ int getColorElement(Element *e,int color[4]);
  * @param w : where to store the width
  * @return 1 if there was an error, 0 if not
  */
-int getWidthElement(Element * e,float * w);
+int getWidthElement(Element * e,double * w);
 /**
  * @brief get the element's height
  * @param e : element to get the informations from
  * @param h : where to store the height
  * @return 1 if there was an error, 0 if not
  */
-int getHeightElement(Element * e,float * h);
+int getHeightElement(Element * e,double * h);
 /**
  * @brief get the element's x coordinate
  * @param e : element to get the informations from
  * @param x : where to store the x coordinate
  * @return 1 if there was an error, 0 if not
  */
-int getCoordXElement(Element * e,float * x);
+int getCoordXElement(Element * e,double * x);
 /**
  * @brief get the element's y coordinate
  * @param e : element to get the informations from
  * @param y : where to store the y coordinate
  * @return 1 if there was an error, 0 if not
  */
-int getCoordYElement(Element * e,float * y);
+int getCoordYElement(Element * e,double * y);
 /**
  * @brief get the element's color alpha value (from 0 for transparent to 255 for fully visible)
  * @param e : element to get the informations from
@@ -545,7 +537,7 @@ int setImageSurfaceElement(Element * e, SDL_Surface * image);
  * @param x : new abscissa coordinate
  * @param y : new ordinate coordinate
  */
-int replaceElement(Element *e,float x,float y);
+int replaceElement(Element *e,double x,double y);
 /**
  * @brief move an element
  * @param e : element to be modified
@@ -553,7 +545,7 @@ int replaceElement(Element *e,float x,float y);
  * @param y : ordinate increment
  * @return 1 if it was impossible, 0 if not
  */
-int moveElement(Element *e,float x,float y);
+int moveElement(Element *e,double x,double y);
 /**
  * @brief resize an element
  * @param e : element to be modified
@@ -561,14 +553,14 @@ int moveElement(Element *e,float x,float y);
  * @param height : new height
  * @return 1 if it was impossible, 0 if not
  */
-int setDimensionElement(Element *e,float width,float height);
+int setDimensionElement(Element *e,double width,double height);
 /**
  * @brief set the text size of the text of an element in this element
  * @param e : element to be modified
  * @param textSize : new size of the text (in percent)
  * @return 1 if it was impossible, 0 if not
  */
-int setTextSize(Element *e,float textSize);
+int setTextSize(Element *e,double textSize);
 /**
  * @brief add a display code to an element (if it did not already had it)
  * @param e : element to be modified
@@ -706,33 +698,19 @@ int clearElementToElement(Element *e);
  */
 int addClickableElement(Element *e,Clickable *hb,int blocking);
 /**
- * @brief increase the rotation speed of an element
- * @param e : element to be modified
- * @param s : rotation speed increment
- * @return 1 if it was impossible, 0 if not
- */
-int addRotationSpeedElement(Element *e,float s);
-/**
- * @brief set the rotation speed of an element
- * @param e : element to be modified
- * @param s : new rotation speed of the element
- * @return 1 if it was impossible, 0 if not
- */
-int setRotationSpeedElement(Element *e,float s);
-/**
  * @brief increase the angle of an element
  * @param e : element to be modified
  * @param a : angle increment
  * @return 1 if it was impossible, 0 if not
  */
-int addAngleElement(Element *e,float a);
+int addAngleElement(Element *e,double a);
 /**
  * @brief set the angle of an element
  * @param e : element to be modified
  * @param a : new angle of the element
  * @return 1 if it was impossible, 0 if not
  */
-int setAngleElement(Element *e,float a);
+int setAngleElement(Element *e,double a);
 /**
  * @brief set the rotation point's coordinates of an element
  * @param e : element to be modified
@@ -740,7 +718,7 @@ int setAngleElement(Element *e,float a);
  * @param y : new ordinate coordinate of the rotation point
  * @return 1 if it was impossible, 0 if not
  */
-int setRotationPointElement(Element *e,float x,float y);
+int setRotationPointElement(Element *e,double x,double y);
 /**
  * @brief set the element's data
  * @param e : element to be modified
@@ -865,28 +843,28 @@ int setFlipStateElement(Element * e, SANDAL2_FLIP flip);
  * @param width : new width
  * @return 1 if there was an error, 0 if not
  */
-int setWidthElement(Element * e, float width);
+int setWidthElement(Element * e, double width);
 /**
  * @brief set the element's height
  * @param e : element to be modified
  * @param height : new height
  * @return 1 if there was an error, 0 if not
  */
-int setHeightElement(Element * e, float height);
+int setHeightElement(Element * e, double height);
 /**
  * @brief set the element's x coordinate
  * @param e : element to be modified
  * @param x : new x coordinate
  * @return 1 if there was an error, 0 if not
  */
-int setCoordXElement(Element * e, float x);
+int setCoordXElement(Element * e, double x);
 /**
  * @brief set the element's y coordinate
  * @param e : element to be modified
  * @param y : new y coordinate
  * @return 1 if there was an error, 0 if not
  */
-int setCoordYElement(Element * e, float y);
+int setCoordYElement(Element * e, double y);
 /**
  * @brief Define a list of actions to apply to an element
  * @param e : element to be modified
@@ -915,6 +893,8 @@ long long addActionToElement(Element * e, ListAction * action);
  * @return 1 if it failed, 0 if not
  */
 int delActionToElement(Element * e, long long index);
+int setParentElement(Element * parent, Element * child);
+int delParentElement(Element * child);
 /* ------------------------------------------------------- */
 
 

@@ -453,7 +453,7 @@ int updateWindow(){
 
                         // exec action list on element
                         if((*ele)->element->actions){
-                            if(executeListAction((*ele)->element->actions, (*ele)->element, (float)(time - _windows_SANDAL2->currentDisplay->ticks) / 1000.f)){
+                            if(executeListAction((*ele)->element->actions, (*ele)->element, (double)(time - _windows_SANDAL2->currentDisplay->ticks) / 1000.f)){
                                 freeListAction((*ele)->element->actions);
                                 (*ele)->element->actions = NULL;
                                 if((*ele)->element->events.endAction){
@@ -480,9 +480,6 @@ int updateWindow(){
                                 }
                                 (*ele)->element->animation->current->wasChanged = 0;
                             }
-                        }
-                        if((*ele)->element->rotSpeed != 0.f){
-                            (*ele)->element->rotation = ((*ele)->element->rotation + (*ele)->element->rotSpeed > 360.f ? (*ele)->element->rotation + (*ele)->element->rotSpeed - 360.f : (*ele)->element->rotation + (*ele)->element->rotSpeed);
                         }
                     }
 		    if(_windows_SANDAL2->currentDisplay->stop)
@@ -592,8 +589,8 @@ int clickWindow(SDL_MouseButtonEvent button){
     PtrElement *e;
     ListPtrElement *lp;
     ListDCElement *ldc;
-    float newX,newY,c = 1,s = 0,xtmp,prX,prY;
-    float rot = 0.f;
+    double newX,newY,c = 1,s = 0,xtmp,prX,prY;
+    double rot = 0.f;
     int error = 1;
     int x = button.x, y = button.y;
 
@@ -614,10 +611,10 @@ int clickWindow(SDL_MouseButtonEvent button){
                     if(!e->deleted && isDisplaiedElement(e->element)){
                         newX=x*_windows_SANDAL2->currentDisplay->initWidth/_windows_SANDAL2->currentDisplay->width + _windows_SANDAL2->currentDisplay->origin[0];
                         newY=y*_windows_SANDAL2->currentDisplay->initHeight/_windows_SANDAL2->currentDisplay->height + _windows_SANDAL2->currentDisplay->origin[1];
-                        if(e->element->rotation != 0.f && e->element->coulBlock[0]==-1){
+                        if(e->element->rotation != 0. && e->element->coulBlock[0]==-1){
                             if(e->element->rotation != rot){
-                                c=cosf(-M_PI*e->element->rotation/180.f);
-                                s=sinf(-M_PI*e->element->rotation/180.f);
+                                c=cos(-M_PI*e->element->rotation/180.);
+                                s=sin(-M_PI*e->element->rotation/180.);
                                 rot=e->element->rotation;
                             }
                             prX=e->element->prX*e->element->width+e->element->x;
@@ -672,8 +669,8 @@ int unclickWindow(SDL_MouseButtonEvent button){
     PtrElement *e;
     ListPtrElement *lp;
     ListDCElement *ldc;
-    float newX,newY,c = 1,s = 0,xtmp;
-    float rot = 0.f;
+    double newX,newY,c = 1,s = 0,xtmp;
+    double rot = 0.f;
     int error = 1;
     int x = button.x, y = button.y;
 
@@ -808,8 +805,8 @@ int onMouseMotionWindow(int x, int y){
     PtrElement *e;
     ListPtrElement *lp;
     ListDCElement *ldc;
-    float newX,newY,c = 1,s = 0,xtmp,prX,prY;
-    float rot = 0.f;
+    double newX,newY,c = 1,s = 0,xtmp,prX,prY;
+    double rot = 0.f;
     int error = 1;
 
     if(_windows_SANDAL2 && _windows_SANDAL2->currentDisplay && _windows_SANDAL2->currentDisplay->liste){

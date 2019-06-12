@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['hitclickable',['hitClickable',['../Clickable_8h.html#a13a5a63f462c5ef34214e5b4b459bead',1,'Clickable.c']]],
-  ['hitlistclickable',['hitListClickable',['../Clickable_8h.html#ad71864946f13aa96abba7d052cb73de9',1,'Clickable.c']]]
+  ['hitclickable',['hitClickable',['../Clickable_8h.html#a203c9bc4bba4f68c8e2586cb41f368d4',1,'Clickable.c']]],
+  ['hitlistclickable',['hitListClickable',['../Clickable_8h.html#aa7a3e8ebe0fbaf6cb23ad1f86d86a9ec',1,'Clickable.c']]]
 ];

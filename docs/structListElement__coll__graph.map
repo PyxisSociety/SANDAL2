@@ -1,9 +1,9 @@
 <map id="ListElement" name="ListElement">
 <area shape="rect" id="node20" href="$structWindow.html" title="SANDAL2 window. " alt="" coords="191,248,261,275"/>
-<area shape="rect" id="node2" href="$structListPtrElement.html" title="List of PtrElement. " alt="" coords="363,560,471,587"/>
+<area shape="rect" id="node2" href="$structListPtrElement.html" title="List of PtrElement. " alt="" coords="353,563,461,589"/>
 <area shape="rect" id="node4" href="$structElement.html" title="All the informations of an element. " alt="" coords="611,337,681,364"/>
-<area shape="rect" id="node22" href="$structListDCElement.html" title="List (display code) of list (plan) of element. " alt="" coords="191,664,301,691"/>
-<area shape="rect" id="node3" href="$structPtrElement.html" title="Structure used to store elements&#39; pointers in a list of element. " alt="" coords="579,441,665,468"/>
+<area shape="rect" id="node22" href="$structListDCElement.html" title="List (display code) of list (plan) of element. " alt="" coords="191,667,301,693"/>
+<area shape="rect" id="node3" href="$structPtrElement.html" title="Structure used to store elements&#39; pointers in a list of element. " alt="" coords="585,443,672,469"/>
 <area shape="rect" id="node5" href="$structListClickable.html" title="Collection of hit boxes. " alt="" coords="936,248,1033,275"/>
 <area shape="rect" id="node6" href="$structClickable.html" title="Represente a hit boxe which is a collection of Line (defining a convexe polygon) and Circle..." alt="" coords="947,113,1023,140"/>
 <area shape="rect" id="node7" href="$structLine.html" title="Represente a line which delimitate a hittable surface from a none hittable one. " alt="" coords="880,7,927,33"/>
