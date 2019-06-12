@@ -2073,6 +2073,10 @@ int delParentElement(Element * child){
                 *pE = (*pE)->next;
                 free(tmp);
             }
+
+            if(!child->elementParent->elementChildren.first){
+                child->elementParent->elementChildren.last = NULL;
+            }
             child->elementParent = NULL;
         }
     }

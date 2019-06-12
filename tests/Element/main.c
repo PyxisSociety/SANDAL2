@@ -10,6 +10,16 @@ TEST_SECTION(Element){
     static Element e = {0}; // static not to be reinitialized if a test case failed
 
     TEST_CASE(set){
+        // set parent
+        Element c1 = {0}, c2 = {0};
+        REQUIRE(setParentElement(NULL, NULL));
+        REQUIRE(setParentElement(&e, NULL));
+        REQUIRE(setParentElement(NULL, &c1));
+        REQUIRE(!setParentElement(&e, &c1));
+        REQUIRE(!setParentElement(&e, &c2));
+        REQUIRE(e.elementChildren.first->element == &c1);
+        REQUIRE(e.elementChildren.last->element == &c2);
+        
 	// set font
 	int color[4] = {1, 1, 1, 1};
 	const char * fontPath = "downloadable/arial.ttf";
@@ -70,8 +80,8 @@ TEST_SECTION(Element){
 	EQ(e.height, 1);
 
 	// set text size
-	REQUIRE(setTextSize(NULL, 50.f));
-	REQUIRE(!setTextSize(&e, 50.f));
+	REQUIRE(setTextSize(NULL, 50.));
+	REQUIRE(!setTextSize(&e, 50.));
 	EQ(e.textSize, 0.5f);
 
 	// set display code
@@ -196,6 +206,13 @@ TEST_SECTION(Element){
 	REQUIRE(setScriptedEntry(&e, 0));
 	REQUIRE(!setScriptedEntry(&e, 1));
 	REQUIRE(entry.isScripted == 1);
+
+        // del parent
+        REQUIRE(delParentElement(NULL));
+        REQUIRE(!delParentElement(&c1));
+        REQUIRE(!delParentElement(&c2));
+        REQUIRE(!e.elementChildren.first);
+        REQUIRE(!e.elementChildren.last);
     }
 
     TEST_CASE(get){
@@ -208,7 +225,7 @@ TEST_SECTION(Element){
 	REQUIRE(e.flip == flip);
 
 	// get coord
-	float x = 0., y = 0.;
+	double x = 0., y = 0.;
 	e.x = 1.;
 	e.y = 2.;
 	REQUIRE(getCoordElement(NULL, NULL, NULL));
@@ -246,14 +263,14 @@ TEST_SECTION(Element){
 	EQ(e.prY, 42.);
 
 	// get data
-	float * pX = NULL;
+	double * pX = NULL;
 	e.data = &x;
 	x = 23.;
 	REQUIRE(getDataElement(NULL, NULL));
 	REQUIRE(!getDataElement(&e, (void**)&pX));
 	REQUIRE_NOT_NULL(pX);
 	EQ(*pX, 23.);
-	EQ(*pX, *(float*)e.data);
+	EQ(*pX, *(double*)e.data);
         REQUIRE(e.data == &x);
 
 	// is selected
