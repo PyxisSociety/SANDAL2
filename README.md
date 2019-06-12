@@ -72,3 +72,4 @@ A pseudo generic makefile is downloadable [here](https://github.com/Klevh/SANDAL
 ### II. CMake
 
 A `FindSANDAL2.cmake` file was created for this project. Also, find files can be found for SDL2_ttf and SDL2_image. All those files are downloadable [here](https://github.com/Klevh/SANDAL2/tree/master/downloadable/cmake).
+
