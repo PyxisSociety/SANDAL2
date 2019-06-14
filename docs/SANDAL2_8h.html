@@ -179,6 +179,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SAND
 <tr class="memitem:a3cca0728065dd10b33776c70c30e66db"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SANDAL2_8h.html#a3cca0728065dd10b33776c70c30e66db">PollEvent</a> (unsigned long *error)</td></tr>
 <tr class="memdesc:a3cca0728065dd10b33776c70c30e66db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the event (if there is one) and apply the corresponding functions.  <a href="#a3cca0728065dd10b33776c70c30e66db">More...</a><br /></td></tr>
 <tr class="separator:a3cca0728065dd10b33776c70c30e66db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa15bc4f919b63acdcc24dd1869fa9d41"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SANDAL2_8h.html#aa15bc4f919b63acdcc24dd1869fa9d41">mainLoop</a> (unsigned short maxFPS)</td></tr>
+<tr class="memdesc:aa15bc4f919b63acdcc24dd1869fa9d41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run the standard SANDAL2 loop Do <a class="el" href="SANDAL2_8h.html#a3cca0728065dd10b33776c70c30e66db" title="Get the event (if there is one) and apply the corresponding functions. ">PollEvent()</a>, call update then display and wait for a certain amount of milliseconds.  <a href="#aa15bc4f919b63acdcc24dd1869fa9d41">More...</a><br /></td></tr>
+<tr class="separator:aa15bc4f919b63acdcc24dd1869fa9d41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -536,6 +539,33 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if it failed, 0 if not </dd></dl>
+
+</div>
+</div>
+<a id="aa15bc4f919b63acdcc24dd1869fa9d41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa15bc4f919b63acdcc24dd1869fa9d41">&#9670;&nbsp;</a></span>mainLoop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long mainLoop </td>
+          <td>(</td>
+          <td class="paramtype">unsigned short&#160;</td>
+          <td class="paramname"><em>maxFPS</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Run the standard SANDAL2 loop Do <a class="el" href="SANDAL2_8h.html#a3cca0728065dd10b33776c70c30e66db" title="Get the event (if there is one) and apply the corresponding functions. ">PollEvent()</a>, call update then display and wait for a certain amount of milliseconds. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">maxFPS</td><td>number of maximum frame per seconds, it will tries to go that quick and will compensate if an iteration is longer than expected. If it is greater than 1000, it will be ignored and will be set to 60 instead. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the error flag (0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one) set by PollEvent </dd></dl>
 
 </div>
 </div>

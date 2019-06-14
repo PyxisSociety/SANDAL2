@@ -1100,4 +1100,37 @@ int PollEvent(unsigned long * error){
 
     return quit;
 }
+
+unsigned long mainLoop(unsigned short maxFPS){
+    int           tps    = 0;
+    int           ticks  = 0;
+    int           run    = 1;
+    unsigned long error  = 0;
+    int           fpsTime = 1000 / maxFPS;
+
+    if(!fpsTime){
+        fpsTime = 16;
+    }
+    
+    while(run){
+	tps = SDL_GetTicks();
+        
+	/* event handling */
+	run=!PollEvent(&error) && !error;
+
+        if(run){
+            /* update the window */
+            updateWindow();
+            /* display it */
+            displayWindow();
+        
+            /* maxFPS frames/secondes delay */
+            ticks = fpsTime - SDL_GetTicks() + tps + ticks;
+            if(ticks > 0){
+                SDL_Delay(ticks);
+                ticks = 0;
+            }
+        }
+    }
+}
 /* ------------------------------------------------------- */

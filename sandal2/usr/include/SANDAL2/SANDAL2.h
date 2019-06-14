@@ -183,7 +183,7 @@ unsigned long displayAllWindow(void);
 /* ------------------------------------------------------- */
 
 /* ------------------------------------------------------- 
- * Gestion d'evenement
+ * Gestion d'evenement et boucle principale
  */
 /**
  * @brief Get the event (if there is one) and apply the corresponding functions
@@ -191,6 +191,13 @@ unsigned long displayAllWindow(void);
  * @return 1 if the user asked to close the window, 0 if not
  */
 int PollEvent(unsigned long * error);
+/**
+ * @brief Run the standard SANDAL2 loop
+ * Do PollEvent(), call update then display and wait for a certain amount of milliseconds
+ * @param maxFPS: number of maximum frame per seconds, it will tries to go that quick and will compensate if an iteration is longer than expected. If it is greater than 1000, it will be ignored and will be set to 60 instead.
+ * @return the error flag (0 if it succeeded, a binary code telling which window failed (example : 100101 tells that the second and the fifth window failed, the first bit on the rigth only tells that there was an error), if you have more window than bits for int, you will not be able to tell which of the window failed in those which have a bigger number than the number of bit minus one) set by PollEvent
+ */
+unsigned long mainLoop(unsigned short maxFPS);
 /* ------------------------------------------------------- */
 
 #ifdef __cplusplus
