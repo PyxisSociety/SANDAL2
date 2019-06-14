@@ -15,6 +15,7 @@ var searchData=
   ['deletecode',['deleteCode',['../structElement.html#aa522e690ca0958c94fb4a9c2220f631d',1,'Element']]],
   ['deleted',['deleted',['../structPtrElement.html#acf5c1d9661d5059390e1dbe0585fb92b',1,'PtrElement::deleted()'],['../structElement.html#a2082052562e65199c07b1408795f5f88',1,'Element::deleted()']]],
   ['delline',['delLine',['../Clickable_8h.html#aaa72c41e4a2a0c2233abc7c26fc2b287',1,'Clickable.c']]],
+  ['delparentelement',['delParentElement',['../Element_8h.html#ada4653b518c6fe5eb7619a0a8cc75f6a',1,'Element.c']]],
   ['delsprite',['delSprite',['../Sprite_8h.html#ad00a14d7c490d520a1d0b2e4d66e019e',1,'Sprite.c']]],
   ['delspriteanimation',['delSpriteAnimation',['../Sprite_8h.html#aa5478b6d0b3598d441d88474b9c1fbfa',1,'Sprite.c']]],
   ['delspriteanimationelement',['delSpriteAnimationElement',['../Element_8h.html#ada3bd16a641a5ca0e89716f2bbf62799',1,'Element.c']]],

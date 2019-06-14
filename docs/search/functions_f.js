@@ -48,6 +48,7 @@ var searchData=
   ['setonmousemotionwindow',['setOnMouseMotionWindow',['../Window_8h.html#acb4afa31a3f04abfeac647bf53aadf3e',1,'Window.c']]],
   ['setonwheelwindow',['setOnWheelWindow',['../Window_8h.html#a54ba24cc8405dc7fd1dbe201e82c234d',1,'Window.c']]],
   ['setoriginwindow',['setOriginWindow',['../Window_8h.html#a14943c3217c279173641a6d87d6adac9',1,'Window.c']]],
+  ['setparentelement',['setParentElement',['../Element_8h.html#a89f72b4f89885a6b5bdd3ce08e204aab',1,'Element.c']]],
   ['setplanelement',['setPlanElement',['../Element_8h.html#aa7a21b58f92f4fef89209f1a6a445e16',1,'Element.c']]],
   ['setrotationpointelement',['setRotationPointElement',['../Element_8h.html#a633d6bb08d73846c7a4612c74d6fe449',1,'Element.c']]],
   ['setscriptedentry',['setScriptedEntry',['../Element_8h.html#ae5ee1d9081efe185869da6417fc58a93',1,'Element.c']]],

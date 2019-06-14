@@ -157,7 +157,9 @@ typedef struct Element{
     ListAction * actions;
     /**< list of actions to be done on this element */
     struct Element * elementParent;
+    /**< parent element in the scenary graph */
     struct ListPtrElement elementChildren;
+    /**< children elements in the scenary graph */
 }Element;
 
 /**
@@ -893,7 +895,18 @@ long long addActionToElement(Element * e, ListAction * action);
  * @return 1 if it failed, 0 if not
  */
 int delActionToElement(Element * e, long long index);
+/**
+ * @brief set the parent of an element in the scenary graph
+ * @param parent: parent to add a child to
+ * @param child: child to be added to the parent
+ * @return 1 if it failed, 0 if not
+ */
 int setParentElement(Element * parent, Element * child);
+/**
+ * @brief Remove the parent of an element in the scenary graph
+ * @param child: element to remove the parent from
+ * @return 1 if it failed, 0 if not
+ */
 int delParentElement(Element * child);
 /* ------------------------------------------------------- */
 

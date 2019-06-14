@@ -436,11 +436,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Elem
 <tr class="memitem:a7c164feab1b01bd8f109b69b168dfe58"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Element_8h.html#a7c164feab1b01bd8f109b69b168dfe58">delActionToElement</a> (<a class="el" href="structElement.html">Element</a> *e, long long index)</td></tr>
 <tr class="memdesc:a7c164feab1b01bd8f109b69b168dfe58"><td class="mdescLeft">&#160;</td><td class="mdescRight">remove an action of the element action list  <a href="#a7c164feab1b01bd8f109b69b168dfe58">More...</a><br /></td></tr>
 <tr class="separator:a7c164feab1b01bd8f109b69b168dfe58"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89f72b4f89885a6b5bdd3ce08e204aab"><td class="memItemLeft" align="right" valign="top"><a id="a89f72b4f89885a6b5bdd3ce08e204aab"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>setParentElement</b> (<a class="el" href="structElement.html">Element</a> *parent, <a class="el" href="structElement.html">Element</a> *child)</td></tr>
+<tr class="memitem:a89f72b4f89885a6b5bdd3ce08e204aab"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Element_8h.html#a89f72b4f89885a6b5bdd3ce08e204aab">setParentElement</a> (<a class="el" href="structElement.html">Element</a> *parent, <a class="el" href="structElement.html">Element</a> *child)</td></tr>
+<tr class="memdesc:a89f72b4f89885a6b5bdd3ce08e204aab"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the parent of an element in the scenary graph  <a href="#a89f72b4f89885a6b5bdd3ce08e204aab">More...</a><br /></td></tr>
 <tr class="separator:a89f72b4f89885a6b5bdd3ce08e204aab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada4653b518c6fe5eb7619a0a8cc75f6a"><td class="memItemLeft" align="right" valign="top"><a id="ada4653b518c6fe5eb7619a0a8cc75f6a"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>delParentElement</b> (<a class="el" href="structElement.html">Element</a> *child)</td></tr>
+<tr class="memitem:ada4653b518c6fe5eb7619a0a8cc75f6a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Element_8h.html#ada4653b518c6fe5eb7619a0a8cc75f6a">delParentElement</a> (<a class="el" href="structElement.html">Element</a> *child)</td></tr>
+<tr class="memdesc:ada4653b518c6fe5eb7619a0a8cc75f6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the parent of an element in the scenary graph.  <a href="#ada4653b518c6fe5eb7619a0a8cc75f6a">More...</a><br /></td></tr>
 <tr class="separator:ada4653b518c6fe5eb7619a0a8cc75f6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15ff0b312e78407cdf679c376272e0a1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Element_8h.html#a15ff0b312e78407cdf679c376272e0a1">initIteratorElement</a> (<a class="el" href="structElement.html">Element</a> *e)</td></tr>
 <tr class="memdesc:a15ff0b312e78407cdf679c376272e0a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialize the element's iterator on all the elements it can modifie  <a href="#a15ff0b312e78407cdf679c376272e0a1">More...</a><br /></td></tr>
@@ -2038,6 +2038,33 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if it was impossible, 0 if not </dd></dl>
+
+</div>
+</div>
+<a id="ada4653b518c6fe5eb7619a0a8cc75f6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada4653b518c6fe5eb7619a0a8cc75f6a">&#9670;&nbsp;</a></span>delParentElement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int delParentElement </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structElement.html">Element</a> *&#160;</td>
+          <td class="paramname"><em>child</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remove the parent of an element in the scenary graph. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">child</td><td>element to remove the parent from </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if it failed, 0 if not </dd></dl>
 
 </div>
 </div>
@@ -3962,6 +3989,44 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if it was impossible, 0 if not </dd></dl>
+
+</div>
+</div>
+<a id="a89f72b4f89885a6b5bdd3ce08e204aab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89f72b4f89885a6b5bdd3ce08e204aab">&#9670;&nbsp;</a></span>setParentElement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int setParentElement </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structElement.html">Element</a> *&#160;</td>
+          <td class="paramname"><em>parent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structElement.html">Element</a> *&#160;</td>
+          <td class="paramname"><em>child</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>set the parent of an element in the scenary graph </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parent</td><td>parent to add a child to </td></tr>
+    <tr><td class="paramname">child</td><td>child to be added to the parent </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if it failed, 0 if not </dd></dl>
 
 </div>
 </div>

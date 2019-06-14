@@ -12,6 +12,7 @@ var searchData=
   ['delelement',['delElement',['../Element_8h.html#a774c364b34d46052f90bb8ad2655e9de',1,'Element.c']]],
   ['delelementtoelement',['delElementToElement',['../Element_8h.html#ad57e93b22356653a23a9f77be7445d88',1,'Element.c']]],
   ['delline',['delLine',['../Clickable_8h.html#aaa72c41e4a2a0c2233abc7c26fc2b287',1,'Clickable.c']]],
+  ['delparentelement',['delParentElement',['../Element_8h.html#ada4653b518c6fe5eb7619a0a8cc75f6a',1,'Element.c']]],
   ['delsprite',['delSprite',['../Sprite_8h.html#ad00a14d7c490d520a1d0b2e4d66e019e',1,'Sprite.c']]],
   ['delspriteanimation',['delSpriteAnimation',['../Sprite_8h.html#aa5478b6d0b3598d441d88474b9c1fbfa',1,'Sprite.c']]],
   ['delspriteanimationelement',['delSpriteAnimationElement',['../Element_8h.html#ada3bd16a641a5ca0e89716f2bbf62799',1,'Element.c']]],

@@ -370,7 +370,6 @@ int delActionToAction(ListAction * action, long long index){
 /* -------------------------------------------------------
  * Action pre made action functions
  */
-
 void moveByActionFunction(struct Element * e, void * data, double spentTime){
     double * infos = (double*)data;
     double moveX, moveY;
@@ -385,11 +384,13 @@ void moveByActionFunction(struct Element * e, void * data, double spentTime){
         moveX = infos[0] * (spentTime - infos[6]);
         moveY = infos[1] * (spentTime - infos[6]);
 
-        if(moveX + infos[2] > infos[0]){
-            moveX = infos[0] - infos[2];
+        if((infos[4] < infos[2] + infos[0] && moveX + infos[4] >= infos[2] + infos[0])
+            || (infos[4] > infos[2] + infos[0] && moveX + infos[4] <= infos[2] + infos[0])){
+            moveX = infos[2] + infos[0];
         }
-        if(moveY + infos[3] > infos[1]){
-            moveY = infos[1] - infos[3];
+        if((infos[5] < infos[3] + infos[1] && moveX + infos[5] >= infos[3] + infos[1])
+            || (infos[5] > infos[3] + infos[1] && moveX + infos[5] <= infos[3] + infos[1])){
+            moveY = infos[3] + infos[1];
         }
         
         if(moveX){
@@ -399,8 +400,8 @@ void moveByActionFunction(struct Element * e, void * data, double spentTime){
             setCoordYElement(e, y + moveY);
         }
 
-        infos[2] += moveX;
-        infos[3] += moveY;
+        infos[4] += moveX;
+        infos[5] += moveY;
 
         infos[6] = spentTime;
     }
@@ -500,7 +501,8 @@ void rotateByActionFunction(struct Element * e, void * data, double spentTime){
 
         toAdd = infos[0] * (spentTime - infos[3]);
 
-        if(toAdd + infos[2] > infos[0]){
+        if((infos[2] < infos[0] && toAdd + infos[2] > infos[0])
+           || (infos[2] > infos[0] && toAdd + infos[2] < infos[1])){
             toAdd = infos[0] + infos[2];
         }
         

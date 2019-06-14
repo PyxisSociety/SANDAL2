@@ -190,7 +190,7 @@ TEST_SECTION(PreMadeAction){
 
 TEST_SECTION(PreMadeActionFunction){
     Element e = {0};
-    float data[] = {0, 0, 0, 0};
+    double data[] = {0, 0, 0, 0, 0, 0, 0};
     e.coulBlock[0] = -1;
 
     // move by
@@ -201,10 +201,10 @@ TEST_SECTION(PreMadeActionFunction){
     data[2] = 0;
     data[3] = 0;
     moveByActionFunction(&e, (void*)data, 0.5f);
-    EQ(data[2], 10);
-    EQ(data[3], 10);
-    EQ(e.x, 15.f);
-    EQ(e.y, 5.f);
+    EQ(data[2], 10, "%lf\n", data[2]);
+    EQ(data[3], 10, "%lf\n", data[3]);
+    EQ(e.x, 15.f, "%lf\n", e.x);
+    EQ(e.y, 5.f, "%lf\n", e.y);
     
     // move to
     e.x = 10;
@@ -249,9 +249,10 @@ TEST_SECTION(PreMadeActionFunction){
     e.rotation = 30;
     data[0] = 10;
     data[1] = 0;
+    data[3] = 0;
     rotateByActionFunction(&e, (void*)data, 0.5f);
     EQ(data[1], 30);
-    EQ(e.rotation, 35.f);
+    EQ(e.rotation, 35.f, "%lf\n", e.rotation);
 
     // rotate to
     e.rotation = 30;
