@@ -355,6 +355,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Elem
 <tr class="memitem:a626493f8f6c7139778a2e511ff329830"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Element_8h.html#a626493f8f6c7139778a2e511ff329830">addAngleElement</a> (<a class="el" href="structElement.html">Element</a> *e, double a)</td></tr>
 <tr class="memdesc:a626493f8f6c7139778a2e511ff329830"><td class="mdescLeft">&#160;</td><td class="mdescRight">increase the angle of an element  <a href="#a626493f8f6c7139778a2e511ff329830">More...</a><br /></td></tr>
 <tr class="separator:a626493f8f6c7139778a2e511ff329830"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7403ee066fef2e1bea19f60f5f56a1d6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Element_8h.html#a7403ee066fef2e1bea19f60f5f56a1d6">rotateElement</a> (<a class="el" href="structElement.html">Element</a> *e, double a, double prX, double prY)</td></tr>
+<tr class="memdesc:a7403ee066fef2e1bea19f60f5f56a1d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">directly rotate the element (more time consuming than adding angle)  <a href="#a7403ee066fef2e1bea19f60f5f56a1d6">More...</a><br /></td></tr>
+<tr class="separator:a7403ee066fef2e1bea19f60f5f56a1d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef0cf1329200cfb13765b0a3e6e298b0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Element_8h.html#aef0cf1329200cfb13765b0a3e6e298b0">setAngleElement</a> (<a class="el" href="structElement.html">Element</a> *e, double a)</td></tr>
 <tr class="memdesc:aef0cf1329200cfb13765b0a3e6e298b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the angle of an element  <a href="#aef0cf1329200cfb13765b0a3e6e298b0">More...</a><br /></td></tr>
 <tr class="separator:aef0cf1329200cfb13765b0a3e6e298b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -3050,6 +3053,58 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a7403ee066fef2e1bea19f60f5f56a1d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7403ee066fef2e1bea19f60f5f56a1d6">&#9670;&nbsp;</a></span>rotateElement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int rotateElement </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structElement.html">Element</a> *&#160;</td>
+          <td class="paramname"><em>e</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>prX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>prY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>directly rotate the element (more time consuming than adding angle) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">e</td><td>: element to rotate around a rotation point </td></tr>
+    <tr><td class="paramname">a</td><td>: angle of the rotation </td></tr>
+    <tr><td class="paramname">prX</td><td>: x coordinate of the rotation point </td></tr>
+    <tr><td class="paramname">prY</td><td>: y coordinate of the rotation point </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if it failed, 0 if not </dd></dl>
 
 </div>
 </div>

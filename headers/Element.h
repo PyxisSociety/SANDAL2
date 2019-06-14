@@ -707,6 +707,15 @@ int addClickableElement(Element *e,Clickable *hb,int blocking);
  */
 int addAngleElement(Element *e,double a);
 /**
+ * @brief directly rotate the element (more time consuming than adding angle)
+ * @param e : element to rotate around a rotation point
+ * @param a : angle of the rotation
+ * @param prX : x coordinate of the rotation point
+ * @param prY : y coordinate of the rotation point
+ * @return 1 if it failed, 0 if not
+ */
+int rotateElement(Element * e, double a, double prX, double prY);
+/**
  * @brief set the angle of an element
  * @param e : element to be modified
  * @param a : new angle of the element

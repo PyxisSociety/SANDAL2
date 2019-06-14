@@ -34,42 +34,7 @@ static void rotateChildren(ListPtrElement l, double a){
         prY = p->element->elementParent->prY * p->element->elementParent->height + p->element->elementParent->y;
         
         while(p){
-            x = p->element->prX * p->element->width + p->element->x;
-            y = p->element->prY * p->element->height + p->element->y;
-
-            if(prX != x || prY != y){
-                if(prX != x){
-                    oldA = atan((y - prY) / (x - prX));
-                }else{
-                    oldA = M_PI / 2;
-                }
-                if(x < prX){
-                    if(y < prY){
-                        oldA = oldA - M_PI;
-                    }else{
-                        oldA = M_PI + oldA;
-                    }
-                }
-
-                hyp = sqrt((prX - x)*(prX - x) + (prY - y)*(prY - y));
-                newX = prX + hyp*cos(oldA + M_PI * a / 180);
-                newY = prY + hyp*sin(oldA + M_PI * a / 180);
-            
-                newX = newX - p->element->prX * p->element->width;
-                newY = newY - p->element->prY * p->element->height;
-
-                x = p->element->x;
-                y = p->element->y;
-
-                p->element->x = newX;
-                p->element->y = newY;
-                
-                replaceChildren(p->element->elementChildren, newX - x, newY - y);
-                rotateChildren(p->element->elementChildren, a);
-            }
-            
-            p->element->rotation += a;
-            
+            rotateElement(p->element, a, prX, prY);
             p = p->next;
         }
     }
@@ -1692,6 +1657,54 @@ int addAngleElement(Element *e,double a){
             e->rotation -= 360;
         }
         error = 0;
+    }
+
+    return error;
+}
+
+int rotateElement(Element * e, double a, double prX, double prY){
+    double x, y, newX, newY;
+    double c, s, oldA, hyp;
+    int error = 1;
+
+    if(e){
+        error = 0;
+
+        x = e->prX * e->width + e->x;
+        y = e->prY * e->height + e->y;
+
+        if(prX != x || prY != y){
+            if(prX != x){
+                oldA = atan((y - prY) / (x - prX));
+            }else{
+                oldA = M_PI / 2;
+            }
+            if(x < prX){
+                if(y < prY){
+                    oldA = oldA - M_PI;
+                }else{
+                    oldA = M_PI + oldA;
+                }
+            }
+
+            hyp = sqrt((prX - x)*(prX - x) + (prY - y)*(prY - y));
+            newX = prX + hyp*cos(oldA + M_PI * a / 180);
+            newY = prY + hyp*sin(oldA + M_PI * a / 180);
+            
+            newX = newX - e->prX * e->width;
+            newY = newY - e->prY * e->height;
+
+            x = e->x;
+            y = e->y;
+
+            e->x = newX;
+            e->y = newY;
+                
+            replaceChildren(e->elementChildren, newX - x, newY - y);
+            rotateChildren(e->elementChildren, a);
+        }
+            
+        e->rotation += a;
     }
 
     return error;
