@@ -874,6 +874,8 @@ int onMouseMotionWindow(int x, int y){
             closeWindow();
         }else
             _cleanElement();
+    }else if(!_windows_SANDAL2->currentDisplay){
+        error = 0;
     }
 
     return error;

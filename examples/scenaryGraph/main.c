@@ -66,7 +66,7 @@ int main(){
     /* display the window */
     error = mainLoop(60);
     if(error){ // error occured ?
-        printf("Error occured with code %ull\n", error);
+        printf("Error occured with code %lu\n", error);
     }
     
     closeAllSANDAL2();
