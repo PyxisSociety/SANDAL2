@@ -4,12 +4,11 @@
 
 int main(){
     Element * parent, * child, * otherChild;
-    int run = 1;
-    int tps = 0, ticks = 0;
     int black[4] = {0,0,0,255};
     int red[4] = {255, 0, 0, 255};
     int order = 1;
     int i, j, k;
+    unsigned long error;
     
     if(initAllSANDAL2(0)){
         fputs("SANDAL2 Initializing error.\n", stderr);
@@ -60,27 +59,14 @@ int main(){
         for(j = 0; j < 2; ++j){
             child = createImageBlock(250 + 60 * i, 160 + 60 * j, 20, 20, red, 0, 0);
             k = setParentElement(parent, child);
-            printf("set parent ? %d\n", k);
+            printf("set parent worked ? %d\n", !k);
         }
     }
     
     /* display the window */
-    while(run){
-	tps = SDL_GetTicks();
-        
-	/* event handling */
-	run=!PollEvent(NULL) && run;
-
-	/* update the window */
-	updateWindow();
-	/* display it */
-	displayWindow();
-        
-	/* 60 frames/secondes delay */
-	ticks = 16 - SDL_GetTicks() + tps;
-	if(ticks>0){
-	    SDL_Delay(ticks);
-        }
+    error = mainLoop(60);
+    if(error){ // error occured ?
+        printf("Error occured with code %ull\n", error);
     }
     
     closeAllSANDAL2();

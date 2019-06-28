@@ -1132,5 +1132,7 @@ unsigned long mainLoop(unsigned short maxFPS){
             }
         }
     }
+
+    return error;
 }
 /* ------------------------------------------------------- */
